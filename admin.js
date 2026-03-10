@@ -475,68 +475,61 @@ function renderTabs(orders) {
     paidOrds.sort((a, b) => new Date(getOrderInfo(a).pDateStr) - new Date(getOrderInfo(b).pDateStr));
     paidOrds.forEach((o, i) => window.paidRankMap[o.orderid] = i + 1);
 
-    // 2. CLEAR LISTS & RESTORE DEFAULT BUTTONS
-    if (listNew) listNew.innerHTML = '';
-    if (listSent) listSent.innerHTML = '';
+    // 2. CLEAR LISTS & SET STICKY HEADER PLACEHOLDERS
+    const getTopActionsHtml = (id) => {
+        if (id === 'paid_new') return `
+            <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
+                <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                <div class="d-flex gap-2">
+                    <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
+                    <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
+                </div>
+            </div>`;
+        if (id === 'paid_print') return `
+            <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
+                <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                <div class="d-flex gap-2">
+                    <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
+                    <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
+                </div>
+            </div>`;
+        if (id === 'disp_new') return `
+            <div class="text-center mb-3 w-100">
+                <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
+                    <i class="fas fa-barcode"></i> Courier Scan
+                </button>
+            </div>`;
+        return '';
+    };
 
-    // 🔥 പുതിയ റൗണ്ട് ഡിസൈൻ (Text ഇല്ലാതെ, Tab-നുള്ളിൽ Sticky ആയി നിൽക്കാൻ)
-    const getCourierBadgeHtml = (id) => `
-        <div class="d-flex justify-content-end w-100" id="box-courier-${id}" style="display:none; position: sticky; top: 147px; z-index: 1020; pointer-events: none; float: right; margin-top: 5px;">
-             <div class="bg-white border border-danger border-opacity-25 shadow rounded-pill px-3 py-1 d-flex align-items-center gap-2" style="font-size:11px; font-weight:800; color:#dc3545; pointer-events: auto;">
-                 <div class="bg-danger text-white rounded-circle d-flex align-items-center justify-content-center" style="width:20px; height:20px;"><i class="fas fa-truck" style="font-size:9px;"></i></div>
-                 <span>₹<span id="txt-courier-${id}">0</span></span>
-             </div>
-        </div>`;
-
-    if (listPaidNew) listPaidNew.innerHTML = `
-        ${getCourierBadgeHtml('paid_new')}
-        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
-            <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
-            <div class="d-flex gap-2">
-                <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
-                <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
-            </div>
-        </div>`;
-
-    if (listPaidPrinted) listPaidPrinted.innerHTML = `
-        ${getCourierBadgeHtml('paid_print')}
-        <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
-            <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
-            <div class="d-flex gap-2">
-                <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
-                <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
-            </div>
-        </div>`;
-
-    if (listDispNew) listDispNew.innerHTML = `
-        ${getCourierBadgeHtml('disp_new')}
-        <div class="text-center mb-3 w-100">
-            <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
-                <i class="fas fa-barcode"></i> Courier Scan
-            </button>
-        </div>`;
-
-    if (listDispTracked) listDispTracked.innerHTML = `
-        ${getCourierBadgeHtml('disp_track')}
+    const initListHtml = (id) => `
+        <div id="sticky-header-${id}" class="sticky-top pt-2 pb-2 mb-3 shadow-sm border-bottom border-2" style="top: 55px; z-index: 1010; margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); display:none;"></div>
+        ${getTopActionsHtml(id)}
     `;
+
+    if (listNew) listNew.innerHTML = initListHtml('new');
+    if (listSent) listSent.innerHTML = initListHtml('sent');
+    if (listPaidNew) listPaidNew.innerHTML = initListHtml('paid_new');
+    if (listPaidPrinted) listPaidPrinted.innerHTML = initListHtml('paid_print');
+    if (listDispNew) listDispNew.innerHTML = initListHtml('disp_new');
+    if (listDispTracked) listDispTracked.innerHTML = initListHtml('disp_track');
 
     // 3. INITIALIZE VARIABLES
     let counts = { pending: 0, paid: 0, dispatched: 0 };
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
     let subCounts = { new: 0, sent: 0, paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 };
 
-    // State Stats Containers (Lakshadweep, Karnataka etc.)
     let stateStats = {
+        new: { lak: 0, kar: 0, tn: 0, other: 0 },
+        sent: { lak: 0, kar: 0, tn: 0, other: 0 },
         paid_new: { lak: 0, kar: 0, tn: 0, other: 0 },
         paid_print: { lak: 0, kar: 0, tn: 0, other: 0 },
         disp_new: { lak: 0, kar: 0, tn: 0, other: 0 },
         disp_track: { lak: 0, kar: 0, tn: 0, other: 0 }
     };
 
-    // Bottle Counts for Sub-Tabs
     let pNewQty = 0, pPrintQty = 0, dNewQty = 0, dTrackQty = 0;
 
-    // Sorting Logic
     orders.sort((a, b) => {
         let infoA = getOrderInfo(a), infoB = getOrderInfo(b);
         const statusPriority = { 'Pending': 1, 'Sent': 1, 'Paid': 2, 'Dispatched': 3, 'Completed': 4, 'Archive': 5 };
@@ -547,9 +540,8 @@ function renderTabs(orders) {
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
-    // 🔥 STEP 4: PRE-CALCULATE TIMELINE STATS (For Header Display)
     let timelineStats = {};
-    let tabCourierTotal = { paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 };
+    let tabCourierTotal = { paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0, new: 0, sent: 0 };
 
     orders.forEach(o => {
         let { status, dDateStr, pDateStr } = getOrderInfo(o);
@@ -580,7 +572,6 @@ function renderTabs(orders) {
 
             if (status === 'Dispatched' || status === 'Paid') {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
-
                 if (actualC <= 0) {
                     actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 }
@@ -593,32 +584,15 @@ function renderTabs(orders) {
         }
     });
 
-    // 🔥 STEP 5: MAIN RENDER LOOP 
     let lastDateMap = { new: '', sent: '', paid_new: '', paid_print: '', disp_new: '', disp_track: '' };
     let firstDateFlags = { new: true, sent: true, paid_new: true, paid_print: true, disp_new: true, disp_track: true };
 
-    let oldTrackingCount = 0;
-    let oldSentCount = 0;
-    let oldPendingCount = 0;
-    let oldDispNewCount = 0;
-
-    let visibleDates = {
-        sent: new Set(),
-        disp_track: new Set(),
-        new: new Set(),
-        disp_new: new Set()
-    };
+    let oldTrackingCount = 0, oldSentCount = 0, oldPendingCount = 0, oldDispNewCount = 0;
+    let visibleDates = { sent: new Set(), disp_track: new Set(), new: new Set(), disp_new: new Set() };
 
     window.showAllSent = window.showAllSent || false;
     window.showAllPending = window.showAllPending || false;
     window.showAllDispNew = window.showAllDispNew || false;
-
-    // HTML സ്ട്രിംഗുകൾ ശേഖരിക്കാൻ (ടാബുകൾക്കായി)
-    let generatedHTML = {
-        'pending': { new: '', sent: '' },
-        'paid': { new: '', printed: '' },
-        'dispatched': { new: '', tracked: '' }
-    };
 
     orders.forEach((d, i) => {
         let { status, dDateStr, pDateStr } = getOrderInfo(d);
@@ -628,10 +602,9 @@ function renderTabs(orders) {
         if (status === 'Completed' || status === 'Archive') return;
 
         let meta = getMetaStatus(d.adminMeta);
+        let targetList = null;
         let type = '';
         let dateKey = '';
-        let groupKey = '';
-        let subGroupKey = '';
 
         let qty = parseInt(d.quantity) || 0;
         let s = String(d.state || '').toUpperCase().trim();
@@ -645,33 +618,35 @@ function renderTabs(orders) {
         }
 
         if (status === 'Pending') {
-            type = 'pending'; groupKey = 'pending'; subGroupKey = 'new'; dateKey = 'new'; counts.pending++; subCounts.new++;
+            targetList = listNew; type = 'pending'; dateKey = 'new'; counts.pending++; subCounts.new++;
+            if (stateKey) stateStats.new[stateKey]++;
         }
         else if (status === 'Sent') {
-            type = 'pending'; groupKey = 'pending'; subGroupKey = 'sent'; dateKey = 'sent'; counts.pending++; subCounts.sent++;
+            targetList = listSent; type = 'pending'; dateKey = 'sent'; counts.pending++; subCounts.sent++;
+            if (stateKey) stateStats.sent[stateKey]++;
         }
         else if (status === 'Paid') {
-            type = 'paid'; groupKey = 'paid'; counts.paid++;
+            type = 'paid'; counts.paid++;
             if (meta.isPrinted) {
-                subGroupKey = 'printed'; dateKey = 'paid_print'; subCounts.paid_print++; pPrintQty += qty;
+                targetList = listPaidPrinted; dateKey = 'paid_print'; subCounts.paid_print++; pPrintQty += qty;
                 if (stateKey) stateStats.paid_print[stateKey]++;
             } else {
-                subGroupKey = 'new'; dateKey = 'paid_new'; subCounts.paid_new++; pNewQty += qty;
+                targetList = listPaidNew; dateKey = 'paid_new'; subCounts.paid_new++; pNewQty += qty;
                 if (stateKey) stateStats.paid_new[stateKey]++;
             }
         }
         else if (status === 'Dispatched') {
-            type = 'dispatched'; groupKey = 'dispatched'; counts.dispatched++;
+            type = 'dispatched'; counts.dispatched++;
             if (d.tracking || meta.isTracked) {
-                subGroupKey = 'tracked'; dateKey = 'disp_track'; subCounts.disp_track++; dTrackQty += qty;
+                targetList = listDispTracked; dateKey = 'disp_track'; subCounts.disp_track++; dTrackQty += qty;
                 if (stateKey) stateStats.disp_track[stateKey]++;
             } else {
-                subGroupKey = 'new'; dateKey = 'disp_new'; subCounts.disp_new++; dNewQty += qty;
+                targetList = listDispNew; dateKey = 'disp_new'; subCounts.disp_new++; dNewQty += qty;
                 if (stateKey) stateStats.disp_new[stateKey]++;
             }
         }
 
-        if (type) {
+        if (targetList) {
             btlCounts[type] += qty;
 
             let displayDateRaw = d.timestamp;
@@ -695,22 +670,38 @@ function renderTabs(orders) {
             if (dateLabel !== lastDateMap[dateKey]) {
                 if (lastDateMap[dateKey] !== '') firstDateFlags[dateKey] = false;
                 let extraHtml = '';
-                let stats = timelineStats[`${dateKey}_${dateLabel}`];
-                if (stats) {
-                    if (stats.cost > 0) {
-                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${stats.cost}</span>`;
+                let sStats = timelineStats[`${dateKey}_${dateLabel}`];
+                if (sStats) {
+                    if (sStats.cost > 0) {
+                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${sStats.cost}</span>`;
                     }
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${stats.count}</span>`;
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${stats.bottles}</span>`;
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${sStats.count}</span>`;
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${sStats.bottles}</span>`;
                 }
-                generatedHTML[groupKey][subGroupKey] += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
             let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
-            generatedHTML[groupKey][subGroupKey] += createCardHTML(d, i, type, status, isCompact);
+            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
         }
     });
+
+    const addLoadMoreBtn = (listElement, count, funcName) => {
+        if (count > 0 && listElement) {
+            listElement.innerHTML += `
+            <div class="text-center my-4">
+                <button onclick="${funcName}()" class="btn btn-light border border-secondary border-opacity-50 text-secondary btn-sm rounded-pill px-4 shadow-sm fw-bold" style="font-size:11px;">
+                    <i class="fas fa-history me-1"></i> Load Old Orders (${count})
+                </button>
+            </div>`;
+        }
+    };
+
+    if (!showAllTracking) addLoadMoreBtn(listDispTracked, oldTrackingCount, 'loadOldTrackingOrders');
+    if (!window.showAllSent) addLoadMoreBtn(listSent, oldSentCount, 'loadOldSentOrders');
+    if (!window.showAllPending) addLoadMoreBtn(listNew, oldPendingCount, 'loadOldPendingOrders');
+    if (!window.showAllDispNew) addLoadMoreBtn(listDispNew, oldDispNewCount, 'loadOldDispNewOrders');
 
     const getEmptyUI = (msg, subMsg, icon) => `
         <div class="text-center w-100 py-5 mt-3 fade-in d-flex flex-column align-items-center justify-content-center">
@@ -721,191 +712,90 @@ function renderTabs(orders) {
             <div class="text-muted small" style="font-size: 11px;">${subMsg}</div>
         </div>`;
 
-    if (subCounts.new === 0) generatedHTML.pending.new += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
-    if (subCounts.sent === 0) generatedHTML.pending.sent += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
-    if (subCounts.paid_new === 0) generatedHTML.paid.new += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
-    if (subCounts.paid_print === 0) generatedHTML.paid.printed += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
-    if (subCounts.disp_new === 0) generatedHTML.dispatched.new += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
-    if (subCounts.disp_track === 0) generatedHTML.dispatched.tracked += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
+    if (listNew && subCounts.new === 0) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
+    if (listSent && subCounts.sent === 0) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
+    if (listPaidNew && subCounts.paid_new === 0) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
+    if (listPaidPrinted && subCounts.paid_print === 0) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
+    if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
+    if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
-    const addLoadMoreBtnToHtml = (htmlStr, count, funcName) => {
-        if (count > 0) {
-            return htmlStr + `
-            <div class="text-center my-4">
-                <button onclick="${funcName}()" class="btn btn-light border border-secondary border-opacity-50 text-secondary btn-sm rounded-pill px-4 shadow-sm fw-bold" style="font-size:11px;">
-                    <i class="fas fa-history me-1"></i> Load Old Orders (${count})
-                </button>
-            </div>`;
-        }
-        return htmlStr;
-    };
+    // 🔥 POPULATE STICKY HEADERS (ഇവിടെയാണ് ഓരോ ടാബിലും ഹെഡർ ജനറേറ്റ് ആകുന്നത്)
+    const populateStickyHeader = (id, oCount, cTotal, sStats) => {
+        let el = document.getElementById(`sticky-header-${id}`);
+        if (!el) return;
 
-    if (!showAllTracking) generatedHTML.dispatched.tracked = addLoadMoreBtnToHtml(generatedHTML.dispatched.tracked, oldTrackingCount, 'loadOldTrackingOrders');
-    if (!window.showAllSent) generatedHTML.pending.sent = addLoadMoreBtnToHtml(generatedHTML.pending.sent, oldSentCount, 'loadOldSentOrders');
-    if (!window.showAllPending) generatedHTML.pending.new = addLoadMoreBtnToHtml(generatedHTML.pending.new, oldPendingCount, 'loadOldPendingOrders');
-    if (!window.showAllDispNew) generatedHTML.dispatched.new = addLoadMoreBtnToHtml(generatedHTML.dispatched.new, oldDispNewCount, 'loadOldDispNewOrders');
-
-
-    // 🔥 ഈ ഭാഗത്താണ് നമ്മൾ പുതിയ Sticky Header ഉണ്ടാക്കുന്നത് (ഓരോ മെയിൻ ടാബിനും)
-    ['pending', 'paid', 'dispatched'].forEach(type => {
-
-        // ടാബിന് ആവശ്യമായ വിവരങ്ങൾ എടുക്കുന്നു
-        let totalOrders = counts[type];
-        let totalBottles = btlCounts[type];
-        let totalCourierCharge = (type === 'paid' ? (tabCourierTotal.paid_new + tabCourierTotal.paid_print) : (type === 'dispatched' ? (tabCourierTotal.disp_new + tabCourierTotal.disp_track) : 0));
-
-        let sStats = { lak: 0, kar: 0, tn: 0, other: 0 };
-        if (type === 'paid') {
-            sStats.lak = stateStats.paid_new.lak + stateStats.paid_print.lak;
-            sStats.kar = stateStats.paid_new.kar + stateStats.paid_print.kar;
-            sStats.tn = stateStats.paid_new.tn + stateStats.paid_print.tn;
-        } else if (type === 'dispatched') {
-            sStats.lak = stateStats.disp_new.lak + stateStats.disp_track.lak;
-            sStats.kar = stateStats.disp_new.kar + stateStats.disp_track.kar;
-            sStats.tn = stateStats.disp_new.tn + stateStats.disp_track.tn;
+        if (oCount === 0) {
+            el.style.display = 'none';
+            return;
         }
 
-        let totalCourierHtml = '';
-        if (totalCourierCharge > 0) {
-            totalCourierHtml = `<div class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Courier: ₹${totalCourierCharge.toLocaleString()}</div>`;
+        let bCount = 0;
+        if (id === 'paid_new') bCount = pNewQty;
+        else if (id === 'paid_print') bCount = pPrintQty;
+        else if (id === 'disp_new') bCount = dNewQty;
+        else if (id === 'disp_track') bCount = dTrackQty;
+        else {
+            bCount = orders.filter(o => getOrderInfo(o).status === (id === 'new' ? 'Pending' : 'Sent')).reduce((sum, o) => sum + (parseInt(o.quantity) || 1), 0);
         }
 
-        let stickyHeaderHtml = `
-        <div class="sticky-top pt-2 pb-2 mb-3 shadow-sm border-bottom border-2" style="top: 55px; z-index: 1010; margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px);">
-            
+        let cHtml = cTotal > 0 ? `<div class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Courier: ₹${cTotal.toLocaleString()}</div>` : '';
+
+        let klCount = oCount - (sStats.tn + sStats.kar + sStats.lak + sStats.other);
+        if (klCount < 0) klCount = 0;
+
+        let typeStr = (id === 'new' || id === 'sent') ? 'pending' : (id.includes('paid') ? 'paid' : 'dispatched');
+
+        el.style.display = 'block';
+        el.innerHTML = `
             <div class="d-flex justify-content-between align-items-center mb-2 px-1">
                 <div class="fw-bold text-dark d-flex align-items-center gap-3" style="font-size:13px;">
-                    <span class="d-flex align-items-center"><i class="fas fa-shopping-bag text-primary me-1 fs-6"></i> <span id="tot-ord-${type}" class="fs-5 me-1">${totalOrders}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Ords</span></span>
-                    <span class="d-flex align-items-center"><i class="fas fa-wine-bottle text-success me-1 fs-6"></i> <span id="tot-btl-${type}" class="fs-5 me-1">${totalBottles}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Btls</span></span>
+                    <span class="d-flex align-items-center"><i class="fas fa-shopping-bag text-primary me-1 fs-6"></i> <span class="fs-5 me-1">${oCount}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Ords</span></span>
+                    <span class="d-flex align-items-center"><i class="fas fa-wine-bottle text-success me-1 fs-6"></i> <span class="fs-5 me-1">${bCount}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Btls</span></span>
                 </div>
-                ${totalCourierHtml}
+                ${cHtml}
             </div>
             
             <div class="d-flex align-items-center overflow-auto pb-1" style="scrollbar-width: none; white-space: nowrap;">
                 <div class="d-flex align-items-center me-2 pe-2 border-end border-secondary border-opacity-25">
-                    <input type="text" id="date-filter-${type}" class="form-control form-control-sm border-primary text-primary fw-bold text-center shadow-sm date-filter-input" style="width:105px; border-radius:20px; font-size:11px; cursor:pointer; background:#f0f9ff;" placeholder="📅 Filter Date">
-                    <button class="btn btn-sm btn-outline-danger ms-1 rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:26px; height:26px; padding:0; display:none;" id="clear-date-${type}" onclick="clearDateFilter('${type}')" title="Clear Filter"><i class="fas fa-times"></i></button>
+                    <input type="text" id="date-filter-${id}" class="form-control form-control-sm border-primary text-primary fw-bold text-center shadow-sm date-filter-input" style="width:105px; border-radius:20px; font-size:11px; cursor:pointer; background:#f0f9ff;" placeholder="📅 Filter Date">
+                    <button class="btn btn-sm btn-outline-danger ms-1 rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:26px; height:26px; padding:0; display:none;" id="clear-date-${id}" onclick="clearDateFilter('${typeStr}')" title="Clear Filter"><i class="fas fa-times"></i></button>
                 </div>
                 
                 <div class="d-flex align-items-center gap-2">
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'KL', this)">Kerala <span class="text-primary ms-1"></span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'TN', this)">Tamilnadu <span class="text-primary ms-1">${sStats.tn}</span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'KA', this)">Karnataka <span class="text-primary ms-1">${sStats.kar}</span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${type}', 'LD', this)">Lakshadweep <span class="text-primary ms-1">${sStats.lak}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Kerala <span class="text-primary ms-1">${klCount}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Tamilnadu <span class="text-primary ms-1">${sStats.tn}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Karnataka <span class="text-primary ms-1">${sStats.kar}</span></span>
+                    <span class="badge rounded-pill bg-white text-dark border shadow-sm px-3 py-1" style="font-size:10px; font-weight:700;">Lakshadweep <span class="text-primary ms-1">${sStats.lak}</span></span>
                 </div>
             </div>
-        </div>
         `;
-
-        // ആ ടാബിലെ പ്രധാന ഡിവിലേക്ക് ഹെഡറും ഉള്ളടക്കവും ചേർക്കുന്നു
-        let targetMainDiv = document.getElementById(type);
-        if (targetMainDiv) {
-            // പഴയ sub-tab HTML കളഞ്ഞു, പകരം നമ്മുടെ stickyHeaderHtml കൊടുത്തു
-            // താഴെ കാർഡുകൾ കാണിക്കാൻ രണ്ട് പ്രത്യേക div-കൾ ഉണ്ടാക്കുന്നു (സബ് ടാബുകൾ മാറാൻ)
-            let contentHtml = `
-             <div class="row g-2" id="list-sub-${type}-1" style="display:flex;">${generatedHTML[type][type === 'pending' ? 'new' : 'new']}</div>
-             <div class="row g-2" id="list-sub-${type}-2" style="display:none;">${generatedHTML[type][type === 'pending' ? 'sent' : (type === 'paid' ? 'printed' : 'tracked')]}</div>
-             `;
-
-            // പഴയ ടാബിലെ UI ബാക്കി വെക്കണോ എന്ന് നോക്കുന്നു.
-            // ഇവിടെ നമ്മൾ നേരെ document.getElementById('list-sub-new') ലേക്ക് അപ്പൻഡ് ചെയ്തത് കാരണം, stickyHeaderHtml അതിന് മുകളിൽ വരില്ല.
-        }
-    });
-
-    // DOM ലേക്ക് എഴുതുന്നു
-    if (listNew) listNew.innerHTML += generatedHTML.pending.new;
-    if (listSent) listSent.innerHTML += generatedHTML.pending.sent;
-    if (listPaidNew) listPaidNew.innerHTML += generatedHTML.paid.new;
-    if (listPaidPrinted) listPaidPrinted.innerHTML += generatedHTML.paid.printed;
-    if (listDispNew) listDispNew.innerHTML += generatedHTML.dispatched.new;
-    if (listDispTracked) listDispTracked.innerHTML += generatedHTML.dispatched.tracked;
-
-    // 🔥 NEW: ഓരോ മെയിൻ ടാബിനും മുകളിൽ പുതിയ Sticky Header ഇൻസേർട്ട് ചെയ്യുന്നു
-    const insertStickyHeader = (typeStr, totalOrders, totalBottles, totalCourierCharge, sStats) => {
-        let targetDiv = document.getElementById(typeStr);
-        if (!targetDiv) return;
-
-        // Remove old sticky headers if any to prevent duplicates
-        $(targetDiv).find('.sticky-top').remove();
-
-        let totalCourierHtml = '';
-        if (totalCourierCharge > 0) {
-            totalCourierHtml = `<div class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25 px-2 py-1 shadow-sm" style="font-size:10px;"><i class="fas fa-truck me-1"></i> Courier: ₹${totalCourierCharge.toLocaleString()}</div>`;
-        }
-
-        let stickyHeaderHtml = `
-        <div class="sticky-top pt-2 pb-2 mb-3 shadow-sm border-bottom border-2" style="top: 55px; z-index: 1010; margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px);">
-            <div class="d-flex justify-content-between align-items-center mb-2 px-1">
-                <div class="fw-bold text-dark d-flex align-items-center gap-3" style="font-size:13px;">
-                    <span class="d-flex align-items-center"><i class="fas fa-shopping-bag text-primary me-1 fs-6"></i> <span class="fs-5 me-1">${totalOrders}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Ords</span></span>
-                    <span class="d-flex align-items-center"><i class="fas fa-wine-bottle text-success me-1 fs-6"></i> <span class="fs-5 me-1">${totalBottles}</span> <span class="text-muted" style="font-size:10px; margin-top:3px;">Btls</span></span>
-                </div>
-                ${totalCourierHtml}
-            </div>
-            <div class="d-flex align-items-center overflow-auto pb-1" style="scrollbar-width: none; white-space: nowrap;">
-                <div class="d-flex align-items-center me-2 pe-2 border-end border-secondary border-opacity-25">
-                    <input type="text" id="date-filter-${typeStr}" class="form-control form-control-sm border-primary text-primary fw-bold text-center shadow-sm date-filter-input" style="width:105px; border-radius:20px; font-size:11px; cursor:pointer; background:#f0f9ff;" placeholder="📅 Filter Date">
-                    <button class="btn btn-sm btn-outline-danger ms-1 rounded-circle shadow-sm d-flex align-items-center justify-content-center" style="width:26px; height:26px; padding:0; display:none;" id="clear-date-${typeStr}" onclick="clearDateFilter('${typeStr}')" title="Clear Filter"><i class="fas fa-times"></i></button>
-                </div>
-                <div class="d-flex align-items-center gap-2">
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'KL', this)">Kerala <span class="text-primary ms-1"></span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'TN', this)">Tamilnadu <span class="text-primary ms-1">${sStats.tn}</span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'KA', this)">Karnataka <span class="text-primary ms-1">${sStats.kar}</span></span>
-                    <span class="badge rounded-pill bg-white text-dark border shadow-sm filter-badge px-3 py-1" style="cursor:pointer; font-size:10px; font-weight:700;" onclick="filterByState('${typeStr}', 'LD', this)">Lakshadweep <span class="text-primary ms-1">${sStats.lak}</span></span>
-                </div>
-            </div>
-        </div>`;
-
-        // prepend it so it appears above the sub-tabs navigation
-        $(targetDiv).prepend(stickyHeaderHtml);
     };
 
-    let pStats = { lak: 0, kar: 0, tn: 0 };
-    let paidStats = { lak: stateStats.paid_new.lak + stateStats.paid_print.lak, kar: stateStats.paid_new.kar + stateStats.paid_print.kar, tn: stateStats.paid_new.tn + stateStats.paid_print.tn };
-    let dStats = { lak: stateStats.disp_new.lak + stateStats.disp_track.lak, kar: stateStats.disp_new.kar + stateStats.disp_track.kar, tn: stateStats.disp_new.tn + stateStats.disp_track.tn };
-
-    insertStickyHeader('pending', counts.pending, btlCounts.pending, 0, pStats);
-    insertStickyHeader('paid', counts.paid, btlCounts.paid, tabCourierTotal.paid_new + tabCourierTotal.paid_print, paidStats);
-    insertStickyHeader('dispatched', counts.dispatched, btlCounts.dispatched, tabCourierTotal.disp_new + tabCourierTotal.disp_track, dStats);
-
+    populateStickyHeader('new', subCounts.new, 0, stateStats.new);
+    populateStickyHeader('sent', subCounts.sent, 0, stateStats.sent);
+    populateStickyHeader('paid_new', subCounts.paid_new, tabCourierTotal.paid_new, stateStats.paid_new);
+    populateStickyHeader('paid_print', subCounts.paid_print, tabCourierTotal.paid_print, stateStats.paid_print);
+    populateStickyHeader('disp_new', subCounts.disp_new, tabCourierTotal.disp_new, stateStats.disp_new);
+    populateStickyHeader('disp_track', subCounts.disp_track, tabCourierTotal.disp_track, stateStats.disp_track);
 
     // 6. UPDATE BADGES
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
 
-    // State Dots HTML Helper
-    const getDotsHtml = (stats) => {
-        let html = '';
-        if (stats.lak > 0) html += `<span class="state-dot" style="background:#0dcaf0;" title="Lakshadweep">${stats.lak}</span>`;
-        if (stats.kar > 0) html += `<span class="state-dot" style="background:#d97706;" title="Karnataka">${stats.kar}</span>`;
-        if (stats.tn > 0) html += `<span class="state-dot" style="background:#795548;" title="Tamil Nadu">${stats.tn}</span>`;
-        if (stats.other > 0) html += `<span class="state-dot" style="background:#d63384;" title="Other State">${stats.other}</span>`;
-        return html ? `<div class="d-flex gap-1 ms-1 align-items-center">${html}</div>` : '';
-    };
-
-    // Inject CSS for Dots
-    if (!$('#state-dot-css').length) {
-        $('<style id="state-dot-css">').html(`.state-dot { width: 14px; height: 14px; border-radius: 50%; color: white; font-size: 8px; font-weight: bold; display: flex; justify-content: center; align-items: center; box-shadow: 0 1px 2px rgba(0,0,0,0.2); }`).appendTo('head');
-    }
-
-    // Update Sub-tab Badges
-    const setBadge = (id, val, btl, stats) => {
+    // 🔥 FIX: പഴയ സബ്-ടാബ് ബാഡ്ജുകളിൽ നിന്ന് ടെക്സ്റ്റ് ഒഴിവാക്കി സിമ്പിൾ ആയി നമ്പർ മാത്രം കൊടുക്കുന്നു
+    const setBadge = (id, val) => {
         if (document.getElementById(id)) {
-            document.getElementById(id).innerHTML = `${val} <span style="font-size:0.8em; opacity:0.8;"><i class="fas fa-wine-bottle" style="font-size:9px;"></i> ${btl}</span> ${getDotsHtml(stats)}`;
+            document.getElementById(id).innerText = val;
         }
     };
 
-    // Basic Badges
-    const setBasicBadge = (id, val) => { if (document.getElementById(id)) document.getElementById(id).innerText = val; };
-    setBasicBadge('badge-sub-new', subCounts.new);
-    setBasicBadge('badge-sub-sent', subCounts.sent);
-
-    // Advanced Badges (With Dots & Bottles)
-    setBadge('badge-paid-new', subCounts.paid_new, pNewQty, stateStats.paid_new);
-    setBadge('badge-paid-printed', subCounts.paid_print, pPrintQty, stateStats.paid_print);
-    setBadge('badge-disp-new', subCounts.disp_new, dNewQty, stateStats.disp_new);
-    setBadge('badge-disp-tracked', subCounts.disp_track, dTrackQty, stateStats.disp_track);
+    setBadge('badge-sub-new', subCounts.new);
+    setBadge('badge-sub-sent', subCounts.sent);
+    setBadge('badge-paid-new', subCounts.paid_new);
+    setBadge('badge-paid-printed', subCounts.paid_print);
+    setBadge('badge-disp-new', subCounts.disp_new);
+    setBadge('badge-disp-tracked', subCounts.disp_track);
 
     updateSyncButtonUI();
     checkSelectAllStatus();
@@ -914,27 +804,6 @@ function renderTabs(orders) {
     if (savedScroll && parseInt(savedScroll) > 0) {
         setTimeout(() => { window.scrollTo(0, parseInt(savedScroll)); }, 100);
     }
-
-    const setTabCourierTotal = (tabKey) => {
-        let amt = tabCourierTotal[tabKey];
-        if (amt > 0) {
-            $(`#box-courier-${tabKey}`).css('display', 'flex');
-            $(`#txt-courier-${tabKey}`).text(amt.toLocaleString('en-IN'));
-        } else {
-            $(`#box-courier-${tabKey}`).css('display', 'none');
-        }
-    };
-
-    setTabCourierTotal('paid_new');
-    setTabCourierTotal('paid_print');
-    setTabCourierTotal('disp_new');
-    setTabCourierTotal('disp_track');
-
-    // Date Picker Initialize 
-    setTimeout(() => {
-        initFlatpickrs();
-    }, 300);
-
 }
 
 
