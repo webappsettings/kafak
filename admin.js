@@ -503,7 +503,7 @@ function renderTabs(orders) {
     };
 
     const initListHtml = (id) => `
-        <div id="sticky-header-${id}" class="sticky-top pt-2 pb-2 mb-3 shadow-sm border-bottom border-2" style="top: 110px; z-index: 1010; margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); display:none;"></div>
+        <div id="sticky-header-${id}" class="sticky-top pt-2 pb-2 mb-3 shadow-sm border-bottom border-2" style="top: 110px; border-radius: 10px; z-index: 1010; margin-left:-12px; margin-right:-12px; padding-left:12px; padding-right:12px; background: rgba(255, 255, 255, 0.96); backdrop-filter: blur(8px); display:none;"></div>
         ${getTopActionsHtml(id)}
     `;
 
