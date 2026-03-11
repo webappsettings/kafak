@@ -1757,7 +1757,9 @@ window.updatePrice = function (qty, isQuick) {
   const lang = $('#language-select').val() || 'ml';
   const t = translations[lang];
   const n = parseInt(qty);
-  const base = n * 650;
+
+  // 🔥 വാട്സ്ആപ്പിലെ അതേ ലോജിക് വിസാർഡിലും കൊടുക്കുന്നു! (Sheet Price Sync)
+  const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
   let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
 
