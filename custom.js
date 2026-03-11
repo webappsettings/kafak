@@ -1562,7 +1562,30 @@ function updateStatusUI(d) {
     if (index === 2 && item.active && d.tracking && !isRefunded) {
       let courierName = d.courier || d.Courier_Provider || d.provider || "Courier";
       let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
-      extraContent = `<div class="mt-2"><a href="${trackLink}" target="_blank" class="btn btn-sm btn-outline-primary py-1 px-3 shadow-sm" style="font-size:11px; border-radius:50px;">${t.lbl_track_item} <i class="fas fa-external-link-alt ms-1"></i></a></div>`;
+
+      // 👇 ഈ ഭാഗം മുഴുവനായി പുതിയ ഡിസൈനിലേക്ക് മാറ്റുന്നു 👇
+      extraContent = `
+        <div class="mt-3 p-3 rounded-4 shadow-sm" style="background: linear-gradient(145deg, #f8fafc, #f1f5f9); border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span style="font-size:9px; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:1px;">
+                    <i class="fas fa-shipping-fast text-primary me-1"></i> ${courierName}
+                </span>
+                <span style="font-size:9px; color:#10b981; font-weight:700;">
+                    <i class="fas fa-circle" style="font-size:6px; vertical-align:middle;"></i> In Transit
+                </span>
+            </div>
+            <div class="d-flex justify-content-between align-items-end mt-2">
+                <div>
+                    <div style="font-size:10px; color:#94a3b8; margin-bottom:2px;">Tracking ID</div>
+                    <div style="font-size:14px; font-weight:900; color:#0f172a; letter-spacing:1px; font-family:monospace;">
+                        ${d.tracking}
+                    </div>
+                </div>
+                <a href="${trackLink}" target="_blank" class="btn btn-sm py-1 px-3 shadow-sm" style="background:#2563eb; color:#fff; font-size:10px; font-weight:800; border-radius:20px; text-transform:uppercase;">
+                    ${t.lbl_track_item || 'Track'} <i class="fas fa-arrow-right ms-1"></i>
+                </a>
+            </div>
+        </div>`;
     }
     let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
     timelineHTML += `
