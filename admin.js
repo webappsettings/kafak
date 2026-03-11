@@ -2381,10 +2381,29 @@ async function runPrintLogic(checkboxes, directData = null) {
     const printWin = window.open('', 'AddressPrintWindow', 'width=600,height=800');
 
     // CSS for accurate background printing
-    // 🔥 മാറ്റം 2: Media Print ഉം കൃത്യമായ A6 സൈസും ഫോഴ്സ് ചെയ്യുന്നു
+    // 🔥 മാറ്റം 2: Media Print ഉം കൃത്യമായ A6 സൈസും ഫോഴ്സ് ചെയ്യുന്നു (Perfect A6 Size in mm)
     let extraCss = `
         @media print {
-            @page { size: A6 portrait; margin: 0; }
+            @page { 
+                size: 105mm 148mm; /* Perfect A6 Paper Size */
+                margin: 0mm; 
+            }
+            body {
+                width: 105mm;
+                height: 148mm;
+                margin: 0;
+                padding: 0;
+            }
+            .label-page {
+                width: 105mm !important;
+                height: 148mm !important;
+                max-height: 148mm !important;
+                margin: 0 !important;
+                page-break-after: always;
+                page-break-inside: avoid;
+                box-sizing: border-box;
+                overflow: hidden;
+            }
         }
         * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
     `;
