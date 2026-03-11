@@ -1863,29 +1863,29 @@ $('#place').on('input', function () {
   updateLiveAddressPreview();
 });
 
+// 🔥 Live Address Preview (Fix: Auto-show without input trigger)
 function updateLiveAddressPreview() {
-  let poRaw = $('#display-po').text() || '';
-
-  // 2. Data Cleaning
+  // 1. Get Place Input
   let place = $('#place').val() || '';
 
+  // 2. Fetch directly from userData instead of hidden divs (No need to wait for input)
+  let poRaw = (typeof userData !== 'undefined' && userData.postoffice) ? userData.postoffice : '';
   let po = poRaw.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, '').trim();
   if (po) po += ' PO';
 
-  let dist = userData.district || '';
-  let state = userData.state || $('#state').val() || 'KERALA';
+  let dist = (typeof userData !== 'undefined' && userData.district) ? userData.district : '';
+  let state = (typeof userData !== 'undefined' && userData.state) ? userData.state : ($('#state').val() || 'KERALA');
   let pin = $('#pincode').val() || '';
 
+  // Prevent duplicate Place and District names
   if (dist.toLowerCase() === place.toLowerCase()) {
     dist = '';
   }
 
   // 3. Language Check
   let lang = $('#language-select').val() || 'en';
-  let t = translations[lang];
-
-  // 🔥 Use Translation Key
-  let warnText = t.warn_place_only;
+  let t = translations[lang] || {};
+  let warnText = t.warn_place_only || "Enter your Place/City ONLY";
 
   // 4. HTML Content
   let previewHtml = `
@@ -1914,6 +1914,18 @@ function updateLiveAddressPreview() {
   }
   $('#live-addr-preview').html(previewHtml);
 }
+
+// ടൈപ്പ് ചെയ്യുമ്പോൾ ലൈവ് ആയി മാറാൻ 
+$('#place').on('input', updateLiveAddressPreview);
+
+// ആ സ്ക്രീനിലേക്ക് വരുമ്പോൾ തന്നെ ഓട്ടോമാറ്റിക് ആയി വരാൻ 
+const originalShowStep = window.showStep;
+window.showStep = function (s) {
+  originalShowStep(s);
+  if (s === 5) { // 5 ആണ് Place ഇൻപുട്ട് ഉള്ള സ്ക്രീൻ
+    setTimeout(updateLiveAddressPreview, 50);
+  }
+};
 
 setTimeout(updateLiveAddressPreview, 1000);
 
