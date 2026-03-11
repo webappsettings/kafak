@@ -3222,25 +3222,43 @@ window.saveRadioSelection = function (oid, el) {
     });
 }
 
-// 🔥 CLEAR LOGIN / CHANGE NUMBER (Fully Secure)
+// 🔥 CLEAR LOGIN / CHANGE NUMBER (Secure & with Confirmation)
 window.clearUserLogin = function () {
-  // 1. ആക്ടീവ് ആയ ഫോൺ നമ്പർ എടുക്കുന്നു
-  let phone = $('#phone').val() || currentLoginPhone;
+  const lang = $('#language-select').val() || 'en';
+  const titleText = lang === 'ml' ? "ലോഗൗട്ട് ചെയ്യണോ?" : "Are you sure you want to logout?";
+  const confirmBtnText = lang === 'ml' ? "അതെ, ലോഗൗട്ട് ചെയ്യുക" : "Yes, Logout";
+  const cancelBtnText = lang === 'ml' ? "വേണ്ട" : "Cancel";
 
-  // 2. ആ ഫോൺ നമ്പറിന്റെ ഡാറ്റ മെമ്മറിയിൽ നിന്ന് ഡിലീറ്റ് ചെയ്യുന്നു
-  if (phone && localUsersMap[phone]) {
-    delete localUsersMap[phone];
-    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
-  }
+  Swal.fire({
+    title: titleText,
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: confirmBtnText,
+    cancelButtonText: cancelBtnText,
+    customClass: { popup: 'ios-popup' }
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // 1. ആക്ടീവ് ആയ ഫോൺ നമ്പർ എടുക്കുന്നു
+      let phone = $('#phone').val() || currentLoginPhone;
 
-  // 3. Auto-login മെമ്മറി പൂർണ്ണമായും കളയുന്നു
-  SafeStorage.removeItem('lastUsedPhone');
-  currentLoginPhone = null;
-  userData = {};
-  savedOrderData = {};
+      // 2. ആ ഫോൺ നമ്പറിന്റെ ഡാറ്റ മെമ്മറിയിൽ നിന്ന് ഡിലീറ്റ് ചെയ്യുന്നു
+      if (phone && localUsersMap[phone]) {
+        delete localUsersMap[phone];
+        SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+      }
 
-  // 4. ഹോം സ്ക്രീനിലേക്ക് റീലോഡ് ചെയ്യുന്നു
-  window.location.href = "order.html";
+      // 3. Auto-login മെമ്മറി പൂർണ്ണമായും കളയുന്നു
+      SafeStorage.removeItem('lastUsedPhone');
+      currentLoginPhone = null;
+      userData = {};
+      savedOrderData = {};
+
+      // 4. ഹോം സ്ക്രീനിലേക്ക് റീലോഡ് ചെയ്യുന്നു
+      window.location.href = "order.html";
+    }
+  });
 }
 
 // 🔥 SMART PWA INSTALL BUTTON LOGIC
