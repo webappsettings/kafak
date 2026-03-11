@@ -2081,10 +2081,26 @@ window.sendWA = function (index, type = 'pending') {
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
     const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-    // 2. CALCULATE PRICE (Preserved)
+    // 2. CALCULATE PRICE (Fixed Sync with Dynamic Rates)
     const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
-    const zone = getZoneKey(d.state);
-    const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+
+    let savedProvider = d.provider || d.Courier_Provider || null;
+    let stateKey = getZoneKey(d.state, savedProvider);
+
+    let courierBase = 0; let serviceMargin = 0;
+    if (typeof courierRates !== 'undefined') {
+        let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
+        let zoneData = courierRates[`${stateKey}_${p}`] || courierRates[`${stateKey}_DEFAULT`] || courierRates[stateKey] || courierRates['REST OF INDIA'];
+
+        if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+            courierBase = window.parseDynamicRate(zoneData.baseRate, n);
+            serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
+        } else if (zoneData && zoneData[n] !== undefined) {
+            courierBase = Number(zoneData[n]);
+        }
+    }
+
+    const courier = courierBase + serviceMargin;
     const total = base + courier;
 
     // 3. GENERATE MESSAGE (Preserved)
