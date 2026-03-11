@@ -318,7 +318,6 @@ window.handlePhoneNext = function () {
 
   preloadHoneyVideo();
 
-  // പഴയ യൂസർ ആണെങ്കിൽ
   if (localUsersMap[phone]) {
     let localData = localUsersMap[phone];
     let status = String(localData.Status || '').toLowerCase();
@@ -340,17 +339,77 @@ window.handlePhoneNext = function () {
     return;
   }
 
-  // === പുതിയ യൂസർ ആണെങ്കിൽ ഉള്ള ലോജിക് ===
+  // New User Logic
   editingOrderId = null;
   $('#step-0').hide();
   $('#whatsapp').val(phone);
   startWizard();
-
   checkUserOnServerBackground(phone);
   $('#top-progress-container').fadeIn();
 
   // 🔥 FIX: പുതിയ യൂസർ ലോഗിൻ ചെയ്യുമ്പോൾ ലോഡിങ് സ്ക്രീനിൽ നിന്ന് ഓഫ് ആക്കാൻ ഇത് നിർബന്ധമാണ്!
   showLoader(false);
+}
+
+function syncUserDataBackground(phone) {
+  let localData = localUsersMap[phone] || {};
+  let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
+
+  const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
+    .then(res => res.json())
+    .catch(() => null);
+
+  const ratePromise = fetchCourierRates();
+
+  return Promise.all([userPromise, ratePromise]).then(([userRes]) => {
+    let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
+
+    // 1. 🔥 NETWORK ERROR (ഇതാണ് Draft ചെക്കിങ്!)
+    if (!userRes || (userRes.result === 'error' && !isAdmin)) {
+      if (localData && !localData.orderid && Object.keys(localData).length > 0) {
+        console.log("Draft found locally.");
+        userData = localData;
+        savedOrderData = JSON.parse(JSON.stringify(localData));
+        editingOrderId = null; // Draft ആണെന്ന് ഉറപ്പിക്കാൻ
+        renderEditView(localData);
+        return;
+      }
+
+      if (!userRes && localData && localData.orderid) {
+        userData = localData;
+        savedOrderData = JSON.parse(JSON.stringify(localData));
+        editingOrderId = localData.orderid;
+        renderEditView(localData);
+        return;
+      }
+
+      if (!isAdmin) clearUserLogin();
+      return;
+    }
+
+    // 2. 🔥 SERVER SUCCESS
+    if (userRes && userRes.result === 'success' && userRes.data) {
+      let serverData = userRes.data;
+      let finalData = { ...localData, ...serverData };
+      finalData.Status = serverData.Status || "Pending";
+
+      if (finalData.orderid) {
+        editingOrderId = finalData.orderid;
+        if (['completed', 'delivered', 'refunded'].includes(String(finalData.Status).toLowerCase())) {
+          editingOrderId = null;
+          finalData.quantity = null;
+          delete finalData.quantity;
+        }
+      } else {
+        editingOrderId = null;
+      }
+
+      userData = finalData;
+      savedOrderData = JSON.parse(JSON.stringify(finalData));
+      saveToLocal(phone, finalData);
+      renderEditView(finalData);
+    }
+  });
 }
 
 
