@@ -340,10 +340,6 @@ window.handlePhoneNext = function () {
 
     // Active Orders (Paid/Pending) ആണെങ്കിൽ പഴയത് പോലെ Sync കഴിഞ്ഞ് കാണിക്കാം
     showLoader(true);
-    syncUserDataBackground(phone).finally(() => {
-      showLoader(false);
-    });
-
     return;
   }
 
@@ -355,6 +351,68 @@ window.handlePhoneNext = function () {
   // 🔥 FIX: ശരിയായ ഫംഗ്ഷൻ കോൾ ചെയ്യുന്നു
   checkUserOnServerBackground(phone);
   $('#top-progress-container').fadeIn();
+}
+
+
+function syncUserDataBackground(phone) {
+  let localData = localUsersMap[phone] || {};
+  let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
+
+  const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
+    .then(res => res.json())
+    .catch(() => null);
+
+  const ratePromise = fetchCourierRates();
+
+  return Promise.all([userPromise, ratePromise]).then(([userRes]) => {
+    let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
+
+    // 1. 🔥 NETWORK ERROR (ഇതാണ് Draft ചെക്കിങ്!)
+    if (!userRes || (userRes.result === 'error' && !isAdmin)) {
+      if (localData && !localData.orderid && Object.keys(localData).length > 0) {
+        console.log("Draft found locally.");
+        userData = localData;
+        savedOrderData = JSON.parse(JSON.stringify(localData));
+        editingOrderId = null; // Draft ആണെന്ന് ഉറപ്പിക്കാൻ
+        renderEditView(localData);
+        return;
+      }
+
+      if (!userRes && localData && localData.orderid) {
+        userData = localData;
+        savedOrderData = JSON.parse(JSON.stringify(localData));
+        editingOrderId = localData.orderid;
+        renderEditView(localData);
+        return;
+      }
+
+      if (!isAdmin) clearUserLogin();
+      return;
+    }
+
+    // 2. 🔥 SERVER SUCCESS
+    if (userRes && userRes.result === 'success' && userRes.data) {
+      let serverData = userRes.data;
+      let finalData = { ...localData, ...serverData };
+      finalData.Status = serverData.Status || "Pending";
+
+      if (finalData.orderid) {
+        editingOrderId = finalData.orderid;
+        if (['completed', 'delivered', 'refunded'].includes(String(finalData.Status).toLowerCase())) {
+          editingOrderId = null;
+          finalData.quantity = null;
+          delete finalData.quantity;
+        }
+      } else {
+        editingOrderId = null;
+      }
+
+      userData = finalData;
+      savedOrderData = JSON.parse(JSON.stringify(finalData));
+      saveToLocal(phone, finalData);
+      renderEditView(finalData);
+    }
+  });
 }
 
 
@@ -512,80 +570,104 @@ function setRefreshLoading(isLoading) {
   }
 }
 
-function syncUserDataBackground(phone) {
-  let localData = localUsersMap[phone] || {};
-  let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
+function handleEditControlsVisibility(d) {
+  const status = String(d.Status || 'pending').toLowerCase();
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // 1. സെർവറിൽ നിന്നും ലേറ്റസ്റ്റ് ഡാറ്റ എടുക്കുന്നു
-  const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
-    .then(res => res.json())
-    .catch(() => null);
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
 
-  const ratePromise = fetchCourierRates();
+  // 1. ADMIN - Always Allow Edit
+  if (isAdmin) {
+    $('#quick-qty, .btn-update-sage').show();
+    $('#btn-edit-addr').css('display', 'inline-block');
+    $('label[data-i18n="lbl_qty"]').show();
+    $('#quick-qty').prop('disabled', false);
+    $('#quick-qty').css('border', '2px solid #dc3545');
+    $('#btn-req-modify').remove();
+    return;
+  }
 
-  return Promise.all([userPromise, ratePromise])
-    .then(([userRes]) => {
+  // 2. 🔥 DRAFT ORDER (Failed previously, no Order ID)
+  if (!d.orderid) {
+    $('#status-area').hide().empty();
+    $('#display-oid').hide();
+    $('#display-date').hide();
 
-      // അഡ്മിൻ പാനലിൽ ആണോ എന്ന് നോക്കുന്നു
-      let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
+    $('label[data-i18n="lbl_qty"]').show().text(t.lbl_qty || "എത്ര ബോട്ടിൽ വേണം?");
+    $('#quick-qty').show().prop('disabled', false);
 
-      // 🔥 ഡീപ്പ് ചെക്ക് 1: സെർവറിൽ നിന്ന് ഡാറ്റ കിട്ടിയില്ലെങ്കിൽ (Network Error അല്ലാതെ)
-      if (userRes && userRes.result === 'error' && !isAdmin) {
-        clearUserLogin();
-        return;
-      }
+    $('.btn-update-sage')
+      .show()
+      .prop('disabled', false)
+      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#16a34a', 'border-color': '#15803d' }) // പച്ച നിറം
+      .html(`<i class="fas fa-shopping-cart me-1"></i> ${t.btn_order || 'PLACE ORDER'}`);
 
-      if (userRes && userRes.result === 'success' && userRes.data) {
-        let serverData = userRes.data;
+    $('.btn-update-sage').attr('onclick', 'submitQuickOrder()');
+    $('#btn-req-modify').remove();
+    $('#btn-edit-addr').css('display', 'inline-block');
+    return;
+  }
 
-        // 🔥 ഡീപ്പ് ചെക്ക് 2: അഡ്മിൻ ഷീറ്റിൽ നമ്പർ മാറ്റിയോ എന്ന് കണ്ടുപിടിക്കുന്നു!
-        // അഡ്മിൻ നമ്പർ മാറ്റിയാൽ, ഈ നമ്പറിൽ ഓർഡറുകൾ ഒന്നും കാണില്ല (അതായത് Status ഉം orderid ഉം ഉണ്ടാവില്ല)
-        let noOrdersFound = !serverData.Status && !serverData.orderid;
+  // 3. 🔥 CLEAN RE-ORDER UI (For Delivered / Completed / Refunded)
+  if (['delivered', 'completed', 'refunded'].includes(status)) {
+    $('#status-area').hide().empty();
+    $('#quick-price-box').hide().empty();
+    $('#btn-edit-addr').css('display', 'inline-block');
+    $('#display-oid').hide();
+    $('#display-date').hide();
 
-        if (!isAdmin && localData.orderid && (serverData.authorized === false || noOrdersFound)) {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Account Updated',
-            text: 'Your phone number has been updated by admin. Please login with your new number.',
-            confirmButtonText: 'Login Again',
-            allowOutsideClick: false
-          }).then(() => {
-            clearUserLogin();
-          });
-          return;
-        }
+    $('label[data-i18n="lbl_qty"]').show().text(t.lbl_qty || "എത്ര ബോട്ടിൽ വേണം?");
+    $('#quick-qty').show().prop('disabled', false).val('').trigger('change');
 
-        let finalData = { ...localData, ...serverData };
+    $('.btn-update-sage')
+      .show()
+      .prop('disabled', false)
+      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
+      .html(`<i class="fas fa-shopping-bag me-1"></i> ${t.btn_order_again || 'വീണ്ടും ഓർഡർ ചെയ്യാം'}`);
 
-        // 🔥 ക്രിട്ടിക്കൽ ഡാറ്റ സെർവറിൽ നിന്നും തന്നെ എടുക്കുന്നു
-        finalData.Status = serverData.Status || serverData.status || "Pending";
-        finalData.adminMeta = serverData.adminMeta;
-        finalData.paidNum = serverData.paidNum;
-        finalData.language = serverData.language;
-        finalData.tracking = serverData.tracking;
-        finalData['Dispatched Date'] = serverData['Dispatched Date'];
-        finalData.paidDate = serverData.paidDate;
+    $('.btn-update-sage').attr('onclick', 'processCleanReorder()');
+    $('#btn-req-modify').remove();
+    editingOrderId = null;
+    return;
+  }
 
-        const s = String(finalData.Status).toLowerCase();
-        if (finalData.orderid) {
-          editingOrderId = finalData.orderid;
-          if (['completed', 'delivered', 'refunded'].includes(s)) {
-            editingOrderId = null;
-            finalData.quantity = null;
-            delete finalData.quantity;
-          }
-        }
+  // 4. LOCKED STATES (Paid, Dispatched)
+  if (['paid', 'dispatched'].includes(status)) {
+    $('label[data-i18n="lbl_qty"]').show();
+    $('#quick-qty').show().prop('disabled', true);
+    $('#quick-qty').prev('label').show();
 
-        userData = finalData;
-        savedOrderData = JSON.parse(JSON.stringify(finalData));
+    $('.btn-update-sage').hide();
+    $('#quick-price-box').show();
 
-        // 🔥 അപ്ഡേറ്റ് ചെയ്ത ഡാറ്റ ലോക്കലിൽ സേവ് ചെയ്യുന്നു (Status, Address എല്ലാം മാറും)
-        saveToLocal(phone, finalData);
+    $('#btn-edit-addr').hide();
+    $('#btn-req-modify').remove();
 
-        // സ്ക്രീൻ അപ്ഡേറ്റ് ചെയ്യുന്നു
-        renderEditView(finalData);
-      }
-    });
+    if (status === 'paid') {
+      let waMsg = `Hello, I want to update my Order: ${d.orderid}. Please help!`;
+      let targetPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
+      let reqText = (lang === 'ml') ? "എന്തെങ്കിലും മാറ്റങ്ങൾ വരുത്തണോ?" : "Want to change details?";
+
+      $(`<div id="btn-req-modify" class="mt-3 text-center fade-in">
+              <div class="text-muted small mb-1 fw-bold">${reqText}</div>
+              <a href="https://wa.me/91${targetPhone}?text=${encodeURIComponent(waMsg)}" target="_blank" 
+                 class="btn btn-outline-dark btn-sm shadow-sm rounded-pill px-3">
+                 <i class="fab fa-whatsapp"></i> ${t.btn_msg_admin || 'Message Admin'}
+              </a>
+              </div>`).insertAfter('#status-area');
+    }
+    return;
+  }
+
+  // 5. EDITABLE STATES (Pending, Sent, Archive)
+  $('label[data-i18n="lbl_qty"]').show();
+  $('#quick-qty').prop('disabled', false).show();
+  $('.btn-update-sage').show();
+  $('.btn-update-sage').attr('onclick', 'submitQuickOrder()');
+  $('.btn-update-sage').css({ 'background': '#2563eb', 'border-color': '#2563eb' }).html(t.btn_update);
+  $('#btn-edit-addr').css('display', 'inline-block');
+  $('#btn-req-modify').remove();
 }
 
 
@@ -1786,7 +1868,7 @@ function checkForChanges() {
   var currPlace = $('#edit-place').val() || '';
   var currPin = $('#edit-pincode').val() || '';
   var currAlt = $('#edit-altphone').val() || '';
-  var currLang = $('#language-select').val() || 'en'; // 🔥 പുതിയത്
+  var currLang = $('#language-select').val() || 'en';
 
   // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
@@ -1797,7 +1879,7 @@ function checkForChanges() {
   var savedPlace = (savedOrderData.place || '') + '';
   var savedPin = (savedOrderData.pincode || '') + '';
   var savedAlt = (savedOrderData.altphone || '') + '';
-  var savedLang = (savedOrderData.language || 'en') + ''; // 🔥 പുതിയത്
+  var savedLang = (savedOrderData.language || 'en') + '';
 
   // 3. Compare
   var isChanged = false;
@@ -1816,16 +1898,14 @@ function checkForChanges() {
   var btnUpdate = $('.btn-update-sage');
   var btnSave = $('#address-edit-box button');
   const lang = $('#language-select').val() || 'en';
-  const t = translations[lang];
+  const t = translations[lang] || translations['en'];
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // 🔥 FIX START: Delivered/Refunded ആണെങ്കിൽ ബട്ടൺ എപ്പോഴും Enable ആക്കുക (Force Enable)
   const status = String(savedOrderData.Status || '').toLowerCase();
   if (['delivered', 'completed', 'refunded'].includes(status)) {
     btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
 
-    // 🔥 അഡ്രസ്സിൽ മാറ്റം വരുത്തിയാൽ Save Changes ബട്ടൺ ഓൺ ആക്കുന്നു
     if (isChanged) {
       btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
     } else {
@@ -1833,9 +1913,8 @@ function checkForChanges() {
     }
     return;
   }
-  // 🔥 FIX END
 
-  // Admin Logic (Old Logic)
+  // Admin Logic
   if (isAdmin && editingOrderId) {
     if (isQtyChanged) {
       let oldQty = parseInt(savedQty) || 0;
@@ -1879,14 +1958,27 @@ function checkForChanges() {
     }
   }
 
-  // Standard User Logic
+  // Standard User Logic (🔥 FIX INCLUDED HERE)
   if (!isAdmin || !isQtyChanged) {
-    if (isChanged) {
-      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb' }).text(t.btn_update);
-      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes);
+    if (!editingOrderId) {
+      // 🔥 FIX: Draft / New Order ആണെങ്കിൽ എപ്പോഴും Button Enable ആയിരിക്കണം!
+      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#16a34a', 'border-color': '#15803d' });
+
+      if (btnUpdate.html().indexOf('fa-shopping-cart') === -1 && btnUpdate.html().indexOf('fa-shopping-bag') === -1) {
+        btnUpdate.html(`<i class="fas fa-shopping-cart me-1"></i> ${t.btn_order || 'PLACE ORDER'}`);
+      }
+
+      if (isChanged) {
+        btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
+      } else {
+        btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
+      }
+    } else if (isChanged) {
+      btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' }).text(t.btn_update || "Update Order");
+      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
     } else {
-      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed', 'background': '#6b7280' }).text(t.txt_no_changes);
-      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes);
+      btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed', 'background': '#6b7280', 'border-color': '#6b7280' }).text(t.txt_no_changes || "No Changes");
+      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
     }
   }
 }
@@ -3146,4 +3238,79 @@ window.showIOSInstallPrompt = function () {
 // യൂസർ OK അടിച്ചാൽ മെസ്സേജ് ക്ലോസ് ചെയ്യുന്നു
 window.closeIOSPrompt = function () {
   $('#ios-install-prompt').fadeOut(300, function () { $(this).remove(); });
+}
+
+window.confirmOrder = function () {
+  let rawQty = $('#bottle-qty').val();
+  let finalQty = rawQty === 'custom' ? $('#custom-qty').val() : rawQty;
+  userData.quantity = finalQty;
+
+  let finalSubmitData = { ...userData };
+  finalSubmitData.action = isEditMode ? 'editOrder' : 'addOrder';
+
+  if (!isEditMode) {
+    finalSubmitData.orderid = "K-" + new Date().getFullYear().toString().slice(-2) +
+      String(new Date().getMonth() + 1).padStart(2, '0') +
+      String(new Date().getDate()).padStart(2, '0') +
+      String(new Date().getHours()).padStart(2, '0') +
+      String(new Date().getMinutes()).padStart(2, '0') +
+      String(new Date().getSeconds()).padStart(2, '0');
+  } else {
+    finalSubmitData.orderid = editingOrderId;
+    finalSubmitData.isEdit = true;
+  }
+
+  showLoader(true);
+
+  $.ajax({
+    url: sc,
+    method: "POST",
+    dataType: "json",
+    data: finalSubmitData,
+    success: function (res) {
+      showLoader(false);
+      if (res.result === 'success') {
+
+        // 🔥 FIX: സർവറിൽ സേവ് ആയി SUCCESS എന്ന് വന്നാൽ മാത്രം ലോക്കലിൽ സേവ് ചെയ്യുന്നു!
+        if (!isEditMode) {
+          userData.orderid = finalSubmitData.orderid;
+        }
+
+        SafeStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
+
+        successData = {
+          orderid: finalSubmitData.orderid,
+          name: userData.name,
+          qty: userData.quantity,
+          isEdit: isEditMode
+        };
+
+        if (!isEditMode) {
+          localUsersMap[currentLoginPhone] = finalSubmitData.orderid;
+          SafeStorage.setItem('kafakLocalUsersMap', JSON.stringify(localUsersMap));
+        }
+
+        renderSuccessView();
+
+        setTimeout(() => {
+          let currentLang = $('#language-select').val();
+          let msg = currentLang === 'ml' ? `✅ *പുതിയ ഓർഡർ ലഭിച്ചു!*\n\n*ID:* ${finalSubmitData.orderid}` : `✅ *New Order Received!*\n\n*ID:* ${finalSubmitData.orderid}`;
+
+          let iframe = document.createElement('iframe');
+          iframe.style.display = 'none';
+          iframe.src = `https://wa.me/${adminPhone}?text=${encodeURIComponent(msg)}`;
+          document.body.appendChild(iframe);
+          setTimeout(() => { document.body.removeChild(iframe); }, 3000);
+        }, 1000);
+
+      } else {
+        alert(getAlert('submitError') || "Error submitting order");
+      }
+    },
+    error: function () {
+      showLoader(false);
+      // 🔥 ഇവിടെ ലോക്കൽ സേവ് ഇല്ലാത്തതുകൊണ്ട് ഡ്രാഫ്റ്റ് ആയി തന്നെ നിൽക്കും
+      alert(getAlert('submitError') || "Network Error! Could not submit order.");
+    }
+  });
 }
