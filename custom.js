@@ -2854,11 +2854,29 @@ function sendToWhatsapp() {
     if (safe(savedOrderData.state) !== safe(d.state)) changes.push(`🌍 STATE: *${safe(d.state)}*`);
   }
 
-  // 4. Calculate Total
+  // 4. Calculate Total (Fixed Sync with updatePrice logic)
   const n = parseInt(d.quantity);
   const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
-  const zone = getZoneKey(d.state);
-  const courier = (courierRates[zone] && courierRates[zone][n]) ? courierRates[zone][n] : 0;
+
+  let savedProvider = (typeof savedOrderData !== 'undefined' && savedOrderData.courier) ? savedOrderData.courier : null;
+  const zone = getZoneKey(d.state, savedProvider);
+
+  let courierBase = 0;
+  let serviceMargin = 0;
+
+  if (typeof courierRates !== 'undefined') {
+    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
+    let zoneData = courierRates[`${zone}_${p}`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone] || courierRates['REST OF INDIA'];
+
+    if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+      courierBase = window.parseDynamicRate(zoneData.baseRate, n);
+      serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
+    } else if (zoneData && zoneData[n] !== undefined) {
+      courierBase = Number(zoneData[n]);
+    }
+  }
+
+  const courier = courierBase + serviceMargin;
   const total = base + courier;
 
   // 5. Generate Message Header
