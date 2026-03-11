@@ -318,39 +318,39 @@ window.handlePhoneNext = function () {
 
   preloadHoneyVideo();
 
+  // പഴയ യൂസർ ആണെങ്കിൽ
   if (localUsersMap[phone]) {
     let localData = localUsersMap[phone];
     let status = String(localData.Status || '').toLowerCase();
 
     // 🔥 INSTANT LOAD for Delivered/Completed (No Waiting!)
     if (['delivered', 'completed', 'refunded'].includes(status)) {
-      // Loader കാണിക്കേണ്ട കാര്യമില്ല
-
-      // പുതിയ ഓർഡറിന് റെഡിയാക്കുന്നു
       editingOrderId = null;
       localData.quantity = null;
-
-      // ലോക്കൽ ഡാറ്റ വെച്ച് ഉടൻ തന്നെ പേജ് കാണിക്കുന്നു (True Flag കൊടുക്കുന്നു)
       loadOrderData(localData, true);
-
-      // ബാക്ക്ഗ്രൗണ്ടിൽ മാത്രം അപ്‌ഡേറ്റ് നടക്കുന്നു (ശല്യം ചെയ്യില്ല)
       syncUserDataBackground(phone);
       return;
     }
 
     // Active Orders (Paid/Pending) ആണെങ്കിൽ പഴയത് പോലെ Sync കഴിഞ്ഞ് കാണിക്കാം
     showLoader(true);
+    syncUserDataBackground(phone).finally(() => {
+      showLoader(false);
+    });
     return;
   }
 
-  // New User Logic
+  // === പുതിയ യൂസർ ആണെങ്കിൽ ഉള്ള ലോജിക് ===
   editingOrderId = null;
   $('#step-0').hide();
   $('#whatsapp').val(phone);
   startWizard();
-  // 🔥 FIX: ശരിയായ ഫംഗ്ഷൻ കോൾ ചെയ്യുന്നു
+
   checkUserOnServerBackground(phone);
   $('#top-progress-container').fadeIn();
+
+  // 🔥 FIX: പുതിയ യൂസർ ലോഗിൻ ചെയ്യുമ്പോൾ ലോഡിങ് സ്ക്രീനിൽ നിന്ന് ഓഫ് ആക്കാൻ ഇത് നിർബന്ധമാണ്!
+  showLoader(false);
 }
 
 
