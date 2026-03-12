@@ -5900,7 +5900,12 @@ window.renderDayBookTable = function () {
         let data = dailyData[dateStr];
         let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
 
-        let dayHtml = `<div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm"><div class="fw-bold text-dark border-bottom px-2 py-1 d-flex align-items-center" style="font-size:11px; background:#e2e8f0;"><i class="far fa-calendar-alt me-1 text-muted"></i> ${displayDate}</div><div class="p-2 bg-white">`;
+        let dayHtml = `<div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm">
+    <div class="fw-bold text-dark border-bottom px-2 py-2 d-flex align-items-center justify-content-between" style="font-size:11px; background:#e2e8f0;">
+        <div><i class="far fa-calendar-alt me-1 text-muted"></i> ${displayDate}</div>
+        <button onclick="showDayDetails('${dateStr}')" class="btn btn-outline-primary btn-sm py-0 px-2 rounded-pill fw-bold shadow-sm bg-white" style="font-size:9px; letter-spacing:0.5px;">DETAILS <i class="fas fa-chevron-right ms-1" style="font-size:8px;"></i></button>
+    </div>
+<div class="p-2 bg-white">`;
         let hasData = false;
 
         if (data.income.orders.length > 0) {
@@ -6016,3 +6021,117 @@ window.renderDayBookTable = function () {
 
     $('#daybook-container').html(html);
 }
+
+// 🔥 SHOW DAILY ACTIVITIES TABLE
+window.showDayDetails = function (dateStr) {
+    let dailyOrders = [];
+    let dailyExpenses = [];
+
+    // 1. ആ ദിവസത്തെ ചിലവുകൾ (Expenses) എടുക്കുന്നു
+    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => {
+            if (e.isCourier) return;
+            let eDate = new Date(e.date);
+            if (flatpickr.formatDate(eDate, "Y-m-d") === dateStr) {
+                dailyExpenses.push(e);
+            }
+        });
+    }
+
+    // 2. ആ ദിവസത്തെ ഓർഡറുകളും കൊറിയർ ഡാറ്റയും എടുക്കുന്നു
+    allOrders.forEach(o => {
+        let status = o.Status || 'Pending';
+        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+
+        let pDate = parseOrderDate(o.paidDate || o.timestamp);
+        let pStr = flatpickr.formatDate(pDate, "Y-m-d");
+
+        let dDate = parseOrderDate(o['Dispatched Date']);
+        let dStr = !isNaN(dDate.getTime()) ? flatpickr.formatDate(dDate, "Y-m-d") : null;
+
+        let isNew = (pStr === dateStr);
+        let isDisp = (dStr === dateStr);
+
+        if (isNew || isDisp) {
+            dailyOrders.push({ order: o, isNew: isNew, isDisp: isDisp });
+        }
+    });
+
+    if (dailyOrders.length === 0 && dailyExpenses.length === 0) {
+        Swal.fire("No Data", "No activities found for this date.", "info");
+        return;
+    }
+
+    let rows = "";
+
+    // ഓർഡറുകൾ ടേബിളിലേക്ക് മാറ്റുന്നു
+    dailyOrders.forEach(item => {
+        let o = item.order;
+        let badges = [];
+        if (item.isNew) badges.push('<span class="badge bg-success" style="font-size:9px;">NEW</span>');
+        if (item.isDisp) badges.push('<span class="badge bg-primary" style="font-size:9px;">DISPATCHED</span>');
+
+        let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+        if (isNaN(amt) || amt <= 0) {
+            let qty = parseInt(o.quantity) || 0;
+            amt = qty * 650; // Backup calc
+        }
+
+        let qty = parseInt(o.quantity) || o.Quantity || 1;
+        let place = (o.place || o.Place || '').substring(0, 15); // സ്ഥലം വലുതാണെങ്കിൽ മുറിക്കാൻ
+
+        rows += `
+            <tr style="font-size:11px;">
+                <td class="fw-bold">${o.orderid}</td>
+                <td>${o.name || o.Name}<br><span class="text-muted" style="font-size:9px;">${place}</span></td>
+                <td class="text-center">${qty}</td>
+                <td class="text-center">${badges.join('<br>')}</td>
+                <td class="text-end fw-bold text-success">₹${amt}</td>
+            </tr>
+        `;
+    });
+
+    // ചിലവുകൾ ടേബിളിലേക്ക് മാറ്റുന്നു
+    dailyExpenses.forEach(e => {
+        rows += `
+            <tr style="font-size:11px; background-color: #fff5f5;">
+                <td class="fw-bold text-danger">EXPENSE</td>
+                <td>${e.desc}<br><span class="text-muted" style="font-size:9px;">${e.category || 'Other'}</span></td>
+                <td class="text-center">-</td>
+                <td class="text-center"><span class="badge bg-danger" style="font-size:9px;">EXPENSE</span></td>
+                <td class="text-end fw-bold text-danger">-₹${e.amount}</td>
+            </tr>
+        `;
+    });
+
+    let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+    let html = `
+        <div class="table-responsive" style="max-height:60vh; overflow-y:auto; border-radius:10px; border:1px solid #dee2e6;">
+            <table class="table table-sm table-hover align-middle mb-0">
+                <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px;">
+                    <tr>
+                        <th class="ps-2">ID</th>
+                        <th>Name</th>
+                        <th class="text-center">Qty</th>
+                        <th class="text-center">Status</th>
+                        <th class="text-end pe-2">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows}
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    Swal.fire({
+        title: `<div style="font-size:15px; font-weight:800; color:#1e293b; text-align:left;"><i class="fas fa-calendar-day me-2 text-primary"></i> ${displayDate}</div>`,
+        html: html,
+        width: '100%',
+        padding: '1em',
+        confirmButtonText: 'Close',
+        confirmButtonColor: '#334155',
+        customClass: { popup: 'rounded-4 ios-popup' }
+    });
+};
