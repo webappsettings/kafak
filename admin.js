@@ -6022,12 +6022,12 @@ window.renderDayBookTable = function () {
     $('#daybook-container').html(html);
 }
 
-// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with Premium Qty Filter)
+// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with 4 Dropdown Filters & Fixes)
 window.showDayDetails = function (dateStr) {
     let dailyOrders = [];
     let dailyExpenses = [];
 
-    // 1. ആ ദിവസത്തെ ചിലവുകൾ (Expenses) എടുക്കുന്നു
+    // 1. ആ ദിവസത്തെ ചിലവുകൾ
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
             if (e.isCourier) return;
@@ -6038,7 +6038,7 @@ window.showDayDetails = function (dateStr) {
         });
     }
 
-    // 2. ആ ദിവസത്തെ ഓർഡറുകളും കൊറിയർ ഡാറ്റയും എടുക്കുന്നു
+    // 2. ആ ദിവസത്തെ ഓർഡറുകൾ എടുക്കുന്നു
     allOrders.forEach(o => {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
@@ -6049,26 +6049,43 @@ window.showDayDetails = function (dateStr) {
         let dDate = parseOrderDate(o['Dispatched Date']);
         let dStr = !isNaN(dDate.getTime()) ? flatpickr.formatDate(dDate, "Y-m-d") : null;
 
-        let isNew = (pStr === dateStr);
-        let isDisp = (dStr === dateStr);
-
-        if (isNew || isDisp) {
+        if (pStr === dateStr || dStr === dateStr) {
             dailyOrders.push(o);
         }
     });
 
     if (dailyOrders.length === 0 && dailyExpenses.length === 0) {
-        Swal.fire("No Data", "No activities found for this date.", "info");
+        Swal.fire({ title: "No Data", text: "No activities found for this date.", icon: "info", customClass: { container: 'high-z-index' } });
         return;
     }
 
     let rows = "";
-    let qtyStats = {}; // 🔥 Filter-ന് വേണ്ടിയുള്ള കാൽക്കുലേഷൻ
 
-    // ഓർഡറുകൾ ടേബിളിലേക്ക് മാറ്റുന്നു
+    // 🔥 STATS OBJECT FOR DROPDOWNS (ഡാറ്റ സെർവറിൽ നിന്ന് ഡൈനാമിക് ആയി എടുക്കുന്നു)
+    let stats = { status: {}, qty: {}, state: {}, courier: {} };
+
     dailyOrders.forEach(o => {
+        // --- Data Extraction ---
         let currentStatus = String(o.Status || 'Pending').toUpperCase();
+        let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+        let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+        if (isNaN(amt) || amt <= 0) amt = qty * 650; // ബാക്കപ്പ് വില
 
+        let state = String(o.state || o.State || 'KERALA').toUpperCase().trim();
+        let courier = String(o.courier || o.Courier_Provider || o.provider || 'N/A').toUpperCase().trim();
+        if (!courier || courier === 'UNDEFINED') courier = 'N/A';
+
+        // --- Populate Stats ---
+        stats.status[currentStatus] = (stats.status[currentStatus] || 0) + 1;
+
+        if (!stats.qty[qty]) stats.qty[qty] = { count: 0, total: 0 };
+        stats.qty[qty].count += 1;
+        stats.qty[qty].total += amt;
+
+        stats.state[state] = (stats.state[state] || 0) + 1;
+        stats.courier[courier] = (stats.courier[courier] || 0) + 1;
+
+        // --- Badge & Display Logic ---
         let badgeClass = "bg-secondary";
         if (currentStatus === 'PAID') badgeClass = "bg-warning text-dark";
         else if (currentStatus === 'DISPATCHED') badgeClass = "bg-primary";
@@ -6078,33 +6095,18 @@ window.showDayDetails = function (dateStr) {
 
         let courierDisplay = "";
         let cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
-
         if (['DISPATCHED', 'DELIVERED', 'COMPLETED', 'ARCHIVE'].includes(currentStatus) || o['Tracking ID'] || o.tracking) {
-            if (cCost > 0) {
-                courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
-            } else {
-                courierDisplay = `<div class="text-muted mt-1" style="font-size:9px; font-weight:700;"><i class="fas fa-truck"></i> N/A</div>`;
-            }
+            if (cCost > 0) courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
+            else courierDisplay = `<div class="text-muted mt-1" style="font-size:9px; font-weight:700;"><i class="fas fa-truck"></i> N/A</div>`;
         }
-
-        let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
-        let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
-
-        if (isNaN(amt) || amt <= 0) {
-            amt = qty * 650; // Backup calc
-        }
-
-        // 🔥 Qty അനുസരിച്ച് എണ്ണവും തുകയും കൂട്ടുന്നു
-        if (!qtyStats[qty]) qtyStats[qty] = { count: 0, total: 0 };
-        qtyStats[qty].count += 1;
-        qtyStats[qty].total += amt;
 
         let place = (o.place || o.Place || '').substring(0, 15);
 
+        // --- Row HTML (with data attributes for filtering) ---
         rows += `
-            <tr class="day-order-row" data-qty="${qty}" style="font-size:11px;">
+            <tr class="day-order-row" data-status="${currentStatus}" data-qty="${qty}" data-state="${state}" data-courier="${courier}" style="font-size:11px;">
                 <td class="fw-bold">
-                    <a href="admin.html?search=${o.orderid}" class="text-primary text-decoration-none" title="View Order">${o.orderid}</a>
+                    <span onclick="goToOrderInPage('${o.orderid}')" class="text-primary text-decoration-underline" style="cursor:pointer;" title="View Order">${o.orderid}</span>
                 </td>
                 <td>${o.name || o.Name}<br><span class="text-muted" style="font-size:9px;">${place}</span></td>
                 <td class="text-center fw-bold">${qty}</td>
@@ -6114,14 +6116,14 @@ window.showDayDetails = function (dateStr) {
         `;
     });
 
-    // ചിലവുകൾ ടേബിളിലേക്ക് മാറ്റുന്നു
+    // Expenses
     dailyExpenses.forEach(e => {
         rows += `
             <tr class="day-expense-row" style="font-size:11px; background-color: #fff5f5;">
                 <td class="fw-bold text-danger">EXPENSE</td>
                 <td>${e.desc}<br><span class="text-muted" style="font-size:9px;">${e.category || 'Other'}</span></td>
                 <td class="text-center">-</td>
-                <td class="text-center"><span class="badge bg-danger" style="font-size:9px; letter-spacing:0.5px;">EXPENSE</span></td>
+                <td class="text-center"><span class="badge bg-danger" style="font-size:9px;">EXPENSE</span></td>
                 <td class="text-end fw-bold text-danger">-₹${e.amount}</td>
             </tr>
         `;
@@ -6129,41 +6131,59 @@ window.showDayDetails = function (dateStr) {
 
     let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
-    // 🔥 FILTER HEADER രൂപീകരിക്കുന്നു
-    let keys = Object.keys(qtyStats).sort((a, b) => a - b);
-    let statButtons = keys.map(k => {
-        let qs = qtyStats[k];
-        return `<span class="day-filter-btn badge bg-white border text-secondary shadow-sm px-2 py-1 mx-1" 
-                      data-filter="${k}" 
-                      onclick="filterDayOrders('${k}')" 
-                      style="cursor:pointer; font-size:10px; transition:all 0.3s ease;">
-                    ₹${qs.total.toLocaleString()} (${qs.count}x${k})
-                </span>`;
+    // 🔥 GENERATE 4 DROPDOWNS DYNAMICALLY
+
+    // 1. Status Dropdown
+    let optStatus = `<option value="all">All Status (${dailyOrders.length})</option>`;
+    Object.keys(stats.status).forEach(k => { optStatus += `<option value="${k}">${k} (${stats.status[k]})</option>`; });
+
+    // 2. Qty / Amount Dropdown
+    let totalAmtAll = Object.values(stats.qty).reduce((sum, item) => sum + item.total, 0);
+    let optQty = `<option value="all">Total (${dailyOrders.length}) [₹${totalAmtAll.toLocaleString()}]</option>`;
+    Object.keys(stats.qty).sort((a, b) => a - b).forEach(k => {
+        optQty += `<option value="${k}">₹${stats.qty[k].total.toLocaleString()} (${stats.qty[k].count}x${k})</option>`;
     });
 
-    let topBarHtml = `
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-            <div style="font-size:15px; font-weight:800; color:#1e293b; text-align:left;">
-                <i class="fas fa-calendar-day me-2 text-primary"></i> ${displayDate}
+    // 3. State Dropdown
+    let optState = `<option value="all">All State (${dailyOrders.length})</option>`;
+    Object.keys(stats.state).forEach(k => { optState += `<option value="${k}">${k} (${stats.state[k]})</option>`; });
+
+    // 4. Courier Dropdown
+    let optCourier = `<option value="all">All Courier (${dailyOrders.length})</option>`;
+    Object.keys(stats.courier).forEach(k => { optCourier += `<option value="${k}">${k} (${stats.courier[k]})</option>`; });
+
+    let filterHtml = `
+        <div class="row g-2 mb-3 pb-2 border-bottom">
+            <div class="col-6">
+                <select id="flt-status" class="form-select form-select-sm text-secondary bg-light" style="font-size:11px; font-weight:700;" onchange="applyDayFilters()">
+                    ${optStatus}
+                </select>
             </div>
-            <div class="d-flex align-items-center flex-wrap justify-content-end">
-                <span class="day-filter-btn badge bg-dark text-white border border-dark shadow-sm px-2 py-1" 
-                      data-filter="all" 
-                      onclick="filterDayOrders('all')" 
-                      style="cursor:pointer; font-size:10px; transition:all 0.3s ease;">
-                    Total ${dailyOrders.length}
-                </span>
-                ${keys.length > 0 ? `<span class="text-muted ms-1" style="font-size:11px;">(</span>` : ''}
-                ${statButtons.join('<span class="text-muted" style="font-size:12px; font-weight:bold;">+</span>')}
-                ${keys.length > 0 ? `<span class="text-muted me-1" style="font-size:11px;">)</span>` : ''}
+            <div class="col-6">
+                <select id="flt-qty" class="form-select form-select-sm text-secondary bg-light" style="font-size:11px; font-weight:700;" onchange="applyDayFilters()">
+                    ${optQty}
+                </select>
+            </div>
+            <div class="col-6">
+                <select id="flt-state" class="form-select form-select-sm text-secondary bg-light" style="font-size:11px; font-weight:700;" onchange="applyDayFilters()">
+                    ${optState}
+                </select>
+            </div>
+            <div class="col-6">
+                <select id="flt-courier" class="form-select form-select-sm text-secondary bg-light" style="font-size:11px; font-weight:700;" onchange="applyDayFilters()">
+                    ${optCourier}
+                </select>
             </div>
         </div>
     `;
 
     let html = `
         <div class="text-start">
-            ${topBarHtml}
-            <div class="table-responsive" style="max-height:60vh; overflow-y:auto; border-radius:10px; border:1px solid #dee2e6;">
+            <div style="font-size:15px; font-weight:800; color:#1e293b; margin-bottom:12px;">
+                <i class="fas fa-calendar-day me-2 text-primary"></i> ${displayDate}
+            </div>
+            ${filterHtml}
+            <div class="table-responsive" style="max-height:55vh; overflow-y:auto; border-radius:10px; border:1px solid #dee2e6;">
                 <table class="table table-sm table-hover align-middle mb-0">
                     <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; z-index:1;">
                         <tr>
@@ -6176,39 +6196,77 @@ window.showDayDetails = function (dateStr) {
                     </thead>
                     <tbody>
                         ${rows}
+                        <tr id="day-no-match" style="display:none;"><td colspan="5" class="text-center text-muted py-3">No orders match these filters</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
     `;
 
-    // Popup ഡിസൈൻ
     Swal.fire({
         html: html,
         width: '100%',
-        padding: '1.5em',
-        showConfirmButton: false, // താഴെയുള്ള വലിയ ബട്ടൺ ഒഴിവാക്കി
-        showCloseButton: true,    // മുകളിൽ ക്ലോസ് ബട്ടൺ നൽകി
-        customClass: { popup: 'rounded-4 ios-popup' }
+        padding: '1.2em',
+        showConfirmButton: false,
+        showCloseButton: true,
+        customClass: { popup: 'rounded-4 ios-popup' },
+        didOpen: () => {
+            // 🔥 Fix 1: മൊബൈലിൽ ഡ്രോയറിന്റെയോ മറ്റ് ടാബുകളുടെയോ അടിയിൽ പോകാതിരിക്കാൻ Z-Index ഏറ്റവും ഉയർന്നതാക്കി
+            $('.swal2-container').css('z-index', '999999');
+        }
     });
 };
 
-// 🔥 ബട്ടൺ ക്ലിക്ക് ചെയ്യുമ്പോൾ വർക്ക് ചെയ്യാനുള്ള ഫിൽറ്റർ ഫംഗ്ഷൻ (Globally Available)
-window.filterDayOrders = function (qty) {
-    // 1. എല്ലാ ബട്ടണുകളുടെയും കളർ പഴയപടിയാക്കുന്നു (White)
-    $('.day-filter-btn').removeClass('bg-dark text-white border-dark').addClass('bg-white text-secondary border');
+// 🔥 FILTER LOGIC (Dynamic Multi-Filter)
+window.applyDayFilters = function () {
+    let fStatus = $('#flt-status').val();
+    let fQty = $('#flt-qty').val();
+    let fState = $('#flt-state').val();
+    let fCourier = $('#flt-courier').val();
 
-    // 2. ക്ലിക്ക് ചെയ്ത ബട്ടണ് മാത്രം ഡാർക്ക് കളർ കൊടുക്കുന്നു
-    $(`.day-filter-btn[data-filter="${qty}"]`).removeClass('bg-white text-secondary border').addClass('bg-dark text-white border-dark');
+    let visibleCount = 0;
 
-    // 3. ടേബിൾ ഫിൽറ്റർ ചെയ്യുന്നു
-    if (qty === 'all') {
-        $('.day-order-row').show();
-        $('.day-expense-row').show(); // എല്ലാം കാണിക്കുന്നു
+    $('.day-order-row').each(function () {
+        let match = true;
+        if (fStatus !== 'all' && $(this).data('status') !== fStatus) match = false;
+        if (fQty !== 'all' && String($(this).data('qty')) !== String(fQty)) match = false;
+        if (fState !== 'all' && $(this).data('state') !== fState) match = false;
+        if (fCourier !== 'all' && $(this).data('courier') !== fCourier) match = false;
+
+        if (match) {
+            $(this).show();
+            visibleCount++;
+        } else {
+            $(this).hide();
+        }
+    });
+
+    // ഫിൽറ്റർ വയ്ക്കുമ്പോൾ Expenses ഹൈഡ് ചെയ്യുന്നു
+    if (fStatus === 'all' && fQty === 'all' && fState === 'all' && fCourier === 'all') {
+        $('.day-expense-row').show();
     } else {
-        $('.day-order-row').hide();
-        $(`.day-order-row[data-qty="${qty}"]`).fadeIn(300); // ക്ലിക്ക് ചെയ്ത Qty മാത്രം കാണിക്കുന്നു
-        $('.day-expense-row').hide(); // ഫിൽറ്റർ ചെയ്യുമ്പോൾ ചിലവുകൾ ഹൈഡ് ചെയ്യുന്നു
+        $('.day-expense-row').hide();
+    }
+
+    if (visibleCount === 0 && $('.day-expense-row:visible').length === 0) {
+        $('#day-no-match').show();
+    } else {
+        $('#day-no-match').hide();
     }
 };
 
+// 🔥 Fix 2: NO-REFRESH NAVIGATION (Continuity നഷ്ടപ്പെടാതിരിക്കാൻ)
+window.goToOrderInPage = function (oid) {
+    Swal.close(); // ടേബിൾ ക്ലോസ് ചെയ്യുന്നു
+    setTimeout(() => {
+        // നിലവിലുള്ള സെർച്ച് ബോക്സിൽ ഓർഡർ ഐഡി ഫിൽ ചെയ്ത് ഓട്ടോമാറ്റിക് സെർച്ച് ചെയ്യുന്നു (റീലോഡ് ഇല്ല!)
+        let searchInput = $('#searchInput, input[type="search"], #searchOrder').first();
+        if (searchInput.length) {
+            searchInput.val(oid).trigger('input').trigger('keyup');
+            window.scrollTo({ top: 0, behavior: 'smooth' }); // സ്ക്രീൻ മുകളിലേക്ക് കൊണ്ടുപോകുന്നു
+        } else {
+            // സെർച്ച് ബോക്സ് കിട്ടിയില്ലെങ്കിൽ മാത്രം റീലോഡ് ചെയ്യുന്നു
+            window.location.href = "admin.html?search=" + oid;
+        }
+    }, 300);
+};
