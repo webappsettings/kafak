@@ -6022,7 +6022,7 @@ window.renderDayBookTable = function () {
     $('#daybook-container').html(html);
 }
 
-// 🔥 SHOW DAILY ACTIVITIES TABLE
+// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with Status, Courier Cost & Clickable ID)
 window.showDayDetails = function (dateStr) {
     let dailyOrders = [];
     let dailyExpenses = [];
@@ -6043,8 +6043,8 @@ window.showDayDetails = function (dateStr) {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
 
-        let pDate = parseOrderDate(o.paidDate || o.timestamp);
-        let pStr = flatpickr.formatDate(pDate, "Y-m-d");
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date);
+        let pStr = !isNaN(pDate.getTime()) ? flatpickr.formatDate(pDate, "Y-m-d") : null;
 
         let dDate = parseOrderDate(o['Dispatched Date']);
         let dStr = !isNaN(dDate.getTime()) ? flatpickr.formatDate(dDate, "Y-m-d") : null;
@@ -6053,7 +6053,7 @@ window.showDayDetails = function (dateStr) {
         let isDisp = (dStr === dateStr);
 
         if (isNew || isDisp) {
-            dailyOrders.push({ order: o, isNew: isNew, isDisp: isDisp });
+            dailyOrders.push(o); // നേരിട്ട് ഓർഡർ മാത്രം പുഷ് ചെയ്യുന്നു
         }
     });
 
@@ -6065,11 +6065,28 @@ window.showDayDetails = function (dateStr) {
     let rows = "";
 
     // ഓർഡറുകൾ ടേബിളിലേക്ക് മാറ്റുന്നു
-    dailyOrders.forEach(item => {
-        let o = item.order;
-        let badges = [];
-        if (item.isNew) badges.push('<span class="badge bg-success" style="font-size:9px;">NEW</span>');
-        if (item.isDisp) badges.push('<span class="badge bg-primary" style="font-size:9px;">DISPATCHED</span>');
+    dailyOrders.forEach(o => {
+        let currentStatus = String(o.Status || 'Pending').toUpperCase();
+
+        // സ്റ്റാറ്റസിന്റെ നിറങ്ങൾ സെറ്റ് ചെയ്യുന്നു
+        let badgeClass = "bg-secondary";
+        if (currentStatus === 'PAID') badgeClass = "bg-warning text-dark";
+        else if (currentStatus === 'DISPATCHED') badgeClass = "bg-primary";
+        else if (currentStatus === 'DELIVERED' || currentStatus === 'COMPLETED') badgeClass = "bg-success";
+
+        let statusBadge = `<span class="badge ${badgeClass}" style="font-size:9px; letter-spacing:0.5px;">${currentStatus}</span>`;
+
+        // കൊറിയർ ചാർജ് കണ്ടുപിടിക്കുന്നു (Dispatched/Tracked ആണെങ്കിൽ മാത്രം)
+        let courierDisplay = "";
+        let cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
+
+        if (['DISPATCHED', 'DELIVERED', 'COMPLETED', 'ARCHIVE'].includes(currentStatus) || o['Tracking ID'] || o.tracking) {
+            if (cCost > 0) {
+                courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
+            } else {
+                courierDisplay = `<div class="text-muted mt-1" style="font-size:9px; font-weight:700;"><i class="fas fa-truck"></i> N/A</div>`;
+            }
+        }
 
         let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
         if (isNaN(amt) || amt <= 0) {
@@ -6082,10 +6099,12 @@ window.showDayDetails = function (dateStr) {
 
         rows += `
             <tr style="font-size:11px;">
-                <td class="fw-bold">${o.orderid}</td>
+                <td class="fw-bold">
+                    <a href="admin.html?search=${o.orderid}" class="text-primary text-decoration-none" title="View Order">${o.orderid}</a>
+                </td>
                 <td>${o.name || o.Name}<br><span class="text-muted" style="font-size:9px;">${place}</span></td>
                 <td class="text-center">${qty}</td>
-                <td class="text-center">${badges.join('<br>')}</td>
+                <td class="text-center">${statusBadge}${courierDisplay}</td>
                 <td class="text-end fw-bold text-success">₹${amt}</td>
             </tr>
         `;
@@ -6098,7 +6117,7 @@ window.showDayDetails = function (dateStr) {
                 <td class="fw-bold text-danger">EXPENSE</td>
                 <td>${e.desc}<br><span class="text-muted" style="font-size:9px;">${e.category || 'Other'}</span></td>
                 <td class="text-center">-</td>
-                <td class="text-center"><span class="badge bg-danger" style="font-size:9px;">EXPENSE</span></td>
+                <td class="text-center"><span class="badge bg-danger" style="font-size:9px; letter-spacing:0.5px;">EXPENSE</span></td>
                 <td class="text-end fw-bold text-danger">-₹${e.amount}</td>
             </tr>
         `;
