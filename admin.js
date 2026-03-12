@@ -6022,7 +6022,7 @@ window.renderDayBookTable = function () {
     $('#daybook-container').html(html);
 }
 
-// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with Status, Courier Cost & Clickable ID)
+// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with Premium Qty Filter)
 window.showDayDetails = function (dateStr) {
     let dailyOrders = [];
     let dailyExpenses = [];
@@ -6053,7 +6053,7 @@ window.showDayDetails = function (dateStr) {
         let isDisp = (dStr === dateStr);
 
         if (isNew || isDisp) {
-            dailyOrders.push(o); // നേരിട്ട് ഓർഡർ മാത്രം പുഷ് ചെയ്യുന്നു
+            dailyOrders.push(o);
         }
     });
 
@@ -6063,12 +6063,12 @@ window.showDayDetails = function (dateStr) {
     }
 
     let rows = "";
+    let qtyStats = {}; // 🔥 Filter-ന് വേണ്ടിയുള്ള കാൽക്കുലേഷൻ
 
     // ഓർഡറുകൾ ടേബിളിലേക്ക് മാറ്റുന്നു
     dailyOrders.forEach(o => {
         let currentStatus = String(o.Status || 'Pending').toUpperCase();
 
-        // സ്റ്റാറ്റസിന്റെ നിറങ്ങൾ സെറ്റ് ചെയ്യുന്നു
         let badgeClass = "bg-secondary";
         if (currentStatus === 'PAID') badgeClass = "bg-warning text-dark";
         else if (currentStatus === 'DISPATCHED') badgeClass = "bg-primary";
@@ -6076,7 +6076,6 @@ window.showDayDetails = function (dateStr) {
 
         let statusBadge = `<span class="badge ${badgeClass}" style="font-size:9px; letter-spacing:0.5px;">${currentStatus}</span>`;
 
-        // കൊറിയർ ചാർജ് കണ്ടുപിടിക്കുന്നു (Dispatched/Tracked ആണെങ്കിൽ മാത്രം)
         let courierDisplay = "";
         let cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
 
@@ -6089,21 +6088,26 @@ window.showDayDetails = function (dateStr) {
         }
 
         let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+        let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+
         if (isNaN(amt) || amt <= 0) {
-            let qty = parseInt(o.quantity) || 0;
             amt = qty * 650; // Backup calc
         }
 
-        let qty = parseInt(o.quantity) || o.Quantity || 1;
-        let place = (o.place || o.Place || '').substring(0, 15); // സ്ഥലം വലുതാണെങ്കിൽ മുറിക്കാൻ
+        // 🔥 Qty അനുസരിച്ച് എണ്ണവും തുകയും കൂട്ടുന്നു
+        if (!qtyStats[qty]) qtyStats[qty] = { count: 0, total: 0 };
+        qtyStats[qty].count += 1;
+        qtyStats[qty].total += amt;
+
+        let place = (o.place || o.Place || '').substring(0, 15);
 
         rows += `
-            <tr style="font-size:11px;">
+            <tr class="day-order-row" data-qty="${qty}" style="font-size:11px;">
                 <td class="fw-bold">
                     <a href="admin.html?search=${o.orderid}" class="text-primary text-decoration-none" title="View Order">${o.orderid}</a>
                 </td>
                 <td>${o.name || o.Name}<br><span class="text-muted" style="font-size:9px;">${place}</span></td>
-                <td class="text-center">${qty}</td>
+                <td class="text-center fw-bold">${qty}</td>
                 <td class="text-center">${statusBadge}${courierDisplay}</td>
                 <td class="text-end fw-bold text-success">₹${amt}</td>
             </tr>
@@ -6113,7 +6117,7 @@ window.showDayDetails = function (dateStr) {
     // ചിലവുകൾ ടേബിളിലേക്ക് മാറ്റുന്നു
     dailyExpenses.forEach(e => {
         rows += `
-            <tr style="font-size:11px; background-color: #fff5f5;">
+            <tr class="day-expense-row" style="font-size:11px; background-color: #fff5f5;">
                 <td class="fw-bold text-danger">EXPENSE</td>
                 <td>${e.desc}<br><span class="text-muted" style="font-size:9px;">${e.category || 'Other'}</span></td>
                 <td class="text-center">-</td>
@@ -6125,33 +6129,86 @@ window.showDayDetails = function (dateStr) {
 
     let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
-    let html = `
-        <div class="table-responsive" style="max-height:60vh; overflow-y:auto; border-radius:10px; border:1px solid #dee2e6;">
-            <table class="table table-sm table-hover align-middle mb-0">
-                <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px;">
-                    <tr>
-                        <th class="ps-2">ID</th>
-                        <th>Name</th>
-                        <th class="text-center">Qty</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-end pe-2">Amount</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${rows}
-                </tbody>
-            </table>
+    // 🔥 FILTER HEADER രൂപീകരിക്കുന്നു
+    let keys = Object.keys(qtyStats).sort((a, b) => a - b);
+    let statButtons = keys.map(k => {
+        let qs = qtyStats[k];
+        return `<span class="day-filter-btn badge bg-white border text-secondary shadow-sm px-2 py-1 mx-1" 
+                      data-filter="${k}" 
+                      onclick="filterDayOrders('${k}')" 
+                      style="cursor:pointer; font-size:10px; transition:all 0.3s ease;">
+                    ₹${qs.total.toLocaleString()} (${qs.count}x${k})
+                </span>`;
+    });
+
+    let topBarHtml = `
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <div style="font-size:15px; font-weight:800; color:#1e293b; text-align:left;">
+                <i class="fas fa-calendar-day me-2 text-primary"></i> ${displayDate}
+            </div>
+            <div class="d-flex align-items-center flex-wrap justify-content-end">
+                <span class="day-filter-btn badge bg-dark text-white border border-dark shadow-sm px-2 py-1" 
+                      data-filter="all" 
+                      onclick="filterDayOrders('all')" 
+                      style="cursor:pointer; font-size:10px; transition:all 0.3s ease;">
+                    Total ${dailyOrders.length}
+                </span>
+                ${keys.length > 0 ? `<span class="text-muted ms-1" style="font-size:11px;">(</span>` : ''}
+                ${statButtons.join('<span class="text-muted" style="font-size:12px; font-weight:bold;">+</span>')}
+                ${keys.length > 0 ? `<span class="text-muted me-1" style="font-size:11px;">)</span>` : ''}
+            </div>
         </div>
     `;
 
+    let html = `
+        <div class="text-start">
+            ${topBarHtml}
+            <div class="table-responsive" style="max-height:60vh; overflow-y:auto; border-radius:10px; border:1px solid #dee2e6;">
+                <table class="table table-sm table-hover align-middle mb-0">
+                    <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; z-index:1;">
+                        <tr>
+                            <th class="ps-2">ID</th>
+                            <th>Name</th>
+                            <th class="text-center">Qty</th>
+                            <th class="text-center">Status</th>
+                            <th class="text-end pe-2">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${rows}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+
+    // Popup ഡിസൈൻ
     Swal.fire({
-        title: `<div style="font-size:15px; font-weight:800; color:#1e293b; text-align:left;"><i class="fas fa-calendar-day me-2 text-primary"></i> ${displayDate}</div>`,
         html: html,
         width: '100%',
-        padding: '1em',
-        confirmButtonText: 'Close',
-        confirmButtonColor: '#334155',
+        padding: '1.5em',
+        showConfirmButton: false, // താഴെയുള്ള വലിയ ബട്ടൺ ഒഴിവാക്കി
+        showCloseButton: true,    // മുകളിൽ ക്ലോസ് ബട്ടൺ നൽകി
         customClass: { popup: 'rounded-4 ios-popup' }
     });
+};
+
+// 🔥 ബട്ടൺ ക്ലിക്ക് ചെയ്യുമ്പോൾ വർക്ക് ചെയ്യാനുള്ള ഫിൽറ്റർ ഫംഗ്ഷൻ (Globally Available)
+window.filterDayOrders = function (qty) {
+    // 1. എല്ലാ ബട്ടണുകളുടെയും കളർ പഴയപടിയാക്കുന്നു (White)
+    $('.day-filter-btn').removeClass('bg-dark text-white border-dark').addClass('bg-white text-secondary border');
+
+    // 2. ക്ലിക്ക് ചെയ്ത ബട്ടണ് മാത്രം ഡാർക്ക് കളർ കൊടുക്കുന്നു
+    $(`.day-filter-btn[data-filter="${qty}"]`).removeClass('bg-white text-secondary border').addClass('bg-dark text-white border-dark');
+
+    // 3. ടേബിൾ ഫിൽറ്റർ ചെയ്യുന്നു
+    if (qty === 'all') {
+        $('.day-order-row').show();
+        $('.day-expense-row').show(); // എല്ലാം കാണിക്കുന്നു
+    } else {
+        $('.day-order-row').hide();
+        $(`.day-order-row[data-qty="${qty}"]`).fadeIn(300); // ക്ലിക്ക് ചെയ്ത Qty മാത്രം കാണിക്കുന്നു
+        $('.day-expense-row').hide(); // ഫിൽറ്റർ ചെയ്യുമ്പോൾ ചിലവുകൾ ഹൈഡ് ചെയ്യുന്നു
+    }
 };
 
