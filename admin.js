@@ -6135,3 +6135,4 @@ window.showDayDetails = function (dateStr) {
         customClass: { popup: 'rounded-4 ios-popup' }
     });
 };
+
