@@ -5898,7 +5898,15 @@ window.renderDayBookTable = function () {
             dailyData[dStr].income.totalBottles += qty;
 
             if (viewMode === 'profit' && applyCourierCost > 0 && saleType === 'Online') {
-                dailyData[dStr].courier.items.push({ oid: o.orderid, name: o.name || o.Name, provider: o.provider || o.Courier_Provider || 'N/A', charge: applyCourierCost });
+                dailyData[dStr].courier.items.push({
+                    oid: o.orderid,
+                    name: o.name || o.Name,
+                    phone: String(o.phone || o.Phone || '').replace(/[^0-9]/g, '').slice(-10),
+                    qty: qty,
+                    state: String(o.state || o.State || 'KERALA').toUpperCase().trim(),
+                    provider: o.provider || o.Courier_Provider || 'N/A',
+                    charge: applyCourierCost
+                });
                 dailyData[dStr].courier.totalAmount += applyCourierCost;
             }
         }
@@ -5909,7 +5917,15 @@ window.renderDayBookTable = function () {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
                 if (applyCourierCost > 0) {
-                    dailyData[dStr].courier.items.push({ oid: o.orderid, name: o.name || o.Name, provider: o.provider || o.Courier_Provider || 'N/A', charge: applyCourierCost });
+                    dailyData[dStr].courier.items.push({
+                        oid: o.orderid,
+                        name: o.name || o.Name,
+                        phone: String(o.phone || o.Phone || '').replace(/[^0-9]/g, '').slice(-10),
+                        qty: qty,
+                        state: String(o.state || o.State || 'KERALA').toUpperCase().trim(),
+                        provider: o.provider || o.Courier_Provider || 'N/A',
+                        charge: applyCourierCost
+                    });
                     dailyData[dStr].courier.totalAmount += applyCourierCost;
                 }
             }
@@ -6175,11 +6191,12 @@ window.showDayDetails = function (dateStr) {
         let placePhoneText = phoneNum ? `${place}, ${phoneNum}` : place;
 
         rows += `
-            <tr class="day-order-row" data-status="${currentStatus}" data-qty="${qty}" data-state="${state}" data-courier="${courier}" style="font-size:11px;">
-                <td class="fw-bold">
-                    <span onclick="goToOrderInPage('${o.orderid}')" class="text-primary text-decoration-underline" style="cursor:pointer;" title="View Order">${o.orderid}</span>
+            <tr class="day-order-row align-middle" data-status="${currentStatus}" data-qty="${qty}" data-state="${state}" data-courier="${courier}" style="font-size:11px;">
+                <td onclick="goToOrderInPage('${o.orderid}')" style="cursor:pointer; max-width: 160px;">
+                    <div class="fw-bold text-dark" style="line-height:1.3;">${o.name || o.Name}</div>
+                    <div class="text-muted mt-1" style="font-size:9px;">${placePhoneText}</div>
+                    <div class="text-primary mt-1" style="font-size:9px; font-weight:700;">${o.orderid}</div>
                 </td>
-                <td>${o.name || o.Name}<br><span class="text-muted" style="font-size:9px;">${placePhoneText}</span></td>
                 <td class="text-center fw-bold">${qty}</td>
                 <td class="text-center">${statusBadge}${courierDisplay}</td>
                 <td class="text-end fw-bold text-success">₹${amt}</td>
@@ -6190,9 +6207,11 @@ window.showDayDetails = function (dateStr) {
     // Expenses
     dailyExpenses.forEach(e => {
         rows += `
-            <tr class="day-expense-row" style="font-size:11px; background-color: #fff5f5;">
-                <td class="fw-bold text-danger">EXPENSE</td>
-                <td>${e.desc}<br><span class="text-muted" style="font-size:9px;">${e.category || 'Other'}</span></td>
+            <tr class="day-expense-row align-middle" style="font-size:11px; background-color: #fff5f5;">
+                <td style="max-width: 160px;">
+                    <div class="fw-bold text-danger" style="line-height:1.3;">EXPENSE: ${e.category || 'Other'}</div>
+                    <div class="text-muted mt-1" style="font-size:9px; line-height:1.3;">${e.desc}</div>
+                </td>
                 <td class="text-center">-</td>
                 <td class="text-center"><span class="badge bg-danger" style="font-size:9px;">EXPENSE</span></td>
                 <td class="text-end fw-bold text-danger">-₹${e.amount}</td>
@@ -6261,8 +6280,7 @@ window.showDayDetails = function (dateStr) {
                 <table class="table table-sm table-hover align-middle mb-0">
                     <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; z-index:1;">
                         <tr>
-                            <th class="ps-2">ID</th>
-                            <th>Name</th>
+                            <th class="ps-2">Customer / Details</th>
                             <th class="text-center">Qty</th>
                             <th class="text-center">Status</th>
                             <th class="text-end pe-2">Amount</th>
@@ -6355,29 +6373,35 @@ window.goToOrderInPage = function (oid) {
 };
 
 
-// 🔥 SHOW COURIER BREAKDOWN TABLE
+// 🔥 SHOW COURIER BREAKDOWN TABLE (Updated UI with merged details)
 window.showCourierBreakdown = function (dateStr) {
     let data = window.dayBookData[dateStr];
     if (!data || !data.courier || data.courier.items.length === 0) return;
 
     let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
-    let rows = data.courier.items.map(c => `
-        <tr style="font-size:11px;">
-            <td class="fw-bold text-secondary">${c.oid.slice(-4)}</td>
-            <td class="text-truncate" style="max-width: 110px;">${c.name}</td>
+    let rows = data.courier.items.map(c => {
+        let nameBlock = c.name;
+        if (c.phone) nameBlock += `, ${c.phone}`;
+        nameBlock += `, ${c.qty} Btls, ${c.state}`;
+
+        return `
+        <tr style="font-size:11px;" class="align-middle">
+            <td onclick="goToOrderInPage('${c.oid}')" style="cursor:pointer; max-width: 180px;">
+                <div class="fw-bold text-dark" style="line-height:1.4;">${nameBlock}</div>
+                <div class="text-primary mt-1" style="font-size:9px; font-weight:700;">${c.oid}</div>
+            </td>
             <td class="text-center"><span class="badge bg-light text-dark border border-secondary border-opacity-25" style="font-size:8px;">${c.provider}</span></td>
             <td class="text-end fw-bold text-danger">₹${c.charge}</td>
-        </tr>
-    `).join('');
+        </tr>`;
+    }).join('');
 
     let html = `
         <div class="table-responsive" style="max-height:55vh; overflow-y:auto; border-radius:10px; border:1px solid #dee2e6;">
             <table class="table table-sm table-hover align-middle mb-0">
                 <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; z-index:1;">
                     <tr>
-                        <th class="ps-2">ID</th>
-                        <th>Customer</th>
+                        <th class="ps-2">Customer Details</th>
                         <th class="text-center">Courier</th>
                         <th class="text-end pe-2">Charge</th>
                     </tr>
@@ -6385,7 +6409,7 @@ window.showCourierBreakdown = function (dateStr) {
                 <tbody>
                     ${rows}
                     <tr class="bg-light border-top">
-                        <td colspan="3" class="text-end fw-bold text-dark" style="font-size:11px;">TOTAL COURIER CHARGE:</td>
+                        <td colspan="2" class="text-end fw-bold text-dark" style="font-size:11px;">TOTAL COURIER CHARGE:</td>
                         <td class="text-end fw-bold text-danger" style="font-size:13px;">₹${data.courier.totalAmount.toLocaleString()}</td>
                     </tr>
                 </tbody>
