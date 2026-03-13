@@ -724,9 +724,9 @@ function renderTabs(orders) {
                 let groupCbHtml = '';
                 if (dateKey === 'paid_new' || dateKey === 'paid_print') {
                     groupCbHtml = `
-                    <div class="form-check ms-3 mb-0 d-flex align-items-center" style="background: rgba(255,255,255,0.25); padding: 2px 6px; border-radius: 4px;" onclick="event.stopPropagation();">
-                        <input class="form-check-input mt-0 group-cb-${safeGroupId}" type="checkbox" id="cb-${safeGroupId}" style="width:13px; height:13px; cursor:pointer; border:1px solid #fff;" onclick="toggleGroup('${safeGroupId}', this.checked)">
-                        <label class="form-check-label text-white ms-1 fw-bold" for="cb-${safeGroupId}" style="font-size:10px; cursor:pointer; margin-top:2px;">All</label>
+                    <div class="form-check ms-3 mb-0 d-flex align-items-center" style="background: #e2e8f0; padding: 2px 8px; border-radius: 6px; border: 1px solid #cbd5e1;" onclick="event.stopPropagation();">
+                        <input class="form-check-input mt-0 group-cb-${safeGroupId}" type="checkbox" id="cb-${safeGroupId}" style="width:13px; height:13px; cursor:pointer; border-color: #64748b;" onclick="toggleGroup('${safeGroupId}', this.checked)">
+                        <label class="form-check-label text-dark ms-1 fw-bold" for="cb-${safeGroupId}" style="font-size:10px; cursor:pointer; margin-top:2px;">All</label>
                     </div>`;
                 }
 
@@ -2492,7 +2492,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             else if (s.includes('TAMIL') || s.includes('TN')) dotColor = '#795548'; // Tamil Nadu (Brown)
 
             // Placed at Top Right corner
-            stateDotHtml = `<div style="position:absolute; top:8mm; right:8mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
+            stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
         htmlContent += `
