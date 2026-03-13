@@ -3551,10 +3551,14 @@ window.renderPartnerList = function () {
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
+
+    // 🔥 ഈ മാസത്തെ ചിലവ് കാണിക്കാൻ ഉള്ളത് (UI ക്ക് വേണ്ടി)
     let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
     // 🔥 FULL (ALL-TIME) BANK BALANCE CALCULATION
     let fullIncome = 0;
+    let fullBottleCost = 0;
+    let fullCourier = 0;
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
@@ -3615,21 +3619,21 @@ window.renderPartnerList = function () {
 
     // 🔥 Beautiful Breakdown UI 
     let breakdownHtml = `
-        <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="d-flex align-items-center gap-2">
-                    <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
-                    <div>
-                        <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
-                        <div style="font-size:9px; color:#0369a1;">(Income - All Expenses & Materials)</div>
-                    </div>
+    <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
+                <div>
+                    <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
+                    <div style="font-size:9px; color:#0369a1;">(Income - All Expenses & Materials)</div>
                 </div>
-                <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
             </div>
+            <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
         </div>
+    </div>
 
-        <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
-            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
             ${prevBtn}
             <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
                 <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
@@ -3641,6 +3645,7 @@ window.renderPartnerList = function () {
             <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
             <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
         </div>
+        
         <div class="text-secondary small mb-1 fst-italic" style="font-size:10px; line-height: 1.4;">
             <span class="fw-bold text-muted">Sales:</span> ${window.currentBreakdownStr}
         </div>
@@ -3732,7 +3737,6 @@ window.renderPartnerList = function () {
                 withdrawnInfo = `<div class="mt-2 pt-2 border-top border-secondary border-opacity-10 text-muted" style="font-size:10px;">No salary taken yet.</div>`;
             }
 
-            // 🔥 NEW ALIGNMENT FIX (Flex-grow added properly, width 100% bugs removed)
             html += `
             <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
                 <div class="d-flex align-items-center w-100">
