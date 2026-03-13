@@ -1,3 +1,12 @@
+// 🔥 AUTOMATIC CACHE CLEARER (To prevent old code from sticking)
+if ('caches' in window) {
+    caches.keys().then((names) => {
+        names.forEach((name) => {
+            caches.delete(name);
+        });
+    });
+}
+
 const scriptURL = "https://script.google.com/macros/s/AKfycbywBdyjeEG-aePYIBfkeCwjF2JkKra3GlGSYjYtroRTWneL8qumpWGDNvjLVxraWd026Q/exec";
 
 // Beep Sound for Scanner
