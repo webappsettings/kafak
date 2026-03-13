@@ -3479,6 +3479,9 @@ window.renderPartnerList = function () {
     let liveProfit = window.currentLiveProfit || 0;
     let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
+    // 🔥 Bank Balance Calculation (എല്ലാ ചിലവുകളും മെറ്റീരിയലും കുറച്ചുള്ള യഥാർത്ഥ ബാങ്ക് ബാലൻസ്)
+    let actualBankBalance = (window.currentIncome || 0) - (tExp + (window.currentMaterial || 0) + (window.currentExpenseCategories["Refund"] || 0));
+
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
         "Samad": Math.floor(liveProfit * 0.70),
@@ -3495,8 +3498,21 @@ window.renderPartnerList = function () {
 
     // 🔥 Beautiful Breakdown UI 
     let breakdownHtml = `
-    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
-        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+        <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
+                    <div>
+                        <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
+                        <div style="font-size:9px; color:#0369a1;">(Income - All Expenses & Materials)</div>
+                    </div>
+                </div>
+                <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
+            </div>
+        </div>
+
+        <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
+            <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
             ${prevBtn}
             <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
                 <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
@@ -5863,7 +5879,7 @@ window.renderDayBookTable = function () {
             dailyData[dStr].income.totalBottles += qty;
 
             if (viewMode === 'profit' && applyCourierCost > 0 && saleType === 'Online') {
-                dailyData[dStr].courier.items.push({ charge: applyCourierCost });
+                dailyData[dStr].courier.items.push({ oid: o.orderid, name: o.name || o.Name, provider: o.provider || o.Courier_Provider || 'N/A', charge: applyCourierCost });
                 dailyData[dStr].courier.totalAmount += applyCourierCost;
             }
         }
@@ -5874,7 +5890,7 @@ window.renderDayBookTable = function () {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
                 if (applyCourierCost > 0) {
-                    dailyData[dStr].courier.items.push({ charge: applyCourierCost });
+                    dailyData[dStr].courier.items.push({ oid: o.orderid, name: o.name || o.Name, provider: o.provider || o.Courier_Provider || 'N/A', charge: applyCourierCost });
                     dailyData[dStr].courier.totalAmount += applyCourierCost;
                 }
             }
@@ -5893,6 +5909,7 @@ window.renderDayBookTable = function () {
         });
     }
 
+    window.dayBookData = dailyData; // 🔥 ഗ്ലോബൽ ആക്കുന്നു
     let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
     let grandIncome = 0, grandCourier = 0, grandExpense = 0;
 
@@ -6001,7 +6018,10 @@ window.renderDayBookTable = function () {
             hasData = true;
             grandCourier += data.courier.totalAmount;
             dayHtml += `<div class="d-flex justify-content-between align-items-start mb-2 pb-2 border-bottom border-dashed border-secondary border-opacity-10">
-                <div><div class="fw-bold text-danger" style="font-size:12px;"><i class="fas fa-truck me-1"></i> Courier Charge</div></div>
+                <div class="d-flex align-items-center">
+                    <div class="fw-bold text-danger" style="font-size:12px;"><i class="fas fa-truck me-1"></i> Courier Charge</div>
+                    <button class="btn btn-sm btn-light border py-0 px-2 ms-2 rounded-pill shadow-sm text-secondary" style="font-size:9px;" onclick="showCourierBreakdown('${dateStr}')"><i class="fas fa-info"></i> Info</button>
+                </div>
                 <div class="fw-bold text-danger fs-6">₹${data.courier.totalAmount.toLocaleString()}</div>
             </div>`;
         }
@@ -6047,7 +6067,8 @@ window.renderDayBookTable = function () {
     $('#daybook-container').html(html);
 }
 
-// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with 4 Dropdown Filters & Fixes)
+
+// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with Phone Num, Expense Filter & Fixed N/A)
 window.showDayDetails = function (dateStr) {
     let dailyOrders = [];
     let dailyExpenses = [];
@@ -6085,22 +6106,18 @@ window.showDayDetails = function (dateStr) {
     }
 
     let rows = "";
-
-    // 🔥 STATS OBJECT FOR DROPDOWNS (ഡാറ്റ സെർവറിൽ നിന്ന് ഡൈനാമിക് ആയി എടുക്കുന്നു)
     let stats = { status: {}, qty: {}, state: {}, courier: {} };
 
     dailyOrders.forEach(o => {
-        // --- Data Extraction ---
         let currentStatus = String(o.Status || 'Pending').toUpperCase();
         let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
         let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
-        if (isNaN(amt) || amt <= 0) amt = qty * 650; // ബാക്കപ്പ് വില
+        if (isNaN(amt) || amt <= 0) amt = qty * 650;
 
         let state = String(o.state || o.State || 'KERALA').toUpperCase().trim();
         let courier = String(o.courier || o.Courier_Provider || o.provider || 'N/A').toUpperCase().trim();
         if (!courier || courier === 'UNDEFINED') courier = 'N/A';
 
-        // --- Populate Stats ---
         stats.status[currentStatus] = (stats.status[currentStatus] || 0) + 1;
 
         if (!stats.qty[qty]) stats.qty[qty] = { count: 0, total: 0 };
@@ -6110,7 +6127,6 @@ window.showDayDetails = function (dateStr) {
         stats.state[state] = (stats.state[state] || 0) + 1;
         stats.courier[courier] = (stats.courier[courier] || 0) + 1;
 
-        // --- Badge & Display Logic ---
         let badgeClass = "bg-secondary";
         if (currentStatus === 'PAID') badgeClass = "bg-warning text-dark";
         else if (currentStatus === 'DISPATCHED') badgeClass = "bg-primary";
@@ -6119,21 +6135,32 @@ window.showDayDetails = function (dateStr) {
         let statusBadge = `<span class="badge ${badgeClass}" style="font-size:9px; letter-spacing:0.5px;">${currentStatus}</span>`;
 
         let courierDisplay = "";
-        let cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
+        let cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.actualCourierCost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
+
+        // 🔥 N/A ഫിക്സ്: കാൽക്കുലേഷൻ നടത്തിയിട്ടും 0 ആണെങ്കിൽ ഒന്നും കാണിക്കില്ല
+        if (cCost <= 0) {
+            let tCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            cCost = tCost > 20 ? tCost - 20 : tCost;
+        }
+
         if (['DISPATCHED', 'DELIVERED', 'COMPLETED', 'ARCHIVE'].includes(currentStatus) || o['Tracking ID'] || o.tracking) {
-            if (cCost > 0) courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
-            else courierDisplay = `<div class="text-muted mt-1" style="font-size:9px; font-weight:700;"><i class="fas fa-truck"></i> N/A</div>`;
+            if (cCost > 0) {
+                courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
+            }
         }
 
         let place = (o.place || o.Place || '').substring(0, 15);
+        let phoneNum = String(o.phone || o.Phone || '').replace(/[^0-9]/g, '').slice(-10); // അവസാന 10 അക്കങ്ങൾ എടുക്കുന്നു
 
-        // --- Row HTML (with data attributes for filtering) ---
+        // 🔥 സ്ഥലത്തിന്റെ കൂടെ ഫോൺ നമ്പർ കൂടി ചേർക്കുന്നു
+        let placePhoneText = phoneNum ? `${place}, ${phoneNum}` : place;
+
         rows += `
             <tr class="day-order-row" data-status="${currentStatus}" data-qty="${qty}" data-state="${state}" data-courier="${courier}" style="font-size:11px;">
                 <td class="fw-bold">
                     <span onclick="goToOrderInPage('${o.orderid}')" class="text-primary text-decoration-underline" style="cursor:pointer;" title="View Order">${o.orderid}</span>
                 </td>
-                <td>${o.name || o.Name}<br><span class="text-muted" style="font-size:9px;">${place}</span></td>
+                <td>${o.name || o.Name}<br><span class="text-muted" style="font-size:9px;">${placePhoneText}</span></td>
                 <td class="text-center fw-bold">${qty}</td>
                 <td class="text-center">${statusBadge}${courierDisplay}</td>
                 <td class="text-end fw-bold text-success">₹${amt}</td>
@@ -6156,11 +6183,14 @@ window.showDayDetails = function (dateStr) {
 
     let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
-    // 🔥 GENERATE 4 DROPDOWNS DYNAMICALLY
-
     // 1. Status Dropdown
     let optStatus = `<option value="all">All Status (${dailyOrders.length})</option>`;
     Object.keys(stats.status).forEach(k => { optStatus += `<option value="${k}">${k} (${stats.status[k]})</option>`; });
+
+    // 🔥 EXPENSE ഫിൽറ്റർ ചേർക്കുന്നു
+    if (dailyExpenses.length > 0) {
+        optStatus += `<option value="EXPENSE">EXPENSE (${dailyExpenses.length})</option>`;
+    }
 
     // 2. Qty / Amount Dropdown
     let totalAmtAll = Object.values(stats.qty).reduce((sum, item) => sum + item.total, 0);
@@ -6230,14 +6260,13 @@ window.showDayDetails = function (dateStr) {
 
     Swal.fire({
         html: html,
-        width: '98%',         // സ്ക്രീനിൽ നിറഞ്ഞു നിൽക്കാൻ
-        padding: '0.8em 0.5em', // 🔥 മുകളിലും താഴെയും 0.8em, വശങ്ങളിൽ വെറും 0.5em പാഡിംഗ്
+        width: '98%',
+        padding: '0.8em 0.5em',
         showConfirmButton: false,
         showCloseButton: true,
         customClass: { popup: 'rounded-4 ios-popup' },
         didOpen: () => {
             $('.swal2-container').css('z-index', '999999');
-            // 🔥 ക്ലോസ് ബട്ടൺ കുറച്ചുകൂടി മുകളിലേക്ക് ആക്കാൻ
             $('.swal2-close').css({ 'margin-top': '-5px', 'margin-right': '-5px' });
         }
     });
@@ -6252,9 +6281,19 @@ window.applyDayFilters = function () {
 
     let visibleCount = 0;
 
+    // 🔥 Expense തിരഞ്ഞെടുത്താൽ ബാക്കി ഓർഡറുകൾ ഹൈഡ് ആവാൻ
+    if (fStatus === 'EXPENSE') {
+        $('.day-order-row').hide();
+        $('.day-expense-row').show();
+
+        if ($('.day-expense-row:visible').length === 0) $('#day-no-match').show();
+        else $('#day-no-match').hide();
+        return;
+    }
+
     $('.day-order-row').each(function () {
         let match = true;
-        if (fStatus !== 'all' && $(this).data('status') !== fStatus) match = false;
+        if (fStatus !== 'all' && fStatus !== 'EXPENSE' && $(this).data('status') !== fStatus) match = false;
         if (fQty !== 'all' && String($(this).data('qty')) !== String(fQty)) match = false;
         if (fState !== 'all' && $(this).data('state') !== fState) match = false;
         if (fCourier !== 'all' && $(this).data('courier') !== fCourier) match = false;
@@ -6267,7 +6306,6 @@ window.applyDayFilters = function () {
         }
     });
 
-    // ഫിൽറ്റർ വയ്ക്കുമ്പോൾ Expenses ഹൈഡ് ചെയ്യുന്നു
     if (fStatus === 'all' && fQty === 'all' && fState === 'all' && fCourier === 'all') {
         $('.day-expense-row').show();
     } else {
@@ -6295,4 +6333,58 @@ window.goToOrderInPage = function (oid) {
             window.location.href = "admin.html?search=" + oid;
         }
     }, 300);
+};
+
+
+// 🔥 SHOW COURIER BREAKDOWN TABLE
+window.showCourierBreakdown = function (dateStr) {
+    let data = window.dayBookData[dateStr];
+    if (!data || !data.courier || data.courier.items.length === 0) return;
+
+    let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+    let rows = data.courier.items.map(c => `
+        <tr style="font-size:11px;">
+            <td class="fw-bold text-secondary">${c.oid.slice(-4)}</td>
+            <td class="text-truncate" style="max-width: 110px;">${c.name}</td>
+            <td class="text-center"><span class="badge bg-light text-dark border border-secondary border-opacity-25" style="font-size:8px;">${c.provider}</span></td>
+            <td class="text-end fw-bold text-danger">₹${c.charge}</td>
+        </tr>
+    `).join('');
+
+    let html = `
+        <div class="table-responsive" style="max-height:55vh; overflow-y:auto; border-radius:10px; border:1px solid #dee2e6;">
+            <table class="table table-sm table-hover align-middle mb-0">
+                <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; letter-spacing:0.5px; z-index:1;">
+                    <tr>
+                        <th class="ps-2">ID</th>
+                        <th>Customer</th>
+                        <th class="text-center">Courier</th>
+                        <th class="text-end pe-2">Charge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${rows}
+                    <tr class="bg-light border-top">
+                        <td colspan="3" class="text-end fw-bold text-dark" style="font-size:11px;">TOTAL COURIER CHARGE:</td>
+                        <td class="text-end fw-bold text-danger" style="font-size:13px;">₹${data.courier.totalAmount.toLocaleString()}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    `;
+
+    Swal.fire({
+        title: `<div style="font-size:14px; font-weight:800; color:#1e293b; text-align:left;"><i class="fas fa-truck text-danger me-2"></i> ${displayDate}</div>`,
+        html: html,
+        width: '98%',
+        padding: '0.8em 0.5em',
+        showConfirmButton: false,
+        showCloseButton: true,
+        customClass: { popup: 'rounded-4 ios-popup' },
+        didOpen: () => {
+            $('.swal2-container').css('z-index', '999999');
+            $('.swal2-close').css({ 'margin-top': '-5px', 'margin-right': '-5px' });
+        }
+    });
 };
