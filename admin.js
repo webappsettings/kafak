@@ -6187,10 +6187,14 @@ window.showDayDetails = function (dateStr) {
         }
 
         let place = (o.place || o.Place || '').substring(0, 15);
-        let phoneNum = String(o.phone || o.Phone || '').replace(/[^0-9]/g, '').slice(-10); // അവസാന 10 അക്കങ്ങൾ എടുക്കുന്നു
+        let phoneNum = String(o.phone || o.Phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-        // 🔥 സ്ഥലത്തിന്റെ കൂടെ ഫോൺ നമ്പർ കൂടി ചേർക്കുന്നു
-        let placePhoneText = phoneNum ? `${place}, ${phoneNum}` : place;
+        // 🔥 സ്ഥലം, സംസ്ഥാനം, ഫോൺ നമ്പർ എന്നിവ ഒന്നിച്ചു ചേർക്കുന്നു
+        let placeParts = [];
+        if (place) placeParts.push(place);
+        if (state) placeParts.push(state); // സംസ്ഥാനം (State) ഇവിടെ ചേർത്തു
+        if (phoneNum) placeParts.push(phoneNum);
+        let placePhoneText = placeParts.join(', ');
 
         rows += `
             <tr class="day-order-row align-middle" data-status="${currentStatus}" data-qty="${qty}" data-state="${state}" data-courier="${courier}" style="font-size:11px;">
