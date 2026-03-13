@@ -3473,16 +3473,59 @@ function togglePartnerSelect() {
 
 
 
-// 🔥 PARTNER LIST RENDER (WITH FULL BREAKDOWN UI & MONTH NAVIGATION)
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
-    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
-    // 🔥 Bank Balance Calculation (എല്ലാ ചിലവുകളും മെറ്റീരിയലും കുറച്ചുള്ള യഥാർത്ഥ ബാങ്ക് ബാലൻസ്)
-    let actualBankBalance = (window.currentIncome || 0) - (tExp + (window.currentMaterial || 0) + (window.currentExpenseCategories["Refund"] || 0));
+    // 🔥 FULL (ALL-TIME) BANK BALANCE CALCULATION
+    let fullIncome = 0;
+    let fullBottleCost = 0;
+    let fullCourier = 0;
+
+    allOrders.forEach(o => {
+        let status = String(o.Status || 'Pending').trim();
+
+        // ബാങ്ക് ബാലൻസിൽ 'Paid' ഓർഡറുകളും ഉൾപ്പെടുത്തണം (പൈസ അക്കൗണ്ടിൽ വന്നതുകൊണ്ട്)
+        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            let qty = parseInt(o.quantity) || 0;
+
+            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+            if (isNaN(amt) || amt <= 0) {
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
+            fullIncome += amt;
+
+            let dbCost = parseInt(o.Product_Base_Cost);
+            fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
+
+            // കൊറിയർ ചിലവ് (Dispatched ആയവയ്ക്ക് മാത്രം കുറയ്ക്കുന്നു)
+            if (status !== 'Paid') {
+                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+                fullCourier += actualC;
+            }
+        }
+    });
+
+    let fullExpenses = 0;
+    // ലഭ്യമായ എല്ലാ എക്സ്പെൻസുകളും കൂട്ടുന്നു (മെറ്റീരിയൽ, സാലറി ഉൾപ്പെടെ)
+    if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
+        dashboardData.yearTimeline.expense.forEach(e => {
+            let cat = String(e.cat || '').toLowerCase();
+            // കൊറിയറും റീഫണ്ടും ഒഴിവാക്കുന്നു (ഡബിൾ ഡിഡക്ഷൻ വരാതിരിക്കാൻ)
+            if (!e.isCourier && cat !== 'refund') {
+                fullExpenses += (Number(e.amount) || 0);
+            }
+        });
+    }
+
+    // ആകെ വരുമാനത്തിൽ നിന്നും ആകെ കുപ്പി ചിലവ്, കൊറിയർ ചിലവ്, മറ്റെല്ലാ ചിലവുകളും കുറയ്ക്കുന്നു
+    let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses);
 
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
