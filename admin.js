@@ -6226,14 +6226,15 @@ window.showDayDetails = function (dateStr) {
 
     Swal.fire({
         html: html,
-        width: '100%',
-        padding: '1.2em',
+        width: '98%',         // സ്ക്രീനിൽ നിറഞ്ഞു നിൽക്കാൻ
+        padding: '0.8em 0.5em', // 🔥 മുകളിലും താഴെയും 0.8em, വശങ്ങളിൽ വെറും 0.5em പാഡിംഗ്
         showConfirmButton: false,
         showCloseButton: true,
         customClass: { popup: 'rounded-4 ios-popup' },
         didOpen: () => {
-            // 🔥 Fix 1: മൊബൈലിൽ ഡ്രോയറിന്റെയോ മറ്റ് ടാബുകളുടെയോ അടിയിൽ പോകാതിരിക്കാൻ Z-Index ഏറ്റവും ഉയർന്നതാക്കി
             $('.swal2-container').css('z-index', '999999');
+            // 🔥 ക്ലോസ് ബട്ടൺ കുറച്ചുകൂടി മുകളിലേക്ക് ആക്കാൻ
+            $('.swal2-close').css({ 'margin-top': '-5px', 'margin-right': '-5px' });
         }
     });
 };
