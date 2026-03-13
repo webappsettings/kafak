@@ -696,6 +696,9 @@ function renderTabs(orders) {
                 visibleDates.sent.add(dateLabel);
             }
 
+            // 🔥 Create Safe Group ID for Checkboxes
+            let safeGroupId = dateKey + '_' + dateLabel.replace(/[^a-zA-Z0-9]/g, '_');
+
             if (dateLabel !== lastDateMap[dateKey]) {
                 if (lastDateMap[dateKey] !== '') firstDateFlags[dateKey] = false;
                 let extraHtml = '';
@@ -707,7 +710,6 @@ function renderTabs(orders) {
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${sStats.count}</span>`;
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${sStats.bottles}</span>`;
 
-                    // 🔥 NEW: Show Delivered (D), Completed (C), Refunded (R) Format
                     let badgeStr = "";
                     if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
                     if (sStats.C > 0) badgeStr += `<span class="text-success fw-bold ms-1" style="font-size:10px;">(${sStats.C} C)</span>`;
@@ -717,12 +719,23 @@ function renderTabs(orders) {
                         extraHtml += `<span class="ms-2 ps-1 border-start border-secondary d-flex align-items-center">${badgeStr}</span>`;
                     }
                 }
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml}</div></div>`;
+
+                // 🔥 SMART CHECKBOX HTML (Only for Paid/Print tabs)
+                let groupCbHtml = '';
+                if (dateKey === 'paid_new' || dateKey === 'paid_print') {
+                    groupCbHtml = `
+                    <div class="form-check ms-3 mb-0 d-flex align-items-center" style="background: rgba(255,255,255,0.25); padding: 2px 6px; border-radius: 4px;" onclick="event.stopPropagation();">
+                        <input class="form-check-input mt-0 group-cb-${safeGroupId}" type="checkbox" id="cb-${safeGroupId}" style="width:13px; height:13px; cursor:pointer; border:1px solid #fff;" onclick="toggleGroup('${safeGroupId}', this.checked)">
+                        <label class="form-check-label text-white ms-1 fw-bold" for="cb-${safeGroupId}" style="font-size:10px; cursor:pointer; margin-top:2px;">All</label>
+                    </div>`;
+                }
+
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
             let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
-            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact);
+            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId); // 🔥 Pass safeGroupId here
         }
     });
 
@@ -874,7 +887,7 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-function createCardHTML(d, index, type, currentStatus, isCompact = false) {
+function createCardHTML(d, index, type, currentStatus, isCompact = false, groupId = '') {
     let buttons = '';
     let logicType = type;
     if (type === 'search') {
@@ -1180,7 +1193,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false) {
         buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index}, '${type}')"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>${actionBtn}</div>`;
     }
     else if (logicType === 'paid') {
-        buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
+        buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
     }
     else if (logicType === 'dispatched') {
         let trackNum = d.tracking || '';
@@ -2602,7 +2615,6 @@ window.revertToPrinted = function (oid) {
 
 
 function toggleSelectAll() {
-    // ദൃശ്യമായിട്ടുള്ള ചെക്ക്ബോക്സുകൾ മാത്രം സെലക്ട് ചെയ്യുന്നു
     const checkboxes = document.querySelectorAll('.order-cb:not([style*="display: none"])');
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
 
@@ -2618,9 +2630,36 @@ function toggleSelectAll() {
             btn.innerHTML = '<i class="far fa-square"></i> All';
         }
     });
+
+    // 🔥 Update the smart group checkboxes
+    checkSelectAllStatus();
 }
 
-function checkSelectAllStatus() { updateSelectAllButton(); }
+function checkSelectAllStatus() {
+    updateSelectAllButton();
+
+    // 🔥 Update Smart Group Checkboxes automatically
+    document.querySelectorAll('[class*="group-cb-"]').forEach(groupCb => {
+        let match = groupCb.className.match(/group-cb-([a-zA-Z0-9_]+)/);
+        if (match && match[1]) {
+            let groupId = match[1];
+            let childCbs = document.querySelectorAll(`.cb-group-${groupId}:not([style*="display: none"])`);
+            if (childCbs.length > 0) {
+                let allChecked = Array.from(childCbs).every(cb => cb.checked);
+                groupCb.checked = allChecked;
+            } else {
+                groupCb.checked = false;
+            }
+        }
+    });
+}
+
+// 🔥 Toggle Specific Date Group Checkboxes (New Function)
+window.toggleGroup = function (groupId, isChecked) {
+    let cbs = document.querySelectorAll(`.cb-group-${groupId}:not([style*="display: none"])`);
+    cbs.forEach(cb => cb.checked = isChecked);
+    checkSelectAllStatus(); // Update the main "Select All" status
+};
 
 // 🔥 FIX: Update ALL Select All Buttons (New & Printed Tabs)
 function updateSelectAllButton() {
