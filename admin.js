@@ -3295,10 +3295,10 @@ function renderTransactionsForDate(dateStr) {
             // 🔥 FIX: 'undefined' മാറ്റി 'Auto-calculated' ആക്കുന്നു
             let subText = item.isCourier ? "Auto-calculated" : item.cat;
 
-            // 🔥 എഡിറ്റ് ബട്ടൺ ഉണ്ടാക്കുന്നു (ഓട്ടോമാറ്റിക് കൊറിയർ ചാർജ് അല്ലാത്തവയ്ക്കും, ID ഉള്ളവയ്ക്കും മാത്രം)
+            // 🔥 Edit ബട്ടൺ (യാന്ത്രികമായി കാൽക്കുലേറ്റ് ചെയ്ത കൊറിയർ ചാർജ് അല്ലാത്തവയ്ക്കും, ID ഉള്ളവയ്ക്കും മാത്രം)
             let editBtn = '';
             if (!item.isCourier && item.id) {
-                editBtn = `<i class="fas fa-edit text-primary ms-3" style="cursor:pointer; font-size:16px;" onclick="openEditExpense('${item.id}', '${dateStr}', '${item.amount}', '${item.desc}', '${item.cat}', '${item.vendor || ''}')" title="Edit Expense"></i>`;
+                editBtn = `<i class="fas fa-edit text-primary ms-3" style="cursor:pointer; font-size:16px;" onclick="showAddExpenseModal('${item.id}')" title="Edit Expense"></i>`;
             }
 
             html += `
@@ -5711,13 +5711,19 @@ window.showAddExpenseModal = function (editId = null) {
             if (typeof renderPartnerList === 'function') renderPartnerList();
             if (oldCat === 'Salary') setTimeout(() => { selectPartner(oldVendor); }, 500);
 
+            let dateVal = new Date();
+            if (editId && dashboardData && dashboardData.monthTimeline) {
+                let item = dashboardData.monthTimeline.expense.find(x => x.id === editId);
+                if (item && item.date) {
+                    dateVal = new Date(item.date);
+                }
+            }
+
+            // 🔥 കൃത്യമായ ഡേറ്റ് ഫോർമാറ്റും മൊബൈലിലെ കലണ്ടർ ഫിക്സും
             flatpickr("#exp-date", {
                 enableTime: true,
-                dateFormat: "Y-m-d\\TH:i",
-                altInput: true,
-                altFormat: "F j, Y at h:i K",
-                defaultDate: oldDate,
-                time_24hr: false,
+                dateFormat: "Y-m-d h:i K",
+                defaultDate: dateVal,
                 disableMobile: true
             });
         }
