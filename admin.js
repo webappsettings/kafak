@@ -556,7 +556,8 @@ function renderTabs(orders) {
 
     orders.forEach(o => {
         let { status, dDateStr, pDateStr } = getOrderInfo(o);
-        if (status === 'Completed' || status === 'Archive') return;
+        // 🔥 Archive മാത്രം ഒഴിവാക്കുന്നു (കംപ്ലീറ്റ് ആയവയുടെ ഹിസ്റ്ററി ടൈംലൈനിൽ കാണിക്കാൻ)
+        if (status === 'Archive') return;
 
         let meta = getMetaStatus(o.adminMeta);
         let dateKeyType = '';
@@ -565,31 +566,48 @@ function renderTabs(orders) {
         if (status === 'Paid') {
             displayDateRaw = pDateStr;
             dateKeyType = meta.isPrinted ? 'paid_print' : 'paid_new';
-        } else if (status === 'Dispatched') {
-            displayDateRaw = dDateStr;
-            dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
-        } else if (status === 'Pending') dateKeyType = 'new';
+        }
+        // 🔥 പഴയ ഡാറ്റ നിലനിർത്താൻ Delivered, Completed, Refunded എന്നിവ കൂടി ഡിസ്പാച്ച്ഡ് ടാബിൽ കണക്കാക്കുന്നു
+        else if (['Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
+            if (dDateStr && dDateStr !== o.timestamp) {
+                displayDateRaw = dDateStr;
+                dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
+            } else if (status === 'Dispatched') {
+                displayDateRaw = o.timestamp;
+                dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
+            }
+        }
+        else if (status === 'Pending') dateKeyType = 'new';
         else if (status === 'Sent') dateKeyType = 'sent';
 
         if (dateKeyType) {
             let lbl = getTimelineLabel(displayDateRaw);
             let fullKey = `${dateKeyType}_${lbl}`;
 
-            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0 };
+            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, D: 0, C: 0, R: 0 };
 
+            // ആകെ എണ്ണവും കുപ്പിയും കൂട്ടുന്നു
             timelineStats[fullKey].count++;
             let qty = parseInt(o.quantity) || 0;
             timelineStats[fullKey].bottles += qty;
 
-            if (status === 'Dispatched' || status === 'Paid') {
+            // പ്രത്യേക സ്റ്റാറ്റസുകൾ എണ്ണി വെക്കുന്നു
+            if (status === 'Delivered') timelineStats[fullKey].D++;
+            if (status === 'Completed') timelineStats[fullKey].C++;
+            if (status === 'Refunded') timelineStats[fullKey].R++;
+
+            // എല്ലാറ്റിന്റെയും കൊറിയർ ചാർജ് ടൈംലൈനിൽ കാണിക്കാൻ കൂട്ടുന്നു
+            if (['Paid', 'Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
-                if (actualC <= 0) {
-                    actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                }
+                if (actualC <= 0) actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+
                 timelineStats[fullKey].cost += actualC;
 
-                if (tabCourierTotal[dateKeyType] !== undefined) {
-                    tabCourierTotal[dateKeyType] += actualC;
+                // എന്നാൽ ടാബിന്റെ മെയിൻ ടോട്ടലിൽ ആക്ടീവ് ആയ (Dispatched/Paid) മാത്രം കൂട്ടുന്നു
+                if (status === 'Dispatched' || status === 'Paid') {
+                    if (tabCourierTotal[dateKeyType] !== undefined) {
+                        tabCourierTotal[dateKeyType] += actualC;
+                    }
                 }
             }
         }
@@ -688,8 +706,18 @@ function renderTabs(orders) {
                     }
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${sStats.count}</span>`;
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${sStats.bottles}</span>`;
+
+                    // 🔥 NEW: Show Delivered (D), Completed (C), Refunded (R) Format
+                    let badgeStr = "";
+                    if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
+                    if (sStats.C > 0) badgeStr += `<span class="text-success fw-bold ms-1" style="font-size:10px;">(${sStats.C} C)</span>`;
+                    if (sStats.R > 0) badgeStr += `<span class="text-danger fw-bold ms-1" style="font-size:10px;">(${sStats.R} R)</span>`;
+
+                    if (badgeStr !== "") {
+                        extraHtml += `<span class="ms-2 ps-1 border-start border-secondary d-flex align-items-center">${badgeStr}</span>`;
+                    }
                 }
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center">${dateLabel}${extraHtml}</div></div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
