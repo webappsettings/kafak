@@ -2620,36 +2620,45 @@ window.revertToPrinted = function (oid) {
 }
 
 
+// 🔥 FIX: Select Only Checkboxes in Active Tab
 function toggleSelectAll() {
-    const checkboxes = document.querySelectorAll('.order-cb:not([style*="display: none"])');
+    // നിലവിൽ ഓപ്പൺ ആയിരിക്കുന്ന ടാബിലെ ചെക്ക്ബോക്സുകൾ മാത്രം എടുക്കുന്നു
+    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"])');
+    if (checkboxes.length === 0) return;
+
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
 
+    // ആ ടാബിലെ ചെക്ക്ബോക്സുകൾ മാത്രം മാറ്റുന്നു
     checkboxes.forEach(cb => cb.checked = !isAllChecked);
 
-    // ബട്ടൺ സ്റ്റൈൽ മാറ്റുന്നു
-    document.querySelectorAll('.btn-select-all').forEach(btn => {
+    // ആ ടാബിലെ ബട്ടൺ സ്റ്റൈൽ മാത്രം മാറ്റുന്നു
+    const activeBtn = document.querySelector('.tab-pane.active .btn-select-all');
+    if (activeBtn) {
         if (!isAllChecked) {
-            btn.classList.remove('btn-light', 'text-secondary'); btn.classList.add('btn-dark', 'text-white');
-            btn.innerHTML = '<i class="fas fa-check-square"></i> All';
+            activeBtn.classList.remove('btn-light', 'text-secondary');
+            activeBtn.classList.add('btn-dark', 'text-white');
+            activeBtn.innerHTML = '<i class="fas fa-check-square"></i> All';
         } else {
-            btn.classList.add('btn-light', 'text-secondary'); btn.classList.remove('btn-dark', 'text-white');
-            btn.innerHTML = '<i class="far fa-square"></i> All';
+            activeBtn.classList.add('btn-light', 'text-secondary');
+            activeBtn.classList.remove('btn-dark', 'text-white');
+            activeBtn.innerHTML = '<i class="far fa-square"></i> All';
         }
-    });
+    }
 
-    // 🔥 Update the smart group checkboxes
+    // സ്മാർട്ട് ഗ്രൂപ്പ് ചെക്ക്ബോക്സുകൾ അപ്ഡേറ്റ് ചെയ്യുന്നു
     checkSelectAllStatus();
 }
 
+// 🔥 FIX: Check Select All Status (Active Tab Only)
 function checkSelectAllStatus() {
     updateSelectAllButton();
 
-    // 🔥 Update Smart Group Checkboxes automatically
-    document.querySelectorAll('[class*="group-cb-"]').forEach(groupCb => {
+    // നിലവിൽ ഓപ്പൺ ആയിരിക്കുന്ന ടാബിലെ സ്മാർട്ട് ഗ്രൂപ്പ് ചെക്ക്ബോക്സുകൾ മാത്രം അപ്ഡേറ്റ് ചെയ്യുന്നു
+    document.querySelectorAll('.tab-pane.active [class*="group-cb-"]').forEach(groupCb => {
         let match = groupCb.className.match(/group-cb-([a-zA-Z0-9_]+)/);
         if (match && match[1]) {
             let groupId = match[1];
-            let childCbs = document.querySelectorAll(`.cb-group-${groupId}:not([style*="display: none"])`);
+            let childCbs = document.querySelectorAll(`.tab-pane.active .cb-group-${groupId}:not([style*="display: none"])`);
             if (childCbs.length > 0) {
                 let allChecked = Array.from(childCbs).every(cb => cb.checked);
                 groupCb.checked = allChecked;
@@ -2660,37 +2669,33 @@ function checkSelectAllStatus() {
     });
 }
 
-// 🔥 Toggle Specific Date Group Checkboxes (New Function)
-window.toggleGroup = function (groupId, isChecked) {
-    let cbs = document.querySelectorAll(`.cb-group-${groupId}:not([style*="display: none"])`);
-    cbs.forEach(cb => cb.checked = isChecked);
-    checkSelectAllStatus(); // Update the main "Select All" status
-};
-
-// 🔥 FIX: Update ALL Select All Buttons (New & Printed Tabs)
 function updateSelectAllButton() {
-    // ID-ക്ക് പകരം Class വെച്ച് എല്ലാ ബട്ടണുകളും എടുക്കുന്നു
-    const buttons = document.querySelectorAll('.btn-select-all');
-    if (buttons.length === 0) return;
+    // നിലവിലുള്ള ടാബിലെ ബട്ടണും ചെക്ക്ബോക്സും മാത്രം നോക്കുന്നു
+    const activeBtn = document.querySelector('.tab-pane.active .btn-select-all');
+    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"])');
 
-    // ദൃശ്യമായിട്ടുള്ള ചെക്ക്ബോക്സുകൾ മാത്രം നോക്കുന്നു
-    const checkboxes = document.querySelectorAll('.order-cb:not([style*="display: none"])');
-    if (checkboxes.length === 0) return;
+    if (!activeBtn || checkboxes.length === 0) return;
 
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
 
-    buttons.forEach(btn => {
-        if (isAllChecked) {
-            btn.classList.remove('btn-light', 'text-secondary');
-            btn.classList.add('btn-dark', 'text-white');
-            btn.innerHTML = '<i class="fas fa-check-square"></i> All';
-        } else {
-            btn.classList.add('btn-light', 'text-secondary');
-            btn.classList.remove('btn-dark', 'text-white');
-            btn.innerHTML = '<i class="far fa-square"></i> All';
-        }
-    });
+    if (isAllChecked) {
+        activeBtn.classList.remove('btn-light', 'text-secondary');
+        activeBtn.classList.add('btn-dark', 'text-white');
+        activeBtn.innerHTML = '<i class="fas fa-check-square"></i> All';
+    } else {
+        activeBtn.classList.add('btn-light', 'text-secondary');
+        activeBtn.classList.remove('btn-dark', 'text-white');
+        activeBtn.innerHTML = '<i class="far fa-square"></i> All';
+    }
 }
+
+// 🔥 Toggle Specific Date Group Checkboxes (Active Tab Only)
+window.toggleGroup = function (groupId, isChecked) {
+    let cbs = document.querySelectorAll(`.tab-pane.active .cb-group-${groupId}:not([style*="display: none"])`);
+    cbs.forEach(cb => cb.checked = isChecked);
+    checkSelectAllStatus();
+};
+
 
 function formatFullDate(dateStr) {
     if (!dateStr) return "";
