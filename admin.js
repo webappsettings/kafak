@@ -3005,7 +3005,7 @@ function renderDashboard() {
     allOrders.forEach(o => {
         // 🔥 FIX: കൃത്യമായ ഫിൽറ്റർ തിരികെ കൊണ്ടുവന്നു
         let status = String(o.Status || 'Pending').trim();
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
+        let isValidStatus = ['Dispatched', 'Delivered', 'Completed'].includes(status);
         if (!isValidStatus) return;
 
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
@@ -4376,9 +4376,6 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-
-
-// 🔥 1. DETAILED MONTHLY OVERVIEW (Fixed Date Parsing & Added Material Row)
 // 🔥 1. DETAILED MONTHLY OVERVIEW (100% Sync with Salary Section)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
@@ -4405,7 +4402,7 @@ window.renderDetailedMonthlyOverview = function () {
     allOrders.forEach(o => {
         // 🔥 FIX: ഇവിടെയും പഴയ ഫിൽറ്റർ കൊടുത്തു
         let status = String(o.Status || 'Pending').trim();
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
+        let isValidStatus = ['Dispatched', 'Delivered', 'Completed'].includes(status);
         if (!isValidStatus) return;
 
         let qty = parseInt(o.quantity) || 0;
@@ -4551,7 +4548,7 @@ window.renderYearlyOverview = function () {
     allOrders.forEach(o => {
         // 🔥 FIX: ഫിൽറ്റർ അപ്ഡേറ്റ് ചെയ്തു
         let status = String(o.Status || 'Pending').trim();
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
+        let isValidStatus = ['Dispatched', 'Delivered', 'Completed'].includes(status);
         if (!isValidStatus) return;
 
         let qty = parseInt(o.quantity) || 0;
