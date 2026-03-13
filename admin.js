@@ -498,7 +498,10 @@ function renderTabs(orders) {
             </div>`;
         if (id === 'paid_print') return `
             <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
-                <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                <div class="d-flex gap-2">
+                    <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                    <button onclick="startScanner('verify')" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold small bg-white"><i class="fas fa-check-double"></i> Verify</button>
+                </div>
                 <div class="d-flex gap-2">
                     <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
                     <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
@@ -3545,11 +3548,10 @@ window.renderPartnerList = function () {
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
+    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
     // 🔥 FULL (ALL-TIME) BANK BALANCE CALCULATION
     let fullIncome = 0;
-    let fullBottleCost = 0;
-    let fullCourier = 0;
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
@@ -3820,7 +3822,7 @@ function startScanner(mode, oid = null) {
     } else {
         scanStep = (mode === 'tracking') ? 1 : 0;
         tempOid = null;
-        $('#scan-mode-title').text(mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE");
+        $('#scan-mode-title').text(mode === 'verify' ? "SCAN QR TO VERIFY" : (mode === 'dispatch' ? "SCAN QR (Dispatch)" : "SCAN BARCODE"));
     }
 
     $('#scanner-modal').css('display', 'flex');
@@ -3956,6 +3958,34 @@ function onScanSuccess(decodedText) {
                 showScanFeedback("SCAN BARCODE (NOT QR) ⚠️", null, decodedText, true);
                 setTimeout(() => { isScanProcessing = false; }, 1000);
             }
+        }
+    } else if (scanMode === 'verify') {
+        if (decodedText.startsWith("ORD-") || decodedText.startsWith("K-")) {
+            let order = allOrders.find(o => o.orderid === decodedText);
+            if (!order) {
+                showScanFeedback("ORDER NOT FOUND ❌", null, decodedText, true);
+                html5QrCode.pause();
+                setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1000);
+            } else {
+                showScanFeedback("VERIFIED ✅", order, decodedText, false, "Loading details...");
+
+                // സ്കാനർ ക്ലോസ് ചെയ്ത് നേരിട്ട് ഓർഡർ സെർച്ച് ചെയ്യുന്നു
+                setTimeout(() => {
+                    stopScanner();
+                    isScanProcessing = false;
+
+                    let searchInput = document.getElementById('searchInput');
+                    if (searchInput) {
+                        searchInput.value = decodedText;
+                        filterOrders();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                }, 800);
+            }
+        } else {
+            showScanFeedback("INVALID QR CODE ❌", null, decodedText, true);
+            html5QrCode.pause();
+            setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 800);
         }
     }
 }
