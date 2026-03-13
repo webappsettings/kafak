@@ -3074,6 +3074,8 @@ function renderDashboard() {
 
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
+            if (Number(e.amount) <= 0) return; // 🔥 FIX: 0 രൂപയുടെ ചിലവുകൾ ഒഴിവാക്കുന്നു!
+
             let catName = String(e.cat || '').toLowerCase();
             let rawCatName = String(e.cat || '');
 
@@ -3506,9 +3508,14 @@ window.renderPartnerList = function () {
             <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
             <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
         </div>
-        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px;">${window.currentBreakdownStr}</div>
+        <div class="text-secondary small mb-1 fst-italic" style="font-size:10px; line-height: 1.4;">
+            <span class="fw-bold text-muted">Sales:</span> ${window.currentBreakdownStr}
+        </div>
+        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
+            <span class="fw-bold text-muted">Base Cost:</span> ${window.currentCostBreakdownStr}
+        </div>
         
-        <div class="d-flex justify-content-between mb-1 mt-2">
+        <div class="d-flex justify-content-between mb-1 mt-2 pt-2 border-top border-secondary border-opacity-10">
             <span class="text-muted">Total Income:</span>
             <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
         </div>
