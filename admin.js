@@ -490,7 +490,10 @@ function renderTabs(orders) {
     const getTopActionsHtml = (id) => {
         if (id === 'paid_new') return `
             <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
-                <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                <div class="d-flex gap-2">
+                    <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                    <button onclick="startScanner('verify')" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold small bg-white"><i class="fas fa-check-double"></i> Verify</button>
+                </div>
                 <div class="d-flex gap-2">
                     <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
                     <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
