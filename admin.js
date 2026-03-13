@@ -5711,20 +5711,26 @@ window.showAddExpenseModal = function (editId = null) {
             if (typeof renderPartnerList === 'function') renderPartnerList();
             if (oldCat === 'Salary') setTimeout(() => { selectPartner(oldVendor); }, 500);
 
+            // നിലവിലുള്ള സമയം കൃത്യമായി എടുക്കുന്നു
             let dateVal = new Date();
+
             if (editId && dashboardData && dashboardData.monthTimeline) {
                 let item = dashboardData.monthTimeline.expense.find(x => x.id === editId);
                 if (item && item.date) {
+                    // എഡിറ്റ് ചെയ്യുമ്പോൾ മാത്രം പഴയ ഡേറ്റ് എടുക്കുന്നു
                     dateVal = new Date(item.date);
                 }
             }
 
-            // 🔥 കൃത്യമായ ഡേറ്റ് ഫോർമാറ്റും മൊബൈലിലെ കലണ്ടർ ഫിക്സും
+            // 🔥 SERVER FRIENDLY & UI FRIENDLY FLATPICKR
             flatpickr("#exp-date", {
                 enableTime: true,
-                dateFormat: "Y-m-d h:i K",
+                dateFormat: "Y-m-d\\TH:i", // സെർവറിന് വേണ്ട യഥാർത്ഥ വാല്യൂ
+                altInput: true,            // യൂസർക്ക് കാണാനുള്ള പ്രത്യേക ഫീൽഡ്
+                altFormat: "d M Y, h:i K", // യൂസർക്ക് കാണാനുള്ള ഭംഗിയുള്ള ഫോർമാറ്റ് (eg: 13 Mar 2026, 11:24 AM)
                 defaultDate: dateVal,
-                disableMobile: true
+                time_24hr: false,          // AM/PM കാണിക്കാൻ
+                disableMobile: true        // മൊബൈലിൽ നേറ്റീവ് പിക്കർ ഒഴിവാക്കാൻ
             });
         }
     });
