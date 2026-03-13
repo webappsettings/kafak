@@ -42,9 +42,11 @@ window.saveContactSelection = function (oid, val) {
 function playBeep() {
     let ctx = new (window.AudioContext || window.webkitAudioContext)();
     let osc = ctx.createOscillator();
-    osc.type = "sine"; osc.frequency.setValueAtTime(800, ctx.currentTime);
-    osc.connect(ctx.destination); osc.start();
-    setTimeout(() => osc.stop(), 100);
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(1200, ctx.currentTime); // ചെറിയ കൃത്യമായ ശബ്ദം
+    osc.connect(ctx.destination);
+    osc.start();
+    setTimeout(() => osc.stop(), 50); // 🔥 100ൽ നിന്നും 50 ആക്കി ചുരുക്കി (Very short beep)
 }
 
 // 🔥 ADMIN META HELPER (Code: M=Mobile, W=WhatsApp, A=Alt, P=Printed, T=Tracked)
@@ -3731,7 +3733,8 @@ function startScanner(mode, oid = null) {
 
 function initHtml5Scanner(config) {
     html5QrCode = new Html5Qrcode("reader");
-    html5QrCode.start({ facingMode: "environment" }, { fps: 10, qrbox: config }, onScanSuccess)
+    // 🔥 fps: 10 എന്നുള്ളത് fps: 30 ആക്കി വേഗത കൂട്ടി
+    html5QrCode.start({ facingMode: "environment" }, { fps: 30, qrbox: config }, onScanSuccess)
         .catch(err => { $('#scanner-modal').hide(); alert("Camera Error"); });
 }
 
@@ -3747,6 +3750,7 @@ function stopScanner() {
     window.onpopstate = null;
 }
 
+// 🔥 FAST SCANNING & LOW DELAY LOGIC
 function onScanSuccess(decodedText) {
     if (isScanProcessing) return;
     isScanProcessing = true;
@@ -3772,7 +3776,8 @@ function onScanSuccess(decodedText) {
         }
 
         html5QrCode.pause();
-        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000);
+        // 🔥 2000ms delay കുറച്ച് 800ms ആക്കി
+        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 800);
     }
 
     // 🚚 MODE 2: TRACKING (Dual Scan & Individual Scan)
@@ -3786,7 +3791,7 @@ function onScanSuccess(decodedText) {
 
                 if (!order) {
                     showScanFeedback("ORDER NOT FOUND ❌", null, decodedText, true);
-                    setTimeout(() => { isScanProcessing = false; }, 1500);
+                    setTimeout(() => { isScanProcessing = false; }, 1000);
                 }
                 else {
                     scanStep = 2;
@@ -3797,10 +3802,11 @@ function onScanSuccess(decodedText) {
                     showScanFeedback("QR DETECTED ✅", order, decodedText, false, subMsg);
 
                     html5QrCode.pause();
-                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500);
+                    // 🔥 1500ms delay കുറച്ച് 600ms ആക്കി
+                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 600);
                 }
             } else {
-                setTimeout(() => { isScanProcessing = false; }, 500);
+                setTimeout(() => { isScanProcessing = false; }, 300);
             }
         }
 
@@ -3814,7 +3820,7 @@ function onScanSuccess(decodedText) {
                 if (duplicateOrder) {
                     let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name} (${duplicateOrder.phone})</b>`;
                     showScanFeedback("BARCODE ALREADY USED ⚠️", currentOrder, decodedText, true, errorMsg);
-                    setTimeout(() => { isScanProcessing = false; }, 3000);
+                    setTimeout(() => { isScanProcessing = false; }, 1500); // 3000ms ൽ നിന്നും 1500ms ആക്കി
                 }
                 else {
                     // 🔥 Save Tracking
@@ -3826,25 +3832,25 @@ function onScanSuccess(decodedText) {
                     showScanFeedback("TRACKING SAVED ✅", currentOrder, decodedText, false, "Moved to Tracked Tab Successfully");
 
                     if (scanMode === 'tracking_single') {
-                        // 🔥 Single സ്കാൻ ആണെങ്കിൽ സ്കാനർ തനിയെ അടയും
-                        setTimeout(() => { stopScanner(); isScanProcessing = false; }, 1500);
+                        // 🔥 Single സ്കാൻ ആണെങ്കിൽ സ്കാനർ വളരെ പെട്ടെന്ന് അടയും
+                        setTimeout(() => { stopScanner(); isScanProcessing = false; }, 500);
                     } else {
                         // Bulk സ്കാൻ ആണെങ്കിൽ അടുത്ത QR ചോദിക്കും
                         scanStep = 1;
-                        setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 2000);
+                        setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 800);
                         html5QrCode.pause();
-                        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 2000);
+                        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 800);
                     }
                 }
             } else {
                 showScanFeedback("SCAN BARCODE (NOT QR) ⚠️", null, decodedText, true);
-                setTimeout(() => { isScanProcessing = false; }, 1500);
+                setTimeout(() => { isScanProcessing = false; }, 1000);
             }
         }
     }
 }
 
-// 🔥 UPDATED UI: Highlights Code & Correct Priority
+// 🔥 UPDATED UI: Highlights Code & Correct Priority (With Manual Edit)
 function showScanFeedback(statusHtml, order, code = "", isError = false, extraMsg = "") {
     let color = isError ? "#dc3545" : "#2e7d32";
     let bg = isError ? "#fff5f5" : "#f0fdf4";
@@ -3854,13 +3860,26 @@ function showScanFeedback(statusHtml, order, code = "", isError = false, extraMs
 
     let htmlContent = "";
 
-    // 1. SCANNED CODE (HIGHLIGHTED BIG)
+    // 1. SCANNED CODE (HIGHLIGHTED BIG + EDIT BUTTON)
     if (code) {
         let label = (code.startsWith("ORD-") || code.startsWith("K-")) ? "QR CODE" : "BARCODE";
+
+        // 🔥 ട്രാക്കിങ് ബാർകോഡ് ആണെങ്കിൽ എഡിറ്റ് ബട്ടൺ കാണിക്കാൻ
+        let editBtnHtml = "";
+        if (label === "BARCODE" && order && order.orderid) {
+            editBtnHtml = `
+            <button onclick="editTracking('${order.orderid}', '${code}'); $('#scanner-modal').hide(); stopScanner();" 
+                    class="btn btn-sm btn-outline-secondary mt-2 fw-bold" 
+                    style="font-size:10px; padding: 4px 15px; border-radius: 6px;">
+                <i class="fas fa-edit"></i> Edit Manually
+            </button>`;
+        }
+
         htmlContent += `
-        <div style="background:#fff; border:2px dashed ${color}; padding:8px; border-radius:8px; margin-bottom:10px; text-align:center;">
+        <div style="background:#fff; border:2px dashed ${color}; padding:10px; border-radius:8px; margin-bottom:10px; text-align:center;">
             <div style="font-size:10px; font-weight:700; color:#888; letter-spacing:1px;">SCANNED ${label}</div>
-            <div style="font-size:18px; font-weight:800; color:#333; font-family:monospace; word-break:break-all;">${code}</div>
+            <div style="font-size:18px; font-weight:800; color:#333; font-family:monospace; word-break:break-all; margin-top:2px;">${code}</div>
+            ${editBtnHtml}
         </div>`;
     }
 
