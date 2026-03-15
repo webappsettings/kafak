@@ -3556,8 +3556,6 @@ window.renderPartnerList = function () {
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
-
-    // 🔥 ഈ മാസത്തെ ചിലവ് കാണിക്കാൻ ഉള്ളത് (UI ക്ക് വേണ്ടി)
     let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
     // 🔥 FULL (ALL-TIME) BANK BALANCE CALCULATION
@@ -3567,8 +3565,6 @@ window.renderPartnerList = function () {
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
-
-        // ബാങ്ക് ബാലൻസിൽ 'Paid' ഓർഡറുകളും ഉൾപ്പെടുത്തണം (പൈസ അക്കൗണ്ടിൽ വന്നതുകൊണ്ട്)
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
             let qty = parseInt(o.quantity) || 0;
 
@@ -3582,7 +3578,6 @@ window.renderPartnerList = function () {
             let dbCost = parseInt(o.Product_Base_Cost);
             fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
-            // കൊറിയർ ചിലവ് (Dispatched ആയവയ്ക്ക് മാത്രം കുറയ്ക്കുന്നു)
             if (status !== 'Paid') {
                 let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
@@ -3594,18 +3589,15 @@ window.renderPartnerList = function () {
     });
 
     let fullExpenses = 0;
-    // ലഭ്യമായ എല്ലാ എക്സ്പെൻസുകളും കൂട്ടുന്നു (മെറ്റീരിയൽ, സാലറി ഉൾപ്പെടെ)
     if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
         dashboardData.yearTimeline.expense.forEach(e => {
             let cat = String(e.cat || '').toLowerCase();
-            // കൊറിയറും റീഫണ്ടും ഒഴിവാക്കുന്നു (ഡബിൾ ഡിഡക്ഷൻ വരാതിരിക്കാൻ)
             if (!e.isCourier && cat !== 'refund') {
                 fullExpenses += (Number(e.amount) || 0);
             }
         });
     }
 
-    // ആകെ വരുമാനത്തിൽ നിന്നും ആകെ കുപ്പി ചിലവ്, കൊറിയർ ചിലവ്, മറ്റെല്ലാ ചിലവുകളും കുറയ്ക്കുന്നു
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses);
 
     let shares = {
@@ -3614,7 +3606,6 @@ window.renderPartnerList = function () {
         "Jazeela": Math.floor(liveProfit * 0.10)
     };
 
-    // 🔥 Month Navigation UI Logic
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
 
@@ -3622,8 +3613,78 @@ window.renderPartnerList = function () {
     let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
     let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
 
+    // 🔥 LIVE STOCK TRACKER CALCULATION
+    let stockData = JSON.parse(localStorage.getItem('myStockTracker')) || {
+        bottles: { total: 1000, start: '2026-03-14' }, // ഇന്നലെ തുടങ്ങി
+        honey: { total: 500, start: '2026-03-16' }     // നാളെ തുടങ്ങും
+    };
+
+    let bUsed = 0, hUsed = 0;
+    let bStartDate = new Date(stockData.bottles.start + "T00:00:00");
+    let hStartDate = new Date(stockData.honey.start + "T00:00:00");
+
+    allOrders.forEach(o => {
+        let status = String(o.Status || 'Pending').trim();
+        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            let oDateStr = o.timestamp || o['Paid Date'] || o.Date;
+            if (!oDateStr) return;
+
+            let oDate = new Date(oDateStr);
+            if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateStr);
+            if (isNaN(oDate.getTime())) return;
+
+            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+
+            if (oDate >= bStartDate) bUsed += qty;
+            if (oDate >= hStartDate) hUsed += qty;
+        }
+    });
+
+    let bBal = Math.max(0, stockData.bottles.total - bUsed);
+    let hBal = Math.max(0, stockData.honey.total - hUsed);
+    let bPct = Math.min(100, (bUsed / stockData.bottles.total) * 100);
+    let hPct = Math.min(100, (hUsed / stockData.honey.total) * 100);
+
+    let stockHtml = `
+    <div class="mb-3 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h6 class="fw-bold text-dark m-0" style="font-size:13px;"><i class="fas fa-boxes text-primary me-2"></i> Live Stock Tracker</h6>
+            <button onclick="editStock()" class="btn btn-sm btn-light border py-0 px-2 rounded-pill text-secondary shadow-sm" style="font-size:9px;"><i class="fas fa-edit"></i> Edit</button>
+        </div>
+        
+        <div class="mb-3">
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-bold text-secondary" style="font-size:11px;">Empty Bottles <span class="fw-normal text-muted" style="font-size:9px;">(From ${new Date(stockData.bottles.start).toLocaleDateString('en-GB')})</span></span>
+                <span class="fw-bold ${bBal < 200 ? 'text-danger' : 'text-dark'}" style="font-size:12px;">${bBal} <span class="text-muted" style="font-size:9px;">left</span></span>
+            </div>
+            <div class="progress border bg-light" style="height: 10px; border-radius:10px;">
+                <div class="progress-bar ${bBal < 200 ? 'bg-danger' : 'bg-primary'} progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${bPct}%;"></div>
+            </div>
+            <div class="d-flex justify-content-between mt-1 text-muted fw-bold" style="font-size:9px;">
+                <span>Total: ${stockData.bottles.total}</span>
+                <span>Used: ${bUsed}</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="d-flex justify-content-between align-items-center mb-1">
+                <span class="fw-bold text-secondary" style="font-size:11px;">Raw Honey <span class="fw-normal text-muted" style="font-size:9px;">(From ${new Date(stockData.honey.start).toLocaleDateString('en-GB')})</span></span>
+                <span class="fw-bold ${hBal < 50 ? 'text-danger' : 'text-dark'}" style="font-size:12px;">${hBal} KG <span class="text-muted" style="font-size:9px;">left</span></span>
+            </div>
+            <div class="progress border bg-light" style="height: 10px; border-radius:10px;">
+                <div class="progress-bar ${hBal < 50 ? 'bg-danger' : 'bg-warning text-dark'} progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${hPct}%;"></div>
+            </div>
+            <div class="d-flex justify-content-between mt-1 text-muted fw-bold" style="font-size:9px;">
+                <span>Total: ${stockData.honey.total} KG</span>
+                <span>Used: ${hUsed} KG</span>
+            </div>
+        </div>
+    </div>`;
+
     // 🔥 Beautiful Breakdown UI 
     let breakdownHtml = `
+    ${stockHtml}
+
     <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-2">
@@ -3769,15 +3830,49 @@ window.renderPartnerList = function () {
         <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
             <i class="fas fa-lock fs-5 mb-2"></i><br>
             സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
-            <div class="mt-3">
-                <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
-                    <i class="fas fa-calendar-day me-1"></i> Go to This Month
-                </button>
-            </div>
         </div>`;
     }
 
     $('#partner-list').html(html);
+};
+
+// 🔥 EDIT STOCK FUNCTION
+window.editStock = function () {
+    let stockData = JSON.parse(localStorage.getItem('myStockTracker')) || {
+        bottles: { total: 1000, start: '2026-03-14' },
+        honey: { total: 500, start: '2026-03-16' }
+    };
+    Swal.fire({
+        title: '<div style="font-size:16px; font-weight:800;">📦 Edit Stock Limits</div>',
+        html: `
+            <div class="text-start" style="font-size:12px;">
+                <div class="mb-3 p-3 bg-light border rounded-3">
+                    <label class="fw-bold text-dark mb-1">Empty Bottles (Total Count)</label>
+                    <input type="number" id="swal-b-total" class="form-control mb-2 fw-bold" value="${stockData.bottles.total}">
+                    <label class="fw-bold text-dark mb-1 mt-1">Bottles Start Date</label>
+                    <input type="date" id="swal-b-date" class="form-control text-secondary" value="${stockData.bottles.start}">
+                </div>
+                <div class="p-3 bg-light border rounded-3">
+                    <label class="fw-bold text-dark mb-1">Raw Honey (Total KG)</label>
+                    <input type="number" id="swal-h-total" class="form-control mb-2 fw-bold" value="${stockData.honey.total}">
+                    <label class="fw-bold text-dark mb-1 mt-1">Honey Start Date</label>
+                    <input type="date" id="swal-h-date" class="form-control text-secondary" value="${stockData.honey.start}">
+                </div>
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Save Details',
+        confirmButtonColor: '#0d6efd',
+        customClass: { popup: 'rounded-4' },
+        preConfirm: () => {
+            stockData.bottles.total = parseInt(document.getElementById('swal-b-total').value) || 0;
+            stockData.bottles.start = document.getElementById('swal-b-date').value;
+            stockData.honey.total = parseInt(document.getElementById('swal-h-total').value) || 0;
+            stockData.honey.start = document.getElementById('swal-h-date').value;
+            localStorage.setItem('myStockTracker', JSON.stringify(stockData));
+            if (typeof window.renderPartnerList === 'function') window.renderPartnerList();
+        }
+    });
 };
 
 function selectPartner(name, amount) {
