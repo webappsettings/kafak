@@ -3316,6 +3316,8 @@ function renderDashboard() {
     if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) {
         renderPartnerList();
     }
+
+    renderLiveStockTracker();
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
@@ -3556,6 +3558,8 @@ window.renderPartnerList = function () {
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
+
+    // 🔥 ഈ മാസത്തെ ചിലവ് കാണിക്കാൻ ഉള്ളത് (UI ക്ക് വേണ്ടി)
     let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
     // 🔥 FULL (ALL-TIME) BANK BALANCE CALCULATION
@@ -3565,6 +3569,8 @@ window.renderPartnerList = function () {
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
+
+        // ബാങ്ക് ബാലൻസിൽ 'Paid' ഓർഡറുകളും ഉൾപ്പെടുത്തണം (പൈസ അക്കൗണ്ടിൽ വന്നതുകൊണ്ട്)
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
             let qty = parseInt(o.quantity) || 0;
 
@@ -3578,6 +3584,7 @@ window.renderPartnerList = function () {
             let dbCost = parseInt(o.Product_Base_Cost);
             fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
+            // കൊറിയർ ചിലവ് (Dispatched ആയവയ്ക്ക് മാത്രം കുറയ്ക്കുന്നു)
             if (status !== 'Paid') {
                 let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
@@ -3589,15 +3596,18 @@ window.renderPartnerList = function () {
     });
 
     let fullExpenses = 0;
+    // ലഭ്യമായ എല്ലാ എക്സ്പെൻസുകളും കൂട്ടുന്നു (മെറ്റീരിയൽ, സാലറി ഉൾപ്പെടെ)
     if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
         dashboardData.yearTimeline.expense.forEach(e => {
             let cat = String(e.cat || '').toLowerCase();
+            // കൊറിയറും റീഫണ്ടും ഒഴിവാക്കുന്നു (ഡബിൾ ഡിഡക്ഷൻ വരാതിരിക്കാൻ)
             if (!e.isCourier && cat !== 'refund') {
                 fullExpenses += (Number(e.amount) || 0);
             }
         });
     }
 
+    // ആകെ വരുമാനത്തിൽ നിന്നും ആകെ കുപ്പി ചിലവ്, കൊറിയർ ചിലവ്, മറ്റെല്ലാ ചിലവുകളും കുറയ്ക്കുന്നു
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses);
 
     let shares = {
@@ -3606,6 +3616,7 @@ window.renderPartnerList = function () {
         "Jazeela": Math.floor(liveProfit * 0.10)
     };
 
+    // 🔥 Month Navigation UI Logic
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
 
@@ -3613,78 +3624,8 @@ window.renderPartnerList = function () {
     let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
     let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
 
-    // 🔥 LIVE STOCK TRACKER CALCULATION
-    let stockData = JSON.parse(localStorage.getItem('myStockTracker')) || {
-        bottles: { total: 1000, start: '2026-03-14' }, // ഇന്നലെ തുടങ്ങി
-        honey: { total: 500, start: '2026-03-16' }     // നാളെ തുടങ്ങും
-    };
-
-    let bUsed = 0, hUsed = 0;
-    let bStartDate = new Date(stockData.bottles.start + "T00:00:00");
-    let hStartDate = new Date(stockData.honey.start + "T00:00:00");
-
-    allOrders.forEach(o => {
-        let status = String(o.Status || 'Pending').trim();
-        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
-            let oDateStr = o.timestamp || o['Paid Date'] || o.Date;
-            if (!oDateStr) return;
-
-            let oDate = new Date(oDateStr);
-            if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateStr);
-            if (isNaN(oDate.getTime())) return;
-
-            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
-
-            if (oDate >= bStartDate) bUsed += qty;
-            if (oDate >= hStartDate) hUsed += qty;
-        }
-    });
-
-    let bBal = Math.max(0, stockData.bottles.total - bUsed);
-    let hBal = Math.max(0, stockData.honey.total - hUsed);
-    let bPct = Math.min(100, (bUsed / stockData.bottles.total) * 100);
-    let hPct = Math.min(100, (hUsed / stockData.honey.total) * 100);
-
-    let stockHtml = `
-    <div class="mb-3 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-            <h6 class="fw-bold text-dark m-0" style="font-size:13px;"><i class="fas fa-boxes text-primary me-2"></i> Live Stock Tracker</h6>
-            <button onclick="editStock()" class="btn btn-sm btn-light border py-0 px-2 rounded-pill text-secondary shadow-sm" style="font-size:9px;"><i class="fas fa-edit"></i> Edit</button>
-        </div>
-        
-        <div class="mb-3">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="fw-bold text-secondary" style="font-size:11px;">Empty Bottles <span class="fw-normal text-muted" style="font-size:9px;">(From ${new Date(stockData.bottles.start).toLocaleDateString('en-GB')})</span></span>
-                <span class="fw-bold ${bBal < 200 ? 'text-danger' : 'text-dark'}" style="font-size:12px;">${bBal} <span class="text-muted" style="font-size:9px;">left</span></span>
-            </div>
-            <div class="progress border bg-light" style="height: 10px; border-radius:10px;">
-                <div class="progress-bar ${bBal < 200 ? 'bg-danger' : 'bg-primary'} progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${bPct}%;"></div>
-            </div>
-            <div class="d-flex justify-content-between mt-1 text-muted fw-bold" style="font-size:9px;">
-                <span>Total: ${stockData.bottles.total}</span>
-                <span>Used: ${bUsed}</span>
-            </div>
-        </div>
-
-        <div>
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <span class="fw-bold text-secondary" style="font-size:11px;">Raw Honey <span class="fw-normal text-muted" style="font-size:9px;">(From ${new Date(stockData.honey.start).toLocaleDateString('en-GB')})</span></span>
-                <span class="fw-bold ${hBal < 50 ? 'text-danger' : 'text-dark'}" style="font-size:12px;">${hBal} KG <span class="text-muted" style="font-size:9px;">left</span></span>
-            </div>
-            <div class="progress border bg-light" style="height: 10px; border-radius:10px;">
-                <div class="progress-bar ${hBal < 50 ? 'bg-danger' : 'bg-warning text-dark'} progress-bar-striped progress-bar-animated" role="progressbar" style="width: ${hPct}%;"></div>
-            </div>
-            <div class="d-flex justify-content-between mt-1 text-muted fw-bold" style="font-size:9px;">
-                <span>Total: ${stockData.honey.total} KG</span>
-                <span>Used: ${hUsed} KG</span>
-            </div>
-        </div>
-    </div>`;
-
     // 🔥 Beautiful Breakdown UI 
     let breakdownHtml = `
-    ${stockHtml}
-
     <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-2">
@@ -3830,49 +3771,15 @@ window.renderPartnerList = function () {
         <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
             <i class="fas fa-lock fs-5 mb-2"></i><br>
             സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
+            <div class="mt-3">
+                <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
+                    <i class="fas fa-calendar-day me-1"></i> Go to This Month
+                </button>
+            </div>
         </div>`;
     }
 
     $('#partner-list').html(html);
-};
-
-// 🔥 EDIT STOCK FUNCTION
-window.editStock = function () {
-    let stockData = JSON.parse(localStorage.getItem('myStockTracker')) || {
-        bottles: { total: 1000, start: '2026-03-14' },
-        honey: { total: 500, start: '2026-03-16' }
-    };
-    Swal.fire({
-        title: '<div style="font-size:16px; font-weight:800;">📦 Edit Stock Limits</div>',
-        html: `
-            <div class="text-start" style="font-size:12px;">
-                <div class="mb-3 p-3 bg-light border rounded-3">
-                    <label class="fw-bold text-dark mb-1">Empty Bottles (Total Count)</label>
-                    <input type="number" id="swal-b-total" class="form-control mb-2 fw-bold" value="${stockData.bottles.total}">
-                    <label class="fw-bold text-dark mb-1 mt-1">Bottles Start Date</label>
-                    <input type="date" id="swal-b-date" class="form-control text-secondary" value="${stockData.bottles.start}">
-                </div>
-                <div class="p-3 bg-light border rounded-3">
-                    <label class="fw-bold text-dark mb-1">Raw Honey (Total KG)</label>
-                    <input type="number" id="swal-h-total" class="form-control mb-2 fw-bold" value="${stockData.honey.total}">
-                    <label class="fw-bold text-dark mb-1 mt-1">Honey Start Date</label>
-                    <input type="date" id="swal-h-date" class="form-control text-secondary" value="${stockData.honey.start}">
-                </div>
-            </div>
-        `,
-        showCancelButton: true,
-        confirmButtonText: 'Save Details',
-        confirmButtonColor: '#0d6efd',
-        customClass: { popup: 'rounded-4' },
-        preConfirm: () => {
-            stockData.bottles.total = parseInt(document.getElementById('swal-b-total').value) || 0;
-            stockData.bottles.start = document.getElementById('swal-b-date').value;
-            stockData.honey.total = parseInt(document.getElementById('swal-h-total').value) || 0;
-            stockData.honey.start = document.getElementById('swal-h-date').value;
-            localStorage.setItem('myStockTracker', JSON.stringify(stockData));
-            if (typeof window.renderPartnerList === 'function') window.renderPartnerList();
-        }
-    });
 };
 
 function selectPartner(name, amount) {
@@ -6687,6 +6594,193 @@ window.showCourierBreakdown = function (dateStr) {
         didOpen: () => {
             $('.swal2-container').css('z-index', '999999');
             $('.swal2-close').css({ 'margin-top': '-5px', 'margin-right': '-5px' });
+        }
+    });
+};
+
+// ==========================================
+// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER
+// ==========================================
+
+window.renderLiveStockTracker = function () {
+    // 1. Stock Items Configuration
+    const items = {
+        bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary' },
+        honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning' },
+        tape: { name: 'Packing Tape', unit: 'Rolls', icon: 'fa-tape', color: 'secondary' },
+        roll: { name: 'Plastic Roll', unit: 'Meters', icon: 'fa-scroll', color: 'info' },
+        box: { name: 'Packing Box', unit: 'Nos', icon: 'fa-box', color: 'success' },
+        sticker: { name: 'Sticker (A4)', unit: 'Sheets', icon: 'fa-sticky-note', color: 'danger' },
+        a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark' },
+        pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary' }
+    };
+
+    // 2. Load DB or Set Defaults
+    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
+    let nowLocal = new Date().toISOString().slice(0, 16);
+
+    let isInitialSetup = false;
+    for (let k in items) {
+        if (!db[k]) {
+            db[k] = { total: 0, start: nowLocal, exempt: 0 };
+            isInitialSetup = true;
+        }
+    }
+
+    // നിങ്ങൾ പറഞ്ഞ 1000 കുപ്പിയുടെയും 500 KG തേനിന്റെയും കണക്ക് ആദ്യമേ സെറ്റ് ചെയ്യുന്നു
+    if (isInitialSetup && db.bottles.total === 0) {
+        db.bottles = { total: 1000, start: '2026-03-14T00:00', exempt: 7 }; // 7 പഴയത് എടുത്തത് ഇവിടെ exempt ചെയ്തു
+        db.honey = { total: 500, start: '2026-03-16T00:00', exempt: 0 };
+        localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
+    }
+
+    let used = { bottles: 0, honey: 0, tape: 0, roll: 0, box: 0, sticker: 0, a6paper: 0, pouch: 0 };
+
+    // 3. Dynamic Calculation based on Date & Time
+    allOrders.forEach(o => {
+        let status = String(o.Status || 'Pending').trim();
+        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
+            if (!oDateRaw) return;
+
+            let oDate = new Date(oDateRaw);
+            if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
+            if (isNaN(oDate.getTime())) return;
+
+            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+
+            let appWeb = String(o['App / Web'] || o.appWeb || '').toLowerCase();
+            let oName = String(o.name || o.Name || '').toLowerCase();
+
+            // ബൾക്ക് അല്ലെങ്കിൽ ഓഫ്‌ലൈൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+            let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
+
+            // ഓരോ ഐറ്റത്തിന്റെയും ഉപയോഗം കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+            if (oDate >= new Date(db.bottles.start)) used.bottles += isBulk ? 0 : qty; // ബൾക്ക് ആണെങ്കിൽ കുപ്പി വേണ്ടല്ലോ
+            if (oDate >= new Date(db.honey.start)) used.honey += isBulk ? qty : (qty * 0.65); // ബൾക്ക് നേരിട്ട് KG ആക്കുന്നു
+            if (oDate >= new Date(db.pouch.start)) used.pouch += isBulk ? 0 : qty;
+            if (oDate >= new Date(db.sticker.start)) used.sticker += isBulk ? 0 : (qty * 0.2); // 1 A4-ൽ 5 സ്റ്റിക്കർ (അതായത് 0.2)
+            if (oDate >= new Date(db.box.start)) used.box += isBulk ? 0 : 1; // 1 ഓർഡറിന് 1 ബോക്സ്
+            if (oDate >= new Date(db.a6paper.start)) used.a6paper += isBulk ? 0 : 1; // 1 ഓർഡറിന് 1 ലേബൽ
+            if (oDate >= new Date(db.tape.start)) used.tape += isBulk ? 0 : 0.05; // 1 ഓർഡറിന് ശരാശരി 0.05 റോൾ ടേപ്പ്
+            if (oDate >= new Date(db.roll.start)) used.roll += isBulk ? 0 : (qty * 0.5); // 1 കുപ്പിക്ക് അര മീറ്റർ റോൾ
+        }
+    });
+
+    // 4. Generate UI
+    let html = `
+    <div class="mb-4 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif;">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
+            <button onclick="editAllStocks()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-bold" style="font-size:10px;"><i class="fas fa-sync-alt me-1"></i> Update Stocks</button>
+        </div>
+        <div class="row g-2">
+    `;
+
+    for (let k in items) {
+        // 🔥 Exempt (പഴയ സ്റ്റോക്ക് എടുത്തത്) കുറച്ച് ബാക്കി കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+        let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
+        let bal = Math.max(0, db[k].total - actualUsed);
+        let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
+
+        // ദശാംശം (Decimals) കൃത്യമാക്കാൻ
+        let dec = (k === 'honey' || k === 'tape' || k === 'sticker' || k === 'roll') ? 1 : 0;
+
+        let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : items[k].color; // 15% ൽ താഴെ പോയാൽ ചുവപ്പ്
+
+        html += `
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="p-2 border rounded-3 bg-light position-relative shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-secondary text-truncate" style="font-size:10px;"><i class="fas ${items[k].icon} text-${items[k].color} me-1"></i> ${items[k].name}</span>
+                </div>
+                <div class="fw-bolder text-${bal <= (db[k].total * 0.1) ? 'danger' : 'dark'} mb-1" style="font-size:15px;">
+                    ${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${items[k].unit} left</span>
+                </div>
+                <div class="progress" style="height: 5px; border-radius:5px;">
+                    <div class="progress-bar bg-${alertClass}" role="progressbar" style="width: ${pct}%;"></div>
+                </div>
+                <div class="d-flex justify-content-between mt-1 text-muted" style="font-size:8.5px;">
+                    <span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>
+                    <span class="fw-bold text-dark">Use: ${actualUsed.toFixed(dec)}</span>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    html += `</div></div>`;
+
+    // 5. Inject into Dashboard Overview (Overview-ൽ കാണിക്കാൻ)
+    let target = document.getElementById('dashboard-stock-container');
+    if (!target) {
+        let dashTab = document.getElementById('v-pills-dashboard') || document.querySelector('.tab-pane.active');
+        if (dashTab) {
+            let wrap = document.createElement('div');
+            wrap.id = 'dashboard-stock-container';
+            dashTab.insertBefore(wrap, dashTab.firstChild);
+            target = wrap;
+        }
+    }
+    if (target) target.innerHTML = html;
+};
+
+// 🔥 UPDATE STOCKS POPUP (With Date, Time & Exempt)
+window.editAllStocks = function () {
+    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
+    let nowLocal = new Date().toISOString().slice(0, 16);
+
+    let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
+        <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
+            <b>💡 എക്സ്പെൻസ് ചേർക്കുന്ന രീതി:</b> പുതിയ സ്റ്റോക്ക് വാങ്ങിയാൽ ആദ്യം നിങ്ങളുടെ പതിവ് 'Add Expense' മെനുവിൽ പോയി പൈസ ആഡ് ചെയ്യുക. ശേഷം ഇവിടെ വന്ന് പുതിയ എണ്ണവും കൃത്യമായ സമയവും അപ്ഡേറ്റ് ചെയ്യുക. പുതിയ സമയം നൽകിയതിന് ശേഷം പഴയ സ്റ്റോക്ക് വല്ലതും എടുത്താൽ അത് <b>Exempt (Old Used)</b> കോളത്തിൽ നൽകുക.
+        </div>
+    `;
+
+    const items = {
+        bottles: 'Empty Bottles (Nos)', honey: 'Raw Honey (KG)', tape: 'Packing Tape (Rolls)', roll: 'Plastic Roll (Meters)',
+        box: 'Packing Box (Nos)', sticker: 'Sticker (A4 Sheets)', a6paper: 'A6 Paper (Nos)', pouch: 'Shrink Pouch (Nos)'
+    };
+
+    for (let k in items) {
+        let startVal = db[k]?.start ? db[k].start.slice(0, 16) : nowLocal;
+        html += `
+        <div class="mb-3 p-2 border border-secondary border-opacity-25 rounded-3 bg-light shadow-sm">
+            <label class="fw-bold text-dark mb-1" style="font-size:12px;">${items[k]}</label>
+            <div class="row g-2">
+                <div class="col-3">
+                    <label class="text-muted" style="font-size:9px;">Total Stock</label>
+                    <input type="number" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${db[k]?.total || 0}">
+                </div>
+                <div class="col-6">
+                    <label class="text-muted" style="font-size:9px;">Start Date & Time</label>
+                    <input type="datetime-local" id="stk-start-${k}" class="form-control form-control-sm fw-bold" value="${startVal}">
+                </div>
+                <div class="col-3">
+                    <label class="text-muted text-truncate w-100" style="font-size:9px;" title="ഈ സമയത്തിന് ശേഷം എടുത്ത പഴയ സ്റ്റോക്കുകൾ ഇവിടെ കൊടുക്കുക">Exempt (Old)</label>
+                    <input type="number" id="stk-exempt-${k}" class="form-control form-control-sm text-danger fw-bold border-danger border-opacity-50" value="${db[k]?.exempt || 0}">
+                </div>
+            </div>
+        </div>`;
+    }
+    html += `</div>`;
+
+    Swal.fire({
+        title: '<div style="font-size:16px; font-weight:800; color:#1e293b;">📦 Update Inventory</div>',
+        html: html,
+        width: '98%',
+        showCancelButton: true,
+        confirmButtonText: 'Save All Stocks',
+        confirmButtonColor: '#0d6efd',
+        customClass: { popup: 'rounded-4 ios-popup' },
+        preConfirm: () => {
+            for (let k in items) {
+                db[k] = {
+                    total: parseFloat(document.getElementById(`stk-total-${k}`).value) || 0,
+                    start: document.getElementById(`stk-start-${k}`).value || nowLocal,
+                    exempt: parseFloat(document.getElementById(`stk-exempt-${k}`).value) || 0
+                };
+            }
+            localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
+            renderLiveStockTracker(); // Refresh UI
         }
     });
 };
