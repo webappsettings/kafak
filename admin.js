@@ -6585,9 +6585,12 @@ window.renderPartnerList = function () {
 // ==========================================
 window.globalInventoryDB = null;
 
-// ഷീറ്റിൽ നിന്നും ഡാറ്റ എടുക്കാൻ
+// ഷീറ്റിൽ നിന്നും ഡാറ്റ എടുക്കാൻ (POST Method)
 window.fetchInventoryBg = function () {
-    fetch(`${scriptURL}?action=getInventory`)
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'getInventory' })
+    })
         .then(res => res.json())
         .then(res => {
             if (res.result === 'success') {
