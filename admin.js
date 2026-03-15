@@ -3316,7 +3316,6 @@ function renderDashboard() {
     if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) {
         renderPartnerList();
     }
-
     renderLiveStockTracker();
 }
 
@@ -6599,11 +6598,10 @@ window.showCourierBreakdown = function (dateStr) {
 };
 
 // ==========================================
-// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER
+// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER (Date Based)
 // ==========================================
 
 window.renderLiveStockTracker = function () {
-    // 1. Stock Items Configuration
     const items = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary' },
         honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning' },
@@ -6615,28 +6613,28 @@ window.renderLiveStockTracker = function () {
         pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary' }
     };
 
-    // 2. Load DB or Set Defaults
     let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
     let nowLocal = new Date().toISOString().slice(0, 16);
 
     let isInitialSetup = false;
     for (let k in items) {
         if (!db[k]) {
-            db[k] = { total: 0, start: nowLocal, exempt: 0 };
+            // 🔥 പഴയ exempt മാറ്റി end_date (Old Stock തീർന്ന സമയം) കൊണ്ടുവന്നു
+            db[k] = { total: 0, start: nowLocal, end_date: '' };
             isInitialSetup = true;
         }
     }
 
     // നിങ്ങൾ പറഞ്ഞ 1000 കുപ്പിയുടെയും 500 KG തേനിന്റെയും കണക്ക് ആദ്യമേ സെറ്റ് ചെയ്യുന്നു
     if (isInitialSetup && db.bottles.total === 0) {
-        db.bottles = { total: 1000, start: '2026-03-14T00:00', exempt: 7 }; // 7 പഴയത് എടുത്തത് ഇവിടെ exempt ചെയ്തു
-        db.honey = { total: 500, start: '2026-03-16T00:00', exempt: 0 };
+        // പഴയ കുപ്പികൾ (ആ 7 എണ്ണം ഉൾപ്പെടെ) തീർന്ന അവസാനത്തെ സമയമാണ് end_date ആയി കൊടുക്കേണ്ടത്.
+        db.bottles = { total: 1000, start: '2026-03-14T00:00', end_date: '2026-03-14T12:00' };
+        db.honey = { total: 500, start: '2026-03-16T00:00', end_date: '' };
         localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
     }
 
     let used = { bottles: 0, honey: 0, tape: 0, roll: 0, box: 0, sticker: 0, a6paper: 0, pouch: 0 };
 
-    // 3. Dynamic Calculation based on Date & Time
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
@@ -6651,23 +6649,30 @@ window.renderLiveStockTracker = function () {
 
             let appWeb = String(o['App / Web'] || o.appWeb || '').toLowerCase();
             let oName = String(o.name || o.Name || '').toLowerCase();
-
-            // ബൾക്ക് അല്ലെങ്കിൽ ഓഫ്‌ലൈൻ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
             let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
 
-            // ഓരോ ഐറ്റത്തിന്റെയും ഉപയോഗം കാൽക്കുലേറ്റ് ചെയ്യുന്നു
-            if (oDate >= new Date(db.bottles.start)) used.bottles += isBulk ? 0 : qty; // ബൾക്ക് ആണെങ്കിൽ കുപ്പി വേണ്ടല്ലോ
-            if (oDate >= new Date(db.honey.start)) used.honey += isBulk ? qty : (qty * 0.65); // ബൾക്ക് നേരിട്ട് KG ആക്കുന്നു
-            if (oDate >= new Date(db.pouch.start)) used.pouch += isBulk ? 0 : qty;
-            if (oDate >= new Date(db.sticker.start)) used.sticker += isBulk ? 0 : (qty * 0.2); // 1 A4-ൽ 5 സ്റ്റിക്കർ (അതായത് 0.2)
-            if (oDate >= new Date(db.box.start)) used.box += isBulk ? 0 : 1; // 1 ഓർഡറിന് 1 ബോക്സ്
-            if (oDate >= new Date(db.a6paper.start)) used.a6paper += isBulk ? 0 : 1; // 1 ഓർഡറിന് 1 ലേബൽ
-            if (oDate >= new Date(db.tape.start)) used.tape += isBulk ? 0 : 0.05; // 1 ഓർഡറിന് ശരാശരി 0.05 റോൾ ടേപ്പ്
-            if (oDate >= new Date(db.roll.start)) used.roll += isBulk ? 0 : (qty * 0.5); // 1 കുപ്പിക്ക് അര മീറ്റർ റോൾ
+            // ഓരോ ഐറ്റത്തിന്റെയും പുതിയ ഉപയോഗം കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+            for (let k in items) {
+                // start date ന് ശേഷമുള്ളതും, end_date ന് ശേഷമുള്ളതും (അതായത് പഴയ സ്റ്റോക്ക് തീർന്നതിന് ശേഷമുള്ളത്) മാത്രം പുതിയ സ്റ്റോക്കിൽ കൂട്ടുന്നു
+                let isValidDate = oDate >= new Date(db[k].start);
+                if (db[k].end_date) {
+                    isValidDate = oDate > new Date(db[k].end_date); // End Date ന് ശേഷം ഉള്ളവ മാത്രം!
+                }
+
+                if (isValidDate) {
+                    if (k === 'bottles') used.bottles += isBulk ? 0 : qty;
+                    if (k === 'honey') used.honey += isBulk ? qty : (qty * 0.65);
+                    if (k === 'pouch') used.pouch += isBulk ? 0 : qty;
+                    if (k === 'sticker') used.sticker += isBulk ? 0 : (qty * 0.2);
+                    if (k === 'box') used.box += isBulk ? 0 : 1;
+                    if (k === 'a6paper') used.a6paper += isBulk ? 0 : 1;
+                    if (k === 'tape') used.tape += isBulk ? 0 : 0.05;
+                    if (k === 'roll') used.roll += isBulk ? 0 : (qty * 0.5);
+                }
+            }
         }
     });
 
-    // 4. Generate UI
     let html = `
     <div class="mb-4 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif;">
         <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
@@ -6678,15 +6683,12 @@ window.renderLiveStockTracker = function () {
     `;
 
     for (let k in items) {
-        // 🔥 Exempt (പഴയ സ്റ്റോക്ക് എടുത്തത്) കുറച്ച് ബാക്കി കാൽക്കുലേറ്റ് ചെയ്യുന്നു
-        let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
+        let actualUsed = used[k];
         let bal = Math.max(0, db[k].total - actualUsed);
         let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
 
-        // ദശാംശം (Decimals) കൃത്യമാക്കാൻ
         let dec = (k === 'honey' || k === 'tape' || k === 'sticker' || k === 'roll') ? 1 : 0;
-
-        let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : items[k].color; // 15% ൽ താഴെ പോയാൽ ചുവപ്പ്
+        let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : items[k].color;
 
         html += `
         <div class="col-6 col-md-4 col-lg-3">
@@ -6710,18 +6712,81 @@ window.renderLiveStockTracker = function () {
 
     html += `</div></div>`;
 
-    // 5. Inject into Dashboard Overview (Overview-ൽ കാണിക്കാൻ)
-    let target = document.getElementById('dashboard-stock-container');
+    // 🔥 Accounts Drawer-ന്റെ ഉള്ളിൽ (Overview tab-ന്റെ മുകളിൽ) വെക്കുന്നു
+    let target = document.getElementById('drawer-stock-container');
     if (!target) {
-        let dashTab = document.getElementById('v-pills-dashboard') || document.querySelector('.tab-pane.active');
-        if (dashTab) {
+        let parentTab = document.getElementById('v-pills-dashboard'); // Accounts overview tab
+        if (parentTab) {
             let wrap = document.createElement('div');
-            wrap.id = 'dashboard-stock-container';
-            dashTab.insertBefore(wrap, dashTab.firstChild);
+            wrap.id = 'drawer-stock-container';
+            parentTab.insertBefore(wrap, parentTab.firstChild);
             target = wrap;
         }
     }
     if (target) target.innerHTML = html;
+};
+
+window.editAllStocks = function () {
+    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
+    let nowLocal = new Date().toISOString().slice(0, 16);
+
+    let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
+        <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
+            <b>💡 എക്സ്പെൻസ് ചേർക്കുന്ന രീതി:</b> പുതിയ സ്റ്റോക്ക് വാങ്ങിയാൽ നിങ്ങളുടെ പതിവ് 'Add Expense' മെനുവിൽ പോയി പൈസ ആഡ് ചെയ്യുക. 
+            പുതിയ സ്റ്റോക്ക് തുടങ്ങുന്നതിന് മുൻപ് പഴയ സ്റ്റോക്കുകൾ വല്ലതും ഉപയോഗിച്ചിട്ടുണ്ടെങ്കിൽ, ആ പഴയ സ്റ്റോക്ക് അവസാനമായി ഉപയോഗിച്ച് തീർന്ന സമയം <b>Old Stock End Date</b> ആയി കൊടുക്കുക.
+        </div>
+    `;
+
+    const items = {
+        bottles: 'Empty Bottles (Nos)', honey: 'Raw Honey (KG)', tape: 'Packing Tape (Rolls)', roll: 'Plastic Roll (Meters)',
+        box: 'Packing Box (Nos)', sticker: 'Sticker (A4 Sheets)', a6paper: 'A6 Paper (Nos)', pouch: 'Shrink Pouch (Nos)'
+    };
+
+    for (let k in items) {
+        let startVal = db[k]?.start ? db[k].start.slice(0, 16) : nowLocal;
+        let endVal = db[k]?.end_date ? db[k].end_date.slice(0, 16) : '';
+        html += `
+        <div class="mb-3 p-2 border border-secondary border-opacity-25 rounded-3 bg-light shadow-sm">
+            <label class="fw-bold text-dark mb-1" style="font-size:12px;">${items[k]}</label>
+            <div class="row g-2">
+                <div class="col-4">
+                    <label class="text-muted" style="font-size:9px;">Total Stock</label>
+                    <input type="number" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${db[k]?.total || 0}">
+                </div>
+                <div class="col-8">
+                    <label class="text-muted" style="font-size:9px;">Start Date</label>
+                    <input type="datetime-local" id="stk-start-${k}" class="form-control form-control-sm text-secondary" value="${startVal}">
+                </div>
+                <div class="col-12 mt-2">
+                    <label class="text-danger fw-bold" style="font-size:9px;"><i class="fas fa-history"></i> Old Stock End Date & Time (Optional)</label>
+                    <input type="datetime-local" id="stk-end-${k}" class="form-control form-control-sm border-danger border-opacity-50" value="${endVal}">
+                    <div class="text-muted mt-1" style="font-size:8px;">ഈ സമയത്തിന് ശേഷമുള്ള ഓർഡറുകൾ മാത്രമേ പുതിയ സ്റ്റോക്കിൽ നിന്നും കുറയൂ.</div>
+                </div>
+            </div>
+        </div>`;
+    }
+    html += `</div>`;
+
+    Swal.fire({
+        title: '<div style="font-size:16px; font-weight:800; color:#1e293b;">📦 Update Inventory</div>',
+        html: html,
+        width: '98%',
+        showCancelButton: true,
+        confirmButtonText: 'Save All Stocks',
+        confirmButtonColor: '#0d6efd',
+        customClass: { popup: 'rounded-4 ios-popup' },
+        preConfirm: () => {
+            for (let k in items) {
+                db[k] = {
+                    total: parseFloat(document.getElementById(`stk-total-${k}`).value) || 0,
+                    start: document.getElementById(`stk-start-${k}`).value || nowLocal,
+                    end_date: document.getElementById(`stk-end-${k}`).value || ''
+                };
+            }
+            localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
+            renderLiveStockTracker();
+        }
+    });
 };
 
 // 🔥 UPDATE STOCKS POPUP (With Date, Time & Exempt)
