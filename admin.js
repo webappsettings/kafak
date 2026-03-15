@@ -3316,7 +3316,7 @@ function renderDashboard() {
     if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) {
         renderPartnerList();
     }
-    getLiveStockHtml();
+    if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
 }
 
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE (WITH COURIER GROUPING FIX)
@@ -6596,9 +6596,6 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-// ==========================================
-// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER (Date Based)
-// ==========================================
 
 // ==========================================
 // 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER LOGIC
@@ -6673,7 +6670,7 @@ window.getLiveStockHtml = function () {
     });
 
     let html = `
-    <div class="mb-4 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif;">
+    <div id="live-stock-box" class="mb-4 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif;">
         <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
             <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
             <button onclick="editAllStocks()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-bold" style="font-size:10px;"><i class="fas fa-sync-alt me-1"></i> Update Stocks</button>
@@ -6713,117 +6710,16 @@ window.getLiveStockHtml = function () {
     return html;
 };
 
-// ==========================================
-// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER LOGIC
-// ==========================================
+// 🔥 ഇത് സ്ക്രീനിൽ വെക്കാനുള്ള ഫംഗ്ഷൻ (Dashboard തുറക്കുമ്പോൾ ലോഡ് ആവാൻ)
+window.renderLiveStockTracker = function () {
+    let html = window.getLiveStockHtml();
 
-window.getLiveStockHtml = function () {
-    const items = {
-        bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary' },
-        honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning' },
-        tape: { name: 'Packing Tape', unit: 'Rolls', icon: 'fa-tape', color: 'secondary' },
-        roll: { name: 'Plastic Roll', unit: 'Meters', icon: 'fa-scroll', color: 'info' },
-        box: { name: 'Packing Box', unit: 'Nos', icon: 'fa-box', color: 'success' },
-        sticker: { name: 'Sticker (A4)', unit: 'Sheets', icon: 'fa-sticky-note', color: 'danger' },
-        a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark' },
-        pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary' }
-    };
-
-    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
-    let nowLocal = new Date().toISOString().slice(0, 16);
-
-    let isInitialSetup = false;
-    for (let k in items) {
-        if (!db[k]) {
-            db[k] = { total: 0, start: nowLocal, end_date: '' };
-            isInitialSetup = true;
-        }
+    // Accounts ടാബിന്റെ ഏറ്റവും മുകളിൽ വെക്കുന്നു
+    if ($('#live-stock-box').length > 0) {
+        $('#live-stock-box').replaceWith(html);
+    } else {
+        $(html).insertBefore('#tx-details-area');
     }
-
-    // Default 1000 Bottles & 500 KG Honey
-    if (isInitialSetup && db.bottles.total === 0) {
-        db.bottles = { total: 1000, start: '2026-03-14T00:00', end_date: '2026-03-14T12:00' };
-        db.honey = { total: 500, start: '2026-03-16T00:00', end_date: '' };
-        localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
-    }
-
-    let used = { bottles: 0, honey: 0, tape: 0, roll: 0, box: 0, sticker: 0, a6paper: 0, pouch: 0 };
-
-    allOrders.forEach(o => {
-        let status = String(o.Status || 'Pending').trim();
-        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
-            let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
-            if (!oDateRaw) return;
-
-            let oDate = new Date(oDateRaw);
-            if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
-            if (isNaN(oDate.getTime())) return;
-
-            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
-
-            let appWeb = String(o['App / Web'] || o.appWeb || '').toLowerCase();
-            let oName = String(o.name || o.Name || '').toLowerCase();
-            let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
-
-            for (let k in items) {
-                let isValidDate = oDate >= new Date(db[k].start);
-                if (db[k].end_date) {
-                    isValidDate = oDate > new Date(db[k].end_date); // Old Stock End Date ന് ശേഷമുള്ളവ മാത്രം
-                }
-
-                if (isValidDate) {
-                    if (k === 'bottles') used.bottles += isBulk ? 0 : qty;
-                    if (k === 'honey') used.honey += isBulk ? qty : (qty * 0.65);
-                    if (k === 'pouch') used.pouch += isBulk ? 0 : qty;
-                    if (k === 'sticker') used.sticker += isBulk ? 0 : (qty * 0.2);
-                    if (k === 'box') used.box += isBulk ? 0 : 1;
-                    if (k === 'a6paper') used.a6paper += isBulk ? 0 : 1;
-                    if (k === 'tape') used.tape += isBulk ? 0 : 0.05;
-                    if (k === 'roll') used.roll += isBulk ? 0 : (qty * 0.5);
-                }
-            }
-        }
-    });
-
-    let html = `
-    <div class="mb-4 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif;">
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
-            <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
-            <button onclick="editAllStocks()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-bold" style="font-size:10px;"><i class="fas fa-sync-alt me-1"></i> Update Stocks</button>
-        </div>
-        <div class="row g-2">
-    `;
-
-    for (let k in items) {
-        let actualUsed = used[k];
-        let bal = Math.max(0, db[k].total - actualUsed);
-        let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
-
-        let dec = (k === 'honey' || k === 'tape' || k === 'sticker' || k === 'roll') ? 1 : 0;
-        let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : items[k].color;
-
-        html += `
-        <div class="col-6 col-md-4 col-lg-3">
-            <div class="p-2 border rounded-3 bg-light position-relative shadow-sm">
-                <div class="d-flex justify-content-between align-items-center mb-1">
-                    <span class="fw-bold text-secondary text-truncate" style="font-size:10px;"><i class="fas ${items[k].icon} text-${items[k].color} me-1"></i> ${items[k].name}</span>
-                </div>
-                <div class="fw-bolder text-${bal <= (db[k].total * 0.1) ? 'danger' : 'dark'} mb-1" style="font-size:15px;">
-                    ${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${items[k].unit} left</span>
-                </div>
-                <div class="progress" style="height: 5px; border-radius:5px;">
-                    <div class="progress-bar bg-${alertClass}" role="progressbar" style="width: ${pct}%;"></div>
-                </div>
-                <div class="d-flex justify-content-between mt-1 text-muted" style="font-size:8.5px;">
-                    <span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>
-                    <span class="fw-bold text-dark">Use: ${actualUsed.toFixed(dec)}</span>
-                </div>
-            </div>
-        </div>`;
-    }
-
-    html += `</div></div>`;
-    return html;
 };
 
 // 🔥 ACCOUNTS (SALARY) OVERVIEW
@@ -6889,8 +6785,6 @@ window.renderPartnerList = function () {
     let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
 
     let breakdownHtml = `
-    ${getLiveStockHtml()}
-
     <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-2">
@@ -7093,7 +6987,7 @@ window.editAllStocks = function () {
                 };
             }
             localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
-            if (typeof window.renderPartnerList === 'function') window.renderPartnerList(); // 🔥 Refresh UI
+            if (typeof window.renderLiveStockTracker === 'function') window.renderLiveStockTracker(); // 🔥 സ്ക്രീൻ റിഫ്രഷ് ചെയ്യുന്നു
         }
     });
 };
