@@ -6601,7 +6601,11 @@ window.showCourierBreakdown = function (dateStr) {
 // 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER (Date Based)
 // ==========================================
 
-window.renderLiveStockTracker = function () {
+// ==========================================
+// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER LOGIC
+// ==========================================
+
+window.getLiveStockHtml = function () {
     const items = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary' },
         honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning' },
@@ -6619,15 +6623,13 @@ window.renderLiveStockTracker = function () {
     let isInitialSetup = false;
     for (let k in items) {
         if (!db[k]) {
-            // 🔥 പഴയ exempt മാറ്റി end_date (Old Stock തീർന്ന സമയം) കൊണ്ടുവന്നു
             db[k] = { total: 0, start: nowLocal, end_date: '' };
             isInitialSetup = true;
         }
     }
 
-    // നിങ്ങൾ പറഞ്ഞ 1000 കുപ്പിയുടെയും 500 KG തേനിന്റെയും കണക്ക് ആദ്യമേ സെറ്റ് ചെയ്യുന്നു
+    // Default 1000 Bottles & 500 KG Honey
     if (isInitialSetup && db.bottles.total === 0) {
-        // പഴയ കുപ്പികൾ (ആ 7 എണ്ണം ഉൾപ്പെടെ) തീർന്ന അവസാനത്തെ സമയമാണ് end_date ആയി കൊടുക്കേണ്ടത്.
         db.bottles = { total: 1000, start: '2026-03-14T00:00', end_date: '2026-03-14T12:00' };
         db.honey = { total: 500, start: '2026-03-16T00:00', end_date: '' };
         localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
@@ -6651,12 +6653,10 @@ window.renderLiveStockTracker = function () {
             let oName = String(o.name || o.Name || '').toLowerCase();
             let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
 
-            // ഓരോ ഐറ്റത്തിന്റെയും പുതിയ ഉപയോഗം കാൽക്കുലേറ്റ് ചെയ്യുന്നു
             for (let k in items) {
-                // start date ന് ശേഷമുള്ളതും, end_date ന് ശേഷമുള്ളതും (അതായത് പഴയ സ്റ്റോക്ക് തീർന്നതിന് ശേഷമുള്ളത്) മാത്രം പുതിയ സ്റ്റോക്കിൽ കൂട്ടുന്നു
                 let isValidDate = oDate >= new Date(db[k].start);
                 if (db[k].end_date) {
-                    isValidDate = oDate > new Date(db[k].end_date); // End Date ന് ശേഷം ഉള്ളവ മാത്രം!
+                    isValidDate = oDate > new Date(db[k].end_date); // Old Stock End Date ന് ശേഷമുള്ളവ മാത്രം
                 }
 
                 if (isValidDate) {
@@ -6711,19 +6711,329 @@ window.renderLiveStockTracker = function () {
     }
 
     html += `</div></div>`;
+    return html;
+};
 
-    // 🔥 Accounts Drawer-ന്റെ ഉള്ളിൽ (Overview tab-ന്റെ മുകളിൽ) വെക്കുന്നു
-    let target = document.getElementById('drawer-stock-container');
-    if (!target) {
-        let parentTab = document.getElementById('v-pills-dashboard'); // Accounts overview tab
-        if (parentTab) {
-            let wrap = document.createElement('div');
-            wrap.id = 'drawer-stock-container';
-            parentTab.insertBefore(wrap, parentTab.firstChild);
-            target = wrap;
+// ==========================================
+// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER LOGIC
+// ==========================================
+
+window.getLiveStockHtml = function () {
+    const items = {
+        bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary' },
+        honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning' },
+        tape: { name: 'Packing Tape', unit: 'Rolls', icon: 'fa-tape', color: 'secondary' },
+        roll: { name: 'Plastic Roll', unit: 'Meters', icon: 'fa-scroll', color: 'info' },
+        box: { name: 'Packing Box', unit: 'Nos', icon: 'fa-box', color: 'success' },
+        sticker: { name: 'Sticker (A4)', unit: 'Sheets', icon: 'fa-sticky-note', color: 'danger' },
+        a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark' },
+        pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary' }
+    };
+
+    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
+    let nowLocal = new Date().toISOString().slice(0, 16);
+
+    let isInitialSetup = false;
+    for (let k in items) {
+        if (!db[k]) {
+            db[k] = { total: 0, start: nowLocal, end_date: '' };
+            isInitialSetup = true;
         }
     }
-    if (target) target.innerHTML = html;
+
+    // Default 1000 Bottles & 500 KG Honey
+    if (isInitialSetup && db.bottles.total === 0) {
+        db.bottles = { total: 1000, start: '2026-03-14T00:00', end_date: '2026-03-14T12:00' };
+        db.honey = { total: 500, start: '2026-03-16T00:00', end_date: '' };
+        localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
+    }
+
+    let used = { bottles: 0, honey: 0, tape: 0, roll: 0, box: 0, sticker: 0, a6paper: 0, pouch: 0 };
+
+    allOrders.forEach(o => {
+        let status = String(o.Status || 'Pending').trim();
+        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
+            if (!oDateRaw) return;
+
+            let oDate = new Date(oDateRaw);
+            if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
+            if (isNaN(oDate.getTime())) return;
+
+            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+
+            let appWeb = String(o['App / Web'] || o.appWeb || '').toLowerCase();
+            let oName = String(o.name || o.Name || '').toLowerCase();
+            let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
+
+            for (let k in items) {
+                let isValidDate = oDate >= new Date(db[k].start);
+                if (db[k].end_date) {
+                    isValidDate = oDate > new Date(db[k].end_date); // Old Stock End Date ന് ശേഷമുള്ളവ മാത്രം
+                }
+
+                if (isValidDate) {
+                    if (k === 'bottles') used.bottles += isBulk ? 0 : qty;
+                    if (k === 'honey') used.honey += isBulk ? qty : (qty * 0.65);
+                    if (k === 'pouch') used.pouch += isBulk ? 0 : qty;
+                    if (k === 'sticker') used.sticker += isBulk ? 0 : (qty * 0.2);
+                    if (k === 'box') used.box += isBulk ? 0 : 1;
+                    if (k === 'a6paper') used.a6paper += isBulk ? 0 : 1;
+                    if (k === 'tape') used.tape += isBulk ? 0 : 0.05;
+                    if (k === 'roll') used.roll += isBulk ? 0 : (qty * 0.5);
+                }
+            }
+        }
+    });
+
+    let html = `
+    <div class="mb-4 p-3 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif;">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom">
+            <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
+            <button onclick="editAllStocks()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-bold" style="font-size:10px;"><i class="fas fa-sync-alt me-1"></i> Update Stocks</button>
+        </div>
+        <div class="row g-2">
+    `;
+
+    for (let k in items) {
+        let actualUsed = used[k];
+        let bal = Math.max(0, db[k].total - actualUsed);
+        let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
+
+        let dec = (k === 'honey' || k === 'tape' || k === 'sticker' || k === 'roll') ? 1 : 0;
+        let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : items[k].color;
+
+        html += `
+        <div class="col-6 col-md-4 col-lg-3">
+            <div class="p-2 border rounded-3 bg-light position-relative shadow-sm">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span class="fw-bold text-secondary text-truncate" style="font-size:10px;"><i class="fas ${items[k].icon} text-${items[k].color} me-1"></i> ${items[k].name}</span>
+                </div>
+                <div class="fw-bolder text-${bal <= (db[k].total * 0.1) ? 'danger' : 'dark'} mb-1" style="font-size:15px;">
+                    ${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${items[k].unit} left</span>
+                </div>
+                <div class="progress" style="height: 5px; border-radius:5px;">
+                    <div class="progress-bar bg-${alertClass}" role="progressbar" style="width: ${pct}%;"></div>
+                </div>
+                <div class="d-flex justify-content-between mt-1 text-muted" style="font-size:8.5px;">
+                    <span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>
+                    <span class="fw-bold text-dark">Use: ${actualUsed.toFixed(dec)}</span>
+                </div>
+            </div>
+        </div>`;
+    }
+
+    html += `</div></div>`;
+    return html;
+};
+
+// 🔥 ACCOUNTS (SALARY) OVERVIEW
+window.renderPartnerList = function () {
+    if (!dashboardData || !dashboardData.partners) return;
+    let partners = dashboardData.partners;
+
+    let liveProfit = window.currentLiveProfit || 0;
+    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
+
+    let fullIncome = 0;
+    let fullBottleCost = 0;
+    let fullCourier = 0;
+
+    allOrders.forEach(o => {
+        let status = String(o.Status || 'Pending').trim();
+        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            let qty = parseInt(o.quantity) || 0;
+
+            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+            if (isNaN(amt) || amt <= 0) {
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
+            fullIncome += amt;
+
+            let dbCost = parseInt(o.Product_Base_Cost);
+            fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
+
+            if (status !== 'Paid') {
+                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+                fullCourier += actualC;
+            }
+        }
+    });
+
+    let fullExpenses = 0;
+    if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
+        dashboardData.yearTimeline.expense.forEach(e => {
+            let cat = String(e.cat || '').toLowerCase();
+            if (!e.isCourier && cat !== 'refund') {
+                fullExpenses += (Number(e.amount) || 0);
+            }
+        });
+    }
+
+    let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses);
+
+    let shares = {
+        "Salam": Math.floor(liveProfit * 0.20),
+        "Samad": Math.floor(liveProfit * 0.70),
+        "Jazeela": Math.floor(liveProfit * 0.10)
+    };
+
+    let today = new Date();
+    let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
+
+    let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
+    let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
+    let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
+
+    let breakdownHtml = `
+    ${getLiveStockHtml()}
+
+    <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex align-items-center gap-2">
+                <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
+                <div>
+                    <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
+                    <div style="font-size:9px; color:#0369a1;">(Income - All Expenses & Materials)</div>
+                </div>
+            </div>
+            <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
+        </div>
+    </div>
+
+    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
+        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+            ${prevBtn}
+            <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
+                <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
+            </h6>
+            ${nextBtn}
+        </div>
+        
+        <div class="d-flex justify-content-between mb-1">
+            <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
+            <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
+        </div>
+        
+        <div class="text-secondary small mb-1 fst-italic" style="font-size:10px; line-height: 1.4;">
+            <span class="fw-bold text-muted">Sales:</span> ${window.currentBreakdownStr}
+        </div>
+        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
+            <span class="fw-bold text-muted">Base Cost:</span> ${window.currentCostBreakdownStr}
+        </div>
+        
+        <div class="d-flex justify-content-between mb-1 mt-2 pt-2 border-top border-secondary border-opacity-10">
+            <span class="text-muted">Total Income:</span>
+            <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
+        </div>
+        <div class="d-flex justify-content-between mb-0">
+            <span class="text-muted">Deductible Expense:</span>
+            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
+        </div>
+        ${window.currentExpenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Food"].toLocaleString()}</span></div>` : ''}
+        ${window.currentExpenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
+        ${window.currentExpenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
+        
+        ${window.currentExpenseCategories["Other"].length > 0 ? `
+            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
+                <span class="text-muted ps-2">📝 Other:</span>
+                <span class="text-danger fw-bold text-end">${window.currentExpenseCategories["Other"].join('<br>')}</span>
+            </div>` : ''}
+            
+        ${window.currentExpenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${window.currentExpenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
+        <div class="d-flex justify-content-between mb-1 mt-1">
+            <span class="fw-bold text-info" style="font-size:10px;">
+                <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
+            </span>
+            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
+        </div>
+        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
+            <div class="text-warning fw-bold" style="font-size:10px;">
+                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} <br>
+                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
+            </div>
+            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
+        </div>
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
+            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
+        </div>
+
+        <div class="bg-light p-2 rounded-3 border">
+            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Salam (20%):</span>
+                <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Samad (70%):</span>
+                <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between" style="font-size:11px;">
+                <span class="fw-bold text-secondary">Jazeela (10%):</span>
+                <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
+            </div>
+        </div>
+    </div>`;
+
+    let html = breakdownHtml;
+
+    if (isCurrentMonth) {
+        html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning shadow-sm" style="font-size:10.5px; font-weight:700; background:#fff8e1; border-radius:8px;">
+            <i class="fas fa-info-circle text-warning mt-1"></i> 
+            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ഫൈനൽ ബാലൻസ് ആണ്.</div>
+        </div>`;
+
+        for (let [name, data] of Object.entries(partners)) {
+            let sheetPrevBal = typeof data === 'object' ? data.curr : data;
+            let totalBal = sheetPrevBal;
+
+            if (shares[name]) {
+                totalBal += shares[name];
+            }
+
+            let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+
+            let withdrawnInfo = '';
+            if (data.withdrawn > 0) {
+                withdrawnInfo = `
+                    <div class="mt-2 pt-2 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:10px; color:#ef4444;">
+                        <span>Total Taken: <b>₹${data.withdrawn.toLocaleString()}</b></span>
+                        <span>Last: <b>₹${data.lastAmt.toLocaleString()}</b> (${data.lastDate})</span>
+                    </div>`;
+            } else {
+                withdrawnInfo = `<div class="mt-2 pt-2 border-top border-secondary border-opacity-10 text-muted" style="font-size:10px;">No salary taken yet.</div>`;
+            }
+
+            html += `
+            <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
+                <div class="d-flex align-items-center w-100">
+                    <div class="me-3">
+                        <i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
+                        <div class="text-success fw-bold mt-1" style="font-size:13px;">
+                            Total Bal: ₹${formattedBal} 
+                        </div>
+                        <div class="text-muted mt-1" style="font-size:10px; font-weight:600;">
+                            Prev: ₹${sheetPrevBal.toLocaleString()} <span class="mx-1">|</span> This Mth: ₹${(shares[name] || 0).toLocaleString()}
+                        </div>
+                        ${withdrawnInfo}
+                    </div>
+                    <div class="ms-2 d-flex align-items-center justify-content-center">
+                        <i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i>
+                    </div>
+                </div>
+            </div>`;
+        }
+    }
+
+    $('#partner-list').html(html);
 };
 
 window.editAllStocks = function () {
@@ -6784,68 +7094,7 @@ window.editAllStocks = function () {
                 };
             }
             localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
-            renderLiveStockTracker();
-        }
-    });
-};
-
-// 🔥 UPDATE STOCKS POPUP (With Date, Time & Exempt)
-window.editAllStocks = function () {
-    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
-    let nowLocal = new Date().toISOString().slice(0, 16);
-
-    let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
-        <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
-            <b>💡 എക്സ്പെൻസ് ചേർക്കുന്ന രീതി:</b> പുതിയ സ്റ്റോക്ക് വാങ്ങിയാൽ ആദ്യം നിങ്ങളുടെ പതിവ് 'Add Expense' മെനുവിൽ പോയി പൈസ ആഡ് ചെയ്യുക. ശേഷം ഇവിടെ വന്ന് പുതിയ എണ്ണവും കൃത്യമായ സമയവും അപ്ഡേറ്റ് ചെയ്യുക. പുതിയ സമയം നൽകിയതിന് ശേഷം പഴയ സ്റ്റോക്ക് വല്ലതും എടുത്താൽ അത് <b>Exempt (Old Used)</b> കോളത്തിൽ നൽകുക.
-        </div>
-    `;
-
-    const items = {
-        bottles: 'Empty Bottles (Nos)', honey: 'Raw Honey (KG)', tape: 'Packing Tape (Rolls)', roll: 'Plastic Roll (Meters)',
-        box: 'Packing Box (Nos)', sticker: 'Sticker (A4 Sheets)', a6paper: 'A6 Paper (Nos)', pouch: 'Shrink Pouch (Nos)'
-    };
-
-    for (let k in items) {
-        let startVal = db[k]?.start ? db[k].start.slice(0, 16) : nowLocal;
-        html += `
-        <div class="mb-3 p-2 border border-secondary border-opacity-25 rounded-3 bg-light shadow-sm">
-            <label class="fw-bold text-dark mb-1" style="font-size:12px;">${items[k]}</label>
-            <div class="row g-2">
-                <div class="col-3">
-                    <label class="text-muted" style="font-size:9px;">Total Stock</label>
-                    <input type="number" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${db[k]?.total || 0}">
-                </div>
-                <div class="col-6">
-                    <label class="text-muted" style="font-size:9px;">Start Date & Time</label>
-                    <input type="datetime-local" id="stk-start-${k}" class="form-control form-control-sm fw-bold" value="${startVal}">
-                </div>
-                <div class="col-3">
-                    <label class="text-muted text-truncate w-100" style="font-size:9px;" title="ഈ സമയത്തിന് ശേഷം എടുത്ത പഴയ സ്റ്റോക്കുകൾ ഇവിടെ കൊടുക്കുക">Exempt (Old)</label>
-                    <input type="number" id="stk-exempt-${k}" class="form-control form-control-sm text-danger fw-bold border-danger border-opacity-50" value="${db[k]?.exempt || 0}">
-                </div>
-            </div>
-        </div>`;
-    }
-    html += `</div>`;
-
-    Swal.fire({
-        title: '<div style="font-size:16px; font-weight:800; color:#1e293b;">📦 Update Inventory</div>',
-        html: html,
-        width: '98%',
-        showCancelButton: true,
-        confirmButtonText: 'Save All Stocks',
-        confirmButtonColor: '#0d6efd',
-        customClass: { popup: 'rounded-4 ios-popup' },
-        preConfirm: () => {
-            for (let k in items) {
-                db[k] = {
-                    total: parseFloat(document.getElementById(`stk-total-${k}`).value) || 0,
-                    start: document.getElementById(`stk-start-${k}`).value || nowLocal,
-                    exempt: parseFloat(document.getElementById(`stk-exempt-${k}`).value) || 0
-                };
-            }
-            localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
-            renderLiveStockTracker(); // Refresh UI
+            if (typeof window.renderPartnerList === 'function') window.renderPartnerList(); // 🔥 Refresh UI
         }
     });
 };
