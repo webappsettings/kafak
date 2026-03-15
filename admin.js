@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbywBdyjeEG-aePYIBfkeCwjF2JkKra3GlGSYjYtroRTWneL8qumpWGDNvjLVxraWd026Q/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzeicFntBXUwQxjwb1DcDShfXheO7K7q1425PEH0r9wQ9Kt9-173mSkLJhBm-uieu7NzA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -324,6 +324,7 @@ function showDashboard() {
 
     fetchRatesBackground();
     fetchOrders();
+    fetchInventoryBg();
     injectLeftDrawer();
 }
 
@@ -3551,234 +3552,7 @@ function togglePartnerSelect() {
 
 
 
-window.renderPartnerList = function () {
-    if (!dashboardData || !dashboardData.partners) return;
-    let partners = dashboardData.partners;
 
-    let liveProfit = window.currentLiveProfit || 0;
-
-    // 🔥 ഈ മാസത്തെ ചിലവ് കാണിക്കാൻ ഉള്ളത് (UI ക്ക് വേണ്ടി)
-    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
-
-    // 🔥 FULL (ALL-TIME) BANK BALANCE CALCULATION
-    let fullIncome = 0;
-    let fullBottleCost = 0;
-    let fullCourier = 0;
-
-    allOrders.forEach(o => {
-        let status = String(o.Status || 'Pending').trim();
-
-        // ബാങ്ക് ബാലൻസിൽ 'Paid' ഓർഡറുകളും ഉൾപ്പെടുത്തണം (പൈസ അക്കൗണ്ടിൽ വന്നതുകൊണ്ട്)
-        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
-            let qty = parseInt(o.quantity) || 0;
-
-            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
-            if (isNaN(amt) || amt <= 0) {
-                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
-                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
-            }
-            fullIncome += amt;
-
-            let dbCost = parseInt(o.Product_Base_Cost);
-            fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
-
-            // കൊറിയർ ചിലവ് (Dispatched ആയവയ്ക്ക് മാത്രം കുറയ്ക്കുന്നു)
-            if (status !== 'Paid') {
-                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-                let totalC = parseInt(o.Courier_Charge) || 0;
-                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
-                fullCourier += actualC;
-            }
-        }
-    });
-
-    let fullExpenses = 0;
-    // ലഭ്യമായ എല്ലാ എക്സ്പെൻസുകളും കൂട്ടുന്നു (മെറ്റീരിയൽ, സാലറി ഉൾപ്പെടെ)
-    if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
-        dashboardData.yearTimeline.expense.forEach(e => {
-            let cat = String(e.cat || '').toLowerCase();
-            // കൊറിയറും റീഫണ്ടും ഒഴിവാക്കുന്നു (ഡബിൾ ഡിഡക്ഷൻ വരാതിരിക്കാൻ)
-            if (!e.isCourier && cat !== 'refund') {
-                fullExpenses += (Number(e.amount) || 0);
-            }
-        });
-    }
-
-    // ആകെ വരുമാനത്തിൽ നിന്നും ആകെ കുപ്പി ചിലവ്, കൊറിയർ ചിലവ്, മറ്റെല്ലാ ചിലവുകളും കുറയ്ക്കുന്നു
-    let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses);
-
-    let shares = {
-        "Salam": Math.floor(liveProfit * 0.20),
-        "Samad": Math.floor(liveProfit * 0.70),
-        "Jazeela": Math.floor(liveProfit * 0.10)
-    };
-
-    // 🔥 Month Navigation UI Logic
-    let today = new Date();
-    let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
-
-    let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
-    let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
-    let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
-
-    // 🔥 Beautiful Breakdown UI 
-    let breakdownHtml = `
-    <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-2">
-                <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
-                <div>
-                    <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
-                    <div style="font-size:9px; color:#0369a1;">(Income - All Expenses & Materials)</div>
-                </div>
-            </div>
-            <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
-        </div>
-    </div>
-
-    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
-        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-            ${prevBtn}
-            <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
-                <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
-            </h6>
-            ${nextBtn}
-        </div>
-        
-        <div class="d-flex justify-content-between mb-1">
-            <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
-            <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
-        </div>
-        
-        <div class="text-secondary small mb-1 fst-italic" style="font-size:10px; line-height: 1.4;">
-            <span class="fw-bold text-muted">Sales:</span> ${window.currentBreakdownStr}
-        </div>
-        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
-            <span class="fw-bold text-muted">Base Cost:</span> ${window.currentCostBreakdownStr}
-        </div>
-        
-        <div class="d-flex justify-content-between mb-1 mt-2 pt-2 border-top border-secondary border-opacity-10">
-            <span class="text-muted">Total Income:</span>
-            <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
-        </div>
-        <div class="d-flex justify-content-between mb-0">
-            <span class="text-muted">Deductible Expense:</span>
-            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
-        </div>
-        ${window.currentExpenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Food"].toLocaleString()}</span></div>` : ''}
-        ${window.currentExpenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
-        ${window.currentExpenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
-        
-        ${window.currentExpenseCategories["Other"].length > 0 ? `
-            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
-                <span class="text-muted ps-2">📝 Other:</span>
-                <span class="text-danger fw-bold text-end">${window.currentExpenseCategories["Other"].join('<br>')}</span>
-            </div>` : ''}
-            
-        ${window.currentExpenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${window.currentExpenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
-        <div class="d-flex justify-content-between mb-1 mt-1">
-            <span class="fw-bold text-info" style="font-size:10px;">
-                <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
-                ${window.currentMaterialBreakdownStr ? `<br><span class="ms-3 text-secondary opacity-75" style="font-size:9px; font-weight:600;">${window.currentMaterialBreakdownStr}</span>` : ''}
-            </span>
-            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
-            <div class="text-warning fw-bold" style="font-size:10px;">
-                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} <br>
-                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
-            </div>
-            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
-        </div>
-        
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
-            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
-        </div>
-
-        <div class="bg-light p-2 rounded-3 border">
-            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Salam (20%):</span>
-                <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Samad (70%):</span>
-                <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Jazeela (10%):</span>
-                <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
-            </div>
-        </div>
-    </div>`;
-
-    let html = breakdownHtml;
-
-    if (isCurrentMonth) {
-        html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning shadow-sm" style="font-size:10.5px; font-weight:700; background:#fff8e1; border-radius:8px;">
-            <i class="fas fa-info-circle text-warning mt-1"></i> 
-            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ഫൈനൽ ബാലൻസ് ആണ്.</div>
-        </div>`;
-
-        for (let [name, data] of Object.entries(partners)) {
-            let sheetPrevBal = typeof data === 'object' ? data.curr : data;
-            let totalBal = sheetPrevBal;
-
-            if (shares[name]) {
-                totalBal += shares[name];
-            }
-
-            let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
-
-            let withdrawnInfo = '';
-            if (data.withdrawn > 0) {
-                withdrawnInfo = `
-                    <div class="mt-2 pt-2 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:10px; color:#ef4444;">
-                        <span>Total Taken: <b>₹${data.withdrawn.toLocaleString()}</b></span>
-                        <span>Last: <b>₹${data.lastAmt.toLocaleString()}</b> (${data.lastDate})</span>
-                    </div>`;
-            } else {
-                withdrawnInfo = `<div class="mt-2 pt-2 border-top border-secondary border-opacity-10 text-muted" style="font-size:10px;">No salary taken yet.</div>`;
-            }
-
-            html += `
-            <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
-                <div class="d-flex align-items-center w-100">
-                    <div class="me-3">
-                        <i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i>
-                    </div>
-                    <div class="flex-grow-1">
-                        <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
-                        <div class="text-success fw-bold mt-1" style="font-size:13px;">
-                            Total Bal: ₹${formattedBal} 
-                        </div>
-                        <div class="text-muted mt-1" style="font-size:10px; font-weight:600;">
-                            Prev: ₹${sheetPrevBal.toLocaleString()} <span class="mx-1">|</span> This Mth: ₹${(shares[name] || 0).toLocaleString()}
-                        </div>
-                        ${withdrawnInfo}
-                    </div>
-                    <div class="ms-2 d-flex align-items-center justify-content-center">
-                        <i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i>
-                    </div>
-                </div>
-            </div>`;
-        }
-    } else {
-        html += `
-        <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
-            <i class="fas fa-lock fs-5 mb-2"></i><br>
-            സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
-            <div class="mt-3">
-                <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
-                    <i class="fas fa-calendar-day me-1"></i> Go to This Month
-                </button>
-            </div>
-        </div>`;
-    }
-
-    $('#partner-list').html(html);
-};
 
 function selectPartner(name, amount) {
     $('.partner-card').removeClass('selected');
@@ -6597,23 +6371,7 @@ window.showCourierBreakdown = function (dateStr) {
 };
 
 
-// ==========================================
-// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER LOGIC
-// ==========================================
 
-
-
-// 🔥 ഇത് സ്ക്രീനിൽ വെക്കാനുള്ള ഫംഗ്ഷൻ (Dashboard തുറക്കുമ്പോൾ ലോഡ് ആവാൻ)
-window.renderLiveStockTracker = function () {
-    let html = window.getLiveStockHtml();
-
-    // Accounts ടാബിന്റെ ഏറ്റവും മുകളിൽ വെക്കുന്നു
-    if ($('#live-stock-box').length > 0) {
-        $('#live-stock-box').replaceWith(html);
-    } else {
-        $(html).insertBefore('#tx-details-area');
-    }
-};
 
 // 🔥 ACCOUNTS (SALARY) OVERVIEW
 window.renderPartnerList = function () {
@@ -6823,8 +6581,25 @@ window.renderPartnerList = function () {
 };
 
 // ==========================================
-// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER LOGIC (With Smart Adjustment)
+// 🔥 GOOGLE SHEET INTEGRATED LIVE INVENTORY
 // ==========================================
+window.globalInventoryDB = null;
+
+// ഷീറ്റിൽ നിന്നും ഡാറ്റ എടുക്കാൻ
+window.fetchInventoryBg = function () {
+    fetch(`${scriptURL}?action=getInventory`)
+        .then(res => res.json())
+        .then(res => {
+            if (res.result === 'success') {
+                try {
+                    window.globalInventoryDB = JSON.parse(res.data);
+                } catch (e) {
+                    window.globalInventoryDB = null;
+                }
+                if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
+            }
+        }).catch(err => console.log('Inventory fetch error', err));
+};
 
 window.getLiveStockHtml = function () {
     const items = {
@@ -6838,8 +6613,14 @@ window.getLiveStockHtml = function () {
         pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary' }
     };
 
-    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
+    // 🔥 ഗൂഗിൾ ഷീറ്റിൽ നിന്നുള്ള ഡാറ്റ ആണ് ഇനി എടുക്കുന്നത്
+    let db = window.globalInventoryDB;
     let nowLocal = new Date().toISOString().slice(0, 16);
+
+    // ഷീറ്റിൽ നിന്നും ഡാറ്റ ലോഡ് ആയിട്ടില്ലെങ്കിൽ ലോഡിംഗ് കാണിക്കാം
+    if (!db) {
+        return `<div class="text-center p-4 bg-white border rounded-4 shadow-sm mb-4 text-primary fw-bold small"><i class="fas fa-spinner fa-spin me-2"></i> Syncing Live Inventory from Sheet...</div>`;
+    }
 
     let isInitialSetup = false;
     for (let k in items) {
@@ -6847,14 +6628,7 @@ window.getLiveStockHtml = function () {
             db[k] = { total: 0, start: nowLocal, exempt: 0 };
             isInitialSetup = true;
         }
-        // പഴയ end_date ഡാറ്റ ഉണ്ടെങ്കിൽ അത് മാറ്റി exempt ആക്കുന്നു
         if (db[k].exempt === undefined) db[k].exempt = 0;
-    }
-
-    if (isInitialSetup && db.bottles.total === 0) {
-        db.bottles = { total: 1000, start: '2026-03-14T00:00', exempt: 7 };
-        db.honey = { total: 500, start: '2026-03-16T00:00', exempt: 0 };
-        localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
     }
 
     let used = { bottles: 0, honey: 0, tape: 0, roll: 0, box: 0, sticker: 0, a6paper: 0, pouch: 0 };
@@ -6875,17 +6649,17 @@ window.getLiveStockHtml = function () {
             let oName = String(o.name || o.Name || '').toLowerCase();
             let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
 
-            // Start date ന് ശേഷമുള്ള ഓർഡറുകൾ എല്ലാം കൂട്ടുന്നു
             for (let k in items) {
                 if (oDate >= new Date(db[k].start)) {
+                    // 🔥 ഗണിത സൂത്രവാക്യങ്ങൾ (Ratios) ഇവിടെയാണ്! 
                     if (k === 'bottles') used.bottles += isBulk ? 0 : qty;
                     if (k === 'honey') used.honey += isBulk ? qty : (qty * 0.65);
                     if (k === 'pouch') used.pouch += isBulk ? 0 : qty;
-                    if (k === 'sticker') used.sticker += isBulk ? 0 : (qty * 0.2);
+                    if (k === 'sticker') used.sticker += isBulk ? 0 : (qty * 0.2); // 1 കുപ്പിക്ക് 0.2 ഷീറ്റ്
                     if (k === 'box') used.box += isBulk ? 0 : 1;
                     if (k === 'a6paper') used.a6paper += isBulk ? 0 : 1;
-                    if (k === 'tape') used.tape += isBulk ? 0 : 0.05;
-                    if (k === 'roll') used.roll += isBulk ? 0 : (qty * 0.5);
+                    if (k === 'tape') used.tape += isBulk ? 0 : 0.05; // 1 കുപ്പിക്ക് 0.05 റോൾ
+                    if (k === 'roll') used.roll += isBulk ? 0 : (qty * 0.5); // 1 കുപ്പിക്ക് 0.5 മീറ്റർ
                 }
             }
         }
@@ -6901,7 +6675,6 @@ window.getLiveStockHtml = function () {
     `;
 
     for (let k in items) {
-        // 🔥 ടോട്ടൽ ഉപയോഗിച്ചതിൽ നിന്നും പഴയത് (exempt) കുറയ്ക്കുന്നു
         let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
         let bal = Math.max(0, db[k].total - actualUsed);
         let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
@@ -6933,15 +6706,23 @@ window.getLiveStockHtml = function () {
     return html;
 };
 
-// 🔥 UPDATE STOCKS POPUP
+window.renderLiveStockTracker = function () {
+    let html = window.getLiveStockHtml();
+    if ($('#live-stock-box').length > 0) {
+        $('#live-stock-box').replaceWith(html);
+    } else {
+        $(html).insertBefore('#tx-details-area');
+    }
+};
+
 window.editAllStocks = function () {
-    let db = JSON.parse(localStorage.getItem('liveStockTrackerDB')) || {};
+    let db = window.globalInventoryDB || {};
     let nowLocal = new Date().toISOString().slice(0, 16);
 
     let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
         <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
             <b>💡 ഉപയോഗിക്കേണ്ട രീതി:</b> പുതിയ സ്റ്റോക്ക് വരുമ്പോൾ <b>Total Stock</b>-ഉം അത് തുടങ്ങിയ <b>Start Date</b>-ഉം കൊടുക്കുക.<br>
-            പുതിയ സ്റ്റോക്ക് തുടങ്ങിയ തിയ്യതിക്ക് ശേഷം പാക്ക് ചെയ്ത ഓർഡറുകളിൽ, <b>പഴയ സ്റ്റോക്ക്</b> വല്ലതും ഉപയോഗിച്ചിട്ടുണ്ടെങ്കിൽ ആ എണ്ണം <b>Old Stock Used</b> കോളത്തിൽ കൊടുക്കുക. (അത് പുതിയതിൽ നിന്നും കുറയില്ല).
+            പുതിയ സ്റ്റോക്ക് തുടങ്ങിയ തിയ്യതിക്ക് ശേഷം പാക്ക് ചെയ്ത ഓർഡറുകളിൽ, <b>പഴയ സ്റ്റോക്ക്</b> വല്ലതും ഉപയോഗിച്ചിട്ടുണ്ടെങ്കിൽ ആ എണ്ണം <b>Old Stock Used</b> കോളത്തിൽ കൊടുക്കുക.
         </div>
     `;
 
@@ -6959,7 +6740,7 @@ window.editAllStocks = function () {
             <div class="row g-2">
                 <div class="col-4">
                     <label class="text-muted" style="font-size:9px;">Total Stock</label>
-                    <input type="number" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${db[k]?.total || 0}">
+                    <input type="number" step="0.1" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${db[k]?.total || 0}">
                 </div>
                 <div class="col-8">
                     <label class="text-muted" style="font-size:9px;">Start Date & Time</label>
@@ -6979,7 +6760,7 @@ window.editAllStocks = function () {
         html: html,
         width: '98%',
         showCancelButton: true,
-        confirmButtonText: 'Save All Stocks',
+        confirmButtonText: 'Save to Server',
         confirmButtonColor: '#0d6efd',
         customClass: { popup: 'rounded-4 ios-popup' },
         preConfirm: () => {
@@ -6990,10 +6771,27 @@ window.editAllStocks = function () {
                     exempt: parseFloat(document.getElementById(`stk-exempt-${k}`).value) || 0
                 };
             }
-            localStorage.setItem('liveStockTrackerDB', JSON.stringify(db));
-            if (typeof window.renderLiveStockTracker === 'function') window.renderLiveStockTracker();
-            // 🔥 Dashboard റീഫ്രഷ് ചെയ്യാൻ
-            if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) renderPartnerList();
+
+            // 🔥 ഗൂഗിൾ ഷീറ്റിലേക്ക് സേവ് ചെയ്യുന്നു
+            Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+            return fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'saveInventory', inventory: db })
+            })
+                .then(res => res.json())
+                .then(res => {
+                    if (res.result === 'success') {
+                        window.globalInventoryDB = db;
+                        Swal.fire({ icon: 'success', title: 'Saved to Server!', timer: 1500, showConfirmButton: false });
+                        if (typeof window.renderLiveStockTracker === 'function') window.renderLiveStockTracker();
+                        if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) renderPartnerList();
+                    } else {
+                        Swal.fire('Error', 'Failed to save to sheet', 'error');
+                    }
+                }).catch(err => {
+                    Swal.fire('Error', 'Network error while saving.', 'error');
+                });
         }
     });
 };
