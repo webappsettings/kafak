@@ -3316,10 +3316,9 @@ function renderDashboard() {
     if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) {
         renderPartnerList();
     }
-    renderLiveStockTracker();
+    getLiveStockHtml();
 }
 
-// 🔥 RENDER TRANSACTIONS FOR SELECTED DATE
 // 🔥 RENDER TRANSACTIONS FOR SELECTED DATE (WITH COURIER GROUPING FIX)
 function renderTransactionsForDate(dateStr) {
     if (!dashboardData || !dashboardData.monthTimeline) return;
