@@ -6902,6 +6902,10 @@ window.editAllStocks = function () {
     let db = window.globalInventoryDB || {};
     let nowLocal = new Date().toISOString().slice(0, 16);
 
+    // Left drawer-il ippol ulla Batch-um MRP-yum edukkaan
+    let savedBatch = localStorage.getItem('label_batch') || 'HN26PTT03';
+    let savedMrp = localStorage.getItem('label_mrp') || '750';
+
     let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
         <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
             <b>💡 ഉപയോഗിക്കേണ്ട രീതി:</b> പുതിയ സ്റ്റോക്ക് വരുമ്പോൾ <b>Total Stock</b>-ഉം അത് തുടങ്ങിയ <b>Start Date</b>-ഉം കൊടുക്കുക.<br>
@@ -6917,6 +6921,24 @@ window.editAllStocks = function () {
     for (let k in items) {
         let startVal = db[k]?.start ? db[k].start.slice(0, 16) : nowLocal;
         let exemptVal = db[k]?.exempt || 0;
+
+        let extraHtml = '';
+
+        // 🔥 Honey section-il mathram Batch-um MRP-yum add cheyyunnu
+        if (k === 'honey') {
+            extraHtml = `
+            <div class="row g-2 mt-2 pt-2 border-top border-warning border-opacity-50">
+                <div class="col-6">
+                    <label class="text-warning fw-bold" style="font-size:9px;"><i class="fas fa-tag"></i> BATCH NUMBER</label>
+                    <input type="text" id="stk-batch" class="form-control form-control-sm text-dark fw-bold border-warning text-uppercase" value="${savedBatch}" placeholder="HN26PTT03">
+                </div>
+                <div class="col-6">
+                    <label class="text-warning fw-bold" style="font-size:9px;"><i class="fas fa-rupee-sign"></i> MRP (₹)</label>
+                    <input type="number" id="stk-mrp" class="form-control form-control-sm text-dark fw-bold border-warning" value="${savedMrp}" placeholder="750">
+                </div>
+            </div>`;
+        }
+
         html += `
         <div class="mb-3 p-2 border border-secondary border-opacity-25 rounded-3 bg-light shadow-sm">
             <label class="fw-bold text-dark mb-1" style="font-size:12px;">${items[k]}</label>
@@ -6934,6 +6956,7 @@ window.editAllStocks = function () {
                     <input type="number" step="0.1" id="stk-exempt-${k}" class="form-control form-control-sm border-danger border-opacity-50 text-danger fw-bold" value="${exemptVal}">
                 </div>
             </div>
+            ${extraHtml}
         </div>`;
     }
     html += `</div>`;
@@ -6947,6 +6970,7 @@ window.editAllStocks = function () {
         confirmButtonColor: '#0d6efd',
         customClass: { popup: 'rounded-4 ios-popup' },
         preConfirm: () => {
+            // 1. Inventory Data edukkunnu
             for (let k in items) {
                 db[k] = {
                     total: parseFloat(document.getElementById(`stk-total-${k}`).value) || 0,
@@ -6955,7 +6979,24 @@ window.editAllStocks = function () {
                 };
             }
 
-            // 🔥 ഗൂഗിൾ ഷീറ്റിലേക്ക് സേവ് ചെയ്യുന്നു
+            // 2. 🔥 Batch Number-um MRP-yum save cheyyunnu
+            let newBatch = document.getElementById('stk-batch').value.toUpperCase();
+            let newMrp = document.getElementById('stk-mrp').value;
+
+            localStorage.setItem('label_batch', newBatch);
+            localStorage.setItem('label_mrp', newMrp);
+
+            // Left Drawer thurannittundenkil athile values appol thanne update aavan
+            if (document.getElementById('label-batch')) {
+                document.getElementById('label-batch').value = newBatch;
+                document.getElementById('prev-batch').innerText = newBatch;
+            }
+            if (document.getElementById('label-mrp')) {
+                document.getElementById('label-mrp').value = newMrp;
+                document.getElementById('prev-mrp').innerText = newMrp + " . 00";
+            }
+
+            // 3. ഗൂഗിൾ ഷീറ്റിലേക്ക് സേവ് ചെയ്യുന്നു
             Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
             return fetch(scriptURL, {
