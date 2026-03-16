@@ -4940,8 +4940,10 @@ function parseDynamicRate(rateString, qty) {
 function injectLeftDrawer() {
     if ($('#left-drawer').length) return;
 
-    let savedMrp = localStorage.getItem('label_mrp') || '750';
-    let savedBatch = localStorage.getItem('label_batch') || 'HN25PTT02';
+    // 🔥 Server DB-il ninnum edukunnathanu aadyam pariganikkuka
+    let db = window.globalInventoryDB || {};
+    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || '750');
+    let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN25PTT02');
     let savedStickersPerA4 = localStorage.getItem('stickersPerA4') || '5';
 
     let today = new Date();
@@ -5095,7 +5097,6 @@ function injectLeftDrawer() {
         });
     }
 }
-
 
 
 window.updatePrintPrediction = function () {
@@ -6902,9 +6903,9 @@ window.editAllStocks = function () {
     let db = window.globalInventoryDB || {};
     let nowLocal = new Date().toISOString().slice(0, 16);
 
-    // Left drawer-il ippol ulla Batch-um MRP-yum edukkaan
-    let savedBatch = localStorage.getItem('label_batch') || 'HN26PTT03';
-    let savedMrp = localStorage.getItem('label_mrp') || '750';
+    // 🔥 Server-il ninnum Batch-um MRP-yum edukkunnu
+    let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN26PTT03');
+    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || '750');
 
     let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
         <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
@@ -6921,10 +6922,9 @@ window.editAllStocks = function () {
     for (let k in items) {
         let startVal = db[k]?.start ? db[k].start.slice(0, 16) : nowLocal;
         let exemptVal = db[k]?.exempt || 0;
+        let totalVal = db[k]?.total || 0;
 
         let extraHtml = '';
-
-        // 🔥 Honey section-il mathram Batch-um MRP-yum add cheyyunnu
         if (k === 'honey') {
             extraHtml = `
             <div class="row g-2 mt-2 pt-2 border-top border-warning border-opacity-50">
@@ -6945,7 +6945,7 @@ window.editAllStocks = function () {
             <div class="row g-2">
                 <div class="col-4">
                     <label class="text-muted" style="font-size:9px;">Total Stock</label>
-                    <input type="number" step="0.1" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${db[k]?.total || 0}">
+                    <input type="number" step="0.1" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${totalVal}">
                 </div>
                 <div class="col-8">
                     <label class="text-muted" style="font-size:9px;">Start Date & Time</label>
@@ -6970,7 +6970,6 @@ window.editAllStocks = function () {
         confirmButtonColor: '#0d6efd',
         customClass: { popup: 'rounded-4 ios-popup' },
         preConfirm: () => {
-            // 1. Inventory Data edukkunnu
             for (let k in items) {
                 db[k] = {
                     total: parseFloat(document.getElementById(`stk-total-${k}`).value) || 0,
@@ -6979,14 +6978,17 @@ window.editAllStocks = function () {
                 };
             }
 
-            // 2. 🔥 Batch Number-um MRP-yum save cheyyunnu
+            // 🔥 Server-il DB-ilekk Batch-um MRP-yum set cheyyunnu
             let newBatch = document.getElementById('stk-batch').value.toUpperCase();
             let newMrp = document.getElementById('stk-mrp').value;
 
+            db.honey.batch = newBatch;
+            db.honey.mrp = newMrp;
+
+            // Local aayum save aakkunnu (pettennu load aavan)
             localStorage.setItem('label_batch', newBatch);
             localStorage.setItem('label_mrp', newMrp);
 
-            // Left Drawer thurannittundenkil athile values appol thanne update aavan
             if (document.getElementById('label-batch')) {
                 document.getElementById('label-batch').value = newBatch;
                 document.getElementById('prev-batch').innerText = newBatch;
@@ -6996,7 +6998,6 @@ window.editAllStocks = function () {
                 document.getElementById('prev-mrp').innerText = newMrp + " . 00";
             }
 
-            // 3. ഗൂഗിൾ ഷീറ്റിലേക്ക് സേവ് ചെയ്യുന്നു
             Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
             return fetch(scriptURL, {
