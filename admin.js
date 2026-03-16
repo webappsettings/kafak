@@ -5102,7 +5102,7 @@ function injectLeftDrawer() {
     }
 }
 
-
+// 🔥 SMART PRINT PREDICTOR
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5111,7 +5111,7 @@ window.updatePrintPrediction = function () {
     localStorage.setItem('stickersPerA4', ratio);
 
     let unprintedBottles = 0;
-    let printedBottles = 0; // 🔥 NEW: പ്രിന്റ് ചെയ്തവയുടെ എണ്ണം എടുക്കാൻ
+    let printedBottles = 0;
 
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
@@ -5124,10 +5124,11 @@ window.updatePrintPrediction = function () {
             if (status === 'Paid') {
                 let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
-                if (!metaStr.includes('P')) {
-                    unprintedBottles += qty; // പ്രിന്റ് ചെയ്യാത്തവ
+                // 🔥 മാറിയത്: 'P' ക്ക് പകരം 'S' (Sticker) ആക്കി
+                if (!metaStr.includes('S')) {
+                    unprintedBottles += qty; // സ്റ്റിക്കർ പ്രിന്റ് ചെയ്യാത്തവ
                 } else {
-                    printedBottles += qty; // 🔥 പ്രിന്റ് ചെയ്തവ
+                    printedBottles += qty; // സ്റ്റിക്കർ പ്രിന്റ് ചെയ്തവ
                 }
             }
         });
@@ -5135,10 +5136,8 @@ window.updatePrintPrediction = function () {
 
     let fullSheets = Math.floor(unprintedBottles / ratio);
     let remainder = unprintedBottles % ratio;
-
     let totalSheetsNeeded = Math.ceil(unprintedBottles / ratio);
 
-    // 2.2 ന് പകരം "2 Sheets & 1 Label" എന്ന് കാണിക്കാൻ
     let exactText = `${fullSheets} Sheet`;
     if (fullSheets !== 1) exactText += 's';
 
@@ -5153,12 +5152,10 @@ window.updatePrintPrediction = function () {
         document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
         document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
         document.getElementById('exact-sheets-count').innerText = exactText;
-
-        // 🔥 പ്രിന്റ് ചെയ്ത കുപ്പികളുടെ എണ്ണം ഡിസ്പ്ലേ ചെയ്യുന്നു
         document.getElementById('printed-bottles-count').innerText = printedBottles;
     }
 
-    // 🔥 ഗൂഗിൾ ഷീറ്റിൽ നിന്നുള്ള A4 സ്റ്റോക്ക് എടുക്കാൻ
+    // A4 സ്റ്റോക്ക് എടുക്കാൻ
     let db = window.globalInventoryDB || {};
     let stickerBal = 0;
     if (db.sticker) {
@@ -5180,7 +5177,7 @@ window.updatePrintPrediction = function () {
                     let oName = String(o.name || o.Name || '').toLowerCase();
                     let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
 
-                    if (!isBulk) usedStickers += (qty * 0.2); // 1 കുപ്പിക്ക് 0.2 ഷീറ്റ് കുറയുന്നു
+                    if (!isBulk) usedStickers += (qty * 0.2);
                 }
             }
         });
@@ -5191,7 +5188,7 @@ window.updatePrintPrediction = function () {
         document.getElementById('a4-stock-display').innerText = stickerBal + " Sheets";
     }
 
-    // 🔥 ഡ്രോപ്പ്ഡൗൺ ഓപ്ഷനുകൾ സെറ്റ് ചെയ്യുന്നു
+    // ഡ്രോപ്പ്ഡൗൺ ഓപ്ഷനുകൾ സെറ്റ് ചെയ്യുന്നു
     let modeBox = document.getElementById('print-qty-mode');
     if (!modeBox) return;
 
@@ -5203,6 +5200,8 @@ window.updatePrintPrediction = function () {
             <option value="${ratio}">Print ${ratio} Labels (1 Full Sheet)</option>
             <option value="1">Print 1 Label</option>
             <option value="2">Print 2 Labels</option>
+            <option value="3">Print 3 Labels</option>
+            <option value="4">Print 4 Labels</option>
         `;
     } else if (exactQty === filledQty) {
         modeBox.innerHTML = `<option value="${exactQty}">Print Exact (${exactQty} Labels - Perfect Fit)</option>`;
@@ -5213,7 +5212,6 @@ window.updatePrintPrediction = function () {
         `;
     }
 
-    // നമ്മൾ ratio മാറ്റുമ്പോൾ ലൈവ് സ്റ്റോക്ക് കാർഡുകളും ഉടനെ അപ്ഡേറ്റ് ആവാൻ
     if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
 };
 
@@ -5250,7 +5248,6 @@ window.printProductLabels = function () {
     let batch = $('#label-batch').val().toUpperCase();
     let date = $('#label-date').val();
 
-    // ഡ്രോപ്പ്ഡൗണിൽ നിന്നും എണ്ണം എടുക്കുന്നു
     let printCount = parseInt($('#print-qty-mode').val()) || 5;
 
     if (!mrp || !batch || !date) {
@@ -5258,75 +5255,58 @@ window.printProductLabels = function () {
         return;
     }
 
+    // 🔥 STEP 1: പ്രിന്റ് ചെയ്യുന്ന കുപ്പികളുടെ ഓർഡറുകൾ കണ്ടുപിടിച്ച് 'S' മാർക്ക് ചെയ്യുന്നു
+    let ordersToUpdate = [];
+    let labelsNeeded = printCount;
+
+    if (typeof allOrders !== 'undefined') {
+        let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+        let pendingOrders = allOrders.filter(o => {
+            let status = String(o.Status || 'Pending').trim();
+            let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
+            let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
+            // Paid ആയതും ഇതുവരെ സ്റ്റിക്കർ അടിക്കാത്തതും (S ഇല്ലാത്തതും) എടുക്കുന്നു
+            return status === 'Paid' && !metaStr.includes('S');
+        });
+
+        // പഴയ ഓർഡറുകൾ ആദ്യം എടുക്കാൻ റിവേഴ്സ് ചെയ്യുന്നു
+        pendingOrders.reverse().forEach(o => {
+            if (labelsNeeded <= 0) return; // വേണ്ടത്ര എണ്ണം ആയാൽ നിർത്തുന്നു
+
+            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+
+            let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
+            let currentMeta = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
+
+            // പഴയ ഡാറ്റയുടെ കൂടെ 'S' ചേർക്കുന്നു
+            let newMeta = currentMeta ? currentMeta + " S" : "S";
+
+            ordersToUpdate.push({ oid: o.orderid, action: 'meta', meta: newMeta });
+            o.adminMeta = newMeta; // ലൈവ് ആയി മാറാൻ ലോക്കൽ ആറേയും അപ്ഡേറ്റ് ചെയ്യുന്നു
+
+            labelsNeeded -= qty;
+        });
+    }
+
+    // 🔥 STEP 2: പ്രിന്റ് വിൻഡോ തുറക്കുന്നു
     let printWin = window.open('', 'LabelPrintWindow', 'width=800,height=900');
 
     let html = `<html><head><title>KAFAK Product Labels</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* പ്രിന്റ് ചെയ്യുമ്പോൾ പേപ്പറിന് മാർജിൻ ഉണ്ടാകാതിരിക്കാൻ */
         @media print {
-            @page { 
-                size: 210mm 297mm; 
-                margin: 0 !important; 
-                padding: 0 !important; 
-            }
-            html, body {
-                width: 210mm;
-                height: 297mm;
-                margin: 0 !important;
-                padding: 0 !important;
-            }
+            @page { size: 210mm 297mm; margin: 0 !important; padding: 0 !important; }
+            html, body { width: 210mm; height: 297mm; margin: 0 !important; padding: 0 !important; }
         }
-        
-        * {
-            -webkit-print-color-adjust: exact !important;
-            print-color-adjust: exact !important;
-            color-adjust: exact !important;
-            box-sizing: border-box !important;
-        }
-
-        body { 
-            margin: 0; 
-            padding: 0; 
-            background: #fff; 
-            overflow: hidden; 
-        }
-        
-        .label-container {
-            width: 210mm;
-            height: 59.4mm; /* കൃത്യം 59.4mm (1/5th of A4) */
-            position: relative;
-            overflow: hidden;
-            display: block;
-            border: none; 
-        }
-        
-        .label-bg {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0; left: 0; z-index: 1;
-            image-rendering: -webkit-optimize-contrast; 
-            image-rendering: high-quality;
-        }
-        
-        .text-overlay {
-            position: absolute;
-            top: 10.5mm; 
-            left: 174mm; 
-            z-index: 10;
-            font-size: 10px; 
-            color: #000;
-            line-height: 1.2; 
-            letter-spacing: 0.5px;
-            font-family: 'Montserrat', sans-serif !important;
-            font-weight: 700;
-        }
+        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; box-sizing: border-box !important; }
+        body { margin: 0; padding: 0; background: #fff; overflow: hidden; }
+        .label-container { width: 210mm; height: 59.4mm; position: relative; overflow: hidden; display: block; border: none; }
+        .label-bg { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1; image-rendering: -webkit-optimize-contrast; image-rendering: high-quality; }
+        .text-overlay { position: absolute; top: 10.5mm; left: 174mm; z-index: 10; font-size: 10px; color: #000; line-height: 1.2; letter-spacing: 0.5px; font-family: 'Montserrat', sans-serif !important; font-weight: 700; }
     </style>
     </head><body>`;
 
-    // നമ്മൾ കൊടുത്ത എണ്ണം മാത്രം പ്രിന്റ് ചെയ്യുന്നു (ബാക്കി സ്ഥലം ബ്ലാങ്ക് ആകും)
     for (let i = 0; i < printCount; i++) {
         html += `
         <div class="label-container">
@@ -5348,8 +5328,20 @@ window.printProductLabels = function () {
         printWin.focus();
         printWin.print();
     }, 1000);
-}
 
+    // 🔥 STEP 3: Server-ലേക്ക് പുതിയ സ്റ്റാറ്റസ് അയക്കുന്നു (Background)
+    if (ordersToUpdate.length > 0) {
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'bulkUpdateStatus', updates: ordersToUpdate })
+        }).catch(e => console.log('Sticker API error', e));
+
+        // ലെഫ്റ്റ് ഡ്രോയറിലെ എണ്ണം ഉടൻ മാറാൻ
+        setTimeout(() => {
+            if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
+        }, 500);
+    }
+}
 // 🔥 RESEND ORDER LOGIC (Message column & Expense Description updated with Dates - Return Free)
 window.handleResendOrder = function (oid, index) {
     let order = allOrders[index];
