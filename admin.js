@@ -5091,7 +5091,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 പുതിയ പ്രിന്റ് കാൽക്കുലേറ്റർ ഫംഗ്ഷൻ (ഇത് ഇവിടെത്തന്നെ വെക്കുക)
+// 🔥 പുതിയ പ്രിന്റ് കാൽക്കുലേറ്റർ ഫംഗ്ഷൻ (Text രൂപത്തിൽ)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5103,7 +5103,7 @@ window.updatePrintPrediction = function () {
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
             let status = String(o.Status || 'Pending').trim();
-            // പെൻഡിങ് അപ്ഡേറ്റ്സിൽ നിന്നും യഥാർത്ഥ മെറ്റാ എടുക്കുന്നു (കൃത്യതയ്ക്ക് വേണ്ടി)
+            // പെൻഡിങ് അപ്ഡേറ്റ്സിൽ നിന്നും യഥാർത്ഥ മെറ്റാ എടുക്കുന്നു
             let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
             let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
             let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
@@ -5116,17 +5116,25 @@ window.updatePrintPrediction = function () {
         });
     }
 
-    let exactSheets = 0;
-    let fullSheets = 0;
+    let fullSheets = Math.floor(unprintedBottles / ratio);
+    let remainder = unprintedBottles % ratio;
 
-    if (unprintedBottles > 0) {
-        exactSheets = (unprintedBottles / ratio).toFixed(1); // ഉദാഹരണത്തിന്: 2.4
-        fullSheets = Math.ceil(unprintedBottles / ratio); // റൗണ്ട് ചെയ്ത് 3 ഷീറ്റ് ആക്കുന്നു
+    let totalSheetsNeeded = Math.ceil(unprintedBottles / ratio);
+
+    // 2.2 ന് പകരം "2 Sheets & 1 Label" എന്ന് കാണിക്കാൻ
+    let exactText = `${fullSheets} Sheet`;
+    if (fullSheets !== 1) exactText += 's';
+
+    if (remainder > 0) {
+        exactText += ` & ${remainder} Label`;
+        if (remainder > 1) exactText += 's';
     }
 
+    if (unprintedBottles === 0) exactText = "0 Sheets";
+
     document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
-    document.getElementById('required-sheets-count').innerText = fullSheets;
-    document.getElementById('exact-sheets-count').innerText = exactSheets;
+    document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
+    document.getElementById('exact-sheets-count').innerText = exactText;
 
     // നമ്മൾ ratio മാറ്റുമ്പോൾ ലൈവ് സ്റ്റോക്ക് കാർഡുകളും ഉടനെ അപ്ഡേറ്റ് ആവാൻ
     if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
@@ -5182,7 +5190,6 @@ window.printProductLabels = function () {
         return;
     }
 
-    // 🔥 മാറ്റം 1: വിൻഡോയ്ക്ക് ഒരു പുതിയ പേര് കൊടുത്തു (Cache ഒഴിവാക്കാൻ)
     let printWin = window.open('', 'LabelPrintWindow', 'width=800,height=900');
 
     let html = `<html><head><title>KAFAK Product Labels</title>
@@ -5214,16 +5221,16 @@ window.printProductLabels = function () {
             margin: 0; 
             padding: 0; 
             background: #fff; 
-            overflow: hidden; /* 🔥 എക്സ്ട്രാ സ്ക്രോൾ ബാർ വന്ന് സൈസ് കുറയാതിരിക്കാൻ */
+            overflow: hidden; 
         }
         
         .label-container {
             width: 210mm;
-            height: 59.4mm; /* 🔥 297mm / 5 = കൃത്യം 59.4mm (ഒരു മില്ലിമീറ്റർ പോലും ഗ്യാപ്പ് വരില്ല) */
+            height: 59.4mm; /* 🔥 കൃത്യം 59.4mm (ഒരു മില്ലിമീറ്റർ പോലും വ്യത്യാസം വരില്ല) */
             position: relative;
             overflow: hidden;
             display: block;
-            border: none; /* 🔥 പഴയ dashed ലൈൻ ഒഴിവാക്കി (അത് ചിലപ്പോൾ എക്സ്ട്രാ സ്പേസ് എടുക്കും) */
+            border: none; 
         }
         
         .label-bg {
@@ -5251,8 +5258,8 @@ window.printProductLabels = function () {
     </style>
     </head><body>`;
 
-    for (let i = 0; i < 5; i++) {
-        html += `
+    // 🔥 5 തവണ ulla loop ഒഴിവാക്കി, 1 div മാത്രം ആക്കി
+    html += `
         <div class="label-container">
             <img src="label_design.jpg" class="label-bg" />
             <div class="text-overlay">
@@ -5261,7 +5268,6 @@ window.printProductLabels = function () {
                 <div>${date}</div>
             </div>
         </div>`;
-    }
 
     html += `</body></html>`;
 
