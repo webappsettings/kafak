@@ -4937,15 +4937,6 @@ function parseDynamicRate(rateString, qty) {
     return matchedRate;
 }
 
-// ==========================================
-// 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
-// ==========================================
-
-
-// ==========================================
-// 🔥 ADMIN LEFT DRAWER & LABEL PRINTING
-// ==========================================
-
 function injectLeftDrawer() {
     if ($('#left-drawer').length) return;
 
@@ -4987,29 +4978,32 @@ function injectLeftDrawer() {
                 
                 <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 mb-4 shadow-sm mx-auto" style="max-width: 350px;">
                     <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-primary border-opacity-25">
-                        <h6 class="fw-bold text-primary m-0" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-sticky-note me-1"></i> A4 PRINT PREDICTOR</h6>
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="text-primary fw-bold" style="font-size:9px;">PER PAGE:</span>
-                            <select id="stickers-per-page" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm" style="width:55px; height:24px; padding:2px 10px; font-size:11px;" onchange="updatePrintPrediction()">
-                                <option value="1" ${savedStickersPerA4 === '1' ? 'selected' : ''}>1</option>
-                                <option value="2" ${savedStickersPerA4 === '2' ? 'selected' : ''}>2</option>
-                                <option value="3" ${savedStickersPerA4 === '3' ? 'selected' : ''}>3</option>
-                                <option value="4" ${savedStickersPerA4 === '4' ? 'selected' : ''}>4</option>
-                                <option value="5" ${savedStickersPerA4 === '5' ? 'selected' : ''}>5</option>
-                            </select>
+                        <h6 class="fw-bold text-primary m-0" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-sticky-note me-1"></i> A4 PRINT MANAGER</h6>
+                        <div class="badge bg-white text-dark border shadow-sm" style="font-size:9px;">
+                            A4 Stock: <span id="a4-stock-display" class="text-primary fw-bold fs-6">0</span>
                         </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center mt-2">
-                        <div>
+                    <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
+                        <div class="text-center w-50">
                             <div class="text-muted fw-bold text-uppercase" style="font-size:9px;">Unprinted Bottles</div>
-                            <div class="fw-bolder text-dark fs-5" id="unprinted-bottles-count">0</div>
+                            <div class="fw-bolder text-dark fs-4" id="unprinted-bottles-count">0</div>
                         </div>
                         <div style="height:30px; width:1px; background:#bbd0ff;"></div>
-                        <div class="text-end">
-                            <div class="text-muted fw-bold text-uppercase" style="font-size:9px;">Sheets Required</div>
-                            <div class="fw-bolder text-success fs-5"><span id="required-sheets-count">0</span> <span class="text-muted fw-bold" style="font-size:10px;">(<span id="exact-sheets-count">0.0</span>)</span></div>
+                        <div class="text-center w-50">
+                            <div class="text-muted fw-bold text-uppercase" style="font-size:9px;">Sheets Needed</div>
+                            <div class="fw-bolder text-success fs-4"><span id="required-sheets-count">0</span> <span class="text-muted fw-bold" style="font-size:10px;">(<span id="exact-sheets-count">0.0</span>)</span></div>
                         </div>
                     </div>
+                    
+                    <label class="small fw-bold text-muted mb-1" style="font-size:10px;">SELECT PRINT MODE:</label>
+                    <select id="print-qty-mode" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm mb-3" style="font-size:11px;">
+                        </select>
+
+                    <div class="d-flex justify-content-between align-items-center p-2 bg-white rounded border border-success border-opacity-50 shadow-sm">
+                        <span class="fw-bold text-success" style="font-size:10px;"><i class="fas fa-check-circle me-1"></i> Printed (Waiting Dispatch):</span>
+                        <span class="badge bg-success fw-bold fs-6" id="printed-bottles-count">0</span>
+                    </div>
+
                 </div>
 
                 <h6 class="fw-bold text-dark mb-2" style="font-size:12px; letter-spacing:0.5px;">LIVE PREVIEW</h6>
@@ -5022,7 +5016,18 @@ function injectLeftDrawer() {
                 </div>
 
                 <div class="bg-white p-3 rounded-4 border border-secondary border-opacity-10 shadow-sm mx-auto" style="max-width: 350px;">
-                    <label class="small fw-bold text-muted mb-1" style="font-size:11px;">MRP (₹)</label>
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                        <label class="small fw-bold text-muted mb-0" style="font-size:11px;">PER PAGE LIMIT</label>
+                        <select id="stickers-per-page" class="form-select form-select-sm fw-bold border-secondary text-dark shadow-sm" style="width:60px; height:26px; padding:2px 10px; font-size:12px;" onchange="updatePrintPrediction()">
+                            <option value="1" ${savedStickersPerA4 === '1' ? 'selected' : ''}>1</option>
+                            <option value="2" ${savedStickersPerA4 === '2' ? 'selected' : ''}>2</option>
+                            <option value="3" ${savedStickersPerA4 === '3' ? 'selected' : ''}>3</option>
+                            <option value="4" ${savedStickersPerA4 === '4' ? 'selected' : ''}>4</option>
+                            <option value="5" ${savedStickersPerA4 === '5' ? 'selected' : ''}>5</option>
+                        </select>
+                    </div>
+                    
+                    <label class="small fw-bold text-muted mb-1 mt-2" style="font-size:11px;">MRP (₹)</label>
                     <input type="text" id="label-mrp" class="form-control mb-2 fw-bold border-secondary border-opacity-25" value="${savedMrp}" oninput="updateLabelPreview()">
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:11px;">BATCH NO.</label>
@@ -5035,7 +5040,7 @@ function injectLeftDrawer() {
                     </div>
                     
                     <button class="btn w-100 fw-bold shadow text-white" style="background:#1e293b; font-size:13px; padding: 12px 0; border-radius: 12px;" onclick="printProductLabels()">
-                        <i class="fas fa-file-pdf me-1 text-warning"></i> PRINT LABELS (A4)
+                        <i class="fas fa-file-pdf me-1 text-warning"></i> PRINT LABELS
                     </button>
                 </div>
             </div>
@@ -5091,7 +5096,8 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 പുതിയ പ്രിന്റ് കാൽക്കുലേറ്റർ ഫംഗ്ഷൻ (Text രൂപത്തിൽ)
+
+
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5100,18 +5106,24 @@ window.updatePrintPrediction = function () {
     localStorage.setItem('stickersPerA4', ratio);
 
     let unprintedBottles = 0;
+    let printedBottles = 0; // 🔥 NEW: പ്രിന്റ് ചെയ്തവയുടെ എണ്ണം എടുക്കാൻ
+
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
             let status = String(o.Status || 'Pending').trim();
-            // പെൻഡിങ് അപ്ഡേറ്റ്സിൽ നിന്നും യഥാർത്ഥ മെറ്റാ എടുക്കുന്നു
             let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
             let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
             let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
 
-            // Status 'Paid' ആണ്, പക്ഷെ പ്രിന്റ് ചെയ്തിട്ടില്ല എങ്കിൽ എണ്ണം കൂട്ടുന്നു
-            if (status === 'Paid' && !metaStr.includes('P')) {
+            // Status 'Paid' ആണ് എങ്കിൽ (Dispatched ആയിട്ടില്ലെങ്കിൽ)
+            if (status === 'Paid') {
                 let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
-                unprintedBottles += qty;
+
+                if (!metaStr.includes('P')) {
+                    unprintedBottles += qty; // പ്രിന്റ് ചെയ്യാത്തവ
+                } else {
+                    printedBottles += qty; // 🔥 പ്രിന്റ് ചെയ്തവ
+                }
             }
         });
     }
@@ -5132,9 +5144,69 @@ window.updatePrintPrediction = function () {
 
     if (unprintedBottles === 0) exactText = "0 Sheets";
 
-    document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
-    document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
-    document.getElementById('exact-sheets-count').innerText = exactText;
+    if (document.getElementById('unprinted-bottles-count')) {
+        document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
+        document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
+        document.getElementById('exact-sheets-count').innerText = exactText;
+
+        // 🔥 പ്രിന്റ് ചെയ്ത കുപ്പികളുടെ എണ്ണം ഡിസ്പ്ലേ ചെയ്യുന്നു
+        document.getElementById('printed-bottles-count').innerText = printedBottles;
+    }
+
+    // 🔥 ഗൂഗിൾ ഷീറ്റിൽ നിന്നുള്ള A4 സ്റ്റോക്ക് എടുക്കാൻ
+    let db = window.globalInventoryDB || {};
+    let stickerBal = 0;
+    if (db.sticker) {
+        let usedStickers = 0;
+        let nowLocal = new Date().toISOString().slice(0, 16);
+        let startDate = new Date(db.sticker.start || nowLocal);
+
+        allOrders.forEach(o => {
+            let status = String(o.Status || 'Pending').trim();
+            if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
+                if (!oDateRaw) return;
+                let oDate = new Date(oDateRaw);
+                if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
+
+                if (oDate >= startDate) {
+                    let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+                    let appWeb = String(o['App / Web'] || o.appWeb || '').toLowerCase();
+                    let oName = String(o.name || o.Name || '').toLowerCase();
+                    let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
+
+                    if (!isBulk) usedStickers += (qty * 0.2); // 1 കുപ്പിക്ക് 0.2 ഷീറ്റ് കുറയുന്നു
+                }
+            }
+        });
+        let actualUsed = Math.max(0, usedStickers - (parseFloat(db.sticker.exempt) || 0));
+        stickerBal = Math.max(0, db.sticker.total - actualUsed).toFixed(1);
+    }
+    if (document.getElementById('a4-stock-display')) {
+        document.getElementById('a4-stock-display').innerText = stickerBal + " Sheets";
+    }
+
+    // 🔥 ഡ്രോപ്പ്ഡൗൺ ഓപ്ഷനുകൾ സെറ്റ് ചെയ്യുന്നു
+    let modeBox = document.getElementById('print-qty-mode');
+    if (!modeBox) return;
+
+    let exactQty = unprintedBottles;
+    let filledQty = totalSheetsNeeded * ratio;
+
+    if (exactQty === 0) {
+        modeBox.innerHTML = `
+            <option value="${ratio}">Print ${ratio} Labels (1 Full Sheet)</option>
+            <option value="1">Print 1 Label</option>
+            <option value="2">Print 2 Labels</option>
+        `;
+    } else if (exactQty === filledQty) {
+        modeBox.innerHTML = `<option value="${exactQty}">Print Exact (${exactQty} Labels - Perfect Fit)</option>`;
+    } else {
+        modeBox.innerHTML = `
+            <option value="${filledQty}" selected>Fill Last Sheet (Print ${filledQty} Labels - No Waste)</option>
+            <option value="${exactQty}">Print Exact Balance (Print ${exactQty} Labels - Leave Blanks)</option>
+        `;
+    }
 
     // നമ്മൾ ratio മാറ്റുമ്പോൾ ലൈവ് സ്റ്റോക്ക് കാർഡുകളും ഉടനെ അപ്ഡേറ്റ് ആവാൻ
     if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
@@ -5148,7 +5220,6 @@ window.toggleLeftDrawer = function () {
         drawer.removeClass('open').css('left', '-100%');
         overlay.fadeOut(200);
     } else {
-        // 🔥 ഡ്രോയർ തുറക്കുമ്പോൾ എപ്പോഴും എണ്ണം കൃത്യമായി കാണിക്കാൻ
         if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
         drawer.addClass('open').css('left', '0px');
         overlay.fadeIn(200);
@@ -5168,22 +5239,14 @@ window.updateLabelPreview = function () {
     localStorage.setItem('label_batch', batch);
 }
 
-window.toggleLeftDrawer = function () {
-    let drawer = $('#left-drawer');
-    let overlay = $('#left-drawer-overlay');
-    if (drawer.css('left') === '0px') {
-        drawer.css('left', '-420px');
-        overlay.fadeOut(200);
-    } else {
-        drawer.css('left', '0px');
-        overlay.fadeIn(200);
-    }
-}
 
 window.printProductLabels = function () {
     let mrp = $('#label-mrp').val();
     let batch = $('#label-batch').val().toUpperCase();
     let date = $('#label-date').val();
+
+    // ഡ്രോപ്പ്ഡൗണിൽ നിന്നും എണ്ണം എടുക്കുന്നു
+    let printCount = parseInt($('#print-qty-mode').val()) || 5;
 
     if (!mrp || !batch || !date) {
         showToast('error', 'Please fill all fields');
@@ -5195,7 +5258,7 @@ window.printProductLabels = function () {
     let html = `<html><head><title>KAFAK Product Labels</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* 🔥 പ്രിന്റ് ചെയ്യുമ്പോൾ പേപ്പറിന് ഒട്ടും മാർജിൻ ഉണ്ടാകാതിരിക്കാൻ */
+        /* പ്രിന്റ് ചെയ്യുമ്പോൾ പേപ്പറിന് മാർജിൻ ഉണ്ടാകാതിരിക്കാൻ */
         @media print {
             @page { 
                 size: 210mm 297mm; 
@@ -5226,7 +5289,7 @@ window.printProductLabels = function () {
         
         .label-container {
             width: 210mm;
-            height: 59.4mm; /* 🔥 കൃത്യം 59.4mm (ഒരു മില്ലിമീറ്റർ പോലും വ്യത്യാസം വരില്ല) */
+            height: 59.4mm; /* കൃത്യം 59.4mm (1/5th of A4) */
             position: relative;
             overflow: hidden;
             display: block;
@@ -5258,8 +5321,9 @@ window.printProductLabels = function () {
     </style>
     </head><body>`;
 
-    // 🔥 5 തവണ ulla loop ഒഴിവാക്കി, 1 div മാത്രം ആക്കി
-    html += `
+    // നമ്മൾ കൊടുത്ത എണ്ണം മാത്രം പ്രിന്റ് ചെയ്യുന്നു (ബാക്കി സ്ഥലം ബ്ലാങ്ക് ആകും)
+    for (let i = 0; i < printCount; i++) {
+        html += `
         <div class="label-container">
             <img src="label_design.jpg" class="label-bg" />
             <div class="text-overlay">
@@ -5268,6 +5332,7 @@ window.printProductLabels = function () {
                 <div>${date}</div>
             </div>
         </div>`;
+    }
 
     html += `</body></html>`;
 
