@@ -6735,7 +6735,7 @@ window.renderPartnerList = function () {
 // ==========================================
 window.globalInventoryDB = null;
 
-// ഷീറ്റിൽ നിന്നും ഡാറ്റ എടുക്കാൻ (POST Method)
+// ഷീറ്റിൽ നിന്നും ഡാറ്റ എടുക്കാൻ (POST Method - Safe Fallback)
 window.fetchInventoryBg = function () {
     fetch(scriptURL, {
         method: 'POST',
@@ -6745,13 +6745,19 @@ window.fetchInventoryBg = function () {
         .then(res => {
             if (res.result === 'success') {
                 try {
-                    window.globalInventoryDB = JSON.parse(res.data);
+                    let parsed = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
+                    // ഡാറ്റ ഇല്ലെങ്കിൽ null ആക്കാതെ {} (ശൂന്യമായ ഒബ്ജക്റ്റ്) ആക്കുന്നു. എങ്കിലേ ലോഡിങ് നിൽക്കൂ.
+                    window.globalInventoryDB = (parsed && Object.keys(parsed).length > 0) ? parsed : {};
                 } catch (e) {
-                    window.globalInventoryDB = null;
+                    window.globalInventoryDB = {};
                 }
                 if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
             }
-        }).catch(err => console.log('Inventory fetch error', err));
+        }).catch(err => {
+            console.log('Inventory fetch error', err);
+            window.globalInventoryDB = {}; // എറർ വന്നാലും ലോഡിങ് നിർത്താൻ
+            if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
+        });
 };
 
 // ==========================================
@@ -6775,7 +6781,7 @@ window.getLiveStockHtml = function () {
     let nowLocal = new Date().toISOString().slice(0, 16);
 
     if (!db) {
-        return `<div class="text-center p-4 bg-white border rounded-4 shadow-sm mb-4 text-primary fw-bold small"><i class="fas fa-spinner fa-spin me-2"></i> Syncing Live Inventory from Sheet...</div>`;
+        return `<div id="live-stock-box" class="text-center p-4 bg-white border rounded-4 shadow-sm mb-4 text-primary fw-bold small"><i class="fas fa-spinner fa-spin me-2"></i> Syncing Live Inventory from Sheet...</div>`;
     }
 
     let isInitialSetup = false;
