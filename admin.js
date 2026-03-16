@@ -4942,7 +4942,11 @@ function injectLeftDrawer() {
 
     // 🔥 Server DB-il ninnum edukunnathanu aadyam pariganikkuka
     let db = window.globalInventoryDB || {};
-    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || '750');
+
+    // 🔥 ഡൈനാമിക് ആയി ഷീറ്റിൽ നിന്നും MRP കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+    let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
+
+    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || calculatedMRP);
     let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN25PTT02');
     let savedStickersPerA4 = localStorage.getItem('stickersPerA4') || '5';
 
@@ -6903,9 +6907,10 @@ window.editAllStocks = function () {
     let db = window.globalInventoryDB || {};
     let nowLocal = new Date().toISOString().slice(0, 16);
 
-    // 🔥 Server-il ninnum Batch-um MRP-yum edukkunnu
+    let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
+
     let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN26PTT03');
-    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || '750');
+    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || calculatedMRP);
 
     let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
         <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
@@ -7019,4 +7024,27 @@ window.editAllStocks = function () {
                 });
         }
     });
+};
+
+
+// 🔥 SMART MRP CALCULATOR (From Settings Sheet)
+window.getDefaultMRP = function () {
+    let basePrice = 650;
+    let courierCharge = 80; // Default 60 (Base) + 20 (Margin)
+    try {
+        if (typeof courierRates !== 'undefined') {
+            // 1 കുപ്പിയുടെ യഥാർത്ഥ വില എടുക്കുന്നു
+            if (courierRates.prices && courierRates.prices["1"]) {
+                basePrice = parseInt(courierRates.prices["1"]);
+            }
+            // കേരളം DTDC യുടെ 1 കുപ്പിയുടെ ചാർജ് എടുക്കുന്നു (ഇതിൽ Margin ഉൾപ്പെട്ടിട്ടുണ്ട്)
+            let zoneData = courierRates["KERALA DTDC"] || courierRates["KERALA DEFAULT"] || courierRates["KERALA"];
+            if (zoneData && zoneData["1"]) {
+                courierCharge = parseInt(zoneData["1"]);
+            }
+        }
+    } catch (e) { }
+
+    // (Bottle Price + Courier Charge & Margin + 20 Extra)
+    return basePrice + courierCharge + 20;
 };
