@@ -6642,6 +6642,7 @@ window.renderPartnerList = function () {
         <div class="d-flex justify-content-between mb-1 mt-1">
             <span class="fw-bold text-info" style="font-size:10px;">
                 <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
+                ${window.currentMaterialBreakdownStr ? `<br><span class="ms-3 text-secondary opacity-75" style="font-size:9px; font-weight:600;">${window.currentMaterialBreakdownStr}</span>` : ''}
             </span>
             <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
         </div>
@@ -6677,31 +6678,20 @@ window.renderPartnerList = function () {
     let html = breakdownHtml;
 
     if (isCurrentMonth) {
-        html += `<div class="alert alert-warning p-2 mb-2 d-flex align-items-start gap-2 border-warning shadow-sm" style="font-size:10.5px; font-weight:700; background:#fff8e1; border-radius:8px;">
-            <i class="fas fa-info-circle text-warning mt-1"></i> 
-            <div>താഴെ കാണിക്കുന്ന തുക (Total Bal) എന്നത് അവരുടെ ഇതുവരെയുള്ള <b>എല്ലാ മാസത്തെയും ലാഭത്തിൽ നിന്നും അവർ എടുത്ത തുക കുറച്ചതിന് ശേഷമുള്ള</b> ബാക്കി ഫൈനൽ ബാലൻസ് ആണ്.</div>
-        </div>`;
-
+        // 🔥 NEW ACCOUNTING LOGIC & UI (Passbook Style)
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
-            let totalBal = sheetPrevBal;
 
-            if (shares[name]) {
-                totalBal += shares[name];
-            }
+            let withdrawnAmt = data.withdrawn || 0;
+            let thisMonthShare = shares[name] || 0;
+
+            // 🔥 യഥാർത്ഥ പഴയ ബാലൻസ് (എടുത്ത തുക കുറയ്ക്കുന്നതിന് മുൻപുള്ളത്)
+            let pastProfit = sheetPrevBal + withdrawnAmt;
+
+            // 🔥 ഫൈനൽ ബാലൻസ് (പഴയത് + ഈ മാസം - എടുത്തത്)
+            let totalBal = (pastProfit + thisMonthShare) - withdrawnAmt;
 
             let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
-
-            let withdrawnInfo = '';
-            if (data.withdrawn > 0) {
-                withdrawnInfo = `
-                    <div class="mt-2 pt-2 border-top border-secondary border-opacity-10 d-flex justify-content-between w-100" style="font-size:10px; color:#ef4444;">
-                        <span>Total Taken: <b>₹${data.withdrawn.toLocaleString()}</b></span>
-                        <span>Last: <b>₹${data.lastAmt.toLocaleString()}</b> (${data.lastDate})</span>
-                    </div>`;
-            } else {
-                withdrawnInfo = `<div class="mt-2 pt-2 border-top border-secondary border-opacity-10 text-muted" style="font-size:10px;">No salary taken yet.</div>`;
-            }
 
             html += `
             <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
@@ -6711,13 +6701,30 @@ window.renderPartnerList = function () {
                     </div>
                     <div class="flex-grow-1">
                         <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
-                        <div class="text-success fw-bold mt-1" style="font-size:13px;">
-                            Total Bal: ₹${formattedBal} 
+                        <div class="text-success fw-bold mt-1 mb-2" style="font-size:13px;">
+                            Final Bal: ₹${formattedBal} 
                         </div>
-                        <div class="text-muted mt-1" style="font-size:10px; font-weight:600;">
-                            Prev: ₹${sheetPrevBal.toLocaleString()} <span class="mx-1">|</span> This Mth: ₹${(shares[name] || 0).toLocaleString()}
+                        
+                        <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
+                            <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;">
+                                <span>Past Balance:</span>
+                                <span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-muted mt-1" style="font-size:10px; font-weight:600;">
+                                <span>This Month:</span>
+                                <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span>
+                            </div>
+                            ${withdrawnAmt > 0 ? `
+                            <div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top border-secondary border-opacity-10" style="font-size:10px; font-weight:600;">
+                                <span>Total Taken:</span>
+                                <span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span>
+                            </div>` : ''}
                         </div>
-                        ${withdrawnInfo}
+                        
+                        ${withdrawnAmt > 0 ? `
+                        <div class="mt-2 text-end text-muted" style="font-size:9px;">
+                            Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})
+                        </div>` : `<div class="mt-2 text-muted" style="font-size:9px;">No salary taken yet.</div>`}
                     </div>
                     <div class="ms-2 d-flex align-items-center justify-content-center">
                         <i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i>
@@ -6725,6 +6732,17 @@ window.renderPartnerList = function () {
                 </div>
             </div>`;
         }
+    } else {
+        html += `
+        <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
+            <i class="fas fa-lock fs-5 mb-2"></i><br>
+            സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
+            <div class="mt-3">
+                <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
+                    <i class="fas fa-calendar-day me-1"></i> Go to This Month
+                </button>
+            </div>
+        </div>`;
     }
 
     $('#partner-list').html(html);
