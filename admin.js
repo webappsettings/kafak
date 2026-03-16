@@ -477,7 +477,15 @@ function renderTabs(orders) {
         let pDate = new Date(pDateStr);
         let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
         let dDate = new Date(dDateStr);
-        return { status, tDate, pDate, dDate, pDateStr, dDateStr };
+
+        // 🔥 പുതിയത്: പ്രിന്റ് ചെയ്ത സമയം കണ്ടുപിടിക്കാൻ
+        let metaStr = String(o.adminMeta || '');
+        let isPrinted = metaStr.includes('P');
+        let printTimeMatch = metaStr.match(/P_(\d+)/);
+        let printDateRaw = printTimeMatch ? parseInt(printTimeMatch[1]) : pDateStr;
+        let printDate = new Date(printDateRaw);
+
+        return { status, tDate, pDate, dDate, pDateStr, dDateStr, isPrinted, printDateRaw, printDate };
     };
 
     // Rank Logic for Paid Orders
@@ -548,13 +556,23 @@ function renderTabs(orders) {
 
     let pNewQty = 0, pPrintQty = 0, dNewQty = 0, dTrackQty = 0;
 
+    // 🔥 പുത്തൻ സോർട്ടിങ് ലോജിക് (പ്രിന്റ് ചെയ്തവയ്ക്ക് മുൻഗണന)
     orders.sort((a, b) => {
         let infoA = getOrderInfo(a), infoB = getOrderInfo(b);
         const statusPriority = { 'Pending': 1, 'Sent': 1, 'Paid': 2, 'Dispatched': 3, 'Completed': 4, 'Archive': 5 };
         let statA = statusPriority[infoA.status] || 9, statB = statusPriority[infoB.status] || 9;
         if (statA !== statB) return statA - statB;
-        let dateA = (statA === 2) ? infoA.pDate : ((statA === 3) ? infoA.dDate : infoA.tDate);
-        let dateB = (statA === 2) ? infoB.pDate : ((statA === 3) ? infoB.dDate : infoB.tDate);
+
+        let dateA, dateB;
+        if (statA === 2) {
+            // Paid: പ്രിന്റ് ചെയ്തതാണെങ്കിൽ പ്രിന്റ് ചെയ്ത സമയം വെച്ച് സോർട്ട് ചെയ്യും
+            dateA = infoA.isPrinted ? infoA.printDate : infoA.pDate;
+            dateB = infoB.isPrinted ? infoB.printDate : infoB.pDate;
+        } else if (statA === 3) {
+            dateA = infoA.dDate; dateB = infoB.dDate;
+        } else {
+            dateA = infoA.tDate; dateB = infoB.tDate;
+        }
         return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
     });
 
@@ -563,7 +581,6 @@ function renderTabs(orders) {
 
     orders.forEach(o => {
         let { status, dDateStr, pDateStr } = getOrderInfo(o);
-        // 🔥 Archive മാത്രം ഒഴിവാക്കുന്നു (കംപ്ലീറ്റ് ആയവയുടെ ഹിസ്റ്ററി ടൈംലൈനിൽ കാണിക്കാൻ)
         if (status === 'Archive') return;
 
         let meta = getMetaStatus(o.adminMeta);
@@ -571,10 +588,10 @@ function renderTabs(orders) {
         let displayDateRaw = o.timestamp;
 
         if (status === 'Paid') {
-            displayDateRaw = pDateStr;
+            // 🔥 പ്രിന്റ് ചെയ്തവയ്ക്ക് പ്രിന്റ് ചെയ്ത സമയം ഗ്രൂപ്പ് ചെയ്യാനായി നൽകുന്നു
+            displayDateRaw = meta.isPrinted ? getOrderInfo(o).printDateRaw : pDateStr;
             dateKeyType = meta.isPrinted ? 'paid_print' : 'paid_new';
         }
-        // 🔥 പഴയ ഡാറ്റ നിലനിർത്താൻ Delivered, Completed, Refunded എന്നിവ കൂടി ഡിസ്പാച്ച്ഡ് ടാബിൽ കണക്കാക്കുന്നു
         else if (['Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
             if (dDateStr && dDateStr !== o.timestamp) {
                 displayDateRaw = dDateStr;
@@ -593,24 +610,20 @@ function renderTabs(orders) {
 
             if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, D: 0, C: 0, R: 0 };
 
-            // ആകെ എണ്ണവും കുപ്പിയും കൂട്ടുന്നു
             timelineStats[fullKey].count++;
             let qty = parseInt(o.quantity) || 0;
             timelineStats[fullKey].bottles += qty;
 
-            // പ്രത്യേക സ്റ്റാറ്റസുകൾ എണ്ണി വെക്കുന്നു
             if (status === 'Delivered') timelineStats[fullKey].D++;
             if (status === 'Completed') timelineStats[fullKey].C++;
             if (status === 'Refunded') timelineStats[fullKey].R++;
 
-            // എല്ലാറ്റിന്റെയും കൊറിയർ ചാർജ് ടൈംലൈനിൽ കാണിക്കാൻ കൂട്ടുന്നു
             if (['Paid', 'Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
                 if (actualC <= 0) actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
 
                 timelineStats[fullKey].cost += actualC;
 
-                // എന്നാൽ ടാബിന്റെ മെയിൻ ടോട്ടലിൽ ആക്ടീവ് ആയ (Dispatched/Paid) മാത്രം കൂട്ടുന്നു
                 if (status === 'Dispatched' || status === 'Paid') {
                     if (tabCourierTotal[dateKeyType] !== undefined) {
                         tabCourierTotal[dateKeyType] += actualC;
@@ -686,7 +699,9 @@ function renderTabs(orders) {
             btlCounts[type] += qty;
 
             let displayDateRaw = d.timestamp;
-            if (type === 'paid') displayDateRaw = pDateStr;
+            if (type === 'paid') {
+                displayDateRaw = meta.isPrinted ? getOrderInfo(d).printDateRaw : pDateStr;
+            }
             if (type === 'dispatched') displayDateRaw = dDateStr;
             let dateLabel = getTimelineLabel(displayDateRaw);
 
@@ -703,7 +718,6 @@ function renderTabs(orders) {
                 visibleDates.sent.add(dateLabel);
             }
 
-            // 🔥 Create Safe Group ID for Checkboxes
             let safeGroupId = dateKey + '_' + dateLabel.replace(/[^a-zA-Z0-9]/g, '_');
 
             if (dateLabel !== lastDateMap[dateKey]) {
@@ -727,7 +741,6 @@ function renderTabs(orders) {
                     }
                 }
 
-                // 🔥 SMART CHECKBOX HTML (Only for Paid/Print tabs)
                 let groupCbHtml = '';
                 if (dateKey === 'paid_new' || dateKey === 'paid_print') {
                     groupCbHtml = `
@@ -742,7 +755,7 @@ function renderTabs(orders) {
             }
 
             let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
-            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId); // 🔥 Pass safeGroupId here
+            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId);
         }
     });
 
@@ -815,7 +828,6 @@ function renderTabs(orders) {
 
         el.style.display = 'flex';
         el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto mt-2 mb-3";
-        // 🔥 നിങ്ങൾ പറഞ്ഞ അളവുകൾ:
         el.style.top = "176px";
         el.style.width = "225px";
         el.style.borderRadius = "20px";
@@ -849,7 +861,6 @@ function renderTabs(orders) {
     populateStickyHeader('disp_new', subCounts.disp_new, tabCourierTotal.disp_new, stateStats.disp_new);
     populateStickyHeader('disp_track', subCounts.disp_track, tabCourierTotal.disp_track, stateStats.disp_track);
 
-    // 6. UPDATE BADGES
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
     updateBadgeUI('count-dispatched', counts.dispatched, btlCounts.dispatched);
@@ -867,7 +878,6 @@ function renderTabs(orders) {
     setBadge('badge-disp-new', subCounts.disp_new);
     setBadge('badge-disp-tracked', subCounts.disp_track);
 
-    // (renderTabs ന്റെ അവസാന ഭാഗം)
     updateSyncButtonUI();
     checkSelectAllStatus();
 
@@ -876,7 +886,6 @@ function renderTabs(orders) {
         setTimeout(() => { window.scrollTo(0, parseInt(savedScroll)); }, 100);
     }
 
-    // 🔥 ഇത് ചേർക്കുക
     if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
 }
 
@@ -2362,10 +2371,12 @@ async function runPrintLogic(checkboxes, directData = null) {
         let globalIndex = allPaidOrders.findIndex(x => x.orderid === d.orderid);
         let seqNum = (globalIndex !== -1) ? globalIndex + 1 : (i + 1);
 
-        // Update Meta Logic
+        // Update Meta Logic (With Timestamp for Sorting)
         let currentMeta = String(d.adminMeta || '');
         if (!currentMeta.includes('P')) {
-            let newMeta = currentMeta + 'P';
+            let printTimestamp = Date.now();
+            let cleanMeta = currentMeta.replace(/(?:^|\s)P(_\d+)?(?=\s|$)/g, '').trim();
+            let newMeta = cleanMeta ? cleanMeta + " P_" + printTimestamp : "P_" + printTimestamp;
             d.adminMeta = newMeta;
 
             // 🔥 മാറ്റം: Undo/Revert Logic ഇവിടെയും ഉൾപ്പെടുത്തി
