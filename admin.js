@@ -6995,7 +6995,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Accurate Bulk Calculation)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Individual Edit Option)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7003,7 +7003,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
         pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
         tape: { name: 'Packing Tape', unit: 'Rolls', icon: 'fa-tape', color: 'secondary', track: 'order', defAvg: 0.05, trkLbl: 'Ord' },
         box: { name: 'Packing Box', unit: 'Nos', icon: 'fa-box', color: 'success', track: 'order', defAvg: 1, trkLbl: 'Ord' },
-        roll: { name: 'Plastic Roll', unit: 'KG', icon: 'fa-scroll', color: 'info', track: 'bottle', defAvg: 0.5, trkLbl: 'Btl' },
+        roll: { name: 'Plastic Roll', unit: 'KG', icon: 'fa-scroll', color: 'info', track: 'bottle', defAvg: 0.005, trkLbl: 'Btl' },
         sticker: { name: 'Sticker (A4)', unit: 'Shts', icon: 'fa-sticky-note', color: 'danger', track: 'print', defAvg: 0.2, trkLbl: 'Stk' },
         a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark', track: 'order', defAvg: 1, trkLbl: 'Ord' }
     };
@@ -7039,7 +7039,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
-        // 🔥 OFFLINE & BULK IDENTIFICATION
         let isLocalSale = String(o.type || o.house || o.name || '').toLowerCase().includes('local sale') || String(o.name || '').toLowerCase() === 'walk-in customer';
         let isPartnerBulk = String(o.type || o.house || o.name || '').toLowerCase().includes('partner bulk');
         let isBulk = isLocalSale || isPartnerBulk || String(o['App / Web'] || '').toLowerCase().includes('offline');
@@ -7128,6 +7127,9 @@ window.getLiveStockHtml = function (isExpanded = false) {
             ? `<button class="btn btn-danger py-0 px-1 blink-bg border-0 shadow-sm d-flex align-items-center justify-content-center" style="font-size:9px; border-radius:4px; font-weight:800; height:22px; width:35px;" onclick="stopRecording('${k}')"><i class="fas fa-stop"></i></button>`
             : `<button class="btn btn-outline-secondary py-0 px-1 d-flex align-items-center justify-content-center" style="font-size:9px; border-radius:4px; font-weight:800; height:22px; width:35px;" onclick="startRecording('${k}')"><i class="fas fa-circle text-danger"></i></button>`;
 
+        // 🔥 NEW: Individual Edit Button
+        let editBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
+
         let inputHtml = `
             <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary border-opacity-10">
                 <div class="input-group input-group-sm shadow-sm" style="border-radius:4px; overflow:hidden; flex-wrap: nowrap; width:calc(100% - 40px);">
@@ -7147,6 +7149,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
             <div class="inv-card p-2 border rounded-3 ${cardBg} position-relative shadow-sm d-flex flex-column h-100">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="fw-bold text-secondary text-truncate" style="font-size:10px;"><i class="fas ${itemObj.icon} text-${itemObj.color} me-1"></i> ${itemObj.name}</span>
+                    ${editBtn}
                 </div>
                 <div class="fw-bolder text-${bal <= (db[k].total * 0.1) ? 'danger' : 'dark'} mb-1" style="font-size:14px; line-height:1.2;">
                     ${balDisplay}
@@ -7166,21 +7169,14 @@ window.getLiveStockHtml = function (isExpanded = false) {
     let collapseClass = isExpanded ? 'collapse show' : 'collapse';
     let iconClass = isExpanded ? 'fa-chevron-up' : 'fa-chevron-down';
 
+    // 🔥 REMOVED THE COMMON UPDATE BUTTON FROM HEADER
     let html = `
     <div id="live-stock-box" class="mb-4 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif; overflow:hidden;">
-        <div class="d-flex justify-content-between align-items-center p-3" style="background:#f8fafc;">
-            
-            <div class="d-flex align-items-center flex-grow-1" style="cursor:pointer; height: 100%;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
-                <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
-            </div>
-            
+        <div class="d-flex justify-content-between align-items-center p-3" style="cursor:pointer; background:#f8fafc;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
+            <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
             <div class="d-flex align-items-center">
-                <button onclick="editAllStocks()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-bold me-2" style="font-size:10px; z-index:10;"><i class="fas fa-sync-alt me-1"></i> Update Stocks</button>
-                <div style="cursor:pointer; padding:5px;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
-                    <i class="fas ${iconClass} text-muted transition-icon" id="inv-collapse-icon"></i>
-                </div>
+                <i class="fas ${iconClass} text-muted transition-icon" id="inv-collapse-icon"></i>
             </div>
-            
         </div>
         
         <div id="inventoryCollapse" class="${collapseClass}">
@@ -7226,114 +7222,108 @@ window.renderLiveStockTracker = function () {
     }
 };
 
-window.editAllStocks = function () {
+// 🔥 SMART INDIVIDUAL STOCK UPDATE MODAL
+window.editSingleStock = function (key, itemName, unit) {
     if (!window.isInventoryLoaded || !window.globalInventoryDB) {
-        Swal.fire('Loading...', 'Please wait for inventory data to sync from server. Network might be slow.', 'warning');
+        Swal.fire('Loading...', 'Please wait for inventory data to sync from server.', 'warning');
         return;
     }
+
     let db = window.globalInventoryDB;
-    let nowLocal = getLocalIsoString(new Date());
+    let itemData = db[key] || { total: 0, start: getLocalIsoString(new Date()), exempt: 0 };
 
-    let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
-    let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN26PTT03');
-    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || calculatedMRP);
+    let startVal = itemData.start ? itemData.start.slice(0, 16) : getLocalIsoString(new Date());
+    let totalVal = itemData.total || 0;
+    let exemptVal = itemData.exempt || 0;
 
-    let html = `<div style="max-height: 65vh; overflow-y: auto; text-align: left; font-size: 11px; padding: 5px;">
-        <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
-            <b>💡 ഉപയോഗിക്കേണ്ട രീതി:</b> പുതിയ സ്റ്റോക്ക് വരുമ്പോൾ <b>Total Stock</b>-ഉം അത് തുടങ്ങിയ <b>Start Date</b>-ഉം കൊടുക്കുക.<br>
-            പുതിയ സ്റ്റോക്ക് തുടങ്ങിയ തിയ്യതിക്ക് ശേഷം പാക്ക് ചെയ്ത ഓർഡറുകളിൽ, <b>പഴയ സ്റ്റോക്ക്</b> വല്ലതും ഉപയോഗിച്ചിട്ടുണ്ടെങ്കിൽ ആ എണ്ണം <b>Old Stock Used</b> കോളത്തിൽ കൊടുക്കുക.
-        </div>
-    `;
+    let extraHtml = '';
 
-    const items = {
-        bottles: 'Empty Bottles (Nos)', honey: 'Raw Honey (KG)', tape: 'Packing Tape (Rolls)', roll: 'Plastic Roll (Meters)',
-        box: 'Packing Box (Nos)', pouch: 'Shrink Pouch (Nos)', sticker: 'Sticker (A4 Sheets)', a6paper: 'A6 Paper (Nos)',
-        cyan: 'Cyan Ink (ML)', magenta: 'Magenta Ink (ML)', yellow: 'Yellow Ink (ML)', black: 'Black Ink (ML)'
-    };
+    // തേൻ (Honey) ആണെങ്കിൽ മാത്രം Batch ഉം MRP ഉം കാണിക്കാൻ
+    if (key === 'honey') {
+        let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
+        let savedBatch = db.honey.batch || localStorage.getItem('label_batch') || 'HN26PTT03';
+        let savedMrp = db.honey.mrp || localStorage.getItem('label_mrp') || calculatedMRP;
 
-    for (let k in items) {
-        let startVal = db[k]?.start ? db[k].start.slice(0, 16) : nowLocal;
-        let exemptVal = db[k]?.exempt || 0;
-        let totalVal = db[k]?.total || 0;
-
-        let extraHtml = '';
-        if (k === 'honey') {
-            extraHtml = `
-            <div class="row g-2 mt-2 pt-2 border-top border-warning border-opacity-50">
+        extraHtml = `
+            <div class="row g-2 mt-3 pt-3 border-top border-warning border-opacity-50">
                 <div class="col-6">
                     <label class="text-warning fw-bold" style="font-size:9px;"><i class="fas fa-tag"></i> BATCH NUMBER</label>
-                    <input type="text" id="stk-batch" class="form-control form-control-sm text-dark fw-bold border-warning text-uppercase" value="${savedBatch}" placeholder="HN26PTT03">
+                    <input type="text" id="single-batch" class="form-control form-control-sm text-dark fw-bold border-warning text-uppercase" value="${savedBatch}">
                 </div>
                 <div class="col-6">
                     <label class="text-warning fw-bold" style="font-size:9px;"><i class="fas fa-rupee-sign"></i> MRP (₹)</label>
-                    <input type="number" id="stk-mrp" class="form-control form-control-sm text-dark fw-bold border-warning" value="${savedMrp}" placeholder="750">
+                    <input type="number" id="single-mrp" class="form-control form-control-sm text-dark fw-bold border-warning" value="${savedMrp}">
                 </div>
             </div>`;
-        }
-
-        if (k === 'sticker') {
-            extraHtml = `<div class="text-danger mt-1" style="font-size:9px; line-height: 1.3;"><i class="fas fa-info-circle"></i> A4 Stock is deducted automatically on print. Decimal (eg: 10.4) means 10 A4 + 2 Stickers. Add new stock to the current total.</div>`;
-        }
-
-        html += `
-        <div class="mb-3 p-2 border border-secondary border-opacity-25 rounded-3 bg-light shadow-sm">
-            <label class="fw-bold text-dark mb-1" style="font-size:12px;">${items[k]}</label>
-            <div class="row g-2">
-                <div class="col-4">
-                    <label class="text-muted" style="font-size:9px;">Total Stock</label>
-                    <input type="number" step="0.1" id="stk-total-${k}" class="form-control form-control-sm fw-bold border-primary border-opacity-50" value="${totalVal}">
-                </div>
-                <div class="col-8">
-                    <label class="text-muted" style="font-size:9px;">Start Date & Time</label>
-                    <input type="datetime-local" id="stk-start-${k}" class="form-control form-control-sm text-secondary" value="${startVal}">
-                </div>
-                <div class="col-12 mt-2">
-                    <label class="text-danger fw-bold" style="font-size:9px;"><i class="fas fa-minus-circle"></i> Old Stock Used</label>
-                    <input type="number" step="0.1" id="stk-exempt-${k}" class="form-control form-control-sm border-danger border-opacity-50 text-danger fw-bold" value="${exemptVal}">
-                </div>
-            </div>
-            ${extraHtml}
-        </div>`;
     }
-    html += `</div>`;
+
+    if (key === 'sticker') {
+        extraHtml = `<div class="text-danger mt-3 p-2 bg-danger bg-opacity-10 rounded" style="font-size:10px; line-height: 1.3;"><i class="fas fa-info-circle"></i> A4 Stock is deducted automatically on print. Add new stock to the current total. Decimal (eg: 10.4) means 10 A4 + 2 Stickers.</div>`;
+    }
 
     Swal.fire({
-        title: '<div style="font-size:16px; font-weight:800; color:#1e293b;">📦 Update Inventory</div>',
-        html: html,
-        width: '98%',
+        title: `<div style="font-size:16px; font-weight:800; color:#1e293b; text-align:left;">📦 Update ${itemName}</div>`,
+        html: `
+        <div class="text-start">
+            <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
+                പുതിയ സ്റ്റോക്ക് വരുമ്പോൾ <b>Total Stock</b>-ഉം അത് തുടങ്ങിയ <b>Start Date</b>-ഉം കൊടുക്കുക.<br>
+                പഴയ സ്റ്റോക്ക് വല്ലതും ബാക്കി ഉപയോഗിച്ചിട്ടുണ്ടെങ്കിൽ ആ അളവ് <b>Old Stock Used</b>-ൽ കൊടുക്കുക.
+            </div>
+            
+            <div class="mb-3">
+                <label class="text-muted fw-bold" style="font-size:10px; text-transform:uppercase;">Total Stock (${unit})</label>
+                <input type="number" step="0.01" id="single-total" class="form-control fw-bold border-primary border-opacity-50 fs-4 text-primary" value="${totalVal}">
+            </div>
+            
+            <div class="row g-2">
+                <div class="col-12">
+                    <label class="text-muted fw-bold" style="font-size:10px; text-transform:uppercase;">Start Date & Time</label>
+                    <input type="datetime-local" id="single-start" class="form-control text-secondary fw-bold" value="${startVal}">
+                </div>
+                <div class="col-12 mt-3">
+                    <label class="text-danger fw-bold" style="font-size:10px; text-transform:uppercase;"><i class="fas fa-minus-circle"></i> Old Stock Used (${unit})</label>
+                    <input type="number" step="0.01" id="single-exempt" class="form-control border-danger border-opacity-50 text-danger fw-bold fs-5" value="${exemptVal}">
+                </div>
+            </div>
+            
+            ${extraHtml}
+        </div>`,
         showCancelButton: true,
         confirmButtonText: 'Save to Server',
         confirmButtonColor: '#0d6efd',
-        customClass: { popup: 'rounded-4 ios-popup' },
+        customClass: { popup: 'rounded-4' },
         preConfirm: () => {
-            for (let k in items) {
-                db[k] = {
-                    total: parseFloat(document.getElementById(`stk-total-${k}`).value) || 0,
-                    start: document.getElementById(`stk-start-${k}`).value || nowLocal,
-                    exempt: parseFloat(document.getElementById(`stk-exempt-${k}`).value) || 0,
-                    avgUsage: db[k].avgUsage,
-                    ratioQty: db[k].ratioQty,
-                    ratioUnit: db[k].ratioUnit,
-                    recordStartTime: db[k].recordStartTime
-                };
-            }
+            let newTotal = parseFloat(document.getElementById('single-total').value) || 0;
+            let newStart = document.getElementById('single-start').value || getLocalIsoString(new Date());
+            let newExempt = parseFloat(document.getElementById('single-exempt').value) || 0;
 
-            let newBatch = document.getElementById('stk-batch').value.toUpperCase();
-            let newMrp = document.getElementById('stk-mrp').value;
+            // Update only this specific item, preserve formulas
+            db[key] = {
+                ...db[key],
+                total: newTotal,
+                start: newStart,
+                exempt: newExempt
+            };
 
-            db.honey.batch = newBatch;
-            db.honey.mrp = newMrp;
+            // Save Honey specific fields
+            if (key === 'honey') {
+                let newBatch = document.getElementById('single-batch').value.toUpperCase();
+                let newMrp = document.getElementById('single-mrp').value;
 
-            localStorage.setItem('label_batch', newBatch);
-            localStorage.setItem('label_mrp', newMrp);
+                db.honey.batch = newBatch;
+                db.honey.mrp = newMrp;
 
-            if (document.getElementById('label-batch')) {
-                document.getElementById('label-batch').value = newBatch;
-                document.getElementById('prev-batch').innerText = newBatch;
-            }
-            if (document.getElementById('label-mrp')) {
-                document.getElementById('label-mrp').value = newMrp;
-                document.getElementById('prev-mrp').innerText = newMrp + " . 00";
+                localStorage.setItem('label_batch', newBatch);
+                localStorage.setItem('label_mrp', newMrp);
+
+                if (document.getElementById('label-batch')) {
+                    document.getElementById('label-batch').value = newBatch;
+                    document.getElementById('prev-batch').innerText = newBatch;
+                }
+                if (document.getElementById('label-mrp')) {
+                    document.getElementById('label-mrp').value = newMrp;
+                    document.getElementById('prev-mrp').innerText = newMrp + " . 00";
+                }
             }
 
             Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
@@ -7341,19 +7331,17 @@ window.editAllStocks = function () {
             return fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
-            })
-                .then(res => res.json())
-                .then(res => {
-                    if (res.result === 'success') {
-                        window.globalInventoryDB = db;
-                        Swal.fire({ icon: 'success', title: 'Saved to Server!', timer: 1500, showConfirmButton: false });
-                        if (typeof window.renderLiveStockTracker === 'function') window.renderLiveStockTracker();
-                    } else {
-                        Swal.fire('Error', 'Failed to save to sheet', 'error');
-                    }
-                }).catch(err => {
-                    Swal.fire('Error', 'Network error while saving.', 'error');
-                });
+            }).then(res => res.json()).then(res => {
+                if (res.result === 'success') {
+                    window.globalInventoryDB = db;
+                    Swal.fire({ icon: 'success', title: 'Saved!', timer: 1500, showConfirmButton: false });
+                    renderLiveStockTracker();
+                } else {
+                    Swal.fire('Error', 'Failed to save', 'error');
+                }
+            }).catch(err => {
+                Swal.fire('Error', 'Network error while saving.', 'error');
+            });
         }
     });
 };
