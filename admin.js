@@ -6995,7 +6995,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With "Not Started" Professional Mode)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Accurate A4 Sticker Tracking)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7055,7 +7055,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let actionTime = !isNaN(dDateMs) ? dDateMs : (status === 'Paid' ? printTime : oDate.getTime());
 
         const calculateItem = (k, itemObj) => {
-            if (!db[k].start) return; // 🔥 NOT STARTED: Start Date illengil calculate cheyyilla!
+            if (!db[k].start) return;
 
             let startMs = new Date(db[k].start).getTime();
             let checkTime = (itemObj.track === 'print') ? printTime : actionTime;
@@ -7096,7 +7096,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
     });
 
     const buildCard = (k, itemObj, isInk = false) => {
-        let isStarted = db[k].start ? true : false; // 🔥 Check if started
+        let isStarted = db[k].start ? true : false;
 
         let actualUsed = isStarted ? Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0)) : 0;
         let bal = Math.max(0, db[k].total - actualUsed);
@@ -7105,10 +7105,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let countOffset = parseFloat(db[k].countOffset) || 0;
         let liveCount = Math.max(0, baseCount + countOffset);
 
-        if (k === 'sticker') { bal = Math.max(0, parseFloat(db.sticker.total) || 0); actualUsed = 0; }
-
         let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
-        if (k === 'sticker') pct = 100;
 
         let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : itemObj.color;
         let dec = (k === 'bottles' || k === 'box' || k === 'pouch' || k === 'a6paper' || k === 'sticker') ? 0 : 2;
@@ -7136,7 +7133,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let editStockBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
 
-        // 🔥 Not Started HTML Display
         let startDateHtml = isStarted
             ? `<span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>`
             : `<span class="text-danger fw-bold"><i class="fas fa-pause-circle"></i> Not Started</span>`;
@@ -7179,7 +7175,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
                 </div>
                 <div class="d-flex justify-content-between text-muted flex-grow-1 mb-1" style="font-size:8px;">
                     ${startDateHtml}
-                    <span class="fw-bold ${k === 'sticker' ? 'text-danger' : 'text-dark'}">${k === 'sticker' ? 'Manual' : `Use: ${actualUsed.toFixed(dec)}`}</span>
+                    <span class="fw-bold text-dark">Use: ${actualUsed.toFixed(dec)}</span>
                 </div>
                 ${trackerHtml}
                 ${inputHtml}
@@ -7211,7 +7207,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
     html += `</div></div></div></div></div></div>`;
     return html;
 };
-
 // 🔥 SMART INDIVIDUAL TRACKER EDIT MODAL (Safe Mode)
 window.editLiveCount = function (key, itemName, baseCount, currentLiveCount) {
     if (!window.isInventoryLoaded || !window.globalInventoryDB) return;
