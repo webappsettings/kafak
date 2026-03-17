@@ -5179,6 +5179,11 @@ window.updatePrintPrediction = function () {
         });
     }
 
+    // --- FIX: Define these for the dropdown logic ---
+    let exactQty = unprintedBottles;
+    let totalSheetsNeeded = Math.ceil(exactQty / ratio);
+    let filledQty = totalSheetsNeeded * ratio;
+
     // A4 STOCK SYNC CALCULATION
     let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
@@ -5196,7 +5201,7 @@ window.updatePrintPrediction = function () {
     // UI Updates (Counts & Options)
     if (document.getElementById('unprinted-bottles-count')) {
         document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
-        document.getElementById('required-sheets-count').innerText = Math.ceil(unprintedBottles / ratio);
+        document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
         document.getElementById('printed-bottles-count').innerText = printedBottles;
     }
 
@@ -5221,8 +5226,7 @@ window.updatePrintPrediction = function () {
     // 2. Manual Copies (Ithu eppozhum kanikkum)
     optionsHtml += `<optgroup label="--- Manual Copies ---">`;
     for (let i = 1; i <= ratio; i++) {
-        // Auto options illengil mathram "Print 1" default aayi select aakum
-        let sel = (exactQty === 0 && i === 1) ? 'selected' : '';
+        let sel = (exactQty === 0 && i === ratio) ? 'selected' : '';
         optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
     }
     for (let i = 2; i <= 5; i++) {
@@ -5232,7 +5236,6 @@ window.updatePrintPrediction = function () {
     optionsHtml += `</optgroup>`;
 
     modeBox.innerHTML = optionsHtml;
-
 };
 
 window.toggleLeftDrawer = function () {
