@@ -5142,40 +5142,59 @@ window.updatePrintPrediction = function () {
         });
     }
 
-    let totalSheetsNeeded = Math.ceil(unprintedBottles / ratio);
-    if (totalSheetsNeeded === 0) totalSheetsNeeded = 1;
+    let exactQty = unprintedBottles;
+    let totalSheetsNeeded = Math.ceil(exactQty / ratio);
+    let filledQty = totalSheetsNeeded * ratio;
 
-    let exactText = unprintedBottles === 0 ? "0 Sheets" : `${totalSheetsNeeded} Sheet(s)`;
+    let exactText = exactQty === 0 ? "0 Sheets" : `${totalSheetsNeeded} Sheet(s)`;
 
     if (document.getElementById('unprinted-bottles-count')) {
-        document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
+        document.getElementById('unprinted-bottles-count').innerText = exactQty;
         document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
         document.getElementById('exact-sheets-count').innerText = exactText;
         document.getElementById('printed-bottles-count').innerText = printedBottles;
     }
 
-    // 🔥 MANUAL A4 STOCK CALCULATION (നിങ്ങൾ കൊടുത്ത ടോട്ടൽ സ്റ്റോക്ക് എടുക്കുന്നു)
+    // 🔥 SMART A4 STOCK CALCULATION
     let db = window.globalInventoryDB || {};
     let stickerTotal = db.sticker ? (parseFloat(db.sticker.total) || 0) : 0;
-    let stickerBal = Math.max(0, stickerTotal).toFixed(0);
+
+    let fullSheets = Math.floor(stickerTotal);
+    let looseStickers = Math.round((stickerTotal - fullSheets) * ratio);
+    if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
     if (document.getElementById('a4-stock-display')) {
-        document.getElementById('a4-stock-display').innerText = stickerBal + " Sheets";
+        document.getElementById('a4-stock-display').innerHTML = `${fullSheets} A4 <span class="badge bg-secondary ms-1">+${looseStickers} stk</span>`;
     }
 
-    // 🔥 DRORPDOWN OPTIONS (Sheets & Balance)
+    // 🔥 DROPDOWN OPTIONS (Smart Grouping)
     let modeBox = document.getElementById('print-qty-mode');
     if (!modeBox) return;
 
     let optionsHtml = '';
-    let maxOptions = Math.max(totalSheetsNeeded + 3, 5); // കുറഞ്ഞത് 5 ഓപ്ഷൻ കാണിക്കും
 
-    for (let i = 1; i <= maxOptions; i++) {
-        let labels = i * ratio;
-        let balAfter = Math.max(0, stickerBal - i).toFixed(0);
-        let sel = (i === totalSheetsNeeded && unprintedBottles > 0) ? 'selected' : '';
-        optionsHtml += `<option value="${i}" ${sel}>${i} A4 Sheet (${labels} Stickers) [Bal: ${balAfter}]</option>`;
+    if (exactQty > 0) {
+        optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
+        if (exactQty !== filledQty) {
+            optionsHtml += `<option value="${filledQty}" selected>Fill Last Sheet (${filledQty} Stickers = ${filledQty / ratio} A4)</option>`;
+            optionsHtml += `<option value="${exactQty}">Print Exact Need (${exactQty} Stickers = ${(exactQty / ratio).toFixed(1)} A4)</option>`;
+        } else {
+            optionsHtml += `<option value="${exactQty}" selected>Print Exact Need (${exactQty} Stickers = Perfect Fit!)</option>`;
+        }
+        optionsHtml += `</optgroup>`;
     }
+
+    optionsHtml += `<optgroup label="--- Manual Copies ---">`;
+    for (let i = 1; i <= ratio; i++) {
+        let sel = (exactQty === 0 && i === ratio) ? 'selected' : '';
+        optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
+    }
+    for (let i = 2; i <= 5; i++) {
+        let labels = i * ratio;
+        optionsHtml += `<option value="${labels}">Print ${i} Full A4 (${labels} Stickers)</option>`;
+    }
+    optionsHtml += `</optgroup>`;
+
     modeBox.innerHTML = optionsHtml;
 
     if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
@@ -5208,16 +5227,16 @@ window.updateLabelPreview = function () {
     localStorage.setItem('label_batch', batch);
 }
 
-// 🔥 PRINT LABELS & DEDUCT STOCK
+// 🔥 PRINT LABELS & DEDUCT EXACT STOCK
 window.printProductLabels = function () {
     let mrp = $('#label-mrp').val();
     let batch = $('#label-batch').val().toUpperCase();
     let date = $('#label-date').val();
 
-    // 🔥 മാറിയത്: ഡ്രോപ്പ്ഡൗണിൽ നിന്നും തിരഞ്ഞെടുത്ത ഷീറ്റുകളുടെ എണ്ണം എടുക്കുന്നു
-    let sheetsToPrint = parseInt($('#print-qty-mode').val()) || 1;
+    // 🔥 മാറിയത്: ഡ്രോപ്പ്ഡൗണിൽ നിന്നും തിരഞ്ഞെടുത്ത സ്റ്റിക്കറുകളുടെ എണ്ണം എടുക്കുന്നു
+    let printCount = parseInt($('#print-qty-mode').val()) || 5;
     let stickersPerPage = parseInt($('#stickers-per-page').val()) || 5;
-    let printCount = sheetsToPrint * stickersPerPage; // ആകെ അടിക്കേണ്ട സ്റ്റിക്കറുകൾ
+    let sheetsToDeduct = printCount / stickersPerPage; // ഫ്രാക്ഷൻ വരാം (eg: 13 / 5 = 2.6 A4)
 
     if (!mrp || !batch || !date) {
         showToast('error', 'Please fill all fields');
@@ -5225,7 +5244,7 @@ window.printProductLabels = function () {
     }
 
     let ordersToUpdate = [];
-    let labelsNeeded = printCount;
+    let labelsNeeded = printCount; // ഇത്രയും ഓർഡറുകളെ 'S' ആക്കണം
 
     if (typeof allOrders !== 'undefined') {
         let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -5242,24 +5261,36 @@ window.printProductLabels = function () {
 
             let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
-            let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
-            let currentMeta = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
+            let existingIndex = pendingUpdates.findIndex(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
+            let currentMeta = String(o.adminMeta || '');
+            if (existingIndex > -1) currentMeta = pendingUpdates[existingIndex].meta;
 
             let newMeta = currentMeta ? currentMeta + " S" : "S";
 
-            ordersToUpdate.push({ oid: o.orderid, action: 'meta', meta: newMeta });
-            o.adminMeta = newMeta;
+            o.adminMeta = newMeta; // ലൈവ് ആയി മാറാൻ
 
+            if (existingIndex > -1) {
+                pendingUpdates[existingIndex].meta = newMeta;
+            } else {
+                pendingUpdates.push({
+                    oid: o.orderid, action: 'meta', meta: newMeta, oldMeta: currentMeta, status: o.Status, time: new Date().getTime()
+                });
+            }
+
+            ordersToUpdate.push({ oid: o.orderid, action: 'meta', meta: newMeta });
             labelsNeeded -= qty;
         });
+
+        localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
+        localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
-    // 🔥 STEP 1.5: പ്രിന്റ് ചെയ്യുന്ന ഷീറ്റുകളുടെ എണ്ണം സ്റ്റോക്കിൽ നിന്നും കുറയ്ക്കുന്നു
+    // 🔥 STEP 1.5: ഇൻവെന്ററിയിൽ നിന്നും കൃത്യം ഫ്രാക്ഷൻ (Decimal) സഹിതം കുറയ്ക്കുന്നു
     let db = window.globalInventoryDB || {};
     if (db.sticker && typeof db.sticker.total !== 'undefined') {
-        db.sticker.total = Math.max(0, db.sticker.total - sheetsToPrint);
+        // e.g., 48 - 2.6 = 45.4
+        db.sticker.total = Math.max(0, parseFloat(db.sticker.total) - sheetsToDeduct);
 
-        // തൽക്ഷണം സെർവറിലേക്ക് സ്റ്റോക്ക് സേവ് ചെയ്യുന്നു
         fetch(scriptURL, {
             method: 'POST',
             body: JSON.stringify({ action: 'saveInventory', inventory: db })
@@ -5306,7 +5337,7 @@ window.printProductLabels = function () {
         printWin.print();
     }, 1000);
 
-    // 🔥 STEP 3: Server-ലേക്ക് പുതിയ സ്റ്റാറ്റസ് അയക്കുന്നു (Background)
+    // Server-ലേക്ക് പുതിയ സ്റ്റാറ്റസ് അയക്കുന്നു
     if (ordersToUpdate.length > 0) {
         fetch(scriptURL, {
             method: 'POST',
@@ -5314,10 +5345,11 @@ window.printProductLabels = function () {
         }).catch(e => console.log('Sticker API error', e));
     }
 
-    // ലെഫ്റ്റ് ഡ്രോയറിലെ എണ്ണവും, ഡാഷ്‌ബോർഡിലെ ലൈവ് സ്റ്റോക്കും മാറാൻ
+    // ലെഫ്റ്റ് ഡ്രോയറിലെ എണ്ണവും, ലൈവ് സ്റ്റോക്കും മാറാൻ
     setTimeout(() => {
         if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
         if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
+        updateSyncButtonUI();
     }, 500);
 }
 
@@ -6806,10 +6838,7 @@ window.getLiveStockHtml = function () {
                     if (k === 'bottles') used.bottles += isBulk ? 0 : qty;
                     if (k === 'honey') used.honey += isBulk ? qty : (qty * 0.65);
                     if (k === 'pouch') used.pouch += isBulk ? 0 : qty;
-
-                    // 🔥 മാറ്റം: Sticker (A4) ഇപ്പൊൾ ഓർഡർ വരുമ്പോഴല്ല, പ്രിന്റ് അടിക്കുമ്പോഴാണ് കുറയുക. അതുകൊണ്ട് ഇവിടുന്ന് ഒഴിവാക്കി.
-                    // if (k === 'sticker') used.sticker += isBulk ? 0 : (qty * stickerRatio); 
-
+                    // A4 Sheet is excluded from auto-calculation here
                     if (k === 'box') used.box += isBulk ? 0 : 1;
                     if (k === 'a6paper') used.a6paper += isBulk ? 0 : 1;
                     if (k === 'tape') used.tape += isBulk ? 0 : 0.05;
@@ -6831,10 +6860,33 @@ window.getLiveStockHtml = function () {
     for (let k in items) {
         let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
         let bal = Math.max(0, db[k].total - actualUsed);
-        let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
 
-        let dec = (k === 'honey' || k === 'tape' || k === 'sticker' || k === 'roll') ? 1 : 0;
+        // 🔥 Sticker-ന് വേണ്ടി മാത്രം പ്രത്യേകം സെറ്റ് ചെയ്യുന്നു
+        if (k === 'sticker') {
+            bal = Math.max(0, parseFloat(db.sticker.total) || 0); // Total എന്നത് തന്നെയാണ് ഇതിന്റെ ഇപ്പോഴത്തെ ബാലൻസ്
+            actualUsed = 0;
+        }
+
+        let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
+        if (k === 'sticker') pct = 100; // Manual ആയത് കൊണ്ട് ബാർ ഫുൾ കാണിക്കുന്നു
+
+        let dec = (k === 'honey' || k === 'tape' || k === 'roll') ? 1 : 0;
         let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : items[k].color;
+
+        let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${items[k].unit} left</span>`;
+
+        // 🔥 A4 Sheet ഡിസൈൻ (10.4 ആണെങ്കിൽ 10 A4 + 2 Stk എന്ന് കാണിക്കാൻ)
+        if (k === 'sticker') {
+            let ratio = parseFloat(localStorage.getItem('stickersPerA4')) || 5;
+            let fullSheets = Math.floor(bal);
+            let looseStickers = Math.round((bal - fullSheets) * ratio);
+            if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
+
+            balDisplay = `${fullSheets} <span class="text-muted fw-normal" style="font-size:9px;">A4 left</span>`;
+            if (looseStickers > 0) {
+                balDisplay += ` <span class="badge bg-secondary ms-1" style="font-size:8px;">+${looseStickers} stk</span>`;
+            }
+        }
 
         html += `
         <div class="col-6 col-md-4 col-lg-3">
@@ -6843,14 +6895,14 @@ window.getLiveStockHtml = function () {
                     <span class="fw-bold text-secondary text-truncate" style="font-size:10px;"><i class="fas ${items[k].icon} text-${items[k].color} me-1"></i> ${items[k].name}</span>
                 </div>
                 <div class="fw-bolder text-${bal <= (db[k].total * 0.1) ? 'danger' : 'dark'} mb-1" style="font-size:15px;">
-                    ${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${items[k].unit} left</span>
+                    ${balDisplay}
                 </div>
                 <div class="progress" style="height: 5px; border-radius:5px;">
                     <div class="progress-bar bg-${alertClass}" role="progressbar" style="width: ${pct}%;"></div>
                 </div>
                 <div class="d-flex justify-content-between mt-1 text-muted" style="font-size:8.5px;">
                     <span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>
-                    <span class="fw-bold text-dark">Use: ${k === 'sticker' ? 'Manual' : actualUsed.toFixed(dec)}</span>
+                    <span class="fw-bold ${k === 'sticker' ? 'text-danger' : 'text-dark'}">${k === 'sticker' ? 'Manual Sync' : `Use: ${actualUsed.toFixed(dec)}`}</span>
                 </div>
             </div>
         </div>`;
@@ -6909,6 +6961,10 @@ window.editAllStocks = function () {
                     <input type="number" id="stk-mrp" class="form-control form-control-sm text-dark fw-bold border-warning" value="${savedMrp}" placeholder="750">
                 </div>
             </div>`;
+        }
+
+        if (k === 'sticker') {
+            extraHtml = `<div class="text-danger mt-1" style="font-size:9px; line-height: 1.3;"><i class="fas fa-info-circle"></i> A4 Stock is deducted automatically on print. Decimal (eg: 10.4) means 10 A4 + 2 Stickers. Add new stock to the current total.</div>`;
         }
 
         html += `
