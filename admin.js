@@ -5326,15 +5326,6 @@ window.printProductLabels = function () {
             }).catch(e => console.log('Inventory save error', e));
         }
     }
-    if (db.sticker && typeof db.sticker.total !== 'undefined') {
-        // e.g., 48 - 2.6 = 45.4
-        db.sticker.total = Math.max(0, parseFloat(db.sticker.total) - sheetsToDeduct);
-
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify({ action: 'saveInventory', inventory: db })
-        }).catch(e => console.log('Inventory save error', e));
-    }
 
     // 🔥 STEP 2: പ്രിന്റ് വിൻഡോ തുറക്കുന്നു
     let printWin = window.open('', 'LabelPrintWindow', 'width=800,height=900');
