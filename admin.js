@@ -7018,6 +7018,7 @@ window.stopRecording = function (key) {
 
 
 
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Accurate Bulk Calculation)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7060,7 +7061,13 @@ window.getLiveStockHtml = function (isExpanded = false) {
         if (isNaN(oDate.getTime())) return;
 
         let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
-        let isBulk = String(o.name || '').toLowerCase().includes('bulk') || String(o['App / Web'] || '').toLowerCase().includes('offline');
+
+        // 🔥 OFFLINE & BULK IDENTIFICATION
+        let isLocalSale = String(o.type || o.house || o.name || '').toLowerCase().includes('local sale') || String(o.name || '').toLowerCase() === 'walk-in customer';
+        let isPartnerBulk = String(o.type || o.house || o.name || '').toLowerCase().includes('partner bulk');
+        let isBulk = isLocalSale || isPartnerBulk || String(o['App / Web'] || '').toLowerCase().includes('offline');
+
+        let desc = String(o.desc || o.message || '').toLowerCase();
 
         let pTimeMatch = metaStr.match(/P_(\d+)/);
         let printTime = pTimeMatch ? parseInt(pTimeMatch[1]) : oDate.getTime();
@@ -7070,14 +7077,42 @@ window.getLiveStockHtml = function (isExpanded = false) {
                 let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
 
                 if (itemObj.track === 'print') {
+                    // ഓൺലൈൻ ഓർഡറുകളുടെ പ്രിന്റിംഗ് മാത്രം
                     if (metaStr.includes('S') && printTime >= new Date(db[k].start).getTime()) {
                         used[k] += isBulk ? 0 : qty * avg;
                     }
-                } else if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                } else if (['Dispatched', 'Delivered', 'Completed', 'Paid'].includes(status) || isBulk) {
                     if (itemObj.track === 'bottle') {
-                        if (k === 'honey') used.honey += isBulk ? qty : (qty * avg);
-                        else used[k] += isBulk ? 0 : qty * avg;
+                        if (k === 'honey') {
+                            // 🔥 തേനിന്റെ കൃത്യമായ കണക്ക്
+                            if (isPartnerBulk) {
+                                let match = desc.match(/(\d+(?:\.\d+)?)gm/);
+                                if (match) used.honey += (parseFloat(match[1]) / 1000); // gm ൽ നിന്നും KG ആക്കുന്നു
+                            } else if (isLocalSale) {
+                                if (desc.includes('650g')) used.honey += (qty * 0.65);
+                                else if (desc.includes('500g')) used.honey += (qty * 0.50);
+                                else if (desc.includes('300g')) used.honey += (qty * 0.30);
+                                else if (desc.includes('1kg')) used.honey += (qty * 1.0);
+                                else used.honey += (qty * avg);
+                            } else {
+                                used.honey += (qty * avg);
+                            }
+                        } else if (k === 'bottles') {
+                            // 🔥 കുപ്പിയുടെ കൃത്യമായ കണക്ക്
+                            if (isPartnerBulk) {
+                                used.bottles += 0;
+                            } else if (isLocalSale) {
+                                if (desc.includes('650g')) used.bottles += (qty * avg);
+                                // 500g, 300g എന്നിവയ്ക്ക് കുപ്പി കുറയില്ല!
+                            } else {
+                                used.bottles += (qty * avg);
+                            }
+                        } else {
+                            // Pouch, Roll (ഓഫ്‌ലൈൻ ഓർഡറുകൾക്ക് ഇതൊന്നും കുറയേണ്ട)
+                            used[k] += isBulk ? 0 : qty * avg;
+                        }
                     } else if (itemObj.track === 'order') {
+                        // Tape, Box (ഓഫ്‌ലൈൻ ഓർഡറുകൾക്ക് പാക്കിങ് ഐറ്റംസ് കുറയേണ്ട)
                         used[k] += isBulk ? 0 : 1 * avg;
                     }
                 }
