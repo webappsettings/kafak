@@ -5113,7 +5113,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 SMART PRINT PREDICTOR (Manual Sheet Selection)
+// 🔥 SMART PRINT PREDICTOR (With Accurate Stock Sync)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5124,19 +5124,47 @@ window.updatePrintPrediction = function () {
     let unprintedBottles = 0;
     let printedBottles = 0;
 
+    // 🔥 NEW: For Accurate Live Stock Sync
+    let db = window.globalInventoryDB || {};
+    let stkDB = db.sticker || { total: 0, start: "", exempt: 0, countOffset: 0, avgUsage: 0.2 };
+    let isStarted = stkDB.start ? true : false;
+    let startMs = isStarted ? new Date(stkDB.start).getTime() : 0;
+    let usedStickers = 0;
+
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
             let status = String(o.Status || 'Pending').trim();
             let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
             let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
             let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
+            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
+            // 1. Prediction Calculations
             if (status === 'Paid') {
-                let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
                 if (!metaStr.includes('S')) {
                     unprintedBottles += qty;
                 } else {
                     printedBottles += qty;
+                }
+            }
+
+            // 2. Exact Stock Usage Calculations (Same as Live Tracker)
+            if (isStarted) {
+                let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
+                if (oDateRaw) {
+                    let oDate = new Date(oDateRaw);
+                    if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
+
+                    let pTimeMatch = metaStr.match(/P_(\d+)/);
+                    let printTime = pTimeMatch ? parseInt(pTimeMatch[1]) : oDate.getTime();
+
+                    let isLocalSale = String(o.type || o.house || o.name || '').toLowerCase().includes('local sale') || String(o.name || '').toLowerCase() === 'walk-in customer';
+                    let isPartnerBulk = String(o.type || o.house || o.name || '').toLowerCase().includes('partner bulk');
+                    let isBulk = isLocalSale || isPartnerBulk || String(o['App / Web'] || '').toLowerCase().includes('offline');
+
+                    if (metaStr.includes('S') && printTime >= startMs) {
+                        usedStickers += isBulk ? 0 : qty;
+                    }
                 }
             }
         });
@@ -5155,12 +5183,16 @@ window.updatePrintPrediction = function () {
         document.getElementById('printed-bottles-count').innerText = printedBottles;
     }
 
-    // 🔥 SMART A4 STOCK CALCULATION
-    let db = window.globalInventoryDB || {};
-    let stickerTotal = db.sticker ? (parseFloat(db.sticker.total) || 0) : 0;
+    // 🔥 SMART A4 STOCK CALCULATION (Synced with Live Tracker)
+    let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
+    let countOffset = parseFloat(stkDB.countOffset) || 0;
 
-    let fullSheets = Math.floor(stickerTotal);
-    let looseStickers = Math.round((stickerTotal - fullSheets) * ratio);
+    // (Total Used Stickers + Manual Offset) * 0.2
+    let actualUsedSheets = isStarted ? Math.max(0, ((usedStickers * avg) + (countOffset * avg)) - (parseFloat(stkDB.exempt) || 0)) : 0;
+    let currentBalance = Math.max(0, parseFloat(stkDB.total || 0) - actualUsedSheets);
+
+    let fullSheets = Math.floor(currentBalance + 0.0001); // Prevent JS math issues
+    let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
     if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
     if (document.getElementById('a4-stock-display')) {
@@ -5196,8 +5228,6 @@ window.updatePrintPrediction = function () {
     optionsHtml += `</optgroup>`;
 
     modeBox.innerHTML = optionsHtml;
-
-    if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
 };
 
 window.toggleLeftDrawer = function () {
