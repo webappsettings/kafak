@@ -7003,7 +7003,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
         pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
         tape: { name: 'Packing Tape', unit: 'Rolls', icon: 'fa-tape', color: 'secondary', track: 'order', defAvg: 0.05, trkLbl: 'Ord' },
         box: { name: 'Packing Box', unit: 'Nos', icon: 'fa-box', color: 'success', track: 'order', defAvg: 1, trkLbl: 'Ord' },
-        roll: { name: 'Plastic Roll', unit: 'Mtrs', icon: 'fa-scroll', color: 'info', track: 'bottle', defAvg: 0.5, trkLbl: 'Btl' },
+        roll: { name: 'Plastic Roll', unit: 'KG', icon: 'fa-scroll', color: 'info', track: 'bottle', defAvg: 0.5, trkLbl: 'Btl' },
         sticker: { name: 'Sticker (A4)', unit: 'Shts', icon: 'fa-sticky-note', color: 'danger', track: 'print', defAvg: 0.2, trkLbl: 'Stk' },
         a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark', track: 'order', defAvg: 1, trkLbl: 'Ord' }
     };
@@ -7168,12 +7168,19 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
     let html = `
     <div id="live-stock-box" class="mb-4 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif; overflow:hidden;">
-        <div class="d-flex justify-content-between align-items-center p-3" style="cursor:pointer; background:#f8fafc;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
-            <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
-            <div class="d-flex align-items-center">
-                <button onclick="event.stopPropagation(); editAllStocks()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-bold me-2" style="font-size:10px;"><i class="fas fa-sync-alt me-1"></i> Update Stocks</button>
-                <i class="fas ${iconClass} text-muted transition-icon" id="inv-collapse-icon"></i>
+        <div class="d-flex justify-content-between align-items-center p-3" style="background:#f8fafc;">
+            
+            <div class="d-flex align-items-center flex-grow-1" style="cursor:pointer; height: 100%;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
+                <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
             </div>
+            
+            <div class="d-flex align-items-center">
+                <button onclick="editAllStocks()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-3 fw-bold me-2" style="font-size:10px; z-index:10;"><i class="fas fa-sync-alt me-1"></i> Update Stocks</button>
+                <div style="cursor:pointer; padding:5px;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
+                    <i class="fas ${iconClass} text-muted transition-icon" id="inv-collapse-icon"></i>
+                </div>
+            </div>
+            
         </div>
         
         <div id="inventoryCollapse" class="${collapseClass}">
