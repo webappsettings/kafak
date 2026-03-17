@@ -6995,7 +6995,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Accurate A4 Sticker Tracking)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (Perfect Offset Calculation)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7098,30 +7098,34 @@ window.getLiveStockHtml = function (isExpanded = false) {
     const buildCard = (k, itemObj, isInk = false) => {
         let isStarted = db[k].start ? true : false;
 
-        let actualUsed = isStarted ? Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0)) : 0;
-        let bal = Math.max(0, db[k].total - actualUsed);
-
         let baseCount = isStarted ? (counts[k] || 0) : 0;
         let countOffset = parseFloat(db[k].countOffset) || 0;
         let liveCount = Math.max(0, baseCount + countOffset);
 
+        let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
+
+        // 🔥 FIX: Manual Count offset is now multiplied by average to deduct stock correctly!
+        let actualUsed = isStarted ? Math.max(0, (used[k] + (countOffset * avg)) - (parseFloat(db[k].exempt) || 0)) : 0;
+        let bal = Math.max(0, db[k].total - actualUsed);
+
         let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
 
         let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : itemObj.color;
-        let dec = (k === 'bottles' || k === 'box' || k === 'pouch' || k === 'a6paper' || k === 'sticker') ? 0 : 2;
+
+        // 🔥 FIX: Sticker decimal allowed to show 7.20 instead of 7
+        let dec = (k === 'bottles' || k === 'box' || k === 'pouch' || k === 'a6paper') ? 0 : 2;
 
         let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${itemObj.unit}</span>`;
 
         if (k === 'sticker') {
             let ratio = parseFloat(localStorage.getItem('stickersPerA4')) || 5;
-            let fullSheets = Math.floor(bal);
+            let fullSheets = Math.floor(bal + 0.0001); // Prevent JS math issues
             let looseStickers = Math.round((bal - fullSheets) * ratio);
             if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
             balDisplay = `${fullSheets} <span class="text-muted fw-normal" style="font-size:9px;">A4</span>`;
             if (looseStickers > 0) balDisplay += ` <span class="badge bg-secondary ms-1" style="font-size:8px;">+${looseStickers} stk</span>`;
         }
 
-        let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
         let rQty = db[k].ratioQty || 1;
         let rUnit = db[k].ratioUnit || avg;
         if (Math.abs((rUnit / rQty) - avg) > 0.001) { rQty = 1; rUnit = avg; }
@@ -7207,6 +7211,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
     html += `</div></div></div></div></div></div>`;
     return html;
 };
+
 // 🔥 SMART INDIVIDUAL TRACKER EDIT MODAL (Safe Mode)
 window.editLiveCount = function (key, itemName, baseCount, currentLiveCount) {
     if (!window.isInventoryLoaded || !window.globalInventoryDB) return;
