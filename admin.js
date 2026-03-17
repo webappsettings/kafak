@@ -7223,7 +7223,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
     return html;
 };
 
-// 🔥 SMART INDIVIDUAL TRACKER EDIT MODAL
+// 🔥 SMART INDIVIDUAL TRACKER EDIT MODAL (Safe Mode)
 window.editLiveCount = function (key, itemName, baseCount, currentLiveCount) {
     if (!window.isInventoryLoaded || !window.globalInventoryDB) return;
 
@@ -7231,28 +7231,20 @@ window.editLiveCount = function (key, itemName, baseCount, currentLiveCount) {
         title: `<div style="font-size:16px; font-weight:800; color:#1e293b;">📊 Tracked ${itemName}</div>`,
         html: `
         <div class="text-start px-2">
+            <div class="alert alert-warning p-2 shadow-sm border-warning" style="font-size:10px; line-height:1.4;">
+                <b>💡 ശ്രദ്ധിക്കുക:</b> ഈ എണ്ണം മാറ്റുന്നത് കാർഡിലെ 'Done' എണ്ണം ശരിയാക്കാൻ മാത്രമാണ്. യഥാർത്ഥ സ്റ്റോക്ക് തനിയെ കുറയുന്നത് <b>Start Date</b>-ന് ശേഷമുള്ള ഓർഡറുകൾ വെച്ചാണ്.
+            </div>
             <label class="fw-bold small text-muted mb-1" style="font-size:11px;">Edit Processed Count</label>
             <input type="number" id="live-count-input" class="form-control fw-bold fs-3 text-center text-primary border-primary shadow-sm" value="${currentLiveCount}">
-            
-            <div class="form-check mt-3 p-2 bg-light border border-secondary border-opacity-25 rounded shadow-sm d-flex align-items-center">
-                <input class="form-check-input ms-1" type="checkbox" id="sync-avg-cb" checked style="cursor:pointer; width:16px; height:16px;">
-                <label class="form-check-label fw-bold text-dark ms-2" for="sync-avg-cb" style="cursor:pointer; font-size:11px; line-height:1.4;">
-                    Update Average Formula automatically?
-                </label>
-            </div>
-            <div class="text-muted mt-1 small" style="font-size:9px; line-height:1.3;">
-                ഇത് ടിക്ക് ചെയ്താൽ നിങ്ങൾ മാറ്റിയ ഈ എണ്ണം തനിയെ താഴെയുള്ള ഫോർമുലയിലേക്ക് വരികയും ആവറേജ് കാൽക്കുലേറ്റ് ആവുകയും ചെയ്യും.
-            </div>
         </div>
         `,
         showCancelButton: true,
-        confirmButtonText: 'Save to Sheet',
+        confirmButtonText: 'Save',
         confirmButtonColor: '#0d6efd',
         customClass: { popup: 'rounded-4' },
         preConfirm: () => {
             let newVal = parseFloat(document.getElementById('live-count-input').value) || 0;
-            let syncAvg = document.getElementById('sync-avg-cb').checked;
-            return { newVal, syncAvg };
+            return { newVal };
         }
     }).then(res => {
         if (res.isConfirmed) {
@@ -7260,19 +7252,7 @@ window.editLiveCount = function (key, itemName, baseCount, currentLiveCount) {
             let offset = res.value.newVal - baseCount;
 
             if (!db[key]) db[key] = {};
-            db[key].countOffset = offset; // 🔥 ഇതിലൂടെയാണ് ഇനി മുതൽ തനിയെ എണ്ണുന്നത്!
-
-            if (res.value.syncAvg) {
-                let ratioUnit = parseFloat(db[key].ratioUnit);
-                if (isNaN(ratioUnit)) {
-                    ratioUnit = (parseFloat(db[key].avgUsage) || 0) * (parseFloat(db[key].ratioQty) || 1);
-                }
-
-                db[key].ratioQty = res.value.newVal;
-                if (res.value.newVal > 0) {
-                    db[key].avgUsage = ratioUnit / res.value.newVal;
-                }
-            }
+            db[key].countOffset = offset;
 
             Swal.fire({ title: 'Saving...', didOpen: () => Swal.showLoading() });
             fetch(scriptURL, {
