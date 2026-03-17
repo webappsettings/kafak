@@ -6787,17 +6787,153 @@ window.fetchInventoryBg = function () {
 };
 
 
-// 🔥 ADVANCED LIVE STOCK & INVENTORY TRACKER LOGIC
+
+// 🔥 SMART YIELD TRACKING LOGIC & CSS
+if (!$('#inv-custom-css').length) {
+    $('<style id="inv-custom-css">').html(`
+        .blink-bg { animation: blinker 1.5s linear infinite; } 
+        @keyframes blinker { 50% { opacity: 0.5; } }
+        .inv-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+        .inv-card:hover { transform: translateY(-2px); box-shadow: 0 8px 15px rgba(0,0,0,0.08) !important; }
+    `).appendTo('head');
+}
+
+window.saveManualAvg = function (key, val) {
+    let db = window.globalInventoryDB || {};
+    if (!db[key]) db[key] = {};
+    db[key].avgUsage = parseFloat(val) || 0;
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'saveInventory', inventory: db })
+    }).then(() => {
+        showToast('success', 'Average Updated! ✅');
+        renderLiveStockTracker();
+    });
+};
+
+window.startRecording = function (key) {
+    Swal.fire({
+        title: `<div style="font-size:18px;"><i class="fas fa-video text-danger blink-bg me-2"></i>Start Recording?</div>`,
+        html: `<div class="text-muted" style="font-size:13px;">പുതിയ <b>${key.toUpperCase()}</b> സ്റ്റാർട്ട് ചെയ്യുകയാണോ? <br><br>ഇനി മുതൽ പാക്ക് ചെയ്യുന്ന ഓർഡറുകൾ സിസ്റ്റം ട്രാക്ക് ചെയ്തു തുടങ്ങും.</div>`,
+        showCancelButton: true,
+        confirmButtonText: "Yes, Start Recording",
+        confirmButtonColor: "#dc3545",
+        customClass: { popup: 'rounded-4' }
+    }).then((res) => {
+        if (res.isConfirmed) {
+            let db = window.globalInventoryDB || {};
+            if (!db[key]) db[key] = {};
+            db[key].recordStartTime = new Date().toISOString();
+
+            Swal.fire({ title: 'Starting...', didOpen: () => Swal.showLoading() });
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'saveInventory', inventory: db })
+            }).then(() => {
+                window.globalInventoryDB = db;
+                renderLiveStockTracker();
+                Swal.fire('Started!', 'System is now tracking usage.', 'success');
+            });
+        }
+    });
+};
+
+window.calcNewAvg = function (count) {
+    let consumed = parseFloat(document.getElementById('rec-consumed').value) || 0;
+    let avg = count > 0 ? (consumed / count) : 0;
+    document.getElementById('rec-avg').value = avg.toFixed(4);
+};
+
+window.stopRecording = function (key) {
+    let db = window.globalInventoryDB || {};
+    let startTime = new Date(db[key].recordStartTime);
+    let count = 0;
+
+    let trackType = 'bottle';
+    if (['tape', 'box', 'a6paper'].includes(key)) trackType = 'order';
+    if (['cyan', 'magenta', 'yellow', 'black'].includes(key)) trackType = 'print';
+
+    allOrders.forEach(o => {
+        let status = String(o.Status || 'Pending').trim();
+        if (['Dispatched', 'Delivered', 'Completed', 'Paid'].includes(status)) {
+            let oDateStr = o['Dispatched Date'] || o.paidDate || o.timestamp;
+            let oDate = new Date(oDateStr);
+            if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateStr);
+
+            if (!isNaN(oDate.getTime()) && oDate >= startTime) {
+                let qty = parseInt(o.quantity) || 1;
+                let isBulk = String(o.name || '').toLowerCase().includes('bulk') || String(o['App / Web'] || '').toLowerCase().includes('offline');
+
+                if (!isBulk) {
+                    if (trackType === 'print' && status === 'Paid' && (o.adminMeta || '').includes('S')) {
+                        count += qty;
+                    } else if (trackType === 'order' && ['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                        count += 1;
+                    } else if (trackType === 'bottle' && ['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                        count += qty;
+                    }
+                }
+            }
+        }
+    });
+
+    Swal.fire({
+        title: `<div style="font-size:18px;"><i class="fas fa-stop-circle text-danger me-2"></i>Stop & Calculate</div>`,
+        html: `
+            <div class="text-start bg-light p-3 rounded-4 border border-secondary border-opacity-25 mt-2">
+                <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">Items Processed (Since Start)</label>
+                <div class="fs-4 fw-bolder text-primary mb-3">${count} <span class="text-muted fw-normal" style="font-size:12px;">${trackType}s</span></div>
+                
+                <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">Consumed Quantity (എത്ര എണ്ണം തീർന്നു?)</label>
+                <div class="input-group input-group-sm mb-3">
+                    <input type="number" id="rec-consumed" class="form-control fw-bold fs-5 text-center" value="1" step="0.01" oninput="calcNewAvg(${count})">
+                    <span class="input-group-text bg-white text-muted fw-bold">Unit(s)</span>
+                </div>
+                
+                <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">Calculated New Average</label>
+                <input type="number" id="rec-avg" class="form-control fw-bold text-success fs-5 text-center bg-white" value="${count > 0 ? (1 / count).toFixed(4) : 0}" step="0.0001">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: "Save New Average",
+        confirmButtonColor: "#198754",
+        customClass: { popup: 'rounded-4' },
+        preConfirm: () => parseFloat(document.getElementById('rec-avg').value) || 0
+    }).then((res) => {
+        if (res.isConfirmed) {
+            let newAvg = res.value;
+            db[key].avgUsage = newAvg;
+            db[key].recordStartTime = null;
+
+            Swal.fire({ title: 'Saving...', didOpen: () => Swal.showLoading() });
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'saveInventory', inventory: db })
+            }).then(() => {
+                window.globalInventoryDB = db;
+                renderLiveStockTracker();
+                Swal.fire('Saved!', 'New average applied to system.', 'success');
+            });
+        }
+    });
+};
+
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC
 window.getLiveStockHtml = function () {
     const items = {
-        bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary' },
-        honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning' },
-        tape: { name: 'Packing Tape', unit: 'Rolls', icon: 'fa-tape', color: 'secondary' },
-        roll: { name: 'Plastic Roll', unit: 'Meters', icon: 'fa-scroll', color: 'info' },
-        box: { name: 'Packing Box', unit: 'Nos', icon: 'fa-box', color: 'success' },
-        sticker: { name: 'Sticker (A4)', unit: 'Sheets', icon: 'fa-sticky-note', color: 'danger' },
-        a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark' },
-        pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary' }
+        bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, hideRec: true },
+        honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning', track: 'bottle', defAvg: 0.65, hideRec: false },
+        pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary', track: 'bottle', defAvg: 1, hideRec: true },
+        tape: { name: 'Packing Tape', unit: 'Rolls', icon: 'fa-tape', color: 'secondary', track: 'order', defAvg: 0.05, hideRec: false },
+        box: { name: 'Packing Box', unit: 'Nos', icon: 'fa-box', color: 'success', track: 'order', defAvg: 1, hideRec: true },
+        roll: { name: 'Plastic Roll', unit: 'Mtrs', icon: 'fa-scroll', color: 'info', track: 'bottle', defAvg: 0.5, hideRec: false },
+        cyan: { name: 'Cyan Ink', unit: 'ML', icon: 'fa-fill-drip', color: 'info', track: 'print', defAvg: 0.05, hideRec: false },
+        magenta: { name: 'Magenta Ink', unit: 'ML', icon: 'fa-fill-drip', color: 'danger', track: 'print', defAvg: 0.05, hideRec: false },
+        yellow: { name: 'Yellow Ink', unit: 'ML', icon: 'fa-fill-drip', color: 'warning', track: 'print', defAvg: 0.05, hideRec: false },
+        black: { name: 'Black Ink', unit: 'ML', icon: 'fa-fill-drip', color: 'dark', track: 'print', defAvg: 0.05, hideRec: false },
+        sticker: { name: 'Sticker (A4)', unit: 'Shts', icon: 'fa-sticky-note', color: 'danger', track: 'manual', defAvg: 0.2, hideRec: true },
+        a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark', track: 'order', defAvg: 1, hideRec: true }
     };
 
     let db = window.globalInventoryDB;
@@ -6807,42 +6943,42 @@ window.getLiveStockHtml = function () {
         return `<div id="live-stock-box" class="text-center p-4 bg-white border rounded-4 shadow-sm mb-4 text-primary fw-bold small"><i class="fas fa-spinner fa-spin me-2"></i> Syncing Live Inventory from Sheet...</div>`;
     }
 
-    let isInitialSetup = false;
     for (let k in items) {
-        if (!db[k]) {
-            db[k] = { total: 0, start: nowLocal, exempt: 0 };
-            isInitialSetup = true;
-        }
+        if (!db[k]) db[k] = { total: 0, start: nowLocal, exempt: 0 };
         if (db[k].exempt === undefined) db[k].exempt = 0;
     }
 
-    let used = { bottles: 0, honey: 0, tape: 0, roll: 0, box: 0, sticker: 0, a6paper: 0, pouch: 0 };
+    let used = {};
+    for (let k in items) used[k] = 0;
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
-        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
-            let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
-            if (!oDateRaw) return;
+        let metaStr = String(o.adminMeta || '');
+        let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
+        if (!oDateRaw) return;
 
-            let oDate = new Date(oDateRaw);
-            if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
-            if (isNaN(oDate.getTime())) return;
+        let oDate = new Date(oDateRaw);
+        if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
+        if (isNaN(oDate.getTime())) return;
 
-            let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
-            let appWeb = String(o['App / Web'] || o.appWeb || '').toLowerCase();
-            let oName = String(o.name || o.Name || '').toLowerCase();
-            let isBulk = (appWeb.includes('offline') || oName.includes('bulk') || oName.includes('partner'));
+        let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+        let isBulk = String(o.name || '').toLowerCase().includes('bulk') || String(o['App / Web'] || '').toLowerCase().includes('offline');
 
-            for (let k in items) {
-                if (oDate >= new Date(db[k].start)) {
-                    if (k === 'bottles') used.bottles += isBulk ? 0 : qty;
-                    if (k === 'honey') used.honey += isBulk ? qty : (qty * 0.65);
-                    if (k === 'pouch') used.pouch += isBulk ? 0 : qty;
-                    // A4 Sheet is excluded from auto-calculation here
-                    if (k === 'box') used.box += isBulk ? 0 : 1;
-                    if (k === 'a6paper') used.a6paper += isBulk ? 0 : 1;
-                    if (k === 'tape') used.tape += isBulk ? 0 : 0.05;
-                    if (k === 'roll') used.roll += isBulk ? 0 : (qty * 0.5);
+        for (let k in items) {
+            if (oDate >= new Date(db[k].start)) {
+                let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : items[k].defAvg;
+
+                if (items[k].track === 'print') {
+                    if (metaStr.includes('S')) used[k] += isBulk ? 0 : qty * avg;
+                }
+                else if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                    if (items[k].track === 'bottle') {
+                        if (k === 'honey') used.honey += isBulk ? qty : (qty * avg);
+                        else used[k] += isBulk ? 0 : qty * avg;
+                    }
+                    else if (items[k].track === 'order') {
+                        used[k] += isBulk ? 0 : 1 * avg;
+                    }
                 }
             }
         }
@@ -6861,21 +6997,19 @@ window.getLiveStockHtml = function () {
         let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
         let bal = Math.max(0, db[k].total - actualUsed);
 
-        // 🔥 Sticker-ന് വേണ്ടി മാത്രം പ്രത്യേകം സെറ്റ് ചെയ്യുന്നു
         if (k === 'sticker') {
-            bal = Math.max(0, parseFloat(db.sticker.total) || 0); // Total എന്നത് തന്നെയാണ് ഇതിന്റെ ഇപ്പോഴത്തെ ബാലൻസ്
+            bal = Math.max(0, parseFloat(db.sticker.total) || 0);
             actualUsed = 0;
         }
 
         let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
-        if (k === 'sticker') pct = 100; // Manual ആയത് കൊണ്ട് ബാർ ഫുൾ കാണിക്കുന്നു
+        if (k === 'sticker') pct = 100;
 
-        let dec = (k === 'honey' || k === 'tape' || k === 'roll') ? 1 : 0;
         let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : items[k].color;
+        let dec = (k === 'bottles' || k === 'box' || k === 'pouch' || k === 'a6paper' || k === 'sticker') ? 0 : 2;
 
         let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${items[k].unit} left</span>`;
 
-        // 🔥 A4 Sheet ഡിസൈൻ (10.4 ആണെങ്കിൽ 10 A4 + 2 Stk എന്ന് കാണിക്കാൻ)
         if (k === 'sticker') {
             let ratio = parseFloat(localStorage.getItem('stickersPerA4')) || 5;
             let fullSheets = Math.floor(bal);
@@ -6883,14 +7017,32 @@ window.getLiveStockHtml = function () {
             if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
             balDisplay = `${fullSheets} <span class="text-muted fw-normal" style="font-size:9px;">A4 left</span>`;
-            if (looseStickers > 0) {
-                balDisplay += ` <span class="badge bg-secondary ms-1" style="font-size:8px;">+${looseStickers} stk</span>`;
-            }
+            if (looseStickers > 0) balDisplay += ` <span class="badge bg-secondary ms-1" style="font-size:8px;">+${looseStickers} stk</span>`;
+        }
+
+        let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : items[k].defAvg;
+        let avgEditHtml = '';
+
+        if (!items[k].hideRec) {
+            let isRecording = db[k].recordStartTime ? true : false;
+            let recBtn = isRecording
+                ? `<button class="btn btn-danger py-0 px-2 blink-bg border-0 shadow-sm d-flex align-items-center" style="font-size:9px; border-radius:4px; font-weight:800;" onclick="stopRecording('${k}')"><i class="fas fa-stop me-1"></i> STOP</button>`
+                : `<button class="btn btn-outline-secondary py-0 px-2 d-flex align-items-center" style="font-size:9px; border-radius:4px; font-weight:800;" onclick="startRecording('${k}')"><i class="fas fa-circle text-danger me-1"></i> REC</button>`;
+
+            avgEditHtml = `
+                <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary border-opacity-10">
+                    <div class="input-group input-group-sm" style="width:65px;">
+                        <span class="input-group-text p-0 px-1 bg-light text-muted border-secondary border-opacity-25" style="font-size:8px; font-weight:700;">Avg</span>
+                        <input type="number" class="form-control p-0 text-center fw-bold text-success border-secondary border-opacity-25 shadow-none" style="font-size:10px;" value="${avg}" onchange="saveManualAvg('${k}', this.value)">
+                    </div>
+                    ${recBtn}
+                </div>
+            `;
         }
 
         html += `
         <div class="col-6 col-md-4 col-lg-3">
-            <div class="p-2 border rounded-3 bg-light position-relative shadow-sm">
+            <div class="inv-card p-2 border rounded-3 bg-light position-relative shadow-sm d-flex flex-column h-100">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="fw-bold text-secondary text-truncate" style="font-size:10px;"><i class="fas ${items[k].icon} text-${items[k].color} me-1"></i> ${items[k].name}</span>
                 </div>
@@ -6900,10 +7052,11 @@ window.getLiveStockHtml = function () {
                 <div class="progress" style="height: 5px; border-radius:5px;">
                     <div class="progress-bar bg-${alertClass}" role="progressbar" style="width: ${pct}%;"></div>
                 </div>
-                <div class="d-flex justify-content-between mt-1 text-muted" style="font-size:8.5px;">
+                <div class="d-flex justify-content-between mt-1 text-muted flex-grow-1" style="font-size:8.5px;">
                     <span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>
                     <span class="fw-bold ${k === 'sticker' ? 'text-danger' : 'text-dark'}">${k === 'sticker' ? 'Manual Sync' : `Use: ${actualUsed.toFixed(dec)}`}</span>
                 </div>
+                ${avgEditHtml}
             </div>
         </div>`;
     }
@@ -6922,12 +7075,12 @@ window.renderLiveStockTracker = function () {
     }
 };
 
+
 window.editAllStocks = function () {
     let db = window.globalInventoryDB || {};
     let nowLocal = new Date().toISOString().slice(0, 16);
 
     let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
-
     let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN26PTT03');
     let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || calculatedMRP);
 
@@ -6938,9 +7091,11 @@ window.editAllStocks = function () {
         </div>
     `;
 
+    // 🔥 NEW: CMYK ഇങ്കുകൾ ഉൾപ്പെടുത്തിയിട്ടുള്ള ലിസ്റ്റ്
     const items = {
         bottles: 'Empty Bottles (Nos)', honey: 'Raw Honey (KG)', tape: 'Packing Tape (Rolls)', roll: 'Plastic Roll (Meters)',
-        box: 'Packing Box (Nos)', sticker: 'Sticker (A4 Sheets)', a6paper: 'A6 Paper (Nos)', pouch: 'Shrink Pouch (Nos)'
+        box: 'Packing Box (Nos)', pouch: 'Shrink Pouch (Nos)', sticker: 'Sticker (A4 Sheets)', a6paper: 'A6 Paper (Nos)',
+        cyan: 'Cyan Ink (ML)', magenta: 'Magenta Ink (ML)', yellow: 'Yellow Ink (ML)', black: 'Black Ink (ML)'
     };
 
     for (let k in items) {
@@ -7002,18 +7157,17 @@ window.editAllStocks = function () {
                 db[k] = {
                     total: parseFloat(document.getElementById(`stk-total-${k}`).value) || 0,
                     start: document.getElementById(`stk-start-${k}`).value || nowLocal,
-                    exempt: parseFloat(document.getElementById(`stk-exempt-${k}`).value) || 0
+                    exempt: parseFloat(document.getElementById(`stk-exempt-${k}`).value) || 0,
+                    avgUsage: db[k].avgUsage || undefined // 🔥 നിലവിലുള്ള ആവറേജ് കളയാതിരിക്കാൻ
                 };
             }
 
-            // 🔥 Server-il DB-ilekk Batch-um MRP-yum set cheyyunnu
             let newBatch = document.getElementById('stk-batch').value.toUpperCase();
             let newMrp = document.getElementById('stk-mrp').value;
 
             db.honey.batch = newBatch;
             db.honey.mrp = newMrp;
 
-            // Local aayum save aakkunnu (pettennu load aavan)
             localStorage.setItem('label_batch', newBatch);
             localStorage.setItem('label_mrp', newMrp);
 
