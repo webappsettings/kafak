@@ -2055,6 +2055,9 @@ window.undoUpdate = function (oid, type) {
     renderSyncList();
     updateSyncButtonUI();
 
+    updatePrintPrediction();
+    renderLiveStockTracker();
+
     // 🔥 ഇത് കാർഡുകളെ തൽക്ഷണം പഴയ ടാബിലേക്ക് മാറ്റും!
     renderTabs(allOrders);
 
@@ -5122,7 +5125,6 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 SMART PRINT PREDICTOR (With Accurate Stock Sync)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5130,77 +5132,60 @@ window.updatePrintPrediction = function () {
     let ratio = parseInt(selectBox.value) || 5;
     localStorage.setItem('stickersPerA4', ratio);
 
+    // 🔥 1. സെർവർ ഡാറ്റ വരുന്നത് വരെ ലോഡിംഗ് കാണിക്കുന്നു
+    if (!window.globalInventoryDB) {
+        if (document.getElementById('a4-stock-display')) {
+            document.getElementById('a4-stock-display').innerHTML = `<i class="fas fa-spinner fa-spin text-muted" style="font-size:10px;"></i>`;
+        }
+        return;
+    }
+
     let unprintedBottles = 0;
     let printedBottles = 0;
-
-    // 🔥 NEW: For Accurate Live Stock Sync
-    let db = window.globalInventoryDB || {};
+    let db = window.globalInventoryDB;
     let stkDB = db.sticker || { total: 0, start: "", exempt: 0, countOffset: 0, avgUsage: 0.2 };
     let isStarted = stkDB.start ? true : false;
     let startMs = isStarted ? new Date(stkDB.start).getTime() : 0;
     let usedStickers = 0;
 
+    // Pending Updates കൂടി കണക്കിലെടുക്കുന്നു
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
             let status = String(o.Status || 'Pending').trim();
-            let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
             let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
             let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
             let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
-            // 1. Prediction Calculations
             if (status === 'Paid') {
-                if (!metaStr.includes('S')) {
-                    unprintedBottles += qty;
-                } else {
-                    printedBottles += qty;
-                }
+                if (!metaStr.includes('S')) unprintedBottles += qty;
+                else printedBottles += qty;
             }
 
-            // 2. Exact Stock Usage Calculations (Same as Live Tracker)
             if (isStarted) {
                 let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
                 if (oDateRaw) {
                     let oDate = new Date(oDateRaw);
                     if (isNaN(oDate.getTime()) && typeof parseOrderDate === 'function') oDate = parseOrderDate(oDateRaw);
-
                     let pTimeMatch = metaStr.match(/P_(\d+)/);
                     let printTime = pTimeMatch ? parseInt(pTimeMatch[1]) : oDate.getTime();
 
-                    let isLocalSale = String(o.type || o.house || o.name || '').toLowerCase().includes('local sale') || String(o.name || '').toLowerCase() === 'walk-in customer';
-                    let isPartnerBulk = String(o.type || o.house || o.name || '').toLowerCase().includes('partner bulk');
-                    let isBulk = isLocalSale || isPartnerBulk || String(o['App / Web'] || '').toLowerCase().includes('offline');
-
                     if (metaStr.includes('S') && printTime >= startMs) {
-                        usedStickers += isBulk ? 0 : qty;
+                        usedStickers += qty;
                     }
                 }
             }
         });
     }
 
-    let exactQty = unprintedBottles;
-    let totalSheetsNeeded = Math.ceil(exactQty / ratio);
-    let filledQty = totalSheetsNeeded * ratio;
-
-    let exactText = exactQty === 0 ? "0 Sheets" : `${totalSheetsNeeded} Sheet(s)`;
-
-    if (document.getElementById('unprinted-bottles-count')) {
-        document.getElementById('unprinted-bottles-count').innerText = exactQty;
-        document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
-        document.getElementById('exact-sheets-count').innerText = exactText;
-        document.getElementById('printed-bottles-count').innerText = printedBottles;
-    }
-
-    // 🔥 SMART A4 STOCK CALCULATION (Synced with Live Tracker)
+    // A4 STOCK SYNC CALCULATION
     let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
-
-    // (Total Used Stickers + Manual Offset) * 0.2
     let actualUsedSheets = isStarted ? Math.max(0, ((usedStickers * avg) + (countOffset * avg)) - (parseFloat(stkDB.exempt) || 0)) : 0;
     let currentBalance = Math.max(0, parseFloat(stkDB.total || 0) - actualUsedSheets);
 
-    let fullSheets = Math.floor(currentBalance + 0.0001); // Prevent JS math issues
+    let fullSheets = Math.floor(currentBalance + 0.0001);
     let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
     if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
@@ -5208,35 +5193,21 @@ window.updatePrintPrediction = function () {
         document.getElementById('a4-stock-display').innerHTML = `${fullSheets} A4 <span class="badge bg-secondary ms-1">+${looseStickers} stk</span>`;
     }
 
-    // 🔥 DROPDOWN OPTIONS (Smart Grouping)
+    // UI Updates (Counts & Options)
+    if (document.getElementById('unprinted-bottles-count')) {
+        document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
+        document.getElementById('required-sheets-count').innerText = Math.ceil(unprintedBottles / ratio);
+        document.getElementById('printed-bottles-count').innerText = printedBottles;
+    }
+
+    // Dropdown re-render
     let modeBox = document.getElementById('print-qty-mode');
-    if (!modeBox) return;
-
-    let optionsHtml = '';
-
-    if (exactQty > 0) {
-        optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
-        if (exactQty !== filledQty) {
-            optionsHtml += `<option value="${filledQty}" selected>Fill Last Sheet (${filledQty} Stickers = ${filledQty / ratio} A4)</option>`;
-            optionsHtml += `<option value="${exactQty}">Print Exact Need (${exactQty} Stickers = ${(exactQty / ratio).toFixed(1)} A4)</option>`;
-        } else {
-            optionsHtml += `<option value="${exactQty}" selected>Print Exact Need (${exactQty} Stickers = Perfect Fit!)</option>`;
-        }
-        optionsHtml += `</optgroup>`;
+    if (modeBox) {
+        let optionsHtml = `<optgroup label="--- Auto ---">`;
+        let filled = Math.ceil(unprintedBottles / ratio) * ratio;
+        optionsHtml += `<option value="${filled || ratio}" selected>Print & Fill Sheet</option></optgroup>`;
+        modeBox.innerHTML = optionsHtml;
     }
-
-    optionsHtml += `<optgroup label="--- Manual Copies ---">`;
-    for (let i = 1; i <= ratio; i++) {
-        let sel = (exactQty === 0 && i === ratio) ? 'selected' : '';
-        optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
-    }
-    for (let i = 2; i <= 5; i++) {
-        let labels = i * ratio;
-        optionsHtml += `<option value="${labels}">Print ${i} Full A4 (${labels} Stickers)</option>`;
-    }
-    optionsHtml += `</optgroup>`;
-
-    modeBox.innerHTML = optionsHtml;
 };
 
 window.toggleLeftDrawer = function () {
@@ -6790,6 +6761,7 @@ window.renderPartnerList = function () {
 window.globalInventoryDB = null;
 window.isInventoryLoaded = false; // 🔥 Safety Flag
 
+
 window.fetchInventoryBg = function () {
     fetch(scriptURL, {
         method: 'POST',
@@ -6801,12 +6773,15 @@ window.fetchInventoryBg = function () {
                 try {
                     let parsed = typeof res.data === 'string' ? JSON.parse(res.data) : res.data;
                     window.globalInventoryDB = (parsed && Object.keys(parsed).length > 0) ? parsed : {};
-                    window.isInventoryLoaded = true; // ഡാറ്റ കിട്ടി എന്ന് ഉറപ്പാക്കുന്നു
+                    window.isInventoryLoaded = true;
                 } catch (e) {
                     window.globalInventoryDB = {};
                     window.isInventoryLoaded = true;
                 }
+
+                // 🔥 ശരിയായ സ്ഥലം: ഡാറ്റ കിട്ടിക്കഴിഞ്ഞാലുടൻ ഇവ രണ്ടും റൺ ചെയ്യുക
                 if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
+                window.updatePrintPrediction();
             }
         }).catch(err => {
             console.log('Inventory fetch error', err);
