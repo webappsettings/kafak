@@ -6995,7 +6995,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Individual Edit Option)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Live Counter & Editing)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7024,8 +7024,9 @@ window.getLiveStockHtml = function (isExpanded = false) {
     for (let k in inkItems) { if (!db[k]) db[k] = { total: 0, start: nowLocal, exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
 
     let used = {};
-    for (let k in standardItems) used[k] = 0;
-    for (let k in inkItems) used[k] = 0;
+    let counts = {}; // 🔥 ലൈവ് കൗണ്ടിനായി പുതിയ വേരിയബിൾ
+    for (let k in standardItems) { used[k] = 0; counts[k] = 0; }
+    for (let k in inkItems) { used[k] = 0; counts[k] = 0; }
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
@@ -7055,6 +7056,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
                 if (itemObj.track === 'print') {
                     if (metaStr.includes('S') && printTime >= new Date(db[k].start).getTime()) {
                         used[k] += isBulk ? 0 : qty * avg;
+                        counts[k] += isBulk ? 0 : qty;
                     }
                 } else if (['Dispatched', 'Delivered', 'Completed', 'Paid'].includes(status) || isBulk) {
                     if (itemObj.track === 'bottle') {
@@ -7063,27 +7065,31 @@ window.getLiveStockHtml = function (isExpanded = false) {
                                 let match = desc.match(/(\d+(?:\.\d+)?)gm/);
                                 if (match) used.honey += (parseFloat(match[1]) / 1000);
                             } else if (isLocalSale) {
-                                if (desc.includes('650g')) used.honey += (qty * 0.65);
-                                else if (desc.includes('500g')) used.honey += (qty * 0.50);
-                                else if (desc.includes('300g')) used.honey += (qty * 0.30);
-                                else if (desc.includes('1kg')) used.honey += (qty * 1.0);
-                                else used.honey += (qty * avg);
+                                if (desc.includes('650g')) { used.honey += (qty * 0.65); counts.honey += qty; }
+                                else if (desc.includes('500g')) { used.honey += (qty * 0.50); counts.honey += qty; }
+                                else if (desc.includes('300g')) { used.honey += (qty * 0.30); counts.honey += qty; }
+                                else if (desc.includes('1kg')) { used.honey += (qty * 1.0); counts.honey += qty; }
+                                else { used.honey += (qty * avg); counts.honey += qty; }
                             } else {
                                 used.honey += (qty * avg);
+                                counts.honey += qty;
                             }
                         } else if (k === 'bottles') {
                             if (isPartnerBulk) {
                                 used.bottles += 0;
                             } else if (isLocalSale) {
-                                if (desc.includes('650g')) used.bottles += (qty * avg);
+                                if (desc.includes('650g')) { used.bottles += (qty * avg); counts.bottles += qty; }
                             } else {
                                 used.bottles += (qty * avg);
+                                counts.bottles += qty;
                             }
                         } else {
                             used[k] += isBulk ? 0 : qty * avg;
+                            counts[k] += isBulk ? 0 : qty;
                         }
                     } else if (itemObj.track === 'order') {
                         used[k] += isBulk ? 0 : 1 * avg;
+                        counts[k] += isBulk ? 0 : 1;
                     }
                 }
             }
@@ -7096,6 +7102,11 @@ window.getLiveStockHtml = function (isExpanded = false) {
     const buildCard = (k, itemObj, isInk = false) => {
         let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
         let bal = Math.max(0, db[k].total - actualUsed);
+
+        // 🔥 ലൈവ് കൗണ്ടും ഓഫ്സെറ്റും (Offset) 
+        let baseCount = counts[k] || 0;
+        let countOffset = parseFloat(db[k].countOffset) || 0;
+        let liveCount = Math.max(0, baseCount + countOffset);
 
         if (k === 'sticker') { bal = Math.max(0, parseFloat(db.sticker.total) || 0); actualUsed = 0; }
 
@@ -7127,11 +7138,20 @@ window.getLiveStockHtml = function (isExpanded = false) {
             ? `<button class="btn btn-danger py-0 px-1 blink-bg border-0 shadow-sm d-flex align-items-center justify-content-center" style="font-size:9px; border-radius:4px; font-weight:800; height:22px; width:35px;" onclick="stopRecording('${k}')"><i class="fas fa-stop"></i></button>`
             : `<button class="btn btn-outline-secondary py-0 px-1 d-flex align-items-center justify-content-center" style="font-size:9px; border-radius:4px; font-weight:800; height:22px; width:35px;" onclick="startRecording('${k}')"><i class="fas fa-circle text-danger"></i></button>`;
 
-        // 🔥 NEW: Individual Edit Button
-        let editBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
+        let editStockBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
+
+        // 🔥 പുതിയ ലൈവ് ട്രാക്കർ UI 
+        let trackerHtml = `
+        <div class="d-flex justify-content-between align-items-center bg-white p-1 px-2 rounded border border-primary border-opacity-25 shadow-sm mb-2 mt-1" style="cursor:pointer; transition: 0.2s;" onclick="editLiveCount('${k}', '${itemObj.name}', ${baseCount}, ${liveCount})" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='#ffffff'" title="Click to Edit Tracked Count">
+            <div class="text-primary fw-bold" style="font-size:10px;">
+                <i class="fas fa-check-circle text-success me-1"></i> Done: <span class="fs-6 text-dark ms-1">${liveCount}</span> <span class="text-muted fw-normal ms-1" style="font-size:8px;">${itemObj.trkLbl}</span>
+            </div>
+            <div class="badge bg-light text-primary border border-primary border-opacity-25 shadow-sm" style="font-size:8px;"><i class="fas fa-edit"></i> Edit</div>
+        </div>
+        `;
 
         let inputHtml = `
-            <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top border-secondary border-opacity-10">
+            <div class="d-flex justify-content-between align-items-center mt-1 pt-2 border-top border-secondary border-opacity-10">
                 <div class="input-group input-group-sm shadow-sm" style="border-radius:4px; overflow:hidden; flex-wrap: nowrap; width:calc(100% - 40px);">
                     <input type="number" id="ratio-qty-${k}" class="form-control p-0 text-center fw-bold border-secondary border-opacity-25 shadow-none bg-white" style="font-size:10px; width:30px;" value="${rQty}" step="1" onchange="saveRatioAvg('${k}')">
                     <span class="input-group-text p-0 bg-light text-muted border-secondary border-opacity-25 d-flex justify-content-center" style="font-size:8px; font-weight:700; width:35px;">${itemObj.trkLbl}=</span>
@@ -7149,7 +7169,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
             <div class="inv-card p-2 border rounded-3 ${cardBg} position-relative shadow-sm d-flex flex-column h-100">
                 <div class="d-flex justify-content-between align-items-center mb-1">
                     <span class="fw-bold text-secondary text-truncate" style="font-size:10px;"><i class="fas ${itemObj.icon} text-${itemObj.color} me-1"></i> ${itemObj.name}</span>
-                    ${editBtn}
+                    ${editStockBtn}
                 </div>
                 <div class="fw-bolder text-${bal <= (db[k].total * 0.1) ? 'danger' : 'dark'} mb-1" style="font-size:14px; line-height:1.2;">
                     ${balDisplay}
@@ -7157,10 +7177,11 @@ window.getLiveStockHtml = function (isExpanded = false) {
                 <div class="progress mb-1" style="height: 4px; border-radius:4px;">
                     <div class="progress-bar bg-${alertClass}" style="width: ${pct}%;"></div>
                 </div>
-                <div class="d-flex justify-content-between text-muted flex-grow-1" style="font-size:8px;">
+                <div class="d-flex justify-content-between text-muted flex-grow-1 mb-1" style="font-size:8px;">
                     <span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>
                     <span class="fw-bold ${k === 'sticker' ? 'text-danger' : 'text-dark'}">${k === 'sticker' ? 'Manual' : `Use: ${actualUsed.toFixed(dec)}`}</span>
                 </div>
+                ${trackerHtml}
                 ${inputHtml}
             </div>
         </div>`;
@@ -7169,13 +7190,16 @@ window.getLiveStockHtml = function (isExpanded = false) {
     let collapseClass = isExpanded ? 'collapse show' : 'collapse';
     let iconClass = isExpanded ? 'fa-chevron-up' : 'fa-chevron-down';
 
-    // 🔥 REMOVED THE COMMON UPDATE BUTTON FROM HEADER
     let html = `
     <div id="live-stock-box" class="mb-4 bg-white border border-secondary border-opacity-25 rounded-4 shadow-sm" style="font-family: Arial, sans-serif; overflow:hidden;">
-        <div class="d-flex justify-content-between align-items-center p-3" style="cursor:pointer; background:#f8fafc;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
-            <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
+        <div class="d-flex justify-content-between align-items-center p-3" style="background:#f8fafc;">
+            <div class="d-flex align-items-center flex-grow-1" style="cursor:pointer; height: 100%;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
+                <h6 class="fw-bold text-dark m-0" style="font-size:14px;"><i class="fas fa-boxes text-primary me-2"></i> Live Inventory Tracker</h6>
+            </div>
             <div class="d-flex align-items-center">
-                <i class="fas ${iconClass} text-muted transition-icon" id="inv-collapse-icon"></i>
+                <div style="cursor:pointer; padding:5px;" data-bs-toggle="collapse" data-bs-target="#inventoryCollapse" onclick="toggleInvCollapseIcon()">
+                    <i class="fas ${iconClass} text-muted transition-icon" id="inv-collapse-icon"></i>
+                </div>
             </div>
         </div>
         
@@ -7199,6 +7223,69 @@ window.getLiveStockHtml = function (isExpanded = false) {
     return html;
 };
 
+// 🔥 SMART INDIVIDUAL TRACKER EDIT MODAL
+window.editLiveCount = function (key, itemName, baseCount, currentLiveCount) {
+    if (!window.isInventoryLoaded || !window.globalInventoryDB) return;
+
+    Swal.fire({
+        title: `<div style="font-size:16px; font-weight:800; color:#1e293b;">📊 Tracked ${itemName}</div>`,
+        html: `
+        <div class="text-start px-2">
+            <label class="fw-bold small text-muted mb-1" style="font-size:11px;">Edit Processed Count</label>
+            <input type="number" id="live-count-input" class="form-control fw-bold fs-3 text-center text-primary border-primary shadow-sm" value="${currentLiveCount}">
+            
+            <div class="form-check mt-3 p-2 bg-light border border-secondary border-opacity-25 rounded shadow-sm d-flex align-items-center">
+                <input class="form-check-input ms-1" type="checkbox" id="sync-avg-cb" checked style="cursor:pointer; width:16px; height:16px;">
+                <label class="form-check-label fw-bold text-dark ms-2" for="sync-avg-cb" style="cursor:pointer; font-size:11px; line-height:1.4;">
+                    Update Average Formula automatically?
+                </label>
+            </div>
+            <div class="text-muted mt-1 small" style="font-size:9px; line-height:1.3;">
+                ഇത് ടിക്ക് ചെയ്താൽ നിങ്ങൾ മാറ്റിയ ഈ എണ്ണം തനിയെ താഴെയുള്ള ഫോർമുലയിലേക്ക് വരികയും ആവറേജ് കാൽക്കുലേറ്റ് ആവുകയും ചെയ്യും.
+            </div>
+        </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Save to Sheet',
+        confirmButtonColor: '#0d6efd',
+        customClass: { popup: 'rounded-4' },
+        preConfirm: () => {
+            let newVal = parseFloat(document.getElementById('live-count-input').value) || 0;
+            let syncAvg = document.getElementById('sync-avg-cb').checked;
+            return { newVal, syncAvg };
+        }
+    }).then(res => {
+        if (res.isConfirmed) {
+            let db = window.globalInventoryDB;
+            let offset = res.value.newVal - baseCount;
+
+            if (!db[key]) db[key] = {};
+            db[key].countOffset = offset; // 🔥 ഇതിലൂടെയാണ് ഇനി മുതൽ തനിയെ എണ്ണുന്നത്!
+
+            if (res.value.syncAvg) {
+                let ratioUnit = parseFloat(db[key].ratioUnit);
+                if (isNaN(ratioUnit)) {
+                    ratioUnit = (parseFloat(db[key].avgUsage) || 0) * (parseFloat(db[key].ratioQty) || 1);
+                }
+
+                db[key].ratioQty = res.value.newVal;
+                if (res.value.newVal > 0) {
+                    db[key].avgUsage = ratioUnit / res.value.newVal;
+                }
+            }
+
+            Swal.fire({ title: 'Saving...', didOpen: () => Swal.showLoading() });
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'saveInventory', inventory: db })
+            }).then(() => {
+                window.globalInventoryDB = db;
+                renderLiveStockTracker();
+                Swal.fire({ icon: 'success', title: 'Updated!', timer: 1000, showConfirmButton: false });
+            });
+        }
+    });
+};
 // Collapse ഐക്കൺ മാറാൻ
 window.toggleInvCollapseIcon = function () {
     setTimeout(() => {
