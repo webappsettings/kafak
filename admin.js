@@ -6995,7 +6995,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Live Counter & Editing)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Accurate Dispatch Date Filtering)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7024,7 +7024,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
     for (let k in inkItems) { if (!db[k]) db[k] = { total: 0, start: nowLocal, exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
 
     let used = {};
-    let counts = {}; // 🔥 ലൈവ് കൗണ്ടിനായി പുതിയ വേരിയബിൾ
+    let counts = {};
     for (let k in standardItems) { used[k] = 0; counts[k] = 0; }
     for (let k in inkItems) { used[k] = 0; counts[k] = 0; }
 
@@ -7046,15 +7046,31 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let desc = String(o.desc || o.message || '').toLowerCase();
 
+        // 🔥 PRINT TIME & ACTION TIME LOGIC
         let pTimeMatch = metaStr.match(/P_(\d+)/);
         let printTime = pTimeMatch ? parseInt(pTimeMatch[1]) : oDate.getTime();
 
+        let dDateRaw = o['Dispatched Date'] || o['Delivered Date'];
+        let dDateMs = NaN;
+        if (dDateRaw) {
+            let dDate = new Date(dDateRaw);
+            if (isNaN(dDate.getTime()) && typeof parseOrderDate === 'function') dDate = parseOrderDate(dDateRaw);
+            dDateMs = dDate.getTime();
+        }
+
+        // ഡിസ്പാച്ച് ചെയ്തതാണെങ്കിൽ ആ തിയ്യതി, അല്ലെങ്കിൽ പെയ്ഡ് ആക്കിയ തിയ്യതി ആയിരിക്കും Action Time
+        let actionTime = !isNaN(dDateMs) ? dDateMs : (status === 'Paid' ? printTime : oDate.getTime());
+
         const calculateItem = (k, itemObj) => {
-            if (oDate.getTime() >= new Date(db[k].start).getTime()) {
+            let startMs = new Date(db[k].start).getTime();
+            let checkTime = (itemObj.track === 'print') ? printTime : actionTime;
+
+            // പാക്ക് ചെയ്ത/പ്രിന്റ് ചെയ്ത തിയ്യതി Start Date നേക്കാൾ വലുതാണെങ്കിൽ മാത്രം കാൽക്കുലേറ്റ് ചെയ്യും!
+            if (checkTime >= startMs) {
                 let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
 
                 if (itemObj.track === 'print') {
-                    if (metaStr.includes('S') && printTime >= new Date(db[k].start).getTime()) {
+                    if (metaStr.includes('S') && printTime >= startMs) {
                         used[k] += isBulk ? 0 : qty * avg;
                         counts[k] += isBulk ? 0 : qty;
                     }
@@ -7103,7 +7119,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
         let bal = Math.max(0, db[k].total - actualUsed);
 
-        // 🔥 ലൈവ് കൗണ്ടും ഓഫ്സെറ്റും (Offset) 
         let baseCount = counts[k] || 0;
         let countOffset = parseFloat(db[k].countOffset) || 0;
         let liveCount = Math.max(0, baseCount + countOffset);
@@ -7140,7 +7155,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let editStockBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
 
-        // 🔥 പുതിയ ലൈവ് ട്രാക്കർ UI 
         let trackerHtml = `
         <div class="d-flex justify-content-between align-items-center bg-white p-1 px-2 rounded border border-primary border-opacity-25 shadow-sm mb-2 mt-1" style="cursor:pointer; transition: 0.2s;" onclick="editLiveCount('${k}', '${itemObj.name}', ${baseCount}, ${liveCount})" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='#ffffff'" title="Click to Edit Tracked Count">
             <div class="text-primary fw-bold" style="font-size:10px;">
