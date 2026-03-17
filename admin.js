@@ -5315,17 +5315,6 @@ window.printProductLabels = function () {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
-    // 🔥 STEP 1.5: ഇൻവെന്ററിയിൽ നിന്നും കൃത്യം ഫ്രാക്ഷൻ സഹിതം കുറയ്ക്കുന്നു (With Safety)
-    if (window.isInventoryLoaded && window.globalInventoryDB) {
-        let db = window.globalInventoryDB;
-        if (db.sticker && typeof db.sticker.total !== 'undefined') {
-            db.sticker.total = Math.max(0, parseFloat(db.sticker.total) - sheetsToDeduct);
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'saveInventory', inventory: db })
-            }).catch(e => console.log('Inventory save error', e));
-        }
-    }
 
     // 🔥 STEP 2: പ്രിന്റ് വിൻഡോ തുറക്കുന്നു
     let printWin = window.open('', 'LabelPrintWindow', 'width=800,height=900');
