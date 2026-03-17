@@ -5200,14 +5200,39 @@ window.updatePrintPrediction = function () {
         document.getElementById('printed-bottles-count').innerText = printedBottles;
     }
 
-    // Dropdown re-render
+    // 🔥 DROPDOWN OPTIONS (Fixed: Manual options will always show)
     let modeBox = document.getElementById('print-qty-mode');
-    if (modeBox) {
-        let optionsHtml = `<optgroup label="--- Auto ---">`;
-        let filled = Math.ceil(unprintedBottles / ratio) * ratio;
-        optionsHtml += `<option value="${filled || ratio}" selected>Print & Fill Sheet</option></optgroup>`;
-        modeBox.innerHTML = optionsHtml;
+    if (!modeBox) return;
+
+    let optionsHtml = '';
+
+    // 1. Auto Calculation (Bottles print edukkan undenkil mathram kanikkum)
+    if (exactQty > 0) {
+        optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
+        if (exactQty !== filledQty) {
+            optionsHtml += `<option value="${filledQty}" selected>Fill Last Sheet (${filledQty} Stickers = ${filledQty / ratio} A4)</option>`;
+            optionsHtml += `<option value="${exactQty}">Print Exact Need (${exactQty} Stickers = ${(exactQty / ratio).toFixed(1)} A4)</option>`;
+        } else {
+            optionsHtml += `<option value="${exactQty}" selected>Print Exact Need (${exactQty} Stickers = Perfect Fit!)</option>`;
+        }
+        optionsHtml += `</optgroup>`;
     }
+
+    // 2. Manual Copies (Ithu eppozhum kanikkum)
+    optionsHtml += `<optgroup label="--- Manual Copies ---">`;
+    for (let i = 1; i <= ratio; i++) {
+        // Auto options illengil mathram "Print 1" default aayi select aakum
+        let sel = (exactQty === 0 && i === 1) ? 'selected' : '';
+        optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
+    }
+    for (let i = 2; i <= 5; i++) {
+        let labels = i * ratio;
+        optionsHtml += `<option value="${labels}">Print ${i} Full A4 (${labels} Stickers)</option>`;
+    }
+    optionsHtml += `</optgroup>`;
+
+    modeBox.innerHTML = optionsHtml;
+
 };
 
 window.toggleLeftDrawer = function () {
