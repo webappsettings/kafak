@@ -6995,7 +6995,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With Accurate Dispatch Date Filtering)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With "Not Started" Professional Mode)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7016,12 +7016,10 @@ window.getLiveStockHtml = function (isExpanded = false) {
     };
 
     let db = window.globalInventoryDB;
-    let nowLocal = new Date().toISOString().slice(0, 16);
-
     if (!db) return `<div id="live-stock-box" class="text-center p-4 bg-white border rounded-4 shadow-sm mb-4 text-primary fw-bold small"><i class="fas fa-spinner fa-spin me-2"></i> Syncing Live Inventory from Sheet...</div>`;
 
-    for (let k in standardItems) { if (!db[k]) db[k] = { total: 0, start: nowLocal, exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
-    for (let k in inkItems) { if (!db[k]) db[k] = { total: 0, start: nowLocal, exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
+    for (let k in standardItems) { if (!db[k]) db[k] = { total: 0, start: "", exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
+    for (let k in inkItems) { if (!db[k]) db[k] = { total: 0, start: "", exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
 
     let used = {};
     let counts = {};
@@ -7039,14 +7037,11 @@ window.getLiveStockHtml = function (isExpanded = false) {
         if (isNaN(oDate.getTime())) return;
 
         let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
-
         let isLocalSale = String(o.type || o.house || o.name || '').toLowerCase().includes('local sale') || String(o.name || '').toLowerCase() === 'walk-in customer';
         let isPartnerBulk = String(o.type || o.house || o.name || '').toLowerCase().includes('partner bulk');
         let isBulk = isLocalSale || isPartnerBulk || String(o['App / Web'] || '').toLowerCase().includes('offline');
-
         let desc = String(o.desc || o.message || '').toLowerCase();
 
-        // 🔥 PRINT TIME & ACTION TIME LOGIC
         let pTimeMatch = metaStr.match(/P_(\d+)/);
         let printTime = pTimeMatch ? parseInt(pTimeMatch[1]) : oDate.getTime();
 
@@ -7057,15 +7052,14 @@ window.getLiveStockHtml = function (isExpanded = false) {
             if (isNaN(dDate.getTime()) && typeof parseOrderDate === 'function') dDate = parseOrderDate(dDateRaw);
             dDateMs = dDate.getTime();
         }
-
-        // ഡിസ്പാച്ച് ചെയ്തതാണെങ്കിൽ ആ തിയ്യതി, അല്ലെങ്കിൽ പെയ്ഡ് ആക്കിയ തിയ്യതി ആയിരിക്കും Action Time
         let actionTime = !isNaN(dDateMs) ? dDateMs : (status === 'Paid' ? printTime : oDate.getTime());
 
         const calculateItem = (k, itemObj) => {
+            if (!db[k].start) return; // 🔥 NOT STARTED: Start Date illengil calculate cheyyilla!
+
             let startMs = new Date(db[k].start).getTime();
             let checkTime = (itemObj.track === 'print') ? printTime : actionTime;
 
-            // പാക്ക് ചെയ്ത/പ്രിന്റ് ചെയ്ത തിയ്യതി Start Date നേക്കാൾ വലുതാണെങ്കിൽ മാത്രം കാൽക്കുലേറ്റ് ചെയ്യും!
             if (checkTime >= startMs) {
                 let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
 
@@ -7086,27 +7080,13 @@ window.getLiveStockHtml = function (isExpanded = false) {
                                 else if (desc.includes('300g')) { used.honey += (qty * 0.30); counts.honey += qty; }
                                 else if (desc.includes('1kg')) { used.honey += (qty * 1.0); counts.honey += qty; }
                                 else { used.honey += (qty * avg); counts.honey += qty; }
-                            } else {
-                                used.honey += (qty * avg);
-                                counts.honey += qty;
-                            }
+                            } else { used.honey += (qty * avg); counts.honey += qty; }
                         } else if (k === 'bottles') {
-                            if (isPartnerBulk) {
-                                used.bottles += 0;
-                            } else if (isLocalSale) {
-                                if (desc.includes('650g')) { used.bottles += (qty * avg); counts.bottles += qty; }
-                            } else {
-                                used.bottles += (qty * avg);
-                                counts.bottles += qty;
-                            }
-                        } else {
-                            used[k] += isBulk ? 0 : qty * avg;
-                            counts[k] += isBulk ? 0 : qty;
-                        }
-                    } else if (itemObj.track === 'order') {
-                        used[k] += isBulk ? 0 : 1 * avg;
-                        counts[k] += isBulk ? 0 : 1;
-                    }
+                            if (isPartnerBulk) { used.bottles += 0; }
+                            else if (isLocalSale) { if (desc.includes('650g')) { used.bottles += (qty * avg); counts.bottles += qty; } }
+                            else { used.bottles += (qty * avg); counts.bottles += qty; }
+                        } else { used[k] += isBulk ? 0 : qty * avg; counts[k] += isBulk ? 0 : qty; }
+                    } else if (itemObj.track === 'order') { used[k] += isBulk ? 0 : 1 * avg; counts[k] += isBulk ? 0 : 1; }
                 }
             }
         };
@@ -7116,10 +7096,12 @@ window.getLiveStockHtml = function (isExpanded = false) {
     });
 
     const buildCard = (k, itemObj, isInk = false) => {
-        let actualUsed = Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0));
+        let isStarted = db[k].start ? true : false; // 🔥 Check if started
+
+        let actualUsed = isStarted ? Math.max(0, used[k] - (parseFloat(db[k].exempt) || 0)) : 0;
         let bal = Math.max(0, db[k].total - actualUsed);
 
-        let baseCount = counts[k] || 0;
+        let baseCount = isStarted ? (counts[k] || 0) : 0;
         let countOffset = parseFloat(db[k].countOffset) || 0;
         let liveCount = Math.max(0, baseCount + countOffset);
 
@@ -7145,7 +7127,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
         let rQty = db[k].ratioQty || 1;
         let rUnit = db[k].ratioUnit || avg;
-
         if (Math.abs((rUnit / rQty) - avg) > 0.001) { rQty = 1; rUnit = avg; }
 
         let isRecording = db[k].recordStartTime ? true : false;
@@ -7154,6 +7135,11 @@ window.getLiveStockHtml = function (isExpanded = false) {
             : `<button class="btn btn-outline-secondary py-0 px-1 d-flex align-items-center justify-content-center" style="font-size:9px; border-radius:4px; font-weight:800; height:22px; width:35px;" onclick="startRecording('${k}')"><i class="fas fa-circle text-danger"></i></button>`;
 
         let editStockBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
+
+        // 🔥 Not Started HTML Display
+        let startDateHtml = isStarted
+            ? `<span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>`
+            : `<span class="text-danger fw-bold"><i class="fas fa-pause-circle"></i> Not Started</span>`;
 
         let trackerHtml = `
         <div class="d-flex justify-content-between align-items-center bg-white p-1 px-2 rounded border border-primary border-opacity-25 shadow-sm mb-2 mt-1" style="cursor:pointer; transition: 0.2s;" onclick="editLiveCount('${k}', '${itemObj.name}', ${baseCount}, ${liveCount})" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='#ffffff'" title="Click to Edit Tracked Count">
@@ -7192,7 +7178,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
                     <div class="progress-bar bg-${alertClass}" style="width: ${pct}%;"></div>
                 </div>
                 <div class="d-flex justify-content-between text-muted flex-grow-1 mb-1" style="font-size:8px;">
-                    <span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>
+                    ${startDateHtml}
                     <span class="fw-bold ${k === 'sticker' ? 'text-danger' : 'text-dark'}">${k === 'sticker' ? 'Manual' : `Use: ${actualUsed.toFixed(dec)}`}</span>
                 </div>
                 ${trackerHtml}
@@ -7216,21 +7202,10 @@ window.getLiveStockHtml = function (isExpanded = false) {
                 </div>
             </div>
         </div>
-        
-        <div id="inventoryCollapse" class="${collapseClass}">
-            <div class="p-3 border-top">
-                <div class="row g-2">
-    `;
+        <div id="inventoryCollapse" class="${collapseClass}"><div class="p-3 border-top"><div class="row g-2">`;
 
     for (let k in standardItems) html += buildCard(k, standardItems[k], false);
-
-    html += `
-        <div class="col-12 mt-3">
-            <div class="inv-card p-3 border border-secondary border-opacity-25 rounded-4 bg-light shadow-sm">
-                <h6 class="fw-bold text-dark mb-3" style="font-size:13px;"><i class="fas fa-print text-primary me-2"></i> Print Ink (CMYK)</h6>
-                <div class="row g-2">
-    `;
-
+    html += `<div class="col-12 mt-3"><div class="inv-card p-3 border border-secondary border-opacity-25 rounded-4 bg-light shadow-sm"><h6 class="fw-bold text-dark mb-3" style="font-size:13px;"><i class="fas fa-print text-primary me-2"></i> Print Ink (CMYK)</h6><div class="row g-2">`;
     for (let k in inkItems) html += buildCard(k, inkItems[k], true);
 
     html += `</div></div></div></div></div></div>`;
@@ -7303,23 +7278,20 @@ window.renderLiveStockTracker = function () {
     }
 };
 
-// 🔥 SMART INDIVIDUAL STOCK UPDATE MODAL
+// 🔥 SMART INDIVIDUAL STOCK UPDATE MODAL (With Empty Start Date Support)
 window.editSingleStock = function (key, itemName, unit) {
-    if (!window.isInventoryLoaded || !window.globalInventoryDB) {
-        Swal.fire('Loading...', 'Please wait for inventory data to sync from server.', 'warning');
-        return;
-    }
+    if (!window.isInventoryLoaded || !window.globalInventoryDB) return;
 
     let db = window.globalInventoryDB;
-    let itemData = db[key] || { total: 0, start: getLocalIsoString(new Date()), exempt: 0 };
+    let itemData = db[key] || { total: 0, start: "", exempt: 0 };
 
-    let startVal = itemData.start ? itemData.start.slice(0, 16) : getLocalIsoString(new Date());
+    // Start date illengil blank aayi kanikkum
+    let startVal = itemData.start ? itemData.start.slice(0, 16) : "";
     let totalVal = itemData.total || 0;
     let exemptVal = itemData.exempt || 0;
 
     let extraHtml = '';
 
-    // തേൻ (Honey) ആണെങ്കിൽ മാത്രം Batch ഉം MRP ഉം കാണിക്കാൻ
     if (key === 'honey') {
         let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
         let savedBatch = db.honey.batch || localStorage.getItem('label_batch') || 'HN26PTT03';
@@ -7338,27 +7310,20 @@ window.editSingleStock = function (key, itemName, unit) {
             </div>`;
     }
 
-    if (key === 'sticker') {
-        extraHtml = `<div class="text-danger mt-3 p-2 bg-danger bg-opacity-10 rounded" style="font-size:10px; line-height: 1.3;"><i class="fas fa-info-circle"></i> A4 Stock is deducted automatically on print. Add new stock to the current total. Decimal (eg: 10.4) means 10 A4 + 2 Stickers.</div>`;
-    }
-
     Swal.fire({
         title: `<div style="font-size:16px; font-weight:800; color:#1e293b; text-align:left;">📦 Update ${itemName}</div>`,
         html: `
         <div class="text-start">
             <div class="alert alert-info p-2 mb-3" style="font-size:10px; line-height:1.4;">
-                പുതിയ സ്റ്റോക്ക് വരുമ്പോൾ <b>Total Stock</b>-ഉം അത് തുടങ്ങിയ <b>Start Date</b>-ഉം കൊടുക്കുക.<br>
-                പഴയ സ്റ്റോക്ക് വല്ലതും ബാക്കി ഉപയോഗിച്ചിട്ടുണ്ടെങ്കിൽ ആ അളവ് <b>Old Stock Used</b>-ൽ കൊടുക്കുക.
+                <b>💡 Tip:</b> ഈ ഐറ്റം ഉപയോഗിച്ചു തുടങ്ങിയിട്ടില്ലെങ്കിൽ 'Start Date' മായ്ച്ചു കളയുക (Leave Blank).
             </div>
-            
             <div class="mb-3">
                 <label class="text-muted fw-bold" style="font-size:10px; text-transform:uppercase;">Total Stock (${unit})</label>
                 <input type="number" step="0.01" id="single-total" class="form-control fw-bold border-primary border-opacity-50 fs-4 text-primary" value="${totalVal}">
             </div>
-            
             <div class="row g-2">
                 <div class="col-12">
-                    <label class="text-muted fw-bold" style="font-size:10px; text-transform:uppercase;">Start Date & Time</label>
+                    <label class="text-muted fw-bold" style="font-size:10px; text-transform:uppercase;">Start Date (Leave empty if not started)</label>
                     <input type="datetime-local" id="single-start" class="form-control text-secondary fw-bold" value="${startVal}">
                 </div>
                 <div class="col-12 mt-3">
@@ -7366,7 +7331,6 @@ window.editSingleStock = function (key, itemName, unit) {
                     <input type="number" step="0.01" id="single-exempt" class="form-control border-danger border-opacity-50 text-danger fw-bold fs-5" value="${exemptVal}">
                 </div>
             </div>
-            
             ${extraHtml}
         </div>`,
         showCancelButton: true,
@@ -7375,40 +7339,21 @@ window.editSingleStock = function (key, itemName, unit) {
         customClass: { popup: 'rounded-4' },
         preConfirm: () => {
             let newTotal = parseFloat(document.getElementById('single-total').value) || 0;
-            let newStart = document.getElementById('single-start').value || getLocalIsoString(new Date());
+            let newStart = document.getElementById('single-start').value; // Can be empty string ""
             let newExempt = parseFloat(document.getElementById('single-exempt').value) || 0;
 
-            // Update only this specific item, preserve formulas
-            db[key] = {
-                ...db[key],
-                total: newTotal,
-                start: newStart,
-                exempt: newExempt
-            };
+            db[key] = { ...db[key], total: newTotal, start: newStart, exempt: newExempt };
 
-            // Save Honey specific fields
             if (key === 'honey') {
                 let newBatch = document.getElementById('single-batch').value.toUpperCase();
                 let newMrp = document.getElementById('single-mrp').value;
-
                 db.honey.batch = newBatch;
                 db.honey.mrp = newMrp;
-
                 localStorage.setItem('label_batch', newBatch);
                 localStorage.setItem('label_mrp', newMrp);
-
-                if (document.getElementById('label-batch')) {
-                    document.getElementById('label-batch').value = newBatch;
-                    document.getElementById('prev-batch').innerText = newBatch;
-                }
-                if (document.getElementById('label-mrp')) {
-                    document.getElementById('label-mrp').value = newMrp;
-                    document.getElementById('prev-mrp').innerText = newMrp + " . 00";
-                }
             }
 
-            Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-
+            Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
             return fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
@@ -7420,8 +7365,6 @@ window.editSingleStock = function (key, itemName, unit) {
                 } else {
                     Swal.fire('Error', 'Failed to save', 'error');
                 }
-            }).catch(err => {
-                Swal.fire('Error', 'Network error while saving.', 'error');
             });
         }
     });
