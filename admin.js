@@ -1762,9 +1762,7 @@ window.syncWithServer = function () {
     new bootstrap.Modal(document.getElementById('syncModal')).show();
 };
 
-// 🔥 2. SHOW EXPENSES IN SYNC MODAL (സിങ്ക് വിൻഡോയിൽ എക്സ്പെൻസുകൾ കൂടി കാണിക്കാൻ)
-// 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST
-// 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST (Includes Paid Number)
+// 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST (Includes Sticker & Resend Info)
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -1925,7 +1923,7 @@ function renderSyncList() {
                 changedLines.push(`Contact: <span class="fw-bold text-dark"><i class="${contactIcon}"></i> ${contactLabel}</span>`);
             }
 
-            // 2. പ്രിന്റ് മാറ്റിയതാണെങ്കിൽ
+            // 2. പ്രിന്റ് മാറ്റിയതാണെങ്കിൽ (QR Label)
             if (!oldMetaStr.includes('P') && newMetaStr.includes('P')) {
                 changedLines.push(`Status: <span class="fw-bold text-dark"><i class="fas fa-print text-warning"></i> Marked as Printed</span>`);
             } else if (oldMetaStr.includes('P') && !newMetaStr.includes('P')) {
@@ -1937,6 +1935,17 @@ function renderSyncList() {
                 changedLines.push(`Tab: <span class="fw-bold text-dark"><i class="fas fa-truck text-info"></i> Moved to Tracked Tab</span>`);
             } else if (oldMetaStr.includes('T') && !newMetaStr.includes('T')) {
                 changedLines.push(`Tab: <span class="fw-bold text-danger"><i class="fas fa-undo text-secondary"></i> Removed from Tracked Tab</span>`);
+            }
+
+            // 4. 🔥 പുതിയത്: സ്റ്റിക്കർ പ്രിന്റ് അടിച്ചതാണെങ്കിൽ (S Tag)
+            if (!oldMetaStr.includes('S') && newMetaStr.includes('S')) {
+                let qty = order.quantity || 1;
+                changedLines.push(`Action: <span class="fw-bold text-dark"><i class="fas fa-sticky-note text-danger"></i> Label Printed (Qty: ${qty})</span>`);
+            }
+
+            // 5. 🔥 പുതിയത്: Resend (R Tag)
+            if (!oldMetaStr.includes('R') && newMetaStr.includes('R')) {
+                changedLines.push(`Action: <span class="fw-bold text-danger"><i class="fas fa-reply-all"></i> Marked for Resend</span>`);
             }
 
             // എന്തെങ്കിലും കാരണം കൊണ്ട് മാച്ച് ആയില്ലെങ്കിൽ
