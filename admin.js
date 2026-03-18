@@ -5125,7 +5125,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 ADVANCED SMART PRINT PREDICTOR (With Loose Sticker Management)
+// 🔥 ADVANCED SMART PRINT PREDICTOR (MALAYALAM UI & GLOBAL EDIT)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5157,13 +5157,11 @@ window.updatePrintPrediction = function () {
             let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
             let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
-            // 1. Unprinted vs Printed (Based on 'S' meta)
             if (status === 'Paid') {
                 if (!metaStr.includes('S')) unprintedStickers += qty;
                 else printedStickers += qty;
             }
 
-            // 2. Used Inventory Calculation
             if (isStarted) {
                 let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
                 if (oDateRaw) {
@@ -5184,7 +5182,6 @@ window.updatePrintPrediction = function () {
     let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
 
-    // Total Used = (Actual System Used + Manual Edited Offset)
     let actualUsedSheets = isStarted ? Math.max(0, ((usedStickers * avg) + (countOffset * avg)) - (parseFloat(stkDB.exempt) || 0)) : 0;
     let currentBalance = Math.max(0, parseFloat(stkDB.total || 0) - actualUsedSheets);
 
@@ -5192,25 +5189,33 @@ window.updatePrintPrediction = function () {
     let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
     if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
-    // --- 🎨 BEAUTIFUL ADVANCED UI (White Sheets & Editable Loose Stickers) ---
+    // --- 🎨 BEAUTIFUL MALAYALAM UI (Clickable to Edit) ---
     let stockHtml = `
-        <div class="d-flex flex-column align-items-end gap-1">
-            <div class="fw-bold text-dark" style="font-size:13px; line-height:1.2;">
-                <i class="fas fa-layer-group text-primary me-1"></i> ${fullSheets} <span class="text-muted fw-normal" style="font-size:10px;">White A4 Sheets</span>
-            </div>
-            <div class="d-flex align-items-center justify-content-between p-1 px-2 rounded shadow-sm" 
+        <div class="d-flex flex-column align-items-end gap-2 w-100 mt-2">
+            
+            <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
                  style="cursor:pointer; background:#fff3cd; border:1px solid #ffe69c; transition:0.2s;" 
                  onclick="editLiveCount('sticker', 'Sticker (A4)', ${usedStickers}, ${Math.max(0, usedStickers + countOffset)})" 
-                 onmouseover="this.style.background='#ffecb5'" onmouseout="this.style.background='#fff3cd'" title="Click to Edit Loose Stickers">
-                <span class="fw-bold" style="font-size:10px; color:#b45309;">
-                    <i class="fas fa-cut me-1"></i> Loose: ${looseStickers} Stickers
+                 onmouseover="this.style.background='#ffecb5'" onmouseout="this.style.background='#fff3cd'" title="എണ്ണം മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക">
+                <span class="fw-bold" style="font-size:11px; color:#b45309;">
+                    <i class="fas fa-cut me-1"></i> പ്രിന്റ് ചെയ്ത <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
                 </span>
-                <span class="badge bg-warning text-dark p-1 ms-2" style="font-size:8px;"><i class="fas fa-edit"></i></span>
+                <span class="badge bg-warning text-dark p-1 ms-1" style="font-size:9px;"><i class="fas fa-edit"></i> എഡിറ്റ്</span>
             </div>
+
+            <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
+                 style="cursor:pointer; background:#f8f9fa; border:1px solid #dee2e6; transition:0.2s;" 
+                 onclick="editSingleStock('sticker', 'Sticker (A4)', 'Shts')" 
+                 onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'" title="ടോട്ടൽ സ്റ്റോക്ക് മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക">
+                <span class="fw-bold text-dark" style="font-size:11px;">
+                    <i class="fas fa-layer-group text-primary me-1"></i> ഉപയോഗിക്കാത്ത വെള്ള ഷീറ്റ് <span class="badge bg-primary text-white mx-1" style="font-size:12px;">${fullSheets}</span> എണ്ണം ഇനിയുണ്ട്
+                </span>
+                <span class="badge bg-light text-primary border border-primary p-1 ms-1" style="font-size:9px;"><i class="fas fa-edit"></i> മാറ്റുക</span>
+            </div>
+            
         </div>
     `;
 
-    // Dynamic UI Injection without touching index.html
     let oldDisplay = document.getElementById('a4-stock-display');
     if (oldDisplay) {
         let parentBadge = oldDisplay.closest('.badge');
@@ -5237,7 +5242,7 @@ window.updatePrintPrediction = function () {
         document.getElementById('exact-sheets-count').innerText = exactNeededSheets.toFixed(1);
     }
 
-    // --- 🤖 SMART DROPDOWN LOGIC (Fill Sheets) ---
+    // --- 🤖 SMART DROPDOWN LOGIC ---
     let modeBox = document.getElementById('print-qty-mode');
     if (!modeBox) return;
 
@@ -5246,15 +5251,11 @@ window.updatePrintPrediction = function () {
 
     if (totalNeeded > 0) {
         optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
-
-        // How many stickers needed from NEW sheets?
         let remainingToPrintFromNewSheets = totalNeeded - looseStickers;
 
         if (remainingToPrintFromNewSheets <= 0) {
-            // We have enough loose stickers! No new sheets required.
             optionsHtml += `<option value="${totalNeeded}" selected>Print Exact (${totalNeeded} Stk - Uses Loose)</option>`;
         } else {
-            // Calculate how many to print to perfectly consume new A4 sheets with NO waste
             let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
             let totalIfFilled = (neededNewSheets * ratio) + looseStickers;
 
@@ -5264,11 +5265,9 @@ window.updatePrintPrediction = function () {
                 optionsHtml += `<option value="${totalNeeded}">Print Exact Need (${totalNeeded} Stk)</option>`;
             }
         }
-
         optionsHtml += `</optgroup>`;
     }
 
-    // Manual Options
     optionsHtml += `<optgroup label="--- Manual Copies ---">`;
     for (let i = 1; i <= ratio; i++) {
         let sel = (totalNeeded === 0 && i === 1) ? 'selected' : '';
