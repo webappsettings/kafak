@@ -829,7 +829,7 @@ function renderTabs(orders) {
         el.style.display = 'flex';
         el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto mt-2 mb-3";
         el.style.top = "176px";
-        el.style.width = "225px";
+        el.style.width = "calc(100% - 100px)";
         el.style.borderRadius = "20px";
         el.style.zIndex = "1010";
         el.style.background = "rgba(255, 255, 255, 0.95)";
