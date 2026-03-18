@@ -244,12 +244,15 @@ $(document).ready(function () {
   if (isAdmin) {
     $('#admin-home-label').remove(); // പഴയത് ഉണ്ടെങ്കിൽ കളയുന്നു
     let labelHtml = `
-            <div id="admin-home-label" class="text-center mb-3 fade-in">
-                <span class="badge bg-dark text-warning border border-warning shadow-sm px-3 py-2 rounded-pill" 
-                      style="font-size:10px; letter-spacing:1px; font-weight:800;">
-                    <i class="fas fa-user-shield me-1"></i> ADMIN ORDERING
-                </span>
-            </div>
+            <div id="admin-home-label" class="d-flex justify-content-center align-items-center gap-2 mb-3 fade-in">
+    <span class="badge bg-dark text-warning border border-warning shadow-sm px-3 py-2 rounded-pill" style="font-size:10px; letter-spacing:1px; font-weight:800;">
+        <i class="fas fa-user-shield me-1"></i> ADMIN ORDERING
+    </span>
+    
+    <a href="admin.html" id="btn-goto-admin" class="btn btn-sm btn-dark rounded-circle shadow-sm border border-warning d-none align-items-center justify-content-center" style="width: 28px; height: 28px; text-decoration:none;" title="Go to Admin Dashboard">
+        <i class="fas fa-cog text-warning" style="font-size:12px;"></i>
+    </a>
+</div>
         `;
     $('#step-0').prepend(labelHtml); // ഫോം ബോക്സിനുള്ളിൽ ഏറ്റവും മുകളിൽ ചേർക്കുന്നു
   }
