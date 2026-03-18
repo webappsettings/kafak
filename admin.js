@@ -7279,45 +7279,60 @@ window.getLiveStockHtml = function (isExpanded = false) {
     return html;
 };
 
-// 🔥 SMART INDIVIDUAL TRACKER EDIT MODAL (Safe Mode)
-window.editLiveCount = function (key, itemName, baseCount, currentLiveCount) {
-    if (!window.isInventoryLoaded || !window.globalInventoryDB) return;
+// 🔥 SMART LIVE COUNT EDITOR (Updates both Live Tracker & Print Drawer)
+window.editLiveCount = function (key, name, baseCount, currentLive) {
+    let db = window.globalInventoryDB;
+    if (!db || !db[key]) return;
 
     Swal.fire({
-        title: `<div style="font-size:16px; font-weight:800; color:#1e293b;">📊 Tracked ${itemName}</div>`,
+        title: `<span style="font-size: 18px;">Tracked ${name}</span>`,
         html: `
-        <div class="text-start px-2">
-            <div class="alert alert-warning p-2 shadow-sm border-warning" style="font-size:10px; line-height:1.4;">
-                <b>💡 ശ്രദ്ധിക്കുക:</b> ഈ എണ്ണം മാറ്റുന്നത് കാർഡിലെ 'Done' എണ്ണം ശരിയാക്കാൻ മാത്രമാണ്. യഥാർത്ഥ സ്റ്റോക്ക് തനിയെ കുറയുന്നത് <b>Start Date</b>-ന് ശേഷമുള്ള ഓർഡറുകൾ വെച്ചാണ്.
+            <div class="mb-3 mt-2 text-start">
+                <label class="form-label text-muted fw-bold" style="font-size:12px;">Update Tracked Count (System + Manual):</label>
+                <input type="number" id="manual-live-count" class="form-control form-control-lg text-center fw-bold text-primary" value="${currentLive}">
             </div>
-            <label class="fw-bold small text-muted mb-1" style="font-size:11px;">Edit Processed Count</label>
-            <input type="number" id="live-count-input" class="form-control fw-bold fs-3 text-center text-primary border-primary shadow-sm" value="${currentLiveCount}">
-        </div>
+            <div class="alert alert-warning text-start p-2 border border-warning border-opacity-50 shadow-sm" style="font-size:11px; line-height:1.4; background-color:#fff3cd; color:#856404;">
+                <i class="fas fa-lightbulb me-1 text-warning"></i> <b>ശ്രദ്ധിക്കുക:</b> ഇവിടെ നിങ്ങൾ എണ്ണം മാറ്റിയാൽ, അതിനനുസരിച്ച് നിങ്ങളുടെ മെയിൻ സ്റ്റോക്കിൽ നിന്നും (Total Balance) തനിയെ കുറയുകയോ കൂടുകയോ ചെയ്യുന്നതായിരിക്കും. സിസ്റ്റത്തിന് പുറത്തുകൂടി ഉപയോഗിച്ചവ ഇവിടെ ചേർക്കാവുന്നതാണ്.
+            </div>
         `,
         showCancelButton: true,
-        confirmButtonText: 'Save',
+        confirmButtonText: '<i class="fas fa-save me-1"></i> Save',
         confirmButtonColor: '#0d6efd',
-        customClass: { popup: 'rounded-4' },
+        cancelButtonColor: '#6c757d',
         preConfirm: () => {
-            let newVal = parseFloat(document.getElementById('live-count-input').value) || 0;
-            return { newVal };
+            let val = document.getElementById('manual-live-count').value;
+            return val === '' ? currentLive : parseFloat(val);
         }
-    }).then(res => {
-        if (res.isConfirmed) {
-            let db = window.globalInventoryDB;
-            let offset = res.value.newVal - baseCount;
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let newTotal = result.value;
+            // പുതിയ Offset കണ്ടുപിടിക്കുന്നു
+            db[key].countOffset = newTotal - baseCount;
 
-            if (!db[key]) db[key] = {};
-            db[key].countOffset = offset;
+            // ലോഡിങ് കാണിക്കുന്നു
+            Swal.fire({
+                title: 'Saving...',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading(); }
+            });
 
-            Swal.fire({ title: 'Saving...', didOpen: () => Swal.showLoading() });
+            // സെർവറിലേക്ക് സേവ് ചെയ്യുന്നു
             fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
-            }).then(() => {
-                window.globalInventoryDB = db;
-                renderLiveStockTracker();
-                Swal.fire({ icon: 'success', title: 'Updated!', timer: 1000, showConfirmButton: false });
+            }).then(res => res.json()).then(res => {
+                if (res.result === 'success') {
+                    Swal.fire({ icon: 'success', title: 'Saved!', timer: 1000, showConfirmButton: false });
+
+                    // രണ്ടിടത്തും തൽക്ഷണം മാറ്റങ്ങൾ വരാൻ
+                    if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
+                    if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
+                } else {
+                    Swal.fire('Error', 'Failed to save updates', 'error');
+                }
+            }).catch(e => {
+                console.log(e);
+                Swal.fire('Error', 'Network issue. Try again.', 'error');
             });
         }
     });
