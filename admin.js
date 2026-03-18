@@ -5125,6 +5125,7 @@ function injectLeftDrawer() {
     }
 }
 
+// 🔥 ADVANCED SMART PRINT PREDICTOR (With Loose Sticker Management)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5132,23 +5133,21 @@ window.updatePrintPrediction = function () {
     let ratio = parseInt(selectBox.value) || 5;
     localStorage.setItem('stickersPerA4', ratio);
 
-    // 🔥 1. സെർവർ ഡാറ്റ വരുന്നത് വരെ ലോഡിംഗ് കാണിക്കുന്നു
     if (!window.globalInventoryDB) {
-        if (document.getElementById('a4-stock-display')) {
-            document.getElementById('a4-stock-display').innerHTML = `<i class="fas fa-spinner fa-spin text-muted" style="font-size:10px;"></i>`;
-        }
+        let el = document.getElementById('a4-stock-display-container') || document.getElementById('a4-stock-display');
+        if (el) el.innerHTML = `<i class="fas fa-spinner fa-spin text-primary"></i> Loading...`;
         return;
     }
 
-    let unprintedBottles = 0;
-    let printedBottles = 0;
+    let unprintedStickers = 0;
+    let printedStickers = 0;
     let db = window.globalInventoryDB;
     let stkDB = db.sticker || { total: 0, start: "", exempt: 0, countOffset: 0, avgUsage: 0.2 };
+
     let isStarted = stkDB.start ? true : false;
     let startMs = isStarted ? new Date(stkDB.start).getTime() : 0;
     let usedStickers = 0;
 
-    // Pending Updates കൂടി കണക്കിലെടുക്കുന്നു
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
@@ -5158,11 +5157,13 @@ window.updatePrintPrediction = function () {
             let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
             let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
+            // 1. Unprinted vs Printed (Based on 'S' meta)
             if (status === 'Paid') {
-                if (!metaStr.includes('S')) unprintedBottles += qty;
-                else printedBottles += qty;
+                if (!metaStr.includes('S')) unprintedStickers += qty;
+                else printedStickers += qty;
             }
 
+            // 2. Used Inventory Calculation
             if (isStarted) {
                 let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
                 if (oDateRaw) {
@@ -5179,14 +5180,11 @@ window.updatePrintPrediction = function () {
         });
     }
 
-    // --- FIX: Define these for the dropdown logic ---
-    let exactQty = unprintedBottles;
-    let totalSheetsNeeded = Math.ceil(exactQty / ratio);
-    let filledQty = totalSheetsNeeded * ratio;
-
-    // A4 STOCK SYNC CALCULATION
+    // --- SMART STOCK CALCULATION ---
     let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
+
+    // Total Used = (Actual System Used + Manual Edited Offset)
     let actualUsedSheets = isStarted ? Math.max(0, ((usedStickers * avg) + (countOffset * avg)) - (parseFloat(stkDB.exempt) || 0)) : 0;
     let currentBalance = Math.max(0, parseFloat(stkDB.total || 0) - actualUsedSheets);
 
@@ -5194,44 +5192,91 @@ window.updatePrintPrediction = function () {
     let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
     if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
-    if (document.getElementById('a4-stock-display')) {
-        document.getElementById('a4-stock-display').innerHTML = `${fullSheets} A4 <span class="badge bg-secondary ms-1">+${looseStickers} stk</span>`;
+    // --- 🎨 BEAUTIFUL ADVANCED UI (White Sheets & Editable Loose Stickers) ---
+    let stockHtml = `
+        <div class="d-flex flex-column align-items-end gap-1">
+            <div class="fw-bold text-dark" style="font-size:13px; line-height:1.2;">
+                <i class="fas fa-layer-group text-primary me-1"></i> ${fullSheets} <span class="text-muted fw-normal" style="font-size:10px;">White A4 Sheets</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-between p-1 px-2 rounded shadow-sm" 
+                 style="cursor:pointer; background:#fff3cd; border:1px solid #ffe69c; transition:0.2s;" 
+                 onclick="editLiveCount('sticker', 'Sticker (A4)', ${usedStickers}, ${Math.max(0, usedStickers + countOffset)})" 
+                 onmouseover="this.style.background='#ffecb5'" onmouseout="this.style.background='#fff3cd'" title="Click to Edit Loose Stickers">
+                <span class="fw-bold" style="font-size:10px; color:#b45309;">
+                    <i class="fas fa-cut me-1"></i> Loose: ${looseStickers} Stickers
+                </span>
+                <span class="badge bg-warning text-dark p-1 ms-2" style="font-size:8px;"><i class="fas fa-edit"></i></span>
+            </div>
+        </div>
+    `;
+
+    // Dynamic UI Injection without touching index.html
+    let oldDisplay = document.getElementById('a4-stock-display');
+    if (oldDisplay) {
+        let parentBadge = oldDisplay.closest('.badge');
+        if (parentBadge) {
+            let wrapper = document.createElement('div');
+            wrapper.id = 'a4-stock-display-container';
+            wrapper.innerHTML = stockHtml;
+            parentBadge.replaceWith(wrapper);
+        } else {
+            oldDisplay.innerHTML = stockHtml;
+        }
+    } else {
+        let newDisplay = document.getElementById('a4-stock-display-container');
+        if (newDisplay) newDisplay.innerHTML = stockHtml;
     }
 
-    // UI Updates (Counts & Options)
+    // --- UPDATE COUNTS ---
     if (document.getElementById('unprinted-bottles-count')) {
-        document.getElementById('unprinted-bottles-count').innerText = unprintedBottles;
-        document.getElementById('required-sheets-count').innerText = totalSheetsNeeded;
-        document.getElementById('printed-bottles-count').innerText = printedBottles;
+        document.getElementById('unprinted-bottles-count').innerText = unprintedStickers;
+        document.getElementById('printed-bottles-count').innerText = printedStickers;
+
+        let exactNeededSheets = unprintedStickers / ratio;
+        document.getElementById('required-sheets-count').innerText = Math.ceil(exactNeededSheets);
+        document.getElementById('exact-sheets-count').innerText = exactNeededSheets.toFixed(1);
     }
 
-    // 🔥 DROPDOWN OPTIONS (Fixed: Manual options will always show)
+    // --- 🤖 SMART DROPDOWN LOGIC (Fill Sheets) ---
     let modeBox = document.getElementById('print-qty-mode');
     if (!modeBox) return;
 
+    let totalNeeded = unprintedStickers;
     let optionsHtml = '';
 
-    // 1. Auto Calculation (Bottles print edukkan undenkil mathram kanikkum)
-    if (exactQty > 0) {
+    if (totalNeeded > 0) {
         optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
-        if (exactQty !== filledQty) {
-            optionsHtml += `<option value="${filledQty}" selected>Fill Last Sheet (${filledQty} Stickers = ${filledQty / ratio} A4)</option>`;
-            optionsHtml += `<option value="${exactQty}">Print Exact Need (${exactQty} Stickers = ${(exactQty / ratio).toFixed(1)} A4)</option>`;
+
+        // How many stickers needed from NEW sheets?
+        let remainingToPrintFromNewSheets = totalNeeded - looseStickers;
+
+        if (remainingToPrintFromNewSheets <= 0) {
+            // We have enough loose stickers! No new sheets required.
+            optionsHtml += `<option value="${totalNeeded}" selected>Print Exact (${totalNeeded} Stk - Uses Loose)</option>`;
         } else {
-            optionsHtml += `<option value="${exactQty}" selected>Print Exact Need (${exactQty} Stickers = Perfect Fit!)</option>`;
+            // Calculate how many to print to perfectly consume new A4 sheets with NO waste
+            let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
+            let totalIfFilled = (neededNewSheets * ratio) + looseStickers;
+
+            optionsHtml += `<option value="${totalIfFilled}" selected>Fill Full Sheets (${totalIfFilled} Stk = ${neededNewSheets} A4)</option>`;
+
+            if (totalIfFilled !== totalNeeded) {
+                optionsHtml += `<option value="${totalNeeded}">Print Exact Need (${totalNeeded} Stk)</option>`;
+            }
         }
+
         optionsHtml += `</optgroup>`;
     }
 
-    // 2. Manual Copies (Ithu eppozhum kanikkum)
+    // Manual Options
     optionsHtml += `<optgroup label="--- Manual Copies ---">`;
     for (let i = 1; i <= ratio; i++) {
-        let sel = (exactQty === 0 && i === ratio) ? 'selected' : '';
+        let sel = (totalNeeded === 0 && i === 1) ? 'selected' : '';
         optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
     }
     for (let i = 2; i <= 5; i++) {
         let labels = i * ratio;
-        optionsHtml += `<option value="${labels}">Print ${i} Full A4 (${labels} Stickers)</option>`;
+        optionsHtml += `<option value="${labels}">Print ${i} Full A4 (${labels} Stk)</option>`;
     }
     optionsHtml += `</optgroup>`;
 
