@@ -4960,7 +4960,7 @@ function parseDynamicRate(rateString, qty) {
     return matchedRate;
 }
 
-// 🔥 INJECT LEFT DRAWER (With Native Smart Print Section)
+// 🔥 INJECT LEFT DRAWER (With Native Smart Print Section - FIXED variables)
 function injectLeftDrawer() {
     if ($('#left-drawer').length) return;
 
@@ -5039,9 +5039,9 @@ function injectLeftDrawer() {
                 <h6 class="fw-bold text-dark mb-2" style="font-size:12px; letter-spacing:0.5px;">LIVE PREVIEW</h6>
                 <div id="label-preview-box" class="shadow-sm mb-4 mx-auto" style="width: 100%; max-width: 350px; aspect-ratio: 210/59.4; position: relative; background: url('label_design.jpg') center/cover; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
                     <div style="position: absolute; top: 17%; left: 82%; font-size: 8px; font-weight: 800; color: #000; line-height: 1.8;">
-                        <div id="prev-mrp">\${savedMrp} . 00</div>
-                        <div id="prev-batch">\${savedBatch}</div>
-                        <div id="prev-date">\${defaultDate}</div>
+                        <div id="prev-mrp">${savedMrp} . 00</div>
+                        <div id="prev-batch">${savedBatch}</div>
+                        <div id="prev-date">${defaultDate}</div>
                     </div>
                 </div>
 
@@ -5049,24 +5049,24 @@ function injectLeftDrawer() {
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <label class="small fw-bold text-muted mb-0" style="font-size:11px;">PER PAGE LIMIT</label>
                         <select id="stickers-per-page" class="form-select form-select-sm fw-bold border-secondary text-dark shadow-sm" style="width:60px; height:26px; padding:2px 10px; font-size:12px;" onchange="updatePrintPrediction()">
-                            <option value="1" \${savedStickersPerA4 === '1' ? 'selected' : ''}>1</option>
-                            <option value="2" \${savedStickersPerA4 === '2' ? 'selected' : ''}>2</option>
-                            <option value="3" \${savedStickersPerA4 === '3' ? 'selected' : ''}>3</option>
-                            <option value="4" \${savedStickersPerA4 === '4' ? 'selected' : ''}>4</option>
-                            <option value="5" \${savedStickersPerA4 === '5' ? 'selected' : ''}>5</option>
+                            <option value="1" ${savedStickersPerA4 === '1' ? 'selected' : ''}>1</option>
+                            <option value="2" ${savedStickersPerA4 === '2' ? 'selected' : ''}>2</option>
+                            <option value="3" ${savedStickersPerA4 === '3' ? 'selected' : ''}>3</option>
+                            <option value="4" ${savedStickersPerA4 === '4' ? 'selected' : ''}>4</option>
+                            <option value="5" ${savedStickersPerA4 === '5' ? 'selected' : ''}>5</option>
                         </select>
                     </div>
                     
                     <label class="small fw-bold text-muted mb-1 mt-2" style="font-size:11px;">MRP (₹)</label>
-                    <input type="text" id="label-mrp" class="form-control mb-2 fw-bold border-secondary border-opacity-25" value="\${savedMrp}" oninput="updateLabelPreview()">
+                    <input type="text" id="label-mrp" class="form-control mb-2 fw-bold border-secondary border-opacity-25" value="${savedMrp}" oninput="updateLabelPreview()">
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:11px;">BATCH NO.</label>
-                    <input type="text" id="label-batch" class="form-control mb-2 fw-bold border-secondary border-opacity-25 text-uppercase" value="\${savedBatch}" oninput="updateLabelPreview()">
+                    <input type="text" id="label-batch" class="form-control mb-2 fw-bold border-secondary border-opacity-25 text-uppercase" value="${savedBatch}" oninput="updateLabelPreview()">
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:11px;">DATE OF PKG</label>
                     <div class="input-group mb-4">
                         <span class="input-group-text bg-light text-primary border-secondary border-opacity-25"><i class="fas fa-calendar-alt"></i></span>
-                        <input type="text" id="label-date" class="form-control fw-bold border-secondary border-opacity-25 bg-white" value="\${defaultDate}" readonly onchange="updateLabelPreview()">
+                        <input type="text" id="label-date" class="form-control fw-bold border-secondary border-opacity-25 bg-white" value="${defaultDate}" readonly onchange="updateLabelPreview()">
                     </div>
                     
                     <button class="btn w-100 fw-bold shadow text-white" style="background:#1e293b; font-size:13px; padding: 12px 0; border-radius: 12px;" onclick="printProductLabels()">
@@ -5126,7 +5126,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 ADVANCED SMART PRINT PREDICTOR (MALAYALAM UI & GLOBAL EDIT)
+// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH NEW UI LINKS)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5179,7 +5179,6 @@ window.updatePrintPrediction = function () {
         });
     }
 
-    // --- SMART STOCK CALCULATION ---
     let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
 
@@ -5190,13 +5189,12 @@ window.updatePrintPrediction = function () {
     let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
     if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
-    // --- 🎨 BEAUTIFUL MALAYALAM UI (Clickable to Edit) ---
+    // 🔥 NEW LINKS ADDED HERE
     let stockHtml = `
         <div class="d-flex flex-column align-items-end gap-2 w-100 mt-2">
-            
             <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
                  style="cursor:pointer; background:#fff3cd; border:1px solid #ffe69c; transition:0.2s;" 
-                 onclick="editLiveCount('sticker', 'Sticker (A4)', ${usedStickers}, ${Math.max(0, usedStickers + countOffset)})" 
+                 onclick="editStickerStock('loose', ${looseStickers}, ${ratio})" 
                  onmouseover="this.style.background='#ffecb5'" onmouseout="this.style.background='#fff3cd'" title="എണ്ണം മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക">
                 <span class="fw-bold" style="font-size:11px; color:#b45309;">
                     <i class="fas fa-cut me-1"></i> പ്രിന്റ് ചെയ്ത <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
@@ -5206,14 +5204,13 @@ window.updatePrintPrediction = function () {
 
             <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
                  style="cursor:pointer; background:#f8f9fa; border:1px solid #dee2e6; transition:0.2s;" 
-                 onclick="editSingleStock('sticker', 'Sticker (A4)', 'Shts')" 
+                 onclick="editStickerStock('sheets', ${fullSheets}, ${ratio})" 
                  onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'" title="ടോട്ടൽ സ്റ്റോക്ക് മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക">
                 <span class="fw-bold text-dark" style="font-size:11px;">
                     <i class="fas fa-layer-group text-primary me-1"></i> ഉപയോഗിക്കാത്ത വെള്ള ഷീറ്റ് <span class="badge bg-primary text-white mx-1" style="font-size:12px;">${fullSheets}</span> എണ്ണം ഇനിയുണ്ട്
                 </span>
                 <span class="badge bg-light text-primary border border-primary p-1 ms-1" style="font-size:9px;"><i class="fas fa-edit"></i> മാറ്റുക</span>
             </div>
-            
         </div>
     `;
 
@@ -5233,17 +5230,14 @@ window.updatePrintPrediction = function () {
         if (newDisplay) newDisplay.innerHTML = stockHtml;
     }
 
-    // --- UPDATE COUNTS ---
     if (document.getElementById('unprinted-bottles-count')) {
         document.getElementById('unprinted-bottles-count').innerText = unprintedStickers;
         document.getElementById('printed-bottles-count').innerText = printedStickers;
-
         let exactNeededSheets = unprintedStickers / ratio;
         document.getElementById('required-sheets-count').innerText = Math.ceil(exactNeededSheets);
         document.getElementById('exact-sheets-count').innerText = exactNeededSheets.toFixed(1);
     }
 
-    // --- 🤖 SMART DROPDOWN LOGIC ---
     let modeBox = document.getElementById('print-qty-mode');
     if (!modeBox) return;
 
@@ -5259,9 +5253,7 @@ window.updatePrintPrediction = function () {
         } else {
             let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
             let totalIfFilled = (neededNewSheets * ratio) + looseStickers;
-
             optionsHtml += `<option value="${totalIfFilled}" selected>Fill Full Sheets (${totalIfFilled} Stk = ${neededNewSheets} A4)</option>`;
-
             if (totalIfFilled !== totalNeeded) {
                 optionsHtml += `<option value="${totalNeeded}">Print Exact Need (${totalNeeded} Stk)</option>`;
             }
@@ -7472,4 +7464,57 @@ window.getDefaultMRP = function () {
 
     // (Bottle Price + Courier Charge & Margin + 20 Extra)
     return basePrice + courierCharge + 20;
+};
+
+// 🔥 SMART STICKER EDIT FUNCTION (Edits exactly what you see!)
+window.editStickerStock = function (type, currentValue, ratio) {
+    let title = type === 'loose' ? 'മുറിച്ച സ്റ്റിക്കറുകൾ (Loose)' : 'വെള്ള ഷീറ്റ് (White Sheets)';
+    let msg = type === 'loose' ? 'നിങ്ങളുടെ കയ്യിൽ ബാക്കിയുള്ള മുറിച്ച സ്റ്റിക്കറുകളുടെ എണ്ണം കൊടുക്കുക:' : 'നിങ്ങളുടെ കയ്യിൽ ബാക്കിയുള്ള മുഴുവൻ വെള്ള ഷീറ്റുകളുടെ എണ്ണം കൊടുക്കുക:';
+
+    Swal.fire({
+        title: `<span style="font-size: 16px;">${title}</span>`,
+        html: `
+            <div class="mb-3 mt-2 text-start">
+                <label class="form-label text-muted fw-bold" style="font-size:12px;">${msg}</label>
+                <input type="number" id="manual-sticker-update" class="form-control form-control-lg text-center fw-bold text-primary" value="${currentValue}">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: '<i class="fas fa-save me-1"></i> Save',
+        preConfirm: () => {
+            let val = document.getElementById('manual-sticker-update').value;
+            return val === '' ? currentValue : parseFloat(val);
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let newValue = result.value;
+            if (newValue === currentValue) return;
+
+            let db = window.globalInventoryDB;
+            if (!db.sticker) db.sticker = { total: 0, countOffset: 0 };
+
+            if (type === 'loose') {
+                let diff = newValue - currentValue;
+                db.sticker.countOffset = (parseFloat(db.sticker.countOffset) || 0) - diff;
+            } else if (type === 'sheets') {
+                let diff = newValue - currentValue;
+                db.sticker.total = (parseFloat(db.sticker.total) || 0) + diff;
+            }
+
+            Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'saveInventory', inventory: db })
+            }).then(res => res.json()).then(res => {
+                if (res.result === 'success') {
+                    Swal.fire({ icon: 'success', title: 'Saved!', timer: 1000, showConfirmButton: false });
+                    if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
+                    if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
+                } else {
+                    Swal.fire('Error', 'Failed to save', 'error');
+                }
+            });
+        }
+    });
 };
