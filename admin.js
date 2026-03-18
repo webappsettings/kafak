@@ -608,11 +608,15 @@ function renderTabs(orders) {
             let lbl = getTimelineLabel(displayDateRaw);
             let fullKey = `${dateKeyType}_${lbl}`;
 
-            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, D: 0, C: 0, R: 0 };
+            // 🔥 CORRECTED: പഴയ ഡ്യൂപ്ലിക്കേറ്റുകൾ ഒഴിവാക്കി ഒരൊറ്റ വരിയായി മാറ്റി
+            if (!timelineStats[fullKey]) {
+                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, D: 0, C: 0, R: 0 };
+            }
 
-            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, D: 0, C: 0, R: 0 };
-
-            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, D: 0, C: 0, R: 0 };
+            // Safety Check (പഴയ കാഷെ എങ്ങാനും ഉണ്ടെങ്കിൽ എറർ വരാതിരിക്കാൻ)
+            if (!timelineStats[fullKey].couriers) {
+                timelineStats[fullKey].couriers = {};
+            }
 
             timelineStats[fullKey].count++;
             let qty = parseInt(o.quantity) || 0;
@@ -626,13 +630,13 @@ function renderTabs(orders) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
                 if (actualC <= 0) actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
 
-                // 🔥 NEW: യാതൊരുവിധ ഹാർഡ്‌കോഡിങ്ങും ഇല്ലാതെ ഡൈനാമിക് ആയി കൊറിയർ പേര് എടുക്കുന്നു
+                // ഡൈനാമിക് ആയി കൊറിയർ പേര് എടുക്കുന്നു
                 let rawProvider = String(o.provider || o.Courier_Provider || o['Courier Provider'] || 'Other').trim();
 
                 // UI യിൽ സ്ഥലം ലാഭിക്കാൻ "Courier", "Logistics" തുടങ്ങിയ വാക്കുകൾ മാത്രം ഡൈനാമിക് ആയി മാറ്റുന്നു
                 let shortProvider = rawProvider.replace(/Courier|Couriers|Logistics/ig, '').trim();
                 if (shortProvider.length > 12) {
-                    shortProvider = shortProvider.substring(0, 10) + '..'; // പേര് വളരെ വലുതാണെങ്കിൽ മാത്രം മുറിക്കുന്നു
+                    shortProvider = shortProvider.substring(0, 10) + '..';
                 }
                 if (!shortProvider) shortProvider = 'Other';
 
