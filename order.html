@@ -1212,6 +1212,15 @@
           });
       });
     }
+    document.addEventListener("DOMContentLoaded", function () {
+      if (localStorage.getItem('kafakAdmin') === 'true') {
+        let adminBtn = document.getElementById('btn-goto-admin');
+        if (adminBtn) {
+          adminBtn.classList.remove('d-none');
+          adminBtn.classList.add('d-flex');
+        }
+      }
+    });
   </script>
 </body>
 
