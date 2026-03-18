@@ -4960,17 +4960,16 @@ function parseDynamicRate(rateString, qty) {
     return matchedRate;
 }
 
+// 🔥 INJECT LEFT DRAWER (With Native Smart Print Section)
 function injectLeftDrawer() {
     if ($('#left-drawer').length) return;
 
-    // 🔥 Server DB-il ninnum edukunnathanu aadyam pariganikkuka
     let db = window.globalInventoryDB || {};
 
-    // 🔥 ഡൈനാമിക് ആയി ഷീറ്റിൽ നിന്നും MRP കാൽക്കുലേറ്റ് ചെയ്യുന്നു
     let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
 
     let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || calculatedMRP);
-    let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN25PTT02');
+    let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN26PTT01');
     let savedStickersPerA4 = localStorage.getItem('stickersPerA4') || '5';
 
     let today = new Date();
@@ -5008,10 +5007,12 @@ function injectLeftDrawer() {
                 <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 mb-4 shadow-sm mx-auto" style="max-width: 350px;">
                     <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-primary border-opacity-25">
                         <h6 class="fw-bold text-primary m-0" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-sticky-note me-1"></i> A4 PRINT MANAGER</h6>
-                        <div class="badge bg-white text-dark border shadow-sm" style="font-size:9px;">
-                            A4 Stock: <span id="a4-stock-display" class="text-primary fw-bold fs-6">0</span>
-                        </div>
                     </div>
+                    
+                    <div id="a4-stock-display-container" class="mb-3 w-100">
+                        <div class="text-center p-2 text-muted small"><i class="fas fa-spinner fa-spin text-primary me-1"></i> Loading Stock...</div>
+                    </div>
+                    
                     <div class="d-flex justify-content-between align-items-center mt-2 mb-3">
                         <div class="text-center w-50">
                             <div class="text-muted fw-bold text-uppercase" style="font-size:9px;">Unprinted Bottles</div>
@@ -5026,7 +5027,7 @@ function injectLeftDrawer() {
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:10px;">SELECT PRINT MODE:</label>
                     <select id="print-qty-mode" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm mb-3" style="font-size:11px;">
-                        </select>
+                    </select>
 
                     <div class="d-flex justify-content-between align-items-center p-2 bg-white rounded border border-success border-opacity-50 shadow-sm">
                         <span class="fw-bold text-success" style="font-size:10px;"><i class="fas fa-check-circle me-1"></i> Printed (Waiting Dispatch):</span>
@@ -5038,9 +5039,9 @@ function injectLeftDrawer() {
                 <h6 class="fw-bold text-dark mb-2" style="font-size:12px; letter-spacing:0.5px;">LIVE PREVIEW</h6>
                 <div id="label-preview-box" class="shadow-sm mb-4 mx-auto" style="width: 100%; max-width: 350px; aspect-ratio: 210/59.4; position: relative; background: url('label_design.jpg') center/cover; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
                     <div style="position: absolute; top: 17%; left: 82%; font-size: 8px; font-weight: 800; color: #000; line-height: 1.8;">
-                        <div id="prev-mrp">${savedMrp} . 00</div>
-                        <div id="prev-batch">${savedBatch}</div>
-                        <div id="prev-date">${defaultDate}</div>
+                        <div id="prev-mrp">\${savedMrp} . 00</div>
+                        <div id="prev-batch">\${savedBatch}</div>
+                        <div id="prev-date">\${defaultDate}</div>
                     </div>
                 </div>
 
@@ -5048,24 +5049,24 @@ function injectLeftDrawer() {
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <label class="small fw-bold text-muted mb-0" style="font-size:11px;">PER PAGE LIMIT</label>
                         <select id="stickers-per-page" class="form-select form-select-sm fw-bold border-secondary text-dark shadow-sm" style="width:60px; height:26px; padding:2px 10px; font-size:12px;" onchange="updatePrintPrediction()">
-                            <option value="1" ${savedStickersPerA4 === '1' ? 'selected' : ''}>1</option>
-                            <option value="2" ${savedStickersPerA4 === '2' ? 'selected' : ''}>2</option>
-                            <option value="3" ${savedStickersPerA4 === '3' ? 'selected' : ''}>3</option>
-                            <option value="4" ${savedStickersPerA4 === '4' ? 'selected' : ''}>4</option>
-                            <option value="5" ${savedStickersPerA4 === '5' ? 'selected' : ''}>5</option>
+                            <option value="1" \${savedStickersPerA4 === '1' ? 'selected' : ''}>1</option>
+                            <option value="2" \${savedStickersPerA4 === '2' ? 'selected' : ''}>2</option>
+                            <option value="3" \${savedStickersPerA4 === '3' ? 'selected' : ''}>3</option>
+                            <option value="4" \${savedStickersPerA4 === '4' ? 'selected' : ''}>4</option>
+                            <option value="5" \${savedStickersPerA4 === '5' ? 'selected' : ''}>5</option>
                         </select>
                     </div>
                     
                     <label class="small fw-bold text-muted mb-1 mt-2" style="font-size:11px;">MRP (₹)</label>
-                    <input type="text" id="label-mrp" class="form-control mb-2 fw-bold border-secondary border-opacity-25" value="${savedMrp}" oninput="updateLabelPreview()">
+                    <input type="text" id="label-mrp" class="form-control mb-2 fw-bold border-secondary border-opacity-25" value="\${savedMrp}" oninput="updateLabelPreview()">
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:11px;">BATCH NO.</label>
-                    <input type="text" id="label-batch" class="form-control mb-2 fw-bold border-secondary border-opacity-25 text-uppercase" value="${savedBatch}" oninput="updateLabelPreview()">
+                    <input type="text" id="label-batch" class="form-control mb-2 fw-bold border-secondary border-opacity-25 text-uppercase" value="\${savedBatch}" oninput="updateLabelPreview()">
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:11px;">DATE OF PKG</label>
                     <div class="input-group mb-4">
                         <span class="input-group-text bg-light text-primary border-secondary border-opacity-25"><i class="fas fa-calendar-alt"></i></span>
-                        <input type="text" id="label-date" class="form-control fw-bold border-secondary border-opacity-25 bg-white" value="${defaultDate}" readonly onchange="updateLabelPreview()">
+                        <input type="text" id="label-date" class="form-control fw-bold border-secondary border-opacity-25 bg-white" value="\${defaultDate}" readonly onchange="updateLabelPreview()">
                     </div>
                     
                     <button class="btn w-100 fw-bold shadow text-white" style="background:#1e293b; font-size:13px; padding: 12px 0; border-radius: 12px;" onclick="printProductLabels()">
