@@ -533,12 +533,29 @@ function renderTabs(orders) {
         ${getTopActionsHtml(id)}
     `;
 
+
     if (listNew) listNew.innerHTML = initListHtml('new');
     if (listSent) listSent.innerHTML = initListHtml('sent');
     if (listPaidNew) listPaidNew.innerHTML = initListHtml('paid_new');
     if (listPaidPrinted) listPaidPrinted.innerHTML = initListHtml('paid_print');
-    if (listDispNew) listDispNew.innerHTML = initListHtml('disp_new');
-    if (listDispTracked) listDispTracked.innerHTML = initListHtml('disp_track');
+
+    // 🔥 NEW: Bulk Complete Buttons (No Manual Selection Needed!)
+    let bulkDispBtn = `
+    <div class="d-flex justify-content-center mb-3 px-2 w-100">
+        <button class="btn btn-sm btn-outline-success rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px;" onclick="bulkCompleteOrders('disp_new')">
+            <i class="fas fa-check-double me-1"></i> Auto-Complete (Older than 3 days)
+        </button>
+    </div>`;
+
+    let bulkTrackBtn = `
+    <div class="d-flex justify-content-center mb-3 px-2 w-100">
+        <button class="btn btn-sm btn-outline-success rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px;" onclick="bulkCompleteOrders('disp_tracked')">
+            <i class="fas fa-check-double me-1"></i> Auto-Complete (Older than 3 days)
+        </button>
+    </div>`;
+
+    if (listDispNew) listDispNew.innerHTML = initListHtml('disp_new') + bulkDispBtn;
+    if (listDispTracked) listDispTracked.innerHTML = initListHtml('disp_track') + bulkTrackBtn;
 
     // 3. INITIALIZE VARIABLES
     let counts = { pending: 0, paid: 0, dispatched: 0 };
@@ -7544,6 +7561,116 @@ window.editStickerStock = function (type, currentValue, ratio) {
                 } else {
                     Swal.fire('Error', 'Failed to save', 'error');
                 }
+            });
+        }
+    });
+};
+
+// 🔥 NEW: BULK AUTO-COMPLETE (3 Days Old Orders - No Manual Selection needed)
+window.bulkCompleteOrders = function (tabType) {
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let ordersToUpdate = [];
+    let today = new Date();
+    today.setHours(0, 0, 0, 0); // കൃത്യമായ ദിവസത്തിന്റെ കണക്ക് കിട്ടാൻ
+
+    allOrders.forEach(o => {
+        let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+        let status = (local && local.status) ? local.status : (o.Status || 'Pending');
+
+        let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
+        let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
+
+        if (status === 'Dispatched') {
+            let isTracked = (o.tracking || metaStr.includes('T'));
+
+            if ((tabType === 'disp_new' && !isTracked) || (tabType === 'disp_tracked' && isTracked)) {
+
+                let dDateRaw = (local && status === 'Dispatched' && local.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
+
+                if (dDateRaw) {
+                    let dDate = new Date(dDateRaw);
+                    if (isNaN(dDate.getTime()) && typeof parseOrderDate === 'function') {
+                        dDate = parseOrderDate(dDateRaw);
+                    }
+                    dDate.setHours(0, 0, 0, 0);
+
+                    // 🔥 3 ദിവസം പഴക്കമുണ്ടോ എന്ന് നോക്കുന്നു
+                    let diffDays = Math.floor((today - dDate) / (1000 * 60 * 60 * 24));
+
+                    if (diffDays >= 3) {
+                        ordersToUpdate.push({
+                            action: 'updateStatus',
+                            oid: o.orderid,
+                            status: 'Completed',
+                            oldStatus: 'Dispatched',
+                            actionDate: new Date().toISOString()
+                        });
+                    }
+                }
+            }
+        }
+    });
+
+    if (ordersToUpdate.length === 0) {
+        Swal.fire({
+            icon: 'info',
+            title: 'No Orders Found',
+            text: 'There are no orders older than 3 days in this section.',
+            timer: 2000,
+            showConfirmButton: false
+        });
+        return;
+    }
+
+    Swal.fire({
+        title: `Complete ${ordersToUpdate.length} Orders?`,
+        text: `This will move ${ordersToUpdate.length} orders older than 3 days to Completed status. You can undo this from the Sync Queue.`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#198754',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, Complete All'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            ordersToUpdate.forEach(newU => {
+                let existingIdx = pendingUpdates.findIndex(u => u.oid === newU.oid && u.action !== 'meta' && u.action !== 'paidNum');
+
+                let updateObjParams = {
+                    oid: newU.oid,
+                    action: 'status',
+                    status: newU.status,
+                    oldStatus: newU.oldStatus,
+                    time: new Date().getTime(),
+                    actionDate: newU.actionDate
+                };
+
+                if (existingIdx !== -1) pendingUpdates[existingIdx] = updateObjParams;
+                else pendingUpdates.push(updateObjParams);
+
+                // Update Local Cache to reflect immediately
+                let oIdx = allOrders.findIndex(x => x.orderid === newU.oid);
+                if (oIdx > -1) {
+                    allOrders[oIdx].Status = 'Completed';
+                    if (!allOrders[oIdx]['Delivered Date']) allOrders[oIdx]['Delivered Date'] = newU.actionDate;
+                }
+            });
+
+            localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+            renderSyncList();
+            updateSyncButtonUI();
+
+            let searchInput = document.getElementById('searchInput');
+            if (searchInput && searchInput.value.trim() !== "") filterOrders();
+            else renderTabs(allOrders);
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Moved to Sync Queue',
+                text: `${ordersToUpdate.length} orders marked as Completed.`,
+                timer: 1500,
+                showConfirmButton: false
             });
         }
     });
