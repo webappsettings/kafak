@@ -610,6 +610,10 @@ function renderTabs(orders) {
 
             if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, D: 0, C: 0, R: 0 };
 
+            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, D: 0, C: 0, R: 0 };
+
+            if (!timelineStats[fullKey]) timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, D: 0, C: 0, R: 0 };
+
             timelineStats[fullKey].count++;
             let qty = parseInt(o.quantity) || 0;
             timelineStats[fullKey].bottles += qty;
@@ -621,6 +625,22 @@ function renderTabs(orders) {
             if (['Paid', 'Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
                 if (actualC <= 0) actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+
+                // 🔥 NEW: യാതൊരുവിധ ഹാർഡ്‌കോഡിങ്ങും ഇല്ലാതെ ഡൈനാമിക് ആയി കൊറിയർ പേര് എടുക്കുന്നു
+                let rawProvider = String(o.provider || o.Courier_Provider || o['Courier Provider'] || 'Other').trim();
+
+                // UI യിൽ സ്ഥലം ലാഭിക്കാൻ "Courier", "Logistics" തുടങ്ങിയ വാക്കുകൾ മാത്രം ഡൈനാമിക് ആയി മാറ്റുന്നു
+                let shortProvider = rawProvider.replace(/Courier|Couriers|Logistics/ig, '').trim();
+                if (shortProvider.length > 12) {
+                    shortProvider = shortProvider.substring(0, 10) + '..'; // പേര് വളരെ വലുതാണെങ്കിൽ മാത്രം മുറിക്കുന്നു
+                }
+                if (!shortProvider) shortProvider = 'Other';
+
+                if (!timelineStats[fullKey].couriers[shortProvider]) {
+                    timelineStats[fullKey].couriers[shortProvider] = { count: 0, cost: 0 };
+                }
+                timelineStats[fullKey].couriers[shortProvider].count++;
+                timelineStats[fullKey].couriers[shortProvider].cost += actualC;
 
                 timelineStats[fullKey].cost += actualC;
 
@@ -726,10 +746,16 @@ function renderTabs(orders) {
                 let sStats = timelineStats[`${dateKey}_${dateLabel}`];
                 if (sStats) {
                     if (sStats.cost > 0) {
-                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-shipping-fast text-muted" style="font-size:9px;"></i> ₹${sStats.cost}</span>`;
+                        let courierDetails = [];
+                        for (let p in sStats.couriers) {
+                            courierDetails.push(`${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}`);
+                        }
+                        let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
+
+                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ₹${sStats.cost} ${courierStr}</span>`;
                     }
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-box-open text-muted" style="font-size:9px;"></i> ${sStats.count}</span>`;
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary"><i class="fas fa-wine-bottle text-muted" style="font-size:9px;"></i> ${sStats.bottles}</span>`;
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-box-open text-muted me-1" style="font-size:10px;"></i> ${sStats.count}</span>`;
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-wine-bottle text-muted me-1" style="font-size:10px;"></i> ${sStats.bottles}</span>`;
 
                     let badgeStr = "";
                     if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
