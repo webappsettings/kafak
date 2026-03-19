@@ -1237,9 +1237,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         let dateDisplay = '';
         if (delDateStr) {
             let fmtDate = new Date(delDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
-            dateDisplay = `<div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#15803d; font-weight:700;"><i class="fas fa-check-circle me-1"></i> Delivered: ${fmtDate}</div><button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '${delDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button></div>`;
+            dateDisplay = `<div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#15803d; font-weight:700;"><i class="fas fa-check-circle me-1"></i> Delivered: ${fmtDate}</div><button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '${delDateStr}')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px;">✏️</button></div>`;
+        } else {
+            // 🔥 തീയതി ഇല്ലെങ്കിലും 'Delivered' എന്ന ബോക്സ് കാണിക്കാൻ
+            dateDisplay = `<div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#15803d; font-weight:700;"><i class="fas fa-check-circle me-1"></i> Delivered</div><button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px;">✏️</button></div>`;
         }
-        buttons = dateDisplay + `<button class="btn btn-secondary w-100 disabled" style="opacity:0.7;">Order Completed</button>`;
+
+        // 🔥 NEW: Revert Button
+        let revertBtn = `<button onclick="event.stopPropagation(); highlightCard(this); revertCompletedOrder('${d.orderid}')" class="btn btn-outline-warning text-dark fw-bold w-100 mt-2 shadow-sm" style="font-size:12px; border-width:2px; border-radius:8px;"><i class="fas fa-undo-alt me-1"></i> Move Back to Dispatched</button>`;
+
+        buttons = dateDisplay + `<button class="btn btn-secondary w-100 disabled fw-bold shadow-none" style="opacity:0.7; border-radius:8px;">✅ Order Completed</button>` + revertBtn;
     }
     else if (logicType === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
@@ -7672,6 +7679,39 @@ window.bulkCompleteOrders = function (tabType) {
                 timer: 1500,
                 showConfirmButton: false
             });
+        }
+    });
+};
+
+// 🔥 NEW: Revert Completed Order back to Dispatched (Safe Logic)
+window.revertCompletedOrder = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let metaStr = String(order.adminMeta || '');
+    let isTracked = (order.tracking || metaStr.includes('T'));
+    let targetTab = isTracked ? 'Tracked' : 'Dispatched (New)';
+
+    Swal.fire({
+        title: 'Revert Status?',
+        html: `ഈ ഓർഡർ തിരികെ <b>${targetTab}</b> ടാബിലേക്ക് മാറ്റണോ?<br><span style="font-size:11px; color:#666;">(Delivered തീയതി മായ്ച്ചു കളയേണ്ടതില്ല, അടുത്ത തവണ മാറ്റുമ്പോൾ പുതിയ തീയതി വന്നോളും)</span>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#ff9800',
+        cancelButtonColor: '#6c757d',
+        confirmButtonText: 'Yes, Revert'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Dispatched സ്റ്റാറ്റസിലേക്ക് മാറ്റുന്നു. പഴയ ഡെലിവറി ഡേറ്റ് മാറ്റുന്നില്ല (അതവിടെ തന്നെ കിടക്കും).
+            updateOrder(oid, 'Dispatched', null, true);
+
+            showToast('success', `Moved to ${targetTab} Tab!`);
+
+            // Search വിൻഡോയിൽ ആണെങ്കിൽ അത് റീഫ്രഷ് ചെയ്യുന്നു
+            let searchInput = document.getElementById('searchInput');
+            if (searchInput && searchInput.value.trim() !== "") {
+                setTimeout(() => filterOrders(), 300);
+            }
         }
     });
 };

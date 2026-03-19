@@ -249,7 +249,7 @@ $(document).ready(function () {
         <i class="fas fa-user-shield me-1"></i> ADMIN ORDERING
     </span>
     
-    <a href="admin.html" id="btn-goto-admin" class="btn btn-sm btn-dark rounded-circle shadow-sm border border-warning align-items-center justify-content-center" style="width: 28px; height: 28px; text-decoration:none;" title="Go to Admin Dashboard">
+    <a href="admin.html" id="btn-goto-admin" class="btn btn-sm btn-dark rounded-circle shadow-sm border border-warning align-items-center justify-content-center" style="width: 28px; height: 28px; text-decoration:none; display: flex;" title="Go to Admin Dashboard">
         <i class="fas fa-cog text-warning" style="font-size:12px;"></i>
     </a>
 </div>
