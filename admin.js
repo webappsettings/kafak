@@ -5203,7 +5203,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH NEW UI LINKS)
+// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH STATUS SYNC BUG FIX)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5230,7 +5230,10 @@ window.updatePrintPrediction = function () {
 
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
-            let status = String(o.Status || 'Pending').trim();
+            // 🔥 FIX: മെയിൻ സ്ക്രീനിലെ പോലെ ലോക്കൽ അപ്ഡേറ്റ് കൂടി ഇവിടെ നോക്കുന്നു!
+            let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+            let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || 'Pending').trim();
+
             let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
             let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
             let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
@@ -5266,7 +5269,6 @@ window.updatePrintPrediction = function () {
     let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
     if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
-    // 🔥 NEW LINKS ADDED HERE
     let stockHtml = `
         <div class="d-flex flex-column align-items-end gap-2 w-100 mt-2">
             <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
@@ -7131,7 +7133,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (Perfect Offset Calculation)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (Perfect Sync Validation)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7162,9 +7164,16 @@ window.getLiveStockHtml = function (isExpanded = false) {
     for (let k in standardItems) { used[k] = 0; counts[k] = 0; }
     for (let k in inkItems) { used[k] = 0; counts[k] = 0; }
 
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
     allOrders.forEach(o => {
-        let status = String(o.Status || 'Pending').trim();
-        let metaStr = String(o.adminMeta || '');
+        // 🔥 FIX: ലോക്കൽ അപ്ഡേറ്റ് കൂടി ഇവിടെ നോക്കുന്നു!
+        let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+        let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || 'Pending').trim();
+
+        let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
+        let metaStr = String((localMeta && localMeta.meta !== undefined) ? localMeta.meta : (o.adminMeta || ''));
+
         let oDateRaw = o.timestamp || o['Paid Date'] || o.Date;
         if (!oDateRaw) return;
 
@@ -7240,7 +7249,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
 
-        // 🔥 FIX: Manual Count offset is now multiplied by average to deduct stock correctly!
         let actualUsed = isStarted ? Math.max(0, (used[k] + (countOffset * avg)) - (parseFloat(db[k].exempt) || 0)) : 0;
         let bal = Math.max(0, db[k].total - actualUsed);
 
@@ -7248,14 +7256,13 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : itemObj.color;
 
-        // 🔥 FIX: Sticker decimal allowed to show 7.20 instead of 7
         let dec = (k === 'bottles' || k === 'box' || k === 'pouch' || k === 'a6paper') ? 0 : 2;
 
         let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${itemObj.unit}</span>`;
 
         if (k === 'sticker') {
             let ratio = parseFloat(localStorage.getItem('stickersPerA4')) || 5;
-            let fullSheets = Math.floor(bal + 0.0001); // Prevent JS math issues
+            let fullSheets = Math.floor(bal + 0.0001);
             let looseStickers = Math.round((bal - fullSheets) * ratio);
             if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
             balDisplay = `${fullSheets} <span class="text-muted fw-normal" style="font-size:9px;">A4</span>`;
