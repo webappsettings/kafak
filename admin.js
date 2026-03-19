@@ -49,22 +49,22 @@ function playBeep() {
     setTimeout(() => osc.stop(), 50); // 🔥 100ൽ നിന്നും 50 ആക്കി ചുരുക്കി (Very short beep)
 }
 
-// 🔥 ADMIN META HELPER (Code: M=Mobile, W=WhatsApp, A=Alt, P=Printed, T=Tracked)
-// 🔥 ADMIN META HELPER (Updated: G=Paid, P=Printed)
-function getMetaStatus(metaStr) {
+// 🔥 ADMIN META HELPER (Updated: Ignores old tags on new returning customer orders)
+function getMetaStatus(metaStr, status = '') {
     metaStr = String(metaStr || '');
+    // Pending അല്ലെങ്കിൽ Sent ആണെങ്കിൽ പഴയ പ്രിന്റ് ടാഗുകൾ എടുക്കില്ല
+    let isEarly = status === 'Pending' || status === 'Sent';
 
-    // Check Contact Type
-    let contact = 'whatsapp'; // 🔥 Default aayi WhatsApp aakki
-    if (metaStr.includes('G')) contact = 'paid';      // 'G' for Google Pay/Paid Number
+    let contact = 'whatsapp';
+    if (metaStr.includes('G')) contact = 'paid';
     else if (metaStr.includes('M')) contact = 'phone';
     else if (metaStr.includes('A')) contact = 'alt';
 
     return {
         contact: contact,
-        isPrinted: metaStr.includes('P'),
-        isTracked: metaStr.includes('T'),
-        isResend: metaStr.includes('R') // 🔥 Resend ആണെന്ന് തിരിച്ചറിയാൻ
+        isPrinted: isEarly ? false : metaStr.includes('P'),
+        isTracked: isEarly ? false : metaStr.includes('T'),
+        isResend: metaStr.includes('R')
     };
 }
 
@@ -600,7 +600,7 @@ function renderTabs(orders) {
         let { status, dDateStr, pDateStr } = getOrderInfo(o);
         if (status === 'Archive') return;
 
-        let meta = getMetaStatus(o.adminMeta);
+        let meta = getMetaStatus(o.adminMeta, status);
         let dateKeyType = '';
         let displayDateRaw = o.timestamp;
 
@@ -1016,7 +1016,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
 
     let langBadge = d.language ? `<span class="badge rounded-pill border ms-1 text-secondary" style="font-size:9px; background:#f8f9fa;">${d.language.toUpperCase()}</span>` : '';
 
-    let meta = getMetaStatus(d.adminMeta);
+    let meta = getMetaStatus(d.adminMeta, currentStatus);
     let metaBadges = '';
     if (meta.isPrinted) metaBadges += `<span class="dot-indicator brown" title="Printed"></span>`;
     if (meta.isTracked) metaBadges += `<span class="dot-indicator blue" title="Tracked"></span>`;
@@ -1608,7 +1608,7 @@ window.confirmHardDelete = function (oid) {
     });
 }
 
-// 🔥 FULL FIXED updateOrder FUNCTION (Dispatched/Delivered Date Bug Fixed)
+// 🔥 FULL FIXED updateOrder FUNCTION (Returning Customer Bug Fixed)
 window.updateOrder = function (oid, status, tracking = null, skipConfirm = false, customDate = null, appendMessage = '') {
     let orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex === -1) return;
@@ -1625,7 +1625,7 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
 
         let existingOrder = allOrders.find(o => o.orderid === oid);
 
-        // യഥാർത്ഥ പഴയ സ്റ്റാറ്റസ് എടുക്കുന്നു (Undo ചെയ്യാൻ വേണ്ടി)
+        // യഥാർത്ഥ പഴയ സ്റ്റാറ്റസ് എടുക്കുന്നു
         let trueOldStatus = 'Pending';
         if (existingIndex > -1 && updates[existingIndex].oldStatus !== undefined) {
             trueOldStatus = updates[existingIndex].oldStatus;
@@ -1640,6 +1640,18 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
         let needsRefundDelete = false;
         if (String(trueOldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
             needsRefundDelete = true;
+        }
+
+        // 🔥 RETURNING CUSTOMER BUG FIX: (Clean old P, S, T tags)
+        let metaCleaned = false;
+        let currentMeta = existingOrder ? String(existingOrder.adminMeta || '') : '';
+        let cleanMeta = currentMeta;
+
+        if (['Pending', 'Sent'].includes(trueOldStatus) && ['Sent', 'Paid'].includes(status)) {
+            if (currentMeta.includes('P') || currentMeta.includes('S') || currentMeta.includes('T')) {
+                cleanMeta = currentMeta.replace(/P_\\d+/g, '').replace(/[PST]/g, '').replace(/\\s+/g, ' ').trim();
+                metaCleaned = true;
+            }
         }
 
         // DATE & TIME LOGIC
@@ -1684,33 +1696,38 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             }
         }
 
+        // 🔥 സിങ്ക് ക്യൂവിലേക്ക് Clean Meta കൂടി ചേർക്കുന്നു
+        if (metaCleaned) {
+            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
+            if (metaIdx > -1) {
+                updates[metaIdx].meta = cleanMeta;
+            } else {
+                updates.push({ oid: oid, action: 'meta', meta: cleanMeta, oldMeta: currentMeta, time: new Date().getTime() });
+            }
+        }
+
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-        // 🔥 LOCAL CACHE UPDATE (ഇവിടെയാണ് പഴയ ബഗ്ഗ് ഉണ്ടായിരുന്നത്!)
+        // LOCAL CACHE UPDATE
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = status;
             if (trackingNum !== null) allOrders[orderIndex].tracking = trackingNum;
 
+            // അപ്ഡേറ്റ് ചെയ്ത ക്ലീൻ മെറ്റാ ലോക്കൽ കാഷെയിലും മാറ്റുന്നു
+            if (metaCleaned) {
+                allOrders[orderIndex].adminMeta = cleanMeta;
+            }
+
             if (status === 'Paid' && finalActionDate) {
                 allOrders[orderIndex].paidDate = finalActionDate;
             }
-
-            // 🔥 FIX 1: Dispatched സ്റ്റാറ്റസ് ആണെങ്കിൽ മാത്രം Dispatched Date അപ്ഡേറ്റ് ചെയ്യുക
             if (status === 'Dispatched') {
-                if (customDate) {
-                    allOrders[orderIndex]['Dispatched Date'] = customDate;
-                } else if (!allOrders[orderIndex]['Dispatched Date'] && finalActionDate) {
-                    allOrders[orderIndex]['Dispatched Date'] = finalActionDate;
-                }
+                if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
+                else if (!allOrders[orderIndex]['Dispatched Date'] && finalActionDate) allOrders[orderIndex]['Dispatched Date'] = finalActionDate;
             }
-
-            // 🔥 FIX 2: Completed / Delivered സ്റ്റാറ്റസ് ആണെങ്കിൽ മാത്രം Delivered Date അപ്ഡേറ്റ് ചെയ്യുക
             if (status === 'Completed' || status === 'Delivered') {
-                if (customDate) {
-                    allOrders[orderIndex]['Delivered Date'] = customDate;
-                } else if (!allOrders[orderIndex]['Delivered Date'] && finalActionDate) {
-                    allOrders[orderIndex]['Delivered Date'] = finalActionDate;
-                }
+                if (customDate) allOrders[orderIndex]['Delivered Date'] = customDate;
+                else if (!allOrders[orderIndex]['Delivered Date'] && finalActionDate) allOrders[orderIndex]['Delivered Date'] = finalActionDate;
             }
 
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
