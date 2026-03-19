@@ -1608,7 +1608,7 @@ window.confirmHardDelete = function (oid) {
     });
 }
 
-// 🔥 FULL FIXED updateOrder FUNCTION (customDate Error Fixed)
+// 🔥 FULL FIXED updateOrder FUNCTION (Dispatched/Delivered Date Bug Fixed)
 window.updateOrder = function (oid, status, tracking = null, skipConfirm = false, customDate = null, appendMessage = '') {
     let orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex === -1) return;
@@ -1660,7 +1660,7 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             }
         }
 
-        // Undo/Revert Logic// Undo/Revert Logic
+        // Undo/Revert Logic
         if (trackingNum === null && !customDate && status === trueOldStatus) {
             if (existingIndex > -1) updates.splice(existingIndex, 1);
         } else {
@@ -1686,24 +1686,30 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
 
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-        // LOCAL CACHE UPDATE
+        // 🔥 LOCAL CACHE UPDATE (ഇവിടെയാണ് പഴയ ബഗ്ഗ് ഉണ്ടായിരുന്നത്!)
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = status;
             if (trackingNum !== null) allOrders[orderIndex].tracking = trackingNum;
-            if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
 
             if (status === 'Paid' && finalActionDate) {
                 allOrders[orderIndex].paidDate = finalActionDate;
             }
-            if (status === 'Dispatched' && !allOrders[orderIndex]['Dispatched Date'] && finalActionDate) {
-                allOrders[orderIndex]['Dispatched Date'] = finalActionDate;
-            }
-            if ((status === 'Completed' || status === 'Delivered')) {
-                if (!allOrders[orderIndex]['Delivered Date'] && finalActionDate) {
-                    allOrders[orderIndex]['Delivered Date'] = finalActionDate;
+
+            // 🔥 FIX 1: Dispatched സ്റ്റാറ്റസ് ആണെങ്കിൽ മാത്രം Dispatched Date അപ്ഡേറ്റ് ചെയ്യുക
+            if (status === 'Dispatched') {
+                if (customDate) {
+                    allOrders[orderIndex]['Dispatched Date'] = customDate;
+                } else if (!allOrders[orderIndex]['Dispatched Date'] && finalActionDate) {
+                    allOrders[orderIndex]['Dispatched Date'] = finalActionDate;
                 }
+            }
+
+            // 🔥 FIX 2: Completed / Delivered സ്റ്റാറ്റസ് ആണെങ്കിൽ മാത്രം Delivered Date അപ്ഡേറ്റ് ചെയ്യുക
+            if (status === 'Completed' || status === 'Delivered') {
                 if (customDate) {
                     allOrders[orderIndex]['Delivered Date'] = customDate;
+                } else if (!allOrders[orderIndex]['Delivered Date'] && finalActionDate) {
+                    allOrders[orderIndex]['Delivered Date'] = finalActionDate;
                 }
             }
 
