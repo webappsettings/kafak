@@ -1569,7 +1569,13 @@ function updateStatusUI(d) {
       // 🔥 Smart Tracking Link Logic
       let trackLink = '';
       if (rawProvider.includes('DTDC')) {
-        trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
+        if (trackNum.length > 9) {
+          // Valiya IDs (eg: R3000301984) -> DTDC Official Site
+          trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
+        } else {
+          // Normal 9 digit IDs (eg: R56024006) -> Google Search
+          trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
+        }
       } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
         trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
       } else {
@@ -1592,7 +1598,7 @@ function updateStatusUI(d) {
                 </div>
             </div>
             
-            <a href="${trackLink}" target="_blank" class="btn btn-primary shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px;">
+            <a href="${trackLink}" target="_blank" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px;">
                 ട്രാക്ക് <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
             </a>
         </div>`;

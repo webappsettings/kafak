@@ -1272,7 +1272,21 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     else if (logicType === 'dispatched') {
         let trackNum = d.tracking || '';
         let rawProvider = String(d.provider || d.Courier_Provider || 'DTDC').trim();
-        let trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
+        // 🔥 Smart Tracking Link Logic
+        let trackLink = '';
+        if (rawProvider.includes('DTDC')) {
+            if (trackNum.length > 9) {
+                // Valiya IDs (eg: R3000301984) -> DTDC Official Site
+                trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
+            } else {
+                // Normal 9 digit IDs (eg: R56024006) -> Google Search
+                trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
+            }
+        } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
+            trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
+        } else {
+            trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
+        }
 
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
         let formattedDispDate = new Date(dispDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
