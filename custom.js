@@ -1563,31 +1563,38 @@ function updateStatusUI(d) {
     }
     let extraContent = '';
     if (index === 2 && item.active && d.tracking && !isRefunded) {
-      let courierName = d.courier || d.Courier_Provider || d.provider || "Courier";
-      let trackLink = `https://www.google.com/search?q=${courierName}+tracking+${d.tracking}`;
+      let trackNum = String(d.tracking || '').trim();
+      let rawProvider = String(d.courier || d.Courier_Provider || d.provider || 'Courier').trim().toUpperCase();
 
-      // 👇 ഈ ഭാഗം മുഴുവനായി പുതിയ ഡിസൈനിലേക്ക് മാറ്റുന്നു 👇
+      // 🔥 Smart Tracking Link Logic
+      let trackLink = '';
+      if (rawProvider.includes('DTDC')) {
+        trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
+      } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
+        trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
+      } else {
+        trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
+      }
+
+      // 🔥 Compact & Beautiful Tracking UI with Copy Button
       extraContent = `
-        <div class="mt-3 p-3 rounded-4 shadow-sm" style="background: linear-gradient(145deg, #f8fafc, #f1f5f9); border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
-            <div class="d-flex justify-content-between align-items-center mb-1">
-                <span style="font-size:9px; font-weight:800; color:#64748b; text-transform:uppercase; letter-spacing:1px;">
-                    <i class="fas fa-shipping-fast text-primary me-1"></i> ${courierName}
-                </span>
-                <span style="font-size:9px; color:#10b981; font-weight:700;">
-                    <i class="fas fa-circle" style="font-size:6px; vertical-align:middle;"></i> In Transit
-                </span>
-            </div>
-            <div class="d-flex justify-content-between align-items-end mt-2">
-                <div>
-                    <div style="font-size:10px; color:#94a3b8; margin-bottom:2px;">Tracking ID</div>
-                    <div style="font-size:14px; font-weight:900; color:#0f172a; letter-spacing:1px; font-family:monospace;">
-                        ${d.tracking}
-                    </div>
+        <div class="mt-3 p-2 rounded-3 shadow-sm d-flex align-items-center justify-content-between" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
+            <div class="d-flex flex-column">
+                <div style="font-size:9px; font-weight:800; color:#64748b; text-transform:uppercase; margin-bottom:2px; letter-spacing:0.5px;">
+                    <i class="fas fa-truck text-primary me-1"></i> ${rawProvider}
                 </div>
-                <a href="${trackLink}" target="_blank" class="btn btn-sm py-1 px-3 shadow-sm" style="background:#2563eb; color:#fff; font-size:10px; font-weight:800; border-radius:20px; text-transform:uppercase;">
-                    ${t.lbl_track_item || 'Track'} <i class="fas fa-arrow-right ms-1"></i>
-                </a>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bolder text-dark" style="font-size:14px; font-family:monospace; letter-spacing:0.5px;">${trackNum}</span>
+                    
+                    <button onclick="copyTrackingID('${trackNum}', this)" class="btn btn-sm btn-white p-0 d-flex align-items-center justify-content-center shadow-sm" style="width:24px; height:24px; border-radius:6px; border:1px solid #cbd5e1; background:#fff;" title="Copy ID">
+                        <i class="far fa-copy text-secondary" style="font-size:12px;"></i>
+                    </button>
+                </div>
             </div>
+            
+            <a href="${trackLink}" target="_blank" class="btn btn-primary shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px;">
+                ട്രാക്ക് <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
+            </a>
         </div>`;
     }
     let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
@@ -3462,5 +3469,23 @@ window.confirmOrder = function () {
       // 🔥 ഇവിടെ ലോക്കൽ സേവ് ഇല്ലാത്തതുകൊണ്ട് ഡ്രാഫ്റ്റ് ആയി തന്നെ നിൽക്കും
       alert(getAlert('submitError') || "Network Error! Could not submit order.");
     }
+  });
+}
+
+// 🔥 Copy Tracking ID Function
+window.copyTrackingID = function (id, btnElement) {
+  navigator.clipboard.writeText(id).then(() => {
+    let icon = btnElement.querySelector('i');
+    icon.classList.remove('far', 'fa-copy', 'text-secondary');
+    icon.classList.add('fas', 'fa-check', 'text-success');
+
+    if (typeof Swal !== 'undefined') {
+      Swal.fire({ toast: true, position: 'top', showConfirmButton: false, timer: 1500, icon: 'success', title: 'Tracking ID Copied!' });
+    }
+
+    setTimeout(() => {
+      icon.classList.remove('fas', 'fa-check', 'text-success');
+      icon.classList.add('far', 'fa-copy', 'text-secondary');
+    }, 2000);
   });
 }

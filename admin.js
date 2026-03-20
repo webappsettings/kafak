@@ -1270,20 +1270,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
     }
     else if (logicType === 'dispatched') {
-        let trackNum = String(d.tracking || '').trim();
-        let rawProvider = String(d.provider || d.Courier_Provider || 'DTDC').trim().toUpperCase();
-
-        let trackLink = '';
-        if (rawProvider.includes('DTDC')) {
-            // DTDC യുടെ ഒറിജിനൽ റിസൾട്ട് പേജിലേക്ക് നേരിട്ട് പോകാൻ
-            trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
-        } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
-            // ഇന്ത്യ പോസ്റ്റിന് വേണ്ടി
-            trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
-        } else {
-            // ബാക്കിയുള്ളവയ്ക്ക് (Professional, Delhivery തുടങ്ങിയവ) ഗൂഗിളിൽ തന്നെ
-            trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
-        }
+        let trackNum = d.tracking || '';
+        let rawProvider = String(d.provider || d.Courier_Provider || 'DTDC').trim();
+        let trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
 
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
         let formattedDispDate = new Date(dispDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
