@@ -1270,20 +1270,22 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
     }
     else if (logicType === 'dispatched') {
-        let trackNum = d.tracking || '';
-        let rawProvider = String(d.provider || d.Courier_Provider || 'DTDC').trim();
+        let trackNum = String(d.tracking || '').trim();
+        let rawProvider = String(d.provider || d.Courier_Provider || 'DTDC').trim().toUpperCase();
+
         // 🔥 Smart Tracking Link Logic
         let trackLink = '';
         if (rawProvider.includes('DTDC')) {
             if (trackNum.length > 9) {
-                // Valiya IDs (eg: R3000301984) -> DTDC Official Site
                 trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
             } else {
-                // Normal 9 digit IDs (eg: R56024006) -> Google Search
                 trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
             }
         } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
             trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
+        } else if (rawProvider.includes('SPEED') || rawProvider.includes('SAFE')) {
+            // 🔥 Speed & Safe Courier Link
+            trackLink = `https://www.gokulamspeedandsafe.com/speedandsafe-tracking/`;
         } else {
             trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
         }

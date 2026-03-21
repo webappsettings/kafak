@@ -1570,14 +1570,15 @@ function updateStatusUI(d) {
       let trackLink = '';
       if (rawProvider.includes('DTDC')) {
         if (trackNum.length > 9) {
-          // Valiya IDs (eg: R3000301984) -> DTDC Official Site
           trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
         } else {
-          // Normal 9 digit IDs (eg: R56024006) -> Google Search
           trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
         }
       } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
         trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
+      } else if (rawProvider.includes('SPEED') || rawProvider.includes('SAFE')) {
+        // 🔥 Speed & Safe Courier Link
+        trackLink = `https://www.gokulamspeedandsafe.com/speedandsafe-tracking/`;
       } else {
         trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
       }
