@@ -5345,31 +5345,32 @@ window.updatePrintPrediction = function () {
             } else {
                 let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
                 let totalIfFilled = (neededNewSheets * ratio) + looseStickers;
-                let extraStickers = totalIfFilled - totalNeeded; // ബാക്കി വരുന്ന എണ്ണം കണ്ടുപിടിക്കുന്നു (ഉദാ: 3)
+                let extraStickers = totalIfFilled - totalNeeded;
 
                 if (extraStickers > 0) {
-                    // 🔥 ഓപ്ഷൻ 1: Full A4 ഷീറ്റ് (ഇതാണ് ഡിഫോൾട്ട് ആയി നിൽക്കുക)
                     optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
                         Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം കൂടുതൽ പ്രിന്റ് ആകും
                     </option>`;
-
-                    // 🔥 ഓപ്ഷൻ 2: കൃത്യം ആവശ്യമുള്ളത് മാത്രം (ബാക്കി ഭാഗം ബ്ലാങ്ക് ആയിരിക്കും)
                     optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>
                         Exact Need (${totalNeeded} Stk) - അവസാന എ4-ൽ ${extraStickers} എണ്ണം ബ്ലാങ്ക് ആയിരിക്കും
                     </option>`;
                 } else {
-                    // കൃത്യം കണക്കാണെങ്കിൽ
                     optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
                         Print Exact Need (${totalNeeded} Stk) - കൃത്യം A4 ഷീറ്റുകൾ
                     </option>`;
                 }
             }
             optionsHtml += `</optgroup>`;
+        } else {
+            // 🔥 പുതിയ മാറ്റം: പ്രിന്റ് ചെയ്യാൻ ഒന്നുമില്ലെങ്കിൽ '0' ഓപ്ഷൻ കാണിക്കുക
+            let selZero = (!currentSelectedValue || currentSelectedValue == 0) ? 'selected' : '';
+            optionsHtml += `<option value="0" ${selZero}>✅ All Caught Up (0 Stk)</option>`;
         }
 
         optionsHtml += `<optgroup label="--- Manual Copies ---">`;
         for (let i = 1; i <= ratio; i++) {
-            let sel = (totalNeeded === 0 && i === 1 && !currentSelectedValue) ? 'selected' : (currentSelectedValue == i ? 'selected' : '');
+            // 🔥 ഇവിടെ ഉണ്ടായിരുന്ന i === 1 കണ്ടീഷൻ ഒഴിവാക്കി
+            let sel = (currentSelectedValue == i) ? 'selected' : '';
             optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
         }
         for (let i = 2; i <= 5; i++) {
@@ -5386,7 +5387,7 @@ window.updatePrintPrediction = function () {
         };
     }
 
-    // 2. 🔥 Dropdown set cheytha shesham athile value edukkunnu (Appol default aayi thanne kitiyolum)
+    // 2. 🔥 Dropdown set cheytha shesham athile value edukkunnu
     let selectedPrintCount = parseInt(modeBox ? modeBox.value : unprintedStickers) || 0;
 
     let remainingToPrintFromNewSheetsCalc = selectedPrintCount - looseStickers;
