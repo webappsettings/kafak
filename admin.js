@@ -5345,9 +5345,23 @@ window.updatePrintPrediction = function () {
             } else {
                 let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
                 let totalIfFilled = (neededNewSheets * ratio) + looseStickers;
-                optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>Fill Full Sheets (${totalIfFilled} Stk = ${neededNewSheets} A4)</option>`;
-                if (totalIfFilled !== totalNeeded) {
-                    optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>Print Exact Need (${totalNeeded} Stk)</option>`;
+                let extraStickers = totalIfFilled - totalNeeded; // ബാക്കി വരുന്ന എണ്ണം കണ്ടുപിടിക്കുന്നു (ഉദാ: 3)
+
+                if (extraStickers > 0) {
+                    // 🔥 ഓപ്ഷൻ 1: Full A4 ഷീറ്റ് (ഇതാണ് ഡിഫോൾട്ട് ആയി നിൽക്കുക)
+                    optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
+                        Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം കൂടുതൽ പ്രിന്റ് ആകും
+                    </option>`;
+
+                    // 🔥 ഓപ്ഷൻ 2: കൃത്യം ആവശ്യമുള്ളത് മാത്രം (ബാക്കി ഭാഗം ബ്ലാങ്ക് ആയിരിക്കും)
+                    optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>
+                        Exact Need (${totalNeeded} Stk) - അവസാന എ4-ൽ ${extraStickers} എണ്ണം ബ്ലാങ്ക് ആയിരിക്കും
+                    </option>`;
+                } else {
+                    // കൃത്യം കണക്കാണെങ്കിൽ
+                    optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
+                        Print Exact Need (${totalNeeded} Stk) - കൃത്യം A4 ഷീറ്റുകൾ
+                    </option>`;
                 }
             }
             optionsHtml += `</optgroup>`;
