@@ -5219,7 +5219,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH STATUS SYNC BUG FIX)
+// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH CLEAR STICKER BALANCE UI)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5246,7 +5246,6 @@ window.updatePrintPrediction = function () {
 
     if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
-            // 🔥 FIX: മെയിൻ സ്ക്രീനിലെ പോലെ ലോക്കൽ അപ്ഡേറ്റ് കൂടി ഇവിടെ നോക്കുന്നു!
             let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
             let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || 'Pending').trim();
 
@@ -5285,15 +5284,42 @@ window.updatePrintPrediction = function () {
     let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
     if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
 
+    // 🔥 PENDING PRINT CALCULATION (ഭാവിയിലെ കണക്ക് കൂട്ടാൻ)
+    let selectedPrintCount = parseInt(document.getElementById('print-qty-mode') ? document.getElementById('print-qty-mode').value : unprintedStickers) || 0;
+
+    // ഇപ്പോൾ പ്രിന്റ് ചെയ്യാൻ പോകുന്ന സ്റ്റിക്കറുകളുടെ എണ്ണത്തിൽ നിന്നും, കയ്യിലുള്ള ലൂസ് സ്റ്റിക്കർ ഉപയോഗിച്ച് ബാക്കി എത്ര എണ്ണം പുതിയ ഷീറ്റിൽ നിന്നും എടുക്കും എന്ന് കണക്കാക്കുന്നു.
+    let remainingToPrintFromNewSheets = selectedPrintCount - looseStickers;
+    let newLooseBalance = looseStickers;
+
+    if (remainingToPrintFromNewSheets > 0) {
+        // കയ്യിലുള്ളതിനേക്കാൾ കൂടുതൽ പ്രിന്റ് ചെയ്യാനുണ്ടെങ്കിൽ
+        let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
+        let totalPrintedSpots = (neededNewSheets * ratio) + looseStickers;
+        newLooseBalance = totalPrintedSpots - selectedPrintCount;
+    } else if (remainingToPrintFromNewSheets < 0) {
+        // കയ്യിലുള്ള ലൂസ് സ്റ്റിക്കർ കൊണ്ട് തന്നെ പ്രിന്റ് ചെയ്യാം, പുതിയ ഷീറ്റ് എടുക്കേണ്ട.
+        newLooseBalance = Math.abs(remainingToPrintFromNewSheets);
+    } else {
+        // കൃത്യം കയ്യിലുള്ള ലൂസ് സ്റ്റിക്കർ മാത്രം ഉപയോഗിക്കുന്നു. ബാക്കി 0.
+        newLooseBalance = 0;
+    }
+
     let stockHtml = `
         <div class="d-flex flex-column align-items-end gap-2 w-100 mt-2">
+            
             <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
                  style="cursor:pointer; background:#fff3cd; border:1px solid #ffe69c; transition:0.2s;" 
                  onclick="editStickerStock('loose', ${looseStickers}, ${ratio})" 
                  onmouseover="this.style.background='#ffecb5'" onmouseout="this.style.background='#fff3cd'" title="എണ്ണം മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക">
-                <span class="fw-bold" style="font-size:11px; color:#b45309;">
-                    <i class="fas fa-cut me-1"></i> പ്രിന്റ് ചെയ്ത <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
-                </span>
+                <div class="d-flex flex-column">
+                    <span class="fw-bold" style="font-size:11px; color:#b45309;">
+                        <i class="fas fa-cut me-1"></i> മുൻപ് മുറിച്ച <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
+                    </span>
+                    ${selectedPrintCount > 0 ? `
+                    <span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
+                        <i class="fas fa-arrow-right"></i> ഇപ്പോൾ പ്രിന്റ് ചെയ്താൽ ബാക്കി <span class="fw-bolder" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം വരും.
+                    </span>` : ''}
+                </div>
                 <span class="badge bg-warning text-dark p-1 ms-1" style="font-size:9px;"><i class="fas fa-edit"></i> എഡിറ്റ്</span>
             </div>
 
@@ -5302,7 +5328,7 @@ window.updatePrintPrediction = function () {
                  onclick="editStickerStock('sheets', ${fullSheets}, ${ratio})" 
                  onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'" title="ടോട്ടൽ സ്റ്റോക്ക് മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക">
                 <span class="fw-bold text-dark" style="font-size:11px;">
-                    <i class="fas fa-layer-group text-primary me-1"></i> ഉപയോഗിക്കാത്ത വെള്ള ഷീറ്റ് <span class="badge bg-primary text-white mx-1" style="font-size:12px;">${fullSheets}</span> എണ്ണം ഇനിയുണ്ട്
+                    <i class="fas fa-layer-group text-primary me-1"></i> പുതിയ വെള്ള ഷീറ്റ് <span class="badge bg-primary text-white mx-1" style="font-size:12px;">${fullSheets}</span> എണ്ണം ഇനിയുണ്ട്
                 </span>
                 <span class="badge bg-light text-primary border border-primary p-1 ms-1" style="font-size:9px;"><i class="fas fa-edit"></i> മാറ്റുക</span>
             </div>
@@ -5338,19 +5364,20 @@ window.updatePrintPrediction = function () {
 
     let totalNeeded = unprintedStickers;
     let optionsHtml = '';
+    let currentSelectedValue = modeBox.value;
 
     if (totalNeeded > 0) {
         optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
         let remainingToPrintFromNewSheets = totalNeeded - looseStickers;
 
         if (remainingToPrintFromNewSheets <= 0) {
-            optionsHtml += `<option value="${totalNeeded}" selected>Print Exact (${totalNeeded} Stk - Uses Loose)</option>`;
+            optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>Print Exact (${totalNeeded} Stk - Uses Loose)</option>`;
         } else {
             let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
             let totalIfFilled = (neededNewSheets * ratio) + looseStickers;
-            optionsHtml += `<option value="${totalIfFilled}" selected>Fill Full Sheets (${totalIfFilled} Stk = ${neededNewSheets} A4)</option>`;
+            optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>Fill Full Sheets (${totalIfFilled} Stk = ${neededNewSheets} A4)</option>`;
             if (totalIfFilled !== totalNeeded) {
-                optionsHtml += `<option value="${totalNeeded}">Print Exact Need (${totalNeeded} Stk)</option>`;
+                optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>Print Exact Need (${totalNeeded} Stk)</option>`;
             }
         }
         optionsHtml += `</optgroup>`;
@@ -5358,12 +5385,13 @@ window.updatePrintPrediction = function () {
 
     optionsHtml += `<optgroup label="--- Manual Copies ---">`;
     for (let i = 1; i <= ratio; i++) {
-        let sel = (totalNeeded === 0 && i === 1) ? 'selected' : '';
+        let sel = (totalNeeded === 0 && i === 1 && !currentSelectedValue) ? 'selected' : (currentSelectedValue == i ? 'selected' : '');
         optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
     }
     for (let i = 2; i <= 5; i++) {
         let labels = i * ratio;
-        optionsHtml += `<option value="${labels}">Print ${i} Full A4 (${labels} Stk)</option>`;
+        let sel = (currentSelectedValue == labels) ? 'selected' : '';
+        optionsHtml += `<option value="${labels}" ${sel}>Print ${i} Full A4 (${labels} Stk)</option>`;
     }
     optionsHtml += `</optgroup>`;
 
