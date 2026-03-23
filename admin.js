@@ -5061,15 +5061,25 @@ function injectLeftDrawer() {
 
     let calculatedMRP = typeof getDefaultMRP === 'function' ? getDefaultMRP() : '750';
 
-    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || calculatedMRP);
-    let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || 'HN26PTT01');
-    let savedStickersPerA4 = localStorage.getItem('stickersPerA4') || '5';
-
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
     let mm = String(today.getMonth() + 1).padStart(2, '0');
     let yy = String(today.getFullYear()).slice(-2);
     let defaultDate = `${dd} / ${mm} / ${yy}`;
+
+    // 🔥 DYNAMIC BATCH NUMBER (Year anusrittu thaniye maarum)
+    let defaultBatch = 'HN' + yy + 'PTT01';
+
+    let savedMrp = (db.honey && db.honey.mrp) ? db.honey.mrp : (localStorage.getItem('label_mrp') || calculatedMRP);
+
+    // Server-il ninnu kittiyillengil dynamic default batch edukkum
+    let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || defaultBatch);
+
+    // 🔥 FIX: കൃത്യമായി 5 തന്നെ ഡീഫോൾട്ട് ആയി വരാൻ
+    let savedStickersPerA4 = String(localStorage.getItem('stickersPerA4'));
+    if (!['1', '2', '3', '4', '5'].includes(savedStickersPerA4)) {
+        savedStickersPerA4 = '5';
+    }
 
     let drawerHtml = `
     <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2050;" onclick="toggleLeftDrawer()"></div>
