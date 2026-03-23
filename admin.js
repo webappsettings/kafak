@@ -5290,9 +5290,11 @@ window.updatePrintPrediction = function () {
     let actualUsedSheets = isStarted ? Math.max(0, ((usedStickers * avg) + (countOffset * avg)) - (parseFloat(stkDB.exempt) || 0)) : 0;
     let currentBalance = Math.max(0, parseFloat(stkDB.total || 0) - actualUsedSheets);
 
+    // 🔥 FIX: പഴയ ലൂസ് സ്റ്റിക്കറുകൾ കണക്കാക്കാൻ പഴയ റേഷ്യോ (Historical Ratio) തന്നെ ഉപയോഗിക്കുന്നു!
+    let historicalRatio = Math.round(1 / (avg || 0.2));
     let fullSheets = Math.floor(currentBalance + 0.0001);
-    let looseStickers = Math.round((currentBalance - fullSheets) * ratio);
-    if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
+    let looseStickers = Math.round((currentBalance - fullSheets) * historicalRatio);
+    if (looseStickers >= historicalRatio) { fullSheets += 1; looseStickers = 0; }
 
     // 🔥 PENDING PRINT CALCULATION (ഭാവിയിലെ കണക്ക് കൂട്ടാൻ)
     let selectedPrintCount = parseInt(document.getElementById('print-qty-mode') ? document.getElementById('print-qty-mode').value : unprintedStickers) || 0;
@@ -7336,10 +7338,12 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${itemObj.unit}</span>`;
 
         if (k === 'sticker') {
-            let ratio = parseFloat(localStorage.getItem('stickersPerA4')) || 5;
+            // 🔥 FIX: പഴയ ലൂസ് സ്റ്റിക്കറുകൾ കണക്കാക്കാൻ പഴയ റേഷ്യോ തന്നെ ഉപയോഗിക്കുന്നു!
+            let historicalRatio = Math.round(1 / (avg || 0.2));
             let fullSheets = Math.floor(bal + 0.0001);
-            let looseStickers = Math.round((bal - fullSheets) * ratio);
-            if (looseStickers >= ratio) { fullSheets += 1; looseStickers = 0; }
+            let looseStickers = Math.round((bal - fullSheets) * historicalRatio);
+            if (looseStickers >= historicalRatio) { fullSheets += 1; looseStickers = 0; }
+
             balDisplay = `${fullSheets} <span class="text-muted fw-normal" style="font-size:9px;">A4</span>`;
             if (looseStickers > 0) balDisplay += ` <span class="badge bg-secondary ms-1" style="font-size:8px;">+${looseStickers} stk</span>`;
         }
