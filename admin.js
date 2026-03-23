@@ -7188,7 +7188,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With List View & Exclusion)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With List View & Global Counts)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7215,7 +7215,8 @@ window.getLiveStockHtml = function (isExpanded = false) {
     for (let k in inkItems) { if (!db[k]) db[k] = { total: 0, start: "", exempt: 0, excludedOids: [] }; if (!db[k].excludedOids) db[k].excludedOids = []; }
 
     let used = {}; let counts = {};
-    window.inventoryDetailsMap = {}; // 🔥 ഗ്ലോബൽ മാപ്പ് (ലിസ്റ്റ് കാണിക്കാൻ)
+    window.inventoryDetailsMap = {};
+    window.inventoryLiveCounts = {}; // 🔥 ഗ്ലോബൽ ആയി ടോട്ടൽ കൗണ്ട് സേവ് ചെയ്യാൻ
 
     for (let k in standardItems) { used[k] = 0; counts[k] = 0; window.inventoryDetailsMap[k] = []; }
     for (let k in inkItems) { used[k] = 0; counts[k] = 0; window.inventoryDetailsMap[k] = []; }
@@ -7256,7 +7257,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         const calculateItem = (k, itemObj) => {
             if (!db[k].start) return;
-            if (o.orderid && db[k].excludedOids && db[k].excludedOids.includes(o.orderid)) return; // 🔥 Remove അടിച്ചവ ഒഴിവാക്കുന്നു
+            if (o.orderid && db[k].excludedOids && db[k].excludedOids.includes(o.orderid)) return; // Remove അടിച്ചവ ഒഴിവാക്കുന്നു
 
             let startMs = new Date(db[k].start).getTime();
             let checkTime = (itemObj.track === 'print') ? printTime : actionTime;
@@ -7323,6 +7324,8 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let countOffset = parseFloat(db[k].countOffset) || 0;
         let liveCount = Math.max(0, baseCount + countOffset);
 
+        window.inventoryLiveCounts[k] = liveCount; // 🔥 പോപ്പപ്പിലേക്ക് എടുക്കാൻ സേവ് ചെയ്യുന്നു
+
         let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
 
         let actualUsed = isStarted ? Math.max(0, (used[k] + (countOffset * avg)) - (parseFloat(db[k].exempt) || 0)) : 0;
@@ -7335,7 +7338,6 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${itemObj.unit}</span>`;
 
         if (k === 'sticker') {
-            // 🔥 FIX: പഴയ ലൂസ് സ്റ്റിക്കറുകൾ കണക്കാക്കാൻ പഴയ റേഷ്യോ തന്നെ ഉപയോഗിക്കുന്നു!
             let historicalRatio = Math.round(1 / (avg || 0.2));
             let fullSheets = Math.floor(bal + 0.0001);
             let looseStickers = Math.round((bal - fullSheets) * historicalRatio);
