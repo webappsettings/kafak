@@ -707,6 +707,18 @@ function renderTabs(orders) {
             else stateKey = 'other';
         }
 
+        // 🔥 STATE FILTER CHECK: ക്ലിക്ക് ചെയ്ത സ്റ്റേറ്റ് അല്ലെങ്കിൽ ഈ കാർഡിനെ വരയ്ക്കില്ല!
+        if (window.activeStateFilter) {
+            let isMatch = false;
+            if (window.activeStateFilter === 'KL' && (!stateKey)) isMatch = true; // KERALA (Default)
+            else if (window.activeStateFilter === 'KA' && stateKey === 'kar') isMatch = true;
+            else if (window.activeStateFilter === 'TN' && stateKey === 'tn') isMatch = true;
+            else if (window.activeStateFilter === 'LD' && stateKey === 'lak') isMatch = true;
+            else if (window.activeStateFilter === 'OTHER' && stateKey === 'other') isMatch = true;
+
+            if (!isMatch) return; // മാച്ച് അല്ലെങ്ങിൽ താഴേക്ക് പോകില്ല, സ്കിപ്പ് ചെയ്യും!
+        }
+
         if (status === 'Pending') {
             targetList = listNew; type = 'pending'; dateKey = 'new'; counts.pending++; subCounts.new++;
             if (stateKey) stateStats.new[stateKey]++;
@@ -867,11 +879,25 @@ function renderTabs(orders) {
         let colorTn = '#5d4037';  // Dark Coffee
         let colorKl = '#198754';  // Green
 
+        // 🔥 STATE FILTER BADGE CLICK LOGIC
+        let filterActive = window.activeStateFilter ? true : false;
+
+        let getOp = (stateCode) => {
+            if (!filterActive) return "opacity: 1; cursor:pointer;";
+            return window.activeStateFilter === stateCode ? "opacity: 1; cursor:pointer; border: 2px solid #000; transform: scale(1.15);" : "opacity: 0.3; cursor:pointer;";
+        };
+
+        // Clear Button html
+        let clearBtn = filterActive ? `<span class="badge bg-danger shadow-sm ms-1" style="cursor:pointer; font-size:9px; padding:4px 6px;" onclick="toggleStateFilter(null)"><i class="fas fa-times"></i></span>` : '';
+
         let statesHtml = '';
-        if (klCount > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKl}; font-size:9px; width:18px; height:18px; padding:0;" title="Kerala">${klCount}</span>`;
-        if (sStats.lak > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorLak}; font-size:9px; width:18px; height:18px; padding:0;" title="Lakshadweep">${sStats.lak}</span>`;
-        if (sStats.kar > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKar}; font-size:9px; width:18px; height:18px; padding:0;" title="Karnataka">${sStats.kar}</span>`;
-        if (sStats.tn > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; width:18px; height:18px; padding:0;" title="Tamilnadu">${sStats.tn}</span>`;
+        if (klCount > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKl}; font-size:9px; width:18px; height:18px; padding:0; ${getOp('KL')} transition:0.2s;" onclick="toggleStateFilter('KL')" title="Kerala">${klCount}</span>`;
+        if (sStats.lak > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorLak}; font-size:9px; width:18px; height:18px; padding:0; ${getOp('LD')} transition:0.2s;" onclick="toggleStateFilter('LD')" title="Lakshadweep">${sStats.lak}</span>`;
+        if (sStats.kar > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKar}; font-size:9px; width:18px; height:18px; padding:0; ${getOp('KA')} transition:0.2s;" onclick="toggleStateFilter('KA')" title="Karnataka">${sStats.kar}</span>`;
+        if (sStats.tn > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; width:18px; height:18px; padding:0; ${getOp('TN')} transition:0.2s;" onclick="toggleStateFilter('TN')" title="Tamilnadu">${sStats.tn}</span>`;
+        if (sStats.other > 0) statesHtml += `<span class="badge rounded-circle text-white bg-secondary shadow-sm d-flex align-items-center justify-content-center" style="font-size:9px; width:18px; height:18px; padding:0; ${getOp('OTHER')} transition:0.2s;" onclick="toggleStateFilter('OTHER')" title="Other States">${sStats.other}</span>`;
+
+        statesHtml += clearBtn;
 
         el.style.display = 'flex';
         el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto mt-2 mb-3";
@@ -7980,4 +8006,20 @@ window.revertCompletedOrder = function (oid) {
             }
         }
     });
+};
+
+// 🔥 GLOBAL STATE FILTER LOGIC
+window.activeStateFilter = null;
+window.toggleStateFilter = function (stateLabel) {
+    // ഓൺ ആയിരിക്കുന്നതിൽ തന്നെ വീണ്ടും ക്ലിക്ക് ചെയ്താൽ ഫിൽറ്റർ ഓഫ് ആകും
+    if (window.activeStateFilter === stateLabel) {
+        window.activeStateFilter = null;
+    } else {
+        window.activeStateFilter = stateLabel; // അല്ലെങ്കിൽ പുതിയത് ഓൺ ആകും
+    }
+
+    // ഫിൽറ്റർ ചെയ്ത ശേഷം UI റീലോഡ് ചെയ്യുന്നു
+    if (typeof renderTabs === 'function') {
+        renderTabs(typeof allOrders !== 'undefined' ? allOrders : []);
+    }
 };
