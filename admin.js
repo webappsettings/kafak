@@ -7062,7 +7062,9 @@ window.recalcRecordCount = function (key) {
                     count += qty;
                 }
             } else if (!isNaN(oDate) && oDate >= startTime && oDate <= endTime) {
-                if (trackType === 'Order' && ['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                if (key === 'a6paper' && ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                    count += 1;
+                } else if (trackType === 'Order' && ['Dispatched', 'Delivered', 'Completed'].includes(status)) {
                     count += 1;
                 } else if (trackType === 'Bottle' && ['Dispatched', 'Delivered', 'Completed'].includes(status)) {
                     count += qty;
@@ -7225,11 +7227,19 @@ window.getLiveStockHtml = function (isExpanded = false) {
                 let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
 
                 if (itemObj.track === 'print') {
+                    // A4 Stickers & Inks (S Tag)
                     if (metaStr.includes('S') && printTime >= startMs) {
                         used[k] += isBulk ? 0 : qty * avg;
                         counts[k] += isBulk ? 0 : qty;
                     }
-                } else if (['Dispatched', 'Delivered', 'Completed', 'Paid'].includes(status) || isBulk) {
+                } else if (k === 'a6paper') {
+                    // A6 Paper: Paid aakumpol thanne kurayum (For shipping label)
+                    if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status) || isBulk) {
+                        used[k] += isBulk ? 0 : 1 * avg;
+                        counts[k] += isBulk ? 0 : 1;
+                    }
+                } else if (['Dispatched', 'Delivered', 'Completed'].includes(status) || isBulk) {
+                    // 🔥 BOTTLES, HONEY, BOX, TAPE, POUCH: Dispatched aakumpol mathram kurayum!
                     if (itemObj.track === 'bottle') {
                         if (k === 'honey') {
                             if (isPartnerBulk) {
@@ -7247,7 +7257,9 @@ window.getLiveStockHtml = function (isExpanded = false) {
                             else if (isLocalSale) { if (desc.includes('650g')) { used.bottles += (qty * avg); counts.bottles += qty; } }
                             else { used.bottles += (qty * avg); counts.bottles += qty; }
                         } else { used[k] += isBulk ? 0 : qty * avg; counts[k] += isBulk ? 0 : qty; }
-                    } else if (itemObj.track === 'order') { used[k] += isBulk ? 0 : 1 * avg; counts[k] += isBulk ? 0 : 1; }
+                    } else if (itemObj.track === 'order') {
+                        used[k] += isBulk ? 0 : 1 * avg; counts[k] += isBulk ? 0 : 1;
+                    }
                 }
             }
         };
