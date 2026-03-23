@@ -7189,7 +7189,7 @@ window.stopRecording = function (key) {
     });
 };
 
-// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (Perfect Sync Validation)
+// 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With List View & Exclusion)
 window.getLiveStockHtml = function (isExpanded = false) {
     const standardItems = {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -7212,18 +7212,18 @@ window.getLiveStockHtml = function (isExpanded = false) {
     let db = window.globalInventoryDB;
     if (!db) return `<div id="live-stock-box" class="text-center p-4 bg-white border rounded-4 shadow-sm mb-4 text-primary fw-bold small"><i class="fas fa-spinner fa-spin me-2"></i> Syncing Live Inventory from Sheet...</div>`;
 
-    for (let k in standardItems) { if (!db[k]) db[k] = { total: 0, start: "", exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
-    for (let k in inkItems) { if (!db[k]) db[k] = { total: 0, start: "", exempt: 0 }; if (db[k].exempt === undefined) db[k].exempt = 0; }
+    for (let k in standardItems) { if (!db[k]) db[k] = { total: 0, start: "", exempt: 0, excludedOids: [] }; if (!db[k].excludedOids) db[k].excludedOids = []; }
+    for (let k in inkItems) { if (!db[k]) db[k] = { total: 0, start: "", exempt: 0, excludedOids: [] }; if (!db[k].excludedOids) db[k].excludedOids = []; }
 
-    let used = {};
-    let counts = {};
-    for (let k in standardItems) { used[k] = 0; counts[k] = 0; }
-    for (let k in inkItems) { used[k] = 0; counts[k] = 0; }
+    let used = {}; let counts = {};
+    window.inventoryDetailsMap = {}; // 🔥 ഗ്ലോബൽ മാപ്പ് (ലിസ്റ്റ് കാണിക്കാൻ)
+
+    for (let k in standardItems) { used[k] = 0; counts[k] = 0; window.inventoryDetailsMap[k] = []; }
+    for (let k in inkItems) { used[k] = 0; counts[k] = 0; window.inventoryDetailsMap[k] = []; }
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
-        // 🔥 FIX: ലോക്കൽ അപ്ഡേറ്റ് കൂടി ഇവിടെ നോക്കുന്നു!
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || 'Pending').trim();
 
@@ -7257,32 +7257,32 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         const calculateItem = (k, itemObj) => {
             if (!db[k].start) return;
+            if (o.orderid && db[k].excludedOids && db[k].excludedOids.includes(o.orderid)) return; // 🔥 Remove അടിച്ചവ ഒഴിവാക്കുന്നു
 
             let startMs = new Date(db[k].start).getTime();
             let checkTime = (itemObj.track === 'print') ? printTime : actionTime;
 
             if (checkTime >= startMs) {
                 let avg = db[k].avgUsage !== undefined ? parseFloat(db[k].avgUsage) : itemObj.defAvg;
+                let prevCount = counts[k];
 
                 if (itemObj.track === 'print') {
-                    // A4 Stickers & Inks (S Tag)
                     if (metaStr.includes('S') && printTime >= startMs) {
                         used[k] += isBulk ? 0 : qty * avg;
                         counts[k] += isBulk ? 0 : qty;
                     }
                 } else if (k === 'a6paper') {
-                    // A6 Paper: Paid aakumpol thanne kurayum (For shipping label)
                     if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status) || isBulk) {
                         used[k] += isBulk ? 0 : 1 * avg;
                         counts[k] += isBulk ? 0 : 1;
                     }
                 } else if (['Dispatched', 'Delivered', 'Completed'].includes(status) || isBulk) {
-                    // 🔥 BOTTLES, HONEY, BOX, TAPE, POUCH: Dispatched aakumpol mathram kurayum!
                     if (itemObj.track === 'bottle') {
                         if (k === 'honey') {
                             if (isPartnerBulk) {
                                 let match = desc.match(/(\d+(?:\.\d+)?)gm/);
                                 if (match) used.honey += (parseFloat(match[1]) / 1000);
+                                counts.honey += 1;
                             } else if (isLocalSale) {
                                 if (desc.includes('650g')) { used.honey += (qty * 0.65); counts.honey += qty; }
                                 else if (desc.includes('500g')) { used.honey += (qty * 0.50); counts.honey += qty; }
@@ -7298,6 +7298,17 @@ window.getLiveStockHtml = function (isExpanded = false) {
                     } else if (itemObj.track === 'order') {
                         used[k] += isBulk ? 0 : 1 * avg; counts[k] += isBulk ? 0 : 1;
                     }
+                }
+
+                let addedQty = counts[k] - prevCount;
+                if (addedQty > 0 && o.orderid) {
+                    window.inventoryDetailsMap[k].push({
+                        oid: o.orderid,
+                        name: o.name || 'Local Sale',
+                        phone: String(o.phone || '').replace(/[^0-9]/g, '').slice(-10),
+                        date: checkTime,
+                        qty: addedQty
+                    });
                 }
             }
         };
@@ -7319,9 +7330,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let bal = Math.max(0, db[k].total - actualUsed);
 
         let pct = db[k].total > 0 ? Math.min(100, (actualUsed / db[k].total) * 100) : 0;
-
         let alertClass = bal <= (db[k].total * 0.15) ? 'danger' : itemObj.color;
-
         let dec = (k === 'bottles' || k === 'box' || k === 'pouch' || k === 'a6paper') ? 0 : 2;
 
         let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${itemObj.unit}</span>`;
@@ -7352,10 +7361,12 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let trackerHtml = `
         <div class="d-flex justify-content-between align-items-center bg-white p-1 px-2 rounded border border-primary border-opacity-25 shadow-sm mb-2 mt-1" style="cursor:pointer; transition: 0.2s;" onclick="editLiveCount('${k}', '${itemObj.name}', ${baseCount}, ${liveCount})" onmouseover="this.style.background='#f0f9ff'" onmouseout="this.style.background='#ffffff'" title="Click to Edit Tracked Count">
-            <div class="text-primary fw-bold" style="font-size:10px;">
+            <div class="text-primary fw-bold d-flex align-items-center" style="font-size:10px;">
                 <i class="fas fa-check-circle text-success me-1"></i> Done: <span class="fs-6 text-dark ms-1">${liveCount}</span> <span class="text-muted fw-normal ms-1" style="font-size:8px;">${itemObj.trkLbl}</span>
+                
+                <button onclick="event.stopPropagation(); showInventoryDetails('${k}', '${itemObj.name}')" class="btn btn-sm btn-white border border-primary border-opacity-25 py-0 px-1 ms-2 shadow-sm text-primary" style="font-size:9px; border-radius:4px;" title="View Order List"><i class="fas fa-list"></i></button>
             </div>
-            <div class="badge bg-light text-primary border border-primary border-opacity-25 shadow-sm" style="font-size:8px;"><i class="fas fa-edit"></i> Edit</div>
+            <div class="badge bg-light text-primary border border-primary border-opacity-25 shadow-sm" style="font-size:8px;"><i class="fas fa-edit"></i></div>
         </div>
         `;
 
@@ -7419,6 +7430,101 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
     html += `</div></div></div></div></div></div>`;
     return html;
+};
+
+// 🔥 SHOW INVENTORY USAGE LIST
+window.showInventoryDetails = function (key, itemName) {
+    let details = window.inventoryDetailsMap[key] || [];
+
+    // തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു (ഏറ്റവും പുതിയത് ആദ്യം)
+    details.sort((a, b) => b.date - a.date);
+
+    let rows = details.map(d => {
+        let dateStr = new Date(d.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        return `
+        <tr class="align-middle" style="font-size:11px;">
+            <td class="text-start">${dateStr}<br><span class="text-muted" style="font-size:8px;">${d.oid}</span></td>
+            <td class="text-start fw-bold">${d.name}<br><span class="text-muted fw-normal" style="font-size:9px;">${d.phone}</span></td>
+            <td class="text-center fw-bold text-primary">${d.qty}</td>
+            <td class="text-center">
+                <button onclick="excludeFromInventory('${key}', '${d.oid}', '${itemName}')" class="btn btn-sm btn-outline-danger py-0 px-2 shadow-sm" style="font-size:9px; border-radius:4px;" title="Remove from Count"><i class="fas fa-times"></i></button>
+            </td>
+        </tr>`;
+    }).join('');
+
+    if (rows === '') rows = '<tr><td colspan="4" class="text-center text-muted py-4">No records found since start date.</td></tr>';
+
+    let html = `
+    <div class="alert alert-warning p-2 text-start mb-3 shadow-sm border-warning border-opacity-50" style="font-size:10px; background:#fff3cd; color:#856404;">
+        <i class="fas fa-info-circle me-1"></i> ഇതിൽ നിന്നും നിങ്ങൾ <b>Remove (<i class="fas fa-times"></i>)</b> അടിക്കുന്ന ഓർഡറുകൾ ഈ ${itemName}-ന്റെ മെയിൻ കൗണ്ടിൽ നിന്നും എന്നന്നേക്കുമായി ഒഴിവാക്കപ്പെടുന്നതായിരിക്കും.
+    </div>
+    <div class="table-responsive" style="max-height:55vh; overflow-y:auto; border-radius:8px; border:1px solid #dee2e6;">
+        <table class="table table-sm table-hover mb-0">
+            <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
+                <tr>
+                    <th class="text-start ps-2">Date</th>
+                    <th class="text-start">Customer</th>
+                    <th class="text-center">Qty</th>
+                    <th class="text-center">Remove</th>
+                </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+        </table>
+    </div>`;
+
+    Swal.fire({
+        title: `<div style="font-size:15px; font-weight:800; color:#1e293b; text-align:left;"><i class="fas fa-clipboard-list text-primary me-2"></i> ${itemName} Uses</div>`,
+        html: html,
+        width: '95%',
+        padding: '1em 0.5em',
+        showConfirmButton: false,
+        showCloseButton: true,
+        customClass: { popup: 'rounded-4 ios-popup' }
+    });
+};
+
+// 🔥 EXCLUDE ORDER FROM COUNT
+window.excludeFromInventory = function (key, oid, itemName) {
+    Swal.fire({
+        title: 'Remove from count?',
+        html: `ഈ ഓർഡറിനെ <b>${itemName}</b> കൗണ്ടിൽ നിന്നും സ്ഥിരമായി ഒഴിവാക്കണോ? <br><br><span style="font-size:11px; color:#dc3545;">(ഓർഡർ ഡിലീറ്റ് ആവില്ല, പകരം ഇതിലെ എണ്ണത്തിൽ നിന്നും മാത്രം കുറയും)</span>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Remove',
+        confirmButtonColor: '#dc3545'
+    }).then(res => {
+        if (res.isConfirmed) {
+            let db = window.globalInventoryDB;
+            if (!db[key].excludedOids) db[key].excludedOids = [];
+
+            // മുന്നേ റിമൂവ് ചെയ്തിട്ടില്ലെങ്കിൽ മാത്രം ചെയ്യുന്നു
+            if (!db[key].excludedOids.includes(oid)) {
+                db[key].excludedOids.push(oid);
+
+                Swal.fire({ title: 'Removing...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'saveInventory', inventory: db })
+                }).then(r => r.json()).then(r => {
+                    if (r.result === 'success') {
+                        window.globalInventoryDB = db;
+                        renderLiveStockTracker(); // മെയിൻ ഡാഷ്‌ബോർഡ് അപ്ഡേറ്റ് ചെയ്യുന്നു
+                        if (typeof updatePrintPrediction === 'function') updatePrintPrediction(); // എണ്ണം മാറുമ്പോൾ A4 പ്രവചനവും മാറ്റണം
+
+                        Swal.fire({ icon: 'success', title: 'Removed!', timer: 1000, showConfirmButton: false });
+
+                        // 1 സെക്കൻഡിനു ശേഷം ലിസ്റ്റ് വീണ്ടും തുറക്കുന്നു (തത്സമയ മാറ്റം കാണാൻ)
+                        setTimeout(() => { showInventoryDetails(key, itemName); }, 1000);
+                    } else {
+                        Swal.fire('Error', 'Failed to remove', 'error');
+                    }
+                }).catch(e => {
+                    Swal.fire('Error', 'Network connection failed', 'error');
+                });
+            }
+        }
+    });
 };
 
 // 🔥 SMART LIVE COUNT EDITOR (Updates both Live Tracker & Print Drawer)
