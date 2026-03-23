@@ -7367,7 +7367,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
             <div class="text-primary fw-bold d-flex align-items-center" style="font-size:10px;">
                 <i class="fas fa-check-circle text-success me-1"></i> Done: <span class="fs-6 text-dark ms-1">${liveCount}</span> <span class="text-muted fw-normal ms-1" style="font-size:8px;">${itemObj.trkLbl}</span>
                 
-                <button onclick="event.stopPropagation(); showInventoryDetails('${k}', '${itemObj.name}')" class="btn btn-sm btn-white border border-primary border-opacity-25 py-0 px-1 ms-2 shadow-sm text-primary" style="font-size:9px; border-radius:4px;" title="View Order List"><i class="fas fa-list"></i></button>
+                <button onclick="event.stopPropagation(); showInventoryDetails('${k}', '${itemObj.name}', ${liveCount}, ${countOffset})" class="btn btn-sm btn-white border border-primary border-opacity-25 py-0 px-1 ms-2 shadow-sm text-primary" style="font-size:9px; border-radius:4px;" title="View Order List"><i class="fas fa-list"></i></button>
             </div>
             <div class="badge bg-light text-primary border border-primary border-opacity-25 shadow-sm" style="font-size:8px;"><i class="fas fa-edit"></i></div>
         </div>
@@ -7435,12 +7435,19 @@ window.getLiveStockHtml = function (isExpanded = false) {
     return html;
 };
 
-// 🔥 SHOW INVENTORY USAGE LIST
-window.showInventoryDetails = function (key, itemName) {
+// 🔥 SHOW INVENTORY USAGE LIST (FIXED HEADER UI)
+window.showInventoryDetails = function (key, itemName, totalCount, offsetCount) {
     let details = window.inventoryDetailsMap[key] || [];
 
     // തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു (ഏറ്റവും പുതിയത് ആദ്യം)
     details.sort((a, b) => b.date - a.date);
+
+    let safeTotal = totalCount || 0;
+    let safeOffset = offsetCount || 0;
+
+    // Offset സ്റ്റൈൽ
+    let offsetDisplay = safeOffset > 0 ? `+${safeOffset}` : safeOffset;
+    let offsetColor = safeOffset > 0 ? '#10b981' : (safeOffset < 0 ? '#ef4444' : '#64748b');
 
     let rows = details.map(d => {
         let dateStr = new Date(d.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
@@ -7450,18 +7457,30 @@ window.showInventoryDetails = function (key, itemName) {
             <td class="text-start fw-bold">${d.name}<br><span class="text-muted fw-normal" style="font-size:9px;">${d.phone}</span></td>
             <td class="text-center fw-bold text-primary">${d.qty}</td>
             <td class="text-center">
-                <button onclick="excludeFromInventory('${key}', '${d.oid}', '${itemName}')" class="btn btn-sm btn-outline-danger py-0 px-2 shadow-sm" style="font-size:9px; border-radius:4px;" title="Remove from Count"><i class="fas fa-times"></i></button>
+                <button onclick="excludeFromInventory('${key}', '${d.oid}', '${itemName}', ${safeTotal}, ${safeOffset})" class="btn btn-sm btn-outline-danger py-0 px-2 shadow-sm" style="font-size:9px; border-radius:4px;" title="Remove from Count"><i class="fas fa-times"></i></button>
             </td>
         </tr>`;
     }).join('');
 
     if (rows === '') rows = '<tr><td colspan="4" class="text-center text-muted py-4">No records found since start date.</td></tr>';
 
-    let html = `
-    <div class="alert alert-warning p-2 text-start mb-3 shadow-sm border-warning border-opacity-50" style="font-size:10px; background:#fff3cd; color:#856404;">
-        <i class="fas fa-info-circle me-1"></i> ഇതിൽ നിന്നും നിങ്ങൾ <b>Remove (<i class="fas fa-times"></i>)</b> അടിക്കുന്ന ഓർഡറുകൾ ഈ ${itemName}-ന്റെ മെയിൻ കൗണ്ടിൽ നിന്നും എന്നന്നേക്കുമായി ഒഴിവാക്കപ്പെടുന്നതായിരിക്കും.
+    // 🔥 ടൈറ്റിലും കണ്ടന്റും ഒന്നിച്ച് ഒരൊറ്റ HTML ആയി കൊടുക്കുന്നു
+    let fullHtml = `
+    <div class="d-flex justify-content-between align-items-center w-100 mb-3 pb-3" style="border-bottom: 2px dashed #e2e8f0;">
+        <div style="font-size:16px; font-weight:800; color:#1e293b; text-align:left;">
+            <i class="fas fa-clipboard-list text-primary me-2"></i> ${itemName} Uses
+        </div>
+        <div class="text-end" style="background:#f8fafc; padding:6px 12px; border-radius:10px; border:1px solid #cbd5e1; box-shadow:0 2px 4px rgba(0,0,0,0.02);">
+            <div style="font-size:15px; font-weight:900; color:#2563eb; line-height:1.2;">Total: ${safeTotal}</div>
+            <div style="font-size:10px; font-weight:800; color:${offsetColor}; text-transform:uppercase; margin-top:2px;">Offset: ${offsetDisplay}</div>
+        </div>
     </div>
-    <div class="table-responsive" style="max-height:55vh; overflow-y:auto; border-radius:8px; border:1px solid #dee2e6;">
+
+    <div class="alert alert-warning p-2 text-start mb-3 shadow-sm border-warning border-opacity-50" style="font-size:10px; background:#fff3cd; color:#856404;">
+        <i class="fas fa-info-circle me-1"></i> ഇതിൽ നിന്നും നിങ്ങൾ <b>Remove (<i class="fas fa-times"></i>)</b> അടിക്കുന്ന ഓർഡറുകൾ ഈ കൗണ്ടിൽ നിന്നും എന്നന്നേക്കുമായി ഒഴിവാക്കപ്പെടുന്നതായിരിക്കും.
+    </div>
+    
+    <div class="table-responsive" style="max-height:50vh; overflow-y:auto; border-radius:8px; border:1px solid #dee2e6;">
         <table class="table table-sm table-hover mb-0">
             <thead class="bg-light sticky-top" style="font-size:10px; text-transform:uppercase; box-shadow:0 1px 2px rgba(0,0,0,0.05);">
                 <tr>
@@ -7476,13 +7495,55 @@ window.showInventoryDetails = function (key, itemName) {
     </div>`;
 
     Swal.fire({
-        title: `<div style="font-size:15px; font-weight:800; color:#1e293b; text-align:left;"><i class="fas fa-clipboard-list text-primary me-2"></i> ${itemName} Uses</div>`,
-        html: html,
+        html: fullHtml, // ടൈറ്റിൽ ഒഴിവാക്കി എല്ലാം ഇതിൽ കൊടുത്തു
         width: '95%',
         padding: '1em 0.5em',
         showConfirmButton: false,
         showCloseButton: true,
         customClass: { popup: 'rounded-4 ios-popup' }
+    });
+};
+
+// 🔥 EXCLUDE ORDER ഫംഗ്ഷനിലും പരാമീറ്ററുകൾ അപ്ഡേറ്റ് ചെയ്യുന്നു
+window.excludeFromInventory = function (key, oid, itemName, safeTotal, safeOffset) {
+    Swal.fire({
+        title: 'Remove from count?',
+        html: `ഈ ഓർഡറിനെ <b>${itemName}</b> കൗണ്ടിൽ നിന്നും സ്ഥിരമായി ഒഴിവാക്കണോ? <br><br><span style="font-size:11px; color:#dc3545;">(ഓർഡർ ഡിലീറ്റ് ആവില്ല, പകരം ഇതിലെ എണ്ണത്തിൽ നിന്നും മാത്രം കുറയും)</span>`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Remove',
+        confirmButtonColor: '#dc3545'
+    }).then(res => {
+        if (res.isConfirmed) {
+            let db = window.globalInventoryDB;
+            if (!db[key].excludedOids) db[key].excludedOids = [];
+
+            if (!db[key].excludedOids.includes(oid)) {
+                db[key].excludedOids.push(oid);
+
+                Swal.fire({ title: 'Removing...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    body: JSON.stringify({ action: 'saveInventory', inventory: db })
+                }).then(r => r.json()).then(r => {
+                    if (r.result === 'success') {
+                        window.globalInventoryDB = db;
+                        renderLiveStockTracker();
+                        if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
+
+                        Swal.fire({ icon: 'success', title: 'Removed!', timer: 1000, showConfirmButton: false });
+
+                        // 🔥 പോപ്പപ്പ് വീണ്ടും തുറക്കുമ്പോൾ പുതിയ കൗണ്ട് വരാൻ വേണ്ടി (Total - 1)
+                        setTimeout(() => { showInventoryDetails(key, itemName, safeTotal - 1, safeOffset); }, 1000);
+                    } else {
+                        Swal.fire('Error', 'Failed to remove', 'error');
+                    }
+                }).catch(e => {
+                    Swal.fire('Error', 'Network connection failed', 'error');
+                });
+            }
+        }
     });
 };
 
