@@ -1272,16 +1272,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         if (currentStatus === 'Sent') {
             actionBtn = `<button class="btn btn-success shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
                          style="width:100px; border-radius:10px; background:#198754;" 
-                         onclick="highlightCard(this); updateOrder('${d.orderid}', 'Paid')" 
+                         onclick="event.stopPropagation(); highlightCard(this); instantStatusChange(this, '${d.orderid}', 'Paid')" 
                          title="Mark as Paid">💰 PAID</button>`;
         } else {
             actionBtn = `<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
                          style="width:100px; border-radius:10px; background:#0d6efd;" 
-                         onclick="highlightCard(this); updateOrder('${d.orderid}', 'Sent')" 
+                         onclick="event.stopPropagation(); highlightCard(this); instantStatusChange(this, '${d.orderid}', 'Sent')" 
                          title="Mark as Sent">SENT <i class="fas fa-arrow-right ms-1"></i></button>`;
         }
 
-        buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="highlightCard(this); sendWA(${index}, '${type}')"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>${actionBtn}</div>`;
+        buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); highlightCard(this); sendWA(${index}, '${type}')"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>${actionBtn}</div>`;
     }
     else if (logicType === 'paid') {
         buttons = `<div class="d-flex gap-2 align-items-center w-100"><button class="btn-custom btn-dispatch flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Dispatched')">📦 DISPATCH</button><div style="width: 40px; display: flex; justify-content: center;"><input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div></div>`;
@@ -8025,4 +8025,26 @@ window.toggleStateFilter = function (stateLabel) {
     if (typeof renderTabs === 'function') {
         renderTabs(typeof allOrders !== 'undefined' ? allOrders : []);
     }
+};
+
+// 🔥 INSTANT UI UPDATE LOGIC (With Safety Popup & Ultra-Fast Hide)
+window.instantStatusChange = function (btnElement, oid, targetStatus) {
+    let msg = targetStatus === 'Paid' ? 'Mark as Paid?' : `Move to ${targetStatus}?`;
+
+    Swal.fire({
+        text: msg, icon: 'question', showCancelButton: true,
+        confirmButtonColor: '#000', cancelButtonColor: '#f2f2f2', confirmButtonText: 'Yes',
+        customClass: { popup: 'ios-popup', title: 'ios-title', confirmButton: 'ios-btn', cancelButton: 'ios-btn-cancel' }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // 1. 'Yes' adichal udan thanne card screen-il ninnu maayunnu (Super Fast - 100ms)
+            let cardDiv = $(btnElement).closest('.col-12.col-md-12.col-lg-12');
+            if (!cardDiv.length) cardDiv = $(btnElement).closest('.col-12');
+
+            cardDiv.fadeOut(100, function () {
+                // 2. Card maanjathinu shesham mathram background-il data update cheyyunnu
+                updateOrder(oid, targetStatus, null, true);
+            });
+        }
+    });
 };
