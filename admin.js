@@ -504,13 +504,13 @@ function renderTabs(orders) {
     window.paidRankMap = {};
     let sourceOrders = (typeof allOrders !== 'undefined' && allOrders.length > 0) ? allOrders : orders;
 
-    // Paid, Dispatched, Delivered, Completed എന്നിവയെല്ലാം എടുക്കുന്നു
+    // Paid, Dispatched, Delivered, Completed എന്നിവയെല്ലാം റാങ്കിനായി എടുക്കുന്നു
     let rankOrds = sourceOrders.filter(o => {
         let stat = getOrderInfo(o).status;
         return ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(stat);
     });
 
-    // തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു
+    // തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു (ഏറ്റവും പഴയത് ആദ്യം)
     rankOrds.sort((a, b) => new Date(getOrderInfo(a).pDateStr) - new Date(getOrderInfo(b).pDateStr));
 
     // മാസം തിരിച്ച് റാങ്ക് കൊടുക്കുന്നു
@@ -519,15 +519,17 @@ function renderTabs(orders) {
 
     rankOrds.forEach(o => {
         let dDate = new Date(getOrderInfo(o).pDateStr);
-        let mStr = dDate.getMonth() + "-" + dDate.getFullYear();
+        if (!isNaN(dDate.getTime())) {
+            let mStr = dDate.getMonth() + "-" + dDate.getFullYear();
 
-        if (mStr !== currentRankMonth) {
-            currentRankMonth = mStr;
-            rankCounter = 1; // പുതിയ മാസം ആകുമ്പോൾ 1-ൽ തുടങ്ങും
+            if (mStr !== currentRankMonth) {
+                currentRankMonth = mStr;
+                rankCounter = 1; // പുതിയ മാസം ആകുമ്പോൾ 1-ൽ തുടങ്ങും
+            }
+
+            window.paidRankMap[o.orderid] = rankCounter;
+            rankCounter++;
         }
-
-        window.paidRankMap[o.orderid] = rankCounter;
-        rankCounter++;
     });
 
     const getTopActionsHtml = (id) => {
