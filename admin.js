@@ -988,19 +988,36 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let totalOrders = 0;
     let totalBottles = 0;
 
-    if (d.Total_Orders !== undefined || d.total_orders !== undefined) {
+    // 🔥 SMART CUSTOMER HISTORY CALCULATOR
+    let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
+    if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
+
+    if (currentPhone && typeof allOrders !== 'undefined') {
+        let custHistory = allOrders.filter(o => {
+            let p = String(o.phone || '').replace(/[^0-9]/g, '');
+            if (p.length > 10) p = p.slice(-10);
+
+            let s = String(o.Status || 'Pending').trim();
+            // Refund aaya orders ozhivakkunnu, baakkiyellam koottunnu
+            return (p === currentPhone) && (s !== 'Refunded');
+        });
+
+        let localOrders = custHistory.length;
+        let localBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || parseInt(o.Quantity) || 1), 0);
+
+        let serverOrders = parseInt(d.Total_Orders || d.total_orders) || 0;
+        let serverBottles = parseInt(d.Total_Bottles || d.total_bottles) || 0;
+
+        // 🔥 Server count-um Local count-um nokki ethano valuthu athu edukkum (100% Accuracy)
+        totalOrders = Math.max(localOrders, serverOrders);
+        totalBottles = Math.max(localBottles, serverBottles);
+    } else {
         totalOrders = parseInt(d.Total_Orders || d.total_orders) || 1;
         totalBottles = parseInt(d.Total_Bottles || d.total_bottles) || (parseInt(d.quantity) || 1);
-    } else {
-        let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
-        let custHistory = (typeof allOrders !== 'undefined') ? allOrders.filter(o => {
-            let matchPhone = String(o.phone || '').replace(/[^0-9]/g, '') === currentPhone;
-            let s = o.Status || 'Pending';
-            return matchPhone && (s !== 'Pending' && s !== 'Sent' && s !== 'Archive');
-        }) : [];
-        totalOrders = custHistory.length;
-        totalBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || 0), 0);
     }
+
+    if (totalOrders === 0) totalOrders = 1;
+    if (totalBottles === 0) totalBottles = parseInt(d.quantity) || 1;
 
     if (isCompact) {
         let phoneDisplay = d.phone ? d.phone.replace(/[^0-9]/g, '').slice(-10) : '';
