@@ -969,6 +969,47 @@ function renderTabs(orders) {
     setBadge('badge-disp-new', subCounts.disp_new);
     setBadge('badge-disp-tracked', subCounts.disp_track);
 
+    // 🔥 NEW: DYNAMIC MAIN TAB COLORS BASED ON URGENCY
+    let tabPending = document.getElementById('count-pending') ? document.getElementById('count-pending').closest('.nav-link') : null;
+    let tabPaid = document.getElementById('count-paid') ? document.getElementById('count-paid').closest('.nav-link') : null;
+    let tabDisp = document.getElementById('count-dispatched') ? document.getElementById('count-dispatched').closest('.nav-link') : null;
+
+    // 1. Pending Tab (New - Yellow)
+    if (tabPending) {
+        if (subCounts.new > 0) {
+            tabPending.style.setProperty('background-color', '#ffc107', 'important');
+            tabPending.style.setProperty('color', '#000', 'important');
+        } else {
+            tabPending.style.removeProperty('background-color');
+            tabPending.style.removeProperty('color');
+        }
+    }
+
+    // 2. Paid Tab (Unprinted - Red | Printed - Dark Red)
+    if (tabPaid) {
+        if (subCounts.paid_new > 0) {
+            tabPaid.style.setProperty('background-color', '#ef4444', 'important'); // Light Red
+            tabPaid.style.setProperty('color', '#fff', 'important');
+        } else if (subCounts.paid_print > 0) {
+            tabPaid.style.setProperty('background-color', '#7f1d1d', 'important'); // Dark Red
+            tabPaid.style.setProperty('color', '#fff', 'important');
+        } else {
+            tabPaid.style.removeProperty('background-color');
+            tabPaid.style.removeProperty('color');
+        }
+    }
+
+    // 3. Dispatched Tab (Dispatched - Blue)
+    if (tabDisp) {
+        if (subCounts.disp_new > 0) {
+            tabDisp.style.setProperty('background-color', '#3b82f6', 'important'); // Nice Blue
+            tabDisp.style.setProperty('color', '#fff', 'important');
+        } else {
+            tabDisp.style.removeProperty('background-color');
+            tabDisp.style.removeProperty('color');
+        }
+    }
+
     updateSyncButtonUI();
     checkSelectAllStatus();
 
