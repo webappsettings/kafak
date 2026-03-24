@@ -2266,18 +2266,53 @@ window.undoExpenseUpdate = function (id) {
     updateSyncButtonUI();
 };
 
-// 🔥 NEW: Discard All Function
+// 🔥 NEW: Discard All Function (With Instant Smart Revert)
 window.discardAllUpdates = function () {
     if (!confirm("Are you sure you want to discard ALL pending changes?")) return;
 
-    localStorage.removeItem('pendingUpdates');
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // Re-fetch to revert UI instantly (Important!)
-    fetchOrders(true);
+    // 🔥 1. കാർഡുകളിലെ മാറ്റങ്ങളെല്ലാം തൽക്ഷണം പഴയപടിയാക്കുന്നു (Revert Local Changes)
+    pendingUpdates.forEach(u => {
+        let order = allOrders.find(o => o.orderid === u.oid);
+        if (order) {
+            if (u.action === 'meta') {
+                if (u.oldProvider !== undefined) {
+                    order.provider = u.oldProvider;
+                    order.Courier_Provider = u.oldProvider;
+                    order.Courier_Charge = u.oldCharge;
+                    order.Grand_Total = u.oldTotal;
+                }
+                if (u.oldMeta !== undefined) {
+                    order.adminMeta = u.oldMeta; // 'S' ടാഗ് ഉൾപ്പെടെ പഴയപടിയാക്കുന്നു
+                }
+            } else if (u.action === 'status') {
+                order.Status = u.oldStatus || "Pending";
+                if (u.tracking) delete order.tracking;
+                if (u.status === 'Dispatched') delete order['Dispatched Date'];
+                if (u.status === 'Paid') delete order['Paid Date'];
+            } else if (u.action === 'paidNum') {
+                order.paidNum = u.oldNum || "";
+            }
+        }
+    });
+
+    // 🔥 2. ക്ലീൻ ചെയ്ത ഡാറ്റ ലോക്കൽ മെമ്മറിയിലേക്ക് സേവ് ചെയ്യുന്നു
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+    // 3. Sync ക്യൂ ക്ലിയർ ചെയ്യുന്നു
+    localStorage.removeItem('pendingUpdates');
+    localStorage.removeItem('pendingExpenses');
+
+    // 4. സ്ക്രീനും ലെഫ്റ്റ് ഡ്രോയറും തൽക്ഷണം റിഫ്രഷ് ചെയ്യുന്നു
+    renderTabs(allOrders);
 
     $('#syncModal').modal('hide');
     updateSyncButtonUI();
     showToast('info', 'All changes discarded');
+
+    // 5. ബാക്ക്ഗ്രൗണ്ടിൽ സെർവറിൽ നിന്നും ഒന്നുകൂടി ഉറപ്പാക്കാൻ ഡാറ്റ എടുക്കുന്നു
+    fetchOrders(true);
 }
 
 // 🔥 FINAL UPLOAD
