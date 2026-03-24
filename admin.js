@@ -500,11 +500,35 @@ function renderTabs(orders) {
         return { status, tDate, pDate, dDate, pDateStr, dDateStr, isPrinted, printDateRaw, printDate };
     };
 
+    // 🔥 Rank Logic (MONTHLY CONTINUOUS RANK - NEVER SHRINKS)
     window.paidRankMap = {};
     let sourceOrders = (typeof allOrders !== 'undefined' && allOrders.length > 0) ? allOrders : orders;
-    let paidOrds = sourceOrders.filter(o => getOrderInfo(o).status === 'Paid');
-    paidOrds.sort((a, b) => new Date(getOrderInfo(a).pDateStr) - new Date(getOrderInfo(b).pDateStr));
-    paidOrds.forEach((o, i) => window.paidRankMap[o.orderid] = i + 1);
+
+    // Paid, Dispatched, Delivered, Completed എന്നിവയെല്ലാം എടുക്കുന്നു
+    let rankOrds = sourceOrders.filter(o => {
+        let stat = getOrderInfo(o).status;
+        return ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(stat);
+    });
+
+    // തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു
+    rankOrds.sort((a, b) => new Date(getOrderInfo(a).pDateStr) - new Date(getOrderInfo(b).pDateStr));
+
+    // മാസം തിരിച്ച് റാങ്ക് കൊടുക്കുന്നു
+    let currentRankMonth = "";
+    let rankCounter = 1;
+
+    rankOrds.forEach(o => {
+        let dDate = new Date(getOrderInfo(o).pDateStr);
+        let mStr = dDate.getMonth() + "-" + dDate.getFullYear();
+
+        if (mStr !== currentRankMonth) {
+            currentRankMonth = mStr;
+            rankCounter = 1; // പുതിയ മാസം ആകുമ്പോൾ 1-ൽ തുടങ്ങും
+        }
+
+        window.paidRankMap[o.orderid] = rankCounter;
+        rankCounter++;
+    });
 
     const getTopActionsHtml = (id) => {
         if (id === 'paid_new') return `
@@ -1062,7 +1086,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         resendBadge = `<span class="badge bg-danger ms-1 shadow-sm" style="font-size:9px; border-radius:6px;" title="This order was returned and is being resent"><i class="fas fa-reply-all me-1"></i>RESEND</span>`;
     }
     let rankBadge = '';
-    if (currentStatus === 'Paid' && window.paidRankMap && window.paidRankMap[d.orderid]) {
+    if (['Paid', 'Dispatched'].includes(currentStatus) && window.paidRankMap && window.paidRankMap[d.orderid]) {
         rankBadge = `<span class="badge rounded-pill bg-warning text-dark border border-dark shadow-sm" style="font-size:11px; margin-right:4px; font-weight:800;">#${window.paidRankMap[d.orderid]}</span>`;
     }
 
@@ -2473,10 +2497,6 @@ async function runPrintLogic(checkboxes, directData = null) {
 
     if (ordersToPrint.length === 0) return;
 
-    // 🔥 PRE-CALCULATE ALL PAID ORDERS (To find global rank)
-    let allPaidOrders = allOrders.filter(o => o.Status === 'Paid');
-    allPaidOrders.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
-
     // Progress Bar
     Swal.fire({
         title: 'Generating Labels...',
@@ -2502,9 +2522,8 @@ async function runPrintLogic(checkboxes, directData = null) {
             Swal.getHtmlContainer().querySelector('b').innerText = i + 1;
         }
 
-        // FIND GLOBAL SEQUENCE NUMBER
-        let globalIndex = allPaidOrders.findIndex(x => x.orderid === d.orderid);
-        let seqNum = (globalIndex !== -1) ? globalIndex + 1 : (i + 1);
+        // 🔥 FIND GLOBAL SEQUENCE NUMBER (Matches UI Rank exactly!)
+        let seqNum = (window.paidRankMap && window.paidRankMap[d.orderid]) ? window.paidRankMap[d.orderid] : (i + 1);
 
         // Update Meta Logic (With Timestamp for Sorting)
         let currentMeta = String(d.adminMeta || '');
