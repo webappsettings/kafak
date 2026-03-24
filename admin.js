@@ -39,14 +39,26 @@ window.saveContactSelection = function (oid, val) {
     localStorage.setItem('contactMem', JSON.stringify(contactMem));
 }
 
+let globalAudioCtx = null;
 function playBeep() {
-    let ctx = new (window.AudioContext || window.webkitAudioContext)();
-    let osc = ctx.createOscillator();
-    osc.type = "sine";
-    osc.frequency.setValueAtTime(1200, ctx.currentTime); // ചെറിയ കൃത്യമായ ശബ്ദം
-    osc.connect(ctx.destination);
-    osc.start();
-    setTimeout(() => osc.stop(), 50); // 🔥 100ൽ നിന്നും 50 ആക്കി ചുരുക്കി (Very short beep)
+    try {
+        if (!globalAudioCtx) {
+            globalAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        }
+        if (globalAudioCtx.state === 'suspended') {
+            globalAudioCtx.resume();
+        }
+        let osc = globalAudioCtx.createOscillator();
+        osc.type = "sine";
+        osc.frequency.setValueAtTime(1200, globalAudioCtx.currentTime);
+        osc.connect(globalAudioCtx.destination);
+        osc.start();
+
+        // 🔥 FIX: JS Thread Block aayalum sound krithyam 50ms-il nirkkum!
+        osc.stop(globalAudioCtx.currentTime + 0.05);
+    } catch (e) {
+        console.log("Audio Error:", e);
+    }
 }
 
 // 🔥 ADMIN META HELPER (Updated: Ignores old tags on new returning customer orders)
@@ -3794,7 +3806,7 @@ function stopScanner() {
     window.onpopstate = null;
 }
 
-// 🔥 FAST SCANNING & LOW DELAY LOGIC
+// 🔥 FAST SCANNING & LOW DELAY LOGIC (INSTANT UI UPDATE)
 function onScanSuccess(decodedText) {
     if (isScanProcessing) return;
     isScanProcessing = true;
@@ -3812,15 +3824,19 @@ function onScanSuccess(decodedText) {
                 showScanFeedback("ALREADY DISPATCHED ⚠️", order, decodedText, true, "Already moved to Dispatched Tab");
             }
             else {
-                updateOrder(decodedText, 'Dispatched', null, true);
+                // 🔥 1. Screen-il udan thanne kanikkunnu
                 showScanFeedback("MOVED TO DISPATCHED ✅", order, decodedText, false);
+
+                // 🔥 2. Background-il save cheyyunnu (Delay aakkiyal UI block aavilla)
+                setTimeout(() => {
+                    updateOrder(decodedText, 'Dispatched', null, true);
+                }, 50);
             }
         } else {
             showScanFeedback("INVALID QR CODE ❌", null, decodedText, true);
         }
 
         html5QrCode.pause();
-        // 🔥 2000ms delay കുറച്ച് 800ms ആക്കി
         setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 800);
     }
 
@@ -3846,7 +3862,6 @@ function onScanSuccess(decodedText) {
                     showScanFeedback("QR DETECTED ✅", order, decodedText, false, subMsg);
 
                     html5QrCode.pause();
-                    // 🔥 1500ms delay കുറച്ച് 600ms ആക്കി
                     setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 600);
                 }
             } else {
@@ -3864,22 +3879,21 @@ function onScanSuccess(decodedText) {
                 if (duplicateOrder) {
                     let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name} (${duplicateOrder.phone})</b>`;
                     showScanFeedback("BARCODE ALREADY USED ⚠️", currentOrder, decodedText, true, errorMsg);
-                    setTimeout(() => { isScanProcessing = false; }, 1500); // 3000ms ൽ നിന്നും 1500ms ആക്കി
+                    setTimeout(() => { isScanProcessing = false; }, 1500);
                 }
                 else {
-                    // 🔥 Save Tracking
-                    updateOrder(tempOid, 'Dispatched', decodedText, true);
-
-                    // 🔥 Auto Move to Tracked Tab (Set Meta to 'T')
-                    updateAdminMeta(tempOid, 'tracked', 'T');
-
+                    // 🔥 1. സ്ക്രീനിൽ ഉടൻ തന്നെ റിസൾട്ട് കാണിക്കുന്നു (No Delay at all!)
                     showScanFeedback("TRACKING SAVED ✅", currentOrder, decodedText, false, "Moved to Tracked Tab Successfully");
 
+                    // 🔥 2. ബാക്ക്ഗ്രൗണ്ടിൽ സേവ് ചെയ്യുന്നു (കാർഡുകൾ റീലോഡ് ചെയ്യുന്നത് സ്കാനറിനെ ബാധിക്കാതിരിക്കാൻ)
+                    setTimeout(() => {
+                        updateOrder(tempOid, 'Dispatched', decodedText, true);
+                        updateAdminMeta(tempOid, 'tracked', 'T');
+                    }, 50);
+
                     if (scanMode === 'tracking_single') {
-                        // 🔥 Single സ്കാൻ ആണെങ്കിൽ സ്കാനർ വളരെ പെട്ടെന്ന് അടയും
                         setTimeout(() => { stopScanner(); isScanProcessing = false; }, 500);
                     } else {
-                        // Bulk സ്കാൻ ആണെങ്കിൽ അടുത്ത QR ചോദിക്കും
                         scanStep = 1;
                         setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 800);
                         html5QrCode.pause();
@@ -3901,7 +3915,6 @@ function onScanSuccess(decodedText) {
             } else {
                 showScanFeedback("VERIFIED ✅", order, decodedText, false, "Loading details...");
 
-                // സ്കാനർ ക്ലോസ് ചെയ്ത് നേരിട്ട് ഓർഡർ സെർച്ച് ചെയ്യുന്നു
                 setTimeout(() => {
                     stopScanner();
                     isScanProcessing = false;
