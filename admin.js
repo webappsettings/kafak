@@ -469,8 +469,8 @@ function fetchOrders(forceLoad = false) {
 }
 
 
+// 🔥 RENDER TABS (With PERFECT Date Grouping & State Filters)
 function renderTabs(orders) {
-    // 1. SELECT DOM ELEMENTS
     const listNew = document.getElementById('list-sub-new');
     const listSent = document.getElementById('list-sub-sent');
     const listPaidNew = document.getElementById('list-paid-new');
@@ -479,18 +479,18 @@ function renderTabs(orders) {
     const listDispTracked = document.getElementById('list-disp-tracked');
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // Helper to get effective status and dates
     const getOrderInfo = (o) => {
         let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
 
         let status = (local && local.status) ? local.status : (o.Status || 'Pending');
         let tDate = new Date(o.timestamp);
-        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o.timestamp);
+        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o['Paid Date'] || o.timestamp);
         let pDate = new Date(pDateStr);
-        let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || o.timestamp);
+
+        // 🔥 FIX: Dispatched Date കൃത്യമായി എടുക്കുന്നു
+        let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || pDateStr);
         let dDate = new Date(dDateStr);
 
-        // 🔥 പുതിയത്: പ്രിന്റ് ചെയ്ത സമയം കണ്ടുപിടിക്കാൻ
         let metaStr = String(o.adminMeta || '');
         let isPrinted = metaStr.includes('P');
         let printTimeMatch = metaStr.match(/P_(\d+)/);
@@ -500,14 +500,12 @@ function renderTabs(orders) {
         return { status, tDate, pDate, dDate, pDateStr, dDateStr, isPrinted, printDateRaw, printDate };
     };
 
-    // Rank Logic for Paid Orders
     window.paidRankMap = {};
     let sourceOrders = (typeof allOrders !== 'undefined' && allOrders.length > 0) ? allOrders : orders;
     let paidOrds = sourceOrders.filter(o => getOrderInfo(o).status === 'Paid');
     paidOrds.sort((a, b) => new Date(getOrderInfo(a).pDateStr) - new Date(getOrderInfo(b).pDateStr));
     paidOrds.forEach((o, i) => window.paidRankMap[o.orderid] = i + 1);
 
-    // 2. CLEAR LISTS & SET STICKY HEADER PLACEHOLDERS
     const getTopActionsHtml = (id) => {
         if (id === 'paid_new') return `
             <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
@@ -545,13 +543,11 @@ function renderTabs(orders) {
         ${getTopActionsHtml(id)}
     `;
 
-
     if (listNew) listNew.innerHTML = initListHtml('new');
     if (listSent) listSent.innerHTML = initListHtml('sent');
     if (listPaidNew) listPaidNew.innerHTML = initListHtml('paid_new');
     if (listPaidPrinted) listPaidPrinted.innerHTML = initListHtml('paid_print');
 
-    // 🔥 NEW: Bulk Complete Buttons (No Manual Selection Needed!)
     let bulkDispBtn = `
     <div class="d-flex justify-content-center mb-3 px-2 w-100">
         <button class="btn btn-sm btn-outline-success rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px;" onclick="bulkCompleteOrders('disp_new')">
@@ -569,7 +565,6 @@ function renderTabs(orders) {
     if (listDispNew) listDispNew.innerHTML = initListHtml('disp_new') + bulkDispBtn;
     if (listDispTracked) listDispTracked.innerHTML = initListHtml('disp_track') + bulkTrackBtn;
 
-    // 3. INITIALIZE VARIABLES
     let counts = { pending: 0, paid: 0, dispatched: 0 };
     let btlCounts = { pending: 0, paid: 0, dispatched: 0 };
     let subCounts = { new: 0, sent: 0, paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0 };
@@ -585,7 +580,6 @@ function renderTabs(orders) {
 
     let pNewQty = 0, pPrintQty = 0, dNewQty = 0, dTrackQty = 0;
 
-    // 🔥 പുത്തൻ സോർട്ടിങ് ലോജിക് (പ്രിന്റ് ചെയ്തവയ്ക്ക് മുൻഗണന)
     orders.sort((a, b) => {
         let infoA = getOrderInfo(a), infoB = getOrderInfo(b);
         const statusPriority = { 'Pending': 1, 'Sent': 1, 'Paid': 2, 'Dispatched': 3, 'Completed': 4, 'Archive': 5 };
@@ -594,7 +588,6 @@ function renderTabs(orders) {
 
         let dateA, dateB;
         if (statA === 2) {
-            // Paid: പ്രിന്റ് ചെയ്തതാണെങ്കിൽ പ്രിന്റ് ചെയ്ത സമയം വെച്ച് സോർട്ട് ചെയ്യും
             dateA = infoA.isPrinted ? infoA.printDate : infoA.pDate;
             dateB = infoB.isPrinted ? infoB.printDate : infoB.pDate;
         } else if (statA === 3) {
@@ -617,18 +610,13 @@ function renderTabs(orders) {
         let displayDateRaw = o.timestamp;
 
         if (status === 'Paid') {
-            // 🔥 പ്രിന്റ് ചെയ്തവയ്ക്ക് പ്രിന്റ് ചെയ്ത സമയം ഗ്രൂപ്പ് ചെയ്യാനായി നൽകുന്നു
             displayDateRaw = meta.isPrinted ? getOrderInfo(o).printDateRaw : pDateStr;
             dateKeyType = meta.isPrinted ? 'paid_print' : 'paid_new';
         }
         else if (['Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
-            if (dDateStr && dDateStr !== o.timestamp) {
-                displayDateRaw = dDateStr;
-                dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
-            } else if (status === 'Dispatched') {
-                displayDateRaw = o.timestamp;
-                dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
-            }
+            // 🔥 FIX: Dispatched Date കൃത്യമായി നൽകുന്നു
+            displayDateRaw = dDateStr;
+            dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
         }
         else if (status === 'Pending') dateKeyType = 'new';
         else if (status === 'Sent') dateKeyType = 'sent';
@@ -637,12 +625,10 @@ function renderTabs(orders) {
             let lbl = getTimelineLabel(displayDateRaw);
             let fullKey = `${dateKeyType}_${lbl}`;
 
-            // 🔥 CORRECTED: പഴയ ഡ്യൂപ്ലിക്കേറ്റുകൾ ഒഴിവാക്കി ഒരൊറ്റ വരിയായി മാറ്റി
             if (!timelineStats[fullKey]) {
                 timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, D: 0, C: 0, R: 0 };
             }
 
-            // Safety Check (പഴയ കാഷെ എങ്ങാനും ഉണ്ടെങ്കിൽ എറർ വരാതിരിക്കാൻ)
             if (!timelineStats[fullKey].couriers) {
                 timelineStats[fullKey].couriers = {};
             }
@@ -659,10 +645,7 @@ function renderTabs(orders) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
                 if (actualC <= 0) actualC = getBaseCourierRate(o.state, o.provider || o.Courier_Provider, qty);
 
-                // ഡൈനാമിക് ആയി കൊറിയർ പേര് എടുക്കുന്നു
                 let rawProvider = String(o.provider || o.Courier_Provider || o['Courier Provider'] || 'Other').trim();
-
-                // UI യിൽ സ്ഥലം ലാഭിക്കാൻ "Courier", "Logistics" തുടങ്ങിയ വാക്കുകൾ മാത്രം ഡൈനാമിക് ആയി മാറ്റുന്നു
                 let shortProvider = rawProvider.replace(/Courier|Couriers|Logistics/ig, '').trim();
                 if (shortProvider.length > 12) {
                     shortProvider = shortProvider.substring(0, 10) + '..';
@@ -719,16 +702,16 @@ function renderTabs(orders) {
             else stateKey = 'other';
         }
 
-        // 🔥 STATE FILTER CHECK: ക്ലിക്ക് ചെയ്ത സ്റ്റേറ്റ് അല്ലെങ്കിൽ ഈ കാർഡിനെ വരയ്ക്കില്ല!
+        // 🔥 STATE FILTER CHECK
         if (window.activeStateFilter) {
             let isMatch = false;
-            if (window.activeStateFilter === 'KL' && (!stateKey)) isMatch = true; // KERALA (Default)
+            if (window.activeStateFilter === 'KL' && (!stateKey)) isMatch = true;
             else if (window.activeStateFilter === 'KA' && stateKey === 'kar') isMatch = true;
             else if (window.activeStateFilter === 'TN' && stateKey === 'tn') isMatch = true;
             else if (window.activeStateFilter === 'LD' && stateKey === 'lak') isMatch = true;
             else if (window.activeStateFilter === 'OTHER' && stateKey === 'other') isMatch = true;
 
-            if (!isMatch) return; // മാച്ച് അല്ലെങ്ങിൽ താഴേക്ക് പോകില്ല, സ്കിപ്പ് ചെയ്യും!
+            if (!isMatch) return;
         }
 
         if (status === 'Pending') {
@@ -767,7 +750,7 @@ function renderTabs(orders) {
             if (type === 'paid') {
                 displayDateRaw = meta.isPrinted ? getOrderInfo(d).printDateRaw : pDateStr;
             }
-            if (type === 'dispatched') displayDateRaw = dDateStr;
+            if (type === 'dispatched') displayDateRaw = dDateStr; // 🔥 CORRECT
             let dateLabel = getTimelineLabel(displayDateRaw);
 
             if (dateKey === 'disp_track' && !showAllTracking) {
@@ -862,7 +845,6 @@ function renderTabs(orders) {
     if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
     if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
-    // 🔥 POPULATE STICKY HEADERS (SINGLE LINE, CENTERED, MOBILE FRIENDLY)
     const populateStickyHeader = (id, oCount, cTotal, sStats) => {
         let el = document.getElementById(`sticky-header-${id}`);
         if (!el) return;
@@ -886,12 +868,11 @@ function renderTabs(orders) {
         let klCount = oCount - (sStats.tn + sStats.kar + sStats.lak + sStats.other);
         if (klCount < 0) klCount = 0;
 
-        let colorLak = '#0dcaf0'; // Blue
-        let colorKar = '#d97706'; // Coffee
-        let colorTn = '#5d4037';  // Dark Coffee
-        let colorKl = '#198754';  // Green
+        let colorLak = '#0dcaf0';
+        let colorKar = '#d97706';
+        let colorTn = '#5d4037';
+        let colorKl = '#198754';
 
-        // 🔥 STATE FILTER BADGE CLICK LOGIC
         let filterActive = window.activeStateFilter ? true : false;
 
         let getOp = (stateCode) => {
@@ -899,7 +880,6 @@ function renderTabs(orders) {
             return window.activeStateFilter === stateCode ? "opacity: 1; cursor:pointer; border: 2px solid #000; transform: scale(1.15);" : "opacity: 0.3; cursor:pointer;";
         };
 
-        // Clear Button html
         let clearBtn = filterActive ? `<span class="badge bg-danger shadow-sm ms-1" style="cursor:pointer; font-size:9px; padding:4px 6px;" onclick="toggleStateFilter(null)"><i class="fas fa-times"></i></span>` : '';
 
         let statesHtml = '';
@@ -973,7 +953,6 @@ function renderTabs(orders) {
 
     if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
 }
-
 
 function updateBadgeUI(elementId, orderCount, bottleCount) {
     const el = document.getElementById(elementId);
@@ -1662,7 +1641,7 @@ window.confirmHardDelete = function (oid) {
     });
 }
 
-// 🔥 FULL FIXED updateOrder FUNCTION (Returning Customer Bug Fixed)
+// 🔥 FULL FIXED updateOrder FUNCTION (Always saves Dispatched Date correctly!)
 window.updateOrder = function (oid, status, tracking = null, skipConfirm = false, customDate = null, appendMessage = '') {
     let orderIndex = allOrders.findIndex(o => o.orderid === oid);
     if (orderIndex === -1) return;
@@ -1679,7 +1658,6 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
 
         let existingOrder = allOrders.find(o => o.orderid === oid);
 
-        // യഥാർത്ഥ പഴയ സ്റ്റാറ്റസ് എടുക്കുന്നു
         let trueOldStatus = 'Pending';
         if (existingIndex > -1 && updates[existingIndex].oldStatus !== undefined) {
             trueOldStatus = updates[existingIndex].oldStatus;
@@ -1696,25 +1674,26 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             needsRefundDelete = true;
         }
 
-        // 🔥 RETURNING CUSTOMER BUG FIX: (Clean old P, S, T tags)
         let metaCleaned = false;
         let currentMeta = existingOrder ? String(existingOrder.adminMeta || '') : '';
         let cleanMeta = currentMeta;
 
         if (['Pending', 'Sent'].includes(trueOldStatus) && ['Sent', 'Paid'].includes(status)) {
             if (currentMeta.includes('P') || currentMeta.includes('S') || currentMeta.includes('T')) {
-                cleanMeta = currentMeta.replace(/P_\\d+/g, '').replace(/[PST]/g, '').replace(/\\s+/g, ' ').trim();
+                cleanMeta = currentMeta.replace(/P_\d+/g, '').replace(/[PST]/g, '').replace(/\s+/g, ' ').trim();
                 metaCleaned = true;
             }
         }
 
-        // DATE & TIME LOGIC
+        // 🔥 FIX: DATE & TIME LOGIC (Dispatched ആകുമ്പോഴെല്ലാം കൃത്യമായി ഡേറ്റ് സേവ് ആകും!)
         let finalActionDate = null;
         if (customDate) {
             finalActionDate = customDate;
-        } else if ((status === 'Dispatched' && !trackingNum) || status === 'Paid') {
-            if (status === 'Paid' && existingOrder && existingOrder.paidDate) {
-                finalActionDate = existingOrder.paidDate;
+        } else if (['Dispatched', 'Paid', 'Completed', 'Delivered'].includes(status)) {
+            if (status === 'Paid' && existingOrder && (existingOrder.paidDate || existingOrder['Paid Date'])) {
+                finalActionDate = existingOrder.paidDate || existingOrder['Paid Date'];
+            } else if (status === 'Dispatched' && existingOrder && existingOrder['Dispatched Date']) {
+                finalActionDate = existingOrder['Dispatched Date']; // പഴയ ഡേറ്റ് ഉണ്ടെങ്കിൽ അത് തന്നെ നിലനിർത്തും
             } else {
                 let now = new Date();
                 let y = now.getFullYear();
@@ -1726,7 +1705,6 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             }
         }
 
-        // Undo/Revert Logic
         if (trackingNum === null && !customDate && status === trueOldStatus) {
             if (existingIndex > -1) updates.splice(existingIndex, 1);
         } else {
@@ -1750,7 +1728,6 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             }
         }
 
-        // 🔥 സിങ്ക് ക്യൂവിലേക്ക് Clean Meta കൂടി ചേർക്കുന്നു
         if (metaCleaned) {
             let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
             if (metaIdx > -1) {
@@ -1762,12 +1739,10 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
 
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
-        // LOCAL CACHE UPDATE
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = status;
             if (trackingNum !== null) allOrders[orderIndex].tracking = trackingNum;
 
-            // അപ്ഡേറ്റ് ചെയ്ത ക്ലീൻ മെറ്റാ ലോക്കൽ കാഷെയിലും മാറ്റുന്നു
             if (metaCleaned) {
                 allOrders[orderIndex].adminMeta = cleanMeta;
             }
