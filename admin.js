@@ -487,7 +487,7 @@ function renderTabs(orders) {
             if (pMatch) {
                 let pTime = parseInt(pMatch[1]);
                 let oTime = new Date(o.timestamp).getTime();
-                if (pTime < (oTime - 86400000)) {
+                if (pTime < (oTime - 60000)) {
                     o.adminMeta = metaStr.replace(/P_\d+/g, '').replace(/[PST]/g, '').replace(/\s+/g, ' ').trim();
                 }
             }
@@ -5519,6 +5519,27 @@ window.updatePrintPrediction = function () {
         newLooseBalance = 0;
     }
 
+    // 🔥 പുതിയ മാറ്റം: എക്സ്ട്രാ പ്രിന്റ് ആകുന്നതാണോ അതോ ബ്ലാങ്ക് ആണോ എന്ന് തിരിച്ചറിയാൻ
+    let extraPrinted = (selectedPrintCount > unprintedStickers) ? (selectedPrintCount - unprintedStickers) : 0;
+    let afterPrintMsg = '';
+
+    if (extraPrinted > 0) {
+        // എക്സ്ട്രാ പ്രിന്റ് വരുന്നുണ്ടെങ്കിൽ
+        afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
+            <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന <span class="fw-bolder text-danger" style="font-size:10px;">പ്രിന്റ് ചെയ്ത സ്റ്റിക്കറുകൾ: ${extraPrinted}</span> എണ്ണം.
+        </span>`;
+    } else if (newLooseBalance > 0) {
+        // ബ്ലാങ്ക് പേപ്പർ ബാക്കി വരുന്നുണ്ടെങ്കിൽ
+        afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
+            <i class="fas fa-sticky-note"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന <span class="fw-bolder" style="font-size:10px;">ബ്ലാങ്ക് സ്റ്റിക്കറുകൾ: ${newLooseBalance}</span> എണ്ണം.
+        </span>`;
+    } else if (selectedPrintCount > 0) {
+        // കൃത്യം എണ്ണമാണെങ്കിൽ
+        afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#198754; font-weight:600;">
+            <i class="fas fa-check-circle"></i> പ്രിന്റ് കഴിഞ്ഞാൽ പേപ്പർ കൃത്യമാണ് (ബ്ലാങ്ക് ഇല്ല).
+        </span>`;
+    }
+
     // 3. 🔥 UI Create cheyyunnu
     let stockHtml = `
         <div class="d-flex flex-column align-items-end gap-2 w-100 mt-2">
@@ -5529,10 +5550,7 @@ window.updatePrintPrediction = function () {
                     <span class="fw-bold" style="font-size:11px; color:#b45309;">
                         <i class="fas fa-cut me-1"></i> മുൻപ് മുറിച്ച <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> ബ്ലാങ്ക് സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
                     </span>
-                    ${selectedPrintCount > 0 ? `
-                    <span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-                        <i class="fas fa-arrow-right"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന ബ്ലാങ്ക് സ്റ്റിക്കറുകൾ: <span class="fw-bolder" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
-                    </span>` : ''}
+                    ${afterPrintMsg}
                 </div>
                 <span class="badge bg-warning text-dark p-1 ms-1 shadow-sm" style="font-size:9px; cursor:pointer;" onclick="editStickerStock('loose', ${looseStickers}, ${historicalRatio})" title="എണ്ണം മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക"><i class="fas fa-edit"></i> എഡിറ്റ്</span>
             </div>
