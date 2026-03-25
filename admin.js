@@ -487,7 +487,7 @@ function renderTabs(orders) {
             if (pMatch) {
                 let pTime = parseInt(pMatch[1]);
                 let oTime = new Date(o.timestamp).getTime();
-                if (pTime < (oTime - 3600000)) {
+                if (pTime < (oTime - 86400000)) {
                     o.adminMeta = metaStr.replace(/P_\d+/g, '').replace(/[PST]/g, '').replace(/\s+/g, ' ').trim();
                 }
             }
@@ -5272,7 +5272,7 @@ function injectLeftDrawer() {
                     </div>
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:10px;">SELECT PRINT MODE:</label>
-                    <select id="print-qty-mode" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm mb-3" style="font-size:11px;">
+                    <select id="print-qty-mode" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm mb-3" style="font-size:11px;" onchange="updatePrintPrediction()">
                     </select>
 
                     <div class="d-flex justify-content-between align-items-center p-2 bg-white rounded border border-success border-opacity-50 shadow-sm">
@@ -5500,9 +5500,7 @@ window.updatePrintPrediction = function () {
 
         modeBox.innerHTML = optionsHtml;
 
-        modeBox.onchange = function () {
-            window.updatePrintPrediction();
-        };
+
     }
 
     // 2. 🔥 Dropdown set cheytha shesham athile value edukkunnu
