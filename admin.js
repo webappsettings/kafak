@@ -479,6 +479,21 @@ function renderTabs(orders) {
     const listDispTracked = document.getElementById('list-disp-tracked');
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
+    // 🔥 SMART CLEANUP: പഴയ കസ്റ്റമേഴ്സിന്റെ പഴയ 'P' ടാഗുകൾ തനിയെ ഒഴിവാക്കുന്നു
+    orders.forEach(o => {
+        let metaStr = String(o.adminMeta || '');
+        if (metaStr.includes('P_') && o.timestamp) {
+            let pMatch = metaStr.match(/P_(\d+)/);
+            if (pMatch) {
+                let pTime = parseInt(pMatch[1]);
+                let oTime = new Date(o.timestamp).getTime();
+                if (pTime < (oTime - 3600000)) {
+                    o.adminMeta = metaStr.replace(/P_\d+/g, '').replace(/[PST]/g, '').replace(/\s+/g, ' ').trim();
+                }
+            }
+        }
+    });
+
     const getOrderInfo = (o) => {
         let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
 
@@ -5451,8 +5466,9 @@ window.updatePrintPrediction = function () {
 
                 if (extraStickers > 0) {
                     optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
-                        Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം കൂടുതൽ പ്രിന്റ് ആകും
+                        Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം അധികം പ്രിന്റ് ആകും (ബ്ലാങ്ക് ഉണ്ടാകില്ല)
                     </option>`;
+
                     optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>
                         Exact Need (${totalNeeded} Stk) - അവസാന എ4-ൽ ${extraStickers} എണ്ണം ബ്ലാങ്ക് ആയിരിക്കും
                     </option>`;
@@ -5513,11 +5529,11 @@ window.updatePrintPrediction = function () {
                  onmouseover="this.style.background='#ffecb5'" onmouseout="this.style.background='#fff3cd'">
                 <div class="d-flex flex-column">
                     <span class="fw-bold" style="font-size:11px; color:#b45309;">
-                        <i class="fas fa-cut me-1"></i> മുൻപ് മുറിച്ച <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
+                        <i class="fas fa-cut me-1"></i> മുൻപ് മുറിച്ച <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> ബ്ലാങ്ക് സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
                     </span>
                     ${selectedPrintCount > 0 ? `
                     <span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-                        <i class="fas fa-arrow-right"></i> ഇപ്പോൾ പ്രിന്റ് ചെയ്താൽ ബാക്കി <span class="fw-bolder" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം വരും.
+                        <i class="fas fa-arrow-right"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന ബ്ലാങ്ക് സ്റ്റിക്കറുകൾ: <span class="fw-bolder" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
                     </span>` : ''}
                 </div>
                 <span class="badge bg-warning text-dark p-1 ms-1 shadow-sm" style="font-size:9px; cursor:pointer;" onclick="editStickerStock('loose', ${looseStickers}, ${historicalRatio})" title="എണ്ണം മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക"><i class="fas fa-edit"></i> എഡിറ്റ്</span>
