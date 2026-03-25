@@ -5519,25 +5519,24 @@ window.updatePrintPrediction = function () {
         newLooseBalance = 0;
     }
 
-    // 🔥 പുതിയ മാറ്റം: എക്സ്ട്രാ പ്രിന്റ് ആകുന്നതാണോ അതോ ബ്ലാങ്ക് ആണോ എന്ന് തിരിച്ചറിയാൻ
+    // 🔥 പുതിയ മാറ്റം: എക്സ്ട്രാ പ്രിന്റ് ആകുന്നതാണോ അതോ ബ്ലാങ്ക് ആണോ എന്ന് വ്യക്തമായി കാണിക്കാൻ
     let extraPrinted = (selectedPrintCount > unprintedStickers) ? (selectedPrintCount - unprintedStickers) : 0;
     let afterPrintMsg = '';
 
-    if (extraPrinted > 0) {
-        // എക്സ്ട്രാ പ്രിന്റ് വരുന്നുണ്ടെങ്കിൽ
-        afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-            <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന <span class="fw-bolder text-danger" style="font-size:10px;">പ്രിന്റ് ചെയ്ത സ്റ്റിക്കറുകൾ: ${extraPrinted}</span> എണ്ണം.
-        </span>`;
-    } else if (newLooseBalance > 0) {
-        // ബ്ലാങ്ക് പേപ്പർ ബാക്കി വരുന്നുണ്ടെങ്കിൽ
-        afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-            <i class="fas fa-sticky-note"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന <span class="fw-bolder" style="font-size:10px;">ബ്ലാങ്ക് സ്റ്റിക്കറുകൾ: ${newLooseBalance}</span> എണ്ണം.
-        </span>`;
-    } else if (selectedPrintCount > 0) {
-        // കൃത്യം എണ്ണമാണെങ്കിൽ
-        afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#198754; font-weight:600;">
-            <i class="fas fa-check-circle"></i> പ്രിന്റ് കഴിഞ്ഞാൽ പേപ്പർ കൃത്യമാണ് (ബ്ലാങ്ക് ഇല്ല).
-        </span>`;
+    if (selectedPrintCount > 0) {
+        if (extraPrinted > 0) {
+            afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
+                <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ വരുന്ന <span class="fw-bolder text-danger" style="font-size:10px;">എക്സ്ട്രാ പ്രിന്റുകൾ: ${extraPrinted}</span> എണ്ണം.
+            </span>`;
+        } else if (newLooseBalance > 0) {
+            afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
+                <i class="fas fa-sticky-note"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന <span class="fw-bolder" style="font-size:10px;">ബ്ലാങ്ക് സ്റ്റിക്കർ: ${newLooseBalance}</span> എണ്ണം.
+            </span>`;
+        } else {
+            afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#198754; font-weight:600;">
+                <i class="fas fa-check-circle"></i> പ്രിന്റ് കഴിഞ്ഞാൽ പേപ്പർ കൃത്യമാണ് (ബ്ലാങ്ക് ഇല്ല).
+            </span>`;
+        }
     }
 
     // 3. 🔥 UI Create cheyyunnu
