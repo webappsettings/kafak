@@ -5676,13 +5676,6 @@ window.printProductLabels = function () {
         printWin.print();
     }, 1000);
 
-    // Server-ലേക്ക് പുതിയ സ്റ്റാറ്റസ് അയക്കുന്നു
-    if (ordersToUpdate.length > 0) {
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify({ action: 'bulkUpdateStatus', updates: ordersToUpdate })
-        }).catch(e => console.log('Sticker API error', e));
-    }
 
     // ലെഫ്റ്റ് ഡ്രോയറിലെ എണ്ണവും, ലൈവ് സ്റ്റോക്കും മാറാൻ
     setTimeout(() => {
