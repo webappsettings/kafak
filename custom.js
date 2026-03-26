@@ -1575,7 +1575,7 @@ function updateStatusUI(d) {
           trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
         }
       } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
-        trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
+        trackLink = `https://www.indiapost.gov.in/layouts/15/dop.portal.tracking/trackconsignment.aspx`;
       } else if (rawProvider.includes('SPEED') || rawProvider.includes('SAFE')) {
         // 🔥 Speed & Safe Courier Link
         trackLink = `https://www.gokulamspeedandsafe.com/speedandsafe-tracking/`;
@@ -1591,7 +1591,7 @@ function updateStatusUI(d) {
                     <i class="fas fa-truck text-primary me-1"></i> ${rawProvider}
                 </div>
                 <div class="d-flex align-items-center gap-2">
-                    <span class="fw-bolder text-dark" style="font-size:14px; font-family:monospace; letter-spacing:0.5px;">${trackNum}</span>
+                    <span class="fw-bolder text-dark" style="font-size:12px; font-family:monospace; letter-spacing:0.5px;">${trackNum}</span>
                     
                     <button onclick="copyTrackingID('${trackNum}', this)" class="btn btn-sm btn-white p-0 d-flex align-items-center justify-content-center shadow-sm" style="width:24px; height:24px; border-radius:6px; border:1px solid #cbd5e1; background:#fff;" title="Copy ID">
                         <i class="far fa-copy text-secondary" style="font-size:12px;"></i>

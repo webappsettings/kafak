@@ -1418,7 +1418,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
                 trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
             }
         } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
-            trackLink = `https://www.indiapost.gov.in/_layouts/15/dop.portal.tracking/trackconsignment.aspx`;
+            trackLink = `https://www.indiapost.gov.in/layouts/15/dop.portal.tracking/trackconsignment.aspx`;
         } else if (rawProvider.includes('SPEED') || rawProvider.includes('SAFE')) {
             // 🔥 Speed & Safe Courier Link
             trackLink = `https://www.gokulamspeedandsafe.com/speedandsafe-tracking/`;
