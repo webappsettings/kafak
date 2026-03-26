@@ -5567,7 +5567,7 @@ window.updatePrintPrediction = function () {
                  onmouseover="this.style.background='#ffecb5'" onmouseout="this.style.background='#fff3cd'">
                 <div class="d-flex flex-column">
                     <span class="fw-bold" style="font-size:11px; color:#b45309;">
-                        <i class="fas fa-cut me-1"></i> മുൻപ് മുറിച്ച <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> ബ്ലാങ്ക് സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
+                        <i class="fas fa-cut me-1"></i> മുൻപ് മുറിച്ച <span class="badge bg-white text-danger border border-danger mx-1" style="font-size:12px;">${looseStickers}</span> സ്റ്റിക്കര്‍ ബാക്കിയുണ്ട്
                     </span>
                     ${afterPrintMsg}
                 </div>
