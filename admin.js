@@ -496,21 +496,30 @@ function renderTabs(orders) {
 
     const getOrderInfo = (o) => {
         let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
-
         let status = (local && local.status) ? local.status : (o.Status || 'Pending');
-        let tDate = new Date(o.timestamp);
-        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o['Paid Date'] || o.timestamp);
-        let pDate = new Date(pDateStr);
 
-        // 🔥 FIX: Dispatched Date കൃത്യമായി എടുക്കുന്നു
-        let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (o['Dispatched Date'] || pDateStr);
-        let dDate = new Date(dDateStr);
+        // 🔥 Safe Date Parser: ഗൂഗിൾ ഷീറ്റിലെ ഏത് തീയതിയും കൃത്യമായി വായിക്കാൻ
+        let parseDt = (val) => {
+            if (!val) return new Date(0);
+            let dt = new Date(val);
+            if (isNaN(dt.getTime()) && typeof parseOrderDate === 'function') dt = parseOrderDate(val);
+            return isNaN(dt.getTime()) ? new Date(0) : dt;
+        };
+
+        let tDate = parseDt(o.timestamp);
+        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o['Paid Date'] || o.timestamp);
+        let pDate = parseDt(pDateStr);
+
+        // 🔥 FIX: Dispatched Date കൃത്യമായി എടുക്കുന്നു (Invalid Date പ്രശ്നം ഒഴിവാക്കി)
+        let sheetDispDate = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.actionDate;
+        let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (sheetDispDate || pDateStr);
+        let dDate = parseDt(dDateStr);
 
         let metaStr = String(o.adminMeta || '');
         let isPrinted = metaStr.includes('P');
         let printTimeMatch = metaStr.match(/P_(\d+)/);
         let printDateRaw = printTimeMatch ? parseInt(printTimeMatch[1]) : pDateStr;
-        let printDate = new Date(printDateRaw);
+        let printDate = parseDt(printDateRaw);
 
         return { status, tDate, pDate, dDate, pDateStr, dDateStr, isPrinted, printDateRaw, printDate };
     };
@@ -519,29 +528,24 @@ function renderTabs(orders) {
     window.paidRankMap = {};
     let sourceOrders = (typeof allOrders !== 'undefined' && allOrders.length > 0) ? allOrders : orders;
 
-    // Paid, Dispatched, Delivered, Completed എന്നിവയെല്ലാം റാങ്കിനായി എടുക്കുന്നു
     let rankOrds = sourceOrders.filter(o => {
         let stat = getOrderInfo(o).status;
         return ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(stat);
     });
 
-    // തീയതി വെച്ച് സോർട്ട് ചെയ്യുന്നു (ഏറ്റവും പഴയത് ആദ്യം)
-    rankOrds.sort((a, b) => new Date(getOrderInfo(a).pDateStr) - new Date(getOrderInfo(b).pDateStr));
+    rankOrds.sort((a, b) => getOrderInfo(a).pDate.getTime() - getOrderInfo(b).pDate.getTime());
 
-    // മാസം തിരിച്ച് റാങ്ക് കൊടുക്കുന്നു
     let currentRankMonth = "";
     let rankCounter = 1;
 
     rankOrds.forEach(o => {
-        let dDate = new Date(getOrderInfo(o).pDateStr);
-        if (!isNaN(dDate.getTime())) {
+        let dDate = getOrderInfo(o).pDate;
+        if (dDate.getTime() > 0) {
             let mStr = dDate.getMonth() + "-" + dDate.getFullYear();
-
             if (mStr !== currentRankMonth) {
                 currentRankMonth = mStr;
-                rankCounter = 1; // പുതിയ മാസം ആകുമ്പോൾ 1-ൽ തുടങ്ങും
+                rankCounter = 1;
             }
-
             window.paidRankMap[o.orderid] = rankCounter;
             rankCounter++;
         }
@@ -636,27 +640,32 @@ function renderTabs(orders) {
         } else {
             dateA = infoA.tDate; dateB = infoB.tDate;
         }
-        return (currentSortDir === 'desc') ? dateB - dateA : dateA - dateB;
+
+        let timeA = dateA.getTime();
+        let timeB = dateB.getTime();
+
+        return (currentSortDir === 'desc') ? timeB - timeA : timeA - timeB;
     });
 
     let timelineStats = {};
     let tabCourierTotal = { paid_new: 0, paid_print: 0, disp_new: 0, disp_track: 0, new: 0, sent: 0 };
 
     orders.forEach(o => {
-        let { status, dDateStr, pDateStr } = getOrderInfo(o);
+        let info = getOrderInfo(o);
+        let status = info.status;
         if (status === 'Archive') return;
 
         let meta = getMetaStatus(o.adminMeta, status);
         let dateKeyType = '';
-        let displayDateRaw = o.timestamp;
+        let displayDateRaw = info.tDate.getTime();
 
         if (status === 'Paid') {
-            displayDateRaw = meta.isPrinted ? getOrderInfo(o).printDateRaw : pDateStr;
+            displayDateRaw = meta.isPrinted ? info.printDate.getTime() : info.pDate.getTime();
             dateKeyType = meta.isPrinted ? 'paid_print' : 'paid_new';
         }
         else if (['Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
-            // 🔥 FIX: Dispatched Date കൃത്യമായി നൽകുന്നു
-            displayDateRaw = dDateStr;
+            // 🔥 FIX: Dispatched Date കൃത്യമായി ടൈംലൈനിലേക്ക് നൽകുന്നു
+            displayDateRaw = info.dDate.getTime();
             dateKeyType = (o.tracking || meta.isTracked) ? 'disp_track' : 'disp_new';
         }
         else if (status === 'Pending') dateKeyType = 'new';
@@ -721,9 +730,10 @@ function renderTabs(orders) {
     window.showAllDispNew = window.showAllDispNew || false;
 
     orders.forEach((d, i) => {
-        let { status, dDateStr, pDateStr } = getOrderInfo(d);
-        d.paidDate = pDateStr;
-        d['Dispatched Date'] = dDateStr;
+        let info = getOrderInfo(d);
+        let status = info.status;
+        d.paidDate = info.pDateStr;
+        d['Dispatched Date'] = info.dDateStr;
 
         if (status === 'Completed' || status === 'Archive') return;
 
@@ -787,11 +797,12 @@ function renderTabs(orders) {
         if (targetList) {
             btlCounts[type] += qty;
 
-            let displayDateRaw = d.timestamp;
+            let displayDateRaw = info.tDate.getTime();
             if (type === 'paid') {
-                displayDateRaw = meta.isPrinted ? getOrderInfo(d).printDateRaw : pDateStr;
+                displayDateRaw = meta.isPrinted ? info.printDate.getTime() : info.pDate.getTime();
             }
-            if (type === 'dispatched') displayDateRaw = dDateStr; // 🔥 CORRECT
+            if (type === 'dispatched') displayDateRaw = info.dDate.getTime(); // 🔥 CORRECT
+
             let dateLabel = getTimelineLabel(displayDateRaw);
 
             if (dateKey === 'disp_track' && !showAllTracking) {
