@@ -732,8 +732,17 @@ function renderTabs(orders) {
     orders.forEach((d, i) => {
         let info = getOrderInfo(d);
         let status = info.status;
-        d.paidDate = info.pDateStr;
-        d['Dispatched Date'] = info.dDateStr;
+
+        // 🔥 FIX: Paid ആയി കിടക്കുമ്പോൾ തന്നെ തനിയെ Dispatched ഡേറ്റ് കയറിപ്പോകുന്ന ബഗ് മാറ്റി!
+        if (['Paid', 'Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
+            d.paidDate = info.pDateStr;
+        }
+        if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            d['Dispatched Date'] = info.dDateStr;
+        } else {
+            // ഓർഡർ ശരിക്കും ഡിസ്പാച്ച് ആയിട്ടില്ലെങ്കിൽ പഴയ തെറ്റായ ഡാറ്റ ക്ലീൻ ചെയ്യുന്നു
+            delete d['Dispatched Date'];
+        }
 
         if (status === 'Completed' || status === 'Archive') return;
 
