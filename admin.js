@@ -1313,9 +1313,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     </div>`;
 
     let paidTimeHTML = '';
-    if ((logicType === 'paid' || currentStatus === 'Paid') && d.paidDate) {
+    if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(currentStatus) && d.paidDate) {
         let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
-        paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
+        paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block; clear:both;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
     let uniqueContacts = new Map();
@@ -3930,6 +3930,43 @@ function stopScanner() {
     window.onpopstate = null;
 }
 
+// 🔥 NEW MANUAL ENTRY FUNCTION FOR SCANNER (Without closing scanner)
+window.enterTrackingManually = function (oid) {
+    if (html5QrCode) html5QrCode.pause(); // ക്യാമറ താൽക്കാലികമായി നിർത്തുന്നു
+
+    Swal.fire({
+        title: 'TRACKING ID',
+        input: 'text',
+        inputPlaceholder: 'Type tracking number here...',
+        showCancelButton: true,
+        confirmButtonText: 'SAVE'
+    }).then((result) => {
+        if (result.isConfirmed && result.value.trim() !== '') {
+            let trackNum = result.value.trim().toUpperCase();
+            let order = allOrders.find(o => o.orderid === oid);
+
+            // 1. സ്കാനർ ക്ലോസ് ചെയ്യാതെ തന്നെ സ്ക്രീനിൽ Success മെസ്സേജ് കാണിക്കുന്നു (ബാക്കി സ്കാനിങ് പോലെ തന്നെ)
+            showScanFeedback("TRACKING SAVED ✅", order, trackNum, false, "Manually added to Tracked Tab");
+
+            // 2. ബാക്ക്ഗ്രൗണ്ടിൽ ഡാറ്റ സേവ് ചെയ്യുന്നു
+            setTimeout(() => {
+                updateOrder(oid, 'Dispatched', trackNum, true);
+                updateAdminMeta(oid, 'tracked', 'T');
+            }, 50);
+
+            // 3. സ്കാനർ ക്ലോസ് ചെയ്യാതെ അടുത്ത ഓർഡർ QR സ്കാൻ ചെയ്യാൻ റെഡിയാക്കുന്നു
+            scanStep = 1;
+            setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 800);
+            setTimeout(() => { if (html5QrCode) html5QrCode.resume(); isScanProcessing = false; }, 800);
+
+        } else {
+            // ക്യാൻസൽ അടിച്ചാൽ ക്യാമറ വീണ്ടും ഓൺ ആകാൻ
+            if (html5QrCode) html5QrCode.resume();
+            isScanProcessing = false;
+        }
+    });
+};
+
 // 🔥 FAST SCANNING & LOW DELAY LOGIC (INSTANT UI UPDATE)
 function onScanSuccess(decodedText) {
     if (isScanProcessing) return;
@@ -3980,7 +4017,11 @@ function onScanSuccess(decodedText) {
                 else {
                     scanStep = 2;
                     let msg = (order.Status === 'Dispatched') ? "UPDATE TRACKING BARCODE" : "NOW SCAN COURIER BARCODE";
-                    let subMsg = (order.Status === 'Dispatched') ? "Order is already dispatched. Scanning to update tracking." : "Ready to link Tracking ID";
+
+                    // 🔥 NEW: മാന്വൽ ആയി ട്രാക്കിങ് അടിക്കാനുള്ള ബട്ടൺ ഇവിടെ ചേർത്തു
+                    let manualBtnHtml = `<div class="mt-3"><button onclick="enterTrackingManually('${tempOid}')" class="btn btn-dark w-100 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; padding:10px;"><i class="fas fa-keyboard me-2 text-warning"></i>TYPE MANUALLY</button></div>`;
+
+                    let subMsg = ((order.Status === 'Dispatched') ? "Order is already dispatched. Scanning to update tracking." : "Ready to link Tracking ID") + manualBtnHtml;
 
                     $('#scan-mode-title').text(msg);
                     showScanFeedback("QR DETECTED ✅", order, decodedText, false, subMsg);
