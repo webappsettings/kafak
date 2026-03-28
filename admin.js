@@ -5516,39 +5516,32 @@ window.updatePrintPrediction = function () {
 
         if (totalNeeded > 0) {
             optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
-            let remainingToPrintFromNewSheets = totalNeeded - looseStickers;
 
-            if (remainingToPrintFromNewSheets <= 0) {
-                optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>Print Exact (${totalNeeded} Stk - Uses Loose)</option>`;
+            // 🔥 പുതിയ കാൽക്കുലേഷൻ: കൃത്യം A4 ഷീറ്റുകൾ നിറയാനുള്ള എണ്ണം മാത്രം (Multiples of ratio) എടുക്കുന്നു
+            let totalIfFilled = Math.ceil(totalNeeded / ratio) * ratio;
+            let extraStickers = totalIfFilled - totalNeeded;
+
+            if (extraStickers > 0) {
+                optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
+                    Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം അധികം പ്രിന്റ് ആകും (ബ്ലാങ്ക് ഉണ്ടാകില്ല)
+                </option>`;
+
+                optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>
+                    Exact Need (${totalNeeded} Stk) - അവസാന എ4-ൽ ${extraStickers} എണ്ണം ബ്ലാങ്ക് ആയിരിക്കും
+                </option>`;
             } else {
-                let neededNewSheets = Math.ceil(remainingToPrintFromNewSheets / ratio);
-                let totalIfFilled = (neededNewSheets * ratio) + looseStickers;
-                let extraStickers = totalIfFilled - totalNeeded;
-
-                if (extraStickers > 0) {
-                    optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
-                        Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം അധികം പ്രിന്റ് ആകും (ബ്ലാങ്ക് ഉണ്ടാകില്ല)
-                    </option>`;
-
-                    optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>
-                        Exact Need (${totalNeeded} Stk) - അവസാന എ4-ൽ ${extraStickers} എണ്ണം ബ്ലാങ്ക് ആയിരിക്കും
-                    </option>`;
-                } else {
-                    optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
-                        Print Exact Need (${totalNeeded} Stk) - കൃത്യം A4 ഷീറ്റുകൾ
-                    </option>`;
-                }
+                optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
+                    Print Exact Need (${totalNeeded} Stk) - കൃത്യം A4 ഷീറ്റുകൾ
+                </option>`;
             }
             optionsHtml += `</optgroup>`;
         } else {
-            // 🔥 പുതിയ മാറ്റം: പ്രിന്റ് ചെയ്യാൻ ഒന്നുമില്ലെങ്കിൽ '0' ഓപ്ഷൻ കാണിക്കുക
             let selZero = (!currentSelectedValue || currentSelectedValue == 0) ? 'selected' : '';
             optionsHtml += `<option value="0" ${selZero}>✅ All Caught Up (0 Stk)</option>`;
         }
 
         optionsHtml += `<optgroup label="--- Manual Copies ---">`;
         for (let i = 1; i <= ratio; i++) {
-            // 🔥 ഇവിടെ ഉണ്ടായിരുന്ന i === 1 കണ്ടീഷൻ ഒഴിവാക്കി
             let sel = (currentSelectedValue == i) ? 'selected' : '';
             optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
         }
@@ -5560,42 +5553,30 @@ window.updatePrintPrediction = function () {
         optionsHtml += `</optgroup>`;
 
         modeBox.innerHTML = optionsHtml;
-
-
     }
 
     // 2. 🔥 Dropdown set cheytha shesham athile value edukkunnu
     let selectedPrintCount = parseInt(modeBox ? modeBox.value : unprintedStickers) || 0;
 
-    let remainingToPrintFromNewSheetsCalc = selectedPrintCount - looseStickers;
-    let newLooseBalance = looseStickers;
+    // 🔥 പുതിയ മാറ്റം: ബാക്കി വരുന്ന എണ്ണം 100% കൃത്യമായി കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+    let newLooseBalance = (looseStickers - (unprintedStickers % ratio)) % ratio;
+    if (newLooseBalance < 0) newLooseBalance += ratio;
 
-    if (remainingToPrintFromNewSheetsCalc > 0) {
-        let neededNewSheets = Math.ceil(remainingToPrintFromNewSheetsCalc / ratio);
-        let totalPrintedSpots = (neededNewSheets * ratio) + looseStickers;
-        newLooseBalance = totalPrintedSpots - selectedPrintCount;
-    } else if (remainingToPrintFromNewSheetsCalc < 0) {
-        newLooseBalance = Math.abs(remainingToPrintFromNewSheetsCalc);
-    } else {
-        newLooseBalance = 0;
-    }
-
-    // 🔥 പുതിയ മാറ്റം: എക്സ്ട്രാ പ്രിന്റ് ആകുന്നതാണോ അതോ ബ്ലാങ്ക് ആണോ എന്ന് വ്യക്തമായി കാണിക്കാൻ
     let extraPrinted = (selectedPrintCount > unprintedStickers) ? (selectedPrintCount - unprintedStickers) : 0;
     let afterPrintMsg = '';
 
-    if (selectedPrintCount > 0) {
+    if (unprintedStickers > 0 && selectedPrintCount > 0) {
         if (extraPrinted > 0) {
             afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-                <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ വരുന്ന <span class="fw-bolder text-danger" style="font-size:10px;">എക്സ്ട്രാ പ്രിന്റുകൾ: ${extraPrinted}</span> എണ്ണം.
+                <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന സ്റ്റിക്കറുകൾ (ബ്ലാങ്ക് + എക്സ്ട്രാ): <span class="fw-bolder text-danger" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
             </span>`;
         } else if (newLooseBalance > 0) {
             afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-                <i class="fas fa-sticky-note"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന <span class="fw-bolder" style="font-size:10px;">ബ്ലാങ്ക് സ്റ്റിക്കർ: ${newLooseBalance}</span> എണ്ണം.
+                <i class="fas fa-sticky-note"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന ബ്ലാങ്ക് സ്റ്റിക്കറുകൾ: <span class="fw-bolder" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
             </span>`;
         } else {
             afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#198754; font-weight:600;">
-                <i class="fas fa-check-circle"></i> പ്രിന്റ് കഴിഞ്ഞാൽ പേപ്പർ കൃത്യമാണ് (ബ്ലാങ്ക് ഇല്ല).
+                <i class="fas fa-check-circle"></i> പ്രിന്റ് കഴിഞ്ഞാൽ സ്റ്റിക്കറുകൾ ഒന്നും ബാക്കി വരില്ല (0).
             </span>`;
         }
     }
