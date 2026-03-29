@@ -2511,22 +2511,25 @@ function postOrder(data) {
     .then(res => res.json())
     .then(res => {
       if (res.result === 'success') {
+        // 🔥 FIX: നിലവിലെ മുഴുവൻ ഡാറ്റയും നിലനിർത്തിക്കൊണ്ട് പുതിയ Order ID കൂട്ടിച്ചേർക്കുന്നു
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
-
-        // 🔥 FIX: ഫോൺ നമ്പർ മാറ്റിയിട്ടുണ്ടെങ്കിൽ പഴയ ലോഗിൻ കാഷെ കളഞ്ഞ് പുതിയ നമ്പർ സെറ്റ് ചെയ്യുന്നു
-        if (currentLoginPhone && currentLoginPhone !== data.phone) {
-          delete localUsersMap[currentLoginPhone];
-        }
-        currentLoginPhone = data.phone;
-        SafeStorage.setItem('lastUsedPhone', data.phone);
 
         if (res.custId) {
           successData.custId = res.custId;
           myCustId = res.custId;
         }
 
-        // 🔥 FIX: Order ID ഉൾപ്പെടെയുള്ള പുതിയ ഡാറ്റ ലോക്കൽ കാഷെയിൽ സേവ് ചെയ്യുന്നു!
-        localUsersMap[successData.phone] = successData;
+        // 🔥 FIX: ഫോൺ നമ്പർ മാറ്റിയിട്ടുണ്ടെങ്കിൽ പഴയ ലോഗിൻ കാഷെ കളയുന്നു
+        if (currentLoginPhone && currentLoginPhone !== data.phone) {
+          delete localUsersMap[currentLoginPhone];
+        }
+
+        currentLoginPhone = data.phone;
+        SafeStorage.setItem('lastUsedPhone', data.phone);
+
+        // 🔥 FIX: നിലവിലുള്ള പൂർണ്ണമായ ഡാറ്റയോടൊപ്പം പുതിയവ ചേർത്ത് സേവ് ചെയ്യുന്നു
+        let existingData = localUsersMap[data.phone] || {};
+        localUsersMap[data.phone] = { ...existingData, ...successData, Status: "Pending" };
         SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 
         window.orderSuccess = true;
