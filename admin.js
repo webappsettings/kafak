@@ -3067,27 +3067,7 @@ function getZoneKey(stateName) {
     return 'REST OF INDIA';
 }
 
-// 🔥 മാർജിൻ ഉൾപ്പെടെയുള്ള കൊറിയർ ചിലവ് കണ്ടുപിടിക്കാൻ
-function getCourierRate(state, provider, qty) {
-    let s = String(state || '').toUpperCase().trim();
-    let p = String(provider || '').toUpperCase().trim();
-    let q = parseInt(qty) || 1;
 
-    let courierBase = 0;
-
-    if (typeof courierRates !== 'undefined') {
-        // 🔥 FIX: Underscore മാറ്റി Space ആക്കി (eg: TAMIL NADU DTDC)
-        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s} DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
-
-        if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
-            courierBase = window.parseDynamicRate(zoneData.baseRate, q);
-        } else if (zoneData && zoneData[q] !== undefined) {
-            courierBase = Number(zoneData[q]);
-        }
-    }
-
-    return courierBase;
-}
 
 function calculatePriceInfo(u, qty, state, provider) {
     const n = parseInt(qty) || 0;
@@ -5247,24 +5227,7 @@ window.syncMonthToSheet = function () {
     });
 };
 
-// 🔥 FIX 1: Dynamic Rate Parser
-function parseDynamicRate(rateString, qty) {
-    if (!rateString) return 0;
-    if (!isNaN(rateString)) return parseFloat(rateString); // വെറും നമ്പർ ആണെങ്കിൽ
 
-    let rates = String(rateString).split(',');
-    let matchedRate = 0;
-    for (let i = 0; i < rates.length; i++) {
-        let parts = rates[i].split(':');
-        if (parts.length === 2) {
-            let q = parseInt(parts[0].trim());
-            let r = parseFloat(parts[1].trim());
-            if (q === qty) return r;
-            if (q < qty) matchedRate = r;
-        }
-    }
-    return matchedRate;
-}
 
 // 🔥 INJECT LEFT DRAWER (With Native Smart Print Section - FIXED variables)
 function injectLeftDrawer() {
@@ -5823,6 +5786,51 @@ window.handleResendOrder = function (oid, index) {
     });
 }
 
+// 🔥 FIX 1: Dynamic Rate Parser (Integer Strict Type Fix)
+window.parseDynamicRate = function (rateString, qty) {
+    if (!rateString) return 0;
+    if (!isNaN(rateString)) return parseFloat(rateString);
+
+    let numQty = parseInt(qty) || 1;
+    let rates = String(rateString).split(',');
+    let matchedRate = 0;
+    for (let i = 0; i < rates.length; i++) {
+        let parts = rates[i].split(':');
+        if (parts.length === 2) {
+            let q = parseInt(parts[0].trim());
+            let r = parseFloat(parts[1].trim());
+            if (q === numQty) return r;
+            if (q < numQty) matchedRate = r;
+        }
+    }
+    return matchedRate;
+};
+
+// 🔥 മാർജിൻ ഉൾപ്പെടെയുള്ള കൊറിയർ ചിലവ് കണ്ടുപിടിക്കാൻ (Fixed Margin Addition)
+function getCourierRate(state, provider, qty) {
+    let s = String(state || '').toUpperCase().trim();
+    let p = String(provider || '').toUpperCase().trim();
+    let q = parseInt(qty) || 1;
+
+    let courierTotal = 0;
+
+    if (typeof courierRates !== 'undefined') {
+        // Check all combinations safely
+        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s}_${p}`] || courierRates[`${s} DEFAULT`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+
+        if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+            let base = window.parseDynamicRate(zoneData.baseRate, q);
+            let margin = window.parseDynamicRate(zoneData.serviceCharge, q);
+            courierTotal = base + margin; // 🔥 മാർജിൻ കൂട്ടാൻ വിട്ടുപോയത് ഇവിടെ ഫിക്സ് ചെയ്തു!
+        } else if (zoneData && zoneData[q] !== undefined) {
+            courierTotal = Number(zoneData[q]);
+        }
+    }
+
+    if (courierTotal === 0) courierTotal = (q * 60) + 20; // Safe Fallback
+    return courierTotal;
+}
+
 // 🔥 മാർജിൻ ഇല്ലാതെ യഥാർത്ഥ കൊറിയർ ചിലവ് (Base Rate) മാത്രം കണ്ടുപിടിക്കാൻ
 function getBaseCourierRate(state, provider, qty) {
     let s = String(state || '').toUpperCase().trim();
@@ -5832,8 +5840,7 @@ function getBaseCourierRate(state, provider, qty) {
     let courierBase = 0;
 
     if (typeof courierRates !== 'undefined') {
-        // 🔥 FIX: Underscore മാറ്റി Space ആക്കി
-        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s} DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s}_${p}`] || courierRates[`${s} DEFAULT`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
 
         if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
             courierBase = window.parseDynamicRate(zoneData.baseRate, q);
@@ -5842,7 +5849,6 @@ function getBaseCourierRate(state, provider, qty) {
         }
     }
 
-    // ഷീറ്റിൽ നിന്നും കിട്ടിയില്ലെങ്കിൽ, ടോട്ടൽ തുകയിൽ നിന്നും ഒരു ഡീഫോൾട്ട് മാർജിൻ കുറയ്ക്കുന്നു
     if (courierBase === 0) {
         let total = getCourierRate(state, provider, qty);
         courierBase = total > 20 ? total - 20 : total;

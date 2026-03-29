@@ -171,22 +171,57 @@ function getZoneKey(stateName, specificProvider = null) {
   return 'REST OF INDIA';
 }
 
+// 🔥 FIX: Space/Underscore പ്രശ്നവും, Text/Number പ്രശ്നവും പരിഹരിച്ചു!
 window.parseDynamicRate = function (rateString, qty) {
   if (!rateString) return 0;
-  if (!isNaN(rateString)) return parseFloat(rateString); // Normal number anenkil
+  if (!isNaN(rateString)) return parseFloat(rateString);
 
+  let numQty = parseInt(qty) || 1; // 🔥 അക്ഷരമായി വന്നാലും നമ്പറാക്കി മാറ്റുന്നു
   let rates = String(rateString).split(',');
   let matchedRate = 0;
+
   for (let i = 0; i < rates.length; i++) {
     let parts = rates[i].split(':');
     if (parts.length === 2) {
       let q = parseInt(parts[0].trim());
       let r = parseFloat(parts[1].trim());
-      if (q === qty) return r;
-      if (q < qty) matchedRate = r;
+      if (q === numQty) return r;
+      if (q < numQty) matchedRate = r;
     }
   }
   return matchedRate;
+};
+
+window.getDeliveryCharge = function (state, qty, provider) {
+  if (!window.ratesCache) return (qty * 60) + 20;
+
+  let zone = getZoneKey(state);
+  let prov = provider ? String(provider).toUpperCase().trim() : 'DEFAULT';
+
+  // 🔥 FIX: സ്പേസ് ഇട്ടാലും അടിവര ഇട്ടാലും കൃത്യമായി കണ്ടുപിടിക്കാൻ
+  let key = `${zone} ${prov}`;
+  if (!window.ratesCache[key]) key = `${zone}_${prov}`;
+  if (!window.ratesCache[key]) key = `${zone} DEFAULT`;
+  if (!window.ratesCache[key]) key = `${zone}_DEFAULT`;
+  if (!window.ratesCache[key]) key = zone;
+  if (!window.ratesCache[key]) key = 'REST OF INDIA DEFAULT';
+  if (!window.ratesCache[key]) key = 'REST OF INDIA';
+
+  let zoneData = window.ratesCache[key];
+  if (!zoneData) return (qty * 60) + 20;
+
+  let baseCharge = 0;
+  let serviceCharge = 0;
+
+  if (typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+    baseCharge = window.parseDynamicRate(zoneData.baseRate, qty);
+    serviceCharge = window.parseDynamicRate(zoneData.serviceCharge, qty);
+  } else if (zoneData[qty] !== undefined) {
+    baseCharge = parseFloat(zoneData[qty]) || 0;
+  } else {
+    baseCharge = (qty * 60);
+  }
+  return baseCharge + serviceCharge;
 };
 
 $(document).ready(function () {
@@ -1788,25 +1823,28 @@ window.updatePrice = function (qty, isQuick) {
 
   const zone = getZoneKey(currentState, savedProvider);
 
-  // 🔥🔥🔥 MARGIN FIX STARTS HERE (100% Dynamic) 🔥🔥🔥
-  let courierBase = 0;
-  let serviceMargin = 0;
+  // 🔥🔥🔥 MARGIN FIX STARTS HERE (100% Dynamic & Safe) 🔥🔥🔥
+  let courierTotal = 0;
 
   if (typeof courierRates !== 'undefined') {
     let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
-    // Sheet-il ninnulla data mathram edukkunnu
-    let zoneData = courierRates[`${zone}_${p}`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone] || courierRates['REST OF INDIA'];
+    // സ്പേസ് ഉള്ളതും അടിവര ഉള്ളതും ആയ എല്ലാ കീകളും ചെക്ക് ചെയ്യുന്നു
+    let zoneData = courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`] || courierRates[`${zone} DEFAULT`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone] || courierRates['REST OF INDIA'];
 
     if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
-      courierBase = window.parseDynamicRate(zoneData.baseRate, n);
-      serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
+      let base = window.parseDynamicRate(zoneData.baseRate, n);
+      // 🔥 FIX: 'serviceCharge' കിട്ടിയില്ലെങ്കിൽ 0 ആക്കാതെ, നേരിട്ട് കൊറിയർ ടോട്ടൽ കണ്ടുപിടിക്കുന്നു!
+      let margin = window.parseDynamicRate(zoneData.serviceCharge, n);
+      courierTotal = base + margin;
     } else if (zoneData && zoneData[n] !== undefined) {
-      courierBase = Number(zoneData[n]);
+      courierTotal = Number(zoneData[n]);
     }
   }
 
-  const totalCourier = courierBase + serviceMargin;
-  const total = base + totalCourier;
+  // ഫീൽഡുകൾ ഒന്നും വർക്ക് ആയില്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി 80 രൂപ വെക്കുന്നു (60+20)
+  if (courierTotal === 0) courierTotal = (n * 60) + 20;
+
+  const total = base + courierTotal;
   // 🔥🔥🔥 MARGIN FIX ENDS HERE 🔥🔥🔥
 
   let htmlContent = `
