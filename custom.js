@@ -821,9 +821,15 @@ function backgroundUserCheck(phone) {
 
 window.submitWizardOrder = function () {
 
-  // 🔥 ആപ്പ് വഴിയാണോ തുറന്നിരിക്കുന്നത് എന്ന് ചെക്ക് ചെയ്യുന്നു
+  // 🔥 App vazhiyano thurannirikkunnathu ennu check cheyyunnu
   const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
   const orderSource = isApp ? "App 📱" : "Web 🌐";
+
+  // 🔥 FIX 1: Admin Wizard-il select cheytha WhatsApp option Meta aayi edukkaan
+  let wizMeta = '';
+  if (localStorage.getItem('kafakAdmin') === 'true' && $('#wiz-target-wa').length) {
+    wizMeta = $('#wiz-target-wa').val() || 'M';
+  }
 
   const finalData = {
     orderid: editingOrderId,
@@ -842,7 +848,8 @@ window.submitWizardOrder = function () {
     message: '',
     custId: myCustId,
     language: $('#language-select').val() || 'en',
-    source: orderSource  // 🔥 ഈ പുതിയ വരി ചേർത്തു
+    source: orderSource,
+    adminMeta: wizMeta // 🔥 Meta data puthiyathayi cherthu
   };
 
   saveToLocal(finalData.phone, finalData);
@@ -2793,8 +2800,11 @@ function sendToWhatsapp() {
   // 🔥 LOGIC UPDATE: Determine Target Phone
   let targetPhone = "";
   if (isAdmin) {
-    // If Admin: Send to Customer's WhatsApp or Phone
-    targetPhone = d.whatsapp || d.phone;
+    // 🔥 FIX 2: Admin select cheytha Meta value vechu krithyamaya number edukkunnu
+    let meta = d.adminMeta || '';
+    if (meta.includes('W')) targetPhone = d.whatsapp || d.phone;
+    else if (meta.includes('A')) targetPhone = d.altphone || d.phone;
+    else targetPhone = d.phone; // 'M' aayal Main Phone edukkum
   } else {
     // If Customer: Send to Admin
     targetPhone = targetAdminPhone;
