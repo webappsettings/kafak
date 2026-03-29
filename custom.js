@@ -1765,9 +1765,16 @@ window.updatePrice = function (qty, isQuick) {
   let totalCourier = 0;
 
   if (typeof courierRates !== 'undefined') {
-    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
-    // സ്പേസ് ഉള്ളതും അടിവര ഉള്ളതും ആയ എല്ലാ കീകളും ചെക്ക് ചെയ്യുന്നു
-    let zoneData = courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`] || courierRates[`${zone} DEFAULT`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone] || courierRates['REST OF INDIA'];
+    // 🔥 DTDC മാറ്റി Empty ആക്കി (അപ്പോൾ അത് കൃത്യമായി DEFAULT റേറ്റ് എടുക്കും)
+    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+
+    // 🔥 സ്പേസ് ഉള്ളതും അടിവര ഉള്ളതും ഡിഫോൾട്ടും ആയ എല്ലാ കീകളും ചെക്ക് ചെയ്യുന്നു
+    let zoneData = (p ? (courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`]) : null)
+      || courierRates[`${zone} DEFAULT`]
+      || courierRates[`${zone}_DEFAULT`]
+      || courierRates[zone]
+      || courierRates['REST OF INDIA DEFAULT']
+      || courierRates['REST OF INDIA'];
 
     if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
       let courierBaseRate = window.parseDynamicRate(zoneData.baseRate, n);
@@ -2007,13 +2014,18 @@ function checkForChanges() {
     if (isQtyChanged) {
       let oldQty = parseInt(savedQty) || 0;
       let newQty = parseInt(currQty) || 0;
-      let stateKey = getZoneKey($('#edit-state').val());
-      let rates = courierRates[stateKey] || {};
+      let stateVal = $('#edit-state').val();
+      let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
 
       let oldBase = (courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
       let newBase = (courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
-      let oldTotal = oldBase + (rates[oldQty] || 0);
-      let newTotal = newBase + (rates[newQty] || 0);
+
+      // 🔥 കൃത്യമായി ഫൈനൽ റേറ്റ് എടുക്കുന്നു
+      let oldCourier = window.getDeliveryCharge(stateVal, oldQty, prov);
+      let newCourier = window.getDeliveryCharge(stateVal, newQty, prov);
+
+      let oldTotal = oldBase + oldCourier;
+      let newTotal = newBase + newCourier;
       let balance = newTotal - oldTotal;
 
       $('#admin-diff-viewer').html(`
@@ -2717,8 +2729,15 @@ function sendToWhatsapp() {
   let serviceMargin = 0;
 
   if (typeof courierRates !== 'undefined') {
-    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
-    let zoneData = courierRates[`${zone}_${p}`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone] || courierRates['REST OF INDIA'];
+    // 🔥 DTDC മാറ്റി DEFAULT സപ്പോർട്ട് കൊണ്ടുവന്നു
+    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+
+    let zoneData = (p ? (courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`]) : null)
+      || courierRates[`${zone} DEFAULT`]
+      || courierRates[`${zone}_DEFAULT`]
+      || courierRates[zone]
+      || courierRates['REST OF INDIA DEFAULT']
+      || courierRates['REST OF INDIA'];
 
     if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
       courierBase = window.parseDynamicRate(zoneData.baseRate, n);
