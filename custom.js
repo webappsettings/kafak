@@ -1824,7 +1824,7 @@ window.updatePrice = function (qty, isQuick) {
   const zone = getZoneKey(currentState, savedProvider);
 
   // 🔥🔥🔥 MARGIN FIX STARTS HERE (100% Dynamic & Safe) 🔥🔥🔥
-  let courierTotal = 0;
+  let totalCourier = 0;
 
   if (typeof courierRates !== 'undefined') {
     let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
@@ -1832,19 +1832,19 @@ window.updatePrice = function (qty, isQuick) {
     let zoneData = courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`] || courierRates[`${zone} DEFAULT`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone] || courierRates['REST OF INDIA'];
 
     if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
-      let base = window.parseDynamicRate(zoneData.baseRate, n);
-      // 🔥 FIX: 'serviceCharge' കിട്ടിയില്ലെങ്കിൽ 0 ആക്കാതെ, നേരിട്ട് കൊറിയർ ടോട്ടൽ കണ്ടുപിടിക്കുന്നു!
+      let courierBaseRate = window.parseDynamicRate(zoneData.baseRate, n);
       let margin = window.parseDynamicRate(zoneData.serviceCharge, n);
-      courierTotal = base + margin;
+      totalCourier = courierBaseRate + margin;
     } else if (zoneData && zoneData[n] !== undefined) {
-      courierTotal = Number(zoneData[n]);
+      totalCourier = Number(zoneData[n]);
     }
   }
 
   // ഫീൽഡുകൾ ഒന്നും വർക്ക് ആയില്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി 80 രൂപ വെക്കുന്നു (60+20)
-  if (courierTotal === 0) courierTotal = (n * 60) + 20;
+  if (totalCourier === 0) totalCourier = (n * 60) + 20;
 
-  const total = base + courierTotal;
+  const total = base + totalCourier;
+  // 🔥🔥🔥 MARGIN FIX ENDS HERE 🔥🔥🔥
   // 🔥🔥🔥 MARGIN FIX ENDS HERE 🔥🔥🔥
 
   let htmlContent = `
