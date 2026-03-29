@@ -193,21 +193,20 @@ window.parseDynamicRate = function (rateString, qty) {
 };
 
 window.getDeliveryCharge = function (state, qty, provider) {
-  if (!window.ratesCache) return (qty * 60) + 20;
+  // 🔥 FIX 1: window.ratesCache മാറ്റി courierRates ആക്കി!
+  if (typeof courierRates === 'undefined') return (qty * 60) + 20;
 
   let zone = getZoneKey(state);
-  let prov = provider ? String(provider).toUpperCase().trim() : 'DEFAULT';
+  let p = provider ? String(provider).toUpperCase().trim() : '';
 
-  // 🔥 FIX: സ്പേസ് ഇട്ടാലും അടിവര ഇട്ടാലും കൃത്യമായി കണ്ടുപിടിക്കാൻ
-  let key = `${zone} ${prov}`;
-  if (!window.ratesCache[key]) key = `${zone}_${prov}`;
-  if (!window.ratesCache[key]) key = `${zone} DEFAULT`;
-  if (!window.ratesCache[key]) key = `${zone}_DEFAULT`;
-  if (!window.ratesCache[key]) key = zone;
-  if (!window.ratesCache[key]) key = 'REST OF INDIA DEFAULT';
-  if (!window.ratesCache[key]) key = 'REST OF INDIA';
+  // 🔥 FIX 2: ഡിഫോൾട്ട് സപ്പോർട്ടോടെ ഷീറ്റിൽ നിന്നും വാല്യൂ എടുക്കുന്നു
+  let zoneData = (p ? (courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`]) : null)
+    || courierRates[`${zone} DEFAULT`]
+    || courierRates[`${zone}_DEFAULT`]
+    || courierRates[zone]
+    || courierRates['REST OF INDIA DEFAULT']
+    || courierRates['REST OF INDIA'];
 
-  let zoneData = window.ratesCache[key];
   if (!zoneData) return (qty * 60) + 20;
 
   let baseCharge = 0;
@@ -1144,12 +1143,18 @@ window.submitQuickOrder = async function () {
       let newQty = parseInt(finalData.quantity) || 0;
 
       if (newQty > oldQty) {
-        let stateKey = getZoneKey(finalData.state);
-        let rates = courierRates[stateKey] || {};
+        let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
+        let stateVal = finalData.state || 'KERALA';
+
         let newBase = (courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
         let oldBase = (courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
-        let balance = (newBase + (rates[newQty] || 0)) - (oldBase + (rates[oldQty] || 0));
-        let newTotal = newBase + (rates[newQty] || 0);
+
+        let oldCourier = window.getDeliveryCharge(stateVal, oldQty, prov);
+        let newCourier = window.getDeliveryCharge(stateVal, newQty, prov);
+
+        let oldTotal = oldBase + oldCourier;
+        let newTotal = newBase + newCourier;
+        let balance = newTotal - oldTotal;
 
         showLoader(true);
 
