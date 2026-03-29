@@ -451,68 +451,6 @@ function syncUserDataBackground(phone) {
 }
 
 
-function syncUserDataBackground(phone) {
-  let localData = localUsersMap[phone] || {};
-  let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
-
-  const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
-    .then(res => res.json())
-    .catch(() => null);
-
-  const ratePromise = fetchCourierRates();
-
-  return Promise.all([userPromise, ratePromise]).then(([userRes]) => {
-    let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
-
-    // 1. 🔥 NETWORK ERROR (ഇതാണ് Draft ചെക്കിങ്!)
-    if (!userRes || (userRes.result === 'error' && !isAdmin)) {
-      if (localData && !localData.orderid && Object.keys(localData).length > 0) {
-        console.log("Draft found locally.");
-        userData = localData;
-        savedOrderData = JSON.parse(JSON.stringify(localData));
-        editingOrderId = null; // Draft ആണെന്ന് ഉറപ്പിക്കാൻ
-        renderEditView(localData);
-        return;
-      }
-
-      if (!userRes && localData && localData.orderid) {
-        userData = localData;
-        savedOrderData = JSON.parse(JSON.stringify(localData));
-        editingOrderId = localData.orderid;
-        renderEditView(localData);
-        return;
-      }
-
-      if (!isAdmin) clearUserLogin();
-      return;
-    }
-
-    // 2. 🔥 SERVER SUCCESS
-    if (userRes && userRes.result === 'success' && userRes.data) {
-      let serverData = userRes.data;
-      let finalData = { ...localData, ...serverData };
-      finalData.Status = serverData.Status || "Pending";
-
-      if (finalData.orderid) {
-        editingOrderId = finalData.orderid;
-        if (['completed', 'delivered', 'refunded'].includes(String(finalData.Status).toLowerCase())) {
-          editingOrderId = null;
-          finalData.quantity = null;
-          delete finalData.quantity;
-        }
-      } else {
-        editingOrderId = null;
-      }
-
-      userData = finalData;
-      savedOrderData = JSON.parse(JSON.stringify(finalData));
-      saveToLocal(phone, finalData);
-      renderEditView(finalData);
-    }
-  });
-}
-
-
 function checkUserOnServerBackground(phone) {
   fetch(`${sc}?action=getCustomer&phone=${phone}`)
     .then(res => res.json())
@@ -1845,7 +1783,6 @@ window.updatePrice = function (qty, isQuick) {
 
   const total = base + totalCourier;
   // 🔥🔥🔥 MARGIN FIX ENDS HERE 🔥🔥🔥
-  // 🔥🔥🔥 MARGIN FIX ENDS HERE 🔥🔥🔥
 
   let htmlContent = `
       <div class="price-row"><span>${t.lbl_honey_price} (<span class="qty-count">${n}</span>)</span><span>₹<span class="val-base">${base}</span></span></div>
@@ -2700,147 +2637,6 @@ function renderQtyDropdowns() {
   }
 }
 
-
-// ==========================================
-// 🔥 NEW SYNC WINDOW LOGIC (FOR EDIT VIEW)
-// ==========================================
-
-let activeSyncOid = null; // To store current OID
-
-// 1. OPEN SYNC MODAL (Replaces old syncSingleOrder)
-
-
-// 2. RENDER ITEM IN MODAL
-function renderSingleSyncItem(u) {
-  const list = document.getElementById('single-sync-list');
-  list.innerHTML = '';
-
-  // Determine Values
-  let fromStatus = u.oldStatus || "Pending";
-  let toStatus = u.status;
-  let extraInfo = "";
-
-  // Badge Colors
-  let getBadgeColor = (s) => {
-    if (s === 'Paid') return 'success';
-    if (s === 'Dispatched') return 'primary';
-    if (s === 'Sent') return 'info text-dark';
-    if (s === 'Archive') return 'dark';
-    return 'secondary';
-  };
-
-  // Special Display for Dispatched Date
-  if (toStatus === 'Dispatched' && u.actionDate) {
-    let d = new Date(u.actionDate);
-    // Format: 06/02/2026 12:00 PM
-    let dateStr = d.toLocaleString('en-GB', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-    extraInfo = `<div class="mt-2 small text-success fw-bold p-2 bg-white rounded border border-success border-opacity-25"><i class="far fa-calendar-alt me-1"></i> Dispatched Date: ${dateStr}</div>`;
-  }
-
-  // HTML Structure
-  let html = `
-    <div class="d-flex align-items-center justify-content-between">
-        <div>
-            <div class="fw-bold text-dark mb-1" style="font-size:14px;">${u.oid}</div>
-            
-            <div style="font-size:13px; color:#555;">
-                <span class="badge bg-light text-secondary border">${fromStatus}</span> 
-                <i class="fas fa-long-arrow-alt-right mx-1 text-muted"></i> 
-                <span class="badge bg-${getBadgeColor(toStatus)}">${toStatus}</span>
-            </div>
-            
-            ${extraInfo}
-        </div>
-        
-        <button onclick="discardSingleChanges()" class="btn btn-sm btn-outline-danger border-0 bg-white shadow-sm" style="width:35px; height:35px; border-radius:50%;" title="Undo">
-            <i class="fas fa-undo"></i>
-        </button>
-    </div>`;
-
-  list.innerHTML = html;
-}
-
-// 3. UPLOAD NOW (Perform Sync)
-window.performSingleSync = function () {
-  if (!activeSyncOid) return;
-
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let myUpdate = updates.find(u => u.oid === activeSyncOid);
-
-  if (!myUpdate) return;
-
-  // UI Loading
-  const btn = $('#singleSyncModal .btn-dark');
-  let originalHtml = btn.html();
-  btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> UPLOADING...');
-
-  fetch(sc, {
-    method: 'POST',
-    body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
-  })
-    .then(res => res.json())
-    .then(data => {
-      if (data.result === 'success') {
-        // Remove from Local
-        let newUpdates = updates.filter(u => u.oid !== activeSyncOid);
-        localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
-
-        // 🔥 FIX: Hardcode ചെയ്ത 'Paid' ഉം തെറ്റായ 'oid' ഉം മാറ്റി കൃത്യമാക്കി!
-        let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-        let orderIdx = allOrders.findIndex(o => o.orderid === activeSyncOid);
-        if (orderIdx > -1) {
-          allOrders[orderIdx].Status = myUpdate.status; // ഏത് സ്റ്റാറ്റസ് ആണോ അത് തനിയെ എടുക്കും
-          localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-        }
-
-        // Close Modal & Show Success
-        $('#singleSyncModal').modal('hide');
-        Swal.fire({ icon: 'success', title: 'Synced Successfully!', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
-
-        // Update UI Button (Blue -> Grey)
-        updateAdminUI(myUpdate.status, activeSyncOid);
-      } else {
-        alert("Sync Failed!");
-      }
-    })
-    .catch(err => alert("Network Error"))
-    .finally(() => {
-      btn.prop('disabled', false).html(originalHtml);
-    });
-}
-
-// 4. DISCARD / UNDO
-window.discardSingleChanges = function () {
-  if (!activeSyncOid) return;
-
-  if (!confirm("Discard these changes?")) return;
-
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  let myUpdate = updates.find(u => u.oid === activeSyncOid);
-  let oldStatus = myUpdate ? (myUpdate.oldStatus || "Pending") : "Pending";
-
-  // Remove from Local
-  let newUpdates = updates.filter(u => u.oid !== activeSyncOid);
-  localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
-
-  // Close Modal
-  $('#singleSyncModal').modal('hide');
-
-  // 🔥 Revert UI immediately to Old Status
-  // We update the UI to reflect the state BEFORE the change
-  updateAdminUI(oldStatus, activeSyncOid);
-
-  // Optional: Reload data from cache to be safe
-  let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-  let cachedOrder = cachedOrders.find(o => o.orderid === activeSyncOid);
-  if (cachedOrder) {
-    // Revert cache object status if needed, or just rely on server data next refresh
-    // For visual feedback, updateAdminUI is enough
-  }
-
-  showToast('info', 'Changes Discarded');
-}
-
 // Helper Toast (if not already exists)
 function showToast(icon, title) {
   Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: icon, title: title });
@@ -2849,9 +2645,8 @@ function showToast(icon, title) {
 function sendToWhatsapp() {
   const d = successData;
   const safe = (val) => String(val || '').trim().toUpperCase();
-  const adminPhone = '7788990313'; // Admin Phone Number
+  const targetAdminPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
-  // 🔥 MISSING PART ADDED: Check if Admin is logged in
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
   // 1. Language & Translations
@@ -2971,7 +2766,7 @@ function sendToWhatsapp() {
     paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
   }
 
-  const footer = `\n\n*${t.txt_gpay}: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
+  const footer = `\n\n*${t.txt_gpay}: ${targetAdminPhone} (KAFAK LLP)*${paymentNote}`;
 
   // 🔥 LOGIC UPDATE: Determine Target Phone
   let targetPhone = "";
@@ -2980,7 +2775,7 @@ function sendToWhatsapp() {
     targetPhone = d.whatsapp || d.phone;
   } else {
     // If Customer: Send to Admin
-    targetPhone = adminPhone;
+    targetPhone = targetAdminPhone;
   }
 
   // Clean Number logic
@@ -3440,81 +3235,6 @@ window.showIOSInstallPrompt = function () {
 // യൂസർ OK അടിച്ചാൽ മെസ്സേജ് ക്ലോസ് ചെയ്യുന്നു
 window.closeIOSPrompt = function () {
   $('#ios-install-prompt').fadeOut(300, function () { $(this).remove(); });
-}
-
-window.confirmOrder = function () {
-  let rawQty = $('#bottle-qty').val();
-  let finalQty = rawQty === 'custom' ? $('#custom-qty').val() : rawQty;
-  userData.quantity = finalQty;
-
-  let finalSubmitData = { ...userData };
-  finalSubmitData.action = isEditMode ? 'editOrder' : 'addOrder';
-
-  if (!isEditMode) {
-    finalSubmitData.orderid = "K-" + new Date().getFullYear().toString().slice(-2) +
-      String(new Date().getMonth() + 1).padStart(2, '0') +
-      String(new Date().getDate()).padStart(2, '0') +
-      String(new Date().getHours()).padStart(2, '0') +
-      String(new Date().getMinutes()).padStart(2, '0') +
-      String(new Date().getSeconds()).padStart(2, '0');
-  } else {
-    finalSubmitData.orderid = editingOrderId;
-    finalSubmitData.isEdit = true;
-  }
-
-  showLoader(true);
-
-  $.ajax({
-    url: sc,
-    method: "POST",
-    dataType: "json",
-    data: finalSubmitData,
-    success: function (res) {
-      showLoader(false);
-      if (res.result === 'success') {
-
-        // 🔥 FIX: സർവറിൽ സേവ് ആയി SUCCESS എന്ന് വന്നാൽ മാത്രം ലോക്കലിൽ സേവ് ചെയ്യുന്നു!
-        if (!isEditMode) {
-          userData.orderid = finalSubmitData.orderid;
-        }
-
-        SafeStorage.setItem(STORAGE_KEY, JSON.stringify(userData));
-
-        successData = {
-          orderid: finalSubmitData.orderid,
-          name: userData.name,
-          qty: userData.quantity,
-          isEdit: isEditMode
-        };
-
-        if (!isEditMode) {
-          localUsersMap[currentLoginPhone] = finalSubmitData.orderid;
-          SafeStorage.setItem('kafakLocalUsersMap', JSON.stringify(localUsersMap));
-        }
-
-        renderSuccessView();
-
-        setTimeout(() => {
-          let currentLang = $('#language-select').val();
-          let msg = currentLang === 'ml' ? `✅ *പുതിയ ഓർഡർ ലഭിച്ചു!*\n\n*ID:* ${finalSubmitData.orderid}` : `✅ *New Order Received!*\n\n*ID:* ${finalSubmitData.orderid}`;
-
-          let iframe = document.createElement('iframe');
-          iframe.style.display = 'none';
-          iframe.src = `https://wa.me/${adminPhone}?text=${encodeURIComponent(msg)}`;
-          document.body.appendChild(iframe);
-          setTimeout(() => { document.body.removeChild(iframe); }, 3000);
-        }, 1000);
-
-      } else {
-        alert(getAlert('submitError') || "Error submitting order");
-      }
-    },
-    error: function () {
-      showLoader(false);
-      // 🔥 ഇവിടെ ലോക്കൽ സേവ് ഇല്ലാത്തതുകൊണ്ട് ഡ്രാഫ്റ്റ് ആയി തന്നെ നിൽക്കും
-      alert(getAlert('submitError') || "Network Error! Could not submit order.");
-    }
-  });
 }
 
 // 🔥 Copy Tracking ID Function
