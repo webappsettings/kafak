@@ -1804,6 +1804,15 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             }
         }
 
+        // 🔥 NEW: Dispatched aakumpol loose sticker thaniye kurayan 'S' tag add cheyyunnu
+        if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            if (!cleanMeta.includes('S')) {
+                cleanMeta = cleanMeta.replace(/P_\d+/g, '').trim(); // pazhaya P tag undenkil maaykkunnu
+                cleanMeta = (cleanMeta ? cleanMeta + " " : "") + "S P_" + Date.now();
+                metaCleaned = true;
+            }
+        }
+
         // 🔥 FIX: DATE & TIME LOGIC (Dispatched ആകുമ്പോഴെല്ലാം കൃത്യമായി ഡേറ്റ് സേവ് ആകും!)
         let finalActionDate = null;
         if (customDate) {
