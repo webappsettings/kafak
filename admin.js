@@ -32,7 +32,7 @@ window.handleSmartSearch = function (value) {
 // 🔥 GLOBAL: Contact Selection Memory
 let contactMem = JSON.parse(localStorage.getItem('contactMem') || "{}");
 const globalBaseCost = 330;
-let availableProviders = ["DTDC", "India Post", "ST Courier", "Professional", "Delhivery"];
+let availableProviders = [];
 
 window.saveContactSelection = function (oid, val) {
     contactMem[oid] = val; // സേവ് ചെയ്യുന്നു
@@ -365,25 +365,35 @@ function confirmAction(text, callback) {
     }).then((result) => { if (result.isConfirmed) callback(); });
 }
 
-// Background Rate Fetcher
-// 🔥 BACKGROUND RATE FETCHER (Fixed: Always keeps rates up-to-date & Updates UI)
+// 🔥 BACKGROUND RATE FETCHER (Fixed: Dynamic Providers & UI Update)
 function fetchRatesBackground() {
     let cached = localStorage.getItem('adminRatesCache');
 
-    // കാഷെ ഉണ്ടെങ്കിൽ അത് ആദ്യം എടുക്കുന്നു (ആപ്പ് പെട്ടെന്ന് ലോഡ് ആവാൻ)
     if (cached && cached !== "{}" && cached !== "null") {
         let parsed = JSON.parse(cached);
         if (Object.keys(parsed).length > 0) {
             courierRates = parsed;
-            if (parsed._providers) {
-                availableProviders = parsed._providers;
+            // 🔥 ഷീറ്റിൽ നിന്നുള്ള കൊറിയർ പേരുകൾ എടുക്കുന്നു
+            let tempProviders = new Set();
+            for (let stateKey in parsed) {
+                if (stateKey !== 'prices' && stateKey !== '_providers' && typeof parsed[stateKey] === 'object') {
+                    // Get provider names from keys (e.g., "KERALA DTDC" -> "DTDC")
+                    let parts = stateKey.split('_');
+                    if (parts.length > 1 && parts[1] !== 'DEFAULT') tempProviders.add(parts[1]);
+
+                    let spaceParts = stateKey.split(' ');
+                    let lastWord = spaceParts[spaceParts.length - 1];
+                    if (spaceParts.length > 1 && lastWord !== 'DEFAULT' && lastWord !== 'INDIA') tempProviders.add(lastWord);
+                }
             }
-            // 🔥 ഇവിടെ ഉണ്ടായിരുന്ന 'return;' നമ്മൾ ഒഴിവാക്കി! 
-            // (അതുകൊണ്ട് എപ്പോഴും പുതിയ റേറ്റ് ഷീറ്റിൽ നിന്നും എടുക്കും)
+            if (parsed._providers && parsed._providers.length > 0) {
+                availableProviders = parsed._providers;
+            } else if (tempProviders.size > 0) {
+                availableProviders = Array.from(tempProviders);
+            }
         }
     }
 
-    // കാഷെ ഉണ്ടെങ്കിലും ഇല്ലെങ്കിലും ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ റേറ്റ് എപ്പോഴും ചെക്ക് ചെയ്യുന്നു!
     console.log("🔄 Fetching latest rates from server...");
     fetch(`${scriptURL}?action=getRates`)
         .then(res => res.json())
@@ -391,16 +401,27 @@ function fetchRatesBackground() {
             if (data.result === 'success' && data.rates) {
                 courierRates = data.rates;
 
-                if (data.rates._providers) {
-                    availableProviders = data.rates._providers;
+                let tempProviders = new Set();
+                for (let stateKey in data.rates) {
+                    if (stateKey !== 'prices' && stateKey !== '_providers' && typeof data.rates[stateKey] === 'object') {
+                        let parts = stateKey.split('_');
+                        if (parts.length > 1 && parts[1] !== 'DEFAULT') tempProviders.add(parts[1]);
+
+                        let spaceParts = stateKey.split(' ');
+                        let lastWord = spaceParts[spaceParts.length - 1];
+                        if (spaceParts.length > 1 && lastWord !== 'DEFAULT' && lastWord !== 'INDIA') tempProviders.add(lastWord);
+                    }
                 }
 
-                // പുതിയ റേറ്റ് കാഷെയിലേക്ക് സേവ് ചെയ്യുന്നു
+                if (data.rates._providers && data.rates._providers.length > 0) {
+                    availableProviders = data.rates._providers;
+                } else if (tempProviders.size > 0) {
+                    availableProviders = Array.from(tempProviders);
+                }
+
                 localStorage.setItem('adminRatesCache', JSON.stringify(courierRates));
                 console.log("✅ Rates Updated & Saved to LocalStorage");
 
-                // 🔥 വിട്ടുപോയ ആ പ്രധാനപ്പെട്ട ഭാഗം തിരികെ ചേർത്തു!
-                // ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ റേറ്റ് കിട്ടിയാൽ ഉടൻ തന്നെ സ്ക്രീനിൽ കാർഡുകൾ അപ്ഡേറ്റ് ആവാൻ:
                 if (typeof allOrders !== 'undefined' && allOrders && allOrders.length > 0) {
                     renderTabs(allOrders);
                 }
