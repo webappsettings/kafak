@@ -2442,8 +2442,14 @@ window.sendWA = function (index, type = 'pending') {
 
     let courierBase = 0; let serviceMargin = 0;
     if (typeof courierRates !== 'undefined') {
-        let p = savedProvider ? String(savedProvider).toUpperCase().trim() : 'DTDC';
-        let zoneData = courierRates[`${stateKey}_${p}`] || courierRates[`${stateKey}_DEFAULT`] || courierRates[stateKey] || courierRates['REST OF INDIA'];
+        let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+
+        let zoneData = (p ? (courierRates[`${stateKey} ${p}`] || courierRates[`${stateKey}_${p}`]) : null)
+            || courierRates[`${stateKey} DEFAULT`]
+            || courierRates[`${stateKey}_DEFAULT`]
+            || courierRates[stateKey]
+            || courierRates['REST OF INDIA DEFAULT']
+            || courierRates['REST OF INDIA'];
 
         if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
             courierBase = window.parseDynamicRate(zoneData.baseRate, n);
@@ -5806,7 +5812,7 @@ window.parseDynamicRate = function (rateString, qty) {
     return matchedRate;
 };
 
-// 🔥 മാർജിൻ ഉൾപ്പെടെയുള്ള കൊറിയർ ചിലവ് കണ്ടുപിടിക്കാൻ (Fixed Margin Addition)
+// 🔥 മാർജിൻ ഉൾപ്പെടെയുള്ള കൊറിയർ ചിലവ് കണ്ടുപിടിക്കാൻ
 function getCourierRate(state, provider, qty) {
     let s = String(state || '').toUpperCase().trim();
     let p = String(provider || '').toUpperCase().trim();
@@ -5815,19 +5821,24 @@ function getCourierRate(state, provider, qty) {
     let courierTotal = 0;
 
     if (typeof courierRates !== 'undefined') {
-        // Check all combinations safely
-        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s}_${p}`] || courierRates[`${s} DEFAULT`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+        // 🔥 DTDC മാറ്റി DEFAULT സപ്പോർട്ട് കൊണ്ടുവന്നു
+        let zoneData = (p ? (courierRates[`${s} ${p}`] || courierRates[`${s}_${p}`]) : null)
+            || courierRates[`${s} DEFAULT`]
+            || courierRates[`${s}_DEFAULT`]
+            || courierRates[s]
+            || courierRates['REST OF INDIA DEFAULT']
+            || courierRates['REST OF INDIA'];
 
         if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
             let base = window.parseDynamicRate(zoneData.baseRate, q);
             let margin = window.parseDynamicRate(zoneData.serviceCharge, q);
-            courierTotal = base + margin; // 🔥 മാർജിൻ കൂട്ടാൻ വിട്ടുപോയത് ഇവിടെ ഫിക്സ് ചെയ്തു!
+            courierTotal = base + margin;
         } else if (zoneData && zoneData[q] !== undefined) {
             courierTotal = Number(zoneData[q]);
         }
     }
 
-    if (courierTotal === 0) courierTotal = (q * 60) + 20; // Safe Fallback
+    if (courierTotal === 0) courierTotal = (q * 60) + 20;
     return courierTotal;
 }
 
@@ -5840,7 +5851,12 @@ function getBaseCourierRate(state, provider, qty) {
     let courierBase = 0;
 
     if (typeof courierRates !== 'undefined') {
-        let zoneData = courierRates[`${s} ${p}`] || courierRates[`${s}_${p}`] || courierRates[`${s} DEFAULT`] || courierRates[`${s}_DEFAULT`] || courierRates[s] || courierRates['REST OF INDIA'];
+        let zoneData = (p ? (courierRates[`${s} ${p}`] || courierRates[`${s}_${p}`]) : null)
+            || courierRates[`${s} DEFAULT`]
+            || courierRates[`${s}_DEFAULT`]
+            || courierRates[s]
+            || courierRates['REST OF INDIA DEFAULT']
+            || courierRates['REST OF INDIA'];
 
         if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
             courierBase = window.parseDynamicRate(zoneData.baseRate, q);
