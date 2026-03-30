@@ -2860,7 +2860,7 @@ async function runPrintLogic(checkboxes, directData = null) {
                 Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
             </div>
 
-            <div style="position:absolute; bottom:9mm; right:5mm; font-size:12px; font-weight:800; color:#000; border:1px solid #000; padding:1px 5px; border-radius:4px;">
+            <div style="position:absolute; bottom:9mm; right:5mm; font-size:10px; font-weight:800; color:#000; border:1px solid #000; padding:0px 3px; border-radius:4px;">
                 #${seqNum}
             </div>
 
