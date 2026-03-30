@@ -7682,10 +7682,10 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         let inputHtml = `
             <div class="d-flex justify-content-between align-items-center mt-1 pt-2 border-top border-secondary border-opacity-10">
-                <div class="input-group input-group-sm shadow-sm" style="border-radius:4px; overflow:hidden; flex-wrap: nowrap; width:calc(100% - 40px);">
-                    <input type="number" id="ratio-qty-${k}" class="form-control p-0 text-center fw-bold border-secondary border-opacity-25 shadow-none bg-white" style="font-size:10px; width:30px;" value="${rQty}" step="1" onchange="saveRatioAvg('${k}')">
+                <div class="input-group input-group-sm shadow-sm" style="border-radius:4px; overflow:hidden; flex-wrap: nowrap; width:calc(100% - 40px);" title="Calculated Formula (Read Only)">
+                    <input type="number" id="ratio-qty-${k}" class="form-control p-0 text-center fw-bold border-secondary border-opacity-25 shadow-none bg-light text-muted" style="font-size:10px; width:30px;" value="${rQty}" readonly>
                     <span class="input-group-text p-0 bg-light text-muted border-secondary border-opacity-25 d-flex justify-content-center" style="font-size:8px; font-weight:700; width:35px;">${itemObj.trkLbl}=</span>
-                    <input type="number" id="ratio-unit-${k}" class="form-control p-0 text-center fw-bold text-success border-secondary border-opacity-25 shadow-none bg-white" style="font-size:10px; width:35px;" value="${rUnit}" step="0.01" onchange="saveRatioAvg('${k}')">
+                    <input type="number" id="ratio-unit-${k}" class="form-control p-0 text-center fw-bold text-success border-secondary border-opacity-25 shadow-none bg-light" style="font-size:10px; width:35px;" value="${rUnit}" readonly>
                 </div>
                 ${recBtn}
             </div>
