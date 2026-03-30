@@ -7408,7 +7408,7 @@ window.recalcRecordAvg = function () {
     document.getElementById('rec-avg').value = avg.toFixed(4);
 };
 
-// റെക്കോർഡിങ് അവസാനിപ്പിക്കാൻ
+// റെക്കോർഡിങ് അവസാനിക്കുമ്പോൾ കാൽക്കുലേറ്റ് ചെയ്യാനും സേവ് ചെയ്യാനും (With Smart Dropdown)
 window.stopRecording = function (key) {
     if (!window.isInventoryLoaded || !window.globalInventoryDB) { showToast('error', 'Syncing... Please wait!'); return; }
     let db = window.globalInventoryDB;
@@ -7443,8 +7443,14 @@ window.stopRecording = function (key) {
                 <span class="input-group-text bg-white text-muted fw-bold">Unit(s)</span>
             </div>
             
-            <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">New Average (Per ${trackType})</label>
-            <input type="number" id="rec-avg" class="form-control fw-bold text-success fs-5 text-center bg-white shadow-sm border-success border-opacity-50" readonly value="0" step="0.0001">
+            <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;">Calculated Average (Per ${trackType})</label>
+            <input type="number" id="rec-avg" class="form-control fw-bold text-success fs-6 text-center bg-white shadow-sm border-success border-opacity-50 mb-3" readonly value="0" step="0.0001">
+
+            <label class="fw-bold small text-muted text-uppercase" style="font-size:10px;"><i class="fas fa-cog"></i> Save Mode (എങ്ങനെ സേവ് ചെയ്യണം?)</label>
+            <select id="rec-save-mode" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm text-center" style="font-size:12px;">
+                <option value="latest" selected>Use Latest Average (പുതിയത് മാത്രം)</option>
+                <option value="combine">Combine with Old Average (രണ്ടും കൂടി ചേർക്കുക)</option>
+            </select>
         </div>
         `,
         showCancelButton: true,
@@ -7452,17 +7458,31 @@ window.stopRecording = function (key) {
         confirmButtonColor: "#198754",
         customClass: { popup: 'rounded-4' },
         didOpen: () => { recalcRecordCount(key); },
-        preConfirm: () => parseFloat(document.getElementById('rec-avg').value) || 0
+        preConfirm: () => {
+            return {
+                avg: parseFloat(document.getElementById('rec-avg').value) || 0,
+                mode: document.getElementById('rec-save-mode').value
+            };
+        }
     }).then((res) => {
         if (res.isConfirmed) {
-            let newAvg = res.value;
-            db[key].avgUsage = newAvg;
+            let currentNewAvg = res.value.avg;
+            let saveMode = res.value.mode;
+            let oldAvg = parseFloat(db[key].avgUsage) || 0;
+
+            // 🔥 Dropdown-ലെ ഓപ്ഷൻ അനുസരിച്ച് കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+            let finalAvg = currentNewAvg;
+            if (saveMode === 'combine' && oldAvg > 0) {
+                finalAvg = (oldAvg + currentNewAvg) / 2; // രണ്ടും കൂട്ടി പകുതി എടുക്കുന്നു
+            }
+
+            db[key].avgUsage = finalAvg; // ഫൈനൽ ആവറേജ് സേവ് ചെയ്യുന്നു
             db[key].recordStartTime = null;
 
             db[key].ratioQty = parseFloat(document.getElementById('rec-calc-count').innerText) || 1;
             db[key].ratioUnit = parseFloat(document.getElementById('rec-consumed').value) || 1;
 
-            Swal.fire({ title: 'Saving...', didOpen: () => Swal.showLoading() });
+            Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
             fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
