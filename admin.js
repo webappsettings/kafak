@@ -7289,29 +7289,6 @@ function getLocalIsoString(dateObj) {
     return (new Date(dateObj - tzoffset)).toISOString().slice(0, 16);
 }
 
-// ഇൻവെന്ററി കാർഡിൽ നിന്നും നേരിട്ട് എഡിറ്റ് ചെയ്യാൻ
-window.saveRatioAvg = function (key) {
-    if (!window.isInventoryLoaded || !window.globalInventoryDB) { showToast('error', 'Syncing... Please wait!'); return; }
-
-    let qty = parseFloat(document.getElementById(`ratio-qty-${key}`).value) || 1;
-    let unit = parseFloat(document.getElementById(`ratio-unit-${key}`).value) || 0;
-    let avg = qty > 0 ? (unit / qty) : 0;
-
-    let db = window.globalInventoryDB;
-    if (!db[key]) db[key] = {};
-    db[key].avgUsage = avg;
-    db[key].ratioQty = qty;
-    db[key].ratioUnit = unit;
-
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'saveInventory', inventory: db })
-    }).then(() => {
-        showToast('success', 'Average Updated! ✅');
-        window.globalInventoryDB = db;
-        renderLiveStockTracker();
-    });
-};
 
 // റെക്കോർഡിങ് തുടങ്ങാൻ
 window.startRecording = function (key) {
