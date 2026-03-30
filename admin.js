@@ -5439,7 +5439,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH PERFECT INITIAL LOAD)
+// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH PERFECT INITIAL LOAD & LOOSE STICKER LOGIC)
 window.updatePrintPrediction = function () {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -5505,10 +5505,14 @@ window.updatePrintPrediction = function () {
     let looseStickers = Math.round((currentBalance - fullSheets) * historicalRatio);
     if (looseStickers >= historicalRatio) { fullSheets += 1; looseStickers = 0; }
 
+    // 🔥 FIX: മുൻപ് മുറിച്ച സ്റ്റിക്കറുകൾ (looseStickers) കുറച്ചിട്ട് വേണം പുതിയ ഷീറ്റ് കണക്കാക്കാൻ!
+    let actualLabelsToPrint = Math.max(0, unprintedStickers - looseStickers);
+    let exactNeededSheets = actualLabelsToPrint / ratio;
+
     if (document.getElementById('unprinted-bottles-count')) {
         document.getElementById('unprinted-bottles-count').innerText = unprintedStickers;
         document.getElementById('printed-bottles-count').innerText = printedStickers;
-        let exactNeededSheets = unprintedStickers / ratio;
+
         document.getElementById('required-sheets-count').innerText = Math.ceil(exactNeededSheets);
         document.getElementById('exact-sheets-count').innerText = exactNeededSheets.toFixed(1);
     }
@@ -5516,20 +5520,19 @@ window.updatePrintPrediction = function () {
     // 1. 🔥 Aadyam Dropdown options set cheyyunnu
     let modeBox = document.getElementById('print-qty-mode');
     if (modeBox) {
-        let totalNeeded = unprintedStickers;
+        let totalNeeded = actualLabelsToPrint;
         let optionsHtml = '';
         let currentSelectedValue = modeBox.value;
 
         if (totalNeeded > 0) {
             optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
 
-            // 🔥 പുതിയ കാൽക്കുലേഷൻ: കൃത്യം A4 ഷീറ്റുകൾ നിറയാനുള്ള എണ്ണം മാത്രം (Multiples of ratio) എടുക്കുന്നു
             let totalIfFilled = Math.ceil(totalNeeded / ratio) * ratio;
             let extraStickers = totalIfFilled - totalNeeded;
 
             if (extraStickers > 0) {
                 optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
-                    Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം അധികം പ്രിന്റ് ആകും (ബ്ലാങ്ക് ഉണ്ടാകില്ല)
+                    Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം അധികം പ്രിന്റ് ആകും
                 </option>`;
 
                 optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>
@@ -5543,7 +5546,9 @@ window.updatePrintPrediction = function () {
             optionsHtml += `</optgroup>`;
         } else {
             let selZero = (!currentSelectedValue || currentSelectedValue == 0) ? 'selected' : '';
-            optionsHtml += `<option value="0" ${selZero}>✅ All Caught Up (0 Stk)</option>`;
+            // മുഴുവൻ ഓർഡറുകൾക്കും പഴയ സ്റ്റിക്കർ തികയുമെങ്കിൽ 0 പ്രിന്റ് ചെയ്യാം
+            let zeroText = unprintedStickers > 0 ? `✅ Use Loose Stickers (0 Print Needed)` : `✅ All Caught Up (0 Stk)`;
+            optionsHtml += `<option value="0" ${selZero}>${zeroText}</option>`;
         }
 
         optionsHtml += `<optgroup label="--- Manual Copies ---">`;
@@ -5562,23 +5567,17 @@ window.updatePrintPrediction = function () {
     }
 
     // 2. 🔥 Dropdown set cheytha shesham athile value edukkunnu
-    let selectedPrintCount = parseInt(modeBox ? modeBox.value : unprintedStickers) || 0;
+    let selectedPrintCount = parseInt(modeBox ? modeBox.value : actualLabelsToPrint) || 0;
 
-    // 🔥 പുതിയ മാറ്റം: ബാക്കി വരുന്ന എണ്ണം 100% കൃത്യമായി കാൽക്കുലേറ്റ് ചെയ്യുന്നു
-    let newLooseBalance = (looseStickers - (unprintedStickers % ratio)) % ratio;
-    if (newLooseBalance < 0) newLooseBalance += ratio;
+    // 🔥 പുതിയ മാറ്റം: ബാക്കി വരുന്ന എണ്ണം 100% കൃത്യമായി കാൽക്കുലേറ്റ് ചെയ്യുന്നു (കൂടുതൽ ലളിതമാക്കി)
+    let newLooseBalance = Math.max(0, (looseStickers + selectedPrintCount) - unprintedStickers);
 
-    let extraPrinted = (selectedPrintCount > unprintedStickers) ? (selectedPrintCount - unprintedStickers) : 0;
     let afterPrintMsg = '';
 
-    if (unprintedStickers > 0 && selectedPrintCount > 0) {
-        if (extraPrinted > 0) {
+    if (unprintedStickers > 0) {
+        if (newLooseBalance > 0) {
             afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-                <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന സ്റ്റിക്കറുകൾ (ബ്ലാങ്ക് + എക്സ്ട്രാ): <span class="fw-bolder text-danger" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
-            </span>`;
-        } else if (newLooseBalance > 0) {
-            afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
-                <i class="fas fa-sticky-note"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന ബ്ലാങ്ക് സ്റ്റിക്കറുകൾ: <span class="fw-bolder" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
+                <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന സ്റ്റിക്കറുകൾ: <span class="fw-bolder text-danger" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
             </span>`;
         } else {
             afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#198754; font-weight:600;">
