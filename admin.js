@@ -880,9 +880,9 @@ function renderTabs(orders) {
                 let groupCbHtml = '';
                 if (dateKey === 'paid_new' || dateKey === 'paid_print') {
                     groupCbHtml = `
-                    <div class="form-check ms-3 mb-0 d-flex align-items-center" style="background: #e2e8f0; padding: 2px 8px; border-radius: 6px; border: 1px solid #cbd5e1;" onclick="event.stopPropagation();">
+                    <div class="form-check ms-3 mb-0 d-flex align-items-center" onclick="event.stopPropagation();">
                         <input class="form-check-input mt-0 group-cb-${safeGroupId}" type="checkbox" id="cb-${safeGroupId}" style="width:13px; height:13px; cursor:pointer; border-color: #64748b;" onclick="toggleGroup('${safeGroupId}', this.checked)">
-                        <label class="form-check-label text-dark ms-1 fw-bold" for="cb-${safeGroupId}" style="font-size:10px; cursor:pointer; margin-top:2px;">All</label>
+                        <label class="form-check-label text-dark ms-1 fw-bold" for="cb-${safeGroupId}" style="font-size:10px; cursor:pointer; margin-top:2px;"></label>
                     </div>`;
                 }
 
