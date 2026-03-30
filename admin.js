@@ -5505,6 +5505,8 @@ window.updatePrintPrediction = function () {
     let looseStickers = Math.round((currentBalance - fullSheets) * historicalRatio);
     if (looseStickers >= historicalRatio) { fullSheets += 1; looseStickers = 0; }
 
+    window.currentLooseStickers = looseStickers;
+
     // 🔥 FIX: മുൻപ് മുറിച്ച സ്റ്റിക്കറുകൾ (looseStickers) കുറച്ചിട്ട് വേണം പുതിയ ഷീറ്റ് കണക്കാക്കാൻ!
     let actualLabelsToPrint = Math.max(0, unprintedStickers - looseStickers);
     let exactNeededSheets = actualLabelsToPrint / ratio;
@@ -5655,16 +5657,15 @@ window.updateLabelPreview = function () {
     localStorage.setItem('label_batch', batch);
 }
 
-// 🔥 PRINT LABELS & DEDUCT EXACT STOCK
+// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (FIXED LOOSE STICKER LOGIC)
 window.printProductLabels = function () {
     let mrp = $('#label-mrp').val();
     let batch = $('#label-batch').val().toUpperCase();
     let date = $('#label-date').val();
 
-    // 🔥 മാറിയത്: ഡ്രോപ്പ്ഡൗണിൽ നിന്നും തിരഞ്ഞെടുത്ത സ്റ്റിക്കറുകളുടെ എണ്ണം എടുക്കുന്നു
-    let printCount = parseInt($('#print-qty-mode').val()) || 5;
+    // 🔥 FIX 1: 0 പ്രിന്റ് ചെയ്യാനും അനുവദിക്കുന്നു
+    let printCount = parseInt($('#print-qty-mode').val()) || 0;
     let stickersPerPage = parseInt($('#stickers-per-page').val()) || 5;
-    let sheetsToDeduct = printCount / stickersPerPage; // ഫ്രാക്ഷൻ വരാം (eg: 13 / 5 = 2.6 A4)
 
     if (!mrp || !batch || !date) {
         showToast('error', 'Please fill all fields');
@@ -5672,7 +5673,15 @@ window.printProductLabels = function () {
     }
 
     let ordersToUpdate = [];
-    let labelsNeeded = printCount; // ഇത്രയും ഓർഡറുകളെ 'S' ആക്കണം
+
+    // 🔥 FIX 2: പുതിയതായി പ്രിന്റ് അടിച്ചതും കയ്യിലിരിക്കുന്നതുമായ സ്റ്റിക്കറുകൾ കൂട്ടുന്നു!
+    let looseStickers = window.currentLooseStickers || 0;
+    let labelsNeeded = printCount + looseStickers;
+
+    if (labelsNeeded <= 0) {
+        showToast('warning', 'No labels needed or selected!');
+        return;
+    }
 
     if (typeof allOrders !== 'undefined') {
         let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -5684,6 +5693,7 @@ window.printProductLabels = function () {
             return status === 'Paid' && !metaStr.includes('S');
         });
 
+        // പഴയ ഓർഡറുകൾക്ക് ആദ്യം സ്റ്റിക്കർ കൊടുക്കാൻ reverse ചെയ്യുന്നു
         pendingOrders.reverse().forEach(o => {
             if (labelsNeeded <= 0) return;
 
@@ -5695,7 +5705,7 @@ window.printProductLabels = function () {
 
             let newMeta = currentMeta ? currentMeta + " S" : "S";
 
-            o.adminMeta = newMeta; // ലൈവ് ആയി മാറാൻ
+            o.adminMeta = newMeta;
 
             if (existingIndex > -1) {
                 pendingUpdates[existingIndex].meta = newMeta;
@@ -5713,53 +5723,56 @@ window.printProductLabels = function () {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     }
 
+    // 🔥 STEP 2: പ്രിന്റ് വിൻഡോ തുറക്കുന്നു (പ്രിന്റ് ചെയ്യാൻ എണ്ണം ഉണ്ടെങ്കിൽ മാത്രം)
+    if (printCount > 0) {
+        let printWin = window.open('', 'LabelPrintWindow', 'width=800,height=900');
 
-    // 🔥 STEP 2: പ്രിന്റ് വിൻഡോ തുറക്കുന്നു
-    let printWin = window.open('', 'LabelPrintWindow', 'width=800,height=900');
+        let html = `<html><head><title>KAFAK Product Labels</title>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
+        <style>
+            @media print {
+                @page { size: 210mm 297mm; margin: 0 !important; padding: 0 !important; }
+                html, body { width: 210mm; height: 297mm; margin: 0 !important; padding: 0 !important; }
+            }
+            * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; box-sizing: border-box !important; }
+            body { margin: 0; padding: 0; background: #fff; overflow: hidden; }
+            .label-container { width: 210mm; height: 59.4mm; position: relative; overflow: hidden; display: block; border: none; }
+            .label-bg { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1; image-rendering: -webkit-optimize-contrast; image-rendering: high-quality; }
+            .text-overlay { position: absolute; top: 10.5mm; left: 174mm; z-index: 10; font-size: 10px; color: #000; line-height: 1.2; letter-spacing: 0.5px; font-family: 'Montserrat', sans-serif !important; font-weight: 700; }
+        </style>
+        </head><body>`;
 
-    let html = `<html><head><title>KAFAK Product Labels</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-    <style>
-        @media print {
-            @page { size: 210mm 297mm; margin: 0 !important; padding: 0 !important; }
-            html, body { width: 210mm; height: 297mm; margin: 0 !important; padding: 0 !important; }
+        for (let i = 0; i < printCount; i++) {
+            html += `
+            <div class="label-container">
+                <img src="label_design.jpg" class="label-bg" />
+                <div class="text-overlay">
+                    <div>${mrp} . 00</div>
+                    <div>${batch}</div>
+                    <div>${date}</div>
+                </div>
+            </div>`;
         }
-        * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; box-sizing: border-box !important; }
-        body { margin: 0; padding: 0; background: #fff; overflow: hidden; }
-        .label-container { width: 210mm; height: 59.4mm; position: relative; overflow: hidden; display: block; border: none; }
-        .label-bg { width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: 1; image-rendering: -webkit-optimize-contrast; image-rendering: high-quality; }
-        .text-overlay { position: absolute; top: 10.5mm; left: 174mm; z-index: 10; font-size: 10px; color: #000; line-height: 1.2; letter-spacing: 0.5px; font-family: 'Montserrat', sans-serif !important; font-weight: 700; }
-    </style>
-    </head><body>`;
 
-    for (let i = 0; i < printCount; i++) {
-        html += `
-        <div class="label-container">
-            <img src="label_design.jpg" class="label-bg" />
-            <div class="text-overlay">
-                <div>${mrp} . 00</div>
-                <div>${batch}</div>
-                <div>${date}</div>
-            </div>
-        </div>`;
+        html += `</body></html>`;
+
+        printWin.document.write(html);
+        printWin.document.close();
+
+        setTimeout(() => {
+            printWin.focus();
+            printWin.print();
+        }, 1000);
+    } else {
+        showToast('success', 'Marked as Printed using Loose Stickers! ✅');
     }
-
-    html += `</body></html>`;
-
-    printWin.document.write(html);
-    printWin.document.close();
-
-    setTimeout(() => {
-        printWin.focus();
-        printWin.print();
-    }, 1000);
-
 
     // ലെഫ്റ്റ് ഡ്രോയറിലെ എണ്ണവും, ലൈവ് സ്റ്റോക്കും മാറാൻ
     setTimeout(() => {
         if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
         if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
         updateSyncButtonUI();
+        renderTabs(allOrders); // UI യിൽ തൽക്ഷണം മാറ്റങ്ങൾ വരാൻ
     }, 500);
 }
 
