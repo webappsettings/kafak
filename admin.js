@@ -2814,6 +2814,9 @@ async function runPrintLogic(checkboxes, directData = null) {
         let orderTime = fmtDate(d.timestamp);
         let paidTime = fmtDate(d.paidDate || d.timestamp);
 
+        // 🔥 NEW: സർവറിൽ നിന്നുള്ള കൊറിയർ പേര് എടുക്കുന്നു 
+        let printCourier = String(d.provider || d.Courier_Provider || 'COURIER').trim().toUpperCase();
+
         // 🔥 STATE DOT LOGIC FOR PRINT LABEL
         let s = String(d.state || '').toUpperCase().trim();
         let stateDotHtml = '';
@@ -2857,7 +2860,7 @@ async function runPrintLogic(checkboxes, directData = null) {
                 Ernakulam District, Kerala, India.<br>Phone: 778899 0 313
             </div>
 
-            <div style="position:absolute; bottom:9mm; right:5mm; font-size:10px; font-weight:800; color:#000; border:1px solid #000; padding:0px 3px; border-radius:4px;">
+            <div style="position:absolute; bottom:9mm; right:5mm; font-size:12px; font-weight:800; color:#000; border:1px solid #000; padding:1px 5px; border-radius:4px;">
                 #${seqNum}
             </div>
 
@@ -2867,6 +2870,10 @@ async function runPrintLogic(checkboxes, directData = null) {
 
             <div style="position:absolute; bottom:5mm; right:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
                 P: ${paidTime}
+            </div>
+
+            <div style="position:absolute; bottom:4.5mm; left:50%; transform:translateX(-50%); font-size:10px; font-weight:800; color:#000; border: 1.5px solid #000; padding: 2px 8px; border-radius: 5px; letter-spacing: 0.5px; font-family: sans-serif; white-space: nowrap; background: #fff;">
+                ${printCourier}
             </div>
 
         </div>`;
