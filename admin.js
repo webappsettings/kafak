@@ -1025,47 +1025,54 @@ function renderTabs(orders) {
     setBadge('badge-disp-new', subCounts.disp_new);
     setBadge('badge-disp-tracked', subCounts.disp_track);
 
-    // 🔥 NEW: DYNAMIC MAIN TAB COLORS BASED ON URGENCY
+    // 🔥 BEAUTIFUL UX: NOTIFICATION DOTS INSTEAD OF FULL BACKGROUND
+    if (!$('#nav-dot-css').length) {
+        $('<style id="nav-dot-css">').html(`
+            @keyframes pulse-warning { 0% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(255, 193, 7, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 193, 7, 0); } }
+            @keyframes pulse-danger { 0% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(220, 53, 69, 0); } 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0); } }
+            @keyframes pulse-primary { 0% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0.7); } 70% { box-shadow: 0 0 0 6px rgba(13, 110, 253, 0); } 100% { box-shadow: 0 0 0 0 rgba(13, 110, 253, 0); } }
+            .nav-dot { position: absolute; top: 8px; right: 8px; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; z-index: 10; }
+            .nav-dot.warning { background-color: #ffc107; animation: pulse-warning 2s infinite; }
+            .nav-dot.danger { background-color: #dc3545; animation: pulse-danger 2s infinite; }
+            .nav-dot.dark-danger { background-color: #7f1d1d; animation: pulse-danger 2s infinite; }
+            .nav-dot.primary { background-color: #0d6efd; animation: pulse-primary 2s infinite; }
+        `).appendTo('head');
+    }
+
     let tabPending = document.getElementById('count-pending') ? document.getElementById('count-pending').closest('.nav-link') : null;
     let tabPaid = document.getElementById('count-paid') ? document.getElementById('count-paid').closest('.nav-link') : null;
     let tabDisp = document.getElementById('count-dispatched') ? document.getElementById('count-dispatched').closest('.nav-link') : null;
 
-    // 1. Pending Tab (New - Yellow)
-    if (tabPending) {
-        if (subCounts.new > 0) {
-            tabPending.style.setProperty('background-color', '#ffc107', 'important');
-            tabPending.style.setProperty('color', '#000', 'important');
-        } else {
-            tabPending.style.removeProperty('background-color');
-            tabPending.style.removeProperty('color');
+    const setTabDot = (tab, condition, colorClass) => {
+        if (!tab) return;
+        // പഴയ ഫുൾ കളർ സെറ്റിങ്സ് ഉണ്ടെങ്കിൽ അത് മായ്ച്ചു കളയുന്നു (Clean old cache)
+        tab.style.removeProperty('background-color');
+        tab.style.removeProperty('color');
+
+        $(tab).css('position', 'relative');
+        $(tab).find('.nav-dot').remove(); // പഴയ ഡോട്ട് കളയുന്നു
+
+        if (condition) {
+            $(tab).append(`<span class="nav-dot ${colorClass}"></span>`);
         }
+    };
+
+    // 1. Pending Tab (New - Yellow Dot)
+    setTabDot(tabPending, subCounts.new > 0, 'warning');
+
+    // 2. Paid Tab (Unprinted - Light Red Dot | Printed - Dark Red Dot)
+    if (subCounts.paid_new > 0) {
+        setTabDot(tabPaid, true, 'danger');
+    } else if (subCounts.paid_print > 0) {
+        setTabDot(tabPaid, true, 'dark-danger');
+    } else {
+        setTabDot(tabPaid, false, '');
     }
 
-    // 2. Paid Tab (Unprinted - Red | Printed - Dark Red)
-    if (tabPaid) {
-        if (subCounts.paid_new > 0) {
-            tabPaid.style.setProperty('background-color', '#ef4444', 'important'); // Light Red
-            tabPaid.style.setProperty('color', '#fff', 'important');
-        } else if (subCounts.paid_print > 0) {
-            tabPaid.style.setProperty('background-color', '#7f1d1d', 'important'); // Dark Red
-            tabPaid.style.setProperty('color', '#fff', 'important');
-        } else {
-            tabPaid.style.removeProperty('background-color');
-            tabPaid.style.removeProperty('color');
-        }
-    }
+    // 3. Dispatched Tab (Dispatched - Blue Dot)
+    setTabDot(tabDisp, subCounts.disp_new > 0, 'primary');
 
-    // 3. Dispatched Tab (Dispatched - Blue)
-    if (tabDisp) {
-        if (subCounts.disp_new > 0) {
-            tabDisp.style.setProperty('background-color', '#3b82f6', 'important'); // Nice Blue
-            tabDisp.style.setProperty('color', '#fff', 'important');
-        } else {
-            tabDisp.style.removeProperty('background-color');
-            tabDisp.style.removeProperty('color');
-        }
-    }
-
+    // ബാക്കി പഴയ കോഡുകൾ അതുപോലെ തുടരുന്നു
     updateSyncButtonUI();
     checkSelectAllStatus();
 
