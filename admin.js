@@ -2872,7 +2872,7 @@ async function runPrintLogic(checkboxes, directData = null) {
                 P: ${paidTime}
             </div>
 
-            <div style="position:absolute; bottom:4.5mm; left:50%; transform:translateX(-50%); font-size:10px; font-weight:800; color:#000; border: 1.5px solid #000; padding: 2px 8px; border-radius: 5px; letter-spacing: 0.5px; font-family: sans-serif; white-space: nowrap; background: #fff;">
+            <div style="position:absolute; bottom:4.5mm; left:50%; transform:translateX(-50%); font-size:8px; font-weight:800; color:#9a9a9a; padding: 2px 8px; border-radius: 5px; letter-spacing: 0.5px; font-family: sans-serif; white-space: nowrap; background: #fff;">
                 ${printCourier}
             </div>
 
