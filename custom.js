@@ -253,6 +253,10 @@ $(document).ready(function () {
   }
 
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
+  $('#phone, #edit-phone').on('paste', function (e) {
+    e.preventDefault();
+    showAlert(getAlert('err_no_paste'));
+  });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
   const saved = SafeStorage.getItem(STORAGE_KEY);
@@ -467,8 +471,8 @@ function checkUserOnServerBackground(phone) {
           if (status !== 'completed' && status !== 'delivered' && status !== 'refunded') {
 
             Swal.fire({
-              title: 'Welcome Back!',
-              text: 'Loading your active order...',
+              title: t.title_welcome_back,
+              text: t.msg_loading_order,
               icon: 'info',
               timer: 2000,
               showConfirmButton: false,
@@ -1006,7 +1010,20 @@ window.nextStep = async function () {
   if (currentStep === 3.5) { if (!$('#po-select').val()) return showAlert(getAlert('err_select_po')); userData.postoffice = $('#po-select').val(); currentStep = 4; showStep(4); return; }
   if (currentStep === 4) { if (!$('#house').val()) { showAlert(getAlert('err_house')); $('#house').focus(); return; } currentStep = 5; showStep(5); return; }
   if (currentStep === 5) { if (!$('#place').val()) { showAlert(getAlert('err_place')); $('#place').focus(); return; } updateWizardLocDisplay(); currentStep = 6; showStep(6); return; }
-  if (currentStep === 6) { const alt = $('#altphone').val(); if (alt && !/^[0-9]{10}$/.test(alt)) return showAlert(getAlert('err_phone')); }
+
+  if (currentStep === 6) {
+    const mainPh = $('#phone').val();
+    const altPh = $('#altphone').val();
+
+    // 1. Alt നമ്പർ നിർബന്ധമാക്കുന്നു
+    if (!altPh || altPh.length < 8 || altPh.length > 15) {
+      return showAlert(getAlert('err_alt_required'));
+    }
+    // 2. മെയിൻ നമ്പറും Alt നമ്പറും ഒന്നാകാൻ പാടില്ല
+    if (altPh === mainPh) {
+      return showAlert(getAlert('err_alt_same'));
+    }
+  }
   if (currentStep === 7) { if (!$('#quantity').val()) { showAlert(getAlert('err_qty')); return; } submitWizardOrder(); return; }
   currentStep++; showStep(currentStep);
 }
@@ -1046,12 +1063,11 @@ window.submitQuickOrder = async function () {
           if (!['delivered', 'completed', 'refunded'].includes(s)) {
             showLoader(false);
             const lang = $('#language-select').val() || 'en';
-            const msg = lang === 'ml'
-              ? `നിങ്ങൾക്ക് നിലവിൽ പ്രോസസ്സിങ്ങിൽ ഉള്ള ഒരു ഓർഡർ ഉണ്ട് (Order ID: ${data.data.orderid}). പുതിയത് ഉണ്ടാക്കുന്നതിന് പകരം അത് കാണിക്കുന്നു.`
-              : `You already have an active order (Order ID: ${data.data.orderid}). Switching to that order instead of creating a new one.`;
+            const t = translations[lang] || translations['en'];
+            const msg = (t.msg_active_order).replace('OID_HERE', data.data.orderid);
 
             Swal.fire({
-              icon: 'info', title: 'Active Order Found!', text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' }
+              icon: 'info', title: t.title_active_order, text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' }
             }).then(() => {
               window.location.href = `order.html?phone=${phoneCheck}`; // ആക്ടീവ് ഓർഡറിലേക്ക് മാറ്റുന്നു
             });
@@ -1091,8 +1107,20 @@ window.submitQuickOrder = async function () {
 
   const newName = $('#edit-name').val();
   if (!newName) { showAlert(getAlert('err_name')); return; }
+
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+
+  // 🔥 NEW: Alt നമ്പർ നിർബന്ധമാക്കുന്നു
+  const newAlt = $('#edit-altphone').val();
+  if (!newAlt || newAlt.length < 8 || newAlt.length > 15) {
+    showAlert(getAlert('err_alt_required'));
+    return;
+  }
+  if (newAlt === newPhone) {
+    showAlert(getAlert('err_alt_same'));
+    return;
+  }
 
   // META Logic
   let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
@@ -1438,15 +1466,18 @@ window.enableNewOrderMode = function () {
 }
 
 window.markOrderDelivered = function (oid) {
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || translations['en'];
+
   Swal.fire({
-    title: 'Order Received?',
-    text: "നിങ്ങൾക്ക് ഓർഡർ ലഭിച്ചോ?",
+    title: t.title_order_received,
+    text: t.text_order_received,
     icon: 'question',
     showCancelButton: true,
     confirmButtonColor: '#28a745',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Yes, Received! ✅',
-    cancelButtonText: 'Not Yet',
+    confirmButtonText: t.btn_yes_received,
+    cancelButtonText: t.btn_not_yet,
     customClass: { popup: 'rounded-4 shadow-lg' }
   }).then((result) => {
     if (result.isConfirmed) {
@@ -1455,14 +1486,14 @@ window.markOrderDelivered = function (oid) {
       $('#btn-mark-delivered').parent().html(`
           <div class="text-success fw-bold text-center py-3 fade-in" style="animation: popIn 0.5s ease;">
               <i class="fas fa-check-circle fa-3x mb-2"></i><br>
-              <span style="font-size:16px;">നന്ദി! Enjoy! 🍯</span>
+              <span style="font-size:16px;">${t.thank_you}</span>
           </div>
       `);
 
       // 2. Celebration Popup
       Swal.fire({
-        title: 'Thank You! ❤️',
-        html: '<div style="font-size:14px;">ഞങ്ങളെ വിശ്വസിച്ച് ഓർഡർ ചെയ്തതിന് നന്ദി!<br>Enjoy the purest honey! 🐝</div>',
+        title: t.thank_you_title,
+        html: `<div style="font-size:14px;">${t.thank_you_msg}</div>`,
         icon: 'success',
         showConfirmButton: false,
         timer: 3000,
@@ -1585,7 +1616,7 @@ function updateStatusUI(d) {
             </div>
             
             <a href="${trackLink}" target="_blank" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px;">
-                ട്രാക്ക് <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
+                ${t.btn_track} <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
             </a>
         </div>`;
     }
@@ -1633,8 +1664,8 @@ function updateStatusUI(d) {
                             <i class="fas fa-check text-white" style="font-size:14px;"></i>
                         </div>
                         <div class="text-start">
-                            <div style="font-size:14px; font-weight:800; letter-spacing:0.5px; line-height:1.2;">YES, I RECEIVED IT</div>
-                            <div style="font-size:10px; opacity:0.9; font-weight:500;">Click to mark as Delivered</div>
+                            <div style="font-size:14px; font-weight:800; letter-spacing:0.5px; line-height:1.2;">${t.btn_yes_i_received}</div>
+                            <div style="font-size:10px; opacity:0.9; font-weight:500;">${t.click_to_mark_delivered}</div>
                         </div>
                     </div>
 
@@ -3132,18 +3163,16 @@ window.saveRadioSelection = function (oid, el) {
 // 🔥 CLEAR LOGIN / CHANGE NUMBER (Secure & with Confirmation)
 window.clearUserLogin = function () {
   const lang = $('#language-select').val() || 'en';
-  const titleText = lang === 'ml' ? "ലോഗൗട്ട് ചെയ്യണോ?" : "Are you sure you want to logout?";
-  const confirmBtnText = lang === 'ml' ? "അതെ, ലോഗൗട്ട് ചെയ്യുക" : "Yes, Logout";
-  const cancelBtnText = lang === 'ml' ? "വേണ്ട" : "Cancel";
+  const t = translations[lang] || translations['en'];
 
   Swal.fire({
-    title: titleText,
+    title: t.logout_title,
     icon: 'warning',
     showCancelButton: true,
     confirmButtonColor: '#d33',
     cancelButtonColor: '#3085d6',
-    confirmButtonText: confirmBtnText,
-    cancelButtonText: cancelBtnText,
+    confirmButtonText: t.logout_confirm,
+    cancelButtonText: t.logout_cancel,
     customClass: { popup: 'ios-popup' }
   }).then((result) => {
     if (result.isConfirmed) {
