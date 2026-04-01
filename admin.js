@@ -2455,7 +2455,7 @@ function discardLocalChanges() {
 
 
 
-// 🔥 SEND INVOICE WA (Fixed Unique ID & Preserved Logic)
+// 🔥 SEND INVOICE WA (Fixed Unique ID, Country Code & Preserved Logic)
 window.sendWA = function (index, type = 'pending') {
     const d = allOrders[index];
     const n = parseInt(d.quantity);
@@ -2532,6 +2532,7 @@ window.sendWA = function (index, type = 'pending') {
     else if (code === 'G') phoneNum = d.paidNum; // 🔥 Paid Number Support
     else phoneNum = d.whatsapp || d.phone;
 
+    // 🔥 NEW: Format Number with Smart Country Code Logic
     let finalNum = formatWAPhone(phoneNum, cc);
 
     if (finalNum) {
@@ -3407,6 +3408,7 @@ function renderDashboard() {
         if (!isValidStatus) return;
 
         let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
+        if (isNaN(pDate.getTime())) return; // 🔥 Invalid Dates ഒഴിവാക്കുന്നു
         let oYear = pDate.getFullYear();
         let oMonth = pDate.getMonth();
         let qty = parseInt(o.quantity) || 0;
@@ -3449,7 +3451,7 @@ function renderDashboard() {
 
         // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച്)
         if (status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
@@ -4744,7 +4746,7 @@ window.renderDetailedMonthlyOverview = function () {
 
         // 2. കൊറിയർ ചിലവ് 
         if (status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
@@ -7829,50 +7831,6 @@ window.excludeFromInventory = function (key, oid, itemName, safeTotal, safeOffse
 
                         // 🔥 പോപ്പപ്പ് വീണ്ടും തുറക്കുമ്പോൾ പുതിയ കൗണ്ട് വരാൻ വേണ്ടി (Total - 1)
                         setTimeout(() => { showInventoryDetails(key, itemName, safeTotal - 1, safeOffset); }, 1000);
-                    } else {
-                        Swal.fire('Error', 'Failed to remove', 'error');
-                    }
-                }).catch(e => {
-                    Swal.fire('Error', 'Network connection failed', 'error');
-                });
-            }
-        }
-    });
-};
-
-// 🔥 EXCLUDE ORDER FROM COUNT
-window.excludeFromInventory = function (key, oid, itemName) {
-    Swal.fire({
-        title: 'Remove from count?',
-        html: `ഈ ഓർഡറിനെ <b>${itemName}</b> കൗണ്ടിൽ നിന്നും സ്ഥിരമായി ഒഴിവാക്കണോ? <br><br><span style="font-size:11px; color:#dc3545;">(ഓർഡർ ഡിലീറ്റ് ആവില്ല, പകരം ഇതിലെ എണ്ണത്തിൽ നിന്നും മാത്രം കുറയും)</span>`,
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: 'Yes, Remove',
-        confirmButtonColor: '#dc3545'
-    }).then(res => {
-        if (res.isConfirmed) {
-            let db = window.globalInventoryDB;
-            if (!db[key].excludedOids) db[key].excludedOids = [];
-
-            // മുന്നേ റിമൂവ് ചെയ്തിട്ടില്ലെങ്കിൽ മാത്രം ചെയ്യുന്നു
-            if (!db[key].excludedOids.includes(oid)) {
-                db[key].excludedOids.push(oid);
-
-                Swal.fire({ title: 'Removing...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-
-                fetch(scriptURL, {
-                    method: 'POST',
-                    body: JSON.stringify({ action: 'saveInventory', inventory: db })
-                }).then(r => r.json()).then(r => {
-                    if (r.result === 'success') {
-                        window.globalInventoryDB = db;
-                        renderLiveStockTracker(); // മെയിൻ ഡാഷ്‌ബോർഡ് അപ്ഡേറ്റ് ചെയ്യുന്നു
-                        if (typeof updatePrintPrediction === 'function') updatePrintPrediction(); // എണ്ണം മാറുമ്പോൾ A4 പ്രവചനവും മാറ്റണം
-
-                        Swal.fire({ icon: 'success', title: 'Removed!', timer: 1000, showConfirmButton: false });
-
-                        // 1 സെക്കൻഡിനു ശേഷം ലിസ്റ്റ് വീണ്ടും തുറക്കുന്നു (തത്സമയ മാറ്റം കാണാൻ)
-                        setTimeout(() => { showInventoryDetails(key, itemName); }, 1000);
                     } else {
                         Swal.fire('Error', 'Failed to remove', 'error');
                     }
