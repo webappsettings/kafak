@@ -3406,7 +3406,7 @@ function renderDashboard() {
         let isValidStatus = ['Dispatched', 'Delivered', 'Completed'].includes(status);
         if (!isValidStatus) return;
 
-        let pDate = parseOrderDate(o.paidDate || o.timestamp);
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
         let oYear = pDate.getFullYear();
         let oMonth = pDate.getMonth();
         let qty = parseInt(o.quantity) || 0;
@@ -3472,43 +3472,40 @@ function renderDashboard() {
 
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
-            if (Number(e.amount) <= 0) return; // 🔥 FIX: 0 രൂപയുടെ ചിലവുകൾ ഒഴിവാക്കുന്നു!
+            let amt = Number(e.amount) || 0; // 🔥 FIX: String-നെ Number ആക്കി മാറ്റുന്നു!
+            if (amt <= 0) return;
 
             let catName = String(e.cat || '').toLowerCase();
-            let rawCatName = String(e.cat || '');
 
             if (catName.includes('material')) {
-                monthMaterialExp += e.amount;
-                materialBreakdownArray.push(e.amount);
+                monthMaterialExp += amt;
+                materialBreakdownArray.push(amt);
             } else if (catName === 'salary') {
                 // Do nothing for Salary
             } else if (!e.isCourier) {
                 // 🔥 ബാക്കി എല്ലാം Other Expense-ൽ കൂട്ടുന്നു
-                if (catName !== 'refund') trueOtherExp += e.amount;
+                if (catName !== 'refund') trueOtherExp += amt;
 
                 // 🔥 ബ്രേക്ക്ഡൗൺ ലിസ്റ്റിലേക്ക് മാറ്റുന്നു
-                if (catName.includes('food')) expenseCategories["Food"] += e.amount;
-                else if (catName.includes('travel') || catName.includes('transport')) expenseCategories["Travel"] += e.amount;
-                else if (catName.includes('ads') || catName.includes('marketing')) expenseCategories["Ads"] += e.amount;
-                else if (catName.includes('refund')) expenseCategories["Refund"] += e.amount;
+                if (catName.includes('food')) expenseCategories["Food"] += amt;
+                else if (catName.includes('travel') || catName.includes('transport')) expenseCategories["Travel"] += amt;
+                else if (catName.includes('ads') || catName.includes('marketing')) expenseCategories["Ads"] += amt;
+                else if (catName.includes('refund')) expenseCategories["Refund"] += amt;
                 else {
-                    // Other / Office Expense ആണെങ്കിൽ Vendor അല്ലെങ്കിൽ Description കൂടി സേവ് ചെയ്യുന്നു
                     let note = e.vendor || e.desc || 'Office Exp';
-                    expenseCategories["Other"].push(`₹${e.amount} (${note})`);
+                    expenseCategories["Other"].push(`₹${amt} (${note})`);
                 }
             }
         });
     }
 
     window.currentMaterialBreakdownStr = materialBreakdownArray.length > 0 ? materialBreakdownArray.join(' + ') : '';
-    window.currentExpenseCategories = expenseCategories; // 🔥 ഗ്ലോബൽ ആയി സേവ് ചെയ്യുന്നു
+    window.currentExpenseCategories = expenseCategories;
 
-    // 🔥 FIX: മെറ്റീരിയൽ ചിലവുകൾ ഇനി ലാഭത്തിൽ നിന്നും കുറയ്ക്കില്ല (Exclude from Net Profit)
-    // അതായത്, നമ്മൾ നേരത്തെ കൂട്ടിയിരുന്ന `monthMaterialExp` ഇവിടെ നിന്നും ഒഴിവാക്കി!
     let totalExpenses = trueProductCost + trueCourierExp + trueOtherExp;
     let trueNetProfit = trueIncome - totalExpenses;
 
-    window.currentLiveProfit = trueNetProfit > 0 ? trueNetProfit : 0;
+    window.currentLiveProfit = trueNetProfit;
 
     window.currentMonthStr = mName + " " + yName;
     window.currentIncome = trueIncome;
@@ -4729,7 +4726,7 @@ window.renderDetailedMonthlyOverview = function () {
         let qty = parseInt(o.quantity) || 0;
 
         // 1. വരുമാനവും ബോട്ടിൽ ചിലവും
-        let pDate = parseOrderDate(o.paidDate || o.timestamp);
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
         if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
             let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
@@ -4760,12 +4757,13 @@ window.renderDetailedMonthlyOverview = function () {
 
     if (dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
+            let amt = Number(e.amount) || 0; // 🔥 Number ആയി മാറ്റുന്നു
             if (!e.isCourier) {
                 let catName = String(e.cat || '').toLowerCase();
                 if (catName.includes('material')) {
-                    tMaterialExpense += e.amount;
+                    tMaterialExpense += amt;
                 } else if (catName !== 'salary' && catName !== 'refund') {
-                    tOtherExpense += e.amount;
+                    tOtherExpense += amt;
                 }
             }
         });
@@ -4874,7 +4872,7 @@ window.renderYearlyOverview = function () {
 
         let qty = parseInt(o.quantity) || 0;
 
-        let pDate = parseOrderDate(o.paidDate || o.timestamp);
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
         if (pDate.getFullYear() === currentYear) {
             let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
@@ -4889,7 +4887,7 @@ window.renderYearlyOverview = function () {
         }
 
         if (status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
             if (dDate.getFullYear() === currentYear) {
                 let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
@@ -6632,7 +6630,9 @@ window.renderDayBookTable = function () {
         if (data.expenses.length > 0) {
             hasData = true;
             data.expenses.forEach(e => {
-                grandExpense += e.amount;
+                let amt = Number(e.amount) || 0; // 🔥 Number ആക്കുന്നു
+                grandExpense += amt;
+                e.amount = amt; // ഒബ്ജക്റ്റിലെ വാല്യൂ അപ്ഡേറ്റ് ചെയ്യുന്നു              
                 let proofHtml = e.proof && String(e.proof).trim() !== "" ? `<a href="${e.proof}" target="_blank" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></a>` : '';
                 let editHtml = (e.id && isMasterUser) ? `<button onclick="showAddExpenseModal('${e.id}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
                 let title = e.cat || 'Expense';
