@@ -3402,17 +3402,17 @@ function renderDashboard() {
     let costBreakdown = {};  // 🔥 NEW: ബോട്ടിൽ ചിലവുകൾ എണ്ണി വെക്കാൻ
 
     allOrders.forEach(o => {
-        // 🔥 FIX: കൃത്യമായ ഫിൽറ്റർ തിരികെ കൊണ്ടുവന്നു
-        let status = String(o.Status || 'Pending').trim();
-        let isValidStatus = ['Dispatched', 'Delivered', 'Completed'].includes(status);
+        let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
+        let isValidStatus = ['dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
-        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
-        if (isNaN(pDate.getTime())) return; // 🔥 Invalid Dates ഒഴിവാക്കുന്നു
+        let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
+        let pDate = parseOrderDate(pDateStr);
+        if (isNaN(pDate.getTime())) return;
+
         let oYear = pDate.getFullYear();
         let oMonth = pDate.getMonth();
-        let qty = parseInt(o.quantity) || 0;
-
+        let qty = parseInt(o.quantity || o.Quantity) || 0;
 
         if (oYear === mY) {
             yearOrders++;
@@ -3422,9 +3422,9 @@ function renderDashboard() {
                 monthOrders++;
                 monthBottles += qty;
 
-                let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+                let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
                 if (isNaN(amt) || amt <= 0) {
-                    let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                    let pInfo = calculatePriceInfo(o, qty, o.state || o.State, o.provider || o.Courier_Provider);
                     amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
                 }
                 trueIncome += amt;
@@ -3433,30 +3433,28 @@ function renderDashboard() {
                 if (!orderBreakdown[key]) orderBreakdown[key] = 0;
                 orderBreakdown[key]++;
 
-                // 👇 ഇവിടെയാണ് മാറ്റം വരുത്തേണ്ടത് 👇
-                let pCost = parseFloat(o.Product_Base_Cost);
+                let pCost = parseFloat(o.Product_Base_Cost || o.productBaseCost);
                 let finalRowCost = (!isNaN(pCost) && pCost > 0) ? pCost : (qty * 330);
                 trueProductCost += finalRowCost;
 
-                // 🔥 ബോട്ടിൽ ചിലവ് ഓരോന്നായി എണ്ണി വെക്കുന്നു
                 if (qty > 0) {
                     let perBottleCost = finalRowCost / qty;
                     let cKey = `₹${Math.round(perBottleCost)}`;
                     if (!costBreakdown[cKey]) costBreakdown[cKey] = 0;
                     costBreakdown[cKey] += qty;
                 }
-                // 👆 പുതിയ കോഡ് കഴിഞ്ഞു 👆
             }
         }
 
         // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച്)
-        if (status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
-            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-                let totalC = parseInt(o.Courier_Charge) || 0;
+        if (status !== 'paid') {
+            let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
+            let dDate = parseOrderDate(dDateStr);
+            if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
-                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
                 trueCourierExp += actualC;
@@ -4722,35 +4720,36 @@ window.renderDetailedMonthlyOverview = function () {
     let tCourierCost = 0, tActualCourier = 0, tOtherExpense = 0, tMaterialExpense = 0;
 
     allOrders.forEach(o => {
-        // 🔥 FIX: ഇവിടെയും പഴയ ഫിൽറ്റർ കൊടുത്തു
-        let status = String(o.Status || 'Pending').trim();
-        let isValidStatus = ['Dispatched', 'Delivered', 'Completed'].includes(status);
+        let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
+        let isValidStatus = ['dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
-        let qty = parseInt(o.quantity) || 0;
+        let qty = parseInt(o.quantity || o.Quantity) || 0;
 
-        // 1. വരുമാനവും ബോട്ടിൽ ചിലവും
-        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
-        if (pDate.getFullYear() === mY && pDate.getMonth() === mM) {
-            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+        let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
+        let pDate = parseOrderDate(pDateStr);
+
+        if (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM) {
+            let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
-                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                let pInfo = calculatePriceInfo(o, qty, o.state || o.State, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
             tSales += amt;
             tBottles += qty;
 
-            let dbCost = parseInt(o.Product_Base_Cost);
+            let dbCost = parseInt(o.Product_Base_Cost || o.productBaseCost);
             tBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
         }
 
-        // 2. കൊറിയർ ചിലവ് 
-        if (status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
-            if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-                let totalC = parseInt(o.Courier_Charge) || 0;
-                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+        if (status !== 'paid') {
+            let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
+            let dDate = parseOrderDate(dDateStr);
+            if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
+
+                if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
                 tCourierCost += totalC;
@@ -4873,33 +4872,36 @@ window.renderYearlyOverview = function () {
     let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yActualCourier = 0, yOtherExpense = 0;
 
     allOrders.forEach(o => {
-        // 🔥 FIX: ഫിൽറ്റർ അപ്ഡേറ്റ് ചെയ്തു
-        let status = String(o.Status || 'Pending').trim();
-        let isValidStatus = ['Dispatched', 'Delivered', 'Completed'].includes(status);
+        let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
+        let isValidStatus = ['dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
-        let qty = parseInt(o.quantity) || 0;
+        let qty = parseInt(o.quantity || o.Quantity) || 0;
 
-        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
-        if (pDate.getFullYear() === currentYear) {
-            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
+        let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
+        let pDate = parseOrderDate(pDateStr);
+
+        if (!isNaN(pDate.getTime()) && pDate.getFullYear() === currentYear) {
+            let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
-                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                let pInfo = calculatePriceInfo(o, qty, o.state || o.State, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
             ySales += amt;
             yBottles += qty;
 
-            let dbCost = parseInt(o.Product_Base_Cost);
+            let dbCost = parseInt(o.Product_Base_Cost || o.productBaseCost);
             yBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
         }
 
-        if (status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
-            if (dDate.getFullYear() === currentYear) {
-                let actualC = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-                let totalC = parseInt(o.Courier_Charge) || 0;
-                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+        if (status !== 'paid') {
+            let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
+            let dDate = parseOrderDate(dDateStr);
+            if (!isNaN(dDate.getTime()) && dDate.getFullYear() === currentYear) {
+                let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
+
+                if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
                 yCourierCost += totalC;
