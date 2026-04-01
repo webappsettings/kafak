@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbxCNY9k2RvqcJVfXoPBV2k6sUIusly4ilUw05tGCbH7g8Xt_AVNdrJIQNkegBBUnzoEHQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxypZPJRC5Xu7ZNV2fpifladi4I_BxLmYqXgPbs75TCvkq1uWgEEPIwi-6poc2I-ml3Dg/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
