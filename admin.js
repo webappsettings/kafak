@@ -3472,7 +3472,11 @@ function renderDashboard() {
 
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
-            let amt = Number(e.amount) || 0; // 🔥 FIX: String-നെ Number ആക്കി മാറ്റുന്നു!
+            // 🔥 FIX: ഏത് മാസമാണോ സെലക്ട് ചെയ്തത്, ആ മാസത്തെ ചിലവുകൾ മാത്രം എടുക്കുന്നു!
+            let eDate = parseOrderDate(e.date);
+            if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return;
+
+            let amt = Number(e.amount) || 0;
             if (amt <= 0) return;
 
             let catName = String(e.cat || '').toLowerCase();
@@ -3483,10 +3487,8 @@ function renderDashboard() {
             } else if (catName === 'salary') {
                 // Do nothing for Salary
             } else if (!e.isCourier) {
-                // 🔥 ബാക്കി എല്ലാം Other Expense-ൽ കൂട്ടുന്നു
                 if (catName !== 'refund') trueOtherExp += amt;
 
-                // 🔥 ബ്രേക്ക്ഡൗൺ ലിസ്റ്റിലേക്ക് മാറ്റുന്നു
                 if (catName.includes('food')) expenseCategories["Food"] += amt;
                 else if (catName.includes('travel') || catName.includes('transport')) expenseCategories["Travel"] += amt;
                 else if (catName.includes('ads') || catName.includes('marketing')) expenseCategories["Ads"] += amt;
@@ -4755,9 +4757,13 @@ window.renderDetailedMonthlyOverview = function () {
         }
     });
 
-    if (dashboardData.monthTimeline.expense) {
+    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
-            let amt = Number(e.amount) || 0; // 🔥 Number ആയി മാറ്റുന്നു
+            // 🔥 FIX: ഇവിടെയും തീയതി ഫിൽറ്റർ ചെയ്യുന്നു
+            let eDate = parseOrderDate(e.date);
+            if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return;
+
+            let amt = Number(e.amount) || 0;
             if (!e.isCourier) {
                 let catName = String(e.cat || '').toLowerCase();
                 if (catName.includes('material')) {
@@ -4902,6 +4908,10 @@ window.renderYearlyOverview = function () {
 
     if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
         dashboardData.yearTimeline.expense.forEach(e => {
+            // 🔥 FIX: ആ വർഷത്തെ ചിലവുകൾ മാത്രം എടുക്കുന്നു
+            let eDate = parseOrderDate(e.date);
+            if (eDate.getFullYear() !== currentYear) return;
+
             let catName = String(e.cat || '').toLowerCase();
             // Salary ഉം Refund ഉം അല്ലാത്ത എല്ലാ ചിലവുകളും കൂട്ടുന്നു
             if (!e.isCourier && catName !== 'salary' && catName !== 'refund') {
