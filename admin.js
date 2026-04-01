@@ -3403,7 +3403,7 @@ function renderDashboard() {
 
     allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
-        let isValidStatus = ['dispatched', 'delivered', 'completed'].includes(status);
+        let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
@@ -4721,7 +4721,7 @@ window.renderDetailedMonthlyOverview = function () {
 
     allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
-        let isValidStatus = ['dispatched', 'delivered', 'completed'].includes(status);
+        let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 0;
@@ -4873,7 +4873,7 @@ window.renderYearlyOverview = function () {
 
     allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
-        let isValidStatus = ['dispatched', 'delivered', 'completed'].includes(status);
+        let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 0;
