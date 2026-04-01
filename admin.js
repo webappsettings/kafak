@@ -527,8 +527,8 @@ function renderTabs(orders) {
             return isNaN(dt.getTime()) ? new Date(0) : dt;
         };
 
-        let tDate = parseDt(o.timestamp);
-        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o['Paid Date'] || o.timestamp);
+        let tDate = parseDt(o.timestamp || o.Date || o.date);
+        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
         let pDate = parseDt(pDateStr);
 
         // 🔥 FIX: Dispatched Date കൃത്യമായി എടുക്കുന്നു (Invalid Date പ്രശ്നം ഒഴിവാക്കി)
@@ -1111,7 +1111,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     }
 
     let safe = (val) => String(val || '').toUpperCase();
-    let dateObj = new Date(d.timestamp);
+    let dateObj = parseOrderDate(d.timestamp || d.Date || d.date);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
     let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
 
@@ -6439,7 +6439,7 @@ window.renderDayBookTable = function () {
         if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
 
         let qty = parseInt(o.quantity) || 0;
-        let pDate = parseOrderDate(o.paidDate || o.timestamp);
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
 
         let totalCourier = parseInt(o.Courier_Charge) || 0;
         if (isNaN(totalCourier) || totalCourier <= 0) totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
@@ -6479,7 +6479,7 @@ window.renderDayBookTable = function () {
         }
 
         if (viewMode === 'accounting' && status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM && saleType === 'Online') {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
@@ -6692,10 +6692,10 @@ window.showDayDetails = function (dateStr) {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
 
-        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date);
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
         let pStr = !isNaN(pDate.getTime()) ? flatpickr.formatDate(pDate, "Y-m-d") : null;
 
-        let dDate = parseOrderDate(o['Dispatched Date']);
+        let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
         let dStr = !isNaN(dDate.getTime()) ? flatpickr.formatDate(dDate, "Y-m-d") : null;
 
         if (pStr === dateStr || dStr === dateStr) {
