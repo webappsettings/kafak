@@ -8402,17 +8402,69 @@ window.formatWAPhone = function (phoneNum, cc) {
     return cleanNum;
 };
 
-// 🔥 OVERRIDE CHANGE COURIER FOR DIRECT DELIVERY (DEEP CHECK FIXED)
-let originalChangeCourier = window.changeCourier;
+// 🔥 COMPLETE CHANGE COURIER FUNCTION (Handles Normal & Direct Delivery)
 window.changeCourier = async function (oid, newProvider) {
     if (newProvider === 'Direct') {
         openDirectDeliveryPopup(oid);
         return;
     }
-    // പഴയത് പോലെ കൊറിയർ മാറ്റാൻ
-    if (typeof originalChangeCourier === 'function') {
-        originalChangeCourier(oid, newProvider);
+
+    // --- NORMAL COURIER LOGIC (DTDC, India Post, etc.) ---
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let oldProvider = order.provider || order.Courier_Provider;
+    let oldCharge = order.Courier_Charge;
+    let oldTotal = order.Grand_Total || order.grandTotal;
+    let currentMeta = String(order.adminMeta || '');
+
+    let qty = parseInt(order.quantity) || 1;
+    let newCharge = 0;
+
+    // പുതിയ കൊറിയർ ചാർജ്ജ് കണ്ടുപിടിക്കുന്നു (eg: DTDC rate)
+    if (typeof getCourierRate === 'function') {
+        newCharge = getCourierRate(order.state, newProvider, qty);
     }
+
+    let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+    let newTotal = standardPrice + newCharge;
+
+    // ഓർഡർ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
+    order.provider = newProvider;
+    order.Courier_Provider = newProvider;
+    order.Courier_Charge = newCharge;
+    order.Grand_Total = newTotal;
+    order.grandTotal = newTotal;
+
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+    // പഴയത് Direct Delivery ആയിരുന്നെങ്കിൽ അത് ക്യാൻസൽ ചെയ്യാൻ
+    if (currentMeta.includes('DDelivery')) {
+        let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
+        order.adminMeta = newMeta;
+
+        let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta');
+        if (metaIdx > -1) updates[metaIdx].meta = newMeta;
+        else updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
+    }
+
+    // കൊറിയർ മാറ്റം Sync ക്യൂവിലേക്ക് ഇടുന്നു
+    let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'courier');
+    if (provIdx > -1) {
+        updates[provIdx].provider = newProvider;
+        updates[provIdx].charge = newCharge;
+        updates[provIdx].total = newTotal;
+    } else {
+        updates.push({ oid: oid, action: 'courier', provider: newProvider, charge: newCharge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
+    }
+
+    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+    if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+    if (typeof renderTabs === 'function') renderTabs(allOrders);
+
+    Swal.fire({ icon: 'success', title: 'Courier Updated!', text: newProvider + ' Rate: ₹' + newCharge, toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
 };
 
 window.openDirectDeliveryPopup = function (oid) {
@@ -8422,7 +8474,6 @@ window.openDirectDeliveryPopup = function (oid) {
     let existingName = 'Samad';
     let existingCharge = '30';
 
-    // ഓൾറെഡി ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ പഴയ ഡാറ്റ എടുക്കുന്നു
     if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
         let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
         if (match) {
@@ -8474,7 +8525,6 @@ window.openDirectDeliveryPopup = function (oid) {
             let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
             let newTotal = standardPrice + charge;
 
-            // 1. UI യിലും ലോക്കൽ മെമ്മറിയിലും ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
             order.adminMeta = newMeta;
             order.provider = 'Direct';
             order.Courier_Provider = 'Direct';
@@ -8484,7 +8534,6 @@ window.openDirectDeliveryPopup = function (oid) {
 
             let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-            // 2. 🔥 FIX: Admin Meta കോളം അപ്ഡേറ്റ് ചെയ്യാൻ വേണ്ടി മാത്രം (Action: Meta)
             let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta');
             if (metaIdx > -1) {
                 updates[metaIdx].meta = newMeta;
@@ -8492,7 +8541,6 @@ window.openDirectDeliveryPopup = function (oid) {
                 updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
             }
 
-            // 3. 🔥 FIX: Provider, Charge, Grand Total കോളങ്ങൾ അപ്ഡേറ്റ് ചെയ്യാൻ (Action: Courier)
             let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'courier');
             if (provIdx > -1) {
                 updates[provIdx].provider = 'Direct';
@@ -8506,15 +8554,11 @@ window.openDirectDeliveryPopup = function (oid) {
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-
-            // 4. 🔥 കാർഡിലെ തുകയും മാറ്റങ്ങളും അപ്പോൾ തന്നെ കാണിക്കാൻ 
             if (typeof renderTabs === 'function') renderTabs(allOrders);
 
             Swal.fire({ icon: 'info', title: 'Added to Sync List!', text: `Updated Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
         } else {
-            // Cancel അടിച്ചാൽ ഡ്രോപ്പ്ഡൗൺ പഴയപടിയാക്കാൻ
             if (typeof renderTabs === 'function') renderTabs(allOrders);
         }
     });
 };
-
