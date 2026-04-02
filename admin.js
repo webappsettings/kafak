@@ -5248,9 +5248,12 @@ window.syncMonthToSheet = function () {
 
     let liveProfit = window.currentLiveProfit || 0;
 
+    // 🔥 FIX: മാസത്തിന്റെ പേര് മാത്രം കൃത്യമായി എടുക്കാൻ ഫോർമാറ്റ് ചെയ്യുന്നു (eg: "Jan 2026")
+    let cleanMonthStr = flatpickr.formatDate(selectedDate, "M Y");
+
     let payload = {
         action: 'saveMonthReport',
-        month: window.currentMonthStr,
+        month: cleanMonthStr, // 🔥 ഇവിടെ cleanMonthStr എന്ന് കൊടുത്തു
         income: window.currentIncome || 0,
         productCost: window.currentProductCost || 0,
         courier: window.currentCourier || 0,
@@ -5269,7 +5272,7 @@ window.syncMonthToSheet = function () {
     }).then(res => res.json()).then(response => {
         btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-outline-primary').addClass('btn-success text-white');
         setTimeout(() => {
-            btn.html(`<i class="fas fa-cloud-upload-alt me-1"></i>Save ${window.currentMonthStr} Data`).removeClass('btn-success text-white').addClass('btn-outline-primary').prop('disabled', false);
+            btn.html(`<i class="fas fa-cloud-upload-alt me-1"></i>Save ${cleanMonthStr} Data`).removeClass('btn-success text-white').addClass('btn-outline-primary').prop('disabled', false);
         }, 3000);
     }).catch(error => {
         btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-outline-primary').addClass('btn-success text-white');
@@ -7039,6 +7042,12 @@ window.renderPartnerList = function () {
     let fullBottleCost = 0;
     let fullCourier = 0;
 
+    // 🔥 NEW: Paid & Dispatched Counters
+    let monthPaidCount = 0;
+    let monthDispatchedCount = 0;
+    let mY = selectedDate.getFullYear();
+    let mM = selectedDate.getMonth();
+
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
@@ -7060,6 +7069,18 @@ window.renderPartnerList = function () {
                 if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
                 fullCourier += actualC;
+            }
+
+            // 🔥 NEW: Calculate Current Month's Paid & Dispatched Bottles
+            let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
+            let pDate = parseOrderDate(pDateStr);
+
+            if (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM) {
+                if (status === 'Paid') {
+                    monthPaidCount += qty;
+                } else if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                    monthDispatchedCount += qty;
+                }
             }
         }
     });
@@ -7117,7 +7138,12 @@ window.renderPartnerList = function () {
             <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
         </div>
         
-        <div class="text-secondary small mb-1 fst-italic" style="font-size:10px; line-height: 1.4;">
+        <div class="d-flex justify-content-between mb-2 pb-1 border-bottom border-secondary border-opacity-10" style="font-size: 10px;">
+            <span class="text-success fw-bold"><i class="fas fa-check-circle"></i> Paid: ${monthPaidCount}</span>
+            <span class="text-primary fw-bold"><i class="fas fa-shipping-fast"></i> Dispatched: ${monthDispatchedCount}</span>
+        </div>
+        
+        <div class="text-secondary small mb-1 fst-italic mt-2" style="font-size:10px; line-height: 1.4;">
             <span class="fw-bold text-muted">Sales:</span> ${window.currentBreakdownStr}
         </div>
         <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
@@ -7182,30 +7208,30 @@ window.renderPartnerList = function () {
     let html = breakdownHtml;
 
     if (isCurrentMonth) {
-        // 🔥 NEW ACCOUNTING LOGIC & UI (Passbook Style)
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
 
             let withdrawnAmt = data.withdrawn || 0;
             let thisMonthShare = shares[name] || 0;
 
-            // 🔥 യഥാർത്ഥ പഴയ ബാലൻസ് (എടുത്ത തുക കുറയ്ക്കുന്നതിന് മുൻപുള്ളത്)
             let pastProfit = sheetPrevBal + withdrawnAmt;
 
-            // 🔥 ഫൈനൽ ബാലൻസ് (പഴയത് + ഈ മാസം - എടുത്തത്)
-            let totalBal = (pastProfit + thisMonthShare) - withdrawnAmt;
+            // 🔥 NEW: Default (Excluded) vs Checked (Included) Balances
+            let defaultBal = pastProfit - withdrawnAmt;
+            let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt;
 
-            let formattedBal = Number(totalBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+            // Default ആയി ഈ മാസത്തെ തുക കൂട്ടാതെയാണ് കാണിക്കുന്നത്
+            let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
             html += `
-            <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" onclick="selectPartner('${name}', ${totalBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
+            <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" data-partner="${name}" onclick="selectPartnerWithCheck('${name}', ${defaultBal}, ${checkedBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
                 <div class="d-flex align-items-center w-100">
                     <div class="me-3">
                         <i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i>
                     </div>
                     <div class="flex-grow-1">
                         <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
-                        <div class="text-success fw-bold mt-1 mb-2" style="font-size:13px;">
+                        <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">
                             Final Bal: ₹${formattedBal} 
                         </div>
                         
@@ -7214,10 +7240,14 @@ window.renderPartnerList = function () {
                                 <span>Past Balance:</span>
                                 <span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span>
                             </div>
-                            <div class="d-flex justify-content-between text-muted mt-1" style="font-size:10px; font-weight:600;">
-                                <span>This Month:</span>
-                                <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span>
+                            
+                            <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
+                                <span>This Month: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
+                                <div class="form-check form-switch m-0" onclick="event.stopPropagation();" title="Include this month's salary">
+                                    <input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); margin-top: 2px; cursor: pointer;">
+                                </div>
                             </div>
+                            
                             ${withdrawnAmt > 0 ? `
                             <div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top border-secondary border-opacity-10" style="font-size:10px; font-weight:600;">
                                 <span>Total Taken:</span>
@@ -7250,6 +7280,29 @@ window.renderPartnerList = function () {
     }
 
     $('#partner-list').html(html);
+};
+
+// 🔥 NEW: SALARY CHECKBOX HELPER FUNCTIONS
+window.updatePartnerBal = function (name, defaultBal, checkedBal) {
+    let isChecked = document.getElementById(`cb-inc-${name}`).checked;
+    let newBal = isChecked ? checkedBal : defaultBal;
+
+    // കാർഡിലെ തുക അപ്ഡേറ്റ് ചെയ്യുന്നു
+    document.getElementById(`bal-disp-${name}`).innerText = `Final Bal: ₹${newBal.toLocaleString('en-IN')}`;
+
+    // ഈ കാർഡ് ഓൾറെഡി സെലക്ട് ചെയ്തതാണെങ്കിൽ (Tick ഇട്ടതാണെങ്കിൽ) ഫോമിലെ തുകയും മാറ്റുന്നു
+    if ($(`.partner-card[data-partner="${name}"]`).hasClass('selected')) {
+        $('#exp-amount').val(newBal);
+    }
+};
+
+window.selectPartnerWithCheck = function (name, defaultBal, checkedBal) {
+    let cb = document.getElementById(`cb-inc-${name}`);
+    let isChecked = cb ? cb.checked : false;
+    let finalBal = isChecked ? checkedBal : defaultBal;
+
+    // നിലവിലുള്ള selectPartner ഫംഗ്ഷൻ വിളിക്കുന്നു
+    selectPartner(name, finalBal);
 };
 
 // ==========================================
