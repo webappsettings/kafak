@@ -6817,9 +6817,8 @@ window.renderPartnerList = function () {
     let mM = selectedDate.getMonth();
 
     let firstDateMs = Date.now();
-
     let totalCompanyDueInHand = 0;
-    // 🔥 NEW: Added 'orders' count and 'breakdown' object
+
     window.directProfits = {
         "Samad": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} },
         "Salam": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} },
@@ -6828,14 +6827,11 @@ window.renderPartnerList = function () {
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
-
         let oDateStr = o.timestamp || o.Date || o.date;
         let oDate = parseOrderDate(oDateStr);
-        if (!isNaN(oDate.getTime()) && oDate.getTime() < firstDateMs) {
-            firstDateMs = oDate.getTime();
-        }
+        if (!isNaN(oDate.getTime()) && oDate.getTime() < firstDateMs) firstDateMs = oDate.getTime();
 
-        // 🔥 CHECK IF DIRECT DELIVERY
+        // 🔥 DIRECT DELIVERY LOGIC
         if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
             let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
             if (match && ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
@@ -6853,39 +6849,27 @@ window.renderPartnerList = function () {
                 fullBottleCost += itemCost;
 
                 if (window.directProfits[pName]) {
-                    window.directProfits[pName].count += qty;       // Total Bottles
-                    window.directProfits[pName].orders += 1;        // Total Orders Delivered
+                    window.directProfits[pName].count += qty;
+                    window.directProfits[pName].orders += 1;
                     window.directProfits[pName].companyDue += companyDue;
                     window.directProfits[pName].travelEarned += travelCharge;
                     totalCompanyDueInHand += companyDue;
-
-                    // 🔥 NEW: Store breakdown (e.g., 30x2, 80x1)
                     if (travelCharge > 0) {
                         window.directProfits[pName].breakdown[travelCharge] = (window.directProfits[pName].breakdown[travelCharge] || 0) + 1;
                     }
                 }
-
-                let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
-                let pDate = parseOrderDate(pDateStr);
-                if (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM) {
-                    if (status === 'Paid') monthPaidCount += qty;
-                    else monthDispatchedCount += qty;
-                }
-
                 return;
             }
         }
 
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
             let qty = parseInt(o.quantity) || 0;
-
             let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
             fullIncome += amt;
-
             let dbCost = parseInt(o.Product_Base_Cost);
             fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
@@ -6899,46 +6883,14 @@ window.renderPartnerList = function () {
 
             let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
             let pDate = parseOrderDate(pDateStr);
-
             if (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM) {
-                if (status === 'Paid') {
-                    monthPaidCount += qty;
-                } else if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
-                    monthDispatchedCount += qty;
-                }
+                if (status === 'Paid') monthPaidCount += qty;
+                else monthDispatchedCount += qty;
             }
         }
     });
 
-    let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-    let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-
-    let allExps = new Map();
-    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
-        dashboardData.monthTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
-    }
-    if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
-        dashboardData.yearTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
-    }
-    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
-    pendingExpenses.forEach(e => { if (e.id) allExps.set(e.id, e); });
-
-    let fullExpenses = 0;
-    allExps.forEach(e => {
-        let cat = String(e.cat || e.category || '').toLowerCase();
-        if (!e.isCourier && cat !== 'refund') {
-            fullExpenses += (Number(e.amount) || 0);
-        }
-    });
-
-    let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
-
-    let shares = {
-        "Salam": Math.floor(liveProfit * 0.20),
-        "Samad": Math.floor(liveProfit * 0.70),
-        "Jazeela": Math.floor(liveProfit * 0.10)
-    };
-
+    let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
 
@@ -7078,26 +7030,26 @@ window.renderPartnerList = function () {
     if (isCurrentMonth) {
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
-
             let withdrawnAmt = data.withdrawn || 0;
             let thisMonthShare = shares[name] || 0;
 
             let dd = window.directProfits[name];
-            let deductAmt = dd ? dd.companyDue : 0;
+            let extraProfitAmt = dd ? dd.travelEarned : 0; // 🔥 ഇതിനെ മാത്രം സാലറിയിൽ കൂട്ടുന്നു
+            let inHandCash = dd ? dd.companyDue : 0; // 🔥 ഇത് കയ്യിലുള്ള കമ്പനി പണം
 
             let pastProfit = sheetPrevBal + withdrawnAmt;
-            let defaultBal = pastProfit - withdrawnAmt - deductAmt;
-            let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt - deductAmt;
+
+            // 🔥 പുതിയ ബാലൻസ് കാൽക്കുലേഷൻ (No labels like 'Deducted' shown to user in logic)
+            // ബാലൻസിൽ എക്സ്ട്രാ പ്രോഫിറ്റ് കൂട്ടുന്നു
+            let defaultBal = pastProfit - withdrawnAmt + extraProfitAmt;
+            let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt + extraProfitAmt;
 
             let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
-            // 🔥 NEW: Breakdown Text Generation
             let bdText = "";
             if (dd && Object.keys(dd.breakdown).length > 0) {
                 let parts = [];
-                for (let [charge, times] of Object.entries(dd.breakdown)) {
-                    parts.push(`${charge}x${times}`);
-                }
+                for (let [charge, times] of Object.entries(dd.breakdown)) parts.push(`${charge}x${times}`);
                 bdText = `(${parts.join(', ')})`;
             }
 
@@ -7110,51 +7062,38 @@ window.renderPartnerList = function () {
                     <div class="flex-grow-1">
                         <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
                         <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">
-                            Final Bal: ₹${formattedBal} 
+                            Final Bal: ₹${formattedBal} 
                         </div>
                         
                         <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
                             <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;">
-                                <span>Past Balance:</span>
-                                <span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span>
+                                <span>Current Bank Debt:</span>
+                                <span class="text-dark">₹${(pastProfit - withdrawnAmt).toLocaleString('en-IN')}</span>
                             </div>
-                            
+
+                            ${dd && dd.count > 0 ? `
+                            <div class="d-flex justify-content-between text-muted mt-1" style="font-size:10px; font-weight:600;">
+                                <span><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
+                                <span class="text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
+                            </div>` : ''}
+
                             <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
-                                <span>This Month: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
-                                <div class="form-check form-switch m-0" onclick="event.stopPropagation();" title="Include this month's salary">
+                                <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
+                                <div class="form-check form-switch m-0" onclick="event.stopPropagation();">
                                     <input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); margin-top: 2px; cursor: pointer;">
                                 </div>
                             </div>
-                            
-                            ${withdrawnAmt > 0 ? `
-                            <div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top border-secondary border-opacity-10" style="font-size:10px; font-weight:600;">
-                                <span>Total Taken:</span>
-                                <span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span>
-                            </div>` : ''}
                         </div>
 
-                        ${dd && dd.count > 0 ? `
+                        ${inHandCash > 0 ? `
                         <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
-                            <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="fw-bold text-dark" style="font-size:10px;">
-                                    <i class="fas fa-motorcycle text-warning me-1"></i> Direct: ${dd.orders} Orders
-                                </span>
-                                <span class="badge bg-warning text-dark" style="font-size:8px;">${dd.count} Bottles</span>
+                            <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
+                                <span class="fw-bold text-danger"><i class="fas fa-hand-holding-usd"></i> Company Cash in Hand:</span>
+                                <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
                             </div>
-                            <div class="d-flex justify-content-between align-items-center text-muted mb-1" style="font-size:9px;">
-                                <span>Extra Profit <span style="font-size:8.5px;" class="fw-bold text-secondary">${bdText}</span>:</span>
-                                <span class="fw-bold text-success">+ ₹${dd.travelEarned}</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
-                                <span class="fw-bold text-danger">Company Cost Deducted:</span>
-                                <span class="fw-bold text-danger">- ₹${dd.companyDue}</span>
-                            </div>
+                            <div class="text-muted mt-1" style="font-size:8px;">(ഈ തുക സാലറിയിൽ നിന്നും കുറയ്ക്കില്ല, പക്ഷേ നേരിട്ട് വാങ്ങിയിട്ടുള്ളതാണ്)</div>
                         </div>` : ''}
-                        
-                        ${withdrawnAmt > 0 ? `
-                        <div class="mt-2 text-end text-muted" style="font-size:9px;">
-                            Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})
-                        </div>` : `<div class="mt-2 text-muted" style="font-size:9px;">No salary taken yet.</div>`}
+
                     </div>
                     <div class="ms-2 d-flex align-items-center justify-content-center">
                         <i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i>
@@ -7162,17 +7101,6 @@ window.renderPartnerList = function () {
                 </div>
             </div>`;
         }
-    } else {
-        html += `
-        <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
-            <i class="fas fa-lock fs-5 mb-2"></i><br>
-            സാലറി അക്കൗണ്ടിംഗ് കൃത്യമാകാൻ നിലവിലെ മാസത്തിൽ (Current Month) നിന്നും മാത്രമേ സാലറി കൊടുക്കാൻ സാധിക്കൂ.
-            <div class="mt-3">
-                <button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">
-                    <i class="fas fa-calendar-day me-1"></i> Go to This Month
-                </button>
-            </div>
-        </div>`;
     }
 
     $('#partner-list').html(html);
