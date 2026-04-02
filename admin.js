@@ -2439,93 +2439,6 @@ function discardLocalChanges() {
 
 
 
-// 🔥 SEND INVOICE WA (Fixed Unique ID, Country Code & Preserved Logic)
-window.sendWA = function (index, type = 'pending') {
-    const d = allOrders[index];
-    const n = parseInt(d.quantity);
-    const adminPhone = '7788990313';
-    const safe = (val) => String(val || '').trim().toUpperCase();
-
-    // 1. DATE FORMATTING
-    const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
-    const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
-
-    // 2. CALCULATE PRICE (Fixed Sync with Dynamic Rates)
-    const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
-
-    let savedProvider = d.provider || d.Courier_Provider || null;
-    let stateKey = getZoneKey(d.state, savedProvider);
-
-    let courierBase = 0; let serviceMargin = 0;
-    if (typeof courierRates !== 'undefined') {
-        let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
-
-        let zoneData = (p ? (courierRates[`${stateKey} ${p}`] || courierRates[`${stateKey}_${p}`]) : null)
-            || courierRates[`${stateKey} DEFAULT`]
-            || courierRates[`${stateKey}_DEFAULT`]
-            || courierRates[stateKey]
-            || courierRates['REST OF INDIA DEFAULT']
-            || courierRates['REST OF INDIA'];
-
-        if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
-            courierBase = window.parseDynamicRate(zoneData.baseRate, n);
-            serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
-        } else if (zoneData && zoneData[n] !== undefined) {
-            courierBase = Number(zoneData[n]);
-        }
-    }
-
-    const courier = courierBase + serviceMargin;
-    const total = base + courier;
-
-    // 3. GENERATE MESSAGE (Preserved)
-    const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
-
-    // 🔥 LANGUAGE LOGIC
-    const isEng = (d.language === 'en');
-
-    // Header Text based on Language
-    const editText = isEng ? "To check status or edit order: 👇" : "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
-
-    const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
-    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-
-    // 🔥 Payment Screenshot Request (Language based)
-    let paymentNote = "";
-    if (isEng) {
-        paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
-    } else {
-        paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
-    }
-
-    const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
-
-    // 4. DETERMINE TARGET PHONE (Updated with 'type' selector & CC)
-    let phoneNum = "";
-
-    const dropdown = document.getElementById(`wa-select-${type}-${index}`);
-    let code = dropdown ? dropdown.value : '';
-
-    // 🔥 NEW: Get Country Code
-    const ccInput = document.getElementById(`wa-cc-${type}-${index}`);
-    let cc = ccInput ? ccInput.value : '91';
-
-    if (code === 'W') phoneNum = d.whatsapp;
-    else if (code === 'A') phoneNum = d.altphone;
-    else if (code === 'M') phoneNum = d.phone;
-    else if (code === 'G') phoneNum = d.paidNum; // 🔥 Paid Number Support
-    else phoneNum = d.whatsapp || d.phone;
-
-    // 🔥 NEW: Format Number with Smart Country Code Logic
-    let finalNum = formatWAPhone(phoneNum, cc);
-
-    if (finalNum) {
-        window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
-    } else {
-        alert("Number not found!");
-    }
-}
-
 function printSingle(index) { runPrintLogic([{ value: index }]); }
 // 🔥 SMART PRINT MANAGER (Fixes Hanging & Supports Both Tabs)
 window.printSelected = async function (sourceTab = 'new') {
@@ -4444,39 +4357,6 @@ window.searchOrderInWA = function (oid) {
     });
 }
 
-// 🔥 SEND PAYMENT RECEIPT WA (Updated with Country Code Support)
-window.sendPaymentWA = function (oid, index, type = 'paid') {
-    let order = allOrders.find(o => o.orderid === oid);
-    if (!order) { alert("Order Data Missing!"); return; }
-
-    // 1. Get Selected Code from Dropdown
-    let dropdown = document.getElementById(`wa-select-${type}-${index}`);
-    let code = dropdown ? dropdown.value : 'W'; // Default
-
-    // 🔥 NEW: Get Country Code from the input box
-    let ccInput = document.getElementById(`wa-cc-${type}-${index}`);
-    let cc = ccInput ? ccInput.value : '91';
-
-    // 2. Pick Number based on Selection
-    let targetNum = "";
-    if (code === 'M') targetNum = order.phone;
-    else if (code === 'W') targetNum = order.whatsapp;
-    else if (code === 'A') targetNum = order.altphone;
-    else if (code === 'G') targetNum = order.paidNum; // Paid Number
-    else targetNum = order.whatsapp || order.phone; // Fallback
-
-    // 🔥 NEW: Format number with Country Code logic
-    let finalNum = formatWAPhone(targetNum, cc);
-
-    if (!finalNum) { alert("No valid number found for selection!"); return; }
-
-    // 3. Generate Message
-    let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
-    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
-
-    // 4. Open WhatsApp with SELECTED and FORMATTED Number
-    window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
-}
 
 // 🔥 CLIPBOARD COPY FUNCTION
 window.copyToClipboard = function (text) {
@@ -8642,52 +8522,131 @@ window.updateAdminMeta = function (oid, action, value) {
     if (typeof originalUpdateAdminMeta === 'function') originalUpdateAdminMeta(oid, action, value);
 };
 
-// 🔥 FIX 3: WHATSAPP RECEIPT TOTAL & RATE OVERRIDE FOR DIRECT DELIVERY
-let origSendWA = window.sendWA;
-if (typeof origSendWA === 'function') {
-    window.sendWA = function (index, type) {
-        fixOrderDataBeforeWA(index);
-        origSendWA(index, type);
-    };
-}
+// 🔥 SEND INVOICE WA (Direct Delivery & Dynamic Rates Integrated)
+window.sendWA = function (index, type = 'pending') {
+    const d = allOrders[index];
+    if (!d) return;
+    const n = parseInt(d.quantity) || 1;
+    const adminPhone = '7788990313';
+    const safe = (val) => String(val || '').trim().toUpperCase();
 
-let origSendPaymentWA = window.sendPaymentWA;
-if (typeof origSendPaymentWA === 'function') {
-    window.sendPaymentWA = function (oid, index, type) {
-        fixOrderDataBeforeWA(index, oid);
-        origSendPaymentWA(oid, index, type);
-    };
-}
+    // 1. DATE FORMATTING
+    const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
+    const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-function fixOrderDataBeforeWA(index, oid) {
-    let order = null;
-    if (index !== undefined && allOrders[index]) order = allOrders[index];
-    else if (oid) order = allOrders.find(o => o.orderid === oid);
+    // 2. CALCULATE PRICE Logic
+    const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
-    if (order && order.adminMeta && order.adminMeta.includes('DDelivery')) {
-        let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+    let courier = 0;
+    let providerName = d.provider || d.Courier_Provider || 'Courier';
+
+    // 🔥 CHECK IF DIRECT DELIVERY
+    if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
+        let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
         if (match) {
-            let charge = parseInt(match[2]) || 0;
-            let qty = parseInt(order.quantity) || 1;
-            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+            courier = parseInt(match[2]) || 0; // Popup-ൽ കൊടുത്ത 30 അല്ലെങ്കിൽ 80
+            providerName = "Direct Delivery";
+        }
+    } else {
+        // --- NORMAL DYNAMIC COURIER LOGIC ---
+        let savedProvider = d.provider || d.Courier_Provider || null;
+        let stateKey = getZoneKey(d.state, savedProvider);
+        let courierBase = 0;
+        let serviceMargin = 0;
 
-            // മെസ്സേജ് ക്രിയേറ്റ് ചെയ്യുന്ന സമയത്ത് റേറ്റുകൾ നിർബന്ധമായും മാറ്റി കൊടുക്കുന്നു
-            order.provider = 'Direct';
-            order.Courier_Provider = 'Direct';
-            order.Courier_Charge = charge;
-            order.Grand_Total = standardPrice + charge;
-            order.grandTotal = standardPrice + charge;
+        if (typeof courierRates !== 'undefined') {
+            let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+            let zoneData = (p ? (courierRates[`${stateKey} ${p}`] || courierRates[`${stateKey}_${p}`]) : null)
+                || courierRates[`${stateKey} DEFAULT`]
+                || courierRates[`${stateKey}_DEFAULT`]
+                || courierRates[stateKey]
+                || courierRates['REST OF INDIA DEFAULT']
+                || courierRates['REST OF INDIA'];
 
-            // Temporary Courier Rate fix for WhatsApp URL generation
-            if (typeof window.getCourierRate === 'function') {
-                let origGetRate = window.getCourierRate;
-                window.getCourierRate = function (s, p, q) {
-                    if (String(p).toUpperCase() === 'DIRECT') return charge;
-                    return origGetRate(s, p, q);
-                };
-                // മെസ്സേജ് ഓപ്പൺ ആയതിന് ശേഷം തിരികെ പഴയതുപോലെ ആക്കാൻ
-                setTimeout(() => { window.getCourierRate = origGetRate; }, 1500);
+            if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+                courierBase = window.parseDynamicRate(zoneData.baseRate, n);
+                serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
+            } else if (zoneData && zoneData[n] !== undefined) {
+                courierBase = Number(zoneData[n]);
             }
         }
+        courier = courierBase + serviceMargin;
     }
+
+    const total = base + courier;
+
+    // 3. GENERATE MESSAGE
+    const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
+    const isEng = (d.language === 'en');
+    const editText = isEng ? "To check status or edit order: 👇" : "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
+
+    const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
+    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+
+    let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_"
+        : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+
+    const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
+
+    // 4. PHONE NUMBER SELECTION
+    let phoneNum = "";
+    const dropdown = document.getElementById(`wa-select-${type}-${index}`);
+    let code = dropdown ? dropdown.value : 'W';
+
+    const ccInput = document.getElementById(`wa-cc-${type}-${index}`);
+    let cc = ccInput ? ccInput.value : '91';
+
+    if (code === 'W') phoneNum = d.whatsapp;
+    else if (code === 'A') phoneNum = d.altphone;
+    else if (code === 'M') phoneNum = d.phone;
+    else if (code === 'G') phoneNum = d.paidNum;
+    else phoneNum = d.whatsapp || d.phone;
+
+    let finalNum = formatWAPhone(phoneNum, cc);
+
+    if (finalNum) {
+        window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
+    } else {
+        alert("Number not found!");
+    }
+}
+
+// 🔥 SEND PAYMENT RECEIPT WA (Direct Delivery Compatible)
+window.sendPaymentWA = function (oid, index, type = 'paid') {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) { alert("Order Data Missing!"); return; }
+
+    let dropdown = document.getElementById(`wa-select-${type}-${index}`);
+    let code = dropdown ? dropdown.value : 'W';
+
+    let ccInput = document.getElementById(`wa-cc-${type}-${index}`);
+    let cc = ccInput ? ccInput.value : '91';
+
+    let targetNum = "";
+    if (code === 'M') targetNum = order.phone;
+    else if (code === 'W') targetNum = order.whatsapp;
+    else if (code === 'A') targetNum = order.altphone;
+    else if (code === 'G') targetNum = order.paidNum;
+    else targetNum = order.whatsapp || order.phone;
+
+    let finalNum = formatWAPhone(targetNum, cc);
+    if (!finalNum) { alert("No valid number found!"); return; }
+
+    // തുക കാൽക്കുലേറ്റ് ചെയ്യുന്നു (Direct Delivery ആണെങ്കിൽ അത് പരിഗണിക്കും)
+    const n = parseInt(order.quantity) || 1;
+    const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
+    let courier = parseInt(order.Courier_Charge) || 0;
+
+    // Direct Delivery ആണെങ്കിൽ Meta-യിൽ നിന്ന് റേറ്റ് ഉറപ്പുവരുത്തുന്നു
+    if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
+        let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+        if (match) courier = parseInt(match[2]) || 0;
+    }
+
+    let totalAmount = base + courier;
+
+    let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
+    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n💰 *Amount: ₹${totalAmount}*\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
+
+    window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }
