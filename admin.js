@@ -165,12 +165,6 @@ function updateAdminMeta(oid, type, value) {
     Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: msg });
 }
 
-// 🔥 Unprint Confirmation Helper
-window.confirmUnprint = function (oid) {
-    if (confirm("Move back to Unprinted Tab?")) {
-        updateAdminMeta(oid, 'unprint', '');
-    }
-};
 
 // 🔴 1. SAFE STORAGE CHECK
 function isStorageAvailable() {
@@ -8582,20 +8576,47 @@ window.openDirectDeliveryPopup = function (oid) {
     });
 };
 
-// 🔥 FIX: CLEANUP ORPHANED META TAGS (Print / Unprint Repeats)
+// 🔥 FIX: CLEANUP ORPHANED META TAGS & ADD SYNC INDICATION
 
-// 1. Unprint ചെയ്യുമ്പോൾ അനാവശ്യ നമ്പറുകൾ പൂർണ്ണമായും കളയാൻ
-let originalConfirmUnprint = window.confirmUnprint;
+// 1. Unprint ചെയ്യുമ്പോൾ അനാവശ്യ നമ്പറുകൾ പൂർണ്ണമായും കളയാനും സിങ്ക് ചെയ്യാനും (Complete Function)
 window.confirmUnprint = function (oid) {
-    let order = allOrders.find(o => o.orderid === oid);
-    if (order) {
-        // 'P_നമ്പർ' ഉം, വെറും '_നമ്പർ' ഉം പൂർണ്ണമായും ഒഴിവാക്കുന്നു (DDelivery കാൽക്കുലേഷനെ ബാധിക്കില്ല)
-        order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
-    }
-    // പഴയ ഫംഗ്ഷൻ വിളിക്കുന്നു (ഇപ്പോൾ ഡാറ്റ ക്ലീൻ ആണ്!)
-    if (typeof originalConfirmUnprint === 'function') {
-        originalConfirmUnprint(oid);
-    }
+    Swal.fire({
+        title: 'Revert Status?',
+        text: "This will remove the order from the printed list.",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#f59e0b',
+        confirmButtonText: 'Yes, Revert'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            let order = allOrders.find(o => o.orderid === oid);
+            if (!order) return;
+
+            let oldMeta = String(order.adminMeta || '');
+
+            // 'P_നമ്പർ', വെറും '_നമ്പർ' എന്നിവ പൂർണ്ണമായും ഒഴിവാക്കുന്നു
+            let newMeta = oldMeta.replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
+            order.adminMeta = newMeta;
+
+            // സിങ്ക് ക്യൂവിലേക്ക് ആഡ് ചെയ്യുന്നു (ഇത് സിങ്ക് ഇൻഡിക്കേഷൻ കൊണ്ടുവരും!)
+            let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
+
+            if (metaIdx > -1) {
+                updates[metaIdx].meta = newMeta;
+            } else {
+                updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: oldMeta, time: new Date().getTime() });
+            }
+
+            localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+            if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+            if (typeof renderTabs === 'function') renderTabs(allOrders);
+
+            Swal.fire({ icon: 'success', title: 'Reverted to Unprinted!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+        }
+    });
 };
 
 // 2. വീണ്ടും Print ചെയ്യുമ്പോൾ പഴയ നമ്പറുകൾ ഉണ്ടെങ്കിൽ അത് ക്ലിയർ ചെയ്തിട്ട് പുതിയത് വെക്കാൻ
@@ -8603,6 +8624,7 @@ let originalPrintSingle = window.printSingle;
 window.printSingle = function (index) {
     let order = allOrders[index];
     if (order) {
+        // പ്രിൻ്റ് ചെയ്യുന്നതിന് മുൻപ് പഴയ നമ്പറുകൾ കളയുന്നു. (പുതിയ നമ്പർ ഒറിജിനൽ ഫംഗ്ഷൻ ഇട്ടോളും)
         order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
     }
     if (typeof originalPrintSingle === 'function') {
