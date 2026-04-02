@@ -8402,7 +8402,8 @@ window.formatWAPhone = function (phoneNum, cc) {
     return cleanNum;
 };
 
-// 🔥 COMPLETE CHANGE COURIER FUNCTION (Handles Normal & Direct Delivery)
+
+// 🔥 COMPLETE CHANGE COURIER FUNCTION (Handles Normal & Direct Delivery - FIXED)
 window.changeCourier = async function (oid, newProvider) {
     if (newProvider === 'Direct') {
         openDirectDeliveryPopup(oid);
@@ -8421,7 +8422,7 @@ window.changeCourier = async function (oid, newProvider) {
     let qty = parseInt(order.quantity) || 1;
     let newCharge = 0;
 
-    // പുതിയ കൊറിയർ ചാർജ്ജ് കണ്ടുപിടിക്കുന്നു (eg: DTDC rate)
+    // പുതിയ കൊറിയർ ചാർജ്ജ് കണ്ടുപിടിക്കുന്നു
     if (typeof getCourierRate === 'function') {
         newCharge = getCourierRate(order.state, newProvider, qty);
     }
@@ -8443,19 +8444,19 @@ window.changeCourier = async function (oid, newProvider) {
         let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
         order.adminMeta = newMeta;
 
-        let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta');
+        let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
         if (metaIdx > -1) updates[metaIdx].meta = newMeta;
         else updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
     }
 
-    // കൊറിയർ മാറ്റം Sync ക്യൂവിലേക്ക് ഇടുന്നു
-    let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'courier');
+    // 🔥 FIX: കൊറിയർ മാറ്റം സിസ്റ്റത്തിന് മനസ്സിലാകുന്ന രീതിയിൽ (action: 'meta') തന്നെ Sync ക്യൂവിലേക്ക് ഇടുന്നു!
+    let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
     if (provIdx > -1) {
         updates[provIdx].provider = newProvider;
         updates[provIdx].charge = newCharge;
         updates[provIdx].total = newTotal;
     } else {
-        updates.push({ oid: oid, action: 'courier', provider: newProvider, charge: newCharge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
+        updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: newCharge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
     }
 
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -8534,20 +8535,21 @@ window.openDirectDeliveryPopup = function (oid) {
 
             let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta');
+            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
             if (metaIdx > -1) {
                 updates[metaIdx].meta = newMeta;
             } else {
                 updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
             }
 
-            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'courier');
+            // 🔥 FIX: കൊറിയർ മാറ്റം സിസ്റ്റത്തിന് മനസ്സിലാകുന്ന രീതിയിൽ (action: 'meta') തന്നെ Sync ക്യൂവിലേക്ക് ഇടുന്നു!
+            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
             if (provIdx > -1) {
                 updates[provIdx].provider = 'Direct';
                 updates[provIdx].charge = charge;
                 updates[provIdx].total = newTotal;
             } else {
-                updates.push({ oid: oid, action: 'courier', provider: 'Direct', charge: charge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
+                updates.push({ oid: oid, action: 'meta', provider: 'Direct', charge: charge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
             }
 
             localStorage.setItem('pendingUpdates', JSON.stringify(updates));
