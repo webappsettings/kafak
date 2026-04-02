@@ -6890,6 +6890,29 @@ window.renderPartnerList = function () {
         }
     });
 
+    // 🔥 FIX: actualBankBalance Calculation Logic
+    let allExps = new Map();
+    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
+    }
+    if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
+        dashboardData.yearTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
+    }
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    pendingExpenses.forEach(e => { if (e.id) allExps.set(e.id, e); });
+
+    let fullExpenses = 0;
+    allExps.forEach(e => {
+        let cat = String(e.cat || e.category || '').toLowerCase();
+        // സാലറിയും റീഫണ്ടും അല്ലാത്ത ബാക്കി എല്ലാ ചിലവുകളും കൂട്ടുന്നു
+        if (!e.isCourier && cat !== 'refund' && cat !== 'salary') {
+            fullExpenses += (Number(e.amount) || 0);
+        }
+    });
+
+    // ബാങ്ക് ബാലൻസ് കാൽക്കുലേഷൻ (Revenue - (Bottle Cost + Courier + Other Expenses) - Cash in Partner Hand)
+    let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
+
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
