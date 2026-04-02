@@ -1790,7 +1790,6 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
 
         let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
         let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'status');
-
         let existingOrder = allOrders.find(o => o.orderid === oid);
 
         let trueOldStatus = 'Pending';
@@ -1800,22 +1799,15 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             trueOldStatus = existingOrder ? existingOrder.Status : 'Pending';
         }
 
-        if (existingOrder && existingOrder.Status === status && customDate) {
-            trueOldStatus = `${existingOrder.Status} (${getTimelineLabel(existingOrder['Dispatched Date'] || existingOrder.timestamp)})`;
-        }
-
-        let needsRefundDelete = false;
-        if (String(trueOldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
-            needsRefundDelete = true;
-        }
-
-        let metaCleaned = false;
         let currentMeta = existingOrder ? String(existingOrder.adminMeta || '') : '';
         let cleanMeta = currentMeta;
+        let metaCleaned = false;
 
+        // 🔥 FIX: Meta cleaning logic updated to preserve DDelivery tags
         if (['Pending', 'Sent'].includes(trueOldStatus) && ['Sent', 'Paid'].includes(status)) {
             if (currentMeta.includes('P') || currentMeta.includes('S') || currentMeta.includes('T')) {
-                cleanMeta = currentMeta.replace(/P_\d+/g, '').replace(/[PST]/g, '').replace(/\s+/g, ' ').trim();
+                // P, S, T ടാഗുകൾ മാത്രം കളയുന്നു, DDelivery ടാഗ് നിലനിർത്തുന്നു
+                cleanMeta = currentMeta.replace(/P_\d+/g, '').replace(/\b[PST]\b/g, '').replace(/\s+/g, ' ').trim();
                 metaCleaned = true;
             }
         }
@@ -1823,13 +1815,23 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
         // 🔥 NEW: Dispatched aakumpol loose sticker thaniye kurayan 'S' tag add cheyyunnu
         if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
             if (!cleanMeta.includes('S')) {
-                cleanMeta = cleanMeta.replace(/P_\d+/g, '').trim(); // pazhaya P tag undenkil maaykkunnu
+                cleanMeta = cleanMeta.replace(/P_\d+/g, '').trim();
                 cleanMeta = (cleanMeta ? cleanMeta + " " : "") + "S P_" + Date.now();
                 metaCleaned = true;
             }
         }
 
-        // 🔥 FIX: DATE & TIME LOGIC (Dispatched ആകുമ്പോഴെല്ലാം കൃത്യമായി ഡേറ്റ് സേവ് ആകും!)
+        // 🔥 EXTRA FIX: Ensure Direct Delivery values are preserved in order object
+        if (cleanMeta.includes('DDelivery')) {
+            let match = cleanMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+            if (match) {
+                allOrders[orderIndex].provider = 'Direct';
+                allOrders[orderIndex].Courier_Provider = 'Direct';
+                allOrders[orderIndex].Courier_Charge = parseInt(match[2]);
+            }
+        }
+
+        // --- DATE & TIME LOGIC ---
         let finalActionDate = null;
         if (customDate) {
             finalActionDate = customDate;
@@ -1837,7 +1839,7 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             if (status === 'Paid' && existingOrder && (existingOrder.paidDate || existingOrder['Paid Date'])) {
                 finalActionDate = existingOrder.paidDate || existingOrder['Paid Date'];
             } else if (status === 'Dispatched' && existingOrder && existingOrder['Dispatched Date']) {
-                finalActionDate = existingOrder['Dispatched Date']; // പഴയ ഡേറ്റ് ഉണ്ടെങ്കിൽ അത് തന്നെ നിലനിർത്തും
+                finalActionDate = existingOrder['Dispatched Date'];
             } else {
                 let now = new Date();
                 let y = now.getFullYear();
@@ -1858,27 +1860,21 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
                 status: status,
                 oldStatus: trueOldStatus,
                 time: new Date().getTime(),
-                deleteRefund: needsRefundDelete
+                deleteRefund: (String(trueOldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded')
             };
 
             if (trackingNum !== null) updateObjParams.tracking = trackingNum;
             if (finalActionDate) updateObjParams.actionDate = finalActionDate;
             if (appendMessage) updateObjParams.appendMessage = appendMessage;
 
-            if (existingIndex > -1) {
-                updates[existingIndex] = updateObjParams;
-            } else {
-                updates.push(updateObjParams);
-            }
+            if (existingIndex > -1) updates[existingIndex] = updateObjParams;
+            else updates.push(updateObjParams);
         }
 
         if (metaCleaned) {
             let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
-            if (metaIdx > -1) {
-                updates[metaIdx].meta = cleanMeta;
-            } else {
-                updates.push({ oid: oid, action: 'meta', meta: cleanMeta, oldMeta: currentMeta, time: new Date().getTime() });
-            }
+            if (metaIdx > -1) updates[metaIdx].meta = cleanMeta;
+            else updates.push({ oid: oid, action: 'meta', meta: cleanMeta, oldMeta: currentMeta, time: new Date().getTime() });
         }
 
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -1886,14 +1882,9 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
         if (orderIndex !== -1) {
             allOrders[orderIndex].Status = status;
             if (trackingNum !== null) allOrders[orderIndex].tracking = trackingNum;
+            if (metaCleaned) allOrders[orderIndex].adminMeta = cleanMeta;
 
-            if (metaCleaned) {
-                allOrders[orderIndex].adminMeta = cleanMeta;
-            }
-
-            if (status === 'Paid' && finalActionDate) {
-                allOrders[orderIndex].paidDate = finalActionDate;
-            }
+            if (status === 'Paid' && finalActionDate) allOrders[orderIndex].paidDate = finalActionDate;
             if (status === 'Dispatched') {
                 if (customDate) allOrders[orderIndex]['Dispatched Date'] = customDate;
                 else if (!allOrders[orderIndex]['Dispatched Date'] && finalActionDate) allOrders[orderIndex]['Dispatched Date'] = finalActionDate;
@@ -1902,7 +1893,6 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
                 if (customDate) allOrders[orderIndex]['Delivered Date'] = customDate;
                 else if (!allOrders[orderIndex]['Delivered Date'] && finalActionDate) allOrders[orderIndex]['Delivered Date'] = finalActionDate;
             }
-
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         }
 
@@ -1911,20 +1901,13 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
         } else {
             renderTabs(allOrders);
         }
-
         updateSyncButtonUI();
-
-        if (trackingNum) showToast('success', 'Tracking Saved Locally ✅');
-        if (customDate) showToast('success', 'Date Updated! Sync to Save.');
     };
 
-    if (skipConfirm) {
-        executeUpdate();
-    } else {
+    if (skipConfirm) executeUpdate();
+    else {
         let msg = status === 'Paid' ? 'Mark as Paid?' : `Change status to ${status}?`;
-        confirmAction(msg, () => {
-            executeUpdate();
-        });
+        confirmAction(msg, () => executeUpdate());
     }
 };
 
@@ -8217,7 +8200,7 @@ window.toggleStateFilter = function (stateLabel) {
     }
 };
 
-// 🔥 INSTANT UI UPDATE LOGIC (With Safety Popup & Ultra-Fast Hide)
+// 🔥 INSTANT UI UPDATE LOGIC (Updated to preserve Direct Delivery)
 window.instantStatusChange = function (btnElement, oid, targetStatus) {
     let msg = targetStatus === 'Paid' ? 'Mark as Paid?' : `Move to ${targetStatus}?`;
 
@@ -8227,12 +8210,23 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
         customClass: { popup: 'ios-popup', title: 'ios-title', confirmButton: 'ios-btn', cancelButton: 'ios-btn-cancel' }
     }).then((result) => {
         if (result.isConfirmed) {
-            // 1. 'Yes' adichal udan thanne card screen-il ninnu maayunnu (Super Fast - 100ms)
+
+            // 1. ലോക്കൽ മെമ്മറിയിൽ മാറ്റം വരുത്തുന്നു (Refresh ഇല്ലാതെ ശരിയാകാൻ)
+            let order = allOrders.find(o => o.orderid === oid);
+            if (order && order.adminMeta && order.adminMeta.includes('DDelivery')) {
+                order.provider = 'Direct';
+                order.Courier_Provider = 'Direct';
+                // ചാർജ്ജ് കൂടി ഉറപ്പുവരുത്തുന്നു
+                let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+                if (match) order.Courier_Charge = parseInt(match[2]);
+            }
+
+            // 2. 'Yes' അടിച്ചാൽ ഉടൻ തന്നെ കാർഡ് സ്ക്രീനിൽ നിന്ന് മായുന്നു
             let cardDiv = $(btnElement).closest('.col-12.col-md-12.col-lg-12');
             if (!cardDiv.length) cardDiv = $(btnElement).closest('.col-12');
 
             cardDiv.fadeOut(100, function () {
-                // 2. Card maanjathinu shesham mathram background-il data update cheyyunnu
+                // 3. കാർഡ് മാഞ്ഞതിന് ശേഷം മാത്രം ബാക്ക്ഗ്രൗണ്ടിൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
                 updateOrder(oid, targetStatus, null, true);
             });
         }
@@ -8522,10 +8516,10 @@ window.updateAdminMeta = function (oid, action, value) {
     if (typeof originalUpdateAdminMeta === 'function') originalUpdateAdminMeta(oid, action, value);
 };
 
-// 🔥 SEND INVOICE WA (Direct Delivery & Dynamic Rates Integrated)
 window.sendWA = function (index, type = 'pending') {
     const d = allOrders[index];
     if (!d) return;
+
     const n = parseInt(d.quantity) || 1;
     const adminPhone = '7788990313';
     const safe = (val) => String(val || '').trim().toUpperCase();
@@ -8534,34 +8528,29 @@ window.sendWA = function (index, type = 'pending') {
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
     const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-    // 2. CALCULATE PRICE Logic
+    // 2. CALCULATE PRICE (Direct Delivery Fix Included)
     const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
     let courier = 0;
     let providerName = d.provider || d.Courier_Provider || 'Courier';
 
-    // 🔥 CHECK IF DIRECT DELIVERY
+    // 🔥 WhatsApp-ൽ കൃത്യമായ തുക വരാൻ ഇതാണു വഴി
     if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
         let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
         if (match) {
-            courier = parseInt(match[2]) || 0; // Popup-ൽ കൊടുത്ത 30 അല്ലെങ്കിൽ 80
+            courier = parseInt(match[2]) || 0;
             providerName = "Direct Delivery";
         }
     } else {
-        // --- NORMAL DYNAMIC COURIER LOGIC ---
+        // Normal Courier Logic
         let savedProvider = d.provider || d.Courier_Provider || null;
         let stateKey = getZoneKey(d.state, savedProvider);
-        let courierBase = 0;
-        let serviceMargin = 0;
-
+        let courierBase = 0; let serviceMargin = 0;
         if (typeof courierRates !== 'undefined') {
             let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
             let zoneData = (p ? (courierRates[`${stateKey} ${p}`] || courierRates[`${stateKey}_${p}`]) : null)
-                || courierRates[`${stateKey} DEFAULT`]
-                || courierRates[`${stateKey}_DEFAULT`]
-                || courierRates[stateKey]
-                || courierRates['REST OF INDIA DEFAULT']
-                || courierRates['REST OF INDIA'];
+                || courierRates[`${stateKey} DEFAULT`] || courierRates[`${stateKey}_DEFAULT`]
+                || courierRates[stateKey] || courierRates['REST OF INDIA DEFAULT'] || courierRates['REST OF INDIA'];
 
             if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
                 courierBase = window.parseDynamicRate(zoneData.baseRate, n);
@@ -8575,33 +8564,22 @@ window.sendWA = function (index, type = 'pending') {
 
     const total = base + courier;
 
-    // 3. GENERATE MESSAGE
+    // 3. GENERATE MESSAGE (Language Based)
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
     const isEng = (d.language === 'en');
     const editText = isEng ? "To check status or edit order: 👇" : "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
-
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
     const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-
-    let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_"
-        : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
-
+    let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_" : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
     const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
 
-    // 4. PHONE NUMBER SELECTION
-    let phoneNum = "";
+    // 4. PHONE & SEND
     const dropdown = document.getElementById(`wa-select-${type}-${index}`);
     let code = dropdown ? dropdown.value : 'W';
-
     const ccInput = document.getElementById(`wa-cc-${type}-${index}`);
     let cc = ccInput ? ccInput.value : '91';
 
-    if (code === 'W') phoneNum = d.whatsapp;
-    else if (code === 'A') phoneNum = d.altphone;
-    else if (code === 'M') phoneNum = d.phone;
-    else if (code === 'G') phoneNum = d.paidNum;
-    else phoneNum = d.whatsapp || d.phone;
-
+    let phoneNum = (code === 'W') ? d.whatsapp : (code === 'A' ? d.altphone : (code === 'M' ? d.phone : (code === 'G' ? d.paidNum : d.whatsapp || d.phone)));
     let finalNum = formatWAPhone(phoneNum, cc);
 
     if (finalNum) {
@@ -8610,7 +8588,6 @@ window.sendWA = function (index, type = 'pending') {
         alert("Number not found!");
     }
 }
-
 // 🔥 SEND PAYMENT RECEIPT WA (Direct Delivery Compatible)
 window.sendPaymentWA = function (oid, index, type = 'paid') {
     let order = allOrders.find(o => o.orderid === oid);
