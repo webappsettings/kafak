@@ -1095,7 +1095,25 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
+// 🔥 FIXED: createCardHTML (With Direct Delivery Edit Button)
 function createCardHTML(d, index, type, currentStatus, isCompact = false, groupId = '') {
+
+    // Override Auto-Calculation for Direct Delivery
+    if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
+        let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+        if (match) {
+            let charge = parseInt(match[2]) || 0;
+            let qty = parseInt(d.quantity) || parseInt(d.Quantity) || 1;
+            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+
+            d.provider = 'Direct';
+            d.Courier_Provider = 'Direct';
+            d.Courier_Charge = charge;
+            d.Grand_Total = standardPrice + charge;
+            d.grandTotal = standardPrice + charge;
+        }
+    }
+
     let buttons = '';
     let logicType = type;
     if (type === 'search') {
@@ -1107,16 +1125,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = parseOrderDate(d.timestamp || d.Date || d.date);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+
     let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
-    // 🔥 FIX: Override Auto-Calculation for Direct Delivery
+
+    // Override text for Direct Delivery display
     if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
         let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
         if (match) {
             let charge = parseInt(match[2]) || 0;
             let qty = parseInt(d.quantity) || parseInt(d.Quantity) || 1;
             let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
-
-            // സിസ്റ്റത്തിന്റെ കാൽക്കുലേഷൻ മാറ്റി നമ്മുടെ യഥാർത്ഥ തുക നൽകുന്നു
             priceInfo.breakdownText = `(${standardPrice} + ${charge}) ₹${standardPrice + charge}/-`;
             priceInfo.total = `₹${standardPrice + charge}/-`;
         }
@@ -1125,7 +1143,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let totalOrders = 0;
     let totalBottles = 0;
 
-    // 🔥 SMART CUSTOMER HISTORY CALCULATOR
     let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
     if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
 
@@ -1133,9 +1150,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         let custHistory = allOrders.filter(o => {
             let p = String(o.phone || '').replace(/[^0-9]/g, '');
             if (p.length > 10) p = p.slice(-10);
-
             let s = String(o.Status || 'Pending').trim();
-            // Refund aaya orders ozhivakkunnu, baakkiyellam koottunnu
             return (p === currentPhone) && (s !== 'Refunded');
         });
 
@@ -1145,7 +1160,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         let serverOrders = parseInt(d.Total_Orders || d.total_orders) || 0;
         let serverBottles = parseInt(d.Total_Bottles || d.total_bottles) || 0;
 
-        // 🔥 Server count-um Local count-um nokki ethano valuthu athu edukkum (100% Accuracy)
         totalOrders = Math.max(localOrders, serverOrders);
         totalBottles = Math.max(localBottles, serverBottles);
     } else {
@@ -1268,7 +1282,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
                         ${linkDateStr}
                     </div>
                 </div>
-                
                 <div class="d-flex justify-content-between align-items-center mt-1 mb-2">
                     <div style="font-size:10px; color:#555; display:flex; align-items:center; gap:8px;">
                         ID: <b>${linkedOrder.orderid}</b> 
@@ -1279,7 +1292,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
                     </div>
                     ${archiveBtnHtml}
                 </div>
-                
                 <div class="d-flex align-items-center flex-wrap" style="background:rgba(255,255,255,0.6); padding:6px; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
                     <div class="d-flex flex-wrap align-items-center flex-grow-1">
                         ${radioHtml}
@@ -1414,31 +1426,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             let fmtDate = new Date(delDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
             dateDisplay = `<div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#15803d; font-weight:700;"><i class="fas fa-check-circle me-1"></i> Delivered: ${fmtDate}</div><button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '${delDateStr}')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px;">✏️</button></div>`;
         } else {
-            // 🔥 തീയതി ഇല്ലെങ്കിലും 'Delivered' എന്ന ബോക്സ് കാണിക്കാൻ
             dateDisplay = `<div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#15803d; font-weight:700;"><i class="fas fa-check-circle me-1"></i> Delivered</div><button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px;">✏️</button></div>`;
         }
-
-        // 🔥 NEW: Revert Button
         let revertBtn = `<button onclick="event.stopPropagation(); highlightCard(this); revertCompletedOrder('${d.orderid}')" class="btn btn-outline-warning text-dark fw-bold w-100 mt-2 shadow-sm" style="font-size:12px; border-width:2px; border-radius:8px;"><i class="fas fa-undo-alt me-1"></i> Move Back to Dispatched</button>`;
-
         buttons = dateDisplay + `<button class="btn btn-secondary w-100 disabled fw-bold shadow-none" style="opacity:0.7; border-radius:8px;">✅ Order Completed</button>` + revertBtn;
     }
     else if (logicType === 'pending') {
         let waBtnLabel = (currentStatus === 'Sent') ? 'Resend' : 'Invoice';
         let actionBtn = '';
-
         if (currentStatus === 'Sent') {
-            actionBtn = `<button class="btn btn-success shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
-                         style="width:100px; border-radius:10px; background:#198754;" 
-                         onclick="event.stopPropagation(); highlightCard(this); instantStatusChange(this, '${d.orderid}', 'Paid')" 
-                         title="Mark as Paid">💰 PAID</button>`;
+            actionBtn = `<button class="btn btn-success shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#198754;" onclick="event.stopPropagation(); highlightCard(this); instantStatusChange(this, '${d.orderid}', 'Paid')" title="Mark as Paid">💰 PAID</button>`;
         } else {
-            actionBtn = `<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" 
-                         style="width:100px; border-radius:10px; background:#0d6efd;" 
-                         onclick="event.stopPropagation(); highlightCard(this); instantStatusChange(this, '${d.orderid}', 'Sent')" 
-                         title="Mark as Sent">SENT <i class="fas fa-arrow-right ms-1"></i></button>`;
+            actionBtn = `<button class="btn btn-primary shadow-sm border-0 d-flex align-items-center justify-content-center fw-bold" style="width:100px; border-radius:10px; background:#0d6efd;" onclick="event.stopPropagation(); highlightCard(this); instantStatusChange(this, '${d.orderid}', 'Sent')" title="Mark as Sent">SENT <i class="fas fa-arrow-right ms-1"></i></button>`;
         }
-
         buttons = `<div class="d-flex gap-2 w-100"><button class="btn-custom btn-wa flex-grow-1" onclick="event.stopPropagation(); highlightCard(this); sendWA(${index}, '${type}')"><i class="fab fa-whatsapp"></i> ${waBtnLabel}</button>${actionBtn}</div>`;
     }
     else if (logicType === 'paid') {
@@ -1447,50 +1447,29 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     else if (logicType === 'dispatched') {
         let trackNum = String(d.tracking || '').trim();
         let rawProvider = String(d.provider || d.Courier_Provider || 'DTDC').trim().toUpperCase();
-
-        // 🔥 Smart Tracking Link Logic
         let trackLink = '';
         if (rawProvider.includes('DTDC')) {
-            if (trackNum.length > 9) {
-                trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
-            } else {
-                trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
-            }
+            if (trackNum.length > 9) trackLink = `https://www.dtdc.in/tracking/tracking_results.asp?trno=${trackNum}`;
+            else trackLink = `https://www.google.com/search?q=DTDC+tracking+${trackNum}`;
         } else if (rawProvider.includes('POST') || rawProvider.includes('INDIA')) {
             trackLink = `https://www.indiapost.gov.in/layouts/15/dop.portal.tracking/trackconsignment.aspx`;
         } else if (rawProvider.includes('SPEED') || rawProvider.includes('SAFE')) {
-            // 🔥 Speed & Safe Courier Link
             trackLink = `https://www.gokulamspeedandsafe.com/speedandsafe-tracking/`;
         } else {
             trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
         }
-
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
         let formattedDispDate = new Date(dispDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-
         let dateHtml = `<div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#166534; font-weight:700;"><i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}</div><button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button></div>`;
-
         let trkBtnHtml = '';
         let isInTrackedList = (trackNum || meta.isTracked);
-
-        // 🔥 NEW: Individual Scan Icon Button
         let scanIconBtn = `<button onclick="event.stopPropagation(); highlightCard(this); startScanner('tracking_single', '${d.orderid}')" class="btn btn-outline-dark shadow-sm d-flex align-items-center justify-content-center" title="Scan Barcode" style="width:40px; border-radius:10px;"><i class="fas fa-barcode"></i></button>`;
 
         if (trackNum) {
-            trkBtnHtml = `
-            <div class="d-flex gap-1 mb-2 w-100">
-                <button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 TRK: ${trackNum}</button>
-                ${scanIconBtn}
-                <a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 40px; flex:none;"><i class="fas fa-search"></i></a>
-            </div>`;
+            trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 TRK: ${trackNum}</button>${scanIconBtn}<a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 40px; flex:none;"><i class="fas fa-search"></i></a></div>`;
         } else {
             let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
-            trkBtnHtml = `
-            <div class="d-flex gap-1 mb-2 w-100">
-                <button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>
-                ${scanIconBtn}
-                ${moveBtn}
-            </div>`;
+            trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>${scanIconBtn}${moveBtn}</div>`;
         }
         buttons = `${dateHtml}${trkBtnHtml}<button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
@@ -1501,9 +1480,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         providerOptions += `<option value="${prov}" ${isSelected}>${prov}</option>`;
     });
 
-    // 🔥 NEW: Direct Delivery Option (ഇപ്പോൾ ലൂപ്പിന് പുറത്താണ്, അതിനാൽ റിപ്പീറ്റ് ആവില്ല!)
     let isDirectSelected = (String(d.provider || d.Courier_Provider).toUpperCase() === 'DIRECT') ? 'selected' : '';
     providerOptions += `<option value="Direct" ${isDirectSelected} style="font-weight:bold; color:#d97706;">🛵 Direct Delivery</option>`;
+
+    // 🔥 NEW: Edit Button for Direct Delivery Popup
+    let directEditBtn = isDirectSelected ? `<button class="btn btn-sm btn-warning ms-1 me-2 shadow-sm" style="padding:2px 6px; font-size:10px; border-radius:4px;" onclick="event.stopPropagation(); openDirectDeliveryPopup('${d.orderid}')" title="Edit Delivery Charge"><i class="fas fa-edit"></i></button>` : '';
 
     return `
     <div class="col-12 col-md-12 col-lg-12">
@@ -1525,10 +1506,11 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             <div class="info-box mt-2">
                 <span>${d.quantity} Bottles</span>
                 <div class="d-flex align-items-center">
-                    <select class="form-select form-select-sm me-2 border-secondary shadow-sm" style="width:120px; font-size:11px; font-weight:bold; padding:2px 5px;" onchange="event.stopPropagation(); changeCourier('${d.orderid}', this.value)">
+                    <select class="form-select form-select-sm border-secondary shadow-sm" style="width:120px; font-size:11px; font-weight:bold; padding:2px 5px;" onchange="event.stopPropagation(); changeCourier('${d.orderid}', this.value)">
                         ${providerOptions}
                     </select>
-                    <span class="fw-bold text-success d-flex align-items-center" id="price-box-${d.orderid}">${priceInfo.breakdownText}</span>
+                    ${directEditBtn}
+                    <span class="fw-bold text-success d-flex align-items-center ms-1" id="price-box-${d.orderid}">${priceInfo.breakdownText}</span>
                 </div>
             </div>
             ${waSelectorHTML}
@@ -8423,7 +8405,6 @@ window.changeCourier = async function (oid, newProvider) {
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let existingIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.hasOwnProperty('provider'));
 
-    // യഥാർത്ഥ (Original) ഡാറ്റ കണ്ടുപിടിക്കുന്നു
     let oldProvider = existingIdx > -1 ? updates[existingIdx].oldProvider : (order.provider || order.Courier_Provider);
     let oldCharge = existingIdx > -1 ? updates[existingIdx].oldCharge : order.Courier_Charge;
     let oldTotal = existingIdx > -1 ? updates[existingIdx].oldTotal : (order.Grand_Total || order.grandTotal);
@@ -8434,15 +8415,10 @@ window.changeCourier = async function (oid, newProvider) {
     let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
     let newTotal = standardPrice + newCharge;
 
-    // Normal കൊറിയറിലേക്ക് മാറ്റുമ്പോൾ Direct Delivery ടാഗ് ഒഴിവാക്കുന്നു
     let newMeta = oldMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
 
-    // 🛑 UNDO CHECK: പഴയ കൊറിയറിലേക്ക് തന്നെയാണോ മാറ്റിയത്?
     if (newProvider === oldProvider) {
-        // അതെ എങ്കിൽ, സിങ്ക് ലിസ്റ്റിൽ നിന്നും ഒഴിവാക്കുന്നു! (Undo)
         if (existingIdx > -1) updates.splice(existingIdx, 1);
-
-        // ഓർഡർ കാർഡിലെ ഡാറ്റ പഴയപടിയാക്കുന്നു
         order.provider = oldProvider;
         order.Courier_Provider = oldProvider;
         order.Courier_Charge = oldCharge;
@@ -8450,7 +8426,6 @@ window.changeCourier = async function (oid, newProvider) {
         order.grandTotal = oldTotal;
         order.adminMeta = oldMeta;
     } else {
-        // അല്ല എങ്കിൽ, പുതിയ കൊറിയർ സെറ്റ് ചെയ്യുന്നു
         order.provider = newProvider;
         order.Courier_Provider = newProvider;
         order.Courier_Charge = newCharge;
@@ -8486,7 +8461,6 @@ window.openDirectDeliveryPopup = function (oid) {
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let existingIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.hasOwnProperty('provider'));
 
-    // യഥാർത്ഥ (Original) ഡാറ്റ കണ്ടുപിടിക്കുന്നു
     let oldProvider = existingIdx > -1 ? updates[existingIdx].oldProvider : (order.provider || order.Courier_Provider);
     let oldCharge = existingIdx > -1 ? updates[existingIdx].oldCharge : order.Courier_Charge;
     let oldTotal = existingIdx > -1 ? updates[existingIdx].oldTotal : (order.Grand_Total || order.grandTotal);
@@ -8503,6 +8477,20 @@ window.openDirectDeliveryPopup = function (oid) {
         }
     }
 
+    // 🔥 NEW: Check if already delivered
+    let currentStatus = String(order.Status || 'Pending').trim();
+    let showDeliveryToggle = (currentStatus !== 'Delivered' && currentStatus !== 'Completed');
+
+    // 🔥 NEW: Delivery Toggle Switch HTML
+    let deliveryToggleHtml = showDeliveryToggle ? `
+        <div class="mt-3 text-start bg-success bg-opacity-10 p-2 rounded border border-success border-opacity-25">
+            <div class="form-check form-switch m-0 d-flex align-items-center">
+                <input class="form-check-input bg-success border-success shadow-none" type="checkbox" id="dd-mark-delivered" style="cursor:pointer; transform: scale(1.1); margin-top:0;">
+                <label class="form-check-label small fw-bold text-success ms-2" for="dd-mark-delivered" style="cursor:pointer; padding-top:2px;">Mark as Delivered Instantly</label>
+            </div>
+        </div>
+    ` : '';
+
     Swal.fire({
         title: '🛵 Direct Delivery',
         html: `
@@ -8518,6 +8506,7 @@ window.openDirectDeliveryPopup = function (oid) {
                 <label class="small text-muted fw-bold">Delivery Charge / Extra Profit (ex: 30)</label>
                 <input type="number" id="dd-extra-amount" class="form-control border-warning shadow-sm fw-bold text-success" placeholder="eg: 30" value="${existingCharge}">
             </div>
+            ${deliveryToggleHtml}
         `,
         showCancelButton: true,
         confirmButtonColor: '#0d6efd',
@@ -8525,13 +8514,16 @@ window.openDirectDeliveryPopup = function (oid) {
         preConfirm: () => {
             let p = document.getElementById('dd-partner-name').value;
             let a = document.getElementById('dd-extra-amount').value;
+            let dToggle = document.getElementById('dd-mark-delivered');
+            let d = dToggle ? dToggle.checked : false; // സ്വിച്ച് ഓൺ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
             if (!a) { Swal.showValidationMessage('Charge is required!'); return false; }
-            return { name: p, charge: a };
+            return { name: p, charge: a, isDelivered: d };
         }
     }).then((res) => {
         if (res.isConfirmed) {
             let pName = res.value.name;
             let charge = parseInt(res.value.charge) || 0;
+            let isDelivered = res.value.isDelivered; // ഓൺ ആണെങ്കിൽ True ആയിരിക്കും
             let newProvider = 'Direct';
             let metaString = `DDelivery${pName}_${charge}`;
 
@@ -8542,11 +8534,9 @@ window.openDirectDeliveryPopup = function (oid) {
             let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
             let newTotal = standardPrice + charge;
 
-            // 🛑 UNDO CHECK: പഴയ Direct ഡാറ്റയിലേക്ക് തന്നെയാണോ തിരിച്ചെത്തിയത്?
             let isCompleteRevert = (newProvider === oldProvider && newMeta === oldMeta);
 
-            if (isCompleteRevert) {
-                // അതെ എങ്കിൽ, സിങ്ക് ലിസ്റ്റിൽ നിന്നും ഒഴിവാക്കുന്നു! (Undo)
+            if (isCompleteRevert && !isDelivered) {
                 if (existingIdx > -1) updates.splice(existingIdx, 1);
 
                 order.provider = oldProvider;
@@ -8556,7 +8546,6 @@ window.openDirectDeliveryPopup = function (oid) {
                 order.grandTotal = oldTotal;
                 order.adminMeta = oldMeta;
             } else {
-                // അല്ല എങ്കിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു
                 order.provider = newProvider;
                 order.Courier_Provider = newProvider;
                 order.Courier_Charge = charge;
@@ -8572,6 +8561,19 @@ window.openDirectDeliveryPopup = function (oid) {
                 } else {
                     updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: charge, total: newTotal, meta: newMeta, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, oldMeta: oldMeta, time: new Date().getTime() });
                 }
+
+                // 🔥 NEW: സ്വിച്ച് ഓൺ ആണെങ്കിൽ സ്റ്റാറ്റസ് Delivered ആക്കി മാറ്റുന്നു
+                if (isDelivered) {
+                    order.Status = 'Delivered';
+                    order['Delivered Date'] = new Date().toLocaleString('en-US'); // ഡെലിവറി സമയം ഇപ്പോഴത്തെ സമയം ആക്കുന്നു
+
+                    let statIdx = updates.findIndex(u => u.oid === oid && u.action === 'status');
+                    if (statIdx > -1) {
+                        updates[statIdx].status = 'Delivered';
+                    } else {
+                        updates.push({ oid: oid, action: 'status', status: 'Delivered', oldStatus: currentStatus, time: new Date().getTime() });
+                    }
+                }
             }
 
             localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -8580,8 +8582,9 @@ window.openDirectDeliveryPopup = function (oid) {
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
             if (typeof renderTabs === 'function') renderTabs(allOrders);
 
-            if (!isCompleteRevert) {
-                Swal.fire({ icon: 'info', title: 'Added to Sync List!', text: `Updated Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
+            if (!isCompleteRevert || isDelivered) {
+                let msg = isDelivered ? 'Saved & Marked as Delivered!' : `Updated Total: ₹${newTotal}`;
+                Swal.fire({ icon: 'success', title: 'Added to Sync List!', text: msg, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
             }
         } else {
             if (typeof renderTabs === 'function') renderTabs(allOrders);
