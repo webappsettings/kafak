@@ -1492,6 +1492,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     availableProviders.forEach(prov => {
         let isSelected = (String(d.provider || d.Courier_Provider).toUpperCase() === String(prov).toUpperCase()) ? 'selected' : '';
         providerOptions += `<option value="${prov}" ${isSelected}>${prov}</option>`;
+        // 🔥 NEW: Direct Delivery Option
+        let isDirectSelected = (String(d.provider || d.Courier_Provider).toUpperCase() === 'DIRECT') ? 'selected' : '';
+        providerOptions += `<option value="Direct" ${isDirectSelected} style="font-weight:bold; color:#d97706;">🛵 Direct Delivery</option>`;
     });
 
     return `
@@ -7030,9 +7033,6 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-
-
-
 // 🔥 ACCOUNTS (SALARY) OVERVIEW
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
@@ -7050,8 +7050,15 @@ window.renderPartnerList = function () {
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
 
-    // 🔥 NEW: Find First Order Date for Display
     let firstDateMs = Date.now();
+
+    // 🔥 NEW: Direct Delivery ട്രാക്ക് ചെയ്യാൻ
+    let totalCompanyDueInHand = 0;
+    window.directProfits = {
+        "Samad": { count: 0, cashCollected: 0, companyDue: 0, travelEarned: 0 },
+        "Salam": { count: 0, cashCollected: 0, companyDue: 0, travelEarned: 0 },
+        "Jazeela": { count: 0, cashCollected: 0, companyDue: 0, travelEarned: 0 }
+    };
 
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
@@ -7060,6 +7067,46 @@ window.renderPartnerList = function () {
         let oDate = parseOrderDate(oDateStr);
         if (!isNaN(oDate.getTime()) && oDate.getTime() < firstDateMs) {
             firstDateMs = oDate.getTime();
+        }
+
+        // 🔥 CHECK IF DIRECT DELIVERY
+        if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
+            let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+            if (match && ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                let pName = match[1];
+                let pAmount = parseInt(match[2]) || 0; // Total collected (eg: 680)
+                let qty = parseInt(o.quantity) || 0;
+
+                // കമ്പനിയുടെ ബേസ് പ്രൈസ് (ഉദാ: 1 കുപ്പിക്ക് 650)
+                let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+
+                // 680 - 650 = 30 (Travel charge)
+                let travelEarned = pAmount > standardPrice ? (pAmount - standardPrice) : 0;
+                let companyDue = pAmount > standardPrice ? standardPrice : pAmount; // 650 രൂപ കമ്പനിക്ക് നൽകണം
+
+                fullIncome += companyDue; // കമ്പനിയുടെ അക്കൗണ്ടിലേക്ക് ബേസ് പ്രൈസ് (650) മാത്രം കയറുന്നു
+
+                let dbCost = parseInt(o.Product_Base_Cost);
+                let itemCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
+                fullBottleCost += itemCost;
+
+                if (window.directProfits[pName]) {
+                    window.directProfits[pName].count += qty;
+                    window.directProfits[pName].cashCollected += pAmount;     // 680
+                    window.directProfits[pName].companyDue += companyDue;     // 650
+                    window.directProfits[pName].travelEarned += travelEarned; // 30
+                    totalCompanyDueInHand += companyDue; // കമ്പനിയുടെ കാശ് പാർട്ണറുടെ കൈയ്യിൽ ഇരിക്കുന്നത് 
+                }
+
+                let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
+                let pDate = parseOrderDate(pDateStr);
+                if (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM) {
+                    if (status === 'Paid') monthPaidCount += qty;
+                    else monthDispatchedCount += qty;
+                }
+
+                return; // ⛔ ഇതിന് താഴെയുള്ള ജനറൽ കാൽക്കുലേഷൻ സ്കിപ്പ് ചെയ്യുന്നു!
+            }
         }
 
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
@@ -7099,7 +7146,6 @@ window.renderPartnerList = function () {
     let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
-    // 🔥 NEW: Robust Expense Calculation (Pulls from all possible sources)
     let allExps = new Map();
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
@@ -7118,7 +7164,8 @@ window.renderPartnerList = function () {
         }
     });
 
-    let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses);
+    // Bank Balance കാൽക്കുലേഷനിൽ പാർട്ണർമാരുടെ കൈയ്യിലുള്ള കമ്പനിയുടെ കാശ് കുറയ്ക്കുന്നു
+    let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
 
     let shares = {
         "Salam": Math.floor(liveProfit * 0.20),
@@ -7170,6 +7217,11 @@ window.renderPartnerList = function () {
                 <span class="text-secondary">Other Expenses:</span>
                 <span class="text-danger">- ₹${fullExpenses.toLocaleString()}</span>
             </div>
+            ${totalCompanyDueInHand > 0 ? `
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-secondary">Cash in Partner's Hand:</span>
+                <span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span>
+            </div>` : ''}
             <div class="text-end border-top border-info border-opacity-25 pt-1 mt-1">
                 <span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span>
             </div>
@@ -7266,10 +7318,13 @@ window.renderPartnerList = function () {
             let withdrawnAmt = data.withdrawn || 0;
             let thisMonthShare = shares[name] || 0;
 
+            let dd = window.directProfits[name];
+            let deductAmt = dd ? dd.companyDue : 0; // സാലറിയിൽ നിന്നും കുറയ്ക്കുന്നത് കമ്പനിക്ക് നൽകാനുള്ള 650 മാത്രം!
+
             let pastProfit = sheetPrevBal + withdrawnAmt;
 
-            let defaultBal = pastProfit - withdrawnAmt;
-            let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt;
+            let defaultBal = pastProfit - withdrawnAmt - deductAmt;
+            let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt - deductAmt;
 
             let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
@@ -7304,6 +7359,26 @@ window.renderPartnerList = function () {
                                 <span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span>
                             </div>` : ''}
                         </div>
+
+                        ${dd && dd.count > 0 ? `
+                        <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                                <span class="fw-bold text-dark" style="font-size:10px;"><i class="fas fa-motorcycle text-warning me-1"></i> Direct Delivery</span>
+                                <span class="badge bg-warning text-dark" style="font-size:8px;">${dd.count} Bottles</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-muted mb-1" style="font-size:9px;">
+                                <span>Total Collected:</span>
+                                <span class="fw-bold text-dark">₹${dd.cashCollected}</span>
+                            </div>
+                            <div class="d-flex justify-content-between text-muted" style="font-size:9px;">
+                                <span>Your Travel Profit (Kept):</span>
+                                <span class="fw-bold text-success">+ ₹${dd.travelEarned}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
+                                <span class="fw-bold text-danger">Company Due Deducted:</span>
+                                <span class="fw-bold text-danger">- ₹${dd.companyDue}</span>
+                            </div>
+                        </div>` : ''}
                         
                         ${withdrawnAmt > 0 ? `
                         <div class="mt-2 text-end text-muted" style="font-size:9px;">
@@ -8397,4 +8472,102 @@ window.formatWAPhone = function (phoneNum, cc) {
         cleanNum = cc + cleanNum;
     }
     return cleanNum;
+};
+
+// 🔥 OVERRIDE CHANGE COURIER FOR DIRECT DELIVERY
+let originalChangeCourier = window.changeCourier;
+window.changeCourier = async function (oid, newProvider) {
+    if (newProvider === 'Direct') {
+        openDirectDeliveryPopup(oid);
+        return;
+    }
+    // പഴയത് പോലെ കൊറിയർ മാറ്റാൻ
+    if (typeof originalChangeCourier === 'function') {
+        originalChangeCourier(oid, newProvider);
+    }
+};
+
+window.openDirectDeliveryPopup = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let existingName = 'Samad';
+    let existingAmount = '';
+
+    // ഓൾറെഡി ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ വീണ്ടും എഡിറ്റ് ചെയ്യാൻ പഴയ ഡാറ്റ എടുക്കുന്നു
+    if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
+        let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+        if (match) {
+            existingName = match[1];
+            existingAmount = match[2];
+        }
+    }
+
+    Swal.fire({
+        title: '🛵 Direct Delivery',
+        html: `
+            <div class="mb-3 text-start">
+                <label class="small text-muted fw-bold">Select Partner</label>
+                <select id="dd-partner-name" class="form-select border-warning shadow-sm fw-bold">
+                    <option value="Samad" ${existingName === 'Samad' ? 'selected' : ''}>Samad</option>
+                    <option value="Salam" ${existingName === 'Salam' ? 'selected' : ''}>Salam</option>
+                    <option value="Jazeela" ${existingName === 'Jazeela' ? 'selected' : ''}>Jazeela</option>
+                </select>
+            </div>
+            <div class="text-start">
+                <label class="small text-muted fw-bold">Total Amount Collected (Bottle + Travel)</label>
+                <input type="number" id="dd-total-amount" class="form-control border-warning shadow-sm fw-bold text-success" placeholder="eg: 680" value="${existingAmount}">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonColor: '#f59e0b',
+        confirmButtonText: '<i class="fas fa-save"></i> Save Direct',
+        preConfirm: () => {
+            let p = document.getElementById('dd-partner-name').value;
+            let a = document.getElementById('dd-total-amount').value;
+            if (!a) { Swal.showValidationMessage('Amount is required!'); return false; }
+            return { name: p, amount: a };
+        }
+    }).then((res) => {
+        if (res.isConfirmed) {
+            // 🔥 FIXED: Syntax error resolved
+            let metaString = `DDelivery${res.value.name}_${res.value.amount}`;
+
+            // Update Admin Meta 
+            let currentMeta = String(order.adminMeta || '');
+            // 🔥 FIXED: Regex error resolved
+            let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
+            newMeta = (newMeta + ' ' + metaString).trim();
+
+            let oldProvider = order.provider;
+
+            order.adminMeta = newMeta;
+            order.provider = 'Direct';
+            order.Courier_Provider = 'Direct';
+
+            // Save to pendingUpdates (സെർവറിലേക്ക് അയക്കാൻ)
+            let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
+            if (metaIdx > -1) updates[metaIdx].meta = newMeta;
+            else updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
+
+            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
+            if (provIdx > -1) {
+                updates[provIdx].provider = 'Direct';
+            } else {
+                updates.push({ oid: oid, action: 'meta', provider: 'Direct', charge: 0, total: order.Grand_Total, oldProvider: oldProvider, oldCharge: order.Courier_Charge, oldTotal: order.Grand_Total, time: new Date().getTime() });
+            }
+
+            localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+            if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+            if (typeof renderTabs === 'function') renderTabs(allOrders); // UI റീഫ്രഷ് ചെയ്യുന്നു
+
+            Swal.fire({ icon: 'success', title: 'Direct Delivery Saved!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+        } else {
+            if (typeof renderTabs === 'function') renderTabs(allOrders); // Cancel അടിച്ചാൽ ഡ്രോപ്പ്ഡൗൺ പഴയപടിയാക്കാൻ
+        }
+    });
 };
