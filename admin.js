@@ -8403,60 +8403,62 @@ window.formatWAPhone = function (phoneNum, cc) {
 };
 
 
-// 🔥 COMPLETE CHANGE COURIER FUNCTION (Handles Normal & Direct Delivery - FIXED)
+// 🔥 COMPLETE CHANGE COURIER FUNCTION (Handles Normal, Direct & UNDO Revert)
 window.changeCourier = async function (oid, newProvider) {
     if (newProvider === 'Direct') {
         openDirectDeliveryPopup(oid);
         return;
     }
 
-    // --- NORMAL COURIER LOGIC (DTDC, India Post, etc.) ---
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
 
-    let oldProvider = order.provider || order.Courier_Provider;
-    let oldCharge = order.Courier_Charge;
-    let oldTotal = order.Grand_Total || order.grandTotal;
-    let currentMeta = String(order.adminMeta || '');
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let existingIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.hasOwnProperty('provider'));
+
+    // യഥാർത്ഥ (Original) ഡാറ്റ കണ്ടുപിടിക്കുന്നു
+    let oldProvider = existingIdx > -1 ? updates[existingIdx].oldProvider : (order.provider || order.Courier_Provider);
+    let oldCharge = existingIdx > -1 ? updates[existingIdx].oldCharge : order.Courier_Charge;
+    let oldTotal = existingIdx > -1 ? updates[existingIdx].oldTotal : (order.Grand_Total || order.grandTotal);
+    let oldMeta = existingIdx > -1 ? updates[existingIdx].oldMeta : String(order.adminMeta || '');
 
     let qty = parseInt(order.quantity) || 1;
-    let newCharge = 0;
-
-    // പുതിയ കൊറിയർ ചാർജ്ജ് കണ്ടുപിടിക്കുന്നു
-    if (typeof getCourierRate === 'function') {
-        newCharge = getCourierRate(order.state, newProvider, qty);
-    }
-
+    let newCharge = (typeof getCourierRate === 'function') ? getCourierRate(order.state, newProvider, qty) : 0;
     let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
     let newTotal = standardPrice + newCharge;
 
-    // ഓർഡർ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
-    order.provider = newProvider;
-    order.Courier_Provider = newProvider;
-    order.Courier_Charge = newCharge;
-    order.Grand_Total = newTotal;
-    order.grandTotal = newTotal;
+    // Normal കൊറിയറിലേക്ക് മാറ്റുമ്പോൾ Direct Delivery ടാഗ് ഒഴിവാക്കുന്നു
+    let newMeta = oldMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
 
-    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    // 🛑 UNDO CHECK: പഴയ കൊറിയറിലേക്ക് തന്നെയാണോ മാറ്റിയത്?
+    if (newProvider === oldProvider) {
+        // അതെ എങ്കിൽ, സിങ്ക് ലിസ്റ്റിൽ നിന്നും ഒഴിവാക്കുന്നു! (Undo)
+        if (existingIdx > -1) updates.splice(existingIdx, 1);
 
-    // പഴയത് Direct Delivery ആയിരുന്നെങ്കിൽ അത് ക്യാൻസൽ ചെയ്യാൻ
-    if (currentMeta.includes('DDelivery')) {
-        let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
+        // ഓർഡർ കാർഡിലെ ഡാറ്റ പഴയപടിയാക്കുന്നു
+        order.provider = oldProvider;
+        order.Courier_Provider = oldProvider;
+        order.Courier_Charge = oldCharge;
+        order.Grand_Total = oldTotal;
+        order.grandTotal = oldTotal;
+        order.adminMeta = oldMeta;
+    } else {
+        // അല്ല എങ്കിൽ, പുതിയ കൊറിയർ സെറ്റ് ചെയ്യുന്നു
+        order.provider = newProvider;
+        order.Courier_Provider = newProvider;
+        order.Courier_Charge = newCharge;
+        order.Grand_Total = newTotal;
+        order.grandTotal = newTotal;
         order.adminMeta = newMeta;
 
-        let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
-        if (metaIdx > -1) updates[metaIdx].meta = newMeta;
-        else updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
-    }
-
-    // 🔥 FIX: കൊറിയർ മാറ്റം സിസ്റ്റത്തിന് മനസ്സിലാകുന്ന രീതിയിൽ (action: 'meta') തന്നെ Sync ക്യൂവിലേക്ക് ഇടുന്നു!
-    let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
-    if (provIdx > -1) {
-        updates[provIdx].provider = newProvider;
-        updates[provIdx].charge = newCharge;
-        updates[provIdx].total = newTotal;
-    } else {
-        updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: newCharge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
+        if (existingIdx > -1) {
+            updates[existingIdx].provider = newProvider;
+            updates[existingIdx].charge = newCharge;
+            updates[existingIdx].total = newTotal;
+            updates[existingIdx].meta = newMeta;
+        } else {
+            updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: newCharge, total: newTotal, meta: newMeta, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, oldMeta: oldMeta, time: new Date().getTime() });
+        }
     }
 
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -8465,12 +8467,23 @@ window.changeCourier = async function (oid, newProvider) {
     if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
     if (typeof renderTabs === 'function') renderTabs(allOrders);
 
-    Swal.fire({ icon: 'success', title: 'Courier Updated!', text: newProvider + ' Rate: ₹' + newCharge, toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+    if (newProvider !== oldProvider) {
+        Swal.fire({ icon: 'success', title: 'Courier Updated!', text: newProvider + ' Rate: ₹' + newCharge, toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+    }
 };
 
 window.openDirectDeliveryPopup = function (oid) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
+
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let existingIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.hasOwnProperty('provider'));
+
+    // യഥാർത്ഥ (Original) ഡാറ്റ കണ്ടുപിടിക്കുന്നു
+    let oldProvider = existingIdx > -1 ? updates[existingIdx].oldProvider : (order.provider || order.Courier_Provider);
+    let oldCharge = existingIdx > -1 ? updates[existingIdx].oldCharge : order.Courier_Charge;
+    let oldTotal = existingIdx > -1 ? updates[existingIdx].oldTotal : (order.Grand_Total || order.grandTotal);
+    let oldMeta = existingIdx > -1 ? updates[existingIdx].oldMeta : String(order.adminMeta || '');
 
     let existingName = 'Samad';
     let existingCharge = '30';
@@ -8512,44 +8525,46 @@ window.openDirectDeliveryPopup = function (oid) {
         if (res.isConfirmed) {
             let pName = res.value.name;
             let charge = parseInt(res.value.charge) || 0;
+            let newProvider = 'Direct';
             let metaString = `DDelivery${pName}_${charge}`;
 
-            let currentMeta = String(order.adminMeta || '');
-            let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
+            let newMeta = oldMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
             newMeta = (newMeta + ' ' + metaString).trim();
-
-            let oldProvider = order.provider || order.Courier_Provider;
-            let oldCharge = order.Courier_Charge;
-            let oldTotal = order.Grand_Total || order.grandTotal;
 
             let qty = parseInt(order.quantity) || 1;
             let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
             let newTotal = standardPrice + charge;
 
-            order.adminMeta = newMeta;
-            order.provider = 'Direct';
-            order.Courier_Provider = 'Direct';
-            order.Courier_Charge = charge;
-            order.Grand_Total = newTotal;
-            order.grandTotal = newTotal;
+            // 🛑 UNDO CHECK: പഴയ Direct ഡാറ്റയിലേക്ക് തന്നെയാണോ തിരിച്ചെത്തിയത്?
+            let isCompleteRevert = (newProvider === oldProvider && newMeta === oldMeta);
 
-            let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+            if (isCompleteRevert) {
+                // അതെ എങ്കിൽ, സിങ്ക് ലിസ്റ്റിൽ നിന്നും ഒഴിവാക്കുന്നു! (Undo)
+                if (existingIdx > -1) updates.splice(existingIdx, 1);
 
-            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
-            if (metaIdx > -1) {
-                updates[metaIdx].meta = newMeta;
+                order.provider = oldProvider;
+                order.Courier_Provider = oldProvider;
+                order.Courier_Charge = oldCharge;
+                order.Grand_Total = oldTotal;
+                order.grandTotal = oldTotal;
+                order.adminMeta = oldMeta;
             } else {
-                updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
-            }
+                // അല്ല എങ്കിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു
+                order.provider = newProvider;
+                order.Courier_Provider = newProvider;
+                order.Courier_Charge = charge;
+                order.Grand_Total = newTotal;
+                order.grandTotal = newTotal;
+                order.adminMeta = newMeta;
 
-            // 🔥 FIX: കൊറിയർ മാറ്റം സിസ്റ്റത്തിന് മനസ്സിലാകുന്ന രീതിയിൽ (action: 'meta') തന്നെ Sync ക്യൂവിലേക്ക് ഇടുന്നു!
-            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
-            if (provIdx > -1) {
-                updates[provIdx].provider = 'Direct';
-                updates[provIdx].charge = charge;
-                updates[provIdx].total = newTotal;
-            } else {
-                updates.push({ oid: oid, action: 'meta', provider: 'Direct', charge: charge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
+                if (existingIdx > -1) {
+                    updates[existingIdx].provider = newProvider;
+                    updates[existingIdx].charge = charge;
+                    updates[existingIdx].total = newTotal;
+                    updates[existingIdx].meta = newMeta;
+                } else {
+                    updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: charge, total: newTotal, meta: newMeta, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, oldMeta: oldMeta, time: new Date().getTime() });
+                }
             }
 
             localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -8558,9 +8573,51 @@ window.openDirectDeliveryPopup = function (oid) {
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
             if (typeof renderTabs === 'function') renderTabs(allOrders);
 
-            Swal.fire({ icon: 'info', title: 'Added to Sync List!', text: `Updated Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
+            if (!isCompleteRevert) {
+                Swal.fire({ icon: 'info', title: 'Added to Sync List!', text: `Updated Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
+            }
         } else {
             if (typeof renderTabs === 'function') renderTabs(allOrders);
         }
     });
+};
+
+// 🔥 FIX: CLEANUP ORPHANED META TAGS (Print / Unprint Repeats)
+
+// 1. Unprint ചെയ്യുമ്പോൾ അനാവശ്യ നമ്പറുകൾ പൂർണ്ണമായും കളയാൻ
+let originalConfirmUnprint = window.confirmUnprint;
+window.confirmUnprint = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (order) {
+        // 'P_നമ്പർ' ഉം, വെറും '_നമ്പർ' ഉം പൂർണ്ണമായും ഒഴിവാക്കുന്നു (DDelivery കാൽക്കുലേഷനെ ബാധിക്കില്ല)
+        order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
+    }
+    // പഴയ ഫംഗ്ഷൻ വിളിക്കുന്നു (ഇപ്പോൾ ഡാറ്റ ക്ലീൻ ആണ്!)
+    if (typeof originalConfirmUnprint === 'function') {
+        originalConfirmUnprint(oid);
+    }
+};
+
+// 2. വീണ്ടും Print ചെയ്യുമ്പോൾ പഴയ നമ്പറുകൾ ഉണ്ടെങ്കിൽ അത് ക്ലിയർ ചെയ്തിട്ട് പുതിയത് വെക്കാൻ
+let originalPrintSingle = window.printSingle;
+window.printSingle = function (index) {
+    let order = allOrders[index];
+    if (order) {
+        order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
+    }
+    if (typeof originalPrintSingle === 'function') {
+        originalPrintSingle(index);
+    }
+};
+
+// 3. ജനറൽ അപ്ഡേറ്റുകളിലും പഴയ അനാവശ്യ നമ്പറുകൾ വരാതിരിക്കാൻ
+let originalUpdateAdminMeta = window.updateAdminMeta;
+window.updateAdminMeta = function (oid, action, value) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (order) {
+        order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
+    }
+    if (typeof originalUpdateAdminMeta === 'function') {
+        originalUpdateAdminMeta(oid, action, value);
+    }
 };
