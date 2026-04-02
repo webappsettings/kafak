@@ -7052,12 +7052,11 @@ window.renderPartnerList = function () {
 
     let firstDateMs = Date.now();
 
-    // 🔥 NEW: Direct Delivery ട്രാക്ക് ചെയ്യാൻ
     let totalCompanyDueInHand = 0;
     window.directProfits = {
-        "Samad": { count: 0, cashCollected: 0, companyDue: 0, travelEarned: 0 },
-        "Salam": { count: 0, cashCollected: 0, companyDue: 0, travelEarned: 0 },
-        "Jazeela": { count: 0, cashCollected: 0, companyDue: 0, travelEarned: 0 }
+        "Samad": { count: 0, companyDue: 0, travelEarned: 0 },
+        "Salam": { count: 0, companyDue: 0, travelEarned: 0 },
+        "Jazeela": { count: 0, companyDue: 0, travelEarned: 0 }
     };
 
     allOrders.forEach(o => {
@@ -7074,17 +7073,14 @@ window.renderPartnerList = function () {
             let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
             if (match && ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
                 let pName = match[1];
-                let pAmount = parseInt(match[2]) || 0; // Total collected (eg: 680)
+                let travelCharge = parseInt(match[2]) || 0; // Popup-ൽ കൊടുത്ത എക്സ്ട്രാ ചാർജ്ജ് (eg: 30)
                 let qty = parseInt(o.quantity) || 0;
 
-                // കമ്പനിയുടെ ബേസ് പ്രൈസ് (ഉദാ: 1 കുപ്പിക്ക് 650)
                 let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
 
-                // 680 - 650 = 30 (Travel charge)
-                let travelEarned = pAmount > standardPrice ? (pAmount - standardPrice) : 0;
-                let companyDue = pAmount > standardPrice ? standardPrice : pAmount; // 650 രൂപ കമ്പനിക്ക് നൽകണം
+                let companyDue = standardPrice; // കുപ്പിയുടെ ബേസ് പ്രൈസ് (eg: 650)
 
-                fullIncome += companyDue; // കമ്പനിയുടെ അക്കൗണ്ടിലേക്ക് ബേസ് പ്രൈസ് (650) മാത്രം കയറുന്നു
+                fullIncome += companyDue; // കമ്പനിയുടെ അക്കൗണ്ടിലേക്ക് 650 മാത്രം കയറുന്നു
 
                 let dbCost = parseInt(o.Product_Base_Cost);
                 let itemCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
@@ -7092,10 +7088,9 @@ window.renderPartnerList = function () {
 
                 if (window.directProfits[pName]) {
                     window.directProfits[pName].count += qty;
-                    window.directProfits[pName].cashCollected += pAmount;     // 680
                     window.directProfits[pName].companyDue += companyDue;     // 650
-                    window.directProfits[pName].travelEarned += travelEarned; // 30
-                    totalCompanyDueInHand += companyDue; // കമ്പനിയുടെ കാശ് പാർട്ണറുടെ കൈയ്യിൽ ഇരിക്കുന്നത് 
+                    window.directProfits[pName].travelEarned += travelCharge; // 30
+                    totalCompanyDueInHand += companyDue;
                 }
 
                 let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
@@ -7319,7 +7314,7 @@ window.renderPartnerList = function () {
             let thisMonthShare = shares[name] || 0;
 
             let dd = window.directProfits[name];
-            let deductAmt = dd ? dd.companyDue : 0; // സാലറിയിൽ നിന്നും കുറയ്ക്കുന്നത് കമ്പനിക്ക് നൽകാനുള്ള 650 മാത്രം!
+            let deductAmt = dd ? dd.companyDue : 0;
 
             let pastProfit = sheetPrevBal + withdrawnAmt;
 
@@ -7367,15 +7362,11 @@ window.renderPartnerList = function () {
                                 <span class="badge bg-warning text-dark" style="font-size:8px;">${dd.count} Bottles</span>
                             </div>
                             <div class="d-flex justify-content-between text-muted mb-1" style="font-size:9px;">
-                                <span>Total Collected:</span>
-                                <span class="fw-bold text-dark">₹${dd.cashCollected}</span>
-                            </div>
-                            <div class="d-flex justify-content-between text-muted" style="font-size:9px;">
-                                <span>Your Travel Profit (Kept):</span>
+                                <span>Delivery Profit / Charge:</span>
                                 <span class="fw-bold text-success">+ ₹${dd.travelEarned}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
-                                <span class="fw-bold text-danger">Company Due Deducted:</span>
+                                <span class="fw-bold text-danger">Company Cost Deducted:</span>
                                 <span class="fw-bold text-danger">- ₹${dd.companyDue}</span>
                             </div>
                         </div>` : ''}
@@ -8474,7 +8465,7 @@ window.formatWAPhone = function (phoneNum, cc) {
     return cleanNum;
 };
 
-// 🔥 OVERRIDE CHANGE COURIER FOR DIRECT DELIVERY
+// 🔥 OVERRIDE CHANGE COURIER FOR DIRECT DELIVERY (FIXED)
 let originalChangeCourier = window.changeCourier;
 window.changeCourier = async function (oid, newProvider) {
     if (newProvider === 'Direct') {
@@ -8492,14 +8483,14 @@ window.openDirectDeliveryPopup = function (oid) {
     if (!order) return;
 
     let existingName = 'Samad';
-    let existingAmount = '';
+    let existingCharge = '30'; // Default extra charge
 
-    // ഓൾറെഡി ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ വീണ്ടും എഡിറ്റ് ചെയ്യാൻ പഴയ ഡാറ്റ എടുക്കുന്നു
+    // ഓൾറെഡി ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ പഴയ ഡാറ്റ എടുക്കുന്നു
     if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
         let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
         if (match) {
             existingName = match[1];
-            existingAmount = match[2];
+            existingCharge = match[2]; // ഇപ്പൊൾ ഇത് 30 പോലെയുള്ള ചാർജ്ജ് മാത്രമാണ്
         }
     }
 
@@ -8515,59 +8506,71 @@ window.openDirectDeliveryPopup = function (oid) {
                 </select>
             </div>
             <div class="text-start">
-                <label class="small text-muted fw-bold">Total Amount Collected (Bottle + Travel)</label>
-                <input type="number" id="dd-total-amount" class="form-control border-warning shadow-sm fw-bold text-success" placeholder="eg: 680" value="${existingAmount}">
+                <label class="small text-muted fw-bold">Delivery Charge / Extra Profit (ex: 30)</label>
+                <input type="number" id="dd-extra-amount" class="form-control border-warning shadow-sm fw-bold text-success" placeholder="eg: 30" value="${existingCharge}">
             </div>
         `,
         showCancelButton: true,
         confirmButtonColor: '#f59e0b',
-        confirmButtonText: '<i class="fas fa-save"></i> Save Direct',
+        confirmButtonText: '<i class="fas fa-save"></i> Save',
         preConfirm: () => {
             let p = document.getElementById('dd-partner-name').value;
-            let a = document.getElementById('dd-total-amount').value;
-            if (!a) { Swal.showValidationMessage('Amount is required!'); return false; }
-            return { name: p, amount: a };
+            let a = document.getElementById('dd-extra-amount').value;
+            if (!a) { Swal.showValidationMessage('Charge is required!'); return false; }
+            return { name: p, charge: a };
         }
     }).then((res) => {
         if (res.isConfirmed) {
-            // 🔥 FIXED: Syntax error resolved
-            let metaString = `DDelivery${res.value.name}_${res.value.amount}`;
+            let pName = res.value.name;
+            let charge = parseInt(res.value.charge) || 0;
+            let metaString = `DDelivery${pName}_${charge}`;
 
-            // Update Admin Meta 
+            // പഴയ ഡ്യൂപ്ലിക്കേറ്റ് വരുന്നത് ഒഴിവാക്കാൻ കൃത്യമായി replace ചെയ്യുന്നു
             let currentMeta = String(order.adminMeta || '');
-            // 🔥 FIXED: Regex error resolved
             let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
             newMeta = (newMeta + ' ' + metaString).trim();
 
-            let oldProvider = order.provider;
+            let oldProvider = order.provider || order.Courier_Provider;
+            let oldCharge = order.Courier_Charge;
+            let oldTotal = order.Grand_Total || order.grandTotal;
+
+            // തനിയെ ഓർഡറിന്റെ കാർഡിലെ എമൗണ്ട് അപ്ഡേറ്റ് ചെയ്യാൻ (650 + 30 = 680)
+            let qty = parseInt(order.quantity) || 1;
+            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+            let newTotal = standardPrice + charge;
 
             order.adminMeta = newMeta;
             order.provider = 'Direct';
             order.Courier_Provider = 'Direct';
+            order.Courier_Charge = charge;
+            order.Grand_Total = newTotal;
+            order.grandTotal = newTotal;
 
-            // Save to pendingUpdates (സെർവറിലേക്ക് അയക്കാൻ)
+            // Sync Undefined പ്രശ്നം മാറ്റാൻ കൃത്യമായ ഫോർമാറ്റിൽ സേവ് ചെയ്യുന്നു
             let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
+            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta');
             if (metaIdx > -1) updates[metaIdx].meta = newMeta;
-            else updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
+            else updates.push({ oid: oid, action: 'meta', meta: newMeta, time: new Date().getTime() });
 
-            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
+            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'courier');
             if (provIdx > -1) {
                 updates[provIdx].provider = 'Direct';
+                updates[provIdx].charge = charge;
+                updates[provIdx].total = newTotal;
             } else {
-                updates.push({ oid: oid, action: 'meta', provider: 'Direct', charge: 0, total: order.Grand_Total, oldProvider: oldProvider, oldCharge: order.Courier_Charge, oldTotal: order.Grand_Total, time: new Date().getTime() });
+                updates.push({ oid: oid, action: 'courier', provider: 'Direct', charge: charge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
             }
 
             localStorage.setItem('pendingUpdates', JSON.stringify(updates));
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-            if (typeof renderTabs === 'function') renderTabs(allOrders); // UI റീഫ്രഷ് ചെയ്യുന്നു
+            if (typeof renderTabs === 'function') renderTabs(allOrders);
 
-            Swal.fire({ icon: 'success', title: 'Direct Delivery Saved!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
+            Swal.fire({ icon: 'success', title: 'Direct Delivery Saved!', text: `Updated Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
         } else {
-            if (typeof renderTabs === 'function') renderTabs(allOrders); // Cancel അടിച്ചാൽ ഡ്രോപ്പ്ഡൗൺ പഴയപടിയാക്കാൻ
+            if (typeof renderTabs === 'function') renderTabs(allOrders);
         }
     });
 };
