@@ -8432,13 +8432,31 @@ window.openDirectDeliveryPopup = function (oid) {
 
                 if (isDelivered) {
                     order.Status = 'Delivered';
-                    order['Delivered Date'] = new Date().toLocaleString('en-US');
+                    // ഇപ്പോഴത്തെ സമയം Delivered Date ആയി സെറ്റ് ചെയ്യുന്നു
+                    let now = new Date();
+                    let y = now.getFullYear();
+                    let m = String(now.getMonth() + 1).padStart(2, '0');
+                    let d = String(now.getDate()).padStart(2, '0');
+                    let h = String(now.getHours()).padStart(2, '0');
+                    let min = String(now.getMinutes()).padStart(2, '0');
 
+                    let formattedNow = `${y}-${m}-${d} ${h}:${min}`;
+                    order['Delivered Date'] = formattedNow; // ലോക്കൽ ഡാറ്റയിൽ സമയം സേവ് ചെയ്യുന്നു
+
+                    // Sync ലിസ്റ്റിലേക്ക് (Status Action) ആഡ് ചെയ്യുന്നു
                     let statIdx = updates.findIndex(u => u.oid === oid && u.action === 'status');
                     if (statIdx > -1) {
                         updates[statIdx].status = 'Delivered';
+                        updates[statIdx].actionDate = formattedNow;
                     } else {
-                        updates.push({ oid: oid, action: 'status', status: 'Delivered', oldStatus: currentStatus, time: new Date().getTime() });
+                        updates.push({
+                            oid: oid,
+                            action: 'status',
+                            status: 'Delivered',
+                            actionDate: formattedNow, // ഈ സമയമാണ് ഷീറ്റിലേക്ക് കയറുന്നത്
+                            oldStatus: currentStatus,
+                            time: new Date().getTime()
+                        });
                     }
                 }
             }
