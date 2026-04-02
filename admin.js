@@ -1108,6 +1108,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let dateObj = parseOrderDate(d.timestamp || d.Date || d.date);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
     let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
+    // 🔥 FIX: Override Auto-Calculation for Direct Delivery
+    if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
+        let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+        if (match) {
+            let charge = parseInt(match[2]) || 0;
+            let qty = parseInt(d.quantity) || parseInt(d.Quantity) || 1;
+            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+
+            // സിസ്റ്റത്തിന്റെ കാൽക്കുലേഷൻ മാറ്റി നമ്മുടെ യഥാർത്ഥ തുക നൽകുന്നു
+            priceInfo.breakdownText = `(${standardPrice} + ${charge}) ₹${standardPrice + charge}/-`;
+            priceInfo.total = `₹${standardPrice + charge}/-`;
+        }
+    }
 
     let totalOrders = 0;
     let totalBottles = 0;
