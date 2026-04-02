@@ -6799,7 +6799,9 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW
+
+
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - FIXED & OPTIMIZED
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -6890,7 +6892,8 @@ window.renderPartnerList = function () {
         }
     });
 
-    // 🔥 FIX: actualBankBalance Calculation Logic
+    // 🔥 FIX: actualBankBalance Calculation
+    let fullExpenses = 0;
     let allExps = new Map();
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
@@ -6901,27 +6904,25 @@ window.renderPartnerList = function () {
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
     pendingExpenses.forEach(e => { if (e.id) allExps.set(e.id, e); });
 
-    let fullExpenses = 0;
     allExps.forEach(e => {
         let cat = String(e.cat || e.category || '').toLowerCase();
-        // സാലറിയും റീഫണ്ടും അല്ലാത്ത ബാക്കി എല്ലാ ചിലവുകളും കൂട്ടുന്നു
         if (!e.isCourier && cat !== 'refund' && cat !== 'salary') {
             fullExpenses += (Number(e.amount) || 0);
         }
     });
 
-    // ബാങ്ക് ബാലൻസ് കാൽക്കുലേഷൻ (Revenue - (Bottle Cost + Courier + Other Expenses) - Cash in Partner Hand)
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
 
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
 
+    let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
-    let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
-    let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
 
-    let breakdownHtml = `
+    // 🔥 HTML Construction
+    let html = `
     <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-2">
@@ -6935,195 +6936,56 @@ window.renderPartnerList = function () {
             </div>
             <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
         </div>
-
         <div id="bankBreakdown" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed #7dd3fc; font-size:11px;">
-            <div class="mb-2 text-center text-secondary fw-bold" style="font-size:9px; letter-spacing:0.5px; background: #e0f2fe; padding: 4px; border-radius: 4px;">
+             <div class="mb-2 text-center text-secondary fw-bold" style="font-size:9px; letter-spacing:0.5px; background: #e0f2fe; padding: 4px; border-radius: 4px;">
                 <i class="far fa-calendar-alt"></i> FROM ${firstDateStr.toUpperCase()} TO ${todayStr.toUpperCase()}
             </div>
-            <div class="d-flex justify-content-between mb-1">
-                <span class="text-secondary fw-bold">Total Income:</span>
-                <span class="text-success fw-bold">+ ₹${fullIncome.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-1">
-                <span class="text-secondary">Bottle / Base Cost:</span>
-                <span class="text-danger">- ₹${fullBottleCost.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-1">
-                <span class="text-secondary">Courier Charges:</span>
-                <span class="text-danger">- ₹${fullCourier.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-2">
-                <span class="text-secondary">Other Expenses:</span>
-                <span class="text-danger">- ₹${fullExpenses.toLocaleString()}</span>
-            </div>
-            ${totalCompanyDueInHand > 0 ? `
-            <div class="d-flex justify-content-between mb-2">
-                <span class="text-secondary">Cash in Partner's Hand:</span>
-                <span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span>
-            </div>` : ''}
-            <div class="text-end border-top border-info border-opacity-25 pt-1 mt-1">
-                <span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="mb-3 p-3 bg-white border border-primary border-opacity-25 rounded-4 shadow-sm" style="font-size:12px;">
-        <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
-            ${prevBtn}
-            <h6 class="fw-bold text-primary m-0 text-center flex-grow-1" style="font-size:12px; letter-spacing:0.5px;">
-                <i class="fas fa-calendar-check me-1"></i> ${monthLabel}
-            </h6>
-            ${nextBtn}
-        </div>
-        
-        <div class="d-flex justify-content-between mb-1">
-            <span class="text-muted fw-bold">Sales: <span class="text-dark">${window.currentMonthOrders}</span></span>
-            <span class="text-muted fw-bold">Bottles: <span class="text-dark">${window.currentMonthBottles}</span></span>
-        </div>
-        
-        <div class="d-flex justify-content-between mb-2 pb-1 border-bottom border-secondary border-opacity-10" style="font-size: 10px;">
-            <span class="text-success fw-bold"><i class="fas fa-check-circle"></i> Paid: ${monthPaidCount}</span>
-            <span class="text-primary fw-bold"><i class="fas fa-shipping-fast"></i> Dispatched: ${monthDispatchedCount}</span>
-        </div>
-        
-        <div class="text-secondary small mb-1 fst-italic mt-2" style="font-size:10px; line-height: 1.4;">
-            <span class="fw-bold text-muted">Sales:</span> ${window.currentBreakdownStr}
-        </div>
-        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
-            <span class="fw-bold text-muted">Base Cost:</span> ${window.currentCostBreakdownStr}
-        </div>
-        
-        <div class="d-flex justify-content-between mb-1 mt-2 pt-2 border-top border-secondary border-opacity-10">
-            <span class="text-muted">Total Income:</span>
-            <span class="fw-bold text-success">₹${(window.currentIncome || 0).toLocaleString()}</span>
-        </div>
-        <div class="d-flex justify-content-between mb-0">
-            <span class="text-muted">Deductible Expense:</span>
-            <span class="fw-bold text-danger">- ₹${tExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
-        </div>
-        ${window.currentExpenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Food"].toLocaleString()}</span></div>` : ''}
-        ${window.currentExpenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
-        ${window.currentExpenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${window.currentExpenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
-        
-        ${window.currentExpenseCategories["Other"].length > 0 ? `
-            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
-                <span class="text-muted ps-2">📝 Other:</span>
-                <span class="text-danger fw-bold text-end">${window.currentExpenseCategories["Other"].join('<br>')}</span>
-            </div>` : ''}
-            
-        ${window.currentExpenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${window.currentExpenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
-        <div class="d-flex justify-content-between mb-1 mt-1">
-            <span class="fw-bold text-info" style="font-size:10px;">
-                <i class="fas fa-ban"></i> Materials: ₹${(window.currentMaterial || 0).toLocaleString()}
-                ${window.currentMaterialBreakdownStr ? `<br><span class="ms-3 text-secondary opacity-75" style="font-size:9px; font-weight:600;">${window.currentMaterialBreakdownStr}</span>` : ''}
-            </span>
-            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
-            <div class="text-warning fw-bold" style="font-size:10px;">
-                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${(window.currentTotalCourier || 0).toLocaleString()} <br>
-                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${((window.currentTotalCourier || 0) - (window.currentCourier || 0)).toLocaleString()})</span>
-            </div>
-            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
-        </div>
-        
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
-            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
-        </div>
-
-        <div class="bg-light p-2 rounded-3 border">
-            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Salam (20%):</span>
-                <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Samad (70%):</span>
-                <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
-            </div>
-            <div class="d-flex justify-content-between" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Jazeela (10%):</span>
-                <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
-            </div>
+            <div class="d-flex justify-content-between mb-1"><span>Total Income:</span><span class="text-success fw-bold">+ ₹${fullIncome.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between mb-1"><span>Bottle / Base Cost:</span><span class="text-danger">- ₹${fullBottleCost.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between mb-1"><span>Courier Charges:</span><span class="text-danger">- ₹${fullCourier.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between mb-2"><span>Other Expenses:</span><span class="text-danger">- ₹${fullExpenses.toLocaleString()}</span></div>
+            ${totalCompanyDueInHand > 0 ? `<div class="d-flex justify-content-between mb-2"><span>Partner Cash In Hand:</span><span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span></div>` : ''}
+            <div class="text-end border-top pt-1 mt-1"><span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span></div>
         </div>
     </div>`;
-
-    let html = breakdownHtml;
 
     if (isCurrentMonth) {
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
             let withdrawnAmt = data.withdrawn || 0;
             let thisMonthShare = shares[name] || 0;
-
             let dd = window.directProfits[name];
-            let extraProfitAmt = dd ? dd.travelEarned : 0; // 🔥 ഇതിനെ മാത്രം സാലറിയിൽ കൂട്ടുന്നു
-            let inHandCash = dd ? dd.companyDue : 0; // 🔥 ഇത് കയ്യിലുള്ള കമ്പനി പണം
-
+            let extraProfitAmt = dd ? dd.travelEarned : 0;
+            let inHandCash = dd ? dd.companyDue : 0;
             let pastProfit = sheetPrevBal + withdrawnAmt;
 
-            // 🔥 പുതിയ ബാലൻസ് കാൽക്കുലേഷൻ (No labels like 'Deducted' shown to user in logic)
-            // ബാലൻസിൽ എക്സ്ട്രാ പ്രോഫിറ്റ് കൂട്ടുന്നു
             let defaultBal = pastProfit - withdrawnAmt + extraProfitAmt;
             let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt + extraProfitAmt;
-
             let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
-
-            let bdText = "";
-            if (dd && Object.keys(dd.breakdown).length > 0) {
-                let parts = [];
-                for (let [charge, times] of Object.entries(dd.breakdown)) parts.push(`${charge}x${times}`);
-                bdText = `(${parts.join(', ')})`;
-            }
 
             html += `
             <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" data-partner="${name}" onclick="selectPartnerWithCheck('${name}', ${defaultBal}, ${checkedBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
                 <div class="d-flex align-items-center w-100">
-                    <div class="me-3">
-                        <i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i>
-                    </div>
+                    <div class="me-3"><i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i></div>
                     <div class="flex-grow-1">
-                        <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
-                        <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">
-                            Final Bal: ₹${formattedBal} 
-                        </div>
-                        
+                        <div class="fw-bolder text-dark" style="font-size:15px;">${name}</div>
+                        <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">Final Bal: ₹${formattedBal}</div>
                         <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
-                            <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;">
-                                <span>Current Bank Debt:</span>
-                                <span class="text-dark">₹${(pastProfit - withdrawnAmt).toLocaleString('en-IN')}</span>
-                            </div>
-
-                            ${dd && dd.count > 0 ? `
-                            <div class="d-flex justify-content-between text-muted mt-1" style="font-size:10px; font-weight:600;">
-                                <span><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
-                                <span class="text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
-                            </div>` : ''}
-
-                            <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
+                            <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Bank Debt:</span><span class="text-dark">₹${(pastProfit - withdrawnAmt).toLocaleString('en-IN')}</span></div>
+                            ${dd && dd.count > 0 ? `<div class="d-flex justify-content-between text-muted mt-1" style="font-size:10px; font-weight:600;"><span><i class="fas fa-motorcycle text-warning"></i> Direct Profit:</span><span class="text-success">+ ₹${extraProfitAmt.toLocaleString()}</span></div>` : ''}
+                            <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px;">
                                 <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
-                                <div class="form-check form-switch m-0" onclick="event.stopPropagation();">
-                                    <input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); margin-top: 2px; cursor: pointer;">
-                                </div>
+                                <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); cursor: pointer;"></div>
                             </div>
                         </div>
-
-                        ${inHandCash > 0 ? `
-                        <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
-                            <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
-                                <span class="fw-bold text-danger"><i class="fas fa-hand-holding-usd"></i> Company Cash in Hand:</span>
-                                <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
-                            </div>
-                            <div class="text-muted mt-1" style="font-size:8px;">(ഈ തുക സാലറിയിൽ നിന്നും കുറയ്ക്കില്ല, പക്ഷേ നേരിട്ട് വാങ്ങിയിട്ടുള്ളതാണ്)</div>
-                        </div>` : ''}
-
+                        ${inHandCash > 0 ? `<div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3 fw-bold text-danger" style="font-size:10px;"><i class="fas fa-hand-holding-usd"></i> Company Cash in Hand: ₹${inHandCash.toLocaleString()}</div>` : ''}
                     </div>
-                    <div class="ms-2 d-flex align-items-center justify-content-center">
-                        <i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i>
-                    </div>
+                    <div class="ms-2"><i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i></div>
                 </div>
             </div>`;
         }
+    } else {
+        html += `<div class="alert alert-danger text-center small fw-bold">സാലറി കാണാൻ ഈ മാസത്തെ റിപ്പോർട്ട് എടുക്കുക.</div>`;
     }
 
     $('#partner-list').html(html);
