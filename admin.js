@@ -4529,106 +4529,6 @@ function loadFlatpickr(callback) {
 }
 
 
-window.openDirectDeliveryPopup = function (oid) {
-    let order = allOrders.find(o => o.orderid === oid);
-    if (!order) return;
-
-    let existingName = 'Samad';
-    let existingCharge = '30'; // Default extra charge
-
-    // ഓൾറെഡി ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ പഴയ ഡാറ്റ എടുക്കുന്നു
-    if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
-        let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
-        if (match) {
-            existingName = match[1];
-            existingCharge = match[2];
-        }
-    }
-
-    Swal.fire({
-        title: '🛵 Direct Delivery',
-        html: `
-            <div class="mb-3 text-start">
-                <label class="small text-muted fw-bold">Select Partner</label>
-                <select id="dd-partner-name" class="form-select border-warning shadow-sm fw-bold">
-                    <option value="Samad" ${existingName === 'Samad' ? 'selected' : ''}>Samad</option>
-                    <option value="Salam" ${existingName === 'Salam' ? 'selected' : ''}>Salam</option>
-                    <option value="Jazeela" ${existingName === 'Jazeela' ? 'selected' : ''}>Jazeela</option>
-                </select>
-            </div>
-            <div class="text-start">
-                <label class="small text-muted fw-bold">Delivery Charge / Extra Profit (ex: 30)</label>
-                <input type="number" id="dd-extra-amount" class="form-control border-warning shadow-sm fw-bold text-success" placeholder="eg: 30" value="${existingCharge}">
-            </div>
-        `,
-        showCancelButton: true,
-        confirmButtonColor: '#0d6efd', // സിങ്ക് ബട്ടണിന്റെ നീല കളർ
-        confirmButtonText: '<i class="fas fa-list"></i> Add to Sync', // കൺഫ്യൂഷൻ ഒഴിവാക്കാൻ പേര് മാറ്റി
-        preConfirm: () => {
-            let p = document.getElementById('dd-partner-name').value;
-            let a = document.getElementById('dd-extra-amount').value;
-            if (!a) { Swal.showValidationMessage('Charge is required!'); return false; }
-            return { name: p, charge: a };
-        }
-    }).then((res) => {
-        if (res.isConfirmed) {
-            let pName = res.value.name;
-            let charge = parseInt(res.value.charge) || 0;
-            let metaString = `DDelivery${pName}_${charge}`;
-
-            // പഴയ ഡ്യൂപ്ലിക്കേറ്റ് വരുന്നത് ഒഴിവാക്കാൻ കൃത്യമായി replace ചെയ്യുന്നു
-            let currentMeta = String(order.adminMeta || '');
-            let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
-            newMeta = (newMeta + ' ' + metaString).trim();
-
-            let oldProvider = order.provider || order.Courier_Provider;
-            let oldCharge = order.Courier_Charge;
-            let oldTotal = order.Grand_Total || order.grandTotal;
-
-            // തനിയെ ഓർഡറിന്റെ കാർഡിലെ എമൗണ്ട് അപ്ഡേറ്റ് ചെയ്യാൻ
-            let qty = parseInt(order.quantity) || 1;
-            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
-            let newTotal = standardPrice + charge;
-
-            // UI യിലും ലോക്കൽ മെമ്മറിയിലും മാത്രം അപ്ഡേറ്റ് ചെയ്യുന്നു
-            order.adminMeta = newMeta;
-            order.provider = 'Direct';
-            order.Courier_Provider = 'Direct';
-            order.Courier_Charge = charge;
-            order.Grand_Total = newTotal;
-            order.grandTotal = newTotal;
-
-            // Sync ക്യൂവിലേക്ക് (pendingUpdates) അയക്കുന്നു
-            let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-
-            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
-            if (metaIdx > -1) updates[metaIdx].meta = newMeta;
-            else updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
-
-            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider !== undefined);
-            if (provIdx > -1) {
-                updates[provIdx].provider = 'Direct';
-                updates[provIdx].charge = charge;
-                updates[provIdx].total = newTotal;
-            } else {
-                updates.push({ oid: oid, action: 'meta', provider: 'Direct', charge: charge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
-            }
-
-            // ലോക്കൽ ഡാറ്റാ സേവ് ചെയ്യുന്നു
-            localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-
-            if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-            if (typeof renderTabs === 'function') renderTabs(allOrders);
-
-            // ഈ മെസ്സേജ് ഇപ്പോൾ കൃത്യമാണ് (സിങ്കിലേക്ക് വന്നിട്ടുണ്ടെന്ന് യൂസറെ അറിയിക്കുന്നു)
-            Swal.fire({ icon: 'info', title: 'Added to Sync List!', text: `Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
-        } else {
-            if (typeof renderTabs === 'function') renderTabs(allOrders); // Cancel അടിച്ചാൽ ഡ്രോപ്പ്ഡൗൺ പഴയപടിയാക്കാൻ
-        }
-    });
-};
-
 window.loadOldTrackingOrders = function () {
     showAllTracking = true;
     renderTabs(allOrders); // വീണ്ടും റീ-റെൻഡർ ചെയ്യുന്നു
@@ -8502,7 +8402,7 @@ window.formatWAPhone = function (phoneNum, cc) {
     return cleanNum;
 };
 
-// 🔥 OVERRIDE CHANGE COURIER FOR DIRECT DELIVERY (FIXED)
+// 🔥 OVERRIDE CHANGE COURIER FOR DIRECT DELIVERY (DEEP CHECK FIXED)
 let originalChangeCourier = window.changeCourier;
 window.changeCourier = async function (oid, newProvider) {
     if (newProvider === 'Direct') {
@@ -8513,5 +8413,108 @@ window.changeCourier = async function (oid, newProvider) {
     if (typeof originalChangeCourier === 'function') {
         originalChangeCourier(oid, newProvider);
     }
+};
+
+window.openDirectDeliveryPopup = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let existingName = 'Samad';
+    let existingCharge = '30';
+
+    // ഓൾറെഡി ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ പഴയ ഡാറ്റ എടുക്കുന്നു
+    if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
+        let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+        if (match) {
+            existingName = match[1];
+            existingCharge = match[2];
+        }
+    }
+
+    Swal.fire({
+        title: '🛵 Direct Delivery',
+        html: `
+            <div class="mb-3 text-start">
+                <label class="small text-muted fw-bold">Select Partner</label>
+                <select id="dd-partner-name" class="form-select border-warning shadow-sm fw-bold">
+                    <option value="Samad" ${existingName === 'Samad' ? 'selected' : ''}>Samad</option>
+                    <option value="Salam" ${existingName === 'Salam' ? 'selected' : ''}>Salam</option>
+                    <option value="Jazeela" ${existingName === 'Jazeela' ? 'selected' : ''}>Jazeela</option>
+                </select>
+            </div>
+            <div class="text-start">
+                <label class="small text-muted fw-bold">Delivery Charge / Extra Profit (ex: 30)</label>
+                <input type="number" id="dd-extra-amount" class="form-control border-warning shadow-sm fw-bold text-success" placeholder="eg: 30" value="${existingCharge}">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonColor: '#0d6efd',
+        confirmButtonText: '<i class="fas fa-list"></i> Add to Sync',
+        preConfirm: () => {
+            let p = document.getElementById('dd-partner-name').value;
+            let a = document.getElementById('dd-extra-amount').value;
+            if (!a) { Swal.showValidationMessage('Charge is required!'); return false; }
+            return { name: p, charge: a };
+        }
+    }).then((res) => {
+        if (res.isConfirmed) {
+            let pName = res.value.name;
+            let charge = parseInt(res.value.charge) || 0;
+            let metaString = `DDelivery${pName}_${charge}`;
+
+            let currentMeta = String(order.adminMeta || '');
+            let newMeta = currentMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
+            newMeta = (newMeta + ' ' + metaString).trim();
+
+            let oldProvider = order.provider || order.Courier_Provider;
+            let oldCharge = order.Courier_Charge;
+            let oldTotal = order.Grand_Total || order.grandTotal;
+
+            let qty = parseInt(order.quantity) || 1;
+            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+            let newTotal = standardPrice + charge;
+
+            // 1. UI യിലും ലോക്കൽ മെമ്മറിയിലും ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
+            order.adminMeta = newMeta;
+            order.provider = 'Direct';
+            order.Courier_Provider = 'Direct';
+            order.Courier_Charge = charge;
+            order.Grand_Total = newTotal;
+            order.grandTotal = newTotal;
+
+            let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+            // 2. 🔥 FIX: Admin Meta കോളം അപ്ഡേറ്റ് ചെയ്യാൻ വേണ്ടി മാത്രം (Action: Meta)
+            let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta');
+            if (metaIdx > -1) {
+                updates[metaIdx].meta = newMeta;
+            } else {
+                updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, time: new Date().getTime() });
+            }
+
+            // 3. 🔥 FIX: Provider, Charge, Grand Total കോളങ്ങൾ അപ്ഡേറ്റ് ചെയ്യാൻ (Action: Courier)
+            let provIdx = updates.findIndex(u => u.oid === oid && u.action === 'courier');
+            if (provIdx > -1) {
+                updates[provIdx].provider = 'Direct';
+                updates[provIdx].charge = charge;
+                updates[provIdx].total = newTotal;
+            } else {
+                updates.push({ oid: oid, action: 'courier', provider: 'Direct', charge: charge, total: newTotal, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, time: new Date().getTime() });
+            }
+
+            localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+            if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+
+            // 4. 🔥 കാർഡിലെ തുകയും മാറ്റങ്ങളും അപ്പോൾ തന്നെ കാണിക്കാൻ 
+            if (typeof renderTabs === 'function') renderTabs(allOrders);
+
+            Swal.fire({ icon: 'info', title: 'Added to Sync List!', text: `Updated Total: ₹${newTotal}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
+        } else {
+            // Cancel അടിച്ചാൽ ഡ്രോപ്പ്ഡൗൺ പഴയപടിയാക്കാൻ
+            if (typeof renderTabs === 'function') renderTabs(allOrders);
+        }
+    });
 };
 
