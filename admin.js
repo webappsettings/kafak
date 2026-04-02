@@ -1095,10 +1095,12 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
     }
 }
 
-// 🔥 FIXED: createCardHTML (With Direct Delivery Edit Button)
+// 🔥 FIXED: createCardHTML (With UI Text Format Fix)
 function createCardHTML(d, index, type, currentStatus, isCompact = false, groupId = '') {
 
-    // Override Auto-Calculation for Direct Delivery
+    let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
+
+    // Override Auto-Calculation and UI Format for Direct Delivery
     if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
         let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
         if (match) {
@@ -1111,6 +1113,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             d.Courier_Charge = charge;
             d.Grand_Total = standardPrice + charge;
             d.grandTotal = standardPrice + charge;
+
+            // 🔥 USER REQUESTED TEXT FORMAT FIX
+            priceInfo.breakdownText = `<span class="text-muted" style="font-size:9px; margin-right:4px;">(${standardPrice} + ${charge})</span> ₹${standardPrice + charge}/-`;
+            priceInfo.total = `₹${standardPrice + charge}/-`;
         }
     }
 
@@ -1125,20 +1131,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = parseOrderDate(d.timestamp || d.Date || d.date);
     let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
-
-    let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
-
-    // Override text for Direct Delivery display
-    if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
-        let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
-        if (match) {
-            let charge = parseInt(match[2]) || 0;
-            let qty = parseInt(d.quantity) || parseInt(d.Quantity) || 1;
-            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
-            priceInfo.breakdownText = `(${standardPrice} + ${charge}) ₹${standardPrice + charge}/-`;
-            priceInfo.total = `₹${standardPrice + charge}/-`;
-        }
-    }
 
     let totalOrders = 0;
     let totalBottles = 0;
@@ -1483,7 +1475,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let isDirectSelected = (String(d.provider || d.Courier_Provider).toUpperCase() === 'DIRECT') ? 'selected' : '';
     providerOptions += `<option value="Direct" ${isDirectSelected} style="font-weight:bold; color:#d97706;">🛵 Direct Delivery</option>`;
 
-    // 🔥 NEW: Edit Button for Direct Delivery Popup
     let directEditBtn = isDirectSelected ? `<button class="btn btn-sm btn-warning ms-1 me-2 shadow-sm" style="padding:2px 6px; font-size:10px; border-radius:4px;" onclick="event.stopPropagation(); openDirectDeliveryPopup('${d.orderid}')" title="Edit Delivery Charge"><i class="fas fa-edit"></i></button>` : '';
 
     return `
@@ -8392,7 +8383,7 @@ window.formatWAPhone = function (phoneNum, cc) {
 };
 
 
-// 🔥 COMPLETE CHANGE COURIER FUNCTION (Handles Normal, Direct & UNDO Revert)
+// 🔥 COMPLETE CHANGE COURIER FUNCTION (Handles Search UI Update & Undo)
 window.changeCourier = async function (oid, newProvider) {
     if (newProvider === 'Direct') {
         openDirectDeliveryPopup(oid);
@@ -8449,6 +8440,11 @@ window.changeCourier = async function (oid, newProvider) {
     if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
     if (typeof renderTabs === 'function') renderTabs(allOrders);
 
+    // 🔥 FIX 1: Search Tab Refresh Fix
+    if (document.getElementById('searchInput') && document.getElementById('searchInput').value.trim() !== '') {
+        if (typeof filterOrders === 'function') filterOrders();
+    }
+
     if (newProvider !== oldProvider) {
         Swal.fire({ icon: 'success', title: 'Courier Updated!', text: newProvider + ' Rate: ₹' + newCharge, toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
     }
@@ -8477,11 +8473,9 @@ window.openDirectDeliveryPopup = function (oid) {
         }
     }
 
-    // 🔥 NEW: Check if already delivered
     let currentStatus = String(order.Status || 'Pending').trim();
     let showDeliveryToggle = (currentStatus !== 'Delivered' && currentStatus !== 'Completed');
 
-    // 🔥 NEW: Delivery Toggle Switch HTML
     let deliveryToggleHtml = showDeliveryToggle ? `
         <div class="mt-3 text-start bg-success bg-opacity-10 p-2 rounded border border-success border-opacity-25">
             <div class="form-check form-switch m-0 d-flex align-items-center">
@@ -8515,7 +8509,7 @@ window.openDirectDeliveryPopup = function (oid) {
             let p = document.getElementById('dd-partner-name').value;
             let a = document.getElementById('dd-extra-amount').value;
             let dToggle = document.getElementById('dd-mark-delivered');
-            let d = dToggle ? dToggle.checked : false; // സ്വിച്ച് ഓൺ ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+            let d = dToggle ? dToggle.checked : false;
             if (!a) { Swal.showValidationMessage('Charge is required!'); return false; }
             return { name: p, charge: a, isDelivered: d };
         }
@@ -8523,7 +8517,7 @@ window.openDirectDeliveryPopup = function (oid) {
         if (res.isConfirmed) {
             let pName = res.value.name;
             let charge = parseInt(res.value.charge) || 0;
-            let isDelivered = res.value.isDelivered; // ഓൺ ആണെങ്കിൽ True ആയിരിക്കും
+            let isDelivered = res.value.isDelivered;
             let newProvider = 'Direct';
             let metaString = `DDelivery${pName}_${charge}`;
 
@@ -8562,10 +8556,9 @@ window.openDirectDeliveryPopup = function (oid) {
                     updates.push({ oid: oid, action: 'meta', provider: newProvider, charge: charge, total: newTotal, meta: newMeta, oldProvider: oldProvider, oldCharge: oldCharge, oldTotal: oldTotal, oldMeta: oldMeta, time: new Date().getTime() });
                 }
 
-                // 🔥 NEW: സ്വിച്ച് ഓൺ ആണെങ്കിൽ സ്റ്റാറ്റസ് Delivered ആക്കി മാറ്റുന്നു
                 if (isDelivered) {
                     order.Status = 'Delivered';
-                    order['Delivered Date'] = new Date().toLocaleString('en-US'); // ഡെലിവറി സമയം ഇപ്പോഴത്തെ സമയം ആക്കുന്നു
+                    order['Delivered Date'] = new Date().toLocaleString('en-US');
 
                     let statIdx = updates.findIndex(u => u.oid === oid && u.action === 'status');
                     if (statIdx > -1) {
@@ -8582,6 +8575,11 @@ window.openDirectDeliveryPopup = function (oid) {
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
             if (typeof renderTabs === 'function') renderTabs(allOrders);
 
+            // 🔥 FIX 1: Search Tab Refresh Fix
+            if (document.getElementById('searchInput') && document.getElementById('searchInput').value.trim() !== '') {
+                if (typeof filterOrders === 'function') filterOrders();
+            }
+
             if (!isCompleteRevert || isDelivered) {
                 let msg = isDelivered ? 'Saved & Marked as Delivered!' : `Updated Total: ₹${newTotal}`;
                 Swal.fire({ icon: 'success', title: 'Added to Sync List!', text: msg, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
@@ -8592,9 +8590,7 @@ window.openDirectDeliveryPopup = function (oid) {
     });
 };
 
-// 🔥 FIX: CLEANUP ORPHANED META TAGS & ADD SYNC INDICATION
-
-// 1. Unprint ചെയ്യുമ്പോൾ അനാവശ്യ നമ്പറുകൾ പൂർണ്ണമായും കളയാനും സിങ്ക് ചെയ്യാനും (Complete Function)
+// 🔥 FIX 2: CLEANUP ORPHANED META TAGS & ADD SYNC INDICATION
 window.confirmUnprint = function (oid) {
     Swal.fire({
         title: 'Revert Status?',
@@ -8609,12 +8605,9 @@ window.confirmUnprint = function (oid) {
             if (!order) return;
 
             let oldMeta = String(order.adminMeta || '');
-
-            // 'P_നമ്പർ', വെറും '_നമ്പർ' എന്നിവ പൂർണ്ണമായും ഒഴിവാക്കുന്നു
             let newMeta = oldMeta.replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
             order.adminMeta = newMeta;
 
-            // സിങ്ക് ക്യൂവിലേക്ക് ആഡ് ചെയ്യുന്നു (ഇത് സിങ്ക് ഇൻഡിക്കേഷൻ കൊണ്ടുവരും!)
             let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
             let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
 
@@ -8635,27 +8628,66 @@ window.confirmUnprint = function (oid) {
     });
 };
 
-// 2. വീണ്ടും Print ചെയ്യുമ്പോൾ പഴയ നമ്പറുകൾ ഉണ്ടെങ്കിൽ അത് ക്ലിയർ ചെയ്തിട്ട് പുതിയത് വെക്കാൻ
 let originalPrintSingle = window.printSingle;
 window.printSingle = function (index) {
     let order = allOrders[index];
-    if (order) {
-        // പ്രിൻ്റ് ചെയ്യുന്നതിന് മുൻപ് പഴയ നമ്പറുകൾ കളയുന്നു. (പുതിയ നമ്പർ ഒറിജിനൽ ഫംഗ്ഷൻ ഇട്ടോളും)
-        order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
-    }
-    if (typeof originalPrintSingle === 'function') {
-        originalPrintSingle(index);
-    }
+    if (order) order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
+    if (typeof originalPrintSingle === 'function') originalPrintSingle(index);
 };
 
-// 3. ജനറൽ അപ്ഡേറ്റുകളിലും പഴയ അനാവശ്യ നമ്പറുകൾ വരാതിരിക്കാൻ
 let originalUpdateAdminMeta = window.updateAdminMeta;
 window.updateAdminMeta = function (oid, action, value) {
     let order = allOrders.find(o => o.orderid === oid);
-    if (order) {
-        order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
-    }
-    if (typeof originalUpdateAdminMeta === 'function') {
-        originalUpdateAdminMeta(oid, action, value);
-    }
+    if (order) order.adminMeta = String(order.adminMeta || '').replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
+    if (typeof originalUpdateAdminMeta === 'function') originalUpdateAdminMeta(oid, action, value);
 };
+
+// 🔥 FIX 3: WHATSAPP RECEIPT TOTAL & RATE OVERRIDE FOR DIRECT DELIVERY
+let origSendWA = window.sendWA;
+if (typeof origSendWA === 'function') {
+    window.sendWA = function (index, type) {
+        fixOrderDataBeforeWA(index);
+        origSendWA(index, type);
+    };
+}
+
+let origSendPaymentWA = window.sendPaymentWA;
+if (typeof origSendPaymentWA === 'function') {
+    window.sendPaymentWA = function (oid, index, type) {
+        fixOrderDataBeforeWA(index, oid);
+        origSendPaymentWA(oid, index, type);
+    };
+}
+
+function fixOrderDataBeforeWA(index, oid) {
+    let order = null;
+    if (index !== undefined && allOrders[index]) order = allOrders[index];
+    else if (oid) order = allOrders.find(o => o.orderid === oid);
+
+    if (order && order.adminMeta && order.adminMeta.includes('DDelivery')) {
+        let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+        if (match) {
+            let charge = parseInt(match[2]) || 0;
+            let qty = parseInt(order.quantity) || 1;
+            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+
+            // മെസ്സേജ് ക്രിയേറ്റ് ചെയ്യുന്ന സമയത്ത് റേറ്റുകൾ നിർബന്ധമായും മാറ്റി കൊടുക്കുന്നു
+            order.provider = 'Direct';
+            order.Courier_Provider = 'Direct';
+            order.Courier_Charge = charge;
+            order.Grand_Total = standardPrice + charge;
+            order.grandTotal = standardPrice + charge;
+
+            // Temporary Courier Rate fix for WhatsApp URL generation
+            if (typeof window.getCourierRate === 'function') {
+                let origGetRate = window.getCourierRate;
+                window.getCourierRate = function (s, p, q) {
+                    if (String(p).toUpperCase() === 'DIRECT') return charge;
+                    return origGetRate(s, p, q);
+                };
+                // മെസ്സേജ് ഓപ്പൺ ആയതിന് ശേഷം തിരികെ പഴയതുപോലെ ആക്കാൻ
+                setTimeout(() => { window.getCourierRate = origGetRate; }, 1500);
+            }
+        }
+    }
+}
