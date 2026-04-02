@@ -3343,23 +3343,26 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
-// 🔥 സൂപ്പർ ഡേറ്റ് പാർസർ (100% ശരിയായി വായിക്കാൻ)
+// 🔥 SUPER DATE PARSER (Fixed US/UK Date Format Issue)
 function parseOrderDate(str) {
     if (!str) return new Date(NaN);
     let s = String(str).trim();
-    let d = new Date(s);
-    if (!isNaN(d.getTime())) return d;
 
-    // തീയതി സാധാരണ ഫോർമാറ്റിൽ അല്ലെങ്കിൽ, അത് സ്വയം ശരിയാക്കുന്നു
+    // 1. Custom Parsing First (To prevent 02/04/2026 becoming Feb 4)
     let parts = s.split(/[\/\-\sT:]+/);
     if (parts.length >= 3) {
         let p1 = parseInt(parts[0]), p2 = parseInt(parts[1]), p3 = parseInt(parts[2]);
         if (p1 > 1000) return new Date(p1, p2 - 1, p3); // YYYY-MM-DD
         if (p3 > 1000) {
             if (p2 > 12) return new Date(p3, p1 - 1, p2); // MM/DD/YYYY
-            return new Date(p3, p2 - 1, p1); // DD/MM/YYYY
+            return new Date(p3, p2 - 1, p1); // Force Indian Standard: DD/MM/YYYY
         }
     }
+
+    // 2. Fallback
+    let d = new Date(s);
+    if (!isNaN(d.getTime())) return d;
+
     return new Date(NaN);
 }
 
@@ -7042,14 +7045,23 @@ window.renderPartnerList = function () {
     let fullBottleCost = 0;
     let fullCourier = 0;
 
-    // 🔥 NEW: Paid & Dispatched Counters
     let monthPaidCount = 0;
     let monthDispatchedCount = 0;
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
 
+    // 🔥 NEW: Find First Order Date for Display
+    let firstDateMs = Date.now();
+
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
+
+        let oDateStr = o.timestamp || o.Date || o.date;
+        let oDate = parseOrderDate(oDateStr);
+        if (!isNaN(oDate.getTime()) && oDate.getTime() < firstDateMs) {
+            firstDateMs = oDate.getTime();
+        }
+
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
             let qty = parseInt(o.quantity) || 0;
 
@@ -7071,7 +7083,6 @@ window.renderPartnerList = function () {
                 fullCourier += actualC;
             }
 
-            // 🔥 NEW: Calculate Current Month's Paid & Dispatched Bottles
             let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
             let pDate = parseOrderDate(pDateStr);
 
@@ -7085,15 +7096,27 @@ window.renderPartnerList = function () {
         }
     });
 
-    let fullExpenses = 0;
-    if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
-        dashboardData.yearTimeline.expense.forEach(e => {
-            let cat = String(e.cat || '').toLowerCase();
-            if (!e.isCourier && cat !== 'refund') {
-                fullExpenses += (Number(e.amount) || 0);
-            }
-        });
+    let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+
+    // 🔥 NEW: Robust Expense Calculation (Pulls from all possible sources)
+    let allExps = new Map();
+    if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
+        dashboardData.monthTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
     }
+    if (dashboardData && dashboardData.yearTimeline && dashboardData.yearTimeline.expense) {
+        dashboardData.yearTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
+    }
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    pendingExpenses.forEach(e => { if (e.id) allExps.set(e.id, e); });
+
+    let fullExpenses = 0;
+    allExps.forEach(e => {
+        let cat = String(e.cat || e.category || '').toLowerCase();
+        if (!e.isCourier && cat !== 'refund') {
+            fullExpenses += (Number(e.amount) || 0);
+        }
+    });
 
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses);
 
@@ -7117,17 +7140,20 @@ window.renderPartnerList = function () {
                 <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
                 <div>
                     <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
-                    
                     <div style="font-size:9px; color:#0369a1; cursor:pointer; font-weight:bold;" onclick="$('#bankBreakdown').slideToggle();">
                         View Calculation <i class="fas fa-chevron-down ms-1"></i>
                     </div>
-
                 </div>
             </div>
             <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
         </div>
 
         <div id="bankBreakdown" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed #7dd3fc; font-size:11px;">
+            
+            <div class="mb-2 text-center text-secondary fw-bold" style="font-size:9px; letter-spacing:0.5px; background: #e0f2fe; padding: 4px; border-radius: 4px;">
+                <i class="far fa-calendar-alt"></i> FROM ${firstDateStr.toUpperCase()} TO ${todayStr.toUpperCase()}
+            </div>
+
             <div class="d-flex justify-content-between mb-1">
                 <span class="text-secondary fw-bold">Total Income:</span>
                 <span class="text-success fw-bold">+ ₹${fullIncome.toLocaleString()}</span>
@@ -7242,11 +7268,9 @@ window.renderPartnerList = function () {
 
             let pastProfit = sheetPrevBal + withdrawnAmt;
 
-            // 🔥 NEW: Default (Excluded) vs Checked (Included) Balances
             let defaultBal = pastProfit - withdrawnAmt;
             let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt;
 
-            // Default ആയി ഈ മാസത്തെ തുക കൂട്ടാതെയാണ് കാണിക്കുന്നത്
             let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
             html += `
