@@ -253,9 +253,30 @@ $(document).ready(function () {
   }
 
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
-  $('#phone, #edit-phone').on('paste', function (e) {
+
+  // 🔥 SMART PASTE (Admin can paste anywhere, Customer cannot paste in Main Phone)
+  $('#phone, #edit-phone, #whatsapp, #altphone').on('paste', function (e) {
     e.preventDefault();
-    showAlert(getAlert('err_no_paste'));
+
+    let isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+    let isMainPhoneBox = $(this).attr('id') === 'phone';
+    if (!isAdmin && isMainPhoneBox) {
+      showAlert(getAlert('err_no_paste') || "Please type your number manually.");
+      return; // ഇതിന് താഴോട്ടുള്ള കോഡ് വർക്ക് ആവില്ല
+    }
+
+    let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
+    let cleanNum = pastedText.replace(/[^0-9]/g, '');
+
+    if (cleanNum.length === 12 && cleanNum.startsWith('91')) {
+      cleanNum = cleanNum.substring(2);
+    }
+    else if (cleanNum.length > 10) {
+      cleanNum = cleanNum.slice(-10);
+    }
+
+    $(this).val(cleanNum);
+    $(this).trigger('input');
   });
   $('#quantity, #quick-qty').change(function () { updatePrice($(this).val(), $(this).attr('id') === 'quick-qty'); });
 
