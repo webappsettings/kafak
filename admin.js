@@ -7117,10 +7117,36 @@ window.renderPartnerList = function () {
                 <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
                 <div>
                     <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
-                    <div style="font-size:9px; color:#0369a1;">(Income - All Expenses & Materials)</div>
+                    
+                    <div style="font-size:9px; color:#0369a1; cursor:pointer; font-weight:bold;" onclick="$('#bankBreakdown').slideToggle();">
+                        View Calculation <i class="fas fa-chevron-down ms-1"></i>
+                    </div>
+
                 </div>
             </div>
             <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
+        </div>
+
+        <div id="bankBreakdown" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed #7dd3fc; font-size:11px;">
+            <div class="d-flex justify-content-between mb-1">
+                <span class="text-secondary fw-bold">Total Income:</span>
+                <span class="text-success fw-bold">+ ₹${fullIncome.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1">
+                <span class="text-secondary">Bottle / Base Cost:</span>
+                <span class="text-danger">- ₹${fullBottleCost.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-1">
+                <span class="text-secondary">Courier Charges:</span>
+                <span class="text-danger">- ₹${fullCourier.toLocaleString()}</span>
+            </div>
+            <div class="d-flex justify-content-between mb-2">
+                <span class="text-secondary">Other Expenses:</span>
+                <span class="text-danger">- ₹${fullExpenses.toLocaleString()}</span>
+            </div>
+            <div class="text-end border-top border-info border-opacity-25 pt-1 mt-1">
+                <span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span>
+            </div>
         </div>
     </div>
 
