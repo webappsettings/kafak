@@ -7053,10 +7053,11 @@ window.renderPartnerList = function () {
     let firstDateMs = Date.now();
 
     let totalCompanyDueInHand = 0;
+    // 🔥 NEW: Added 'orders' count and 'breakdown' object
     window.directProfits = {
-        "Samad": { count: 0, companyDue: 0, travelEarned: 0 },
-        "Salam": { count: 0, companyDue: 0, travelEarned: 0 },
-        "Jazeela": { count: 0, companyDue: 0, travelEarned: 0 }
+        "Samad": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} },
+        "Salam": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} },
+        "Jazeela": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} }
     };
 
     allOrders.forEach(o => {
@@ -7073,24 +7074,29 @@ window.renderPartnerList = function () {
             let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
             if (match && ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
                 let pName = match[1];
-                let travelCharge = parseInt(match[2]) || 0; // Popup-ൽ കൊടുത്ത എക്സ്ട്രാ ചാർജ്ജ് (eg: 30)
+                let travelCharge = parseInt(match[2]) || 0;
                 let qty = parseInt(o.quantity) || 0;
 
                 let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
 
-                let companyDue = standardPrice; // കുപ്പിയുടെ ബേസ് പ്രൈസ് (eg: 650)
-
-                fullIncome += companyDue; // കമ്പനിയുടെ അക്കൗണ്ടിലേക്ക് 650 മാത്രം കയറുന്നു
+                let companyDue = standardPrice;
+                fullIncome += companyDue;
 
                 let dbCost = parseInt(o.Product_Base_Cost);
                 let itemCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
                 fullBottleCost += itemCost;
 
                 if (window.directProfits[pName]) {
-                    window.directProfits[pName].count += qty;
-                    window.directProfits[pName].companyDue += companyDue;     // 650
-                    window.directProfits[pName].travelEarned += travelCharge; // 30
+                    window.directProfits[pName].count += qty;       // Total Bottles
+                    window.directProfits[pName].orders += 1;        // Total Orders Delivered
+                    window.directProfits[pName].companyDue += companyDue;
+                    window.directProfits[pName].travelEarned += travelCharge;
                     totalCompanyDueInHand += companyDue;
+
+                    // 🔥 NEW: Store breakdown (e.g., 30x2, 80x1)
+                    if (travelCharge > 0) {
+                        window.directProfits[pName].breakdown[travelCharge] = (window.directProfits[pName].breakdown[travelCharge] || 0) + 1;
+                    }
                 }
 
                 let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
@@ -7100,7 +7106,7 @@ window.renderPartnerList = function () {
                     else monthDispatchedCount += qty;
                 }
 
-                return; // ⛔ ഇതിന് താഴെയുള്ള ജനറൽ കാൽക്കുലേഷൻ സ്കിപ്പ് ചെയ്യുന്നു!
+                return;
             }
         }
 
@@ -7159,7 +7165,6 @@ window.renderPartnerList = function () {
         }
     });
 
-    // Bank Balance കാൽക്കുലേഷനിൽ പാർട്ണർമാരുടെ കൈയ്യിലുള്ള കമ്പനിയുടെ കാശ് കുറയ്ക്കുന്നു
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
 
     let shares = {
@@ -7191,11 +7196,9 @@ window.renderPartnerList = function () {
         </div>
 
         <div id="bankBreakdown" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed #7dd3fc; font-size:11px;">
-            
             <div class="mb-2 text-center text-secondary fw-bold" style="font-size:9px; letter-spacing:0.5px; background: #e0f2fe; padding: 4px; border-radius: 4px;">
                 <i class="far fa-calendar-alt"></i> FROM ${firstDateStr.toUpperCase()} TO ${todayStr.toUpperCase()}
             </div>
-
             <div class="d-flex justify-content-between mb-1">
                 <span class="text-secondary fw-bold">Total Income:</span>
                 <span class="text-success fw-bold">+ ₹${fullIncome.toLocaleString()}</span>
@@ -7317,11 +7320,20 @@ window.renderPartnerList = function () {
             let deductAmt = dd ? dd.companyDue : 0;
 
             let pastProfit = sheetPrevBal + withdrawnAmt;
-
             let defaultBal = pastProfit - withdrawnAmt - deductAmt;
             let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt - deductAmt;
 
             let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
+
+            // 🔥 NEW: Breakdown Text Generation
+            let bdText = "";
+            if (dd && Object.keys(dd.breakdown).length > 0) {
+                let parts = [];
+                for (let [charge, times] of Object.entries(dd.breakdown)) {
+                    parts.push(`${charge}x${times}`);
+                }
+                bdText = `(${parts.join(', ')})`;
+            }
 
             html += `
             <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" data-partner="${name}" onclick="selectPartnerWithCheck('${name}', ${defaultBal}, ${checkedBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
@@ -7358,11 +7370,13 @@ window.renderPartnerList = function () {
                         ${dd && dd.count > 0 ? `
                         <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
                             <div class="d-flex justify-content-between align-items-center mb-1">
-                                <span class="fw-bold text-dark" style="font-size:10px;"><i class="fas fa-motorcycle text-warning me-1"></i> Direct Delivery</span>
+                                <span class="fw-bold text-dark" style="font-size:10px;">
+                                    <i class="fas fa-motorcycle text-warning me-1"></i> Direct: ${dd.orders} Orders
+                                </span>
                                 <span class="badge bg-warning text-dark" style="font-size:8px;">${dd.count} Bottles</span>
                             </div>
-                            <div class="d-flex justify-content-between text-muted mb-1" style="font-size:9px;">
-                                <span>Delivery Profit / Charge:</span>
+                            <div class="d-flex justify-content-between align-items-center text-muted mb-1" style="font-size:9px;">
+                                <span>Extra Profit <span style="font-size:8.5px;" class="fw-bold text-secondary">${bdText}</span>:</span>
                                 <span class="fw-bold text-success">+ ₹${dd.travelEarned}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
