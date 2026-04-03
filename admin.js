@@ -6801,7 +6801,7 @@ window.showCourierBreakdown = function (dateStr) {
 
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - PERFECTED BIG UI + LIFETIME BALANCE
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - LIFETIME BALANCE + MONTHLY BREAKDOWN + SALARY UI
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -6900,7 +6900,7 @@ window.renderPartnerList = function () {
 
             if (isDirect && window.directProfits[pName]) {
                 window.directProfits[pName].orders += 1;
-                window.directProfits[pName].travelEarned += travelCharge; // Partner ഗെറ്റ്സ് ഓൺലി പ്രോഫിറ്റ് (₹80)
+                window.directProfits[pName].travelEarned += travelCharge;
                 if (travelCharge > 0) {
                     window.directProfits[pName].breakdown[travelCharge] = (window.directProfits[pName].breakdown[travelCharge] || 0) + 1;
                 }
@@ -6908,7 +6908,7 @@ window.renderPartnerList = function () {
         }
     });
 
-    // --- 3. EXPENSE CALCULATION (Fixing ₹0 Issue completely) ---
+    // --- 3. EXPENSE CALCULATION ---
     let combinedExps = [];
     if (dashboardData.monthTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
     if (dashboardData.yearTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.yearTimeline.expense);
@@ -6921,7 +6921,8 @@ window.renderPartnerList = function () {
         expMap.set(id, e);
     });
 
-    let lifeOtherExp = dashboardData.lifetimeOtherExpense || 0; // GS-ൽ നിന്നും വരുന്ന ലൈഫ് ടൈം വാല്യൂ
+    // GS-ൽ നിന്നും വരുന്ന ലൈഫ് ടൈം വാല്യൂ
+    let lifeOtherExp = dashboardData.lifetimeOtherExpense || 0;
 
     expMap.forEach(e => {
         let cat = String(e.category || e.Category || e.cat || '').toLowerCase();
@@ -6936,6 +6937,7 @@ window.renderPartnerList = function () {
             lifeOtherExp += amt;
         }
 
+        // ഈ മാസത്തെ ചിലവുകൾ ബ്രേക്ക്ഡൗൺ ചെയ്യാൻ
         if (isThisMonthExp) {
             if (isDeductible) {
                 monthOtherExp += amt;
@@ -6959,6 +6961,8 @@ window.renderPartnerList = function () {
 
     let monthNetProfit = monthIncome - (monthBottleCost + monthCourier + monthOtherExp);
     let liveProfit = monthNetProfit > 0 ? monthNetProfit : 0;
+    window.currentLiveProfit = liveProfit;
+
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
 
     let todayDate = new Date();
@@ -6975,25 +6979,31 @@ window.renderPartnerList = function () {
     let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
 
     // --- 5. BUILD HTML UI ---
+
+    // 🟢 SECTION 1: BIG LIFETIME BANK BALANCE
     let html = `
-    <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
-        <div class="d-flex justify-content-between align-items-center">
-            <div class="d-flex align-items-center gap-2">
-                <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
-                <div>
-                    <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
-                    <div style="font-size:9px; color:#0369a1; cursor:pointer; font-weight:bold;" onclick="$('#bankBreakdown').slideToggle();">View Calculation <i class="fas fa-chevron-down ms-1"></i></div>
-                </div>
-            </div>
-            <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
+    <div class="alert p-4 mb-3 shadow-sm text-center" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
+        <i class="fas fa-university text-white opacity-10" style="position: absolute; right: -20px; bottom: -20px; font-size: 100px; transform: rotate(-15deg);"></i>
+        
+        <div style="font-size:11px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1.5px; margin-bottom: 5px;">
+            LIFETIME BANK BALANCE
         </div>
-        <div id="bankBreakdown" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed #7dd3fc; font-size:11px;">
-            <div class="mb-2 text-center text-primary fw-bold" style="font-size:9px; letter-spacing:0.5px; background: #e0f2fe; padding: 4px; border-radius: 4px;">LIFETIME BALANCE (${firstDateStr.toUpperCase()} - ${todayStr.toUpperCase()})</div>
-            <div class="d-flex justify-content-between mb-1"><span>Lifetime Income:</span><span class="text-success fw-bold">+ ₹${lifeIncome.toLocaleString()}</span></div>
-            <div class="d-flex justify-content-between mb-1"><span>Bottle / Base Cost:</span><span class="text-danger">- ₹${lifeBottleCost.toLocaleString()}</span></div>
-            <div class="d-flex justify-content-between mb-1"><span>Courier Charges:</span><span class="text-danger">- ₹${lifeCourier.toLocaleString()}</span></div>
-            <div class="d-flex justify-content-between mb-2"><span>Other Expenses:</span><span class="text-danger fw-bold">- ₹${lifeOtherExp.toLocaleString()}</span></div>
-            <div class="text-end border-top pt-1 mt-1"><span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span></div>
+        <div class="fw-bolder text-white" style="font-size:36px; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+            ₹${actualBankBalance.toLocaleString()}
+        </div>
+        <div class="text-secondary mt-1 fw-bold" style="font-size:10px; letter-spacing:0.5px;">
+            ${firstDateStr.toUpperCase()} - ${todayStr.toUpperCase()}
+        </div>
+        
+        <div class="mt-3 pt-3 border-top border-secondary border-opacity-50 d-flex justify-content-between text-start">
+            <div class="w-100">
+                <div class="text-muted" style="font-size:9px; text-transform:uppercase;">Total Income</div>
+                <div class="text-success fw-bold" style="font-size:12px;">+₹${lifeIncome.toLocaleString()}</div>
+            </div>
+            <div class="w-100 border-start border-secondary border-opacity-50 ps-2">
+                <div class="text-muted" style="font-size:9px; text-transform:uppercase;">Total Expense</div>
+                <div class="text-danger fw-bold" style="font-size:12px;">-₹${(lifeBottleCost + lifeCourier + lifeOtherExp).toLocaleString()}</div>
+            </div>
         </div>
     </div>
 
@@ -7029,7 +7039,7 @@ window.renderPartnerList = function () {
         </div>
         <div class="d-flex justify-content-between mb-0">
             <span class="text-muted">Deductible Expense:</span>
-            <span class="fw-bold text-danger">- ₹${monthOtherExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
+            <span class="fw-bold text-danger">- ₹${(monthBottleCost + monthCourier + monthOtherExp).toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
         </div>
         ${expenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Food"].toLocaleString()}</span></div>` : ''}
         ${expenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
@@ -7077,8 +7087,10 @@ window.renderPartnerList = function () {
         </div>
     </div>`;
 
-    // --- 6. PARTNER CARDS ---
+    // 🟢 SECTION 3: PARTNER SALARY CARDS
     if (isCurrentMonth) {
+        html += `<h6 class="fw-bold text-muted mb-2 mt-4" style="font-size:11px; text-transform:uppercase; letter-spacing:1px;">Partner Accounts</h6>`;
+
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
             let withdrawnAmt = data.withdrawn || 0;
