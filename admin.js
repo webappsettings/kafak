@@ -6801,7 +6801,7 @@ window.showCourierBreakdown = function (dateStr) {
 
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - DEEP FIXED VERSION
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULLY FIXED & TESTED VERSION
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -6813,8 +6813,11 @@ window.renderPartnerList = function () {
     let fullCourier = 0;
     let fullExpenses = 0;
 
+    let monthPaidCount = 0;
+    let monthDispatchedCount = 0;
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
+
     let firstDateMs = Date.now();
     let totalCompanyDueInHand = 0;
 
@@ -6824,7 +6827,7 @@ window.renderPartnerList = function () {
         "Jazeela": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} }
     };
 
-    // 1. ഓർഡർ കണക്കുകൾ
+    // 1. All Orders Loop
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
         let oDateStr = o.timestamp || o.Date || o.date;
@@ -6844,10 +6847,14 @@ window.renderPartnerList = function () {
                 fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
                 if (window.directProfits[pName]) {
+                    window.directProfits[pName].count += qty;
                     window.directProfits[pName].orders += 1;
                     window.directProfits[pName].companyDue += standardPrice;
                     window.directProfits[pName].travelEarned += travelCharge;
                     totalCompanyDueInHand += standardPrice;
+                    if (travelCharge > 0) {
+                        window.directProfits[pName].breakdown[travelCharge] = (window.directProfits[pName].breakdown[travelCharge] || 0) + 1;
+                    }
                 }
                 return;
             }
@@ -6856,46 +6863,57 @@ window.renderPartnerList = function () {
         if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
             let qty = parseInt(o.quantity) || 0;
             let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
+            if (isNaN(amt) || amt <= 0) {
+                let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
+                amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
             fullIncome += amt;
             let dbCost = parseInt(o.Product_Base_Cost);
             fullBottleCost += (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
             if (status !== 'Paid') {
                 let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
                 fullCourier += actualC;
             }
         }
     });
 
-    // 2. 🔥 EXPENSE DEEP FIX (ഷീറ്റിലെ എല്ലാ എക്സ്പെൻസും നേരിട്ട് എടുക്കുന്നു)
+    // 2. Expense Calculation (Fixing ₹0 issue)
     let combinedExps = [];
     if (dashboardData.monthTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
     if (dashboardData.yearTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.yearTimeline.expense);
+    let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    combinedExps = combinedExps.concat(offExps);
 
     let expMap = new Map();
     combinedExps.forEach(e => {
-        let id = e.id || e.Expense_ID || ("RAND-" + Math.random() + e.amount);
+        let id = e.id || e.Expense_ID || ("RAND-" + Math.random() + (e.amount || 0));
         expMap.set(id, e);
     });
 
     expMap.forEach(e => {
-        let cat = String(e.category || e.cat || '').toLowerCase();
-        let amt = parseFloat(e.amount) || 0;
-
-        // സാലറിയും റീഫണ്ടും കൊറിയറും അല്ലാത്ത "എല്ലാ ചിലവുകളും" ഇവിടെ കൂട്ടുന്നു (Materials ഉൾപ്പെടെ)
+        let cat = String(e.category || e.Category || e.cat || '').toLowerCase();
+        let amt = parseFloat(e.amount || e.Amount) || 0;
         if (!e.isCourier && !cat.includes('salary') && !cat.includes('refund')) {
             fullExpenses += amt;
         }
     });
 
-    // 3. ബാങ്ക് ബാലൻസ്
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
-
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
+
+    let todayDate = new Date();
+    let isCurrentMonth = (selectedDate.getFullYear() === todayDate.getFullYear() && selectedDate.getMonth() === todayDate.getMonth());
+
     let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
 
-    let breakdownHtml = `
+    // 3. HTML Breakdown Part
+    let html = `
     <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
         <div class="d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center gap-2">
@@ -6918,8 +6936,6 @@ window.renderPartnerList = function () {
         </div>
     </div>`;
 
-    let html = breakdownHtml;
-
     if (isCurrentMonth) {
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
@@ -6934,30 +6950,23 @@ window.renderPartnerList = function () {
             let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt + extraProfitAmt;
             let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
 
-            let bdText = "";
-            if (dd && Object.keys(dd.breakdown).length > 0) {
-                let parts = [];
-                for (let [charge, times] of Object.entries(dd.breakdown)) parts.push(`${charge}x${times}`);
-                bdText = `(${parts.join(', ')})`;
-            }
+            let bdText = (dd && Object.keys(dd.breakdown).length > 0) ? `(${Object.entries(dd.breakdown).map(([c, t]) => c + 'x' + t).join(', ')})` : "";
 
             html += `
             <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" data-partner="${name}" onclick="selectPartnerWithCheck('${name}', ${defaultBal}, ${checkedBal})" style="cursor:pointer; transition:all 0.2s ease-in-out; background:#fff;">
                 <div class="d-flex align-items-center w-100">
                     <div class="me-3"><i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i></div>
                     <div class="flex-grow-1">
-                        <div class="fw-bolder text-dark" style="font-size:15px; letter-spacing:0.5px;">${name}</div>
+                        <div class="fw-bolder text-dark" style="font-size:15px;">${name}</div>
                         <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">Final Bal: ₹${formattedBal}</div>
-                        
                         <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
-                            <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
-                            <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
+                            <div class="d-flex justify-content-between text-muted" style="font-size:10px;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
+                            <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px;">
                                 <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
                                 <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); cursor: pointer;"></div>
                             </div>
-                            ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
+                            ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
                         </div>
-
                         ${dd && dd.count > 0 ? `
                         <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
                             <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
@@ -6969,7 +6978,6 @@ window.renderPartnerList = function () {
                                 <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
                             </div>
                         </div>` : ''}
-
                         ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
                     </div>
                     <div class="ms-2"><i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i></div>
@@ -6986,7 +6994,6 @@ window.renderPartnerList = function () {
 
     $('#partner-list').html(html);
 };
-
 
 // 🔥 NEW: SALARY CHECKBOX HELPER FUNCTIONS
 window.updatePartnerBal = function (name, defaultBal, checkedBal) {
