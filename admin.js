@@ -6801,17 +6801,17 @@ window.showCourierBreakdown = function (dateStr) {
 
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULLY UPDATED & FIXED
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - FINAL STABLE VERSION
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
-    let tExp = (window.currentProductCost || 0) + (window.currentCourier || 0) + (window.currentOther || 0);
 
     let fullIncome = 0;
     let fullBottleCost = 0;
     let fullCourier = 0;
+    let fullExpenses = 0; // Other Expenses
 
     let monthPaidCount = 0;
     let monthDispatchedCount = 0;
@@ -6827,6 +6827,7 @@ window.renderPartnerList = function () {
         "Jazeela": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} }
     };
 
+    // 1. ഓർഡറുകൾ ലൂപ്പ് ചെയ്ത് ഇൻകം കണക്കാക്കുന്നു
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
         let oDateStr = o.timestamp || o.Date || o.date;
@@ -6878,6 +6879,7 @@ window.renderPartnerList = function () {
                 if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
                 fullCourier += actualC;
             }
+
             let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp;
             let pDate = parseOrderDate(pDateStr);
             if (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM) {
@@ -6887,21 +6889,28 @@ window.renderPartnerList = function () {
         }
     });
 
-    // 🔥 FIX: Other Expenses ₹0 Issue (Checking both 'cat' and 'category')
-    let allExps = new Map();
-    if (dashboardData.monthTimeline?.expense) dashboardData.monthTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
-    if (dashboardData.yearTimeline?.expense) dashboardData.yearTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
-    JSON.parse(localStorage.getItem('pendingExpenses') || "[]").forEach(e => { if (e.id) allExps.set(e.id, e); });
+    // 2. എക്സ്പെൻസ് ലൂപ്പ് ചെയ്ത് 'Other Expenses' കണക്കാക്കുന്നു
+    let allExps = [];
+    if (dashboardData.monthTimeline?.expense) allExps = allExps.concat(dashboardData.monthTimeline.expense);
+    if (dashboardData.yearTimeline?.expense) allExps = allExps.concat(dashboardData.yearTimeline.expense);
+    let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    allExps = allExps.concat(pendingExpenses);
 
-    let fullExpenses = 0;
-    allExps.forEach(e => {
-        let catName = String(e.cat || e.category || '').toLowerCase(); // FIX
-        if (!e.isCourier && !catName.includes('refund') && !catName.includes('salary')) {
-            fullExpenses += (Number(e.amount) || 0);
+    // യുണീക് ആയി എടുക്കാൻ Map ഉപയോഗിക്കുന്നു
+    let uniqueExps = new Map();
+    allExps.forEach(e => { if (e.id || e.Expense_ID) uniqueExps.set(e.id || e.Expense_ID, e); });
+
+    uniqueExps.forEach(e => {
+        let cat = String(e.cat || e.category || e.Category || '').toLowerCase();
+        let amt = parseFloat(e.amount || e.Amount) || 0;
+
+        // സാലറിയും റീഫണ്ടും കൊറിയറും അല്ലാത്ത ബാക്കി എല്ലാം 'Other Expenses'-ൽ കൂട്ടുന്നു
+        if (!e.isCourier && !cat.includes('salary') && !cat.includes('refund')) {
+            fullExpenses += amt;
         }
     });
 
-    // ബാങ്ക് ബാലൻസ് കാൽക്കുലേഷൻ (Partner hand-ലുള്ള കമ്പനി കാഷ് ഇവിടെ കുറയ്ക്കുന്നു)
+    // 3. ഫൈനൽ ബാങ്ക് ബാലൻസ്
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
 
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
@@ -6928,7 +6937,7 @@ window.renderPartnerList = function () {
             <div class="d-flex justify-content-between mb-1"><span>Bottle / Base Cost:</span><span class="text-danger">- ₹${fullBottleCost.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-1"><span>Courier Charges:</span><span class="text-danger">- ₹${fullCourier.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-2"><span>Other Expenses:</span><span class="text-danger">- ₹${fullExpenses.toLocaleString()}</span></div>
-            ${totalCompanyDueInHand > 0 ? `<div class="d-flex justify-content-between mb-2"><span>Company Cash Held by Partners:</span><span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span></div>` : ''}
+            ${totalCompanyDueInHand > 0 ? `<div class="d-flex justify-content-between mb-2"><span class="text-muted fst-italic">Cash with Partners (To Bank):</span><span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span></div>` : ''}
             <div class="text-end border-top pt-1 mt-1"><span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span></div>
         </div>
     </div>`;
@@ -6967,7 +6976,7 @@ window.renderPartnerList = function () {
                         <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
                             <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
                             <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
-                                <span>This Month Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
+                                <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
                                 <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); cursor: pointer;"></div>
                             </div>
                             ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
