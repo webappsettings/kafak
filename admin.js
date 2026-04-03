@@ -4649,9 +4649,7 @@ window.renderDetailedMonthlyOverview = function () {
 
     // 🟢 1. LIFETIME BANK BALANCE UI (Always Visible, Dark Theme Colors Fixed)
     let lifetimeHtml = `
-    <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
-        <i class="fas fa-university text-white opacity-10" style="position: absolute; right: -20px; bottom: -20px; font-size: 100px; transform: rotate(-15deg);"></i>
-        
+    <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">  
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div style="font-size:12px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px;">
                 <i class="fas fa-university me-2"></i>LIFETIME BALANCE
