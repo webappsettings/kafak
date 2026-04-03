@@ -4585,7 +4585,6 @@ window.renderDetailedMonthlyOverview = function () {
     }
     let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
 
-    // ഓഫ്‌ലൈൻ ഡാറ്റ കൂടി ലൈഫ് ടൈമിലേക്കും മാസത്തിലേക്കും ചേർക്കാൻ
     offExps.forEach(e => {
         let eDate = new Date(e.date);
         let cat = String(e.category || e.cat || '').toLowerCase();
@@ -4601,7 +4600,7 @@ window.renderDetailedMonthlyOverview = function () {
 
     combinedExps.forEach(e => {
         let eDate = parseOrderDate(e.date);
-        if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return; // ഈ മാസത്തെ മാത്രം
+        if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return;
 
         let amt = Number(e.amount) || 0;
         if (!e.isCourier) {
@@ -4623,18 +4622,26 @@ window.renderDetailedMonthlyOverview = function () {
         }
     });
 
+    // 🔥 SALARY TAKEN BY PARTNERS (Lifetime)
+    let salamTaken = dashboardData.partners["Salam"] ? (dashboardData.partners["Salam"].withdrawn || 0) : 0;
+    let samadTaken = dashboardData.partners["Samad"] ? (dashboardData.partners["Samad"].withdrawn || 0) : 0;
+    let jazeelaTaken = dashboardData.partners["Jazeela"] ? (dashboardData.partners["Jazeela"].withdrawn || 0) : 0;
+    let totalSalaryTaken = salamTaken + samadTaken + jazeelaTaken;
+
     // --- FINAL CALCULATIONS ---
     let totalExpense = tBottleCost + tActualCourier + tOtherExpense;
     let netProfit = tSales - totalExpense;
 
-    window.currentLiveProfit = netProfit > 0 ? netProfit : 0; // ഇത് സാലറി കാർഡിന് വേണ്ടിയാണ്
+    window.currentLiveProfit = netProfit > 0 ? netProfit : 0;
 
     let salamShare = netProfit > 0 ? Math.floor(netProfit * 0.20) : 0;
     let samadShare = netProfit > 0 ? Math.floor(netProfit * 0.70) : 0;
     let jazeelaShare = netProfit > 0 ? netProfit - (salamShare + samadShare) : 0;
 
     let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
-    let lifeBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp);
+
+    // 🔥 BANK BALANCE = Income - (Expenses + Salary)
+    let lifeBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp + totalSalaryTaken);
 
     let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -4647,7 +4654,7 @@ window.renderDetailedMonthlyOverview = function () {
     let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
     let nextBtn = isCurrentMonth ? `<span style="width:50px;"></span>` : `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>`;
 
-    // 🟢 1. LIFETIME BANK BALANCE UI (Always Visible, Dark Theme Colors Fixed)
+    // 🟢 1. LIFETIME BANK BALANCE UI (With Salary Breakdown)
     let lifetimeHtml = `
     <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">  
         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -4679,10 +4686,19 @@ window.renderDetailedMonthlyOverview = function () {
                 <span class="text-light">Courier Charges:</span>
                 <span class="text-danger fw-bold">- ₹${lifeCourier.toLocaleString()}</span>
             </div>
-            <div class="d-flex justify-content-between mb-2">
+            <div class="d-flex justify-content-between mb-1">
                 <span class="text-light">Other Expenses:</span>
                 <span class="text-danger fw-bold">- ₹${lifeOtherExp.toLocaleString()}</span>
             </div>
+            
+            <div class="d-flex justify-content-between mb-0 mt-3 pt-2 border-top border-secondary border-opacity-25">
+                <span class="text-warning">Partner Salary Taken:</span>
+                <span class="text-warning fw-bold">- ₹${totalSalaryTaken.toLocaleString()}</span>
+            </div>
+            <div class="text-secondary mb-2 text-end" style="font-size:10px; font-weight:600;">
+                (Samad: ₹${samadTaken.toLocaleString()} | Salam: ₹${salamTaken.toLocaleString()} | Jazi: ₹${jazeelaTaken.toLocaleString()})
+            </div>
+
             <div class="text-end border-top border-secondary pt-2 mt-2">
                 <span class="fw-bolder text-info" style="font-size:16px;">= ₹${lifeBankBalance.toLocaleString()}</span>
             </div>
@@ -4776,7 +4792,6 @@ window.renderDetailedMonthlyOverview = function () {
     // 🟢 3. COMBINE AND RENDER 
     $('#detailed-overview-container').html(lifetimeHtml + monthlyHtml);
 }
-
 // 🔥 2. RENDER YEARLY OVERVIEW (100% Sync with Dashboard)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
