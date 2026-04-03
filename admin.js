@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbzYzoHYMWLdEPb02BPqCmlzf9UWghqoqpcKdIxhtXEABmtpfE1z6vCLHKsPzBlJO2zxYw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzRDJ5a1fYXzLmov4y9nt3zBIGbVwx1jQlQAlJ_Z9Azu6iqFnRFNy78T0Wv590kydLxtw/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -6801,12 +6801,13 @@ window.showCourierBreakdown = function (dateStr) {
 
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - FINAL STABLE VERSION
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULL & FINAL STABLE VERSION
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
     let liveProfit = window.currentLiveProfit || 0;
+
     let fullIncome = 0;
     let fullBottleCost = 0;
     let fullCourier = 0;
@@ -6816,6 +6817,7 @@ window.renderPartnerList = function () {
     let monthDispatchedCount = 0;
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
+
     let firstDateMs = Date.now();
     let totalCompanyDueInHand = 0;
 
@@ -6825,12 +6827,14 @@ window.renderPartnerList = function () {
         "Jazeela": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} }
     };
 
+    // 1. All Orders Loop (Income, Bottle Cost & Direct Delivery Logic)
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
         let oDateStr = o.timestamp || o.Date || o.date;
         let oDate = parseOrderDate(oDateStr);
         if (!isNaN(oDate.getTime()) && oDate.getTime() < firstDateMs) firstDateMs = oDate.getTime();
 
+        // 🔥 DIRECT DELIVERY LOGIC
         if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
             let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
             if (match && ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
@@ -6885,7 +6889,7 @@ window.renderPartnerList = function () {
         }
     });
 
-    // --- EXPENSE CALCULATION (Deep Fix for ₹0 issue) ---
+    // 2. Expense Calculation (Deep Fix for Other Expenses showing ₹0)
     let combinedExps = [];
     if (dashboardData.monthTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
     if (dashboardData.yearTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.yearTimeline.expense);
@@ -6901,18 +6905,21 @@ window.renderPartnerList = function () {
     expMap.forEach(e => {
         let cat = String(e.category || e.Category || e.cat || '').toLowerCase();
         let amt = parseFloat(e.amount || e.Amount) || 0;
-        // Salary-yum, Refund-um, Courier-um allaatha mattellaa chilavukalum kootunnu
-        if (!cat.includes('courier') && !cat.includes('salary') && !cat.includes('refund')) {
+        // Salary, Refund, Courier allaatha baaki ellaa chilavukalum kootunnu
+        if (!e.isCourier && !cat.includes('salary') && !cat.includes('refund')) {
             fullExpenses += amt;
         }
     });
 
+    // 3. Bank Balance Logic (Income - Expenses - Cash in Partner Hand)
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
+
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
     let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let monthLabel = isCurrentMonth ? `This Month (${window.currentMonthStr})` : `${window.currentMonthStr} Overview`;
 
     let breakdownHtml = `
     <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
@@ -6932,7 +6939,7 @@ window.renderPartnerList = function () {
             <div class="d-flex justify-content-between mb-1"><span>Bottle / Base Cost:</span><span class="text-danger">- ₹${fullBottleCost.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-1"><span>Courier Charges:</span><span class="text-danger">- ₹${fullCourier.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-2"><span>Other Expenses:</span><span class="text-danger">- ₹${fullExpenses.toLocaleString()}</span></div>
-            ${totalCompanyDueInHand > 0 ? `<div class="d-flex justify-content-between mb-2"><span>Total Cash with Partners:</span><span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span></div>` : ''}
+            ${totalCompanyDueInHand > 0 ? `<div class="d-flex justify-content-between mb-2"><span class="text-muted fst-italic">Cash with Partners (To Bank):</span><span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span></div>` : ''}
             <div class="text-end border-top pt-1 mt-1"><span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span></div>
         </div>
     </div>`;
@@ -6969,11 +6976,12 @@ window.renderPartnerList = function () {
                         <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">Final Bal: ₹${formattedBal}</div>
                         
                         <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
-                            <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Bank Debt:</span><span class="text-dark">₹${(pastProfit - withdrawnAmt).toLocaleString('en-IN')}</span></div>
+                            <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
                             <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
-                                <span>This Month Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
+                                <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
                                 <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); cursor: pointer;"></div>
                             </div>
+                            ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
                         </div>
 
                         ${dd && dd.count > 0 ? `
@@ -6983,7 +6991,7 @@ window.renderPartnerList = function () {
                                 <span class="fw-bold text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
                             </div>
                             <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
-                                <span class="fw-bold text-dark"><i class="fas fa-hand-holding-usd text-warning"></i> Cash to be Paid to Bank:</span>
+                                <span class="fw-bold text-dark"><i class="fas fa-hand-holding-usd text-warning"></i> Cash Held:</span>
                                 <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
                             </div>
                         </div>` : ''}
