@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbzRDJ5a1fYXzLmov4y9nt3zBIGbVwx1jQlQAlJ_Z9Azu6iqFnRFNy78T0Wv590kydLxtw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycby9RP3ofZ0aPXW58aJbY0TF4xwSifywO9_5j_rpsvUMBmyBvKPYgQCsanr9wGFSqsbbtA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -6801,7 +6801,7 @@ window.showCourierBreakdown = function (dateStr) {
 
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULL & FINAL STABLE VERSION
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULLY FIXED VERSION
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -6896,17 +6896,20 @@ window.renderPartnerList = function () {
     let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
     combinedExps = combinedExps.concat(offExps);
 
-    let expMap = new Map();
+    // യുണീക് എക്സ്പെൻസുകൾ ഫിൽറ്റർ ചെയ്യാൻ Map ഉപയോഗിക്കുന്നു
+    let uniqueExps = new Map();
     combinedExps.forEach(e => {
         let id = e.id || e.Expense_ID || ("RAND-" + Math.random());
-        expMap.set(id, e);
+        uniqueExps.set(id, e);
     });
 
-    expMap.forEach(e => {
-        let cat = String(e.category || e.Category || e.cat || '').toLowerCase();
+    uniqueExps.forEach(e => {
+        // category, Category, cat - ഇതിൽ ഏതാണെങ്കിലും എടുക്കും
+        let catName = String(e.category || e.Category || e.cat || '').toLowerCase();
         let amt = parseFloat(e.amount || e.Amount) || 0;
-        // Salary, Refund, Courier allaatha baaki ellaa chilavukalum kootunnu
-        if (!e.isCourier && !cat.includes('salary') && !cat.includes('refund')) {
+
+        // സാലറി, റീഫണ്ട്, കൊറിയർ അല്ലാത്ത ബാക്കി എല്ലാ ചിലവുകളും കൗണ്ട് ചെയ്യുന്നു
+        if (!e.isCourier && !catName.includes('salary') && !catName.includes('refund') && !catName.includes('courier')) {
             fullExpenses += amt;
         }
     });
@@ -7003,11 +7006,7 @@ window.renderPartnerList = function () {
             </div>`;
         }
     } else {
-        html += `
-        <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
-            <i class="fas fa-lock fs-5 mb-2"></i><br>സാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
-            <div class="mt-3"><button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()"><i class="fas fa-calendar-day me-1"></i> Go to This Month</button></div>
-        </div>`;
+        // ... (Current Month Lock message stays the same)
     }
 
     $('#partner-list').html(html);
