@@ -6892,12 +6892,21 @@ window.renderPartnerList = function () {
     if (dashboardData.yearTimeline?.expense) dashboardData.yearTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
     JSON.parse(localStorage.getItem('pendingExpenses') || "[]").forEach(e => { if (e.id) allExps.set(e.id, e); });
 
+    // 🔥 FIXED: actualBankBalance Calculation (Fixing ₹0 Expense issue)
     let fullExpenses = 0;
     allExps.forEach(e => {
-        let cat = String(e.cat || e.category || '').toLowerCase();
-        if (!e.isCourier && cat !== 'refund' && cat !== 'salary') fullExpenses += (Number(e.amount) || 0);
+        // e.cat allenkil e.category - randum check cheyyunnu
+        let categoryName = String(e.cat || e.category || '').toLowerCase();
+
+        // Expense ID (EXP-...) ullathum, courier/refund/salary allaatha-thumaaya ellaam kootunnu
+        if (!e.isCourier && !categoryName.includes('refund') && !categoryName.includes('salary')) {
+            let amt = parseFloat(e.amount) || 0;
+            fullExpenses += amt;
+        }
     });
 
+    // 🔥 FIXED: Partner Cash in Hand calculation
+    // Partner-ude kailulla motham cash (Standard Price) bank-il illathathinal minus cheyyunnu
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
     let today = new Date();
@@ -6969,16 +6978,19 @@ window.renderPartnerList = function () {
                         </div>
 
                         ${dd && dd.count > 0 ? `
-                        <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
-                            <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
-                                <span class="fw-bold text-dark"><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
-                                <span class="fw-bold text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
-                            </div>
-                            <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
-                                <span class="fw-bold text-danger"><i class="fas fa-hand-holding-usd"></i> Company Cash in Hand:</span>
-                                <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
-                            </div>
-                        </div>` : ''}
+                            <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
+                                <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
+                                    <span class="fw-bold text-dark"><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
+                                    <span class="fw-bold text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
+                                    <span class="fw-bold text-dark"><i class="fas fa-hand-holding-usd text-warning"></i> Company Cash Held:</span>
+                                    <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
+                                </div>
+                                <div class="text-muted mt-1" style="font-size:8px; line-height:1.2;">
+                                    (ഈ തുക കസ്റ്റമറിൽ നിന്നും നേരിട്ട് വാങ്ങിയതാണ്. ബാങ്കിൽ എത്തുന്നതുവരെ ഇത് Est. Bank Balance-ൽ കുറവായി കാണിക്കും.)
+                                </div>
+                            </div>` : ''}
 
                         ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
                     </div>
