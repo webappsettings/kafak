@@ -6800,7 +6800,7 @@ window.showCourierBreakdown = function (dateStr) {
 };
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULL VERSION (Fixed Balance, Last Taken & Date Logic)
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULLY UPDATED & FIXED
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -6886,28 +6886,23 @@ window.renderPartnerList = function () {
         }
     });
 
-    // 🔥 BANK BALANCE CALCULATION
+    // 🔥 FIX: Other Expenses ₹0 Issue (Checking both 'cat' and 'category')
     let allExps = new Map();
     if (dashboardData.monthTimeline?.expense) dashboardData.monthTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
     if (dashboardData.yearTimeline?.expense) dashboardData.yearTimeline.expense.forEach(e => { if (e.id) allExps.set(e.id, e); });
     JSON.parse(localStorage.getItem('pendingExpenses') || "[]").forEach(e => { if (e.id) allExps.set(e.id, e); });
 
-    // 🔥 FIXED: actualBankBalance Calculation (Fixing ₹0 Expense issue)
     let fullExpenses = 0;
     allExps.forEach(e => {
-        // e.cat allenkil e.category - randum check cheyyunnu
-        let categoryName = String(e.cat || e.category || '').toLowerCase();
-
-        // Expense ID (EXP-...) ullathum, courier/refund/salary allaatha-thumaaya ellaam kootunnu
-        if (!e.isCourier && !categoryName.includes('refund') && !categoryName.includes('salary')) {
-            let amt = parseFloat(e.amount) || 0;
-            fullExpenses += amt;
+        let catName = String(e.cat || e.category || '').toLowerCase(); // FIX
+        if (!e.isCourier && !catName.includes('refund') && !catName.includes('salary')) {
+            fullExpenses += (Number(e.amount) || 0);
         }
     });
 
-    // 🔥 FIXED: Partner Cash in Hand calculation
-    // Partner-ude kailulla motham cash (Standard Price) bank-il illathathinal minus cheyyunnu
+    // ബാങ്ക് ബാലൻസ് കാൽക്കുലേഷൻ (Partner hand-ലുള്ള കമ്പനി കാഷ് ഇവിടെ കുറയ്ക്കുന്നു)
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
+
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
     let today = new Date();
     let isCurrentMonth = (selectedDate.getFullYear() === today.getFullYear() && selectedDate.getMonth() === today.getMonth());
@@ -6932,7 +6927,7 @@ window.renderPartnerList = function () {
             <div class="d-flex justify-content-between mb-1"><span>Bottle / Base Cost:</span><span class="text-danger">- ₹${fullBottleCost.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-1"><span>Courier Charges:</span><span class="text-danger">- ₹${fullCourier.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-2"><span>Other Expenses:</span><span class="text-danger">- ₹${fullExpenses.toLocaleString()}</span></div>
-            ${totalCompanyDueInHand > 0 ? `<div class="d-flex justify-content-between mb-2"><span>Partner Cash In Hand:</span><span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span></div>` : ''}
+            ${totalCompanyDueInHand > 0 ? `<div class="d-flex justify-content-between mb-2"><span>Company Cash Held by Partners:</span><span class="text-danger">- ₹${totalCompanyDueInHand.toLocaleString()}</span></div>` : ''}
             <div class="text-end border-top pt-1 mt-1"><span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span></div>
         </div>
     </div>`;
@@ -6971,26 +6966,23 @@ window.renderPartnerList = function () {
                         <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
                             <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
                             <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
-                                <span>This Month: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
+                                <span>This Month Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
                                 <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); cursor: pointer;"></div>
                             </div>
                             ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
                         </div>
 
                         ${dd && dd.count > 0 ? `
-                            <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
-                                <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
-                                    <span class="fw-bold text-dark"><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
-                                    <span class="fw-bold text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
-                                </div>
-                                <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
-                                    <span class="fw-bold text-dark"><i class="fas fa-hand-holding-usd text-warning"></i> Company Cash Held:</span>
-                                    <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
-                                </div>
-                                <div class="text-muted mt-1" style="font-size:8px; line-height:1.2;">
-                                    (ഈ തുക കസ്റ്റമറിൽ നിന്നും നേരിട്ട് വാങ്ങിയതാണ്. ബാങ്കിൽ എത്തുന്നതുവരെ ഇത് Est. Bank Balance-ൽ കുറവായി കാണിക്കും.)
-                                </div>
-                            </div>` : ''}
+                        <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
+                            <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
+                                <span class="fw-bold text-dark"><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
+                                <span class="fw-bold text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center mt-1 pt-1 border-top border-warning border-opacity-25" style="font-size:10px;">
+                                <span class="fw-bold text-dark"><i class="fas fa-hand-holding-usd text-warning"></i> Company Cash Held:</span>
+                                <span class="fw-bold text-danger">₹${inHandCash.toLocaleString()}</span>
+                            </div>
+                        </div>` : ''}
 
                         ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
                     </div>
