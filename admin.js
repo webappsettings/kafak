@@ -6801,7 +6801,7 @@ window.showCourierBreakdown = function (dateStr) {
 
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULLY FIXED VERSION
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - FULLY FIXED & FINAL VERSION
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -6827,7 +6827,7 @@ window.renderPartnerList = function () {
         "Jazeela": { count: 0, orders: 0, companyDue: 0, travelEarned: 0, breakdown: {} }
     };
 
-    // 1. All Orders Loop (Income, Bottle Cost & Direct Delivery Logic)
+    // 1. ഓർഡറുകൾ ലൂപ്പ് ചെയ്ത് ഇൻകം കണക്കാക്കുന്നു
     allOrders.forEach(o => {
         let status = String(o.Status || 'Pending').trim();
         let oDateStr = o.timestamp || o.Date || o.date;
@@ -6889,14 +6889,13 @@ window.renderPartnerList = function () {
         }
     });
 
-    // 2. Expense Calculation (Deep Fix for Other Expenses showing ₹0)
+    // 2. എക്സ്പെൻസ് ലൂപ്പ് ചെയ്ത് 'Other Expenses' കണക്കാക്കുന്നു (Fixed ₹0 Issue)
     let combinedExps = [];
     if (dashboardData.monthTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
     if (dashboardData.yearTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.yearTimeline.expense);
     let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
     combinedExps = combinedExps.concat(offExps);
 
-    // യുണീക് എക്സ്പെൻസുകൾ ഫിൽറ്റർ ചെയ്യാൻ Map ഉപയോഗിക്കുന്നു
     let uniqueExps = new Map();
     combinedExps.forEach(e => {
         let id = e.id || e.Expense_ID || ("RAND-" + Math.random());
@@ -6904,7 +6903,6 @@ window.renderPartnerList = function () {
     });
 
     uniqueExps.forEach(e => {
-        // category, Category, cat - ഇതിൽ ഏതാണെങ്കിലും എടുക്കും
         let catName = String(e.category || e.Category || e.cat || '').toLowerCase();
         let amt = parseFloat(e.amount || e.Amount) || 0;
 
@@ -6914,7 +6912,7 @@ window.renderPartnerList = function () {
         }
     });
 
-    // 3. Bank Balance Logic (Income - Expenses - Cash in Partner Hand)
+    // 3. ബാങ്ക് ബാലൻസ് കാൽക്കുലേഷൻ (Income - Expenses - Cash in Partner Hand)
     let actualBankBalance = fullIncome - (fullBottleCost + fullCourier + fullExpenses) - totalCompanyDueInHand;
 
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
@@ -7006,7 +7004,11 @@ window.renderPartnerList = function () {
             </div>`;
         }
     } else {
-        // ... (Current Month Lock message stays the same)
+        html += `
+        <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
+            <i class="fas fa-lock fs-5 mb-2"></i><br>സാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
+            <div class="mt-3"><button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()"><i class="fas fa-calendar-day me-1"></i> Go to This Month</button></div>
+        </div>`;
     }
 
     $('#partner-list').html(html);
