@@ -3403,18 +3403,20 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
             customClass: { popup: 'rounded-4 ios-popup' }
           });
         } else {
-          // API-യിൽ നിന്ന് ഡാറ്റ വന്നില്ലെങ്കിൽ ഡിഫോൾട്ട് ലിങ്ക് തന്നെ കാണിക്കുന്നു
-          Swal.fire({
-            icon: 'warning',
-            title: 'Status Not Found',
-            html: `Tracking data is not available yet. Try checking directly on the India Post website.<br><br>
-                           <a href="${defaultLink}" target="_blank" class="btn btn-primary btn-sm mt-3 fw-bold rounded-pill">Open India Post Tracking</a>`,
-            showConfirmButton: false,
-            showCloseButton: true
-          });
+          // ഡാറ്റ കിട്ടിയില്ലെങ്കിൽ പോപ്പപ്പ് ക്ലോസ് ചെയ്ത് നേരിട്ട് വെബ്സൈറ്റിലേക്ക് വിടുന്നു
+          Swal.close();
+          if (defaultLink && defaultLink !== 'null') {
+            window.open(defaultLink, '_blank');
+          } else {
+            Swal.fire('Info', 'Tracking data is not available right now.', 'info');
+          }
         }
       }).catch(err => {
-        Swal.fire('Error', 'Network Error. Could not connect to the tracking server.', 'error');
+        // എറർ വന്നാലും പോപ്പപ്പ് ക്ലോസ് ചെയ്ത് നേരിട്ട് വെബ്സൈറ്റിലേക്ക് വിടുന്നു
+        Swal.close();
+        if (defaultLink && defaultLink !== 'null') {
+          window.open(defaultLink, '_blank');
+        }
       });
 
   } else {
