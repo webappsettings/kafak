@@ -5209,9 +5209,9 @@ $(document).ready(function () {
             $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
             $('#exp-amount').val(''); // 🔥 NEW: Amount Blank ആക്കുന്നു!
 
-            // 🔥 FIX: ഫോം എപ്പോൾ തുറന്നാലും ആ സെക്കൻഡിലെ തീയതിയും സമയവും തനിയെ അപ്ഡേറ്റ് ആവാൻ!
-            if (typeof expDatePicker !== 'undefined' && expDatePicker) {
-                expDatePicker.setDate(new Date(), false);
+            let expInput = document.getElementById('exp-date');
+            if (expInput && expInput._flatpickr) {
+                expInput._flatpickr.setDate(new Date(), false);
             }
         }, 100);
     });
