@@ -4670,7 +4670,6 @@ window.renderDetailedMonthlyOverview = function () {
     // 🟢 1. LIFETIME BANK BALANCE UI
     let lifetimeHtml = `
     <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
-        <i class="fas fa-university opacity-10" style="position: absolute; right: -20px; bottom: -20px; font-size: 100px; transform: rotate(-15deg); color:#ffffff;"></i>
         
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div style="font-size:12px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px;">
@@ -7040,38 +7039,240 @@ window.showCourierBreakdown = function (dateStr) {
 
 
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - CLEANED (Only Partner Cards)
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - RESTORED MONTHLY BREAKDOWN + PARTNER CARDS
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
 
-    // നമ്മൾ Bank Balance മെയിൻ ഡാഷ്‌ബോർഡിലേക്ക് മാറ്റിയതുകൊണ്ട് 
-    // ഇവിടെ കാൽക്കുലേഷൻ ആവശ്യമില്ല. Profit ഷെയർ മാത്രം എടുത്താൽ മതി.
-    let liveProfit = window.currentLiveProfit || 0;
-
-    let shares = {
-        "Salam": Math.floor(liveProfit * 0.20),
-        "Samad": Math.floor(liveProfit * 0.70),
-        "Jazeela": Math.floor(liveProfit * 0.10)
-    };
-
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
+
+    // Monthly variables
+    let monthIncome = 0, monthBottleCost = 0, monthCourier = 0, monthTotalCourier = 0;
+    let monthOrders = 0, monthBottles = 0;
+    let monthOtherExp = 0, monthMaterialExp = 0;
+    let monthPaidCount = 0, monthDispatchedCount = 0;
+
+    let orderBreakdown = {};
+    let costBreakdown = {};
+    let expenseCategories = { "Food": 0, "Travel": 0, "Ads": 0, "Refund": 0, "Other": [] };
+
+    window.directProfits = {
+        "Samad": { count: 0, orders: 0, travelEarned: 0, breakdown: {} },
+        "Salam": { count: 0, orders: 0, travelEarned: 0, breakdown: {} },
+        "Jazeela": { count: 0, orders: 0, travelEarned: 0, breakdown: {} }
+    };
+
+    // --- 1. LOOP ALL ORDERS (Monthly Calculation) ---
+    allOrders.forEach(o => {
+        let status = String(o.Status || o.status || 'Pending').trim();
+        if (!['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) return;
+
+        let oDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
+        let oDate = parseOrderDate(oDateStr);
+
+        let isThisMonth = (!isNaN(oDate.getTime()) && oDate.getFullYear() === mY && oDate.getMonth() === mM);
+        if (!isThisMonth) return;
+
+        let qty = parseInt(o.quantity || o.Quantity) || 0;
+
+        // Direct Delivery Logic
+        let travelCharge = 0;
+        let isDirect = false;
+        let pName = "";
+
+        if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
+            let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+            if (match) {
+                isDirect = true;
+                pName = match[1];
+                travelCharge = parseInt(match[2]) || 0; // ₹80 Profit
+            }
+        }
+
+        let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
+        if (isNaN(amt) || amt <= 0) {
+            let pInfo = calculatePriceInfo(o, qty, o.state || o.State, o.provider || o.Courier_Provider);
+            amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+        }
+
+        // ഡയറക്ട് ഡെലിവറി വരുമാനം കമ്പനിക്ക് കിട്ടുന്ന ₹650 ആയി ഫിക്സ് ചെയ്യുന്നു
+        if (isDirect) {
+            let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+            amt = standardPrice;
+        }
+
+        let dbCost = parseInt(o.Product_Base_Cost || o.productBaseCost);
+        let rowCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
+
+        let actualC = 0, totalC = 0;
+        if (!isDirect && status !== 'Paid') {
+            actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+            totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
+            if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
+            if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+        }
+
+        monthIncome += amt;
+        monthBottleCost += rowCost;
+        monthCourier += actualC;
+        monthTotalCourier += totalC;
+        monthOrders++;
+        monthBottles += qty;
+
+        if (status === 'Paid') monthPaidCount += qty;
+        else monthDispatchedCount += qty;
+
+        let key = `₹${amt}`;
+        orderBreakdown[key] = (orderBreakdown[key] || 0) + 1;
+
+        if (qty > 0) {
+            let cKey = `₹${Math.round(rowCost / qty)}`;
+            costBreakdown[cKey] = (costBreakdown[cKey] || 0) + qty;
+        }
+
+        if (isDirect && window.directProfits[pName]) {
+            window.directProfits[pName].orders += 1;
+            window.directProfits[pName].travelEarned += travelCharge;
+            if (travelCharge > 0) {
+                window.directProfits[pName].breakdown[travelCharge] = (window.directProfits[pName].breakdown[travelCharge] || 0) + 1;
+            }
+        }
+    });
+
+    // --- 2. EXPENSE CALCULATION ---
+    let combinedExps = [];
+    if (dashboardData.monthTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
+    let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    combinedExps = combinedExps.concat(offExps);
+
+    let expMap = new Map();
+    combinedExps.forEach(e => {
+        let id = e.id || e.Expense_ID || ("RAND-" + Math.random() + e.amount);
+        expMap.set(id, e);
+    });
+
+    expMap.forEach(e => {
+        let eDate = parseOrderDate(e.date);
+        if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return;
+
+        let catStr = String(e.category || e.cat || '').toLowerCase();
+        let amt = parseFloat(e.amount || e.Amount) || 0;
+        let isDeductible = !e.isCourier && !catStr.includes('salary') && !catStr.includes('refund') && !catStr.includes('material');
+
+        if (isDeductible) {
+            monthOtherExp += amt;
+            if (catStr.includes('food')) expenseCategories["Food"] += amt;
+            else if (catStr.includes('travel') || catStr.includes('transport')) expenseCategories["Travel"] += amt;
+            else if (catStr.includes('ads') || catStr.includes('marketing')) expenseCategories["Ads"] += amt;
+            else {
+                let note = e.vendor || e.desc || 'Office Exp';
+                expenseCategories["Other"].push(`₹${amt} (${note})`);
+            }
+        } else if (catStr.includes('material')) {
+            monthMaterialExp += amt;
+        } else if (catStr.includes('refund')) {
+            expenseCategories["Refund"] += amt;
+        }
+    });
+
+    // --- 3. PROFIT CALCULATION ---
+    let totalExpense = monthBottleCost + monthCourier + monthOtherExp;
+    let monthNetProfit = monthIncome - totalExpense;
+    let liveProfit = monthNetProfit > 0 ? monthNetProfit : 0;
+
+    window.currentLiveProfit = liveProfit; // Global update
+
+    let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
+    let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : 330;
+
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
+    let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
+    let monthLabel = isCurrentMonth ? `This Month (${monthName})` : `${monthName} Overview`;
 
-    let html = ''; // Bank balance HTML പൂർണ്ണമായും ഒഴിവാക്കി
+    let breakdownArr = []; for (let a in orderBreakdown) breakdownArr.push(`${a} x ${orderBreakdown[a]}`);
+    let costBreakdownArr = []; for (let c in costBreakdown) costBreakdownArr.push(`${c} x ${costBreakdown[c]}`);
 
+    // 🟢 4. MONTHLY PROFIT BREAKDOWN UI (Dark Theme)
+    let html = `
+    <div class="p-4 rounded-4 shadow mb-4" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+        <h6 class="fw-bold text-uppercase mb-3 text-center" style="letter-spacing:1px; color:#cbd5e1;">
+            <i class="fas fa-chart-pie me-2"></i> ${monthLabel}
+        </h6>
+        
+        <div class="d-flex justify-content-between mb-1">
+            <span style="color:#94a3b8; font-weight:bold;">Sales: <span style="color:#ffffff;">${monthOrders}</span></span>
+            <span style="color:#94a3b8; font-weight:bold;">Bottles: <span style="color:#ffffff;">${monthBottles}</span></span>
+        </div>
+        
+        <div class="d-flex justify-content-between mb-2 pb-2" style="font-size: 11px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <span style="color:#4ade80; font-weight:bold;"><i class="fas fa-check-circle"></i> Paid: ${monthPaidCount}</span>
+            <span style="color:#38bdf8; font-weight:bold;"><i class="fas fa-shipping-fast"></i> Dispatched: ${monthDispatchedCount}</span>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 pb-2" style="border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span style="font-size:13px; font-weight:bold; color:#f1f5f9;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue</span>
+            <span style="font-size:18px; font-weight:bold; color:#4ade80;">₹${monthIncome.toLocaleString()}</span>
+        </div>
+
+        <div class="mb-2 ps-3 border-start border-3" style="border-color: #f87171 !important;">
+            <div style="font-size:11px; font-weight:bold; letter-spacing:0.5px; color:#f87171; margin-bottom:8px;">MINUS EXPENSES (INCLUDED):</div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div style="font-size:12px; color:#f1f5f9;">🍾 Bottle Making Cost</div>
+                    <div style="font-size:11px; font-weight:600; color:#facc15;">(${monthBottles} bottles × ₹${avgBottleRate})</div>
+                </div>
+                <span style="font-size:13px; font-weight:bold; color:#f87171;">- ₹${monthBottleCost.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div style="font-size:12px; color:#f1f5f9;">🚚 Courier & Transport</div>
+                    <div style="font-size:10px; font-weight:600; color:#facc15;">(Total: ₹${monthTotalCourier.toLocaleString()} | Margin: ₹${(monthTotalCourier - monthCourier).toLocaleString()})</div>
+                </div>
+                <span style="font-size:13px; font-weight:bold; color:#f87171;">- ₹${monthCourier.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2 pb-2" style="border-bottom:1px solid rgba(255,255,255,0.1);">
+                <div>
+                    <div style="font-size:12px; color:#f1f5f9;">🧾 Other Expenses</div>
+                    <div style="font-size:10px; font-weight:600; color:#f87171; opacity:0.8;">(Food, Travel, Ads, Misc)</div>
+                </div>
+                <span style="font-size:13px; font-weight:bold; color:#f87171;">- ₹${monthOtherExp.toLocaleString()}</span>
+            </div>
+        </div>
+        
+        ${expenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span style="color:#94a3b8; padding-left:8px;">🍔 Food:</span><span style="color:#f87171; font-weight:bold;">- ₹${expenseCategories["Food"].toLocaleString()}</span></div>` : ''}
+        ${expenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span style="color:#94a3b8; padding-left:8px;">⛽ Travel:</span><span style="color:#f87171; font-weight:bold;">- ₹${expenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
+        ${expenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span style="color:#94a3b8; padding-left:8px;">📢 Ads:</span><span style="color:#f87171; font-weight:bold;">- ₹${expenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
+        
+        ${expenseCategories["Other"].length > 0 ? `
+            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
+                <span style="color:#94a3b8; padding-left:8px;">📝 Other:</span>
+                <span style="color:#f87171; font-weight:bold; text-align:right;">${expenseCategories["Other"].join('<br>')}</span>
+            </div>` : ''}
+
+        <div class="d-flex justify-content-between align-items-center mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.1);">
+            <span style="font-size:14px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#f1f5f9;">Net Profit</span>
+            <span style="font-size:24px; font-weight:bolder; color:${liveProfit >= 0 ? '#4ade80' : '#f87171'};">
+                ₹${liveProfit.toLocaleString()}
+            </span>
+        </div>
+    </div>`;
+
+    // 🟢 5. PARTNER CARDS
     if (isCurrentMonth) {
-        html += `<h6 class="fw-bold text-muted mb-2 mt-2" style="font-size:11px; text-transform:uppercase; letter-spacing:1px;">Partner Accounts</h6>`;
+        html += `<h6 class="fw-bold text-muted mb-3 px-1" style="font-size:12px; text-transform:uppercase; letter-spacing:1px;"><i class="fas fa-users text-primary me-2"></i> Partner Salary Accounts</h6>`;
 
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
             let withdrawnAmt = data.withdrawn || 0;
             let thisMonthShare = shares[name] || 0;
 
-            let dd = window.directProfits && window.directProfits[name] ? window.directProfits[name] : null;
-            let extraProfitAmt = dd ? dd.travelEarned : 0; // 🔥 വെറും ₹80 മാത്രം പ്രോഫിറ്റ്!
+            let dd = window.directProfits[name];
+            let extraProfitAmt = dd ? dd.travelEarned : 0;
             let pastProfit = sheetPrevBal + withdrawnAmt;
 
             let defaultBal = pastProfit - withdrawnAmt + extraProfitAmt;
@@ -7080,41 +7281,42 @@ window.renderPartnerList = function () {
             let bdText = (dd && Object.keys(dd.breakdown).length > 0) ? `(${Object.entries(dd.breakdown).map(([c, t]) => c + 'x' + t).join(', ')})` : "";
 
             html += `
-            <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" data-partner="${name}" onclick="selectPartnerWithCheck('${name}', ${defaultBal}, ${checkedBal})" style="cursor:pointer; background:#fff;">
+            <div class="partner-card p-3 mb-3 border rounded-4 shadow-sm" data-partner="${name}" onclick="selectPartnerWithCheck('${name}', ${defaultBal}, ${checkedBal})" style="cursor:pointer; background:#fff; border-color:#e2e8f0 !important;">
                 <div class="d-flex align-items-center w-100">
-                    <div class="me-3"><i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i></div>
+                    <div class="me-3"><i class="fas fa-user-circle text-muted" style="font-size: 40px; opacity:0.7;"></i></div>
                     <div class="flex-grow-1">
-                        <div class="fw-bolder text-dark" style="font-size:15px;">${name}</div>
-                        <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">Final Bal: ₹${Number(defaultBal).toLocaleString('en-IN')}</div>
+                        <div class="fw-bolder text-dark" style="font-size:16px;">${name}</div>
+                        <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:14px;">Final Bal: ₹${Number(defaultBal).toLocaleString('en-IN')}</div>
                         
-                        <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
-                            <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
-                            <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
+                        <div class="p-2 bg-light rounded-3 border border-secondary border-opacity-10">
+                            <div class="d-flex justify-content-between text-muted" style="font-size:11px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
+                            <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:11px; font-weight:600;">
                                 <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
-                                <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); cursor: pointer;"></div>
+                                <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.9); cursor: pointer;"></div>
                             </div>
-                            ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
+                            ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:11px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
                         </div>
 
                         ${dd && dd.orders > 0 ? `
                         <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
-                            <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
+                            <div class="d-flex justify-content-between align-items-center" style="font-size:11px;">
                                 <span class="fw-bold text-dark"><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
                                 <span class="fw-bold text-success">+ ₹${extraProfitAmt.toLocaleString()}</span>
                             </div>
                         </div>` : ''}
 
-                        ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
+                        ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:10px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
                     </div>
-                    <div class="ms-2"><i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i></div>
+                    <div class="ms-2"><i class="far fa-circle text-muted check-icon" style="font-size: 24px;"></i></div>
                 </div>
             </div>`;
         }
     } else {
         html += `
-        <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
-            <i class="fas fa-lock fs-5 mb-2"></i><br>സാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
-            <div class="mt-3"><button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">Go to This Month</button></div>
+        <div class="text-center mt-4 mb-3 text-danger fw-bold bg-danger bg-opacity-10 p-4 rounded-4 border border-danger border-opacity-25" style="font-size:12px;">
+            <i class="fas fa-lock fs-3 mb-2 opacity-75"></i><br>
+            സാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
+            <div class="mt-3"><button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4 py-2" onclick="jumpToCurrentMonth()">Go to This Month</button></div>
         </div>`;
     }
 
@@ -8477,10 +8679,10 @@ window.updateAdminMeta = function (oid, action, value) {
     if (typeof originalUpdateAdminMeta === 'function') originalUpdateAdminMeta(oid, action, value);
 };
 
+// 🔥 SEND INVOICE WA (Fixed Alt Phone Issue)
 window.sendWA = function (index, type = 'pending') {
     const d = allOrders[index];
     if (!d) return;
-
     const n = parseInt(d.quantity) || 1;
     const adminPhone = '7788990313';
     const safe = (val) => String(val || '').trim().toUpperCase();
@@ -8489,30 +8691,21 @@ window.sendWA = function (index, type = 'pending') {
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
     const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-    // 2. CALCULATE PRICE (Direct Delivery Fix Included)
+    // 2. CALCULATE PRICE 
     const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
     let courier = 0;
-    let providerName = d.provider || d.Courier_Provider || 'Courier';
-
-    // 🔥 WhatsApp-ൽ കൃത്യമായ തുക വരാൻ ഇതാണു വഴി
     if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
         let match = d.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
-        if (match) {
-            courier = parseInt(match[2]) || 0;
-            providerName = "Direct Delivery";
-        }
+        if (match) courier = parseInt(match[2]) || 0;
     } else {
-        // Normal Courier Logic
         let savedProvider = d.provider || d.Courier_Provider || null;
         let stateKey = getZoneKey(d.state, savedProvider);
-        let courierBase = 0; let serviceMargin = 0;
+        let courierBase = 0;
+        let serviceMargin = 0;
         if (typeof courierRates !== 'undefined') {
             let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
-            let zoneData = (p ? (courierRates[`${stateKey} ${p}`] || courierRates[`${stateKey}_${p}`]) : null)
-                || courierRates[`${stateKey} DEFAULT`] || courierRates[`${stateKey}_DEFAULT`]
-                || courierRates[stateKey] || courierRates['REST OF INDIA DEFAULT'] || courierRates['REST OF INDIA'];
-
+            let zoneData = (p ? (courierRates[`${stateKey} ${p}`] || courierRates[`${stateKey}_${p}`]) : null) || courierRates[`${stateKey} DEFAULT`] || courierRates[`${stateKey}_DEFAULT`] || courierRates[stateKey] || courierRates['REST OF INDIA DEFAULT'] || courierRates['REST OF INDIA'];
             if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
                 courierBase = window.parseDynamicRate(zoneData.baseRate, n);
                 serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
@@ -8525,23 +8718,48 @@ window.sendWA = function (index, type = 'pending') {
 
     const total = base + courier;
 
-    // 3. GENERATE MESSAGE (Language Based)
+    // 3. GENERATE MESSAGE
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
     const isEng = (d.language === 'en');
     const editText = isEng ? "To check status or edit order: 👇" : "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
+
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
-    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-    let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_" : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+
+    // 🔥 ALT PHONE ഫിക്സ് ചെയ്തത് ഇവിടെയാണ്!
+    let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
+
+    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+
+    let paymentNote = "";
+    if (isEng) {
+        paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
+    } else {
+        paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+    }
+
     const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
 
-    // 4. PHONE & SEND
+    // 4. TARGET PHONE
+    let phoneNum = "";
     const dropdown = document.getElementById(`wa-select-${type}-${index}`);
-    let code = dropdown ? dropdown.value : 'W';
+    let code = dropdown ? dropdown.value : '';
+
     const ccInput = document.getElementById(`wa-cc-${type}-${index}`);
     let cc = ccInput ? ccInput.value : '91';
 
-    let phoneNum = (code === 'W') ? d.whatsapp : (code === 'A' ? d.altphone : (code === 'M' ? d.phone : (code === 'G' ? d.paidNum : d.whatsapp || d.phone)));
-    let finalNum = formatWAPhone(phoneNum, cc);
+    if (code === 'W') phoneNum = d.whatsapp;
+    else if (code === 'A') phoneNum = d.altphone;
+    else if (code === 'M') phoneNum = d.phone;
+    else if (code === 'G') phoneNum = d.paidNum;
+    else phoneNum = d.whatsapp || d.phone;
+
+    let finalNum = "";
+    if (typeof formatWAPhone === 'function') {
+        finalNum = formatWAPhone(phoneNum, cc);
+    } else {
+        let cleanNum = String(phoneNum || '').replace(/[^0-9]/g, '');
+        finalNum = cleanNum.length === 10 ? cc + cleanNum : cleanNum;
+    }
 
     if (finalNum) {
         window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
