@@ -7037,9 +7037,7 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-
-
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - RESTORED OLD WHITE UI WITH FULL DETAILS
+// 🔥 ACCOUNTS (SALARY) OVERVIEW - RESTORED OLD WHITE UI WITH FULL DETAILS & SALARY BREAKDOWN
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -7192,8 +7190,14 @@ window.renderPartnerList = function () {
         }
     });
 
+    // 🔥 SALARY TAKEN BY PARTNERS (Lifetime)
+    let salamTaken = dashboardData.partners["Salam"] ? (dashboardData.partners["Salam"].withdrawn || 0) : 0;
+    let samadTaken = dashboardData.partners["Samad"] ? (dashboardData.partners["Samad"].withdrawn || 0) : 0;
+    let jazeelaTaken = dashboardData.partners["Jazeela"] ? (dashboardData.partners["Jazeela"].withdrawn || 0) : 0;
+    let totalSalaryTaken = salamTaken + samadTaken + jazeelaTaken;
+
     // --- 3. PROFIT & BANK BALANCE ---
-    let actualBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp);
+    let actualBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp + totalSalaryTaken);
 
     let totalExpense = monthBottleCost + monthCourier + monthOtherExp;
     let monthNetProfit = monthIncome - totalExpense;
@@ -7236,7 +7240,16 @@ window.renderPartnerList = function () {
             <div class="d-flex justify-content-between mb-1"><span>Lifetime Income:</span><span class="text-success fw-bold">+ ₹${lifeIncome.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-1"><span>Bottle / Base Cost:</span><span class="text-danger">- ₹${lifeBottleCost.toLocaleString()}</span></div>
             <div class="d-flex justify-content-between mb-1"><span>Courier Charges:</span><span class="text-danger">- ₹${lifeCourier.toLocaleString()}</span></div>
-            <div class="d-flex justify-content-between mb-2"><span>Other Expenses:</span><span class="text-danger fw-bold">- ₹${lifeOtherExp.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between mb-1"><span>Other Expenses:</span><span class="text-danger fw-bold">- ₹${lifeOtherExp.toLocaleString()}</span></div>
+            
+            <div class="d-flex justify-content-between mb-0 mt-2 pt-2 border-top border-info border-opacity-25">
+                <span class="text-danger fw-bold">Partner Salary Taken:</span>
+                <span class="text-danger fw-bold">- ₹${totalSalaryTaken.toLocaleString()}</span>
+            </div>
+            <div class="text-secondary mb-2 text-end" style="font-size:9px; font-weight:600;">
+                (Samad: ₹${samadTaken.toLocaleString()} | Salam: ₹${salamTaken.toLocaleString()} | Jazi: ₹${jazeelaTaken.toLocaleString()})
+            </div>
+
             <div class="text-end border-top pt-1 mt-1"><span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span></div>
         </div>
     </div>
@@ -7371,7 +7384,7 @@ window.renderPartnerList = function () {
     } else {
         html += `
         <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
-            <i class="fas fa-lock fs-5 mb-2"></i><br>സാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
+            <i class="fas fa-lock fs-5 mb-2"></i><br>సാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
             <div class="mt-3"><button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">Go to This Month</button></div>
         </div>`;
     }
