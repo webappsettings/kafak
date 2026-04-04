@@ -4585,6 +4585,7 @@ window.renderDetailedMonthlyOverview = function () {
     }
     let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
 
+    // ഓഫ്‌ലൈൻ ഡാറ്റ കൂടി ലൈഫ് ടൈമിലേക്കും മാസത്തിലേക്കും ചേർക്കാൻ
     offExps.forEach(e => {
         let eDate = new Date(e.date);
         let cat = String(e.category || e.cat || '').toLowerCase();
@@ -4600,7 +4601,7 @@ window.renderDetailedMonthlyOverview = function () {
 
     combinedExps.forEach(e => {
         let eDate = parseOrderDate(e.date);
-        if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return;
+        if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return; // ഈ മാസത്തെ മാത്രം
 
         let amt = Number(e.amount) || 0;
         if (!e.isCourier) {
@@ -4654,9 +4655,11 @@ window.renderDetailedMonthlyOverview = function () {
     let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
     let nextBtn = isCurrentMonth ? `<span style="width:50px;"></span>` : `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>`;
 
-    // 🟢 1. LIFETIME BANK BALANCE UI (With Salary Breakdown)
+    // 🟢 1. LIFETIME BANK BALANCE UI
     let lifetimeHtml = `
-    <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">  
+    <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
+        <i class="fas fa-university text-white opacity-10" style="position: absolute; right: -20px; bottom: -20px; font-size: 100px; transform: rotate(-15deg);"></i>
+        
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div style="font-size:12px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px;">
                 <i class="fas fa-university me-2"></i>LIFETIME BALANCE
@@ -4705,7 +4708,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
     </div>`;
 
-    // 🟢 2. MONTHLY PROFIT BREAKDOWN UI
+    // 🟢 2. MONTHLY PROFIT BREAKDOWN UI (Fixed Error Here!)
     let monthlyHtml = `
     <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
@@ -4714,12 +4717,29 @@ window.renderDetailedMonthlyOverview = function () {
         
         <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
             ${prevBtn}
-            <span class="text-light fw-bold" style="font-size:13px;">${window.currentMonthStr}</span>
+            <span class="text-light fw-bold" style="font-size:13px;">${window.currentMonthStr || monthLabel}</span>
             ${nextBtn}
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
-            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales)</span>
+        <div class="d-flex justify-content-between mb-1">
+            <span class="text-muted fw-bold">Sales: <span class="text-light">${monthOrders}</span></span>
+            <span class="text-muted fw-bold">Bottles: <span class="text-light">${tBottles}</span></span>
+        </div>
+        
+        <div class="d-flex justify-content-between mb-2 pb-1 border-bottom border-secondary border-opacity-10" style="font-size: 10px;">
+            <span class="text-success fw-bold"><i class="fas fa-check-circle"></i> Paid: ${monthPaidCount}</span>
+            <span class="text-primary fw-bold"><i class="fas fa-shipping-fast"></i> Dispatched: ${monthDispatchedCount}</span>
+        </div>
+        
+        <div class="text-secondary small mb-1 fst-italic mt-2" style="font-size:10px; line-height: 1.4;">
+            <span class="fw-bold text-muted">Sales:</span> ${breakdownArr.join(', ')}
+        </div>
+        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
+            <span class="fw-bold text-muted">Base Cost:</span> ${costBreakdownArr.join(', ')}
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 pb-2 border-bottom border-secondary border-opacity-50">
+            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue</span>
             <span class="fw-bold text-success fs-5">₹${tSales.toLocaleString()}</span>
         </div>
 
