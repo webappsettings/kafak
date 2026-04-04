@@ -2522,7 +2522,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (Reverted India Post Logic, Kept Direct Delivery)
+// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (With Smart Courier Label UI - Updated Providers)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2664,9 +2664,11 @@ async function runPrintLogic(checkboxes, directData = null) {
     `;
     let htmlContent = `<html><head><title>KAFAK Print (${ordersToPrint.length})</title><link href="https://fonts.googleapis.com/css2?family=Anek+Malayalam:wght@100..800&display=swap" rel="stylesheet"><style>${styles} ${extraCss}</style></head><body>`;
 
-    const fmtDate = (str) => {
+    const fmtDate = (str, oid) => {
         if (!str) return "-";
-        return new Date(str).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+        let dateObj = parseOrderDate(str, oid);
+        if (isNaN(dateObj.getTime())) return "-";
+        return window.formatDateSimple(dateObj, "d M Y") + ", " + dateObj.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' });
     };
 
     labelsData.forEach((item) => {
@@ -2675,15 +2677,15 @@ async function runPrintLogic(checkboxes, directData = null) {
 
         const safe = (val) => String(val || '').toUpperCase();
         let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
-        const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
+        const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
 
         let printPhone = d.phone;
         if (d.altphone && String(d.altphone).trim() !== String(d.phone).trim()) {
             printPhone += `, ${d.altphone}`;
         }
 
-        let orderTime = fmtDate(d.timestamp);
-        let paidTime = fmtDate(d.paidDate || d.timestamp);
+        let orderTime = fmtDate(d.timestamp, d.orderid);
+        let paidTime = fmtDate(d.paidDate || d.timestamp, d.orderid);
 
         let s = String(d.state || '').toUpperCase().trim();
         let stateDotHtml = '';
@@ -2696,13 +2698,29 @@ async function runPrintLogic(checkboxes, directData = null) {
             stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
-        // 🔥 REVERTED LOGIC: Use Original Provider Name, Except for DIRECT
-        let rawProvider = String(d.provider || d.Courier_Provider || 'Courier').toUpperCase().trim();
+        // 🔥 SMART PROVIDER LABEL LOGIC (Updated Providers)
+        let rawProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
+
+        if (!rawProvider || rawProvider === 'COURIER' || rawProvider === 'UNDEFINED') {
+            if (s === 'KERALA') rawProvider = 'INDIA POST';
+            else rawProvider = 'SPEED POST';
+        }
+
         let printCourierText = rawProvider;
         let printCourierColor = "#9a9a9a"; // Default gray
         let printCourierBorder = "none";
 
-        if (rawProvider === 'DIRECT') {
+        if (rawProvider.includes('INDIA POST')) {
+            printCourierText = 'Parcel[C](1187359678)';
+            printCourierColor = '#64748b'; // Slate gray
+        } else if (rawProvider.includes('SPEED POST') || rawProvider.includes('SPEED SAFE')) {
+            printCourierText = 'Speed[E](1187359678)';
+            printCourierColor = '#dc2626'; // Red color
+            printCourierBorder = "1px dashed #dc2626";
+        } else if (rawProvider.includes('DTDC')) {
+            printCourierText = 'DTDC';
+            printCourierColor = '#64748b'; // Slate gray
+        } else if (rawProvider === 'DIRECT') {
             printCourierText = 'DIRECT DELIVERY';
             printCourierColor = '#dc2626'; // Red color
             printCourierBorder = "1px solid #dc2626";
