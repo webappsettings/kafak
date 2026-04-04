@@ -3223,23 +3223,51 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
-// 🔥 SUPER DATE PARSER (Fixed US/UK Date Format Issue)
+// 🔥 SUPER DATE PARSER (Fixed US/UK Date Format Issue For Perfect Accuracy)
 function parseOrderDate(str) {
     if (!str) return new Date(NaN);
     let s = String(str).trim();
 
-    // 1. Custom Parsing First (To prevent 02/04/2026 becoming Feb 4)
     let parts = s.split(/[\/\-\sT:]+/);
-    if (parts.length >= 3) {
-        let p1 = parseInt(parts[0]), p2 = parseInt(parts[1]), p3 = parseInt(parts[2]);
-        if (p1 > 1000) return new Date(p1, p2 - 1, p3); // YYYY-MM-DD
-        if (p3 > 1000) {
-            if (p2 > 12) return new Date(p3, p1 - 1, p2); // MM/DD/YYYY
-            return new Date(p3, p2 - 1, p1); // Force Indian Standard: DD/MM/YYYY
+
+    // 1. ഗൂഗിൾ ഷീറ്റിൽ നിന്നും വരുന്ന MM/DD/YYYY ആണോ എന്ന് നോക്കാൻ 
+    // നിങ്ങളുടെ ഷീറ്റിലെ അക്കങ്ങൾ നോക്കുമ്പോൾ, വർഷം 2026 എന്നാണെങ്കിൽ അത് മൂന്നാമതാണ് വരുന്നത് (അതായത് MM/DD/YYYY അല്ലെങ്കിൽ DD/MM/YYYY).
+    if (parts.length >= 3 && parts[2].length === 4) {
+        let p1 = parseInt(parts[0]);
+        let p2 = parseInt(parts[1]);
+        let p3 = parseInt(parts[2]);
+
+        let y = p3;
+        let m = p1; // ഗൂഗിൾ ഷീറ്റ് അധികവും മാസം ആദ്യമാണ് തരുന്നത് (MM/DD)
+        let d = p2;
+
+        // ഒരുപക്ഷേ ഇന്ത്യയിലെ പോലെ DD/MM ആണെങ്കിൽ (ഉദാഹരണത്തിന് മാസം 12-ൽ കൂടുതലാണെങ്കിൽ)
+        if (p1 > 12) {
+            m = p2;
+            d = p1;
         }
+
+        let h = parts[3] ? parseInt(parts[3]) : 0;
+        let min = parts[4] ? parseInt(parts[4]) : 0;
+
+        if (s.toLowerCase().includes('pm') && h < 12) h += 12;
+        if (s.toLowerCase().includes('am') && h === 12) h = 0;
+
+        return new Date(y, m - 1, d, h, min);
     }
 
-    // 2. Fallback
+    // 2. YYYY-MM-DD ആണെങ്കിൽ
+    if (parts.length >= 3 && parts[0].length === 4) {
+        let y = parseInt(parts[0]);
+        let m = parseInt(parts[1]);
+        let d = parseInt(parts[2]);
+
+        let h = parts[3] ? parseInt(parts[3]) : 0;
+        let min = parts[4] ? parseInt(parts[4]) : 0;
+        return new Date(y, m - 1, d, h, min);
+    }
+
+    // 3. Fallback
     let d = new Date(s);
     if (!isNaN(d.getTime())) return d;
 
@@ -4468,7 +4496,7 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-// 🔥 1. DETAILED MONTHLY OVERVIEW (Archive Bug Fixed & 100% Accurate)
+// 🔥 1. DETAILED MONTHLY OVERVIEW (Fixed Date Logic & 100% Accurate)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4502,12 +4530,10 @@ window.renderDetailedMonthlyOverview = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
-        // 🔥 STRICT FILTER: Local ആയി Archive അല്ലെങ്കിൽ Refund ചെയ്തതാണെങ്കിലും തൽക്ഷണം ഒഴിവാക്കാൻ 
         let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
 
-        // ഈ 4 സ്റ്റാറ്റസുകൾ മാത്രമേ കാൽക്കുലേഷനിൽ എടുക്കൂ! (Archive ഉം Refunded ഉം കർശനമായി ബ്ലോക്ക് ചെയ്തു)
         if (sheetStatus === 'archive' || sheetStatus === 'refunded') return;
         if (activeStatus === 'archive' || activeStatus === 'refunded') return;
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
@@ -4546,7 +4572,6 @@ window.renderDetailedMonthlyOverview = function () {
 
         let actualC = 0, totalC = 0;
         if (!isDirect && activeStatus !== 'paid') {
-            // 🔥 FIX: Dispatched Date ഇല്ലെങ്കിൽ Paid Date എടുക്കുന്നു
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
@@ -4556,7 +4581,6 @@ window.renderDetailedMonthlyOverview = function () {
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
-            // Monthly Courier (മാസം ഡിസ്പാച്ച് ആയതു മാത്രം കൊറിയർ എടുക്കുക)
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 tCourierCost += totalC;
                 tActualCourier += actualC;
@@ -7017,7 +7041,7 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - FIX oDate Error & Archive Bug
+// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - FIX Date Bug & Accurate Calculation
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -7053,7 +7077,6 @@ window.renderPartnerList = function () {
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
 
-        // ഈ 4 സ്റ്റാറ്റസുകൾ മാത്രമേ കാൽക്കുലേഷനിൽ എടുക്കൂ!
         if (sheetStatus === 'archive' || sheetStatus === 'refunded') return;
         if (activeStatus === 'archive' || activeStatus === 'refunded') return;
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
@@ -7064,7 +7087,6 @@ window.renderPartnerList = function () {
         let pDate = parseOrderDate(pDateStr);
         if (isNaN(pDate.getTime())) return;
 
-        // 🔥 FIX: oDate Error പരിഹരിച്ചു! (ഇവിടെയെല്ലാം pDate ആക്കി മാറ്റി)
         if (pDate.getTime() < firstDateMs) {
             firstDateMs = pDate.getTime();
         }
