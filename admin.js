@@ -7045,7 +7045,7 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - OLD WHITE UI WITH FULL DETAILED BREAKDOWN
+// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - RESTORED OLD WHITE UI WITH FULL DETAILED BREAKDOWN & DATE FIX
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -7076,7 +7076,7 @@ window.renderPartnerList = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
-        // 🔥 STRICT FILTER
+        // 🔥 STRICT FILTER: Local Status Update Check (Archive/Refund ഒഴിവാക്കാൻ)
         let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
@@ -7087,6 +7087,7 @@ window.renderPartnerList = function () {
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
+        // 🔥 FIX: Date പാർസറിലേക്ക് Order ID കൂടി അയക്കുന്നു
         let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr, o.orderid);
         if (isNaN(pDate.getTime())) return;
@@ -7225,9 +7226,9 @@ window.renderPartnerList = function () {
     let monthNetProfit = monthIncome - totalExpense;
     let liveProfit = monthNetProfit > 0 ? monthNetProfit : 0;
 
-    let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : 330;
-
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
+
+    let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : 330;
 
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
