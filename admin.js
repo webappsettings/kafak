@@ -2782,6 +2782,26 @@ async function runPrintLogic(checkboxes, directData = null) {
     setTimeout(() => { printWin.focus(); printWin.print(); }, 500);
 }
 
+// 🔥 SAFE DATE FORMATTER (Fixes missing function error for A6 Print)
+window.formatDateSimple = function (dateObj, format) {
+    if (!dateObj || isNaN(dateObj.getTime())) return "-";
+    let y = dateObj.getFullYear();
+    let m = String(dateObj.getMonth() + 1).padStart(2, '0');
+    let d = String(dateObj.getDate()).padStart(2, '0');
+    let mNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    let mShort = mNames[dateObj.getMonth()];
+
+    if (format === "Y-m-d") return `${y}-${m}-${d}`;
+    if (format === "d M Y") return `${dateObj.getDate()} ${mShort} ${y}`;
+    if (format === "M Y") return `${mShort} ${y}`;
+    if (format === "Y-m-d\\TH:i") {
+        let h = String(dateObj.getHours()).padStart(2, '0');
+        let min = String(dateObj.getMinutes()).padStart(2, '0');
+        return `${y}-${m}-${d}T${h}:${min}`;
+    }
+    return `${y}-${m}-${d}`;
+};
+
 
 // Ensure editTracking is available
 function editTracking(oid, currentVal) {
