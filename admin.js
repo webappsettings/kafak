@@ -4488,6 +4488,7 @@ window.renderDetailedMonthlyOverview = function () {
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
     let firstDateMs = Date.now();
+    let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
     // Monthly Trackers
     let tSales = 0, tBottles = 0, tBottleCost = 0;
@@ -4542,11 +4543,20 @@ window.renderDetailedMonthlyOverview = function () {
         // 3. Courier കാൽക്കുലേഷൻ
         let actualC = 0, totalC = 0;
         if (!isDirect && status !== 'Paid') {
+            let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
+            let dDate = parseOrderDate(dDateStr);
+
             actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
             totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+
+            // Monthly Courier
+            if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                tCourierCost += totalC;
+                tActualCourier += actualC;
+            }
         }
 
         // Add to Lifetime
@@ -4559,8 +4569,6 @@ window.renderDetailedMonthlyOverview = function () {
             tSales += amt;
             tBottles += qty;
             tBottleCost += rowCost;
-            tCourierCost += totalC;
-            tActualCourier += actualC;
             monthOrders++;
 
             if (status === 'Paid') monthPaidCount += qty;
@@ -4608,9 +4616,9 @@ window.renderDetailedMonthlyOverview = function () {
             let catName = String(e.cat || e.category || '').toLowerCase();
             if (catName.includes('material')) {
                 tMaterialExpense += amt;
-            } else if (catName === 'refund') {
+            } else if (catName.includes('refund')) {
                 expenseCategories["Refund"] += amt;
-            } else if (catName !== 'salary') {
+            } else if (!catName.includes('salary')) {
                 tOtherExpense += amt;
                 if (catName.includes('food')) expenseCategories["Food"] += amt;
                 else if (cat.includes('travel') || cat.includes('transport')) expenseCategories["Travel"] += amt;
@@ -4652,8 +4660,12 @@ window.renderDetailedMonthlyOverview = function () {
 
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
-    let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
-    let nextBtn = isCurrentMonth ? `<span style="width:50px;"></span>` : `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>`;
+
+    let monthLabel = isCurrentMonth ? `This Month (${monthName})` : `${monthName} Overview`;
+
+    // 🔥 FIX: Design matched to the Dark Theme of Monthly Breakdown
+    let prevBtn = `<button type="button" class="btn btn-sm btn-outline-secondary text-light rounded-pill px-3 py-1 shadow-sm" style="font-size:11px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> Prev</button>`;
+    let nextBtn = isCurrentMonth ? `<div style="width:75px;"></div>` : `<button type="button" class="btn btn-sm btn-outline-secondary text-light rounded-pill px-3 py-1 shadow-sm" style="font-size:11px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right ms-1"></i></button>`;
 
     // 🟢 1. LIFETIME BANK BALANCE UI
     let lifetimeHtml = `
@@ -4708,7 +4720,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
     </div>`;
 
-    // 🟢 2. MONTHLY PROFIT BREAKDOWN UI (Fixed Error Here!)
+    // 🟢 2. MONTHLY PROFIT BREAKDOWN UI (Error Fixed)
     let monthlyHtml = `
     <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
@@ -4717,8 +4729,13 @@ window.renderDetailedMonthlyOverview = function () {
         
         <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
             ${prevBtn}
-            <span class="text-light fw-bold" style="font-size:13px;">${window.currentMonthStr || monthLabel}</span>
+            <span class="text-light fw-bold" style="font-size:14px; letter-spacing: 1px;">${monthLabel}</span>
             ${nextBtn}
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
+            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales)</span>
+            <span class="fw-bold text-success fs-5">₹${tSales.toLocaleString()}</span>
         </div>
 
         <div class="d-flex justify-content-between mb-1">
@@ -4738,12 +4755,7 @@ window.renderDetailedMonthlyOverview = function () {
             <span class="fw-bold text-muted">Base Cost:</span> ${costBreakdownArr.join(', ')}
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 pb-2 border-bottom border-secondary border-opacity-50">
-            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue</span>
-            <span class="fw-bold text-success fs-5">₹${tSales.toLocaleString()}</span>
-        </div>
-
-        <div class="mb-2 ps-3 border-start border-3 border-danger">
+        <div class="mb-2 mt-3 ps-3 border-start border-3 border-danger">
             <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES (INCLUDED):</div>
             
             <div class="d-flex justify-content-between align-items-start mt-2">
@@ -4770,7 +4782,19 @@ window.renderDetailedMonthlyOverview = function () {
                 <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
             </div>
         </div>
-
+        
+        ${expenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Food"].toLocaleString()}</span></div>` : ''}
+        ${expenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
+        ${expenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
+        
+        ${expenseCategories["Other"].length > 0 ? `
+            <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
+                <span class="text-muted ps-2">📝 Other:</span>
+                <span class="text-danger fw-bold text-end">${expenseCategories["Other"].join('<br>')}</span>
+            </div>` : ''}
+            
+        ${expenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1 mt-2" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${expenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
+        
         <div class="mt-3 p-2 rounded" style="background: rgba(13, 202, 240, 0.1); border-left: 3px solid #0dcaf0;">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
