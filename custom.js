@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbykqOVEBwzv9SHi67aYtHKzchtcUbCRnpbEJvT6h-KHeexn-bB6zMfK6yx39oR6tz5t3g/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbxpNF9gc7nEgoBmvfxjrHEPc4hRDmo6uE3Xug8ZOhMkt4ni3hHKmGqjrqIcHp8DyIrUGw/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1636,9 +1636,9 @@ function updateStatusUI(d) {
                 </div>
             </div>
             
-            <a href="${trackLink}" target="_blank" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px;">
-                ${t.btn_track} <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
-            </a>
+            <button onclick="trackParcel('${order.tracking}', '${order.provider || order.Courier_Provider}', '${trackLink}')" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px; border:none;">
+    ${t.btn_track} <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
+</button>
         </div>`;
     }
     let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
@@ -3341,3 +3341,83 @@ window.copyTrackingID = function (id, btnElement) {
     }, 2000);
   });
 }
+
+// 🔥 SMART TRACKING FUNCTION FOR CUSTOMERS
+window.trackParcel = function (trackingId, provider, defaultLink) {
+  if (!trackingId || trackingId === 'null') {
+    Swal.fire('Info', 'Tracking number is not available yet.', 'info');
+    return;
+  }
+
+  let p = String(provider).toUpperCase();
+
+  // 1. India Post അല്ലെങ്കിൽ Speed Post ആണെങ്കിൽ മാത്രം ലൈവ് API ട്രാക്കിംഗ്
+  if (p.includes('INDIA POST') || p.includes('SPEED POST') || p.includes('POST')) {
+
+    Swal.fire({
+      title: 'Tracking Parcel...',
+      html: `<div class="mt-2 text-primary fw-bold fs-5">${trackingId}</div>
+                   <div class="small text-muted mt-2">Fetching live status from India Post...</div>`,
+      allowOutsideClick: false,
+      didOpen: () => { Swal.showLoading(); }
+    });
+
+    // ഗൂഗിൾ ഷീറ്റിലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നു
+    fetch(`${sc}?action=trackIndiaPost&trackingId=${trackingId}`)
+      .then(res => res.json())
+      .then(res => {
+        // ശ്രദ്ധിക്കുക: ഇന്ത്യ പോസ്റ്റിന്റെ യഥാർത്ഥ റെസ്പോൺസ് ഘടന അനുസരിച്ച് താഴെയുള്ള 'events' ലോജിക് മാറാം.
+        if (res.result === 'success' && res.data && res.data.events) {
+
+          // 🔥 Beautiful Vertical Timeline UI
+          let timelineHtml = `<div style="text-align:left; max-height: 350px; overflow-y: auto; padding: 10px 15px; border-left: 3px solid #3b82f6; margin-left: 15px; margin-top: 10px;">`;
+
+          res.data.events.forEach((event, index) => {
+            let isLatest = index === 0; // ആദ്യത്തേതിന് പച്ച നിറം
+            let dotColor = isLatest ? '#10b981' : '#cbd5e1';
+            let textColor = isLatest ? '#0f172a' : '#475569';
+
+            timelineHtml += `
+                    <div style="position: relative; margin-bottom: 18px; padding-left: 20px;">
+                        <span style="position: absolute; left: -26.5px; top: 2px; background: ${dotColor}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px ${dotColor};"></span>
+                        
+                        <div style="font-size:10px; color:#64748b; font-weight:800; letter-spacing:0.5px;">${event.date || ''} • ${event.time || ''}</div>
+                        <div style="font-size:13px; font-weight:800; color:${textColor}; margin-top:2px;">${event.status || 'Status Updated'}</div>
+                        <div style="font-size:11px; color:#64748b; font-weight:600; margin-top:2px;"><i class="fas fa-map-marker-alt text-danger me-1"></i> ${event.office || 'Post Office'}</div>
+                    </div>`;
+          });
+
+          timelineHtml += `</div>`;
+
+          Swal.fire({
+            title: `<div style="font-size:16px; font-weight:800;"><i class="fas fa-shipping-fast text-primary me-2"></i>Live Tracking Status</div>`,
+            html: timelineHtml,
+            showCloseButton: true,
+            confirmButtonText: 'Close',
+            confirmButtonColor: '#333',
+            customClass: { popup: 'rounded-4 ios-popup' }
+          });
+        } else {
+          // API-യിൽ നിന്ന് ഡാറ്റ വന്നില്ലെങ്കിൽ ഡിഫോൾട്ട് ലിങ്ക് തന്നെ കാണിക്കുന്നു
+          Swal.fire({
+            icon: 'warning',
+            title: 'Status Not Found',
+            html: `Tracking data is not available yet. Try checking directly on the India Post website.<br><br>
+                           <a href="${defaultLink}" target="_blank" class="btn btn-primary btn-sm mt-3 fw-bold rounded-pill">Open India Post Tracking</a>`,
+            showConfirmButton: false,
+            showCloseButton: true
+          });
+        }
+      }).catch(err => {
+        Swal.fire('Error', 'Network Error. Could not connect to the tracking server.', 'error');
+      });
+
+  } else {
+    // 2. മറ്റ് കൊറിയറുകൾക്ക് (DTDC, Speed Safe) പഴയപോലെ ലിങ്ക് ഓപ്പൺ ചെയ്യുന്നു
+    if (defaultLink && defaultLink !== 'null') {
+      window.open(defaultLink, '_blank');
+    } else {
+      Swal.fire('Info', 'No tracking link available for this courier.', 'info');
+    }
+  }
+};
