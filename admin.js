@@ -4503,13 +4503,14 @@ window.renderDetailedMonthlyOverview = function () {
 
     allOrders.forEach(o => {
         // 🔥 STRICT FILTER: Local ആയി Archive അല്ലെങ്കിൽ Refund ചെയ്തതാണെങ്കിലും തൽക്ഷണം ഒഴിവാക്കാൻ 
+        let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
-        let rawStatus = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending');
-        let status = rawStatus.trim().toLowerCase();
+        let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
 
-        // ഈ 4 സ്റ്റാറ്റസുകൾ മാത്രമേ കാൽക്കുലേഷനിൽ എടുക്കൂ!
-        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(status)) return;
-        if (status === 'archive' || status === 'refunded') return;
+        // ഈ 4 സ്റ്റാറ്റസുകൾ മാത്രമേ കാൽക്കുലേഷനിൽ എടുക്കൂ! (Archive ഉം Refunded ഉം കർശനമായി ബ്ലോക്ക് ചെയ്തു)
+        if (sheetStatus === 'archive' || sheetStatus === 'refunded') return;
+        if (activeStatus === 'archive' || activeStatus === 'refunded') return;
+        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
@@ -4544,7 +4545,8 @@ window.renderDetailedMonthlyOverview = function () {
         let rowCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
         let actualC = 0, totalC = 0;
-        if (!isDirect && status !== 'paid') {
+        if (!isDirect && activeStatus !== 'paid') {
+            // 🔥 FIX: Dispatched Date ഇല്ലെങ്കിൽ Paid Date എടുക്കുന്നു
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
@@ -4571,7 +4573,7 @@ window.renderDetailedMonthlyOverview = function () {
             tBottleCost += rowCost;
             monthOrders++;
 
-            if (status === 'paid') monthPaidCount += qty;
+            if (activeStatus === 'paid') monthPaidCount += qty;
             else monthDispatchedCount += qty;
 
             let key = `₹${amt}`;
@@ -7047,13 +7049,14 @@ window.renderPartnerList = function () {
 
     allOrders.forEach(o => {
         // 🔥 STRICT FILTER: Local Status Update Check (Archive/Refund ഒഴിവാക്കാൻ)
+        let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
-        let rawStatus = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending');
-        let status = rawStatus.trim().toLowerCase();
+        let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
 
         // ഈ 4 സ്റ്റാറ്റസുകൾ മാത്രമേ കാൽക്കുലേഷനിൽ എടുക്കൂ!
-        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(status)) return;
-        if (status === 'archive' || status === 'refunded') return;
+        if (sheetStatus === 'archive' || sheetStatus === 'refunded') return;
+        if (activeStatus === 'archive' || activeStatus === 'refunded') return;
+        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
@@ -7096,7 +7099,7 @@ window.renderPartnerList = function () {
         let rowCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
         let actualC = 0, totalC = 0;
-        if (!isDirect && status !== 'paid') {
+        if (!isDirect && activeStatus !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
@@ -7121,7 +7124,7 @@ window.renderPartnerList = function () {
             monthOrders++;
             monthBottles += qty;
 
-            if (status === 'paid') monthPaidCount += qty;
+            if (activeStatus === 'paid') monthPaidCount += qty;
             else monthDispatchedCount += qty;
 
             let key = `₹${amt}`;
@@ -7380,7 +7383,6 @@ window.renderPartnerList = function () {
 
     $('#partner-list').html(html);
 };
-
 // 🔥 NEW: SALARY CHECKBOX HELPER FUNCTIONS
 window.updatePartnerBal = function (name, defaultBal, checkedBal) {
     let isChecked = document.getElementById(`cb-inc-${name}`).checked;
