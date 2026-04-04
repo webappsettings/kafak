@@ -2522,7 +2522,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (With Smart Courier Label UI - Updated Providers)
+// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (With Accurate Provider Logic & Payment Status check)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2677,7 +2677,7 @@ async function runPrintLogic(checkboxes, directData = null) {
 
         const safe = (val) => String(val || '').toUpperCase();
         let qtyHTML = (d.quantity == 1) ? '' : `<div class="qty-text">x${d.quantity}</div>`;
-        const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
+        const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
 
         let printPhone = d.phone;
         if (d.altphone && String(d.altphone).trim() !== String(d.phone).trim()) {
@@ -2685,7 +2685,11 @@ async function runPrintLogic(checkboxes, directData = null) {
         }
 
         let orderTime = fmtDate(d.timestamp, d.orderid);
-        let paidTime = fmtDate(d.paidDate || d.timestamp, d.orderid);
+
+        // 🔥 PAID ആയോ എന്ന് ചെക്ക് ചെയ്ത് തീയതി മാറ്റുന്നു
+        let statusStr = String(d.Status || d.status || 'Pending').trim().toLowerCase();
+        let isPaid = ['paid', 'dispatched', 'delivered', 'completed'].includes(statusStr);
+        let paidTimeHtml = isPaid ? `P: ${fmtDate(d.paidDate || d.timestamp, d.orderid)}` : `<span style="color:#dc2626;">P: No</span>`;
 
         let s = String(d.state || '').toUpperCase().trim();
         let stateDotHtml = '';
@@ -2698,7 +2702,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
-        // 🔥 SMART PROVIDER LABEL LOGIC (Updated Providers)
+        // 🔥 SMART PROVIDER LABEL LOGIC (Speed Post vs Speed Safe)
         let rawProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
 
         if (!rawProvider || rawProvider === 'COURIER' || rawProvider === 'UNDEFINED') {
@@ -2713,10 +2717,15 @@ async function runPrintLogic(checkboxes, directData = null) {
         if (rawProvider.includes('INDIA POST')) {
             printCourierText = 'Parcel[C](1187359678)';
             printCourierColor = '#64748b'; // Slate gray
-        } else if (rawProvider.includes('SPEED POST') || rawProvider.includes('SPEED SAFE')) {
+        } else if (rawProvider.includes('SPEED POST')) {
+            // 🔥 Speed Post - Red Color
             printCourierText = 'Speed[E](1187359678)';
             printCourierColor = '#dc2626'; // Red color
             printCourierBorder = "1px dashed #dc2626";
+        } else if (rawProvider.includes('SPEED SAFE')) {
+            // 🔥 Speed Safe - Gray Color (No Special Code)
+            printCourierText = 'SPEED SAFE';
+            printCourierColor = '#64748b'; // Slate gray
         } else if (rawProvider.includes('DTDC')) {
             printCourierText = 'DTDC';
             printCourierColor = '#64748b'; // Slate gray
@@ -2765,7 +2774,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             </div>
 
             <div style="position:absolute; bottom:5mm; right:5mm; font-size:8px; color:#888; font-weight:600; font-family:sans-serif; text-align:right;">
-                P: ${paidTime}
+                ${paidTimeHtml}
             </div>
 
             <div style="position:absolute; bottom:4.5mm; left:50%; transform:translateX(-50%); font-size:9px; font-weight:800; color:${printCourierColor}; padding: 1px 6px; border-radius: 4px; letter-spacing: 0.5px; font-family: sans-serif; white-space: nowrap; background: #fff; border: ${printCourierBorder};">
