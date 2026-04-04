@@ -7045,7 +7045,7 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - FIX Date Bug & Accurate Calculation
+// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - OLD WHITE UI WITH FULL DETAILED BREAKDOWN
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -7054,7 +7054,10 @@ window.renderPartnerList = function () {
     let mM = selectedDate.getMonth();
     let firstDateMs = Date.now();
 
+    // Lifetime variables
     let lifeIncome = 0, lifeBottleCost = 0, lifeCourier = 0;
+
+    // Monthly variables
     let monthIncome = 0, monthBottleCost = 0, monthCourier = 0, monthTotalCourier = 0;
     let monthOrders = 0, monthBottles = 0;
     let monthOtherExp = 0, monthMaterialExp = 0;
@@ -7073,6 +7076,7 @@ window.renderPartnerList = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
+        // 🔥 STRICT FILTER
         let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
@@ -7083,7 +7087,6 @@ window.renderPartnerList = function () {
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
-        // 🔥 FIX: Date പാർസറിലേക്ക് Order ID കൂടി അയക്കുന്നു
         let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr, o.orderid);
         if (isNaN(pDate.getTime())) return;
@@ -7222,6 +7225,8 @@ window.renderPartnerList = function () {
     let monthNetProfit = monthIncome - totalExpense;
     let liveProfit = monthNetProfit > 0 ? monthNetProfit : 0;
 
+    let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : 330;
+
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
 
     let todayDate = new Date();
@@ -7296,14 +7301,39 @@ window.renderPartnerList = function () {
             <span class="fw-bold text-muted">Base Cost:</span> ${costBreakdownArr.join(', ')}
         </div>
         
-        <div class="d-flex justify-content-between mb-1 mt-2 pt-2 border-top border-secondary border-opacity-10">
-            <span class="text-muted">Total Income:</span>
-            <span class="fw-bold text-success">₹${monthIncome.toLocaleString()}</span>
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+            <span style="font-size:13px; font-weight:bold; color:#475569;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue</span>
+            <span style="font-size:18px; font-weight:bold; color:#198754;">₹${monthIncome.toLocaleString()}</span>
         </div>
-        <div class="d-flex justify-content-between mb-0">
-            <span class="text-muted">Deductible Expense:</span>
-            <span class="fw-bold text-danger">- ₹${monthOtherExp.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
+
+        <div class="mb-2 ps-3 border-start border-3 border-danger">
+            <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES (INCLUDED):</div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div class="text-dark fw-bold" style="font-size:12px;">🍾 Bottle Making Cost</div>
+                    <div class="text-muted" style="font-size:11px; font-weight:600;">(${monthBottles} bottles × ₹${avgBottleRate})</div>
+                </div>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${monthBottleCost.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div class="text-dark fw-bold" style="font-size:12px;">🚚 Courier & Transport</div>
+                    <div class="text-muted" style="font-size:10px; font-weight:600;">(Total: ₹${monthTotalCourier.toLocaleString()} | Margin: ₹${(monthTotalCourier - monthCourier).toLocaleString()})</div>
+                </div>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${monthCourier.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2 pb-2 border-bottom border-secondary border-opacity-25">
+                <div>
+                    <div class="text-dark fw-bold" style="font-size:12px;">🧾 Other Expenses</div>
+                    <div class="text-danger opacity-75" style="font-size:10px; font-weight:600;">(Food, Travel, Ads, Misc)</div>
+                </div>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${monthOtherExp.toLocaleString()}</span>
+            </div>
         </div>
+
         ${expenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Food"].toLocaleString()}</span></div>` : ''}
         ${expenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
         ${expenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
@@ -7314,27 +7344,26 @@ window.renderPartnerList = function () {
                 <span class="text-danger fw-bold text-end">${expenseCategories["Other"].join('<br>')}</span>
             </div>` : ''}
             
-        ${expenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${expenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
-        <div class="d-flex justify-content-between mb-1 mt-1">
-            <span class="fw-bold text-info" style="font-size:10px;">
-                <i class="fas fa-ban"></i> Materials: ₹${monthMaterialExp.toLocaleString()}
-            </span>
-            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
-            <div class="text-warning fw-bold" style="font-size:10px;">
-                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${monthTotalCourier.toLocaleString()} <br>
-                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${(monthTotalCourier - monthCourier).toLocaleString()})</span>
-            </div>
-            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
-        </div>
+        ${expenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1 mt-2" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${expenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
         
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
-            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
+        <div class="mt-3 p-2 rounded" style="background: rgba(13, 202, 240, 0.1); border-left: 3px solid #0dcaf0;">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="text-info fw-bold" style="font-size:12px;"><i class="fas fa-ban me-1"></i> 📦 Material Purchases</div>
+                    <div class="text-info opacity-75" style="font-size:10px; font-weight:600;">(EXCLUDED from deduction)</div>
+                </div>
+                <span class="text-info fw-bold" style="font-size:13px;">₹${monthMaterialExp.toLocaleString()}</span>
+            </div>
         </div>
 
-        <div class="bg-light p-2 rounded-3 border">
+        <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top border-secondary border-opacity-25">
+            <span class="fw-bold text-uppercase text-dark" style="font-size:14px; letter-spacing:1px;">Actual Net Profit</span>
+            <span class="${liveProfit >= 0 ? 'text-success' : 'text-danger'} fw-bolder" style="font-size:24px;">
+                ₹${liveProfit.toLocaleString()}
+            </span>
+        </div>
+
+        <div class="bg-light p-2 rounded-3 border mt-3">
             <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
                 <span class="fw-bold text-secondary">Salam (20%):</span>
                 <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
