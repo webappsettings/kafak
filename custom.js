@@ -1595,10 +1595,13 @@ function updateStatusUI(d) {
     let nextItemActive = items[index + 1] && items[index + 1].active;
     let lineHtml = isLast ? '' : `<div class="timeline-line ${nextItemActive ? 'active' : ''}"></div>`;
     let dateHtml = '';
+
     if (item.date && item.active) {
       dateHtml = `<div class="ms-auto text-muted small fw-bold" style="font-size:10px; background:#f3f4f6; padding:2px 8px; border-radius:10px;">${formatPrettyDate(item.date)}</div>`;
     }
+
     let extraContent = '';
+
     if (index === 2 && item.active && d.tracking && !isRefunded) {
       let trackNum = String(d.tracking || '').trim();
       let rawProvider = String(d.courier || d.Courier_Provider || d.provider || 'Courier').trim().toUpperCase();
@@ -1620,7 +1623,7 @@ function updateStatusUI(d) {
         trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
       }
 
-      // 🔥 Compact & Beautiful Tracking UI with Copy Button
+      // 🔥 Compact & Beautiful Tracking UI with Copy Button & Smart Track Button
       extraContent = `
         <div class="mt-3 p-2 rounded-3 shadow-sm d-flex align-items-center justify-content-between" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
             <div class="d-flex flex-column">
@@ -1636,12 +1639,14 @@ function updateStatusUI(d) {
                 </div>
             </div>
             
-            <button onclick="trackParcel('${successData.tracking || ''}', '${successData.provider || successData.Courier_Provider || ''}', '${trackLink}')" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px; border:none;">
-    ${t.btn_track} <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
-</button>
+            <button onclick="trackParcel('${d.tracking || ''}', '${d.provider || d.Courier_Provider || ''}', '${trackLink}')" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px; border:none;">
+                ${t.btn_track} <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
+            </button>
         </div>`;
     }
+
     let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
+
     timelineHTML += `
             <div class="${rowClass}">
                 <div class="timeline-left">${iconHtml}${lineHtml}</div>
