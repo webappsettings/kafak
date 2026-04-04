@@ -2522,24 +2522,21 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 UPDATED PRINT LOGIC (With Sequence Number & Non-Kerala State Dots)
+// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (With Smart Courier Label UI)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
-    // 1. Determine Source
     if (directData) {
         ordersToPrint = directData;
     } else if (checkboxes) {
         checkboxes.forEach(cb => {
             if (allOrders[cb.value]) ordersToPrint.push(allOrders[cb.value]);
         });
-        // Sort by Date (Oldest First)
         ordersToPrint.sort((a, b) => new Date(a.paidDate || a.timestamp) - new Date(b.paidDate || b.timestamp));
     }
 
     if (ordersToPrint.length === 0) return;
 
-    // Progress Bar
     Swal.fire({
         title: 'Generating Labels...',
         html: `Processing <b>1</b> of <b>${ordersToPrint.length}</b>`,
@@ -2556,7 +2553,6 @@ async function runPrintLogic(checkboxes, directData = null) {
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let isModified = false;
 
-    // 2. PROCESS SEQUENTIALLY
     for (let i = 0; i < ordersToPrint.length; i++) {
         const d = ordersToPrint[i];
 
@@ -2564,10 +2560,8 @@ async function runPrintLogic(checkboxes, directData = null) {
             Swal.getHtmlContainer().querySelector('b').innerText = i + 1;
         }
 
-        // 🔥 FIND GLOBAL SEQUENCE NUMBER (Matches UI Rank exactly!)
         let seqNum = (window.paidRankMap && window.paidRankMap[d.orderid]) ? window.paidRankMap[d.orderid] : (i + 1);
 
-        // Update Meta Logic (With Timestamp for Sorting)
         let currentMeta = String(d.adminMeta || '');
         if (!currentMeta.includes('P')) {
             let printTimestamp = Date.now();
@@ -2575,16 +2569,14 @@ async function runPrintLogic(checkboxes, directData = null) {
             let newMeta = cleanMeta ? cleanMeta + " P_" + printTimestamp : "P_" + printTimestamp;
             d.adminMeta = newMeta;
 
-            // 🔥 മാറ്റം: Undo/Revert Logic ഇവിടെയും ഉൾപ്പെടുത്തി
             let existingIndex = updates.findIndex(u => u.oid === d.orderid && u.action === 'meta' && u.meta !== undefined);
             let trueOldMeta = (existingIndex > -1 && updates[existingIndex].oldMeta !== undefined) ? updates[existingIndex].oldMeta : currentMeta;
 
-            // 🔥 FIX: String comparison issue (W vs Empty string)
             let getContactCode = (m) => {
                 if (m.includes('G')) return 'G';
                 if (m.includes('A')) return 'A';
                 if (m.includes('M')) return 'M';
-                return 'W'; // Default is WhatsApp
+                return 'W';
             };
 
             let oldContact = getContactCode(trueOldMeta);
@@ -2592,7 +2584,6 @@ async function runPrintLogic(checkboxes, directData = null) {
             let oldFlags = trueOldMeta.replace(/[MWAG]/g, '');
             let newFlags = newMeta.replace(/[MWAG]/g, '');
 
-            // രണ്ടും ഫലത്തിൽ ഒരേ കോൺടാക്റ്റ് ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
             let isEffectivelySame = (oldContact === newContact) && (oldFlags === newFlags);
 
             if (isEffectivelySame) {
@@ -2619,7 +2610,6 @@ async function runPrintLogic(checkboxes, directData = null) {
             isModified = true;
         }
 
-        // Generate QR
         await new Promise((resolve) => {
             const qrNode = document.createElement('div');
             tempDiv.appendChild(qrNode);
@@ -2638,7 +2628,6 @@ async function runPrintLogic(checkboxes, directData = null) {
     document.body.removeChild(tempDiv);
     Swal.close();
 
-    // 3. SAVE & REFRESH
     if (isModified) {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
@@ -2646,12 +2635,8 @@ async function runPrintLogic(checkboxes, directData = null) {
         renderTabs(allOrders);
     }
 
-    // 4. OPEN PRINT WINDOW
-    // 🔥 മാറ്റം 1: വിൻഡോയ്ക്ക് വ്യത്യസ്തമായ പേര് കൊടുത്തു (Cache ഒഴിവാക്കാൻ)
     const printWin = window.open('', 'AddressPrintWindow', 'width=600,height=800');
 
-    // CSS for accurate background printing
-    // 🔥 മാറ്റം 2: Media Print ഉം കൃത്യമായ A6 സൈസും ഫോഴ്സ് ചെയ്യുന്നു (Perfect A6 Size in mm)
     let extraCss = `
         @media print {
             @page { 
@@ -2700,20 +2685,36 @@ async function runPrintLogic(checkboxes, directData = null) {
         let orderTime = fmtDate(d.timestamp);
         let paidTime = fmtDate(d.paidDate || d.timestamp);
 
-        // 🔥 NEW: സർവറിൽ നിന്നുള്ള കൊറിയർ പേര് എടുക്കുന്നു 
-        let printCourier = String(d.provider || d.Courier_Provider || 'COURIER').trim().toUpperCase();
-
-        // 🔥 STATE DOT LOGIC FOR PRINT LABEL
         let s = String(d.state || '').toUpperCase().trim();
         let stateDotHtml = '';
         if (s && s !== 'KERALA') {
-            let dotColor = '#d63384'; // Default Other (Magenta)
-            if (s.includes('LAK')) dotColor = '#0dcaf0'; // Lakshadweep (Blue)
-            else if (s.includes('KARN')) dotColor = '#d97706'; // Karnataka (Yellow/Orange)
-            else if (s.includes('TAMIL') || s.includes('TN')) dotColor = '#795548'; // Tamil Nadu (Brown)
+            let dotColor = '#d63384';
+            if (s.includes('LAK')) dotColor = '#0dcaf0';
+            else if (s.includes('KARN')) dotColor = '#d97706';
+            else if (s.includes('TAMIL') || s.includes('TN')) dotColor = '#795548';
 
-            // Placed at Top Right corner
             stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
+        }
+
+        // 🔥 SMART PROVIDER LABEL LOGIC (India Post, Speed & Direct)
+        let rawProvider = String(d.provider || d.Courier_Provider || 'Courier').toUpperCase().trim();
+        let printCourierText = rawProvider;
+        let printCourierColor = "#9a9a9a"; // Default gray
+        let printCourierBorder = "none";
+
+        if (rawProvider.includes('INDIA POST') || rawProvider.includes('POST')) {
+            if (s === 'KERALA') {
+                printCourierText = 'Parcel[C](1187359678)';
+                printCourierColor = '#64748b'; // Slate gray
+            } else {
+                printCourierText = 'Speed[E](1187359678)';
+                printCourierColor = '#dc2626'; // Red color
+                printCourierBorder = "1px dashed #dc2626";
+            }
+        } else if (rawProvider === 'DIRECT') {
+            printCourierText = 'DIRECT DELIVERY';
+            printCourierColor = '#dc2626'; // Red color
+            printCourierBorder = "1px solid #dc2626";
         }
 
         htmlContent += `
@@ -2758,8 +2759,8 @@ async function runPrintLogic(checkboxes, directData = null) {
                 P: ${paidTime}
             </div>
 
-            <div style="position:absolute; bottom:4.5mm; left:50%; transform:translateX(-50%); font-size:8px; font-weight:800; color:#9a9a9a; padding: 2px 8px; border-radius: 5px; letter-spacing: 0.5px; font-family: sans-serif; white-space: nowrap; background: #fff;">
-                ${printCourier}
+            <div style="position:absolute; bottom:4.5mm; left:50%; transform:translateX(-50%); font-size:9px; font-weight:800; color:${printCourierColor}; padding: 1px 6px; border-radius: 4px; letter-spacing: 0.5px; font-family: sans-serif; white-space: nowrap; background: #fff; border: ${printCourierBorder};">
+                ${printCourierText}
             </div>
 
         </div>`;
@@ -2769,7 +2770,6 @@ async function runPrintLogic(checkboxes, directData = null) {
     printWin.document.write(htmlContent);
     printWin.document.close();
 
-    // Timeout added to make sure images load before print prompt
     setTimeout(() => { printWin.focus(); printWin.print(); }, 500);
 }
 
