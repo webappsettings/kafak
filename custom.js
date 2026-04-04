@@ -1636,7 +1636,7 @@ function updateStatusUI(d) {
                 </div>
             </div>
             
-            <button onclick="trackParcel('${order.tracking}', '${order.provider || order.Courier_Provider}', '${trackLink}')" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px; border:none;">
+            <button onclick="trackParcel('${successData.tracking || ''}', '${successData.provider || successData.Courier_Provider || ''}', '${trackLink}')" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px; border:none;">
     ${t.btn_track} <i class="fas fa-chevron-right ms-1" style="font-size:9px;"></i>
 </button>
         </div>`;
