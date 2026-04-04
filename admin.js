@@ -2522,7 +2522,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (With Smart Courier Label UI)
+// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (Reverted India Post Logic, Kept Direct Delivery)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2696,22 +2696,13 @@ async function runPrintLogic(checkboxes, directData = null) {
             stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
-        // 🔥 SMART PROVIDER LABEL LOGIC (India Post, Speed & Direct)
+        // 🔥 REVERTED LOGIC: Use Original Provider Name, Except for DIRECT
         let rawProvider = String(d.provider || d.Courier_Provider || 'Courier').toUpperCase().trim();
         let printCourierText = rawProvider;
         let printCourierColor = "#9a9a9a"; // Default gray
         let printCourierBorder = "none";
 
-        if (rawProvider.includes('INDIA POST') || rawProvider.includes('POST')) {
-            if (s === 'KERALA') {
-                printCourierText = 'Parcel[C](1187359678)';
-                printCourierColor = '#64748b'; // Slate gray
-            } else {
-                printCourierText = 'Speed[E](1187359678)';
-                printCourierColor = '#dc2626'; // Red color
-                printCourierBorder = "1px dashed #dc2626";
-            }
-        } else if (rawProvider === 'DIRECT') {
+        if (rawProvider === 'DIRECT') {
             printCourierText = 'DIRECT DELIVERY';
             printCourierColor = '#dc2626'; // Red color
             printCourierBorder = "1px solid #dc2626";
