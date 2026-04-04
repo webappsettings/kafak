@@ -4468,7 +4468,7 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-// 🔥 1. DETAILED MONTHLY OVERVIEW (100% Sync with Lifetime Balance & Dark UI Fixed)
+// 🔥 1. DETAILED MONTHLY OVERVIEW (Archive Bug Fixed & 100% Accurate)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4499,11 +4499,15 @@ window.renderDetailedMonthlyOverview = function () {
 
     let lifeIncome = 0, lifeBottleCost = 0, lifeCourier = 0;
 
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
     allOrders.forEach(o => {
-        let status = String(o.Status || o.status || 'Pending').trim();
-        // 🔥 FIX: Archive, Refunded ഒഴിവാക്കുന്നു
+        // 🔥 FIX 1: Local ആയി Archive അല്ലെങ്കിൽ Refund ചെയ്തതാണെങ്കിലും തൽക്ഷണം ഒഴിവാക്കാൻ 
+        let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+        let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending').trim();
+
         let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
-        if (!isValidStatus) return;
+        if (!isValidStatus) return; // Archive ഉം Refunded ഉം ഇവിടെ വെച്ച് ഒഴിവാകും!
 
         let qty = parseInt(o.quantity || o.Quantity) || 0;
 
@@ -4537,7 +4541,6 @@ window.renderDetailedMonthlyOverview = function () {
 
         let actualC = 0, totalC = 0;
         if (!isDirect && status !== 'Paid') {
-            // 🔥 FIX: Dispatched Date ഇല്ലെങ്കിൽ Paid Date എടുക്കുന്നു
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
@@ -4547,7 +4550,6 @@ window.renderDetailedMonthlyOverview = function () {
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
-            // Monthly Courier (മാസം ഡിസ്പാച്ച് ആയതു മാത്രം കൊറിയർ എടുക്കുക)
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 tCourierCost += totalC;
                 tActualCourier += actualC;
@@ -7008,7 +7010,7 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - RESTORED OLD WHITE UI WITH FULL DETAILS & SALARY BREAKDOWN
+// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - FIX oDate Error & Archive Bug
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -7036,9 +7038,13 @@ window.renderPartnerList = function () {
         "Jazeela": { count: 0, orders: 0, travelEarned: 0, breakdown: {} }
     };
 
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
     allOrders.forEach(o => {
-        let status = String(o.Status || o.status || 'Pending').trim();
-        // 🔥 FIX: Archive, Refunded ഒഴിവാക്കുന്നു
+        // 🔥 FIX 1: Local Status Update Check (Archive/Refund ഒഴിവാക്കാൻ)
+        let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+        let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending').trim();
+
         let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
         if (!isValidStatus) return;
 
@@ -7046,7 +7052,11 @@ window.renderPartnerList = function () {
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr);
-        if (!isNaN(pDate.getTime()) && pDate.getTime() < firstDateMs) firstDateMs = oDate.getTime();
+
+        // 🔥 FIX 2: oDate Error പരിഹരിച്ചു! (pDate ആക്കി മാറ്റി)
+        if (!isNaN(pDate.getTime()) && pDate.getTime() < firstDateMs) {
+            firstDateMs = pDate.getTime();
+        }
 
         let isThisMonth = (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM);
 
@@ -7079,7 +7089,6 @@ window.renderPartnerList = function () {
 
         let actualC = 0, totalC = 0;
         if (!isDirect && status !== 'Paid') {
-            // 🔥 FIX: Dispatched Date ഇല്ലെങ്കിൽ Paid Date എടുക്കുന്നു
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
@@ -7088,7 +7097,6 @@ window.renderPartnerList = function () {
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
-            // Monthly Courier (മാസം ഡിസ്പാച്ച് ആയതു മാത്രം കൊറിയർ എടുക്കുക)
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 monthCourier += actualC;
                 monthTotalCourier += totalC;
@@ -7126,7 +7134,6 @@ window.renderPartnerList = function () {
         }
     });
 
-    // --- 2. EXPENSE CALCULATION ---
     let combinedExps = [];
     if (dashboardData.monthTimeline?.expense) combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
     let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
@@ -7170,13 +7177,11 @@ window.renderPartnerList = function () {
         }
     });
 
-    // 🔥 SALARY TAKEN BY PARTNERS (Lifetime)
     let salamTaken = dashboardData.partners["Salam"] ? (dashboardData.partners["Salam"].withdrawn || 0) : 0;
     let samadTaken = dashboardData.partners["Samad"] ? (dashboardData.partners["Samad"].withdrawn || 0) : 0;
     let jazeelaTaken = dashboardData.partners["Jazeela"] ? (dashboardData.partners["Jazeela"].withdrawn || 0) : 0;
     let totalSalaryTaken = salamTaken + samadTaken + jazeelaTaken;
 
-    // --- 3. PROFIT & BANK BALANCE ---
     let actualBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp + totalSalaryTaken);
 
     let totalExpense = monthBottleCost + monthCourier + monthOtherExp;
@@ -7200,7 +7205,6 @@ window.renderPartnerList = function () {
     let prevBtn = `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left"></i> Prev</button>`;
     let nextBtn = !isCurrentMonth ? `<button type="button" class="btn btn-sm btn-light border shadow-sm px-2 py-0 text-primary" style="font-size:11px; border-radius:6px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right"></i></button>` : `<span style="width:50px;"></span>`;
 
-    // 🟢 4. BUILD HTML UI (RESTORED OLD WHITE UI)
     let html = `
     <div class="alert alert-info p-3 mb-3 shadow-sm border-info" style="border-radius:12px; background: linear-gradient(135deg, #f0f9ff, #e0f2fe);">
         <div class="d-flex justify-content-between align-items-center">
@@ -7312,7 +7316,6 @@ window.renderPartnerList = function () {
         </div>
     </div>`;
 
-    // 🟢 5. PARTNER CARDS
     if (isCurrentMonth) {
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
