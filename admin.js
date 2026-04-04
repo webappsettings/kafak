@@ -4468,7 +4468,7 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-// 🔥 1. DETAILED MONTHLY OVERVIEW (100% Sync with Lifetime Balance & Big UI)
+// 🔥 1. DETAILED MONTHLY OVERVIEW (100% Sync with Lifetime Balance & Dark UI Fixed)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4479,7 +4479,7 @@ window.renderDetailedMonthlyOverview = function () {
     // 🔥 പുതിയ DIRECT SALE ബട്ടൺ ഡാഷ്‌ബോർഡിൽ ഏറ്റവും മുകളിലായി കൊടുക്കുന്നു!
     if ($('#btn-direct-sale').length === 0) {
         $(`
-        <button id="btn-direct-sale" onclick="showOfflineSaleModal()" class="btn btn-warning w-100 fw-bold mt-2 mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="border-radius:12px; padding:12px; font-size:14px; border:2px solid #000; background-color:#ffc107; color:#000;">
+        <button id="btn-direct-sale" onclick="showOfflineSaleModal()" class="btn w-100 fw-bold mt-2 mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="border-radius:12px; padding:12px; font-size:14px; border:2px solid #000; background-color:#ffc107; color:#000;">
             <i class="fas fa-shopping-cart fs-5"></i> <span>DIRECT / PARTNER SALE</span>
         </button>
         `).insertBefore('#tx-details-area');
@@ -4596,8 +4596,8 @@ window.renderDetailedMonthlyOverview = function () {
     // ഓഫ്‌ലൈൻ ഡാറ്റ കൂടി ലൈഫ് ടൈമിലേക്കും മാസത്തിലേക്കും ചേർക്കാൻ
     offExps.forEach(e => {
         let eDate = new Date(e.date);
-        let cat = String(e.category || e.cat || '').toLowerCase();
-        let isDeductible = !e.isCourier && !cat.includes('salary') && !cat.includes('refund') && !cat.includes('material');
+        let catStr = String(e.category || e.cat || '').toLowerCase(); // 🔥 FIX: Defined perfectly
+        let isDeductible = !e.isCourier && !catStr.includes('salary') && !catStr.includes('refund') && !catStr.includes('material');
 
         if (isDeductible) {
             lifeOtherExp += parseFloat(e.amount || 0);
@@ -4613,16 +4613,16 @@ window.renderDetailedMonthlyOverview = function () {
 
         let amt = Number(e.amount) || 0;
         if (!e.isCourier) {
-            let catName = String(e.cat || e.category || '').toLowerCase();
-            if (catName.includes('material')) {
+            let catStr = String(e.cat || e.category || '').toLowerCase(); // 🔥 FIX: Defined perfectly
+            if (catStr.includes('material')) {
                 tMaterialExpense += amt;
-            } else if (catName.includes('refund')) {
+            } else if (catStr.includes('refund')) {
                 expenseCategories["Refund"] += amt;
-            } else if (!catName.includes('salary')) {
+            } else if (!catStr.includes('salary')) {
                 tOtherExpense += amt;
-                if (catName.includes('food')) expenseCategories["Food"] += amt;
-                else if (cat.includes('travel') || cat.includes('transport')) expenseCategories["Travel"] += amt;
-                else if (cat.includes('ads') || cat.includes('marketing')) expenseCategories["Ads"] += amt;
+                if (catStr.includes('food')) expenseCategories["Food"] += amt;
+                else if (catStr.includes('travel') || catStr.includes('transport')) expenseCategories["Travel"] += amt;
+                else if (catStr.includes('ads') || catStr.includes('marketing')) expenseCategories["Ads"] += amt;
                 else {
                     let note = e.vendor || e.desc || 'Office Exp';
                     expenseCategories["Other"].push(`₹${amt} (${note})`);
@@ -4664,13 +4664,13 @@ window.renderDetailedMonthlyOverview = function () {
     let monthLabel = isCurrentMonth ? `This Month (${monthName})` : `${monthName} Overview`;
 
     // 🔥 FIX: Design matched to the Dark Theme of Monthly Breakdown
-    let prevBtn = `<button type="button" class="btn btn-sm btn-outline-secondary text-light rounded-pill px-3 py-1 shadow-sm" style="font-size:11px;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> Prev</button>`;
-    let nextBtn = isCurrentMonth ? `<div style="width:75px;"></div>` : `<button type="button" class="btn btn-sm btn-outline-secondary text-light rounded-pill px-3 py-1 shadow-sm" style="font-size:11px;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right ms-1"></i></button>`;
+    let prevBtn = `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> Prev</button>`;
+    let nextBtn = isCurrentMonth ? `<div style="width:75px;"></div>` : `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right ms-1"></i></button>`;
 
     // 🟢 1. LIFETIME BANK BALANCE UI
     let lifetimeHtml = `
     <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
-        <i class="fas fa-university text-white opacity-10" style="position: absolute; right: -20px; bottom: -20px; font-size: 100px; transform: rotate(-15deg);"></i>
+        <i class="fas fa-university opacity-10" style="position: absolute; right: -20px; bottom: -20px; font-size: 100px; transform: rotate(-15deg); color:#ffffff;"></i>
         
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div style="font-size:12px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px;">
@@ -4681,161 +4681,162 @@ window.renderDetailedMonthlyOverview = function () {
             </div>
         </div>
 
-        <div class="fw-bolder text-white text-start mt-2" style="font-size:36px; letter-spacing: 1px; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+        <div class="fw-bolder text-start mt-2" style="font-size:36px; letter-spacing: 1px; color:#ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
             ₹${lifeBankBalance.toLocaleString()}
         </div>
-        <div class="text-secondary mt-1 fw-bold text-start" style="font-size:10px; letter-spacing:0.5px;">
+        <div class="mt-1 fw-bold text-start" style="font-size:10px; letter-spacing:0.5px; color:#94a3b8;">
             ${firstDateStr.toUpperCase()} - ${todayStr.toUpperCase()}
         </div>
         
         <div id="globalBankBreakdown" style="display:none; margin-top:15px; padding-top:15px; border-top:1px dashed #475569; font-size:13px; text-align:left;">
             <div class="d-flex justify-content-between mb-2">
-                <span class="text-light">Total Income:</span>
-                <span class="text-success fw-bold">+ ₹${lifeIncome.toLocaleString()}</span>
+                <span style="color:#f1f5f9;">Total Income:</span>
+                <span style="color:#4ade80; font-weight:bold;">+ ₹${lifeIncome.toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between mb-2">
-                <span class="text-light">Bottle / Base Cost:</span>
-                <span class="text-danger fw-bold">- ₹${lifeBottleCost.toLocaleString()}</span>
+                <span style="color:#f1f5f9;">Bottle / Base Cost:</span>
+                <span style="color:#f87171; font-weight:bold;">- ₹${lifeBottleCost.toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between mb-2">
-                <span class="text-light">Courier Charges:</span>
-                <span class="text-danger fw-bold">- ₹${lifeCourier.toLocaleString()}</span>
+                <span style="color:#f1f5f9;">Courier Charges:</span>
+                <span style="color:#f87171; font-weight:bold;">- ₹${lifeCourier.toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between mb-1">
-                <span class="text-light">Other Expenses:</span>
-                <span class="text-danger fw-bold">- ₹${lifeOtherExp.toLocaleString()}</span>
+                <span style="color:#f1f5f9;">Other Expenses:</span>
+                <span style="color:#f87171; font-weight:bold;">- ₹${lifeOtherExp.toLocaleString()}</span>
             </div>
             
-            <div class="d-flex justify-content-between mb-0 mt-3 pt-2 border-top border-secondary border-opacity-25">
-                <span class="text-warning">Partner Salary Taken:</span>
-                <span class="text-warning fw-bold">- ₹${totalSalaryTaken.toLocaleString()}</span>
+            <div class="d-flex justify-content-between mb-0 mt-3 pt-2" style="border-top:1px solid rgba(255,255,255,0.1);">
+                <span style="color:#facc15;">Partner Salary Taken:</span>
+                <span style="color:#facc15; font-weight:bold;">- ₹${totalSalaryTaken.toLocaleString()}</span>
             </div>
-            <div class="text-secondary mb-2 text-end" style="font-size:10px; font-weight:600;">
+            <div class="mb-2 text-end" style="font-size:10px; font-weight:600; color:#94a3b8;">
                 (Samad: ₹${samadTaken.toLocaleString()} | Salam: ₹${salamTaken.toLocaleString()} | Jazi: ₹${jazeelaTaken.toLocaleString()})
             </div>
 
-            <div class="text-end border-top border-secondary pt-2 mt-2">
-                <span class="fw-bolder text-info" style="font-size:16px;">= ₹${lifeBankBalance.toLocaleString()}</span>
+            <div class="text-end pt-2 mt-2" style="border-top:1px solid rgba(255,255,255,0.1);">
+                <span style="font-size:16px; font-weight:900; color:#38bdf8;">= ₹${lifeBankBalance.toLocaleString()}</span>
             </div>
         </div>
     </div>`;
 
-    // 🟢 2. MONTHLY PROFIT BREAKDOWN UI (Error Fixed)
+    // 🟢 2. MONTHLY PROFIT BREAKDOWN UI (Colors fully optimized for Dark Background)
     let monthlyHtml = `
-    <div class="bg-dark text-white p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
+    <div class="p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
             <i class="fas fa-chart-pie me-2"></i> Monthly Profit Breakdown
         </h6>
         
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
+        <div class="d-flex justify-content-between align-items-center mb-3 pb-2" style="border-bottom:1px solid rgba(255,255,255,0.1);">
             ${prevBtn}
-            <span class="text-light fw-bold" style="font-size:14px; letter-spacing: 1px;">${monthLabel}</span>
+            <span style="font-size:14px; font-weight:bold; letter-spacing: 1px; color:#ffffff;">${monthLabel}</span>
             ${nextBtn}
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mb-3 pb-2 border-bottom border-secondary border-opacity-50">
-            <span class="text-light" style="font-size:13px;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue (Sales)</span>
-            <span class="fw-bold text-success fs-5">₹${tSales.toLocaleString()}</span>
-        </div>
-
         <div class="d-flex justify-content-between mb-1">
-            <span class="text-muted fw-bold">Sales: <span class="text-light">${monthOrders}</span></span>
-            <span class="text-muted fw-bold">Bottles: <span class="text-light">${tBottles}</span></span>
+            <span style="color:#94a3b8; font-weight:bold;">Sales: <span style="color:#ffffff;">${monthOrders}</span></span>
+            <span style="color:#94a3b8; font-weight:bold;">Bottles: <span style="color:#ffffff;">${tBottles}</span></span>
         </div>
         
-        <div class="d-flex justify-content-between mb-2 pb-1 border-bottom border-secondary border-opacity-10" style="font-size: 10px;">
-            <span class="text-success fw-bold"><i class="fas fa-check-circle"></i> Paid: ${monthPaidCount}</span>
-            <span class="text-primary fw-bold"><i class="fas fa-shipping-fast"></i> Dispatched: ${monthDispatchedCount}</span>
+        <div class="d-flex justify-content-between mb-2 pb-2" style="font-size: 11px; border-bottom:1px solid rgba(255,255,255,0.05);">
+            <span style="color:#4ade80; font-weight:bold;"><i class="fas fa-check-circle"></i> Paid: ${monthPaidCount}</span>
+            <span style="color:#38bdf8; font-weight:bold;"><i class="fas fa-shipping-fast"></i> Dispatched: ${monthDispatchedCount}</span>
         </div>
         
-        <div class="text-secondary small mb-1 fst-italic mt-2" style="font-size:10px; line-height: 1.4;">
-            <span class="fw-bold text-muted">Sales:</span> ${breakdownArr.join(', ')}
+        <div class="small mb-1 fst-italic mt-2" style="font-size:10px; line-height: 1.4; color:#cbd5e1;">
+            <span style="font-weight:bold; color:#94a3b8;">Sales:</span> ${breakdownArr.join(', ')}
         </div>
-        <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
-            <span class="fw-bold text-muted">Base Cost:</span> ${costBreakdownArr.join(', ')}
+        <div class="small mb-2 fst-italic" style="font-size:10px; line-height: 1.4; color:#cbd5e1;">
+            <span style="font-weight:bold; color:#94a3b8;">Base Cost:</span> ${costBreakdownArr.join(', ')}
         </div>
 
-        <div class="mb-2 mt-3 ps-3 border-start border-3 border-danger">
-            <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES (INCLUDED):</div>
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 pb-2" style="border-bottom:1px solid rgba(255,255,255,0.1);">
+            <span style="font-size:13px; font-weight:bold; color:#f1f5f9;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue</span>
+            <span style="font-size:18px; font-weight:bold; color:#4ade80;">₹${tSales.toLocaleString()}</span>
+        </div>
+
+        <div class="mb-2 ps-3 border-start border-3" style="border-color: #f87171 !important;">
+            <div style="font-size:11px; font-weight:bold; letter-spacing:0.5px; color:#f87171; margin-bottom:8px;">MINUS EXPENSES (INCLUDED):</div>
             
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🍾 Bottle Making Cost</div>
-                    <div class="text-warning" style="font-size:11px; font-weight:600;">(${tBottles} bottles × ₹${avgBottleRate})</div>
+                    <div style="font-size:12px; color:#f1f5f9;">🍾 Bottle Making Cost</div>
+                    <div style="font-size:11px; font-weight:600; color:#facc15;">(${tBottles} bottles × ₹${avgBottleRate})</div>
                 </div>
-                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tBottleCost.toLocaleString()}</span>
+                <span style="font-size:13px; font-weight:bold; color:#f87171;">- ₹${tBottleCost.toLocaleString()}</span>
             </div>
             
             <div class="d-flex justify-content-between align-items-start mt-2">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🚚 Courier & Transport</div>
-                    <div class="text-warning" style="font-size:10px; font-weight:600;">(Total: ₹${tCourierCost.toLocaleString()} | Margin: ₹${(tCourierCost - tActualCourier).toLocaleString()})</div>
+                    <div style="font-size:12px; color:#f1f5f9;">🚚 Courier & Transport</div>
+                    <div style="font-size:10px; font-weight:600; color:#facc15;">(Total: ₹${tCourierCost.toLocaleString()} | Margin: ₹${(tCourierCost - tActualCourier).toLocaleString()})</div>
                 </div>
-                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tActualCourier.toLocaleString()}</span>
+                <span style="font-size:13px; font-weight:bold; color:#f87171;">- ₹${tActualCourier.toLocaleString()}</span>
             </div>
             
-            <div class="d-flex justify-content-between align-items-start mt-2 pb-2 border-bottom border-secondary border-opacity-50">
+            <div class="d-flex justify-content-between align-items-start mt-2 pb-2" style="border-bottom:1px solid rgba(255,255,255,0.1);">
                 <div>
-                    <div class="text-light" style="font-size:12px;">🧾 Other Expenses</div>
-                    <div class="text-danger opacity-75" style="font-size:10px; font-weight:600;">(Food, Travel, Ads, Misc)</div>
+                    <div style="font-size:12px; color:#f1f5f9;">🧾 Other Expenses</div>
+                    <div style="font-size:10px; font-weight:600; color:#f87171; opacity:0.8;">(Food, Travel, Ads, Misc)</div>
                 </div>
-                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${tOtherExpense.toLocaleString()}</span>
+                <span style="font-size:13px; font-weight:bold; color:#f87171;">- ₹${tOtherExpense.toLocaleString()}</span>
             </div>
         </div>
         
-        ${expenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Food"].toLocaleString()}</span></div>` : ''}
-        ${expenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
-        ${expenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
+        ${expenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span style="color:#94a3b8; padding-left:8px;">🍔 Food:</span><span style="color:#f87171; font-weight:bold;">- ₹${expenseCategories["Food"].toLocaleString()}</span></div>` : ''}
+        ${expenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span style="color:#94a3b8; padding-left:8px;">⛽ Travel:</span><span style="color:#f87171; font-weight:bold;">- ₹${expenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
+        ${expenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span style="color:#94a3b8; padding-left:8px;">📢 Ads:</span><span style="color:#f87171; font-weight:bold;">- ₹${expenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
         
         ${expenseCategories["Other"].length > 0 ? `
             <div class="d-flex justify-content-between align-items-start mb-1" style="font-size:10px;">
-                <span class="text-muted ps-2">📝 Other:</span>
-                <span class="text-danger fw-bold text-end">${expenseCategories["Other"].join('<br>')}</span>
+                <span style="color:#94a3b8; padding-left:8px;">📝 Other:</span>
+                <span style="color:#f87171; font-weight:bold; text-align:right;">${expenseCategories["Other"].join('<br>')}</span>
             </div>` : ''}
             
-        ${expenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1 mt-2" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${expenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
+        ${expenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1 mt-2" style="font-size:10px;"><span style="color:#94a3b8; padding-left:8px;">💸 Refund:</span><div><span style="font-weight:bold; color:#cbd5e1;">₹${expenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
         
-        <div class="mt-3 p-2 rounded" style="background: rgba(13, 202, 240, 0.1); border-left: 3px solid #0dcaf0;">
+        <div class="mt-3 p-2 rounded" style="background: rgba(56, 189, 248, 0.1); border-left: 3px solid #38bdf8;">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <div class="text-info fw-bold" style="font-size:12px;"><i class="fas fa-ban me-1"></i> 📦 Material Purchases</div>
-                    <div class="text-info opacity-75" style="font-size:10px; font-weight:600;">(EXCLUDED from deduction)</div>
+                    <div style="font-size:12px; font-weight:bold; color:#38bdf8;"><i class="fas fa-ban me-1"></i> 📦 Material Purchases</div>
+                    <div style="font-size:10px; font-weight:600; color:#38bdf8; opacity:0.8;">(EXCLUDED from deduction)</div>
                 </div>
-                <span class="text-info fw-bold" style="font-size:13px;">₹${tMaterialExpense.toLocaleString()}</span>
+                <span style="font-size:13px; font-weight:bold; color:#38bdf8;">₹${tMaterialExpense.toLocaleString()}</span>
             </div>
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top border-secondary border-opacity-50">
-            <span class="fw-bold text-uppercase text-light" style="font-size:14px; letter-spacing:1px;">Actual Net Profit</span>
-            <span class="${netProfit >= 0 ? 'text-success' : 'text-danger'} fw-bolder" style="font-size:24px;">
+        <div class="d-flex justify-content-between align-items-center mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.1);">
+            <span style="font-size:14px; font-weight:bold; letter-spacing:1px; text-transform:uppercase; color:#f1f5f9;">Actual Net Profit</span>
+            <span style="font-size:24px; font-weight:bolder; color:${netProfit >= 0 ? '#4ade80' : '#f87171'};">
                 ₹${netProfit.toLocaleString()}
             </span>
         </div>
 
         ${netProfit > 0 ? `
-        <div class="mt-4 pt-3 border-top border-secondary border-opacity-25">
-            <h6 class="text-center text-muted fw-bold mb-3" style="font-size:11px; letter-spacing:1px;">PROFIT SHARE SPLIT</h6>
+        <div class="mt-4 pt-3" style="border-top:1px solid rgba(255,255,255,0.05);">
+            <h6 class="text-center fw-bold mb-3" style="font-size:11px; letter-spacing:1px; color:#94a3b8;">PROFIT SHARE SPLIT</h6>
             <div class="d-flex justify-content-between text-center">
-                <div class="w-100 px-1 border-end border-secondary border-opacity-25">
-                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Salam <span class="text-warning" style="font-size:9px;">(20%)</span></div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${salamShare.toLocaleString()}</div>
+                <div class="w-100 px-1 border-end" style="border-color:rgba(255,255,255,0.05) !important;">
+                    <div style="font-size:12px; font-weight:bold; color:#38bdf8; margin-bottom:4px;">Salam <span style="font-size:9px; color:#facc15;">(20%)</span></div>
+                    <div style="font-size:13px; font-weight:bold; color:#ffffff;">₹${salamShare.toLocaleString()}</div>
                 </div>
-                <div class="w-100 px-1 border-end border-secondary border-opacity-25">
-                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Samad <span class="text-warning" style="font-size:9px;">(70%)</span></div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${samadShare.toLocaleString()}</div>
+                <div class="w-100 px-1 border-end" style="border-color:rgba(255,255,255,0.05) !important;">
+                    <div style="font-size:12px; font-weight:bold; color:#38bdf8; margin-bottom:4px;">Samad <span style="font-size:9px; color:#facc15;">(70%)</span></div>
+                    <div style="font-size:13px; font-weight:bold; color:#ffffff;">₹${samadShare.toLocaleString()}</div>
                 </div>
                 <div class="w-100 px-1">
-                    <div class="text-info fw-bold mb-1" style="font-size:12px;">Jazeela <span class="text-warning" style="font-size:9px;">(10%)</span></div>
-                    <div class="fw-bold text-white" style="font-size:13px;">₹${jazeelaShare.toLocaleString()}</div>
+                    <div style="font-size:12px; font-weight:bold; color:#38bdf8; margin-bottom:4px;">Jazeela <span style="font-size:9px; color:#facc15;">(10%)</span></div>
+                    <div style="font-size:13px; font-weight:bold; color:#ffffff;">₹${jazeelaShare.toLocaleString()}</div>
                 </div>
             </div>
         </div>
-        ` : `<div class="text-center mt-3 text-danger" style="font-size:11px;">No profits to share this month.</div>`}
+        ` : `<div class="text-center mt-3" style="font-size:11px; color:#f87171;">No profits to share this month.</div>`}
     </div>`;
 
     // 🟢 3. COMBINE AND RENDER 
     $('#detailed-overview-container').html(lifetimeHtml + monthlyHtml);
 }
+
 // 🔥 2. RENDER YEARLY OVERVIEW (100% Sync with Dashboard)
 window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
