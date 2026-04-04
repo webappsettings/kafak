@@ -3223,63 +3223,59 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
-// 🔥 SUPER DATE PARSER (Strictly Indian Format to prevent US Date Bugs)
-function parseOrderDate(str) {
+// 🔥 SUPER DATE PARSER (Smart OID Detection to fix Month/Day swaps)
+window.parseOrderDate = function (str, oid = "") {
     if (!str) return new Date(NaN);
     let s = String(str).trim();
 
-    let parts = s.split(/[\/\-\sT:]+/);
+    let d = new Date(s);
 
-    // 1. ഗൂഗിൾ ഷീറ്റിൽ നിന്നും വരുന്ന DD/MM/YYYY അല്ലെങ്കിൽ MM/DD/YYYY ഫോർമാറ്റ്
-    if (parts.length >= 3 && parts[2].length === 4) {
-        let p1 = parseInt(parts[0]);
-        let p2 = parseInt(parts[1]);
-        let p3 = parseInt(parts[2]);
+    if (isNaN(d.getTime())) {
+        let parts = s.split(/[\/\-\sT:]+/);
+        if (parts.length >= 3) {
+            let p1 = parseInt(parts[0]), p2 = parseInt(parts[1]), p3 = parseInt(parts[2]);
+            let y = p3 > 1000 ? p3 : p1;
+            let m = p3 > 1000 ? p1 : p2;
+            let day = p3 > 1000 ? p2 : p3;
 
-        // ഫോഴ്സ് ആയി ഇന്ത്യൻ ഫോർമാറ്റ് (DD/MM/YYYY) എടുക്കുന്നു
-        let y = p3;
-        let m = p2;
-        let d = p1;
+            let h = parts[3] ? parseInt(parts[3]) : 0;
+            let min = parts[4] ? parseInt(parts[4]) : 0;
+            if (s.toLowerCase().includes('pm') && h < 12) h += 12;
+            if (s.toLowerCase().includes('am') && h === 12) h = 0;
 
-        // ഒരുപക്ഷെ അമേരിക്കൻ ഫോർമാറ്റ് ആയിരുന്നെങ്കിൽ (മാസം 12-ൽ കൂടുതൽ വരില്ലല്ലോ)
-        if (p1 > 12) {
-            d = p1;
-            m = p2;
-        } else if (p2 > 12) {
-            d = p2;
-            m = p1;
+            d = new Date(y, m - 1, day, h, min);
+        }
+    }
+
+    // 🧠 MAGIC FIX: Order ID വെച്ച് മാസവും ദിവസവും മാറിയെങ്കിൽ തനിയെ തിരുത്തുന്നു!
+    if (!isNaN(d.getTime()) && oid) {
+        let trueMonth = -1;
+        let trueYear = -1;
+
+        if (oid.startsWith("ORD-")) {
+            trueYear = parseInt(oid.substring(4, 8));
+            trueMonth = parseInt(oid.substring(8, 10));
+        } else if (oid.startsWith("K-")) {
+            trueYear = parseInt("20" + oid.substring(2, 4));
+            trueMonth = parseInt(oid.substring(4, 6));
         }
 
-        let h = parts[3] ? parseInt(parts[3]) : 0;
-        let min = parts[4] ? parseInt(parts[4]) : 0;
+        if (trueMonth > 0 && trueYear > 2000) {
+            let currentM = d.getMonth() + 1;
+            let currentD = d.getDate();
+            let currentY = d.getFullYear();
 
-        if (s.toLowerCase().includes('pm') && h < 12) h += 12;
-        if (s.toLowerCase().includes('am') && h === 12) h = 0;
+            if (currentY !== trueYear) d.setFullYear(trueYear);
 
-        return new Date(y, m - 1, d, h, min);
+            // മാസവും ദിവസവും അങ്ങോട്ടും ഇങ്ങോട്ടും മാറിയെങ്കിൽ (Swap) തിരുത്തുക!
+            if (currentM !== trueMonth && currentD === trueMonth) {
+                d.setMonth(currentD - 1);
+                d.setDate(currentM);
+            }
+        }
     }
-
-    // 2. YYYY-MM-DD ഫോർമാറ്റ് ആണെങ്കിൽ
-    if (parts.length >= 3 && parts[0].length === 4) {
-        let y = parseInt(parts[0]);
-        let m = parseInt(parts[1]);
-        let d = parseInt(parts[2]);
-
-        let h = parts[3] ? parseInt(parts[3]) : 0;
-        let min = parts[4] ? parseInt(parts[4]) : 0;
-
-        if (s.toLowerCase().includes('pm') && h < 12) h += 12;
-        if (s.toLowerCase().includes('am') && h === 12) h = 0;
-
-        return new Date(y, m - 1, d, h, min);
-    }
-
-    // 3. Fallback
-    let d = new Date(s);
-    if (!isNaN(d.getTime())) return d;
-
-    return new Date(NaN);
-}
+    return d;
+};
 
 // 🔥 UPDATE DASHBOARD MAIN CARDS (With Breakdown & JSON Fixes)
 function renderDashboard() {
@@ -4503,7 +4499,7 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-// 🔥 1. DETAILED MONTHLY OVERVIEW (Fixed Date Logic & 100% Accurate)
+// 🔥 1. DETAILED MONTHLY OVERVIEW (Archive & Date Bug Fixed)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -4547,8 +4543,9 @@ window.renderDetailedMonthlyOverview = function () {
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
+        // 🔥 FIX: Date പാർസറിലേക്ക് Order ID കൂടി അയക്കുന്നു
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
-        let pDate = parseOrderDate(pDateStr);
+        let pDate = parseOrderDate(pDateStr, o.orderid);
         if (isNaN(pDate.getTime())) return;
 
         if (pDate.getTime() < firstDateMs) {
@@ -4580,7 +4577,7 @@ window.renderDetailedMonthlyOverview = function () {
         let actualC = 0, totalC = 0;
         if (!isDirect && activeStatus !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
-            let dDate = parseOrderDate(dDateStr);
+            let dDate = parseOrderDate(dDateStr, o.orderid);
 
             actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
             totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
@@ -4731,7 +4728,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
     </div>`;
 
-    // 🟢 MONTHLY PROFIT BREAKDOWN UI (Dark Theme)
+    // 🟢 MONTHLY PROFIT BREAKDOWN UI
     let monthlyHtml = `
     <div class="p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
@@ -7057,10 +7054,7 @@ window.renderPartnerList = function () {
     let mM = selectedDate.getMonth();
     let firstDateMs = Date.now();
 
-    // Lifetime variables
     let lifeIncome = 0, lifeBottleCost = 0, lifeCourier = 0;
-
-    // Monthly variables
     let monthIncome = 0, monthBottleCost = 0, monthCourier = 0, monthTotalCourier = 0;
     let monthOrders = 0, monthBottles = 0;
     let monthOtherExp = 0, monthMaterialExp = 0;
@@ -7079,7 +7073,6 @@ window.renderPartnerList = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
-        // 🔥 STRICT FILTER: Local Status Update Check (Archive/Refund ഒഴിവാക്കാൻ)
         let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
@@ -7090,8 +7083,9 @@ window.renderPartnerList = function () {
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
+        // 🔥 FIX: Date പാർസറിലേക്ക് Order ID കൂടി അയക്കുന്നു
         let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
-        let pDate = parseOrderDate(pDateStr);
+        let pDate = parseOrderDate(pDateStr, o.orderid);
         if (isNaN(pDate.getTime())) return;
 
         if (pDate.getTime() < firstDateMs) {
@@ -7130,7 +7124,7 @@ window.renderPartnerList = function () {
         let actualC = 0, totalC = 0;
         if (!isDirect && activeStatus !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
-            let dDate = parseOrderDate(dDateStr);
+            let dDate = parseOrderDate(dDateStr, o.orderid);
 
             actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
             totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
