@@ -3223,28 +3223,31 @@ function changeDashDate() {
     fetchDashboardDataBg();
 }
 
-// 🔥 SUPER DATE PARSER (Fixed US/UK Date Format Issue For Perfect Accuracy)
+// 🔥 SUPER DATE PARSER (Strictly Indian Format to prevent US Date Bugs)
 function parseOrderDate(str) {
     if (!str) return new Date(NaN);
     let s = String(str).trim();
 
     let parts = s.split(/[\/\-\sT:]+/);
 
-    // 1. ഗൂഗിൾ ഷീറ്റിൽ നിന്നും വരുന്ന MM/DD/YYYY ആണോ എന്ന് നോക്കാൻ 
-    // നിങ്ങളുടെ ഷീറ്റിലെ അക്കങ്ങൾ നോക്കുമ്പോൾ, വർഷം 2026 എന്നാണെങ്കിൽ അത് മൂന്നാമതാണ് വരുന്നത് (അതായത് MM/DD/YYYY അല്ലെങ്കിൽ DD/MM/YYYY).
+    // 1. ഗൂഗിൾ ഷീറ്റിൽ നിന്നും വരുന്ന DD/MM/YYYY അല്ലെങ്കിൽ MM/DD/YYYY ഫോർമാറ്റ്
     if (parts.length >= 3 && parts[2].length === 4) {
         let p1 = parseInt(parts[0]);
         let p2 = parseInt(parts[1]);
         let p3 = parseInt(parts[2]);
 
+        // ഫോഴ്സ് ആയി ഇന്ത്യൻ ഫോർമാറ്റ് (DD/MM/YYYY) എടുക്കുന്നു
         let y = p3;
-        let m = p1; // ഗൂഗിൾ ഷീറ്റ് അധികവും മാസം ആദ്യമാണ് തരുന്നത് (MM/DD)
-        let d = p2;
+        let m = p2;
+        let d = p1;
 
-        // ഒരുപക്ഷേ ഇന്ത്യയിലെ പോലെ DD/MM ആണെങ്കിൽ (ഉദാഹരണത്തിന് മാസം 12-ൽ കൂടുതലാണെങ്കിൽ)
+        // ഒരുപക്ഷെ അമേരിക്കൻ ഫോർമാറ്റ് ആയിരുന്നെങ്കിൽ (മാസം 12-ൽ കൂടുതൽ വരില്ലല്ലോ)
         if (p1 > 12) {
-            m = p2;
             d = p1;
+            m = p2;
+        } else if (p2 > 12) {
+            d = p2;
+            m = p1;
         }
 
         let h = parts[3] ? parseInt(parts[3]) : 0;
@@ -3256,7 +3259,7 @@ function parseOrderDate(str) {
         return new Date(y, m - 1, d, h, min);
     }
 
-    // 2. YYYY-MM-DD ആണെങ്കിൽ
+    // 2. YYYY-MM-DD ഫോർമാറ്റ് ആണെങ്കിൽ
     if (parts.length >= 3 && parts[0].length === 4) {
         let y = parseInt(parts[0]);
         let m = parseInt(parts[1]);
@@ -3264,6 +3267,10 @@ function parseOrderDate(str) {
 
         let h = parts[3] ? parseInt(parts[3]) : 0;
         let min = parts[4] ? parseInt(parts[4]) : 0;
+
+        if (s.toLowerCase().includes('pm') && h < 12) h += 12;
+        if (s.toLowerCase().includes('am') && h === 12) h = 0;
+
         return new Date(y, m - 1, d, h, min);
     }
 
