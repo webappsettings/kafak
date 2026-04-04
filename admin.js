@@ -7044,7 +7044,7 @@ window.showCourierBreakdown = function (dateStr) {
     });
 };
 
-// 🔥 ACCOUNTS (SALARY) OVERVIEW - RESTORED OLD DETAILED WHITE UI (With All Bug Fixes)
+// 🔥 2. ACCOUNTS (SALARY) OVERVIEW - RESTORED OLD WHITE UI WITH FULL DETAILED BREAKDOWN & DATE FIX
 window.renderPartnerList = function () {
     if (!dashboardData || !dashboardData.partners) return;
     let partners = dashboardData.partners;
@@ -7086,7 +7086,7 @@ window.renderPartnerList = function () {
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
-        // 🔥 FIX: Smart Date Parser
+        // 🔥 FIX: Date പാർസറിലേക്ക് Order ID കൂടി അയക്കുന്നു
         let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr, o.orderid);
         if (isNaN(pDate.getTime())) return;
@@ -7101,7 +7101,6 @@ window.renderPartnerList = function () {
         let isDirect = false;
         let pName = "";
 
-        // Direct Courier Logic
         if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
             let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
             if (match) {
@@ -7228,6 +7227,8 @@ window.renderPartnerList = function () {
 
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
 
+    let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : 330;
+
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
 
@@ -7250,10 +7251,27 @@ window.renderPartnerList = function () {
                 <div class="bg-white text-info rounded-circle d-flex align-items-center justify-content-center shadow-sm" style="width:34px; height:34px;"><i class="fas fa-university"></i></div>
                 <div>
                     <div style="font-size:10px; font-weight:800; color:#0284c7; text-transform:uppercase; letter-spacing:0.5px;">Est. Bank Balance</div>
-                    <div style="font-size:9px; color:#0369a1;">(Income - All Expenses & Materials)</div>
+                    <div style="font-size:9px; color:#0369a1; cursor:pointer; font-weight:bold;" onclick="$('#bankBreakdown').slideToggle();">View Calculation <i class="fas fa-chevron-down ms-1"></i></div>
                 </div>
             </div>
             <div class="fw-bolder text-dark" style="font-size:18px;">₹${actualBankBalance.toLocaleString()}</div>
+        </div>
+        <div id="bankBreakdown" style="display:none; margin-top:12px; padding-top:12px; border-top:1px dashed #7dd3fc; font-size:11px;">
+            <div class="mb-2 text-center text-primary fw-bold" style="font-size:9px; letter-spacing:0.5px; background: #e0f2fe; padding: 4px; border-radius: 4px;">LIFETIME BALANCE (${firstDateStr.toUpperCase()} - ${todayStr.toUpperCase()})</div>
+            <div class="d-flex justify-content-between mb-1"><span>Lifetime Income:</span><span class="text-success fw-bold">+ ₹${lifeIncome.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between mb-1"><span>Bottle / Base Cost:</span><span class="text-danger">- ₹${lifeBottleCost.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between mb-1"><span>Courier Charges:</span><span class="text-danger">- ₹${lifeCourier.toLocaleString()}</span></div>
+            <div class="d-flex justify-content-between mb-1"><span>Other Expenses:</span><span class="text-danger fw-bold">- ₹${lifeOtherExp.toLocaleString()}</span></div>
+            
+            <div class="d-flex justify-content-between mb-0 mt-2 pt-2 border-top border-info border-opacity-25">
+                <span class="text-danger fw-bold">Partner Salary Taken:</span>
+                <span class="text-danger fw-bold">- ₹${totalSalaryTaken.toLocaleString()}</span>
+            </div>
+            <div class="text-secondary mb-2 text-end" style="font-size:9px; font-weight:600;">
+                (Samad: ₹${samadTaken.toLocaleString()} | Salam: ₹${salamTaken.toLocaleString()} | Jazi: ₹${jazeelaTaken.toLocaleString()})
+            </div>
+
+            <div class="text-end border-top pt-1 mt-1"><span class="fw-bolder text-dark" style="font-size:12px;">= ₹${actualBankBalance.toLocaleString()}</span></div>
         </div>
     </div>
 
@@ -7271,21 +7289,51 @@ window.renderPartnerList = function () {
             <span class="text-muted fw-bold">Bottles: <span class="text-dark">${monthBottles}</span></span>
         </div>
         
-        <div class="text-secondary small mb-1 fst-italic" style="font-size:10px; line-height: 1.4;">
+        <div class="d-flex justify-content-between mb-2 pb-1 border-bottom border-secondary border-opacity-10" style="font-size: 10px;">
+            <span class="text-success fw-bold"><i class="fas fa-check-circle"></i> Paid: ${monthPaidCount}</span>
+            <span class="text-primary fw-bold"><i class="fas fa-shipping-fast"></i> Dispatched: ${monthDispatchedCount}</span>
+        </div>
+        
+        <div class="text-secondary small mb-1 fst-italic mt-2" style="font-size:10px; line-height: 1.4;">
             <span class="fw-bold text-muted">Sales:</span> ${breakdownArr.join(', ')}
         </div>
         <div class="text-secondary small mb-2 fst-italic" style="font-size:10px; line-height: 1.4;">
             <span class="fw-bold text-muted">Base Cost:</span> ${costBreakdownArr.join(', ')}
         </div>
         
-        <div class="d-flex justify-content-between mb-1 mt-2 pt-2 border-top border-secondary border-opacity-10">
-            <span class="text-muted">Total Income:</span>
-            <span class="fw-bold text-success">₹${monthIncome.toLocaleString()}</span>
+        <div class="d-flex justify-content-between align-items-center mt-3 mb-3 pb-2 border-bottom border-secondary border-opacity-25">
+            <span style="font-size:13px; font-weight:bold; color:#475569;"><i class="fas fa-coins text-warning me-2"></i>Total Revenue</span>
+            <span style="font-size:18px; font-weight:bold; color:#198754;">₹${monthIncome.toLocaleString()}</span>
         </div>
-        <div class="d-flex justify-content-between mb-0">
-            <span class="text-muted">Deductible Expense:</span>
-            <span class="fw-bold text-danger">- ₹${totalExpense.toLocaleString()} <span style="font-size:9px;" class="badge bg-danger bg-opacity-10 text-danger ms-1">INCLUDED</span></span>
+
+        <div class="mb-2 ps-3 border-start border-3 border-danger">
+            <div class="text-danger fw-bold mb-2" style="font-size:11px; letter-spacing:0.5px;">MINUS EXPENSES (INCLUDED):</div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div class="text-dark fw-bold" style="font-size:12px;">🍾 Bottle Making Cost</div>
+                    <div class="text-muted" style="font-size:11px; font-weight:600;">(${monthBottles} bottles × ₹${avgBottleRate})</div>
+                </div>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${monthBottleCost.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2">
+                <div>
+                    <div class="text-dark fw-bold" style="font-size:12px;">🚚 Courier & Transport</div>
+                    <div class="text-muted" style="font-size:10px; font-weight:600;">(Total: ₹${monthTotalCourier.toLocaleString()} | Margin: ₹${(monthTotalCourier - monthCourier).toLocaleString()})</div>
+                </div>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${monthCourier.toLocaleString()}</span>
+            </div>
+            
+            <div class="d-flex justify-content-between align-items-start mt-2 pb-2 border-bottom border-secondary border-opacity-25">
+                <div>
+                    <div class="text-dark fw-bold" style="font-size:12px;">🧾 Other Expenses</div>
+                    <div class="text-danger opacity-75" style="font-size:10px; font-weight:600;">(Food, Travel, Ads, Misc)</div>
+                </div>
+                <span class="text-danger fw-bold" style="font-size:13px;">- ₹${monthOtherExp.toLocaleString()}</span>
+            </div>
         </div>
+
         ${expenseCategories["Food"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">🍔 Food:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Food"].toLocaleString()}</span></div>` : ''}
         ${expenseCategories["Travel"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">⛽ Travel:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Travel"].toLocaleString()}</span></div>` : ''}
         ${expenseCategories["Ads"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">📢 Ads:</span><span class="text-danger fw-bold">- ₹${expenseCategories["Ads"].toLocaleString()}</span></div>` : ''}
@@ -7296,27 +7344,26 @@ window.renderPartnerList = function () {
                 <span class="text-danger fw-bold text-end">${expenseCategories["Other"].join('<br>')}</span>
             </div>` : ''}
             
-        ${expenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${expenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
-        <div class="d-flex justify-content-between mb-1 mt-1">
-            <span class="fw-bold text-info" style="font-size:10px;">
-                <i class="fas fa-ban"></i> Materials: ₹${monthMaterialExp.toLocaleString()}
-            </span>
-            <span class="badge bg-info bg-opacity-10 text-info" style="font-size:8px; height:fit-content;">EXCLUDED</span>
-        </div>
-        <div class="d-flex justify-content-between align-items-start mb-3 pb-2 border-bottom border-dashed border-secondary border-opacity-25 mt-1">
-            <div class="text-warning fw-bold" style="font-size:10px;">
-                <i class="fas fa-truck"></i> Courier ➔ Total: ₹${monthTotalCourier.toLocaleString()} <br>
-                <span class="ms-3 text-muted" style="font-size:9px;">(Margin Saved: ₹${(monthTotalCourier - monthCourier).toLocaleString()})</span>
-            </div>
-            <span class="badge bg-danger bg-opacity-10 text-danger" style="font-size:8px; margin-top:2px;">INCLUDED</span>
-        </div>
+        ${expenseCategories["Refund"] > 0 ? `<div class="d-flex justify-content-between mb-1 mt-2" style="font-size:10px;"><span class="text-muted ps-2">💸 Refund:</span><div><span class="text-secondary fw-bold">₹${expenseCategories["Refund"].toLocaleString()}</span> <span class="badge bg-info bg-opacity-10 text-info ms-1" style="font-size:7px;">EXCLUDED</span></div></div>` : ''}
         
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <span class="fw-bold text-dark" style="font-size:13px;">Net Profit:</span>
-            <span class="fw-bolder fs-5 ${liveProfit >= 0 ? 'text-success' : 'text-danger'}">₹${liveProfit.toLocaleString()}</span>
+        <div class="mt-3 p-2 rounded" style="background: rgba(13, 202, 240, 0.1); border-left: 3px solid #0dcaf0;">
+            <div class="d-flex justify-content-between align-items-center">
+                <div>
+                    <div class="text-info fw-bold" style="font-size:12px;"><i class="fas fa-ban me-1"></i> 📦 Material Purchases</div>
+                    <div class="text-info opacity-75" style="font-size:10px; font-weight:600;">(EXCLUDED from deduction)</div>
+                </div>
+                <span class="text-info fw-bold" style="font-size:13px;">₹${monthMaterialExp.toLocaleString()}</span>
+            </div>
         </div>
 
-        <div class="bg-light p-2 rounded-3 border">
+        <div class="d-flex justify-content-between align-items-center mt-4 pt-3 border-top border-secondary border-opacity-25">
+            <span class="fw-bold text-uppercase text-dark" style="font-size:14px; letter-spacing:1px;">Actual Net Profit</span>
+            <span class="${liveProfit >= 0 ? 'text-success' : 'text-danger'} fw-bolder" style="font-size:24px;">
+                ₹${liveProfit.toLocaleString()}
+            </span>
+        </div>
+
+        <div class="bg-light p-2 rounded-3 border mt-3">
             <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
                 <span class="fw-bold text-secondary">Salam (20%):</span>
                 <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
@@ -7347,15 +7394,13 @@ window.renderPartnerList = function () {
 
             let bdText = (dd && Object.keys(dd.breakdown).length > 0) ? `(${Object.entries(dd.breakdown).map(([c, t]) => c + 'x' + t).join(', ')})` : "";
 
-            let formattedBal = Number(defaultBal).toLocaleString('en-IN', { maximumFractionDigits: 0 });
-
             html += `
             <div class="partner-card p-3 mb-2 border rounded-4 shadow-sm" data-partner="${name}" onclick="selectPartnerWithCheck('${name}', ${defaultBal}, ${checkedBal})" style="cursor:pointer; background:#fff;">
                 <div class="d-flex align-items-center w-100">
                     <div class="me-3"><i class="fas fa-user-circle text-muted" style="font-size: 36px;"></i></div>
                     <div class="flex-grow-1">
                         <div class="fw-bolder text-dark" style="font-size:15px;">${name}</div>
-                        <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">Final Bal: ₹${formattedBal}</div>
+                        <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">Final Bal: ₹${Number(defaultBal).toLocaleString('en-IN')}</div>
                         
                         <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
                             <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
@@ -7374,7 +7419,7 @@ window.renderPartnerList = function () {
                             </div>
                         </div>` : ''}
 
-                        ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : `<div class="mt-2 text-muted" style="font-size:9px;">No salary taken yet.</div>`}
+                        ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
                     </div>
                     <div class="ms-2"><i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i></div>
                 </div>
