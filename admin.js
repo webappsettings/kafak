@@ -6357,7 +6357,7 @@ async function submitExpense(e, editId = null) {
         .finally(() => btn.prop('disabled', false).html(originalText));
 }
 
-// 🔥 4. UPDATE DAY BOOK TO CALL UNIFIED MODALS
+// 🔥 4. UPDATE DAY BOOK TO CALL UNIFIED MODALS (With DDelivery Fix)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -6376,16 +6376,29 @@ window.renderDayBookTable = function () {
     const initDate = (dStr) => { if (!dailyData[dStr]) dailyData[dStr] = { income: { orders: [], totalAmount: 0, totalBottles: 0 }, courier: { items: [], totalAmount: 0 }, expenses: [] }; };
 
     allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+        let status = String(o.Status || o.status || 'Pending').trim();
+        if (['Pending', 'Sent', 'Archive', 'Refunded'].includes(status)) return;
 
         let qty = parseInt(o.quantity) || 0;
-        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
+        let pDate = parseOrderDate(o.paidDate || o.timestamp);
 
-        let totalCourier = parseInt(o.Courier_Charge) || 0;
-        if (isNaN(totalCourier) || totalCourier <= 0) totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-        let actualCourier = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-        if (isNaN(actualCourier) || actualCourier <= 0) actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier;
+        // 🔥 Direct Delivery Check for Day Book
+        let isDirect = false;
+        if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
+            let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+            if (match) isDirect = true;
+        }
+
+        let totalCourier = 0;
+        let actualCourier = 0;
+
+        // ഡയറക്ട് ഡെലിവറി അല്ലെങ്കിൽ മാത്രം കൊറിയർ ചാർജ് കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+        if (!isDirect) {
+            totalCourier = parseInt(o.Courier_Charge) || 0;
+            if (isNaN(totalCourier) || totalCourier <= 0) totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            actualCourier = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
+            if (isNaN(actualCourier) || actualCourier <= 0) actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier;
+        }
 
         let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
         let saleType = (o.house === 'Local Sale' || o.house === 'Partner Bulk') ? o.house : 'Online';
@@ -6398,6 +6411,12 @@ window.renderDayBookTable = function () {
             if (isNaN(amt) || amt <= 0) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+            }
+
+            // ഡയറക്ട് ഡെലിവറി വരുമാനം കമ്പനിക്ക് കിട്ടുന്ന ₹650 ആയി ഫിക്സ് ചെയ്യുന്നു
+            if (isDirect) {
+                let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+                amt = standardPrice;
             }
 
             dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt, msg: o.message });
@@ -6420,7 +6439,7 @@ window.renderDayBookTable = function () {
         }
 
         if (viewMode === 'accounting' && status !== 'Paid') {
-            let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
+            let dDate = parseOrderDate(o['Dispatched Date'] || o.timestamp);
             if (dDate.getFullYear() === mY && dDate.getMonth() === mM && saleType === 'Online') {
                 let dStr = flatpickr.formatDate(dDate, "Y-m-d");
                 initDate(dStr);
@@ -6453,7 +6472,7 @@ window.renderDayBookTable = function () {
         });
     }
 
-    window.dayBookData = dailyData; // 🔥 ഗ്ലോബൽ ആക്കുന്നു
+    window.dayBookData = dailyData;
     let sortedDates = Object.keys(dailyData).sort((a, b) => new Date(b) - new Date(a));
     let grandIncome = 0, grandCourier = 0, grandExpense = 0;
 
@@ -6573,9 +6592,7 @@ window.renderDayBookTable = function () {
         if (data.expenses.length > 0) {
             hasData = true;
             data.expenses.forEach(e => {
-                let amt = Number(e.amount) || 0; // 🔥 Number ആക്കുന്നു
-                grandExpense += amt;
-                e.amount = amt; // ഒബ്ജക്റ്റിലെ വാല്യൂ അപ്ഡേറ്റ് ചെയ്യുന്നു              
+                grandExpense += e.amount;
                 let proofHtml = e.proof && String(e.proof).trim() !== "" ? `<a href="${e.proof}" target="_blank" class="btn btn-sm btn-light border py-0 px-1 ms-1 shadow-sm" style="font-size:9px; border-radius:4px;"><i class="fas fa-image text-primary"></i></a>` : '';
                 let editHtml = (e.id && isMasterUser) ? `<button onclick="showAddExpenseModal('${e.id}')" class="btn btn-sm btn-outline-primary py-0 px-1 ms-2" style="font-size:8px; border-radius:4px;"><i class="fas fa-edit"></i> Edit</button>` : '';
                 let title = e.cat || 'Expense';
@@ -6614,7 +6631,7 @@ window.renderDayBookTable = function () {
 }
 
 
-// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with Phone Num, Expense Filter & Fixed N/A)
+// 🔥 SHOW DAILY ACTIVITIES TABLE (With DDelivery Fix & Exact Amount)
 window.showDayDetails = function (dateStr) {
     let dailyOrders = [];
     let dailyExpenses = [];
@@ -6632,13 +6649,13 @@ window.showDayDetails = function (dateStr) {
 
     // 2. ആ ദിവസത്തെ ഓർഡറുകൾ എടുക്കുന്നു
     allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+        let status = String(o.Status || o.status || 'Pending').trim();
+        if (['Pending', 'Sent', 'Archive', 'Refunded'].includes(status)) return;
 
-        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date);
         let pStr = !isNaN(pDate.getTime()) ? flatpickr.formatDate(pDate, "Y-m-d") : null;
 
-        let dDate = parseOrderDate(o['Dispatched Date'] || o.dispatchedDate || o.timestamp || o.Date || o.date);
+        let dDate = parseOrderDate(o['Dispatched Date']);
         let dStr = !isNaN(dDate.getTime()) ? flatpickr.formatDate(dDate, "Y-m-d") : null;
 
         if (pStr === dateStr || dStr === dateStr) {
@@ -6657,12 +6674,31 @@ window.showDayDetails = function (dateStr) {
     dailyOrders.forEach(o => {
         let currentStatus = String(o.Status || 'Pending').toUpperCase();
         let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+
+        // 🔥 ഡയറക്ട് ഡെലിവറി ചെക്ക് ചെയ്യുന്നു
+        let isDirect = false;
+        let partnerName = "";
+        if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
+            let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+            if (match) {
+                isDirect = true;
+                partnerName = match[1];
+            }
+        }
+
+        // എമൗണ്ട് കാൽക്കുലേഷൻ
         let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
         if (isNaN(amt) || amt <= 0) amt = qty * 650;
+
+        // 🔥 ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ എമൗണ്ട് 650 ആക്കി മാറ്റുന്നു (₹80 ഒഴിവാക്കുന്നു)
+        if (isDirect) {
+            amt = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
+        }
 
         let state = String(o.state || o.State || 'KERALA').toUpperCase().trim();
         let courier = String(o.courier || o.Courier_Provider || o.provider || 'N/A').toUpperCase().trim();
         if (!courier || courier === 'UNDEFINED') courier = 'N/A';
+        if (isDirect) courier = 'DIRECT (' + partnerName.toUpperCase() + ')'; // കൊറിയർ പേര് മാറ്റുന്നു
 
         stats.status[currentStatus] = (stats.status[currentStatus] || 0) + 1;
 
@@ -6681,16 +6717,21 @@ window.showDayDetails = function (dateStr) {
         let statusBadge = `<span class="badge ${badgeClass}" style="font-size:9px; letter-spacing:0.5px;">${currentStatus}</span>`;
 
         let courierDisplay = "";
-        let cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.actualCourierCost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
+        let cCost = 0;
 
-        // 🔥 N/A ഫിക്സ്: കാൽക്കുലേഷൻ നടത്തിയിട്ടും 0 ആണെങ്കിൽ ഒന്നും കാണിക്കില്ല
-        if (cCost <= 0) {
-            let tCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            cCost = tCost > 20 ? tCost - 20 : tCost;
+        // ഡയറക്ട് അല്ലെങ്കിൽ മാത്രം കൊറിയർ ചാർജ് കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+        if (!isDirect) {
+            cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.actualCourierCost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
+            if (cCost <= 0) {
+                let tCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                cCost = tCost > 20 ? tCost - 20 : tCost;
+            }
         }
 
-        if (['DISPATCHED', 'DELIVERED', 'COMPLETED', 'ARCHIVE'].includes(currentStatus) || o['Tracking ID'] || o.tracking) {
-            if (cCost > 0) {
+        if (['DISPATCHED', 'DELIVERED', 'COMPLETED', 'ARCHIVE'].includes(currentStatus) || o['Tracking ID'] || o.tracking || isDirect) {
+            if (isDirect) {
+                courierDisplay = `<div class="text-warning mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-motorcycle"></i> Direct</div>`;
+            } else if (cCost > 0) {
                 courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
             }
         }
@@ -6698,10 +6739,9 @@ window.showDayDetails = function (dateStr) {
         let place = (o.place || o.Place || '').substring(0, 15);
         let phoneNum = String(o.phone || o.Phone || '').replace(/[^0-9]/g, '').slice(-10);
 
-        // 🔥 സ്ഥലം, സംസ്ഥാനം, ഫോൺ നമ്പർ എന്നിവ ഒന്നിച്ചു ചേർക്കുന്നു
         let placeParts = [];
         if (place) placeParts.push(place);
-        if (state) placeParts.push(state); // സംസ്ഥാനം (State) ഇവിടെ ചേർത്തു
+        if (state) placeParts.push(state);
         if (phoneNum) placeParts.push(phoneNum);
         let placePhoneText = placeParts.join(', ');
 
@@ -6740,23 +6780,23 @@ window.showDayDetails = function (dateStr) {
     let optStatus = `<option value="all">All Status (${dailyOrders.length})</option>`;
     Object.keys(stats.status).forEach(k => { optStatus += `<option value="${k}">${k} (${stats.status[k]})</option>`; });
 
-    // 🔥 EXPENSE ഫിൽറ്റർ ചേർക്കുന്നു
+    // 2. EXPENSE ഫിൽറ്റർ ചേർക്കുന്നു
     if (dailyExpenses.length > 0) {
         optStatus += `<option value="EXPENSE">EXPENSE (${dailyExpenses.length})</option>`;
     }
 
-    // 2. Qty / Amount Dropdown
+    // 3. Qty / Amount Dropdown
     let totalAmtAll = Object.values(stats.qty).reduce((sum, item) => sum + item.total, 0);
     let optQty = `<option value="all">Total (${dailyOrders.length}) [₹${totalAmtAll.toLocaleString()}]</option>`;
     Object.keys(stats.qty).sort((a, b) => a - b).forEach(k => {
         optQty += `<option value="${k}">₹${stats.qty[k].total.toLocaleString()} (${stats.qty[k].count}x${k})</option>`;
     });
 
-    // 3. State Dropdown
+    // 4. State Dropdown
     let optState = `<option value="all">All State (${dailyOrders.length})</option>`;
     Object.keys(stats.state).forEach(k => { optState += `<option value="${k}">${k} (${stats.state[k]})</option>`; });
 
-    // 4. Courier Dropdown
+    // 5. Courier Dropdown
     let optCourier = `<option value="all">All Courier (${dailyOrders.length})</option>`;
     Object.keys(stats.courier).forEach(k => { optCourier += `<option value="${k}">${k} (${stats.courier[k]})</option>`; });
 
