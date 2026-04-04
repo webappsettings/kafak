@@ -4502,22 +4502,26 @@ window.renderDetailedMonthlyOverview = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
-        // 🔥 FIX 1: Local ആയി Archive അല്ലെങ്കിൽ Refund ചെയ്തതാണെങ്കിലും തൽക്ഷണം ഒഴിവാക്കാൻ 
+        // 🔥 STRICT FILTER: Local ആയി Archive അല്ലെങ്കിൽ Refund ചെയ്തതാണെങ്കിലും തൽക്ഷണം ഒഴിവാക്കാൻ 
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
-        let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending').trim();
+        let rawStatus = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending');
+        let status = rawStatus.trim().toLowerCase();
 
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
-        if (!isValidStatus) return; // Archive ഉം Refunded ഉം ഇവിടെ വെച്ച് ഒഴിവാകും!
+        // ഈ 4 സ്റ്റാറ്റസുകൾ മാത്രമേ കാൽക്കുലേഷനിൽ എടുക്കൂ!
+        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(status)) return;
+        if (status === 'archive' || status === 'refunded') return;
 
-        let qty = parseInt(o.quantity || o.Quantity) || 0;
+        let qty = parseInt(o.quantity || o.Quantity) || 1;
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr);
-        if (!isNaN(pDate.getTime()) && pDate.getTime() < firstDateMs) {
+        if (isNaN(pDate.getTime())) return;
+
+        if (pDate.getTime() < firstDateMs) {
             firstDateMs = pDate.getTime();
         }
 
-        let isThisMonth = (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM);
+        let isThisMonth = (pDate.getFullYear() === mY && pDate.getMonth() === mM);
 
         let isDirect = false;
         if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
@@ -4540,7 +4544,7 @@ window.renderDetailedMonthlyOverview = function () {
         let rowCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
         let actualC = 0, totalC = 0;
-        if (!isDirect && status !== 'Paid') {
+        if (!isDirect && status !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
@@ -4550,6 +4554,7 @@ window.renderDetailedMonthlyOverview = function () {
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
+            // Monthly Courier (മാസം ഡിസ്പാച്ച് ആയതു മാത്രം കൊറിയർ എടുക്കുക)
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 tCourierCost += totalC;
                 tActualCourier += actualC;
@@ -4566,7 +4571,7 @@ window.renderDetailedMonthlyOverview = function () {
             tBottleCost += rowCost;
             monthOrders++;
 
-            if (status === 'Paid') monthPaidCount += qty;
+            if (status === 'paid') monthPaidCount += qty;
             else monthDispatchedCount += qty;
 
             let key = `₹${amt}`;
@@ -7041,24 +7046,27 @@ window.renderPartnerList = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
-        // 🔥 FIX 1: Local Status Update Check (Archive/Refund ഒഴിവാക്കാൻ)
+        // 🔥 STRICT FILTER: Local Status Update Check (Archive/Refund ഒഴിവാക്കാൻ)
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
-        let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending').trim();
+        let rawStatus = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || o.status || 'Pending');
+        let status = rawStatus.trim().toLowerCase();
 
-        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
-        if (!isValidStatus) return;
+        // ഈ 4 സ്റ്റാറ്റസുകൾ മാത്രമേ കാൽക്കുലേഷനിൽ എടുക്കൂ!
+        if (!['paid', 'dispatched', 'delivered', 'completed'].includes(status)) return;
+        if (status === 'archive' || status === 'refunded') return;
 
-        let qty = parseInt(o.quantity || o.Quantity) || 0;
+        let qty = parseInt(o.quantity || o.Quantity) || 1;
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr);
+        if (isNaN(pDate.getTime())) return;
 
-        // 🔥 FIX 2: oDate Error പരിഹരിച്ചു! (pDate ആക്കി മാറ്റി)
-        if (!isNaN(pDate.getTime()) && pDate.getTime() < firstDateMs) {
+        // 🔥 FIX: oDate Error പരിഹരിച്ചു! (ഇവിടെയെല്ലാം pDate ആക്കി മാറ്റി)
+        if (pDate.getTime() < firstDateMs) {
             firstDateMs = pDate.getTime();
         }
 
-        let isThisMonth = (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM);
+        let isThisMonth = (pDate.getFullYear() === mY && pDate.getMonth() === mM);
 
         let travelCharge = 0;
         let isDirect = false;
@@ -7088,7 +7096,7 @@ window.renderPartnerList = function () {
         let rowCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
         let actualC = 0, totalC = 0;
-        if (!isDirect && status !== 'Paid') {
+        if (!isDirect && status !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
@@ -7113,7 +7121,7 @@ window.renderPartnerList = function () {
             monthOrders++;
             monthBottles += qty;
 
-            if (status === 'Paid') monthPaidCount += qty;
+            if (status === 'paid') monthPaidCount += qty;
             else monthDispatchedCount += qty;
 
             let key = `₹${amt}`;
