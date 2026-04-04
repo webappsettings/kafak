@@ -4476,7 +4476,6 @@ window.renderDetailedMonthlyOverview = function () {
         $('<div id="detailed-overview-container" class="mt-3 mb-4"></div>').insertAfter('#tx-details-area');
     }
 
-    // 🔥 പുതിയ DIRECT SALE ബട്ടൺ ഡാഷ്‌ബോർഡിൽ ഏറ്റവും മുകളിലായി കൊടുക്കുന്നു!
     if ($('#btn-direct-sale').length === 0) {
         $(`
         <button id="btn-direct-sale" onclick="showOfflineSaleModal()" class="btn w-100 fw-bold mt-2 mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="border-radius:12px; padding:12px; font-size:14px; border:2px solid #000; background-color:#ffc107; color:#000;">
@@ -4490,7 +4489,6 @@ window.renderDetailedMonthlyOverview = function () {
     let firstDateMs = Date.now();
     let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
 
-    // Monthly Trackers
     let tSales = 0, tBottles = 0, tBottleCost = 0;
     let tCourierCost = 0, tActualCourier = 0, tOtherExpense = 0, tMaterialExpense = 0;
     let monthOrders = 0, monthPaidCount = 0, monthDispatchedCount = 0;
@@ -4499,11 +4497,11 @@ window.renderDetailedMonthlyOverview = function () {
     let costBreakdown = {};
     let expenseCategories = { "Food": 0, "Travel": 0, "Ads": 0, "Refund": 0, "Other": [] };
 
-    // Lifetime Trackers
     let lifeIncome = 0, lifeBottleCost = 0, lifeCourier = 0;
 
     allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim();
+        // 🔥 FIX: Archive, Refunded ഒഴിവാക്കുന്നു
         let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
         if (!isValidStatus) return;
 
@@ -4523,27 +4521,24 @@ window.renderDetailedMonthlyOverview = function () {
             if (match) isDirect = true;
         }
 
-        // 1. Amount കാൽക്കുലേഷൻ
         let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
         if (isNaN(amt) || amt <= 0) {
             let pInfo = calculatePriceInfo(o, qty, o.state || o.State, o.provider || o.Courier_Provider);
             amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
         }
 
-        // ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ കമ്പനിയുടെ യഥാർത്ഥ വരുമാനം (₹650 നിരക്കിൽ) മാത്രം എടുക്കുക
         if (isDirect) {
             let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
-            amt = standardPrice; // ₹80 Profit Partner-ന് ഉള്ളതായതിനാൽ ഇവിടെ കൂട്ടുന്നില്ല
+            amt = standardPrice;
         }
 
-        // 2. Base Cost കാൽക്കുലേഷൻ
         let dbCost = parseInt(o.Product_Base_Cost || o.productBaseCost);
         let rowCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
-        // 3. Courier കാൽക്കുലേഷൻ
         let actualC = 0, totalC = 0;
         if (!isDirect && status !== 'Paid') {
-            let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
+            // 🔥 FIX: Dispatched Date ഇല്ലെങ്കിൽ Paid Date എടുക്കുന്നു
+            let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr);
 
             actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
@@ -4552,19 +4547,17 @@ window.renderDetailedMonthlyOverview = function () {
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
-            // Monthly Courier
+            // Monthly Courier (മാസം ഡിസ്പാച്ച് ആയതു മാത്രം കൊറിയർ എടുക്കുക)
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 tCourierCost += totalC;
                 tActualCourier += actualC;
             }
         }
 
-        // Add to Lifetime
         lifeIncome += amt;
         lifeBottleCost += rowCost;
         lifeCourier += actualC;
 
-        // Add to Monthly
         if (isThisMonth) {
             tSales += amt;
             tBottles += qty;
@@ -4584,63 +4577,45 @@ window.renderDetailedMonthlyOverview = function () {
         }
     });
 
-    // --- EXPENSES (Lifetime & Monthly) ---
     let lifeOtherExp = dashboardData.lifetimeOtherExpense || 0;
-
     let combinedExps = [];
-    if (dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
-        combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
-    }
+    if (dashboardData.monthTimeline && dashboardData.monthTimeline.expense) combinedExps = combinedExps.concat(dashboardData.monthTimeline.expense);
     let offExps = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
 
-    // ഓഫ്‌ലൈൻ ഡാറ്റ കൂടി ലൈഫ് ടൈമിലേക്കും മാസത്തിലേക്കും ചേർക്കാൻ
     offExps.forEach(e => {
         let eDate = new Date(e.date);
-        let catStr = String(e.category || e.cat || '').toLowerCase(); // 🔥 FIX: Defined perfectly
+        let catStr = String(e.category || e.cat || '').toLowerCase();
         let isDeductible = !e.isCourier && !catStr.includes('salary') && !catStr.includes('refund') && !catStr.includes('material');
-
-        if (isDeductible) {
-            lifeOtherExp += parseFloat(e.amount || 0);
-        }
-        if (eDate.getFullYear() === mY && eDate.getMonth() === mM) {
-            combinedExps.push(e);
-        }
+        if (isDeductible) lifeOtherExp += parseFloat(e.amount || 0);
+        if (eDate.getFullYear() === mY && eDate.getMonth() === mM) combinedExps.push(e);
     });
 
     combinedExps.forEach(e => {
         let eDate = parseOrderDate(e.date);
-        if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return; // ഈ മാസത്തെ മാത്രം
+        if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return;
 
         let amt = Number(e.amount) || 0;
         if (!e.isCourier) {
-            let catStr = String(e.cat || e.category || '').toLowerCase(); // 🔥 FIX: Defined perfectly
-            if (catStr.includes('material')) {
-                tMaterialExpense += amt;
-            } else if (catStr.includes('refund')) {
-                expenseCategories["Refund"] += amt;
-            } else if (!catStr.includes('salary')) {
+            let catStr = String(e.cat || e.category || '').toLowerCase();
+            if (catStr.includes('material')) tMaterialExpense += amt;
+            else if (catStr.includes('refund')) expenseCategories["Refund"] += amt;
+            else if (!catStr.includes('salary')) {
                 tOtherExpense += amt;
                 if (catStr.includes('food')) expenseCategories["Food"] += amt;
                 else if (catStr.includes('travel') || catStr.includes('transport')) expenseCategories["Travel"] += amt;
                 else if (catStr.includes('ads') || catStr.includes('marketing')) expenseCategories["Ads"] += amt;
-                else {
-                    let note = e.vendor || e.desc || 'Office Exp';
-                    expenseCategories["Other"].push(`₹${amt} (${note})`);
-                }
+                else expenseCategories["Other"].push(`₹${amt} (${e.vendor || e.desc || 'Office Exp'})`);
             }
         }
     });
 
-    // 🔥 SALARY TAKEN BY PARTNERS (Lifetime)
     let salamTaken = dashboardData.partners["Salam"] ? (dashboardData.partners["Salam"].withdrawn || 0) : 0;
     let samadTaken = dashboardData.partners["Samad"] ? (dashboardData.partners["Samad"].withdrawn || 0) : 0;
     let jazeelaTaken = dashboardData.partners["Jazeela"] ? (dashboardData.partners["Jazeela"].withdrawn || 0) : 0;
     let totalSalaryTaken = salamTaken + samadTaken + jazeelaTaken;
 
-    // --- FINAL CALCULATIONS ---
     let totalExpense = tBottleCost + tActualCourier + tOtherExpense;
     let netProfit = tSales - totalExpense;
-
     window.currentLiveProfit = netProfit > 0 ? netProfit : 0;
 
     let salamShare = netProfit > 0 ? Math.floor(netProfit * 0.20) : 0;
@@ -4648,8 +4623,6 @@ window.renderDetailedMonthlyOverview = function () {
     let jazeelaShare = netProfit > 0 ? netProfit - (salamShare + samadShare) : 0;
 
     let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
-
-    // 🔥 BANK BALANCE = Income - (Expenses + Salary)
     let lifeBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp + totalSalaryTaken);
 
     let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -4660,16 +4633,15 @@ window.renderDetailedMonthlyOverview = function () {
 
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
-
     let monthLabel = isCurrentMonth ? `This Month (${monthName})` : `${monthName} Overview`;
 
-    // 🔥 FIX: Design matched to the Dark Theme of Monthly Breakdown
     let prevBtn = `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> Prev</button>`;
     let nextBtn = isCurrentMonth ? `<div style="width:75px;"></div>` : `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right ms-1"></i></button>`;
 
-    // 🟢 1. LIFETIME BANK BALANCE UI
+    // 🟢 LIFETIME BANK BALANCE UI
     let lifetimeHtml = `
     <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
+        <i class="fas fa-university opacity-10" style="position: absolute; right: -20px; bottom: -20px; font-size: 100px; transform: rotate(-15deg); color:#ffffff;"></i>
         
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div style="font-size:12px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px;">
@@ -4719,7 +4691,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
     </div>`;
 
-    // 🟢 2. MONTHLY PROFIT BREAKDOWN UI (Colors fully optimized for Dark Background)
+    // 🟢 MONTHLY PROFIT BREAKDOWN UI (Dark Theme)
     let monthlyHtml = `
     <div class="p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
@@ -4832,7 +4804,6 @@ window.renderDetailedMonthlyOverview = function () {
         ` : `<div class="text-center mt-3" style="font-size:11px; color:#f87171;">No profits to share this month.</div>`}
     </div>`;
 
-    // 🟢 3. COMBINE AND RENDER 
     $('#detailed-overview-container').html(lifetimeHtml + monthlyHtml);
 }
 
@@ -7065,19 +7036,20 @@ window.renderPartnerList = function () {
         "Jazeela": { count: 0, orders: 0, travelEarned: 0, breakdown: {} }
     };
 
-    // --- 1. LOOP ALL ORDERS (Lifetime & Monthly Calculation) ---
     allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim();
-        if (!['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) return;
+        // 🔥 FIX: Archive, Refunded ഒഴിവാക്കുന്നു
+        let isValidStatus = ['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status);
+        if (!isValidStatus) return;
 
-        let oDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
-        let oDate = parseOrderDate(oDateStr);
-        if (!isNaN(oDate.getTime()) && oDate.getTime() < firstDateMs) firstDateMs = oDate.getTime();
-
-        let isThisMonth = (!isNaN(oDate.getTime()) && oDate.getFullYear() === mY && oDate.getMonth() === mM);
         let qty = parseInt(o.quantity || o.Quantity) || 0;
 
-        // Direct Delivery Logic
+        let pDateStr = o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date;
+        let pDate = parseOrderDate(pDateStr);
+        if (!isNaN(pDate.getTime()) && pDate.getTime() < firstDateMs) firstDateMs = oDate.getTime();
+
+        let isThisMonth = (!isNaN(pDate.getTime()) && pDate.getFullYear() === mY && pDate.getMonth() === mM);
+
         let travelCharge = 0;
         let isDirect = false;
         let pName = "";
@@ -7087,7 +7059,7 @@ window.renderPartnerList = function () {
             if (match) {
                 isDirect = true;
                 pName = match[1];
-                travelCharge = parseInt(match[2]) || 0; // ₹80 Profit
+                travelCharge = parseInt(match[2]) || 0;
             }
         }
 
@@ -7107,10 +7079,20 @@ window.renderPartnerList = function () {
 
         let actualC = 0, totalC = 0;
         if (!isDirect && status !== 'Paid') {
+            // 🔥 FIX: Dispatched Date ഇല്ലെങ്കിൽ Paid Date എടുക്കുന്നു
+            let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
+            let dDate = parseOrderDate(dDateStr);
+
             actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
             totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+
+            // Monthly Courier (മാസം ഡിസ്പാച്ച് ആയതു മാത്രം കൊറിയർ എടുക്കുക)
+            if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                monthCourier += actualC;
+                monthTotalCourier += totalC;
+            }
         }
 
         lifeIncome += amt;
@@ -7120,8 +7102,6 @@ window.renderPartnerList = function () {
         if (isThisMonth) {
             monthIncome += amt;
             monthBottleCost += rowCost;
-            monthCourier += actualC;
-            monthTotalCourier += totalC;
             monthOrders++;
             monthBottles += qty;
 
@@ -7202,8 +7182,6 @@ window.renderPartnerList = function () {
     let totalExpense = monthBottleCost + monthCourier + monthOtherExp;
     let monthNetProfit = monthIncome - totalExpense;
     let liveProfit = monthNetProfit > 0 ? monthNetProfit : 0;
-
-    window.currentLiveProfit = liveProfit;
 
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
 
@@ -7384,7 +7362,7 @@ window.renderPartnerList = function () {
     } else {
         html += `
         <div class="text-center mt-3 mb-2 text-danger fw-bold bg-danger bg-opacity-10 p-3 rounded-4 border border-danger border-opacity-25" style="font-size:11px;">
-            <i class="fas fa-lock fs-5 mb-2"></i><br>సാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
+            <i class="fas fa-lock fs-5 mb-2"></i><br>സാലറി കാണാൻ ഈ മാസത്തെ (Current Month) റിപ്പോർട്ട് എടുക്കുക.
             <div class="mt-3"><button type="button" class="btn btn-sm btn-danger fw-bold shadow-sm rounded-pill px-4" onclick="jumpToCurrentMonth()">Go to This Month</button></div>
         </div>`;
     }
