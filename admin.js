@@ -485,7 +485,7 @@ function fetchOrders(forceLoad = false) {
 
 
 // 🔥 RENDER TABS (With PERFECT Date Grouping & State Filters)
-// 🔥 1. RENDER TABS (With DIRECT Courier Full Amount Fix in Timeline)
+// 🔥 1. RENDER TABS (With DIRECT Courier Full Amount Fix & Refunded Filter)
 function renderTabs(orders) {
     const listNew = document.getElementById('list-sub-new');
     const listSent = document.getElementById('list-sub-sent');
@@ -495,6 +495,7 @@ function renderTabs(orders) {
     const listDispTracked = document.getElementById('list-disp-tracked');
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
+    // 🔥 SMART CLEANUP: പഴയ കസ്റ്റമേഴ്സിന്റെ പഴയ 'P' ടാഗുകൾ തനിയെ ഒഴിവാക്കുന്നു
     orders.forEach(o => {
         let metaStr = String(o.adminMeta || '');
         if (metaStr.includes('P_') && o.timestamp) {
@@ -513,19 +514,27 @@ function renderTabs(orders) {
         let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let status = (local && local.status) ? local.status : (o.Status || 'Pending');
 
-        let tDate = parseOrderDate(o.timestamp, o.orderid);
-        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o['Paid Date'] || o.timestamp);
-        let pDate = parseOrderDate(pDateStr, o.orderid);
+        // 🔥 Safe Date Parser (With OID Fix Included)
+        let parseDt = (val) => {
+            if (!val) return new Date(0);
+            let dt = new Date(val);
+            if (isNaN(dt.getTime()) && typeof parseOrderDate === 'function') dt = parseOrderDate(val, o.orderid);
+            return isNaN(dt.getTime()) ? new Date(0) : dt;
+        };
+
+        let tDate = parseDt(o.timestamp || o.Date || o.date);
+        let pDateStr = (status === 'Paid' && local?.actionDate) ? local.actionDate : (o.paidDate || o['Paid Date'] || o.timestamp || o.Date || o.date);
+        let pDate = parseDt(pDateStr);
 
         let sheetDispDate = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.actionDate;
         let dDateStr = (status === 'Dispatched' && local?.actionDate) ? local.actionDate : (sheetDispDate || pDateStr);
-        let dDate = parseOrderDate(dDateStr, o.orderid);
+        let dDate = parseDt(dDateStr);
 
         let metaStr = String(o.adminMeta || '');
         let isPrinted = metaStr.includes('P');
         let printTimeMatch = metaStr.match(/P_(\d+)/);
         let printDateRaw = printTimeMatch ? parseInt(printTimeMatch[1]) : pDateStr;
-        let printDate = parseOrderDate(printDateRaw, o.orderid);
+        let printDate = parseDt(printDateRaw);
 
         return { status, tDate, pDate, dDate, pDateStr, dDateStr, isPrinted, printDateRaw, printDate };
     };
@@ -658,6 +667,8 @@ function renderTabs(orders) {
     orders.forEach(o => {
         let info = getOrderInfo(o);
         let status = info.status;
+
+        // 🔥 FIX 1: Refunded/Archive ആയ ഓർഡറുകൾ ടൈംലൈൻ അക്കൗണ്ടിംഗിൽ നിന്ന് ഒഴിവാക്കുന്നു
         if (status === 'Archive' || status === 'Refunded') return;
 
         let meta = getMetaStatus(o.adminMeta, status);
@@ -693,7 +704,6 @@ function renderTabs(orders) {
 
             if (status === 'Delivered') timelineStats[fullKey].D++;
             if (status === 'Completed') timelineStats[fullKey].C++;
-            if (status === 'Refunded') timelineStats[fullKey].R++;
 
             if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
@@ -703,7 +713,7 @@ function renderTabs(orders) {
 
                 let rawProvider = String(o.provider || o.Courier_Provider || o['Courier Provider'] || 'Other').trim();
 
-                // 🔥 DIRECT COURIER FIX: Timeline-ൽ Full Amount (No Margin) കാണിക്കാൻ 
+                // 🔥 FIX 2: DIRECT COURIER FIX (ടൈംലൈനിൽ മാർജിൻ ഇല്ലാതെ ഫുൾ എമൗണ്ട് കാണിക്കാൻ)
                 if (rawProvider.toUpperCase() === 'DIRECT') {
                     actualC = totalC;
                 }
@@ -745,7 +755,7 @@ function renderTabs(orders) {
         let info = getOrderInfo(d);
         let status = info.status;
 
-        if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+        if (['Paid', 'Dispatched', 'Delivered', 'Completed', 'Refunded'].includes(status)) {
             d.paidDate = info.pDateStr;
         }
         if (['Dispatched', 'Delivered', 'Completed'].includes(status)) {
@@ -858,7 +868,6 @@ function renderTabs(orders) {
                     let badgeStr = "";
                     if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
                     if (sStats.C > 0) badgeStr += `<span class="text-success fw-bold ms-1" style="font-size:10px;">(${sStats.C} C)</span>`;
-                    if (sStats.R > 0) badgeStr += `<span class="text-danger fw-bold ms-1" style="font-size:10px;">(${sStats.R} R)</span>`;
 
                     if (badgeStr !== "") {
                         extraHtml += `<span class="ms-2 ps-1 border-start border-secondary d-flex align-items-center">${badgeStr}</span>`;
@@ -6695,7 +6704,7 @@ window.renderDayBookTable = function () {
 }
 
 
-// 🔥 SHOW DAILY ACTIVITIES TABLE (Updated with Direct Delivery Info)
+// 🔥 SHOW DAILY ACTIVITIES TABLE (With DDelivery Fix & Exact Amount)
 window.showDayDetails = function (dateStr) {
     let dailyOrders = [];
     let dailyExpenses = [];
@@ -6705,7 +6714,7 @@ window.showDayDetails = function (dateStr) {
         dashboardData.monthTimeline.expense.forEach(e => {
             if (e.isCourier) return;
             let eDate = new Date(e.date);
-            if (window.formatDateSimple(eDate, "Y-m-d") === dateStr) {
+            if (flatpickr.formatDate(eDate, "Y-m-d") === dateStr) {
                 dailyExpenses.push(e);
             }
         });
@@ -6713,14 +6722,14 @@ window.showDayDetails = function (dateStr) {
 
     // 2. ആ ദിവസത്തെ ഓർഡറുകൾ എടുക്കുന്നു
     allOrders.forEach(o => {
-        let status = o.Status || 'Pending';
-        if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
+        let status = String(o.Status || o.status || 'Pending').trim();
+        if (['Pending', 'Sent', 'Archive', 'Refunded'].includes(status)) return;
 
-        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date, o.orderid);
-        let pStr = !isNaN(pDate.getTime()) ? window.formatDateSimple(pDate, "Y-m-d") : null;
+        let pDate = parseOrderDate(o.paidDate || o['Paid Date'] || o.timestamp || o.Date);
+        let pStr = !isNaN(pDate.getTime()) ? flatpickr.formatDate(pDate, "Y-m-d") : null;
 
-        let dDate = parseOrderDate(o['Dispatched Date'], o.orderid);
-        let dStr = !isNaN(dDate.getTime()) ? window.formatDateSimple(dDate, "Y-m-d") : null;
+        let dDate = parseOrderDate(o['Dispatched Date']);
+        let dStr = !isNaN(dDate.getTime()) ? flatpickr.formatDate(dDate, "Y-m-d") : null;
 
         if (pStr === dateStr || dStr === dateStr) {
             dailyOrders.push(o);
@@ -6739,34 +6748,30 @@ window.showDayDetails = function (dateStr) {
         let currentStatus = String(o.Status || 'Pending').toUpperCase();
         let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
 
+        // 🔥 ഡയറക്ട് ഡെലിവറി ചെക്ക് ചെയ്യുന്നു
         let isDirect = false;
-        let directName = "";
-        let directAmt = 0;
-
-        // 🔥 Direct Delivery ഡാറ്റ എടുക്കുന്നു
+        let partnerName = "";
         if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
             let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
             if (match) {
                 isDirect = true;
-                directName = match[1];
-                directAmt = parseInt(match[2]) || 0;
+                partnerName = match[1];
             }
         }
 
-        // Amount (Bottle Price)
+        // എമൗണ്ട് കാൽക്കുലേഷൻ
         let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
-        if (isNaN(amt) || amt <= 0) {
-            if (isDirect) {
-                let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
-                amt = standardPrice;
-            } else {
-                amt = qty * 650;
-            }
+        if (isNaN(amt) || amt <= 0) amt = qty * 650;
+
+        // 🔥 ഡയറക്ട് ഡെലിവറി ആണെങ്കിൽ എമൗണ്ട് 650 ആക്കി മാറ്റുന്നു (₹80 ഒഴിവാക്കുന്നു)
+        if (isDirect) {
+            amt = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
         }
 
         let state = String(o.state || o.State || 'KERALA').toUpperCase().trim();
         let courier = String(o.courier || o.Courier_Provider || o.provider || 'N/A').toUpperCase().trim();
         if (!courier || courier === 'UNDEFINED') courier = 'N/A';
+        if (isDirect) courier = 'DIRECT (' + partnerName.toUpperCase() + ')'; // കൊറിയർ പേര് മാറ്റുന്നു
 
         stats.status[currentStatus] = (stats.status[currentStatus] || 0) + 1;
 
@@ -6784,22 +6789,23 @@ window.showDayDetails = function (dateStr) {
 
         let statusBadge = `<span class="badge ${badgeClass}" style="font-size:9px; letter-spacing:0.5px;">${currentStatus}</span>`;
 
-        // 🔥 Courier / Direct Display Logic
         let courierDisplay = "";
-        if (isDirect) {
-            // Direct Delivery ആണെങ്കിൽ പേരും തുകയും കാണിക്കുന്നു
-            courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;">Direct ${directAmt}rs by ${directName}</div>`;
-        } else {
-            // സാധാരണ കൊറിയർ ആണെങ്കിൽ പഴയതുപോലെ കാണിക്കുന്നു
-            let cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.actualCourierCost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
+        let cCost = 0;
+
+        // ഡയറക്ട് അല്ലെങ്കിൽ മാത്രം കൊറിയർ ചാർജ് കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+        if (!isDirect) {
+            cCost = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.actualCourierCost) || parseFloat(o.Courier_Charge) || parseFloat(o.courierCost) || 0;
             if (cCost <= 0) {
                 let tCost = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 cCost = tCost > 20 ? tCost - 20 : tCost;
             }
-            if (['DISPATCHED', 'DELIVERED', 'COMPLETED', 'ARCHIVE'].includes(currentStatus) || o['Tracking ID'] || o.tracking) {
-                if (cCost > 0) {
-                    courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
-                }
+        }
+
+        if (['DISPATCHED', 'DELIVERED', 'COMPLETED', 'ARCHIVE'].includes(currentStatus) || o['Tracking ID'] || o.tracking || isDirect) {
+            if (isDirect) {
+                courierDisplay = `<div class="text-warning mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-motorcycle"></i> Direct</div>`;
+            } else if (cCost > 0) {
+                courierDisplay = `<div class="text-danger mt-1" style="font-size:9px; font-weight:800;"><i class="fas fa-truck"></i> ₹${cCost}</div>`;
             }
         }
 
@@ -6847,22 +6853,23 @@ window.showDayDetails = function (dateStr) {
     let optStatus = `<option value="all">All Status (${dailyOrders.length})</option>`;
     Object.keys(stats.status).forEach(k => { optStatus += `<option value="${k}">${k} (${stats.status[k]})</option>`; });
 
+    // 2. EXPENSE ഫിൽറ്റർ ചേർക്കുന്നു
     if (dailyExpenses.length > 0) {
         optStatus += `<option value="EXPENSE">EXPENSE (${dailyExpenses.length})</option>`;
     }
 
-    // 2. Qty / Amount Dropdown
+    // 3. Qty / Amount Dropdown
     let totalAmtAll = Object.values(stats.qty).reduce((sum, item) => sum + item.total, 0);
     let optQty = `<option value="all">Total (${dailyOrders.length}) [₹${totalAmtAll.toLocaleString()}]</option>`;
     Object.keys(stats.qty).sort((a, b) => a - b).forEach(k => {
         optQty += `<option value="${k}">₹${stats.qty[k].total.toLocaleString()} (${stats.qty[k].count}x${k})</option>`;
     });
 
-    // 3. State Dropdown
+    // 4. State Dropdown
     let optState = `<option value="all">All State (${dailyOrders.length})</option>`;
     Object.keys(stats.state).forEach(k => { optState += `<option value="${k}">${k} (${stats.state[k]})</option>`; });
 
-    // 4. Courier Dropdown
+    // 5. Courier Dropdown
     let optCourier = `<option value="all">All Courier (${dailyOrders.length})</option>`;
     Object.keys(stats.courier).forEach(k => { optCourier += `<option value="${k}">${k} (${stats.courier[k]})</option>`; });
 
