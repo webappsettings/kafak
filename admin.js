@@ -972,13 +972,57 @@ function renderTabs(orders) {
         }
 
         let bCount = 0;
-        if (id === 'paid_new') bCount = pNewQty;
-        else if (id === 'paid_print') bCount = pPrintQty;
-        else if (id === 'disp_new') bCount = dNewQty;
-        else if (id === 'disp_track') bCount = dTrackQty;
-        else {
-            bCount = orders.filter(o => getOrderInfo(o).status === (id === 'new' ? 'Pending' : 'Sent')).reduce((sum, o) => sum + (parseInt(o.quantity) || 1), 0);
-        }
+        let qStats = {}; // 🔥 NEW: ബോട്ടിൽ ബ്രേക്ക്ഡൗൺ കാൽക്കുലേറ്റ് ചെയ്യാൻ
+
+        // ടാബിലുള്ള ഓർഡറുകളെ ഫിൽറ്റർ ചെയ്ത് എണ്ണമെടുക്കുന്നു
+        orders.forEach(o => {
+            let info = getOrderInfo(o);
+            let status = info.status;
+
+            // State ഫിൽറ്റർ ഓൺ ആണെങ്കിൽ അത് ചെക്ക് ചെയ്യുന്നു
+            let s = String(o.state || '').toUpperCase().trim();
+            let stateKey = null;
+            if (s && s !== 'KERALA') {
+                if (s.includes('LAK')) stateKey = 'lak';
+                else if (s.includes('KARN')) stateKey = 'kar';
+                else if (s.includes('TAMIL') || s.includes('TN')) stateKey = 'tn';
+                else stateKey = 'other';
+            }
+            if (window.activeStateFilter) {
+                let isMatch = false;
+                if (window.activeStateFilter === 'KL' && (!stateKey)) isMatch = true;
+                else if (window.activeStateFilter === 'KA' && stateKey === 'kar') isMatch = true;
+                else if (window.activeStateFilter === 'TN' && stateKey === 'tn') isMatch = true;
+                else if (window.activeStateFilter === 'LD' && stateKey === 'lak') isMatch = true;
+                else if (window.activeStateFilter === 'OTHER' && stateKey === 'other') isMatch = true;
+                if (!isMatch) return;
+            }
+
+            let meta = getMetaStatus(o.adminMeta, status);
+            let isTracked = o.tracking || meta.isTracked;
+            let isMatchTab = false;
+
+            if (id === 'new' && status === 'Pending') isMatchTab = true;
+            else if (id === 'sent' && status === 'Sent') isMatchTab = true;
+            else if (id === 'paid_new' && status === 'Paid' && !meta.isPrinted) isMatchTab = true;
+            else if (id === 'paid_print' && status === 'Paid' && meta.isPrinted) isMatchTab = true;
+            else if (id === 'disp_new' && status === 'Dispatched' && !isTracked) isMatchTab = true;
+            else if (id === 'disp_track' && status === 'Dispatched' && isTracked) isMatchTab = true;
+
+            if (isMatchTab) {
+                let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+                bCount += qty;
+                qStats[qty] = (qStats[qty] || 0) + 1;
+            }
+        });
+
+        // 🔥 ബ്രേക്ക്ഡൗൺ ടെക്സ്റ്റ് ഉണ്ടാക്കുന്നു (ഉദാ: 1x5, 2x1)
+        let qtyDetails = [];
+        let sortedKeys = Object.keys(qStats).sort((a, b) => a - b);
+        sortedKeys.forEach(q => {
+            qtyDetails.push(`${q}x${qStats[q]}`);
+        });
+        let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
 
         let cHtml = cTotal > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ${cTotal}</span>` : '';
 
@@ -1025,7 +1069,7 @@ function renderTabs(orders) {
                     <i class="fas fa-shopping-bag text-primary me-1" style="font-size:10px;"></i>${oCount}
                 </span>
                 <span class="fw-bold text-dark d-flex align-items-center" style="font-size:11px;">
-                    <i class="fas fa-wine-bottle text-success me-1" style="font-size:10px;"></i>${bCount}
+                    <i class="fas fa-wine-bottle text-success me-1" style="font-size:10px;"></i>${bCount} ${qtyStr}
                 </span>
                 ${cHtml}
             </div>
