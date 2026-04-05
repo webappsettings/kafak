@@ -8959,7 +8959,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 }
 
 
-// === 1. COURIER FILTER (SAFE VERSION - DIRECT FIX ONLY) ===
+// === 1. COURIER FILTER (SAFE VERSION - FINAL FIX) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
     if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
 
@@ -8998,25 +8998,26 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
             insideGroup = el.innerHTML.includes(groupId);
         } else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
             if (insideGroup) {
-                // ഡാറ്റാ ആട്രിബ്യൂട്ടോ അല്ലെങ്കിൽ ഉള്ളിലെ ടെക്സ്റ്റോ വെച്ച് ഫിൽറ്റർ ചെയ്യുന്നു
                 let searchName = providerName.toUpperCase().trim();
-                let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase().trim();
-                let textContent = el.innerHTML.toUpperCase();
+                let textContent = el.innerHTML.toUpperCase(); // കാർഡിലെ മുഴുവൻ ടെക്സ്റ്റ്
+
+                // സെലക്ട് ബോക്സിലെ വാല്യൂ എടുക്കുന്നു
+                let selectBox = el.querySelector('select');
+                let selectVal = selectBox ? selectBox.value.toUpperCase().trim() : '';
 
                 let match = false;
 
-                // 🔥 DIRECT-ന് വേണ്ടി മാത്രം അപ്ഡേറ്റ് ചെയ്ത ഭാഗം (മറ്റൊന്നും മാറ്റിയിട്ടില്ല)
+                // 🔥 എളുപ്പമുള്ള മാച്ചിംഗ് ലോജിക് (ഡാറ്റാ ആട്രിബ്യൂട്ട് ഇല്ലാതെ)
                 if (searchName === 'DIRECT') {
-                    // Direct ഓർഡറുകൾക്ക് ഡാറ്റ കാലിയായിരിക്കാം (""), അല്ലെങ്കിൽ DDELIVERY എന്നായിരിക്കാം
-                    if (dataCourier === '' || dataCourier === 'NULL' || dataCourier === 'UNDEFINED' ||
-                        dataCourier.includes('DIRECT') || dataCourier.includes('DDELIVERY') ||
-                        textContent.includes('DIRECT') || textContent.includes('DDELIVERY')) {
+                    // Direct ആണെങ്കിൽ: സെലക്ട് വാല്യൂ 'DIRECT' ആണെങ്കിലോ, സെലക്ട് ചെയ്യാതെ കാലിയായി കിടക്കുകയാണെങ്കിലോ, കാർഡിൽ DIRECT എന്ന് ഉണ്ടെങ്കിലോ ഫിൽറ്റർ ആകും
+                    if (selectVal === 'DIRECT' || selectVal === '' || selectVal === '0' || textContent.includes('DIRECT') || textContent.includes('DDELIVERY')) {
                         match = true;
                     }
                 } else {
-                    // ബാക്കി എല്ലാ കൊറിയറുകൾക്കും താങ്കളുടെ പഴയ കോഡ് തന്നെ
-                    if (dataCourier && dataCourier.includes(searchName)) match = true;
-                    else if (!dataCourier && textContent.includes(searchName)) match = true;
+                    // India Post പോലെയുള്ളവ ആണെങ്കിൽ: സെലക്ട് വാല്യൂയിലോ ടെക്സ്റ്റിലോ ആ പേരുണ്ടെങ്കിൽ ഫിൽറ്റർ ആകും
+                    if (selectVal.includes(searchName) || textContent.includes(searchName)) {
+                        match = true;
+                    }
                 }
 
                 if (match) el.style.display = '';
