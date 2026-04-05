@@ -722,7 +722,7 @@ function renderTabs(orders) {
             if (status === 'Delivered') timelineStats[fullKey].D++;
             if (status === 'Completed') timelineStats[fullKey].C++;
 
-            if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+            if (['Pending', 'Sent', 'Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
                 if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
