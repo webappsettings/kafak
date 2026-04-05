@@ -8959,7 +8959,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 }
 
 
-// === 1. COURIER FILTER (SELECT BOX അടിസ്ഥാനമാക്കി വർക്ക് ചെയ്യുന്നത്) ===
+// === 1. COURIER FILTER (BULLETPROOF VERSION) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
     if (event) event.stopPropagation();
 
@@ -8979,7 +8979,7 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
 
     // ഓഫ് ചെയ്യുമ്പോൾ എല്ലാ കാർഡുകളും കാണിക്കുന്നു
     if (isActive) {
-        container.querySelectorAll('.col-12').forEach(card => card.style.display = '');
+        container.querySelectorAll('.col-12[data-card-qty]').forEach(card => card.style.display = '');
         return;
     }
 
@@ -8993,48 +8993,117 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
     // ഹെഡ്ഡറുകളും കാർഡുകളും ലൂപ്പ് ചെയ്യുന്നു
     Array.from(container.children).forEach(child => {
         if (child.classList.contains('sticky-date-wrapper')) {
+            // Check if this header matches the clicked group
             insideGroup = child.innerHTML.includes(groupId);
         } else {
-            // കാർഡുകൾ row-ക്ക് ഉള്ളിലാണെങ്കിലും കണ്ടുപിടിക്കാൻ ഈ കോഡ് സഹായിക്കും
-            let cards = child.classList.contains('col-12') ? [child] : child.querySelectorAll('.col-12');
+            // Find all cards inside this child (handles direct .col-12 or nested inside rows)
+            let cards = child.classList.contains('col-12') ? [child] : child.querySelectorAll('.col-12[data-card-qty]');
 
             cards.forEach(card => {
                 if (!insideGroup) {
-                    card.style.display = ''; // മറ്റു ഡേറ്റുകളിലെ കാർഡുകൾ ഹൈഡ് ആക്കില്ല
+                    card.style.display = ''; // മറ്റു ഗ്രൂപ്പുകളിലെ കാർഡുകൾ ഹൈഡ് ആക്കില്ല
                     return;
                 }
 
                 let isMatch = false;
 
-                // 🔥 താങ്കൾ പറഞ്ഞത് പോലെ Select Box നോക്കി ഫിൽറ്റർ ചെയ്യുന്നു
-                let selectBox = card.querySelector('select'); // കാർഡിലെ കൊറിയർ സെലക്ട് ബോക്സ്
+                // 1. Select Box വഴി ചെക്ക് ചെയ്യുന്നു
+                let selectBox = card.querySelector('select');
                 if (selectBox) {
-                    let selectedVal = selectBox.value.toUpperCase();
-
-                    if (searchName.includes('DIRECT')) {
-                        // Direct ആണെങ്കിൽ: സെലക്ട് ബോക്സ് ശൂന്യമാണെങ്കിലോ, Direct/DDelivery എന്നുണ്ടെങ്കിലോ മാച്ച് ആകും
-                        if (selectedVal === '' || selectedVal === 'NULL' || selectedVal.includes('DIRECT') || selectedVal.includes('DDELIVERY')) {
+                    let selectedVal = selectBox.value.toUpperCase().trim();
+                    if (searchName === 'DIRECT') {
+                        if (selectedVal === '' || selectedVal === 'NULL' || selectedVal === 'UNDEFINED' || selectedVal.includes('DIRECT')) {
                             isMatch = true;
                         }
-                    } else {
-                        // മറ്റു കൊറിയറുകൾ (ഉദാ: India Post)
-                        if (selectedVal.includes(searchName)) {
-                            isMatch = true;
-                        }
+                    } else if (selectedVal.includes(searchName)) {
+                        isMatch = true;
                     }
                 }
 
-                // Select Box വഴി കിട്ടിയില്ലെങ്കിൽ ബാക്കപ്പ് ആയി Data Attribute നോക്കുന്നു
+                // 2. Select Box വഴി കിട്ടിയില്ലെങ്കിൽ Data Attribute നോക്കുന്നു
                 if (!isMatch) {
-                    let dataCourier = (card.getAttribute('data-card-courier') || '').toUpperCase();
-                    if (searchName.includes('DIRECT') && (dataCourier === '' || dataCourier.includes('DIRECT'))) {
-                        isMatch = true;
-                    } else if (!searchName.includes('DIRECT') && dataCourier.includes(searchName)) {
+                    let dataCourier = (card.getAttribute('data-card-courier') || '').toUpperCase().trim();
+                    if (searchName === 'DIRECT') {
+                        if (dataCourier === '' || dataCourier === 'NULL' || dataCourier === 'UNDEFINED' || dataCourier.includes('DIRECT') || dataCourier.includes('DDELIVERY')) {
+                            isMatch = true;
+                        }
+                    } else if (dataCourier.includes(searchName)) {
                         isMatch = true;
                     }
                 }
 
+                // 3. കാർഡിന്റെ ഉള്ളിലെ ഫുൾ ടെക്സ്റ്റ് വെച്ച് ബാക്കപ്പ് ചെക്കിങ്
+                if (!isMatch) {
+                    let cardText = card.innerHTML.toUpperCase();
+                    if (searchName === 'DIRECT' && (cardText.includes('DIRECT DELIVERY') || cardText.includes('DDELIVERY'))) {
+                        isMatch = true;
+                    }
+                }
+
+                // ഫൈനൽ ഡിസ്പ്ലേ
                 card.style.display = isMatch ? '' : 'none';
+            });
+        }
+    });
+};
+
+
+// === 2. BOTTLE QUANTITY FILTER (BULLETPROOF VERSION) ===
+window.toggleQtyFilter = function (event, element, targetQty, groupId) {
+    if (event) event.stopPropagation();
+
+    let isActive = element.classList.contains('active-filter');
+
+    let header = element.closest('.sticky-date-wrapper');
+    if (header) {
+        header.querySelectorAll('.qty-filter').forEach(el => {
+            el.classList.remove('active-filter');
+            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
+        });
+    }
+
+    let container = element.closest('.tab-pane');
+    if (!container) return;
+
+    if (isActive) {
+        container.querySelectorAll('.col-12[data-card-qty]').forEach(card => card.style.display = '');
+        return;
+    }
+
+    element.classList.add('active-filter');
+    element.style.backgroundColor = '#e2e8f0'; element.style.color = '#0f172a';
+
+    let insideGroup = false;
+
+    Array.from(container.children).forEach(child => {
+        if (child.classList.contains('sticky-date-wrapper')) {
+            insideGroup = child.innerHTML.includes(groupId);
+        } else {
+            let cards = child.classList.contains('col-12') ? [child] : child.querySelectorAll('.col-12[data-card-qty]');
+
+            cards.forEach(card => {
+                if (!insideGroup) {
+                    card.style.display = '';
+                    return;
+                }
+
+                let cardQty = card.getAttribute('data-card-qty');
+
+                // Data attribute കിട്ടിയില്ലെങ്കിൽ Fallback
+                if (!cardQty || cardQty === 'undefined' || cardQty === 'null') {
+                    // ഉള്ളിലുള്ള ടെക്സ്റ്റിൽ നിന്ന് QTY എടുക്കാൻ ശ്രമിക്കുന്നു (ഉദാ: "2 Bottles" എന്നതിൽ നിന്ന് 2 എടുക്കും)
+                    let infoBox = card.querySelector('.info-box span');
+                    if (infoBox) {
+                        let match = infoBox.innerText.match(/(\d+)\s*Bottles/i);
+                        if (match) cardQty = match[1];
+                    }
+                }
+
+                if (parseInt(cardQty) === parseInt(targetQty)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         }
     });
