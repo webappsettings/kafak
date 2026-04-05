@@ -8959,7 +8959,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 }
 
 
-// === 1. COURIER FILTER (SAFE VERSION - PERFECT LOGIC) ===
+// === 1. COURIER FILTER (SAFE VERSION + DIRECT FIX) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
     if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
 
@@ -9003,24 +9003,30 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
                 let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase();
                 let textContent = el.innerHTML.toUpperCase();
 
-                // താങ്കൾ പറഞ്ഞതുപോലെ സെലക്ട് ബോക്സിലെ വാല്യൂ കൂടെ എടുക്കുന്നു
-                let selectBox = el.querySelector('select');
-                let selectVal = selectBox ? selectBox.value.toUpperCase().trim() : '';
+                // 🔥 കാർഡിലെ Select Box-ൽ നിലവിൽ സെലക്ട് ചെയ്തിരിക്കുന്നത് എന്താണെന്ന് നോക്കുന്നു
+                let isDirectSelected = false;
+                el.querySelectorAll('select').forEach(sel => {
+                    if (sel.value && sel.value.toUpperCase().includes('DIRECT')) {
+                        isDirectSelected = true;
+                    }
+                });
 
                 let match = false;
 
-                // --- UPDATE CHEYTHA LOGIC ---
                 if (searchName === 'DIRECT') {
-                    // Direct-ന് മാത്രം Select ബോക്സോ ടെക്സ്റ്റോ നോക്കുന്നു
-                    if (selectVal === 'DIRECT' || textContent.includes('DIRECT') || textContent.includes('DDELIVERY')) {
+                    // Direct ആണെങ്കിൽ സെലക്ട് ബോക്സിലെ വാല്യൂ 'DIRECT' ആണോ എന്ന് നോക്കുന്നു
+                    if (isDirectSelected) {
+                        match = true;
+                    }
+                    // സെലക്ട് ബോക്സ് വർക്ക് ആയില്ലെങ്കിൽ ബാക്കപ്പ് ആയി ഡാറ്റാ ആട്രിബ്യൂട്ട് നോക്കുന്നു
+                    else if (dataCourier.includes('DIRECT') || dataCourier.includes('DDELIVERY')) {
                         match = true;
                     }
                 } else {
-                    // താങ്കളുടെ പഴയ 100% വർക്കിംഗ് ആയ കോഡ് (മറ്റ് കൊറിയറുകൾക്ക്)
+                    // മറ്റ് കൊറിയറുകൾക്ക് (India Post മുതലായവ) താങ്കളുടെ പഴയ വർക്കിംഗ് കോഡ് തന്നെ!
                     if (dataCourier && dataCourier.includes(searchName)) match = true;
                     else if (!dataCourier && textContent.includes(searchName)) match = true;
                 }
-                // -----------------------------
 
                 if (match) el.style.display = '';
                 else el.style.display = 'none';
