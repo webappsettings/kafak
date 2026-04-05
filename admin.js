@@ -8959,13 +8959,12 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 }
 
 
-// === 1. COURIER FILTER (SAFE VERSION) ===
+// === 1. COURIER FILTER (DIRECT FIX) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
-    if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
+    if (event) event.stopPropagation();
 
     let isActive = element.classList.contains('active-filter');
 
-    // ഫിൽറ്റർ കളർ റീസെറ്റ് ചെയ്യാൻ
     let header = element.closest('.sticky-date-wrapper');
     if (header) {
         header.querySelectorAll('.courier-filter').forEach(el => {
@@ -8978,7 +8977,6 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
     let allCards = container.querySelectorAll('.order-card');
 
     if (isActive) {
-        // ഓഫ് ചെയ്യുമ്പോൾ എല്ലാം കാണിക്കുക
         allCards.forEach(card => {
             let col = card.closest('.col-12');
             if (col) col.style.display = '';
@@ -8986,7 +8984,6 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
         return;
     }
 
-    // ഓൺ ചെയ്യുമ്പോൾ ഹൈലൈറ്റ് ചെയ്യുക
     element.classList.add('active-filter');
     element.style.backgroundColor = '#cbd5e1'; element.style.color = '#0f172a';
 
@@ -8998,20 +8995,29 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
             insideGroup = el.innerHTML.includes(groupId);
         } else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
             if (insideGroup) {
-                // ഡാറ്റാ ആട്രിബ്യൂട്ടോ അല്ലെങ്കിൽ ഉള്ളിലെ ടെക്സ്റ്റോ വെച്ച് ഫിൽറ്റർ ചെയ്യുന്നു
                 let searchName = providerName.toUpperCase().trim();
                 let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase();
                 let textContent = el.innerHTML.toUpperCase();
 
                 let match = false;
-                if (dataCourier && dataCourier.includes(searchName)) match = true;
-                else if (!dataCourier && textContent.includes(searchName)) match = true;
-                else if (searchName === 'DIRECT' && textContent.includes('DIRECT')) match = true;
+
+                // 🔥 DIRECT ഡെലിവറിക്ക് വേണ്ടിയുള്ള പ്രത്യേക കോഡ്
+                if (searchName.includes('DIRECT')) {
+                    // Direct എന്നോ, DDelivery എന്നോ ഉണ്ടെങ്കിൽ, അല്ലെങ്കിൽ കൊറിയർ പേര് ശൂന്യമാണെങ്കിൽ മാച്ച് ആകും
+                    if (dataCourier.includes('DIRECT') || textContent.includes('DIRECT') || textContent.includes('DDELIVERY') || dataCourier === '' || dataCourier === 'UNDEFINED' || dataCourier === 'NULL') {
+                        match = true;
+                    }
+                } else {
+                    // മറ്റു കൊറിയറുകൾക്ക് (India Post, DTDC etc..)
+                    if (dataCourier.includes(searchName) || textContent.includes(searchName)) {
+                        match = true;
+                    }
+                }
 
                 if (match) el.style.display = '';
                 else el.style.display = 'none';
             } else {
-                el.style.display = ''; // മറ്റു ഡേറ്റുകളിലെ കാർഡുകൾ ഹൈഡ് ആവാതിരിക്കാൻ
+                el.style.display = '';
             }
         }
     });
