@@ -8958,138 +8958,102 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-
-
-
-// === 1. COURIER FILTER (SIMPLE & 100% WORKING) ===
+// 🔥 COURIER FILTER - DEEP LOGIC FINAL VERSION
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
-    if (event) { event.preventDefault(); event.stopPropagation(); }
+    // 1. ഡിഫോൾട്ട് ആക്ഷനുകൾ ബ്ലോക്ക് ചെയ്യുന്നു (Accordion/Tab അടഞ്ഞു പോകാതിരിക്കാൻ)
+    if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+    }
 
     let isActive = element.classList.contains('active-filter');
+    let container = element.closest('.tab-pane') || document.body;
 
-    // ഈ ഗ്രൂപ്പിലെ എല്ലാ ഫിൽറ്റർ ബട്ടണുകളുടെയും കളർ പഴയപടിയാക്കുന്നു
-    let header = element.closest('.sticky-date-wrapper');
+    // 2. ഈ ഡേറ്റ് ഗ്രൂപ്പിലെ എല്ലാ ഫിൽറ്റർ ബട്ടണുകളുടെയും കളർ റീസെറ്റ് ചെയ്യുന്നു
+    let header = element.closest('.sticky-date-wrapper') || element.parentElement;
     if (header) {
         header.querySelectorAll('.courier-filter').forEach(el => {
             el.classList.remove('active-filter');
-            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
+            el.style.backgroundColor = 'transparent';
+            el.style.color = '#64748b';
         });
     }
 
-    let container = element.closest('.tab-pane');
-    if (!container) return;
-
-    // ഓൺ ആയ ഫിൽറ്റർ ഓഫ് ചെയ്യുകയാണെങ്കിൽ എല്ലാം കാണിക്കുക
+    // 3. ടോഗിൾ ഓഫ് ചെയ്യുകയാണെങ്കിൽ (അതായത് ഓൺ ആയതിൽ വീണ്ടും ക്ലിക്ക് ചെയ്താൽ)
     if (isActive) {
+        // ആ ടാബിലെ എല്ലാ കാർഡുകളും വീണ്ടും കാണിക്കുന്നു
         container.querySelectorAll('.col-12').forEach(card => card.style.display = '');
         return;
     }
 
-    // ക്ലിക്ക് ചെയ്ത ബട്ടൺ ഹൈലൈറ്റ് ചെയ്യുക
+    // 4. പുതിയ ഫിൽറ്റർ ഹൈലൈറ്റ് ചെയ്യുന്നു
     element.classList.add('active-filter');
-    element.style.backgroundColor = '#cbd5e1'; element.style.color = '#0f172a';
+    element.style.backgroundColor = '#cbd5e1';
+    element.style.color = '#0f172a';
 
-    let searchName = providerName.toUpperCase().trim();
-    let isDirectSearch = searchName.includes('DIRECT');
-
+    // 5. ഡീപ്പ് സെർച്ചിനായുള്ള വേരിയബിളുകൾ
+    let searchKey = providerName.toUpperCase().trim();
+    let isDirectSearch = searchKey.includes('DIRECT');
     let insideTargetGroup = false;
 
-    // ടാബിലുള്ള എല്ലാ ഹെഡ്ഡറുകളും കാർഡുകളും തുടർച്ചയായി ചെക്ക് ചെയ്യുന്നു
-    let allElements = container.querySelectorAll('.sticky-date-wrapper, .order-card');
+    // 6. പേജിലുള്ള എല്ലാ ഡേറ്റ് ഹെഡ്ഡറുകളും ഓർഡർ കാർഡുകളും ഒന്നിച്ച് എടുക്കുന്നു (Document Order-ൽ)
+    // ഇത് ഉപയോഗിക്കുന്നതിലൂടെ HTML ഡിസൈൻ എങ്ങനെയുള്ളതാണെങ്കിലും പ്രശ്നമില്ലാതെ വർക്ക് ആകും
+    let allElements = container.querySelectorAll('.sticky-date-wrapper, .col-12');
 
     allElements.forEach(el => {
+        // ഇതൊരു ഡേറ്റ് ഹെഡ്ഡർ ആണെങ്കിൽ: നമ്മൾ ക്ലിക്ക് ചെയ്ത ഡേറ്റ് ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
         if (el.classList.contains('sticky-date-wrapper')) {
-            // നമ്മൾ ക്ലിക്ക് ചെയ്ത ഡേറ്റ് ഗ്രൂപ്പ് ആണോ എന്ന് നോക്കുന്നു
-            insideTargetGroup = el.innerHTML.includes(groupId);
+            // groupId (eg: 'disp_new_Yesterday') ഹെഡ്ഡറിൽ എവിടെയെങ്കിലും ഉണ്ടോ എന്ന് നോക്കുന്നു
+            if (el.innerHTML.includes(groupId) || el.id === groupId || el.classList.contains(groupId)) {
+                insideTargetGroup = true;
+            } else {
+                insideTargetGroup = false; // വേറെ ഡേറ്റ് വന്നാൽ ഗ്രൂപ്പ് മാറ്റി
+            }
         }
-        else if (el.classList.contains('order-card')) {
-            let col = el.closest('.col-12'); // കാർഡ് ഇരിക്കുന്ന മെയിൻ div
-            if (!col) return;
-
+        // ഇതൊരു കാർഡ് ആണെങ്കിൽ
+        else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
+            // നമ്മൾ ക്ലിക്ക് ചെയ്ത ഡേറ്റിന്റെ ഉള്ളിലെ കാർഡ് ആണെങ്കിൽ മാത്രം ഫിൽറ്റർ ചെയ്യുക
             if (insideTargetGroup) {
-                let match = false;
-                let textContent = el.innerHTML.toUpperCase();
-                let selectBox = el.querySelector('select');
-                let selectVal = selectBox ? selectBox.value.toUpperCase().trim() : '';
+                let isMatch = false;
 
+                // ഫിൽറ്റർ ചെയ്യാനുള്ള ഡാറ്റകൾ കാർഡിൽ നിന്നും എടുക്കുന്നു
+                let selectBox = el.querySelector('select'); // സെലക്ട് ബോക്സ് ഉണ്ടോ?
+                let selectVal = selectBox ? selectBox.value.toUpperCase().trim() : 'NO_SELECT';
+                let dataAttr = (el.getAttribute('data-card-courier') || '').toUpperCase().trim();
+                let fullCardText = el.innerText.toUpperCase(); // കാർഡിലുള്ള മുഴുവൻ ടെക്സ്റ്റ്
+
+                // --- DIRECT DELIVERY CHECKING LOGIC ---
                 if (isDirectSearch) {
-                    // Direct ആണെങ്കിൽ: സെലക്ട് ബോക്സ് കാലിയാണെങ്കിലോ, Direct/DDelivery എന്നുണ്ടെങ്കിലോ ശരിയാകും
-                    if (selectVal === '' || selectVal === 'NULL' || selectVal === 'UNDEFINED' || selectVal.includes('DIRECT') || selectVal.includes('DDELIVERY') || textContent.includes('DIRECT') || textContent.includes('DDELIVERY')) {
-                        match = true;
+                    if (
+                        selectVal === '' || selectVal === '0' || selectVal === 'NULL' || selectVal === 'UNDEFINED' || selectVal.includes('DIRECT') || selectVal.includes('DDELIVERY') ||
+                        dataAttr === '' || dataAttr === 'NULL' || dataAttr.includes('DIRECT') || dataAttr.includes('DDELIVERY') ||
+                        fullCardText.includes('DIRECT DELIVERY') || fullCardText.includes('DDELIVERY')
+                    ) {
+                        isMatch = true;
                     }
-                } else {
-                    // മറ്റു കൊറിയറുകൾ (ഉദാ: India Post)
-                    if (selectVal.includes(searchName) || textContent.includes(searchName)) {
-                        match = true;
+                }
+                // --- INDIA POST / OTHER COURIERS CHECKING LOGIC ---
+                else {
+                    if (
+                        (selectVal !== 'NO_SELECT' && selectVal.includes(searchKey)) ||
+                        dataAttr.includes(searchKey) ||
+                        fullCardText.includes(searchKey)
+                    ) {
+                        isMatch = true;
                     }
                 }
 
-                col.style.display = match ? '' : 'none';
-            } else {
-                // മറ്റു ഡേറ്റുകളിലെ കാർഡുകൾ മറയ്ക്കരുത്
-                col.style.display = '';
+                // റിസൾട്ട് അനുസരിച്ച് കാർഡ് ഹൈഡ് ചെയ്യുകയോ കാണിക്കുകയോ ചെയ്യുന്നു
+                el.style.display = isMatch ? '' : 'none';
+            }
+            else {
+                // വേറെ ഡേറ്റിലെ കാർഡുകളെ നമ്മൾ ഒന്നും ചെയ്യുന്നില്ല, അവ അവിടെ തന്നെ കാണും
+                el.style.display = '';
             }
         }
     });
 };
 
-
-// === 2. BOTTLE QUANTITY FILTER (SIMPLE & 100% WORKING) ===
-window.toggleQtyFilter = function (event, element, targetQty, groupId) {
-    if (event) { event.preventDefault(); event.stopPropagation(); }
-
-    let isActive = element.classList.contains('active-filter');
-
-    let header = element.closest('.sticky-date-wrapper');
-    if (header) {
-        header.querySelectorAll('.qty-filter').forEach(el => {
-            el.classList.remove('active-filter');
-            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
-        });
-    }
-
-    let container = element.closest('.tab-pane');
-    if (!container) return;
-
-    if (isActive) {
-        container.querySelectorAll('.col-12').forEach(card => card.style.display = '');
-        return;
-    }
-
-    element.classList.add('active-filter');
-    element.style.backgroundColor = '#e2e8f0'; element.style.color = '#0f172a';
-
-    let insideTargetGroup = false;
-    let allElements = container.querySelectorAll('.sticky-date-wrapper, .order-card');
-
-    allElements.forEach(el => {
-        if (el.classList.contains('sticky-date-wrapper')) {
-            insideTargetGroup = el.innerHTML.includes(groupId);
-        }
-        else if (el.classList.contains('order-card')) {
-            let col = el.closest('.col-12');
-            if (!col) return;
-
-            if (insideTargetGroup) {
-                let match = false;
-                let cardQty = col.getAttribute('data-card-qty');
-
-                if (!cardQty || cardQty === 'undefined') {
-                    let qtyInput = el.querySelector('input[type="number"]');
-                    if (qtyInput) cardQty = qtyInput.value;
-                }
-
-                if (parseInt(cardQty) === parseInt(targetQty)) {
-                    match = true;
-                }
-
-                col.style.display = match ? '' : 'none';
-            } else {
-                col.style.display = '';
-            }
-        }
-    });
-};
 
 // === 2. BOTTLE QUANTITY FILTER (SAFE VERSION) ===
 window.toggleQtyFilter = function (event, element, targetQty, groupId) {
