@@ -8958,102 +8958,64 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
-// 🔥 COURIER FILTER - DEEP LOGIC FINAL VERSION
+
+// === 1. COURIER FILTER (SAFE VERSION) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
-    // 1. ഡിഫോൾട്ട് ആക്ഷനുകൾ ബ്ലോക്ക് ചെയ്യുന്നു (Accordion/Tab അടഞ്ഞു പോകാതിരിക്കാൻ)
-    if (event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
+    if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
 
     let isActive = element.classList.contains('active-filter');
-    let container = element.closest('.tab-pane') || document.body;
 
-    // 2. ഈ ഡേറ്റ് ഗ്രൂപ്പിലെ എല്ലാ ഫിൽറ്റർ ബട്ടണുകളുടെയും കളർ റീസെറ്റ് ചെയ്യുന്നു
-    let header = element.closest('.sticky-date-wrapper') || element.parentElement;
+    // ഫിൽറ്റർ കളർ റീസെറ്റ് ചെയ്യാൻ
+    let header = element.closest('.sticky-date-wrapper');
     if (header) {
         header.querySelectorAll('.courier-filter').forEach(el => {
             el.classList.remove('active-filter');
-            el.style.backgroundColor = 'transparent';
-            el.style.color = '#64748b';
+            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
         });
     }
 
-    // 3. ടോഗിൾ ഓഫ് ചെയ്യുകയാണെങ്കിൽ (അതായത് ഓൺ ആയതിൽ വീണ്ടും ക്ലിക്ക് ചെയ്താൽ)
+    let container = element.closest('.tab-pane') || document.body;
+    let allCards = container.querySelectorAll('.order-card');
+
     if (isActive) {
-        // ആ ടാബിലെ എല്ലാ കാർഡുകളും വീണ്ടും കാണിക്കുന്നു
-        container.querySelectorAll('.col-12').forEach(card => card.style.display = '');
+        // ഓഫ് ചെയ്യുമ്പോൾ എല്ലാം കാണിക്കുക
+        allCards.forEach(card => {
+            let col = card.closest('.col-12');
+            if (col) col.style.display = '';
+        });
         return;
     }
 
-    // 4. പുതിയ ഫിൽറ്റർ ഹൈലൈറ്റ് ചെയ്യുന്നു
+    // ഓൺ ചെയ്യുമ്പോൾ ഹൈലൈറ്റ് ചെയ്യുക
     element.classList.add('active-filter');
-    element.style.backgroundColor = '#cbd5e1';
-    element.style.color = '#0f172a';
+    element.style.backgroundColor = '#cbd5e1'; element.style.color = '#0f172a';
 
-    // 5. ഡീപ്പ് സെർച്ചിനായുള്ള വേരിയബിളുകൾ
-    let searchKey = providerName.toUpperCase().trim();
-    let isDirectSearch = searchKey.includes('DIRECT');
-    let insideTargetGroup = false;
+    let insideGroup = false;
+    let elements = container.querySelectorAll('.sticky-date-wrapper, .col-12');
 
-    // 6. പേജിലുള്ള എല്ലാ ഡേറ്റ് ഹെഡ്ഡറുകളും ഓർഡർ കാർഡുകളും ഒന്നിച്ച് എടുക്കുന്നു (Document Order-ൽ)
-    // ഇത് ഉപയോഗിക്കുന്നതിലൂടെ HTML ഡിസൈൻ എങ്ങനെയുള്ളതാണെങ്കിലും പ്രശ്നമില്ലാതെ വർക്ക് ആകും
-    let allElements = container.querySelectorAll('.sticky-date-wrapper, .col-12');
-
-    allElements.forEach(el => {
-        // ഇതൊരു ഡേറ്റ് ഹെഡ്ഡർ ആണെങ്കിൽ: നമ്മൾ ക്ലിക്ക് ചെയ്ത ഡേറ്റ് ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+    elements.forEach(el => {
         if (el.classList.contains('sticky-date-wrapper')) {
-            // groupId (eg: 'disp_new_Yesterday') ഹെഡ്ഡറിൽ എവിടെയെങ്കിലും ഉണ്ടോ എന്ന് നോക്കുന്നു
-            if (el.innerHTML.includes(groupId) || el.id === groupId || el.classList.contains(groupId)) {
-                insideTargetGroup = true;
+            insideGroup = el.innerHTML.includes(groupId);
+        } else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
+            if (insideGroup) {
+                // ഡാറ്റാ ആട്രിബ്യൂട്ടോ അല്ലെങ്കിൽ ഉള്ളിലെ ടെക്സ്റ്റോ വെച്ച് ഫിൽറ്റർ ചെയ്യുന്നു
+                let searchName = providerName.toUpperCase().trim();
+                let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase();
+                let textContent = el.innerHTML.toUpperCase();
+
+                let match = false;
+                if (dataCourier && dataCourier.includes(searchName)) match = true;
+                else if (!dataCourier && textContent.includes(searchName)) match = true;
+                else if (searchName === 'DIRECT' && textContent.includes('DIRECT')) match = true;
+
+                if (match) el.style.display = '';
+                else el.style.display = 'none';
             } else {
-                insideTargetGroup = false; // വേറെ ഡേറ്റ് വന്നാൽ ഗ്രൂപ്പ് മാറ്റി
-            }
-        }
-        // ഇതൊരു കാർഡ് ആണെങ്കിൽ
-        else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
-            // നമ്മൾ ക്ലിക്ക് ചെയ്ത ഡേറ്റിന്റെ ഉള്ളിലെ കാർഡ് ആണെങ്കിൽ മാത്രം ഫിൽറ്റർ ചെയ്യുക
-            if (insideTargetGroup) {
-                let isMatch = false;
-
-                // ഫിൽറ്റർ ചെയ്യാനുള്ള ഡാറ്റകൾ കാർഡിൽ നിന്നും എടുക്കുന്നു
-                let selectBox = el.querySelector('select'); // സെലക്ട് ബോക്സ് ഉണ്ടോ?
-                let selectVal = selectBox ? selectBox.value.toUpperCase().trim() : 'NO_SELECT';
-                let dataAttr = (el.getAttribute('data-card-courier') || '').toUpperCase().trim();
-                let fullCardText = el.innerText.toUpperCase(); // കാർഡിലുള്ള മുഴുവൻ ടെക്സ്റ്റ്
-
-                // --- DIRECT DELIVERY CHECKING LOGIC ---
-                if (isDirectSearch) {
-                    if (
-                        selectVal === '' || selectVal === '0' || selectVal === 'NULL' || selectVal === 'UNDEFINED' || selectVal.includes('DIRECT') || selectVal.includes('DDELIVERY') ||
-                        dataAttr === '' || dataAttr === 'NULL' || dataAttr.includes('DIRECT') || dataAttr.includes('DDELIVERY') ||
-                        fullCardText.includes('DIRECT DELIVERY') || fullCardText.includes('DDELIVERY')
-                    ) {
-                        isMatch = true;
-                    }
-                }
-                // --- INDIA POST / OTHER COURIERS CHECKING LOGIC ---
-                else {
-                    if (
-                        (selectVal !== 'NO_SELECT' && selectVal.includes(searchKey)) ||
-                        dataAttr.includes(searchKey) ||
-                        fullCardText.includes(searchKey)
-                    ) {
-                        isMatch = true;
-                    }
-                }
-
-                // റിസൾട്ട് അനുസരിച്ച് കാർഡ് ഹൈഡ് ചെയ്യുകയോ കാണിക്കുകയോ ചെയ്യുന്നു
-                el.style.display = isMatch ? '' : 'none';
-            }
-            else {
-                // വേറെ ഡേറ്റിലെ കാർഡുകളെ നമ്മൾ ഒന്നും ചെയ്യുന്നില്ല, അവ അവിടെ തന്നെ കാണും
-                el.style.display = '';
+                el.style.display = ''; // മറ്റു ഡേറ്റുകളിലെ കാർഡുകൾ ഹൈഡ് ആവാതിരിക്കാൻ
             }
         }
     });
 };
-
 
 // === 2. BOTTLE QUANTITY FILTER (SAFE VERSION) ===
 window.toggleQtyFilter = function (event, element, targetQty, groupId) {
