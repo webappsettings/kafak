@@ -668,11 +668,13 @@ function renderTabs(orders) {
         let info = getOrderInfo(o);
         let status = info.status;
 
-        // 🔥 FIX 1: Completed, Refunded, Archive ആയ ഓർഡറുകൾ ടൈംലൈൻ അക്കൗണ്ടിംഗിൽ നിന്ന് പൂർണ്ണമായും ഒഴിവാക്കുന്നു
-        if (status === 'Archive' || status === 'Refunded' || status === 'Completed') return;
+        // Status-le uppercase/lowercase prashnangal ozhivakkan oru temporary variable
+        let checkStatus = status ? status.toUpperCase().trim() : '';
 
-        // 🔥 FIX 2: ടൈംലൈൻ കാൽക്കുലേഷൻ ചെയ്യുന്നതിന് മുൻപ് തന്നെ Direct Delivery ഡാറ്റ കൃത്യമായി എടുക്കുന്നു 
-        // (ഇതാണ് ആദ്യത്തവണ 100 വന്നിട്ട് പിന്നീട് 80 ആയ പ്രശ്നം മാറ്റുന്നത്)
+        // 🔥 FIX 1: COMPLETED koodathe DELIVERED aaya order-ukalum timeline-il ninnum poornnamayi ozhivakkunnu!
+        if (checkStatus === 'ARCHIVE' || checkStatus === 'REFUNDED' || checkStatus === 'COMPLETED' || checkStatus === 'DELIVERED') return;
+
+        // 🔥 FIX 2: Timeline calculation-nu munpu thanne Direct Delivery data krithyamayi edukkunnu
         if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
             let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
             if (match) {
@@ -683,6 +685,8 @@ function renderTabs(orders) {
         }
 
         let meta = getMetaStatus(o.adminMeta, status);
+
+
         let dateKeyType = '';
         let displayDateRaw = info.tDate.getTime();
 
