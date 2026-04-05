@@ -691,7 +691,7 @@ function renderTabs(orders) {
             let fullKey = `${dateKeyType}_${lbl}`;
 
             if (!timelineStats[fullKey]) {
-                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, D: 0, C: 0, R: 0 };
+                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, qtyCounts: {}, D: 0, C: 0, R: 0 };
             }
 
             if (!timelineStats[fullKey].couriers) {
@@ -701,6 +701,9 @@ function renderTabs(orders) {
             timelineStats[fullKey].count++;
             let qty = parseInt(o.quantity) || 0;
             timelineStats[fullKey].bottles += qty;
+
+
+            timelineStats[fullKey].qtyCounts[qty] = (timelineStats[fullKey].qtyCounts[qty] || 0) + 1;
 
             if (status === 'Delivered') timelineStats[fullKey].D++;
             if (status === 'Completed') timelineStats[fullKey].C++;
@@ -856,14 +859,26 @@ function renderTabs(orders) {
                     if (sStats.cost > 0) {
                         let courierDetails = [];
                         for (let p in sStats.couriers) {
-                            courierDetails.push(`<span class="courier-filter" data-provider="${p}" data-dategroup="${safeGroupId}" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="toggleCourierFilter(this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
+                            // 🔥 onclick-ൽ event കൂടി പാസ്സ് ചെയ്യുന്നു
+                            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
                         }
                         let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
 
                         extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ₹${sStats.cost} ${courierStr}</span>`;
                     }
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-box-open text-muted me-1" style="font-size:10px;"></i> ${sStats.count}</span>`;
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-wine-bottle text-muted me-1" style="font-size:10px;"></i> ${sStats.bottles}</span>`;
+
+                    // 🔥 പുതിയ ബോട്ടിൽ ഫിൽറ്റർ HTML
+                    let qtyDetails = [];
+                    if (sStats.qtyCounts) {
+                        let sortedKeys = Object.keys(sStats.qtyCounts).sort((a, b) => a - b);
+                        sortedKeys.forEach(q => {
+                            qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleQtyFilter(event, this, '${q}', '${safeGroupId}')">${q}x${sStats.qtyCounts[q]}</span>`);
+                        });
+                    }
+                    let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:8.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
+
+                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-wine-bottle text-muted me-1" style="font-size:10px;"></i> ${sStats.bottles} ${qtyStr}</span>`;
 
                     let badgeStr = "";
                     if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
@@ -1149,7 +1164,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if (isCompact) {
         let phoneDisplay = d.phone ? d.phone.replace(/[^0-9]/g, '').slice(-10) : '';
         return `
-        <div class="col-12 col-md-6 col-lg-6">
+        <div class="col-12 col-md-6 col-lg-6" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
             <div class="order-card p-0 shadow-sm border-0 mb-2" style="border-radius:10px; overflow:hidden;">
                 <div class="d-flex align-items-center justify-content-between p-3 bg-white" 
                      onclick="toggleCardUI(this.parentElement)" 
@@ -1462,7 +1477,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let directEditBtn = isDirectSelected ? `<button class="btn btn-sm btn-warning ms-1 me-2 shadow-sm" style="padding:2px 6px; font-size:10px; border-radius:4px;" onclick="event.stopPropagation(); openDirectDeliveryPopup('${d.orderid}')" title="Edit Delivery Charge"><i class="fas fa-edit"></i></button>` : '';
 
     return `
-    <div class="col-12 col-md-12 col-lg-12">
+    <div class="col-12 col-md-12 col-lg-12" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
         <div class="order-card p-3">
             <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>${headerLeft}</div>
@@ -8942,97 +8957,91 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }
-// 🔥 DYNAMIC COURIER FILTER FUNCTION (Works for specific Date Group ONLY)
-window.toggleCourierFilter = function (element, providerName, groupId) {
-    // Prevent event bubbling if necessary
+
+
+// === 1. COURIER FILTER ===
+window.toggleCourierFilter = function (event, element, providerName, groupId) {
     event.stopPropagation();
+    let isActive = element.classList.contains('active-filter');
 
-    let isCurrentlyActive = element.classList.contains('active-filter');
-
-    // 1. Reset all filters in this specific DATE GROUP ONLY
+    // Reset Courier Filters
     let groupContainer = element.closest('.sticky-date-wrapper');
     if (groupContainer) {
         groupContainer.querySelectorAll('.courier-filter').forEach(el => {
             el.classList.remove('active-filter');
-            el.style.backgroundColor = 'transparent';
-            el.style.color = '#64748b'; // normal color
+            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
         });
     }
 
-    // 2. Find the list container that has the cards for this tab
     let listContainer = element.closest('.tab-pane');
     if (!listContainer) return;
+    let allCards = listContainer.querySelectorAll('.col-12[data-card-qty]');
 
-    // We will look for cards ONLY below this specific group header 
-    // until the next group header starts.
-
-    // Select all cards in this tab
-    let allCards = listContainer.querySelectorAll('.col-12.col-md-12.col-lg-12, .col-12.col-md-6.col-lg-6');
-
-    // Toggle Logic
-    if (isCurrentlyActive) {
-        // If it was active, user clicked to turn it OFF.
-        // Show all cards in the entire tab normally.
-        allCards.forEach(card => {
-            // Show all cards except those manually hidden by other means
-            card.style.display = '';
-        });
+    if (isActive) {
+        allCards.forEach(card => card.style.display = '');
     } else {
-        // Turn ON the filter for this provider
         element.classList.add('active-filter');
-        element.style.backgroundColor = '#cbd5e1'; // Highlight background
-        element.style.color = '#0f172a'; // Highlight text color
+        element.style.backgroundColor = '#cbd5e1'; element.style.color = '#0f172a';
 
-        // Iterate through all items in the tab
-        let insideTargetGroup = false;
-
-        // Let's iterate through the children of the tab pane
+        let insideGroup = false;
         Array.from(listContainer.children).forEach(child => {
-            // Check if this child is a Date Header
             if (child.classList.contains('sticky-date-wrapper')) {
-                // If it's the header we clicked, start filtering
-                if (child.querySelector(`.group-cb-${groupId}`) || child.innerHTML.includes(groupId)) {
-                    insideTargetGroup = true;
+                insideGroup = child.innerHTML.includes(groupId);
+            } else if (child.hasAttribute('data-card-qty')) {
+                if (insideGroup) {
+                    let cardCourier = (child.getAttribute('data-card-courier') || '').toUpperCase();
+                    let searchName = providerName.toUpperCase().trim();
+
+                    if (cardCourier.includes(searchName)) {
+                        child.style.display = '';
+                    } else {
+                        child.style.display = 'none';
+                    }
                 } else {
-                    // If it's another header, stop filtering for this group
-                    insideTargetGroup = false;
+                    child.style.display = '';
                 }
             }
-            // If it is an order card
-            else if (child.classList.contains('col-12') && child.querySelector('.order-card')) {
-                if (insideTargetGroup) {
-                    // Check the courier provider text inside the card
-                    // In your card HTML, provider is shown in select box or text
-                    let selectBox = child.querySelector('select.form-select');
-                    let cardProvider = "";
+        });
+    }
+};
 
-                    if (selectBox) {
-                        cardProvider = selectBox.value.toUpperCase();
+// === 2. BOTTLE QUANTITY FILTER ===
+window.toggleQtyFilter = function (event, element, targetQty, groupId) {
+    event.stopPropagation();
+    let isActive = element.classList.contains('active-filter');
+
+    // Reset Qty Filters
+    let groupContainer = element.closest('.sticky-date-wrapper');
+    if (groupContainer) {
+        groupContainer.querySelectorAll('.qty-filter').forEach(el => {
+            el.classList.remove('active-filter');
+            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
+        });
+    }
+
+    let listContainer = element.closest('.tab-pane');
+    if (!listContainer) return;
+    let allCards = listContainer.querySelectorAll('.col-12[data-card-qty]');
+
+    if (isActive) {
+        allCards.forEach(card => card.style.display = '');
+    } else {
+        element.classList.add('active-filter');
+        element.style.backgroundColor = '#e2e8f0'; element.style.color = '#0f172a';
+
+        let insideGroup = false;
+        Array.from(listContainer.children).forEach(child => {
+            if (child.classList.contains('sticky-date-wrapper')) {
+                insideGroup = child.innerHTML.includes(groupId);
+            } else if (child.hasAttribute('data-card-qty')) {
+                if (insideGroup) {
+                    let cardQty = child.getAttribute('data-card-qty');
+                    if (cardQty == targetQty) {
+                        child.style.display = '';
                     } else {
-                        // Check text if direct delivery or fallback
-                        let htmlContent = child.innerHTML.toUpperCase();
-                        if (htmlContent.includes(providerName.toUpperCase())) {
-                            cardProvider = providerName.toUpperCase();
-                        }
-                    }
-
-                    // Strict matching logic (handling spaces and partial matches)
-                    let searchProvider = providerName.toUpperCase().trim();
-                    let isMatch = false;
-
-                    if (cardProvider === searchProvider) isMatch = true;
-                    else if (cardProvider.includes(searchProvider)) isMatch = true;
-                    else if (searchProvider === 'DIRECT' && cardProvider.includes('DIRECT')) isMatch = true;
-                    else if (searchProvider.includes('POST') && cardProvider.includes('POST')) isMatch = true;
-
-                    if (isMatch) {
-                        child.style.display = ''; // Show
-                    } else {
-                        child.style.display = 'none'; // Hide
+                        child.style.display = 'none';
                     }
                 } else {
-                    // Keep cards in other date groups visible (or hide them if you only want to see this group)
-                    // Currently keeping them visible as per standard filtering behavior
                     child.style.display = '';
                 }
             }
