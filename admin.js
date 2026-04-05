@@ -972,8 +972,10 @@ function renderTabs(orders) {
         }
 
         let bCount = 0;
+        let totalTabCost = 0;
         let qStats = {};
-        let oStats = {}; // 🔥 NEW: ഓർഡറുകളുടെ എണ്ണം ട്രാക്ക് ചെയ്യാൻ
+        let oStats = {};
+        let cStats = {}; // 🔥 NEW: കൊറിയർ പ്രൊവൈഡർ സ്റ്റാറ്റ്സ്
 
         orders.forEach(o => {
             let info = getOrderInfo(o);
@@ -1013,10 +1015,9 @@ function renderTabs(orders) {
                 bCount += qty;
                 qStats[qty] = (qStats[qty] || 0) + 1;
 
-                // 🔥 ഓർഡറുകളുടെ എണ്ണം കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+                // 1. ഓർഡർ കൗണ്ട് കാൽക്കുലേഷൻ
                 let currentPhone = String(o.phone || '').replace(/[^0-9]/g, '');
                 if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
-
                 let localOrders = 1;
                 if (currentPhone && typeof allOrders !== 'undefined') {
                     localOrders = allOrders.filter(x => {
@@ -1029,42 +1030,58 @@ function renderTabs(orders) {
                 let serverOrders = parseInt(o.Total_Orders || o.total_orders) || 0;
                 let tOrds = Math.max(localOrders, serverOrders);
                 if (tOrds === 0) tOrds = 1;
-
                 oStats[tOrds] = (oStats[tOrds] || 0) + 1;
+
+                // 2. കൊറിയർ ബ്രേക്ക്ഡൗൺ കാൽക്കുലേഷൻ
+                let rawP = String(o.provider || o.Courier_Provider || 'Other').trim();
+                let shortP = rawP.replace(/Courier|Couriers|Logistics/ig, '').trim();
+                if (shortP.length > 12) shortP = shortP.substring(0, 10) + '..';
+                if (!shortP) shortP = 'Other';
+
+                let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+                if (rawP.toUpperCase() === 'DIRECT') actualC = totalC;
+
+                if (!cStats[shortP]) cStats[shortP] = { count: 0, cost: 0 };
+                cStats[shortP].count++;
+                cStats[shortP].cost += actualC;
+                totalTabCost += actualC;
             }
         });
 
+        // ബോട്ടിൽ ബ്രേക്ക്ഡൗൺ
         let qtyDetails = [];
-        let sortedKeys = Object.keys(qStats).sort((a, b) => a - b);
-        sortedKeys.forEach(q => {
+        Object.keys(qStats).sort((a, b) => a - b).forEach(q => {
             qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabQtyFilter(event, this, '${q}')"><span style="color:#16a34a; font-weight:900; font-size:10px;">${q}</span> Btl x ${qStats[q]}</span>`);
         });
         let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
 
+        // ഓർഡർ ബ്രേക്ക്ഡൗൺ
         let ordDetails = [];
-        let sortedOrdKeys = Object.keys(oStats).sort((a, b) => a - b);
-        sortedOrdKeys.forEach(ord => {
+        Object.keys(oStats).sort((a, b) => a - b).forEach(ord => {
             ordDetails.push(`<span class="ord-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabOrdFilter(event, this, '${ord}')"><span style="color:#0284c7; font-weight:900; font-size:10px;">${ord}</span> Ord x ${oStats[ord]}</span>`);
         });
         let ordStr = ordDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${ordDetails.join(', ')})</span>` : '';
 
-        let cHtml = cTotal > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ${cTotal}</span>` : '';
+        // 🔥 കൊറിയർ ബ്രേക്ക്ഡൗൺ HTML
+        let courierDetails = [];
+        for (let p in cStats) {
+            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabCourierFilter(event, this, '${p}')">${p} ${cStats[p].count}: ${cStats[p].cost}</span>`);
+        }
+        let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
+
+        let cHtml = totalTabCost > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ₹${totalTabCost} ${courierStr}</span>` : '';
 
         let klCount = oCount - (sStats.tn + sStats.kar + sStats.lak + sStats.other);
         if (klCount < 0) klCount = 0;
-
-        let colorLak = '#0dcaf0';
-        let colorKar = '#d97706';
-        let colorTn = '#5d4037';
-        let colorKl = '#198754';
-
+        let colorLak = '#0dcaf0'; let colorKar = '#d97706'; let colorTn = '#5d4037'; let colorKl = '#198754';
         let filterActive = window.activeStateFilter ? true : false;
-
         let getOp = (stateCode) => {
             if (!filterActive) return "opacity: 1; cursor:pointer;";
             return window.activeStateFilter === stateCode ? "opacity: 1; cursor:pointer; border: 2px solid #000; transform: scale(1.15);" : "opacity: 0.3; cursor:pointer;";
         };
-
         let clearBtn = filterActive ? `<span class="badge bg-danger shadow-sm ms-1" style="cursor:pointer; font-size:9px; padding:4px 6px;" onclick="toggleStateFilter(null)"><i class="fas fa-times"></i></span>` : '';
 
         let statesHtml = '';
@@ -1073,7 +1090,6 @@ function renderTabs(orders) {
         if (sStats.kar > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorKar}; font-size:9px; width:18px; height:18px; padding:0; ${getOp('KA')} transition:0.2s;" onclick="toggleStateFilter('KA')" title="Karnataka">${sStats.kar}</span>`;
         if (sStats.tn > 0) statesHtml += `<span class="badge rounded-circle text-white shadow-sm d-flex align-items-center justify-content-center" style="background:${colorTn}; font-size:9px; width:18px; height:18px; padding:0; ${getOp('TN')} transition:0.2s;" onclick="toggleStateFilter('TN')" title="Tamilnadu">${sStats.tn}</span>`;
         if (sStats.other > 0) statesHtml += `<span class="badge rounded-circle text-white bg-secondary shadow-sm d-flex align-items-center justify-content-center" style="font-size:9px; width:18px; height:18px; padding:0; ${getOp('OTHER')} transition:0.2s;" onclick="toggleStateFilter('OTHER')" title="Other States">${sStats.other}</span>`;
-
         statesHtml += clearBtn;
 
         el.style.display = 'flex';
@@ -9275,5 +9291,57 @@ window.toggleTabOrdFilter = function (event, element, targetOrd) {
         } else {
             col.style.display = 'none';
         }
+    });
+};
+
+// === TAB LEVEL COURIER FILTER ===
+window.toggleTabCourierFilter = function (event, element, providerName) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+
+    let isActive = element.classList.contains('active-filter');
+    let header = element.closest('.sticky-top');
+
+    if (header) {
+        header.querySelectorAll('.courier-filter, .qty-filter, .ord-filter').forEach(el => {
+            el.classList.remove('active-filter');
+            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
+        });
+    }
+
+    let container = element.closest('.tab-pane');
+    if (!container) return;
+
+    let allCols = container.querySelectorAll('.col-12');
+
+    if (isActive) {
+        allCols.forEach(col => col.style.display = '');
+        return;
+    }
+
+    element.classList.add('active-filter');
+    element.style.backgroundColor = '#cbd5e1'; element.style.color = '#0f172a';
+
+    let searchName = providerName.toUpperCase().trim();
+
+    allCols.forEach(col => {
+        let card = col.querySelector('.order-card');
+        if (!card) return;
+
+        let isMatch = false;
+        let selectBox = card.querySelector('select');
+        let selectVal = selectBox ? selectBox.value.toUpperCase().trim() : '';
+        let dataCourier = (col.getAttribute('data-card-courier') || '').toUpperCase().trim();
+
+        if (searchName === 'DIRECT') {
+            if (selectVal.includes('DIRECT') || dataCourier.includes('DIRECT') || dataCourier.includes('DDELIVERY')) {
+                isMatch = true;
+            }
+        } else {
+            if (selectVal.includes(searchName) || dataCourier.includes(searchName)) {
+                isMatch = true;
+            }
+        }
+
+        col.style.display = isMatch ? '' : 'none';
     });
 };
