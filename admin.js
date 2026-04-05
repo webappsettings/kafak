@@ -871,21 +871,27 @@ function renderTabs(orders) {
                 let extraHtml = '';
                 let sStats = timelineStats[`${dateKey}_${dateLabel}`];
                 if (sStats) {
-                    // 🔥 ivide if (sStats.cost > 0) ennathinu pakaram if (true) ennu aakki
-                    if (true) {
-                        let courierDetails = [];
-                        for (let p in sStats.couriers) {
-                            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
-                        }
-                        let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
+                    // 1. COURIER & COST SECTION (Mattiya bhagam)
+                    let courierDetails = [];
+                    for (let p in sStats.couriers) {
+                        // onclick-ൽ event പാസ്സ് ചെയ്യുന്നു
+                        courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
+                    }
 
-                        // Cost 0 anengil veruthe filter mathram kanikkan
-                        let costDisplay = sStats.cost > 0 ? `₹${sStats.cost} ` : '';
+                    let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
+
+                    // Cost 0 anenkil ₹0 ennu kanikkathirikkan
+                    let costDisplay = sStats.cost > 0 ? `₹${sStats.cost} ` : '';
+
+                    // Courier detailso cost-o undenkil mathram aa section kanikkuka (cost 0 anenkilum filter varum)
+                    if (courierDetails.length > 0 || sStats.cost > 0) {
                         extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ${costDisplay}${courierStr}</span>`;
                     }
+
+                    // 2. ORDER COUNT SECTION
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-box-open text-muted me-1" style="font-size:10px;"></i> ${sStats.count}</span>`;
 
-                    // 🔥 പുതിയ ബോട്ടിൽ ഫിൽറ്റർ HTML
+                    // 3. BOTTLE QUANTITY FILTER SECTION
                     let qtyDetails = [];
                     if (sStats.qtyCounts) {
                         let sortedKeys = Object.keys(sStats.qtyCounts).sort((a, b) => a - b);
@@ -897,6 +903,7 @@ function renderTabs(orders) {
 
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-wine-bottle text-muted me-1" style="font-size:10px;"></i> ${sStats.bottles} ${qtyStr}</span>`;
 
+                    // 4. BADGES (D & C) SECTION
                     let badgeStr = "";
                     if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
                     if (sStats.C > 0) badgeStr += `<span class="text-success fw-bold ms-1" style="font-size:10px;">(${sStats.C} C)</span>`;
