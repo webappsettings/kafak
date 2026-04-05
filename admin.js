@@ -856,7 +856,7 @@ function renderTabs(orders) {
                     if (sStats.cost > 0) {
                         let courierDetails = [];
                         for (let p in sStats.couriers) {
-                            courierDetails.push(`${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}`);
+                            courierDetails.push(`<span class="courier-filter" data-provider="${p}" data-dategroup="${safeGroupId}" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="toggleCourierFilter(this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
                         }
                         let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
 
@@ -8942,3 +8942,100 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }
+// 🔥 DYNAMIC COURIER FILTER FUNCTION (Works for specific Date Group ONLY)
+window.toggleCourierFilter = function (element, providerName, groupId) {
+    // Prevent event bubbling if necessary
+    event.stopPropagation();
+
+    let isCurrentlyActive = element.classList.contains('active-filter');
+
+    // 1. Reset all filters in this specific DATE GROUP ONLY
+    let groupContainer = element.closest('.sticky-date-wrapper');
+    if (groupContainer) {
+        groupContainer.querySelectorAll('.courier-filter').forEach(el => {
+            el.classList.remove('active-filter');
+            el.style.backgroundColor = 'transparent';
+            el.style.color = '#64748b'; // normal color
+        });
+    }
+
+    // 2. Find the list container that has the cards for this tab
+    let listContainer = element.closest('.tab-pane');
+    if (!listContainer) return;
+
+    // We will look for cards ONLY below this specific group header 
+    // until the next group header starts.
+
+    // Select all cards in this tab
+    let allCards = listContainer.querySelectorAll('.col-12.col-md-12.col-lg-12, .col-12.col-md-6.col-lg-6');
+
+    // Toggle Logic
+    if (isCurrentlyActive) {
+        // If it was active, user clicked to turn it OFF.
+        // Show all cards in the entire tab normally.
+        allCards.forEach(card => {
+            // Show all cards except those manually hidden by other means
+            card.style.display = '';
+        });
+    } else {
+        // Turn ON the filter for this provider
+        element.classList.add('active-filter');
+        element.style.backgroundColor = '#cbd5e1'; // Highlight background
+        element.style.color = '#0f172a'; // Highlight text color
+
+        // Iterate through all items in the tab
+        let insideTargetGroup = false;
+
+        // Let's iterate through the children of the tab pane
+        Array.from(listContainer.children).forEach(child => {
+            // Check if this child is a Date Header
+            if (child.classList.contains('sticky-date-wrapper')) {
+                // If it's the header we clicked, start filtering
+                if (child.querySelector(`.group-cb-${groupId}`) || child.innerHTML.includes(groupId)) {
+                    insideTargetGroup = true;
+                } else {
+                    // If it's another header, stop filtering for this group
+                    insideTargetGroup = false;
+                }
+            }
+            // If it is an order card
+            else if (child.classList.contains('col-12') && child.querySelector('.order-card')) {
+                if (insideTargetGroup) {
+                    // Check the courier provider text inside the card
+                    // In your card HTML, provider is shown in select box or text
+                    let selectBox = child.querySelector('select.form-select');
+                    let cardProvider = "";
+
+                    if (selectBox) {
+                        cardProvider = selectBox.value.toUpperCase();
+                    } else {
+                        // Check text if direct delivery or fallback
+                        let htmlContent = child.innerHTML.toUpperCase();
+                        if (htmlContent.includes(providerName.toUpperCase())) {
+                            cardProvider = providerName.toUpperCase();
+                        }
+                    }
+
+                    // Strict matching logic (handling spaces and partial matches)
+                    let searchProvider = providerName.toUpperCase().trim();
+                    let isMatch = false;
+
+                    if (cardProvider === searchProvider) isMatch = true;
+                    else if (cardProvider.includes(searchProvider)) isMatch = true;
+                    else if (searchProvider === 'DIRECT' && cardProvider.includes('DIRECT')) isMatch = true;
+                    else if (searchProvider.includes('POST') && cardProvider.includes('POST')) isMatch = true;
+
+                    if (isMatch) {
+                        child.style.display = ''; // Show
+                    } else {
+                        child.style.display = 'none'; // Hide
+                    }
+                } else {
+                    // Keep cards in other date groups visible (or hide them if you only want to see this group)
+                    // Currently keeping them visible as per standard filtering behavior
+                    child.style.display = '';
+                }
+            }
+        });
+    }
+};
