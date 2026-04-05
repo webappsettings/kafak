@@ -668,7 +668,6 @@ function renderTabs(orders) {
         let info = getOrderInfo(o);
         let status = info.status;
 
-        // Status-le uppercase/lowercase prashnangal ozhivakkan oru temporary variable
         let checkStatus = status ? status.toUpperCase().trim() : '';
 
         // 🔥 FIX 1: COMPLETED koodathe DELIVERED aaya order-ukalum timeline-il ninnum poornnamayi ozhivakkunnu!
