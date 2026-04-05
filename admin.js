@@ -8726,6 +8726,21 @@ window.changeCourier = async function (oid, newProvider) {
     }
 };
 
+// 🔥 NEW HELPER: Toggle Direct Delivery Date Picker
+window.toggleDDDatePicker = function (isChecked) {
+    let container = document.getElementById('dd-date-container');
+    let input = document.getElementById('dd-delivered-date');
+    if (isChecked) {
+        container.style.display = 'block';
+        if (input && input._flatpickr) {
+            input._flatpickr.setDate(new Date()); // ടിക്ക് ചെയ്യുമ്പോൾ ഓട്ടോമാറ്റിക് ആയി ഇപ്പോഴത്തെ സമയം വരും
+        }
+    } else {
+        container.style.display = 'none';
+    }
+};
+
+// 🔥 UPDATED: DIRECT DELIVERY POPUP (With Date Picker)
 window.openDirectDeliveryPopup = function (oid) {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
@@ -8752,11 +8767,19 @@ window.openDirectDeliveryPopup = function (oid) {
     let currentStatus = String(order.Status || 'Pending').trim();
     let showDeliveryToggle = (currentStatus !== 'Delivered' && currentStatus !== 'Completed');
 
+    // 🔥 UPDATED: Added Date Picker HTML
     let deliveryToggleHtml = showDeliveryToggle ? `
         <div class="mt-3 text-start bg-success bg-opacity-10 p-2 rounded border border-success border-opacity-25">
             <div class="form-check form-switch m-0 d-flex align-items-center">
-                <input class="form-check-input bg-success border-success shadow-none" type="checkbox" id="dd-mark-delivered" style="cursor:pointer; transform: scale(1.1); margin-top:0;">
+                <input class="form-check-input bg-success border-success shadow-none" type="checkbox" id="dd-mark-delivered" style="cursor:pointer; transform: scale(1.1); margin-top:0;" onchange="window.toggleDDDatePicker(this.checked)">
                 <label class="form-check-label small fw-bold text-success ms-2" for="dd-mark-delivered" style="cursor:pointer; padding-top:2px;">Mark as Delivered Instantly</label>
+            </div>
+            <div id="dd-date-container" style="display:none; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #a7f3d0;">
+                <label class="small text-success fw-bold mb-1" style="font-size:10px;">DELIVERY DATE & TIME</label>
+                <div class="input-group input-group-sm">
+                    <span class="input-group-text bg-white text-success border-success"><i class="fas fa-calendar-alt"></i></span>
+                    <input type="text" id="dd-delivered-date" class="form-control form-control-sm border-success fw-bold bg-white text-dark" placeholder="Select Date & Time" readonly>
+                </div>
             </div>
         </div>
     ` : '';
@@ -8781,19 +8804,44 @@ window.openDirectDeliveryPopup = function (oid) {
         showCancelButton: true,
         confirmButtonColor: '#0d6efd',
         confirmButtonText: '<i class="fas fa-list"></i> Add to Sync',
+        didOpen: () => {
+            // 🔥 NEW: Initialize Flatpickr for the date input
+            let dateInput = document.getElementById('dd-delivered-date');
+            if (dateInput) {
+                flatpickr(dateInput, {
+                    enableTime: true,
+                    dateFormat: "Y-m-d H:i", // ബാക്കെൻഡിലേക്ക് സേവ് ചെയ്യാൻ
+                    altInput: true,          // യൂസർക്ക് ഭംഗിയിൽ കാണാൻ
+                    altFormat: "d M Y, h:i K",
+                    defaultDate: new Date(),
+                    theme: "material_blue",
+                    time_24hr: false,
+                    disableMobile: true
+                });
+            }
+        },
         preConfirm: () => {
             let p = document.getElementById('dd-partner-name').value;
             let a = document.getElementById('dd-extra-amount').value;
             let dToggle = document.getElementById('dd-mark-delivered');
             let d = dToggle ? dToggle.checked : false;
+
+            // 🔥 Fetch the custom date
+            let delDate = null;
+            if (d) {
+                let dateInput = document.getElementById('dd-delivered-date');
+                if (dateInput) delDate = dateInput.value;
+            }
+
             if (!a) { Swal.showValidationMessage('Charge is required!'); return false; }
-            return { name: p, charge: a, isDelivered: d };
+            return { name: p, charge: a, isDelivered: d, deliveredDate: delDate };
         }
     }).then((res) => {
         if (res.isConfirmed) {
             let pName = res.value.name;
             let charge = parseInt(res.value.charge) || 0;
             let isDelivered = res.value.isDelivered;
+            let customDelDate = res.value.deliveredDate; // 🔥 NEW Custom Date
             let newProvider = 'Direct';
             let metaString = `DDelivery${pName}_${charge}`;
 
@@ -8834,28 +8882,31 @@ window.openDirectDeliveryPopup = function (oid) {
 
                 if (isDelivered) {
                     order.Status = 'Delivered';
-                    // ഇപ്പോഴത്തെ സമയം Delivered Date ആയി സെറ്റ് ചെയ്യുന്നു
-                    let now = new Date();
-                    let y = now.getFullYear();
-                    let m = String(now.getMonth() + 1).padStart(2, '0');
-                    let d = String(now.getDate()).padStart(2, '0');
-                    let h = String(now.getHours()).padStart(2, '0');
-                    let min = String(now.getMinutes()).padStart(2, '0');
 
-                    let formattedNow = `${y}-${m}-${d} ${h}:${min}`;
-                    order['Delivered Date'] = formattedNow; // ലോക്കൽ ഡാറ്റയിൽ സമയം സേവ് ചെയ്യുന്നു
+                    // 🔥 USE CUSTOM DATE OR FALLBACK TO NOW
+                    let formattedDate = customDelDate;
+                    if (!formattedDate) {
+                        let now = new Date();
+                        let y = now.getFullYear();
+                        let m = String(now.getMonth() + 1).padStart(2, '0');
+                        let d = String(now.getDate()).padStart(2, '0');
+                        let h = String(now.getHours()).padStart(2, '0');
+                        let min = String(now.getMinutes()).padStart(2, '0');
+                        formattedDate = `${y}-${m}-${d} ${h}:${min}`;
+                    }
 
-                    // Sync ലിസ്റ്റിലേക്ക് (Status Action) ആഡ് ചെയ്യുന്നു
+                    order['Delivered Date'] = formattedDate;
+
                     let statIdx = updates.findIndex(u => u.oid === oid && u.action === 'status');
                     if (statIdx > -1) {
                         updates[statIdx].status = 'Delivered';
-                        updates[statIdx].actionDate = formattedNow;
+                        updates[statIdx].actionDate = formattedDate;
                     } else {
                         updates.push({
                             oid: oid,
                             action: 'status',
                             status: 'Delivered',
-                            actionDate: formattedNow, // ഈ സമയമാണ് ഷീറ്റിലേക്ക് കയറുന്നത്
+                            actionDate: formattedDate,
                             oldStatus: currentStatus,
                             time: new Date().getTime()
                         });
@@ -8869,7 +8920,6 @@ window.openDirectDeliveryPopup = function (oid) {
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
             if (typeof renderTabs === 'function') renderTabs(allOrders);
 
-            // 🔥 FIX 1: Search Tab Refresh Fix
             if (document.getElementById('searchInput') && document.getElementById('searchInput').value.trim() !== '') {
                 if (typeof filterOrders === 'function') filterOrders();
             }
