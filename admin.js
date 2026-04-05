@@ -871,15 +871,17 @@ function renderTabs(orders) {
                 let extraHtml = '';
                 let sStats = timelineStats[`${dateKey}_${dateLabel}`];
                 if (sStats) {
-                    if (sStats.cost > 0) {
+                    // 🔥 ivide if (sStats.cost > 0) ennathinu pakaram if (true) ennu aakki
+                    if (true) {
                         let courierDetails = [];
                         for (let p in sStats.couriers) {
-                            // 🔥 onclick-ൽ event കൂടി പാസ്സ് ചെയ്യുന്നു
                             courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
                         }
                         let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
 
-                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ₹${sStats.cost} ${courierStr}</span>`;
+                        // Cost 0 anengil veruthe filter mathram kanikkan
+                        let costDisplay = sStats.cost > 0 ? `₹${sStats.cost} ` : '';
+                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ${costDisplay}${courierStr}</span>`;
                     }
                     extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-box-open text-muted me-1" style="font-size:10px;"></i> ${sStats.count}</span>`;
 
