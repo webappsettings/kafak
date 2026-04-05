@@ -1034,19 +1034,17 @@ function renderTabs(orders) {
             }
         });
 
-        // ബോട്ടിൽ ബ്രേക്ക്ഡൗൺ ഫിൽറ്റർ
         let qtyDetails = [];
         let sortedKeys = Object.keys(qStats).sort((a, b) => a - b);
         sortedKeys.forEach(q => {
-            qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabQtyFilter(event, this, '${q}')">${q}Btl x ${qStats[q]}</span>`);
+            qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabQtyFilter(event, this, '${q}')"><span style="color:#16a34a; font-weight:900; font-size:10px;">${q}</span> Btl x ${qStats[q]}</span>`);
         });
         let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
 
-        // ഓർഡർ ബ്രേക്ക്ഡൗൺ ഫിൽറ്റർ
         let ordDetails = [];
         let sortedOrdKeys = Object.keys(oStats).sort((a, b) => a - b);
         sortedOrdKeys.forEach(ord => {
-            ordDetails.push(`<span class="ord-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabOrdFilter(event, this, '${ord}')">${ord}Ord x ${oStats[ord]}</span>`);
+            ordDetails.push(`<span class="ord-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabOrdFilter(event, this, '${ord}')"><span style="color:#0284c7; font-weight:900; font-size:10px;">${ord}</span> Ord x ${oStats[ord]}</span>`);
         });
         let ordStr = ordDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${ordDetails.join(', ')})</span>` : '';
 
