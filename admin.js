@@ -8959,7 +8959,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 }
 
 
-// === 1. COURIER FILTER (SAFE VERSION) ===
+// === 1. COURIER FILTER (SAFE VERSION - DIRECT FIX ONLY) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
     if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
 
@@ -9000,13 +9000,24 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
             if (insideGroup) {
                 // ഡാറ്റാ ആട്രിബ്യൂട്ടോ അല്ലെങ്കിൽ ഉള്ളിലെ ടെക്സ്റ്റോ വെച്ച് ഫിൽറ്റർ ചെയ്യുന്നു
                 let searchName = providerName.toUpperCase().trim();
-                let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase();
+                let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase().trim();
                 let textContent = el.innerHTML.toUpperCase();
 
                 let match = false;
-                if (dataCourier && dataCourier.includes(searchName)) match = true;
-                else if (!dataCourier && textContent.includes(searchName)) match = true;
-                else if (searchName === 'DIRECT' && textContent.includes('DIRECT')) match = true;
+
+                // 🔥 DIRECT-ന് വേണ്ടി മാത്രം അപ്ഡേറ്റ് ചെയ്ത ഭാഗം (മറ്റൊന്നും മാറ്റിയിട്ടില്ല)
+                if (searchName === 'DIRECT') {
+                    // Direct ഓർഡറുകൾക്ക് ഡാറ്റ കാലിയായിരിക്കാം (""), അല്ലെങ്കിൽ DDELIVERY എന്നായിരിക്കാം
+                    if (dataCourier === '' || dataCourier === 'NULL' || dataCourier === 'UNDEFINED' ||
+                        dataCourier.includes('DIRECT') || dataCourier.includes('DDELIVERY') ||
+                        textContent.includes('DIRECT') || textContent.includes('DDELIVERY')) {
+                        match = true;
+                    }
+                } else {
+                    // ബാക്കി എല്ലാ കൊറിയറുകൾക്കും താങ്കളുടെ പഴയ കോഡ് തന്നെ
+                    if (dataCourier && dataCourier.includes(searchName)) match = true;
+                    else if (!dataCourier && textContent.includes(searchName)) match = true;
+                }
 
                 if (match) el.style.display = '';
                 else el.style.display = 'none';
