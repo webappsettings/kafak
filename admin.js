@@ -8959,7 +8959,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 }
 
 
-// === 1. COURIER FILTER (SAFE VERSION - FINAL FIX) ===
+// === 1. COURIER FILTER (SAFE VERSION - PERFECT LOGIC) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
     if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
 
@@ -8998,27 +8998,29 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
             insideGroup = el.innerHTML.includes(groupId);
         } else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
             if (insideGroup) {
+                // ഡാറ്റാ ആട്രിബ്യൂട്ടോ അല്ലെങ്കിൽ ഉള്ളിലെ ടെക്സ്റ്റോ വെച്ച് ഫിൽറ്റർ ചെയ്യുന്നു
                 let searchName = providerName.toUpperCase().trim();
-                let textContent = el.innerHTML.toUpperCase(); // കാർഡിലെ മുഴുവൻ ടെക്സ്റ്റ്
+                let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase();
+                let textContent = el.innerHTML.toUpperCase();
 
-                // സെലക്ട് ബോക്സിലെ വാല്യൂ എടുക്കുന്നു
+                // താങ്കൾ പറഞ്ഞതുപോലെ സെലക്ട് ബോക്സിലെ വാല്യൂ കൂടെ എടുക്കുന്നു
                 let selectBox = el.querySelector('select');
                 let selectVal = selectBox ? selectBox.value.toUpperCase().trim() : '';
 
                 let match = false;
 
-                // 🔥 എളുപ്പമുള്ള മാച്ചിംഗ് ലോജിക് (ഡാറ്റാ ആട്രിബ്യൂട്ട് ഇല്ലാതെ)
+                // --- UPDATE CHEYTHA LOGIC ---
                 if (searchName === 'DIRECT') {
-                    // Direct ആണെങ്കിൽ: സെലക്ട് വാല്യൂ 'DIRECT' ആണെങ്കിലോ, സെലക്ട് ചെയ്യാതെ കാലിയായി കിടക്കുകയാണെങ്കിലോ, കാർഡിൽ DIRECT എന്ന് ഉണ്ടെങ്കിലോ ഫിൽറ്റർ ആകും
-                    if (selectVal === 'DIRECT' || selectVal === '' || selectVal === '0' || textContent.includes('DIRECT') || textContent.includes('DDELIVERY')) {
+                    // Direct-ന് മാത്രം Select ബോക്സോ ടെക്സ്റ്റോ നോക്കുന്നു
+                    if (selectVal === 'DIRECT' || textContent.includes('DIRECT') || textContent.includes('DDELIVERY')) {
                         match = true;
                     }
                 } else {
-                    // India Post പോലെയുള്ളവ ആണെങ്കിൽ: സെലക്ട് വാല്യൂയിലോ ടെക്സ്റ്റിലോ ആ പേരുണ്ടെങ്കിൽ ഫിൽറ്റർ ആകും
-                    if (selectVal.includes(searchName) || textContent.includes(searchName)) {
-                        match = true;
-                    }
+                    // താങ്കളുടെ പഴയ 100% വർക്കിംഗ് ആയ കോഡ് (മറ്റ് കൊറിയറുകൾക്ക്)
+                    if (dataCourier && dataCourier.includes(searchName)) match = true;
+                    else if (!dataCourier && textContent.includes(searchName)) match = true;
                 }
+                // -----------------------------
 
                 if (match) el.style.display = '';
                 else el.style.display = 'none';
