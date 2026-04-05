@@ -972,14 +972,13 @@ function renderTabs(orders) {
         }
 
         let bCount = 0;
-        let qStats = {}; // 🔥 NEW: ബോട്ടിൽ ബ്രേക്ക്ഡൗൺ കാൽക്കുലേറ്റ് ചെയ്യാൻ
+        let qStats = {};
+        let oStats = {}; // 🔥 NEW: ഓർഡറുകളുടെ എണ്ണം ട്രാക്ക് ചെയ്യാൻ
 
-        // ടാബിലുള്ള ഓർഡറുകളെ ഫിൽറ്റർ ചെയ്ത് എണ്ണമെടുക്കുന്നു
         orders.forEach(o => {
             let info = getOrderInfo(o);
             let status = info.status;
 
-            // State ഫിൽറ്റർ ഓൺ ആണെങ്കിൽ അത് ചെക്ക് ചെയ്യുന്നു
             let s = String(o.state || '').toUpperCase().trim();
             let stateKey = null;
             if (s && s !== 'KERALA') {
@@ -1013,16 +1012,43 @@ function renderTabs(orders) {
                 let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
                 bCount += qty;
                 qStats[qty] = (qStats[qty] || 0) + 1;
+
+                // 🔥 ഓർഡറുകളുടെ എണ്ണം കാൽക്കുലേറ്റ് ചെയ്യുന്നു
+                let currentPhone = String(o.phone || '').replace(/[^0-9]/g, '');
+                if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
+
+                let localOrders = 1;
+                if (currentPhone && typeof allOrders !== 'undefined') {
+                    localOrders = allOrders.filter(x => {
+                        let p = String(x.phone || '').replace(/[^0-9]/g, '');
+                        if (p.length > 10) p = p.slice(-10);
+                        let sSt = String(x.Status || 'Pending').trim();
+                        return (p === currentPhone) && (sSt !== 'Refunded');
+                    }).length;
+                }
+                let serverOrders = parseInt(o.Total_Orders || o.total_orders) || 0;
+                let tOrds = Math.max(localOrders, serverOrders);
+                if (tOrds === 0) tOrds = 1;
+
+                oStats[tOrds] = (oStats[tOrds] || 0) + 1;
             }
         });
 
-        // 🔥 ബ്രേക്ക്ഡൗൺ ടെക്സ്റ്റ് ഉണ്ടാക്കുന്നു (ഉദാ: 1x5, 2x1)
+        // ബോട്ടിൽ ബ്രേക്ക്ഡൗൺ ഫിൽറ്റർ
         let qtyDetails = [];
         let sortedKeys = Object.keys(qStats).sort((a, b) => a - b);
         sortedKeys.forEach(q => {
-            qtyDetails.push(`${q}x${qStats[q]}`);
+            qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabQtyFilter(event, this, '${q}')">${q}Btl x ${qStats[q]}</span>`);
         });
         let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
+
+        // ഓർഡർ ബ്രേക്ക്ഡൗൺ ഫിൽറ്റർ
+        let ordDetails = [];
+        let sortedOrdKeys = Object.keys(oStats).sort((a, b) => a - b);
+        sortedOrdKeys.forEach(ord => {
+            ordDetails.push(`<span class="ord-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabOrdFilter(event, this, '${ord}')">${ord}Ord x ${oStats[ord]}</span>`);
+        });
+        let ordStr = ordDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${ordDetails.join(', ')})</span>` : '';
 
         let cHtml = cTotal > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ${cTotal}</span>` : '';
 
@@ -1053,10 +1079,10 @@ function renderTabs(orders) {
         statesHtml += clearBtn;
 
         el.style.display = 'flex';
-        el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex justify-content-between align-items-center px-2 py-1 mx-auto mt-2 mb-3";
+        el.className = "sticky-top shadow border border-secondary border-opacity-25 d-flex flex-wrap justify-content-between align-items-center px-2 py-2 mx-auto mt-2 mb-3";
         el.style.top = "176px";
-        el.style.width = "calc(100% - 100px)";
-        el.style.borderRadius = "20px";
+        el.style.width = "calc(100% - 10px)";
+        el.style.borderRadius = "12px";
         el.style.zIndex = "1010";
         el.style.background = "rgba(255, 255, 255, 0.95)";
         el.style.backdropFilter = "blur(8px)";
@@ -1064,17 +1090,16 @@ function renderTabs(orders) {
         el.style.marginRight = "auto";
 
         el.innerHTML = `
-            <div class="d-flex align-items-center gap-2">
+            <div class="d-flex align-items-center flex-wrap gap-2 w-100 mb-1">
                 <span class="fw-bold text-dark d-flex align-items-center" style="font-size:11px;">
-                    <i class="fas fa-shopping-bag text-primary me-1" style="font-size:10px;"></i>${oCount}
+                    <i class="fas fa-shopping-bag text-primary me-1" style="font-size:10px;"></i>${oCount} ${ordStr}
                 </span>
                 <span class="fw-bold text-dark d-flex align-items-center" style="font-size:11px;">
                     <i class="fas fa-wine-bottle text-success me-1" style="font-size:10px;"></i>${bCount} ${qtyStr}
                 </span>
                 ${cHtml}
             </div>
-            
-            <div class="d-flex align-items-center gap-1">
+            <div class="d-flex align-items-center gap-1 w-100 justify-content-end">
                 ${statesHtml}
             </div>
         `;
@@ -9156,6 +9181,101 @@ window.toggleQtyFilter = function (event, element, targetQty, groupId) {
             } else {
                 el.style.display = '';
             }
+        }
+    });
+};
+
+// === TAB LEVEL QTY FILTER ===
+window.toggleTabQtyFilter = function (event, element, targetQty) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+
+    let isActive = element.classList.contains('active-filter');
+    let header = element.closest('.sticky-top');
+
+    // ഈ ഹെഡ്ഡറിലെ ബാക്കി ഫിൽറ്ററുകൾ റീസെറ്റ് ചെയ്യുന്നു
+    if (header) {
+        header.querySelectorAll('.qty-filter, .ord-filter').forEach(el => {
+            el.classList.remove('active-filter');
+            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
+        });
+    }
+
+    let container = element.closest('.tab-pane');
+    if (!container) return;
+
+    let allCols = container.querySelectorAll('.col-12');
+
+    // ഓഫ് ചെയ്യുകയാണെങ്കിൽ എല്ലാം കാണിക്കും
+    if (isActive) {
+        allCols.forEach(col => col.style.display = '');
+        return;
+    }
+
+    // ഓൺ ആണെങ്കിൽ ഹൈലൈറ്റ് ചെയ്യുന്നു
+    element.classList.add('active-filter');
+    element.style.backgroundColor = '#e2e8f0'; element.style.color = '#0f172a';
+
+    allCols.forEach(col => {
+        if (!col.querySelector('.order-card')) return; // ഹെഡ്ഡറുകൾ സ്കിപ്പ് ചെയ്യാൻ
+
+        let cardQty = col.getAttribute('data-card-qty');
+        if (!cardQty) {
+            let qtyInput = col.querySelector('input[type="number"], select');
+            if (qtyInput) cardQty = qtyInput.value;
+        }
+
+        if (parseInt(cardQty) === parseInt(targetQty)) {
+            col.style.display = '';
+        } else {
+            col.style.display = 'none';
+        }
+    });
+};
+
+// === TAB LEVEL ORDER COUNT FILTER ===
+window.toggleTabOrdFilter = function (event, element, targetOrd) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+
+    let isActive = element.classList.contains('active-filter');
+    let header = element.closest('.sticky-top');
+
+    if (header) {
+        header.querySelectorAll('.qty-filter, .ord-filter').forEach(el => {
+            el.classList.remove('active-filter');
+            el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
+        });
+    }
+
+    let container = element.closest('.tab-pane');
+    if (!container) return;
+
+    let allCols = container.querySelectorAll('.col-12');
+
+    if (isActive) {
+        allCols.forEach(col => col.style.display = '');
+        return;
+    }
+
+    element.classList.add('active-filter');
+    element.style.backgroundColor = '#e2e8f0'; element.style.color = '#0f172a';
+
+    allCols.forEach(col => {
+        let card = col.querySelector('.order-card');
+        if (!card) return;
+
+        let ordBadge = card.querySelector('.stats-badge-purple');
+        let cardOrd = 1;
+
+        if (ordBadge) {
+            // കാർഡിലെ "1 Ords", "2 Ords" ടെക്സ്റ്റിൽ നിന്നും നമ്പർ എടുക്കുന്നു
+            let match = ordBadge.innerText.match(/(\d+)\s*Ord/i);
+            if (match) cardOrd = parseInt(match[1]);
+        }
+
+        if (parseInt(cardOrd) === parseInt(targetOrd)) {
+            col.style.display = '';
+        } else {
+            col.style.display = 'none';
         }
     });
 };
