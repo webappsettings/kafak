@@ -668,8 +668,19 @@ function renderTabs(orders) {
         let info = getOrderInfo(o);
         let status = info.status;
 
-        // 🔥 FIX 1: Refunded/Archive ആയ ഓർഡറുകൾ ടൈംലൈൻ അക്കൗണ്ടിംഗിൽ നിന്ന് ഒഴിവാക്കുന്നു
-        if (status === 'Archive' || status === 'Refunded') return;
+        // 🔥 FIX 1: Completed, Refunded, Archive ആയ ഓർഡറുകൾ ടൈംലൈൻ അക്കൗണ്ടിംഗിൽ നിന്ന് പൂർണ്ണമായും ഒഴിവാക്കുന്നു
+        if (status === 'Archive' || status === 'Refunded' || status === 'Completed') return;
+
+        // 🔥 FIX 2: ടൈംലൈൻ കാൽക്കുലേഷൻ ചെയ്യുന്നതിന് മുൻപ് തന്നെ Direct Delivery ഡാറ്റ കൃത്യമായി എടുക്കുന്നു 
+        // (ഇതാണ് ആദ്യത്തവണ 100 വന്നിട്ട് പിന്നീട് 80 ആയ പ്രശ്നം മാറ്റുന്നത്)
+        if (o.adminMeta && o.adminMeta.includes('DDelivery')) {
+            let match = o.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
+            if (match) {
+                o.provider = 'Direct';
+                o.Courier_Provider = 'Direct';
+                o.Courier_Charge = parseInt(match[2]) || 0;
+            }
+        }
 
         let meta = getMetaStatus(o.adminMeta, status);
         let dateKeyType = '';
