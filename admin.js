@@ -8959,92 +8959,116 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 }
 
 
-// === 1. COURIER FILTER ===
+// === 1. COURIER FILTER (SAFE VERSION) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
-    event.stopPropagation();
+    if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
+
     let isActive = element.classList.contains('active-filter');
 
-    // Reset Courier Filters
-    let groupContainer = element.closest('.sticky-date-wrapper');
-    if (groupContainer) {
-        groupContainer.querySelectorAll('.courier-filter').forEach(el => {
+    // ഫിൽറ്റർ കളർ റീസെറ്റ് ചെയ്യാൻ
+    let header = element.closest('.sticky-date-wrapper');
+    if (header) {
+        header.querySelectorAll('.courier-filter').forEach(el => {
             el.classList.remove('active-filter');
             el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
         });
     }
 
-    let listContainer = element.closest('.tab-pane');
-    if (!listContainer) return;
-    let allCards = listContainer.querySelectorAll('.col-12[data-card-qty]');
+    let container = element.closest('.tab-pane') || document.body;
+    let allCards = container.querySelectorAll('.order-card');
 
     if (isActive) {
-        allCards.forEach(card => card.style.display = '');
-    } else {
-        element.classList.add('active-filter');
-        element.style.backgroundColor = '#cbd5e1'; element.style.color = '#0f172a';
-
-        let insideGroup = false;
-        Array.from(listContainer.children).forEach(child => {
-            if (child.classList.contains('sticky-date-wrapper')) {
-                insideGroup = child.innerHTML.includes(groupId);
-            } else if (child.hasAttribute('data-card-qty')) {
-                if (insideGroup) {
-                    let cardCourier = (child.getAttribute('data-card-courier') || '').toUpperCase();
-                    let searchName = providerName.toUpperCase().trim();
-
-                    if (cardCourier.includes(searchName)) {
-                        child.style.display = '';
-                    } else {
-                        child.style.display = 'none';
-                    }
-                } else {
-                    child.style.display = '';
-                }
-            }
+        // ഓഫ് ചെയ്യുമ്പോൾ എല്ലാം കാണിക്കുക
+        allCards.forEach(card => {
+            let col = card.closest('.col-12');
+            if (col) col.style.display = '';
         });
+        return;
     }
+
+    // ഓൺ ചെയ്യുമ്പോൾ ഹൈലൈറ്റ് ചെയ്യുക
+    element.classList.add('active-filter');
+    element.style.backgroundColor = '#cbd5e1'; element.style.color = '#0f172a';
+
+    let insideGroup = false;
+    let elements = container.querySelectorAll('.sticky-date-wrapper, .col-12');
+
+    elements.forEach(el => {
+        if (el.classList.contains('sticky-date-wrapper')) {
+            insideGroup = el.innerHTML.includes(groupId);
+        } else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
+            if (insideGroup) {
+                // ഡാറ്റാ ആട്രിബ്യൂട്ടോ അല്ലെങ്കിൽ ഉള്ളിലെ ടെക്സ്റ്റോ വെച്ച് ഫിൽറ്റർ ചെയ്യുന്നു
+                let searchName = providerName.toUpperCase().trim();
+                let dataCourier = (el.getAttribute('data-card-courier') || '').toUpperCase();
+                let textContent = el.innerHTML.toUpperCase();
+
+                let match = false;
+                if (dataCourier && dataCourier.includes(searchName)) match = true;
+                else if (!dataCourier && textContent.includes(searchName)) match = true;
+                else if (searchName === 'DIRECT' && textContent.includes('DIRECT')) match = true;
+
+                if (match) el.style.display = '';
+                else el.style.display = 'none';
+            } else {
+                el.style.display = ''; // മറ്റു ഡേറ്റുകളിലെ കാർഡുകൾ ഹൈഡ് ആവാതിരിക്കാൻ
+            }
+        }
+    });
 };
 
-// === 2. BOTTLE QUANTITY FILTER ===
+// === 2. BOTTLE QUANTITY FILTER (SAFE VERSION) ===
 window.toggleQtyFilter = function (event, element, targetQty, groupId) {
-    event.stopPropagation();
+    if (event) event.stopPropagation();
+
     let isActive = element.classList.contains('active-filter');
 
-    // Reset Qty Filters
-    let groupContainer = element.closest('.sticky-date-wrapper');
-    if (groupContainer) {
-        groupContainer.querySelectorAll('.qty-filter').forEach(el => {
+    let header = element.closest('.sticky-date-wrapper');
+    if (header) {
+        header.querySelectorAll('.qty-filter').forEach(el => {
             el.classList.remove('active-filter');
             el.style.backgroundColor = 'transparent'; el.style.color = '#64748b';
         });
     }
 
-    let listContainer = element.closest('.tab-pane');
-    if (!listContainer) return;
-    let allCards = listContainer.querySelectorAll('.col-12[data-card-qty]');
+    let container = element.closest('.tab-pane') || document.body;
+    let allCards = container.querySelectorAll('.order-card');
 
     if (isActive) {
-        allCards.forEach(card => card.style.display = '');
-    } else {
-        element.classList.add('active-filter');
-        element.style.backgroundColor = '#e2e8f0'; element.style.color = '#0f172a';
-
-        let insideGroup = false;
-        Array.from(listContainer.children).forEach(child => {
-            if (child.classList.contains('sticky-date-wrapper')) {
-                insideGroup = child.innerHTML.includes(groupId);
-            } else if (child.hasAttribute('data-card-qty')) {
-                if (insideGroup) {
-                    let cardQty = child.getAttribute('data-card-qty');
-                    if (cardQty == targetQty) {
-                        child.style.display = '';
-                    } else {
-                        child.style.display = 'none';
-                    }
-                } else {
-                    child.style.display = '';
-                }
-            }
+        allCards.forEach(card => {
+            let col = card.closest('.col-12');
+            if (col) col.style.display = '';
         });
+        return;
     }
+
+    element.classList.add('active-filter');
+    element.style.backgroundColor = '#e2e8f0'; element.style.color = '#0f172a';
+
+    let insideGroup = false;
+    let elements = container.querySelectorAll('.sticky-date-wrapper, .col-12');
+
+    elements.forEach(el => {
+        if (el.classList.contains('sticky-date-wrapper')) {
+            insideGroup = el.innerHTML.includes(groupId);
+        } else if (el.classList.contains('col-12') && el.querySelector('.order-card')) {
+            if (insideGroup) {
+                let cardQty = el.getAttribute('data-card-qty');
+
+                // ആട്രിബ്യൂട്ട് കിട്ടിയില്ലെങ്കിൽ ഇൻപുട്ട് ബോക്സിൽ നിന്ന് എടുക്കാൻ ശ്രമിക്കുന്നു
+                if (!cardQty) {
+                    let qtyInput = el.querySelector('input[type="number"], select');
+                    if (qtyInput) cardQty = qtyInput.value;
+                }
+
+                if (cardQty == targetQty) {
+                    el.style.display = '';
+                } else {
+                    el.style.display = 'none';
+                }
+            } else {
+                el.style.display = '';
+            }
+        }
+    });
 };
