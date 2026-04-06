@@ -1316,6 +1316,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     }
 
     let fraudAlertHtml = '';
+    // 🔥 NEW FIXED: Cross Linking Alert UI
     if (currentStatus === 'Pending' || currentStatus === 'Sent' || currentStatus === 'Paid') {
         let linkData = checkCrossLinking(d);
         if (linkData) {
@@ -1329,7 +1330,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             let linkDateStr = '';
             if (linkedOrder.timestamp) {
                 let lDate = new Date(linkedOrder.timestamp);
-                linkDateStr = lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+                if (isNaN(lDate.getTime()) && typeof parseOrderDate === 'function') lDate = parseOrderDate(linkedOrder.timestamp);
+                if (!isNaN(lDate.getTime())) {
+                    linkDateStr = lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+                }
             }
 
             let linkContacts = {};
@@ -1371,26 +1375,28 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             let archiveBtnHtml = showArchiveBtn ? `<button onclick="event.stopPropagation(); highlightCard(this); archiveOrder('${linkedOrder.orderid}')" class="btn btn-sm btn-outline-danger fw-bold shadow-sm py-0 px-2" style="font-size:9px;"><i class="fas fa-archive"></i></button>` : '';
 
             fraudAlertHtml = `
-            <div class="alert alert-${linkColor} p-2 mb-2 mt-1 shadow-sm border-${linkColor}" style="border-radius:8px;" onclick="event.stopPropagation();">
+            <div class="alert alert-${linkColor} p-2 mb-3 mt-1 shadow-sm border-${linkColor}" style="border-radius:10px; border-width: 2px;" onclick="event.stopPropagation();">
                 <div class="d-flex justify-content-between align-items-start">
-                    <div style="font-size:11px; font-weight:700; color:#b91c1c;">
+                    <div style="font-size:11px; font-weight:800; color:#b91c1c;">
                         <i class="fas fa-${linkIcon}"></i> Linked: ${linkedOrder.name} <span class="badge bg-secondary bg-opacity-25 text-dark ms-1" style="font-size:9px;">[${linkStatus}]</span>
                     </div>
                     <div style="font-size:9px; font-weight:700; color:#666; text-align:right;">
                         ${linkDateStr}
                     </div>
                 </div>
-                <div class="d-flex justify-content-between align-items-center mt-1 mb-2">
+                
+                <div class="d-flex justify-content-between align-items-center mt-2 mb-2 pb-2" style="border-bottom: 1px solid rgba(0,0,0,0.05);">
                     <div style="font-size:10px; color:#555; display:flex; align-items:center; gap:8px;">
-                        ID: <b>${linkedOrder.orderid}</b> 
+                        ID: <b>${linkedOrder.orderid.slice(-5)}</b> 
                         <div onclick="event.stopPropagation(); document.getElementById('searchInput').value='${matchedNum}'; filterOrders();" 
-                             style="cursor:pointer; background:#e0f2fe; color:#0284c7; padding:2px 6px; border-radius:4px; border:1px solid #bae6fd;" title="Compare Both Orders">
-                             <i class="fas fa-search" style="font-size:10px;"></i>
+                             style="cursor:pointer; background:#e0f2fe; color:#0284c7; padding:2px 6px; border-radius:4px; border:1px solid #bae6fd; font-weight: bold;" title="Compare Both Orders">
+                             <i class="fas fa-search" style="font-size:10px;"></i> Compare
                         </div>
                     </div>
                     ${archiveBtnHtml}
                 </div>
-                <div class="d-flex align-items-center flex-wrap" style="background:rgba(255,255,255,0.6); padding:6px; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
+                
+                <div class="d-flex align-items-center flex-wrap" style="background:rgba(255,255,255,0.7); padding:6px; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
                     <div class="d-flex flex-wrap align-items-center flex-grow-1">
                         ${radioHtml}
                     </div>
@@ -1399,6 +1405,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             </div>`;
         }
     }
+
 
     let headerLeft = `
         <div class="d-flex align-items-center flex-wrap gap-2">
