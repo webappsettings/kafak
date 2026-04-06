@@ -1409,6 +1409,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
                 ${d.orderid} <i class="far fa-copy ms-2" style="opacity:0.7; font-size:12px;"></i>
             </span>
             ${metaBadges} 
+            ${resendBadge} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${langBadge}
         </div>`;
