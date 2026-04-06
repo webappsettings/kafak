@@ -1240,15 +1240,16 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let totalOrders = 0;
     let totalBottles = 0;
 
-    let currentPhone = String(d.phone || '').replace(/[^0-9]/g, '');
+    let currentPhone = String(d.phone || d.Phone || '').replace(/[^0-9]/g, '');
     if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
 
     if (currentPhone && typeof allOrders !== 'undefined') {
         let custHistory = allOrders.filter(o => {
-            let p = String(o.phone || '').replace(/[^0-9]/g, '');
+            let p = String(o.phone || o.Phone || '').replace(/[^0-9]/g, '');
             if (p.length > 10) p = p.slice(-10);
-            let s = String(o.Status || 'Pending').trim();
-            return (p === currentPhone) && (s !== 'Refunded');
+            let s = String(o.Status || o.status || 'Pending').trim();
+            // 🔥 FIX: Archive, Cancelled, Refunded ഇവയെല്ലാം ഒഴിവാക്കുന്നു
+            return (p === currentPhone) && (s !== 'Refunded') && (s !== 'Archive') && (s !== 'Cancelled');
         });
 
         let localOrders = custHistory.length;
