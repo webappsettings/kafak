@@ -4476,41 +4476,46 @@ tabButtons.forEach(btn => {
     });
 });
 
-// 🔥 SMART FRAUD DETECTOR: Checks Phone, WhatsApp, Alt, AND PAID NUM
+// 🔥 SMART FRAUD DETECTOR: Checks Phone, WhatsApp, Alt, AND PAID NUM (Fixed 10-Digit Matching)
 function checkCrossLinking(currentOrder) {
-    // ആർക്കൈവ് ചെയ്തതും കംപ്ലീറ്റ് ആയതും ചെക്ക് ചെയ്യേണ്ട
-    if (currentOrder.Status === 'Completed' || currentOrder.Status === 'Archive') return null;
+    // 🔥 നമ്പർ 10 അക്കമാക്കി മാറ്റാനുള്ള ഫംഗ്ഷൻ (Country code 91 ഒഴിവാക്കാൻ)
+    const get10Digit = (n) => {
+        let clean = String(n || '').replace(/[^0-9]/g, '');
+        return clean.length > 10 ? clean.slice(-10) : clean;
+    };
 
-    // 1. ഇപ്പോഴത്തെ ഓർഡറിലെ എല്ലാ നമ്പറുകളും എടുക്കുന്നു (Paid Number ഉൾപ്പെടെ)
+    // 1. ഇപ്പോഴത്തെ ഓർഡറിലെ എല്ലാ നമ്പറുകളും 10 അക്കമാക്കി എടുക്കുന്നു
     let myNums = [
         currentOrder.phone,
         currentOrder.whatsapp,
         currentOrder.altphone,
-        currentOrder.paidNum // 🔥 ഇതാണ് പ്രധാനം!
+        currentOrder.paidNum
     ]
-        .map(n => String(n || '').replace(/[^0-9]/g, '')) // അക്കങ്ങൾ മാത്രം
-        .filter(n => n.length > 5 && !n.startsWith('0000')); // 5 അക്കത്തിൽ കുറഞ്ഞതും 0000 ഉം ഒഴിവാക്കുന്നു
+        .map(get10Digit)
+        .filter(n => n.length >= 10 && !n.startsWith('0000'));
 
     if (myNums.length === 0) return null;
 
-    // 2. ബാക്കിയുള്ള എല്ലാ ഓർഡറുകളുമായും ഒത്തുനോക്കുന്നു
-    for (let other of allOrders) {
-        // സ്വന്തം ഓർഡർ ആണെങ്കിൽ നോക്കേണ്ട
+    // 2. ബാക്കിയുള്ള എല്ലാ ഓർഡറുകളുമായും ഒത്തുനോക്കുന്നു 
+    // (ഏറ്റവും പുതിയത് ആദ്യം കിട്ടാൻ reverse ചെയ്യുന്നു)
+    for (let i = allOrders.length - 1; i >= 0; i--) {
+        let other = allOrders[i];
+
+        // സ്വന്തം ഓർഡർ ആണെങ്കിൽ സ്കിപ്പ് ചെയ്യുക
         if (other.orderid === currentOrder.orderid) continue;
 
-        // മറ്റേ ഓർഡറിലെ എല്ലാ നമ്പറുകളും എടുക്കുന്നു
         let theirNums = [
             other.phone,
             other.whatsapp,
             other.altphone,
-            other.paidNum // 🔥 അവരുടെ പെയ്ഡ് നമ്പറും നോക്കുന്നു
+            other.paidNum
         ]
-            .map(n => String(n || '').replace(/[^0-9]/g, ''));
+            .map(get10Digit)
+            .filter(n => n.length >= 10);
 
-        // 3. ക്രോസ് ചെക്കിംഗ് (എന്റെ ഏതെങ്കിലും നമ്പർ അവരുടെ ലിസ്റ്റിൽ ഉണ്ടോ?)
+        // 3. ക്രോസ് ചെക്കിംഗ് (മാച്ച് ആയാൽ ഉടൻ അലർട്ട് കാണിക്കും)
         for (let myN of myNums) {
             if (theirNums.includes(myN)) {
-                // മാച്ച് കണ്ടുപിടിച്ചു! (മാച്ച് ആയ നമ്പറും കൂടി തിരികെ അയക്കുന്നു)
                 return { order: other, matchedNum: myN };
             }
         }
