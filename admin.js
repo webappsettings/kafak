@@ -5438,11 +5438,9 @@ function injectLeftDrawer() {
     // Server-il ninnu kittiyillengil dynamic default batch edukkum
     let savedBatch = (db.honey && db.honey.batch) ? db.honey.batch : (localStorage.getItem('label_batch') || defaultBatch);
 
-    // 🔥 FIX: കൃത്യമായി 5 തന്നെ ഡീഫോൾട്ട് ആയി വരാൻ
-    let savedStickersPerA4 = String(localStorage.getItem('stickersPerA4'));
-    if (!['1', '2', '3', '4', '5'].includes(savedStickersPerA4)) {
-        savedStickersPerA4 = '5';
-    }
+    // 🔥 FIX: എപ്പോഴും 5 തന്നെ ഡീഫോൾട്ട് ആയി വരാൻ
+    let savedStickersPerA4 = '5';
+    localStorage.setItem('stickersPerA4', '5');
 
     let drawerHtml = `
     <div id="left-drawer-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:2050;" onclick="toggleLeftDrawer()"></div>
@@ -5487,7 +5485,10 @@ function injectLeftDrawer() {
                         <div style="height:30px; width:1px; background:#bbd0ff;"></div>
                         <div class="text-center w-50">
                             <div class="text-muted fw-bold text-uppercase" style="font-size:9px;">Sheets Needed</div>
-                            <div class="fw-bolder text-success fs-4"><span id="required-sheets-count">0</span> <span class="text-muted fw-bold" style="font-size:10px;">(<span id="exact-sheets-count">0.0</span>)</span></div>
+                            <div class="fw-bolder text-success fs-4 d-flex justify-content-center align-items-center">
+                                <input type="number" id="manual-sheets-input" class="form-control text-center fw-bold text-success border-success px-1 py-0 shadow-sm me-1" style="width: 45px; height: 30px; font-size: 16px;" value="0" min="0" oninput="updatePrintPrediction(true)">
+                                <span class="text-muted fw-bold" style="font-size:10px;">(<span id="exact-sheets-count">0.0</span>)</span>
+                            </div>
                         </div>
                     </div>
                     
@@ -5593,7 +5594,7 @@ function injectLeftDrawer() {
 }
 
 // 🔥 ADVANCED SMART PRINT PREDICTOR (WITH PERFECT INITIAL LOAD & LOOSE STICKER LOGIC)
-window.updatePrintPrediction = function () {
+window.updatePrintPrediction = function (isManualSheetChange = false) {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
 
@@ -5660,76 +5661,81 @@ window.updatePrintPrediction = function () {
 
     window.currentLooseStickers = looseStickers;
 
-    // 🔥 FIX: മുൻപ് മുറിച്ച സ്റ്റിക്കറുകൾ (looseStickers) കുറച്ചിട്ട് വേണം പുതിയ ഷീറ്റ് കണക്കാക്കാൻ!
     let actualLabelsToPrint = Math.max(0, unprintedStickers - looseStickers);
     let exactNeededSheets = actualLabelsToPrint / ratio;
+    let defaultSheets = Math.ceil(exactNeededSheets);
+
+    let sheetsInput = document.getElementById('manual-sheets-input');
+    if (sheetsInput && !isManualSheetChange) {
+        sheetsInput.value = defaultSheets;
+    }
+    let manualSheets = sheetsInput ? (parseInt(sheetsInput.value) || 0) : defaultSheets;
 
     if (document.getElementById('unprinted-bottles-count')) {
         document.getElementById('unprinted-bottles-count').innerText = unprintedStickers;
         document.getElementById('printed-bottles-count').innerText = printedStickers;
-
-        document.getElementById('required-sheets-count').innerText = Math.ceil(exactNeededSheets);
-        document.getElementById('exact-sheets-count').innerText = exactNeededSheets.toFixed(1);
+        if (document.getElementById('exact-sheets-count')) document.getElementById('exact-sheets-count').innerText = exactNeededSheets.toFixed(1);
     }
 
-    // 1. 🔥 Aadyam Dropdown options set cheyyunnu
     let modeBox = document.getElementById('print-qty-mode');
+
+    // Dropdown value changes based on manual input or existing calculation
+    let targetPrintCount = isManualSheetChange ? (manualSheets * ratio) : (modeBox && modeBox.value ? parseInt(modeBox.value) : actualLabelsToPrint);
+
     if (modeBox) {
         let totalNeeded = actualLabelsToPrint;
         let optionsHtml = '';
-        let currentSelectedValue = modeBox.value;
 
         if (totalNeeded > 0) {
             optionsHtml += `<optgroup label="--- Auto Calculation ---">`;
-
             let totalIfFilled = Math.ceil(totalNeeded / ratio) * ratio;
             let extraStickers = totalIfFilled - totalNeeded;
 
-            if (extraStickers > 0) {
-                optionsHtml += `<option value="${totalIfFilled}" ${currentSelectedValue == totalIfFilled ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
-                    Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം അധികം പ്രിന്റ് ആകും
-                </option>`;
+            optionsHtml += `<option value="${totalIfFilled}" ${targetPrintCount === totalIfFilled ? 'selected' : ''}>Full A4 Sheets (${totalIfFilled} Stk) - ${extraStickers} എണ്ണം അധികം പ്രിന്റ് ആകും</option>`;
 
-                optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : ''}>
-                    Exact Need (${totalNeeded} Stk) - അവസാന എ4-ൽ ${extraStickers} എണ്ണം ബ്ലാങ്ക് ആയിരിക്കും
-                </option>`;
-            } else {
-                optionsHtml += `<option value="${totalNeeded}" ${currentSelectedValue == totalNeeded ? 'selected' : (!currentSelectedValue ? 'selected' : '')}>
-                    Print Exact Need (${totalNeeded} Stk) - കൃത്യം A4 ഷീറ്റുകൾ
-                </option>`;
+            if (extraStickers > 0) {
+                optionsHtml += `<option value="${totalNeeded}" ${targetPrintCount === totalNeeded ? 'selected' : ''}>Exact Need (${totalNeeded} Stk) - അവസാന എ4-ൽ ${extraStickers} എണ്ണം ബ്ലാങ്ക് ആയിരിക്കും</option>`;
             }
             optionsHtml += `</optgroup>`;
         } else {
-            let selZero = (!currentSelectedValue || currentSelectedValue == 0) ? 'selected' : '';
-            // മുഴുവൻ ഓർഡറുകൾക്കും പഴയ സ്റ്റിക്കർ തികയുമെങ്കിൽ 0 പ്രിന്റ് ചെയ്യാം
+            let selZero = (targetPrintCount === 0) ? 'selected' : '';
             let zeroText = unprintedStickers > 0 ? `✅ Use Loose Stickers (0 Print Needed)` : `✅ All Caught Up (0 Stk)`;
             optionsHtml += `<option value="0" ${selZero}>${zeroText}</option>`;
         }
 
         optionsHtml += `<optgroup label="--- Manual Copies ---">`;
         for (let i = 1; i <= ratio; i++) {
-            let sel = (currentSelectedValue == i) ? 'selected' : '';
+            let sel = (targetPrintCount === i) ? 'selected' : '';
             optionsHtml += `<option value="${i}" ${sel}>Print ${i} Sticker(s)</option>`;
         }
-        for (let i = 2; i <= 5; i++) {
+        for (let i = 2; i <= 20; i++) {
             let labels = i * ratio;
-            let sel = (currentSelectedValue == labels) ? 'selected' : '';
+            let sel = (targetPrintCount === labels) ? 'selected' : '';
             optionsHtml += `<option value="${labels}" ${sel}>Print ${i} Full A4 (${labels} Stk)</option>`;
         }
-        optionsHtml += `</optgroup>`;
 
+        if (isManualSheetChange && (manualSheets > 20 || manualSheets === 0)) {
+            optionsHtml += `<option value="${manualSheets * ratio}" selected>Custom: ${manualSheets} Sheets (${manualSheets * ratio} Stk)</option>`;
+        }
+
+        optionsHtml += `</optgroup>`;
         modeBox.innerHTML = optionsHtml;
     }
 
-    // 2. 🔥 Dropdown set cheytha shesham athile value edukkunnu
-    let selectedPrintCount = parseInt(modeBox ? modeBox.value : actualLabelsToPrint) || 0;
+    let selectedPrintCount = isManualSheetChange ? (manualSheets * ratio) : (parseInt(modeBox ? modeBox.value : actualLabelsToPrint) || 0);
 
-    // 🔥 പുതിയ മാറ്റം: ബാക്കി വരുന്ന എണ്ണം 100% കൃത്യമായി കാൽക്കുലേറ്റ് ചെയ്യുന്നു (കൂടുതൽ ലളിതമാക്കി)
+    if (!isManualSheetChange && sheetsInput) {
+        sheetsInput.value = Math.ceil(selectedPrintCount / ratio);
+    }
+
     let newLooseBalance = Math.max(0, (looseStickers + selectedPrintCount) - unprintedStickers);
 
-    let afterPrintMsg = '';
+    // 🔥 Calculate White Sheets Balance
+    let consumedSheets = Math.ceil(selectedPrintCount / ratio);
+    let newWhiteSheetsBalance = Math.max(0, fullSheets - consumedSheets);
 
-    if (unprintedStickers > 0) {
+    let afterPrintMsg = '';
+    if (unprintedStickers > 0 || selectedPrintCount > 0) {
         if (newLooseBalance > 0) {
             afterPrintMsg = `<span class="mt-1 opacity-75" style="font-size:9.5px; color:#b45309; font-weight:600;">
                 <i class="fas fa-copy"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി വരുന്ന സ്റ്റിക്കറുകൾ: <span class="fw-bolder text-danger" style="font-size:10px;">${newLooseBalance}</span> എണ്ണം.
@@ -5741,7 +5747,6 @@ window.updatePrintPrediction = function () {
         }
     }
 
-    // 3. 🔥 UI Create cheyyunnu
     let stockHtml = `
         <div class="d-flex flex-column align-items-end gap-2 w-100 mt-2">
             <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
@@ -5759,9 +5764,14 @@ window.updatePrintPrediction = function () {
             <div class="d-flex align-items-center justify-content-between p-2 rounded shadow-sm w-100" 
                  style="background:#f8f9fa; border:1px solid #dee2e6; transition:0.2s;" 
                  onmouseover="this.style.background='#e9ecef'" onmouseout="this.style.background='#f8f9fa'">
-                <span class="fw-bold text-dark" style="font-size:11px;">
-                    <i class="fas fa-layer-group text-primary me-1"></i> പുതിയ വെള്ള ഷീറ്റ് <span class="badge bg-primary text-white mx-1" style="font-size:12px;">${fullSheets}</span> എണ്ണം ഇനിയുണ്ട്
-                </span>
+                <div class="d-flex flex-column">
+                    <span class="fw-bold text-dark" style="font-size:11px;">
+                        <i class="fas fa-layer-group text-primary me-1"></i> പുതിയ വെള്ള ഷീറ്റ് <span class="badge bg-primary text-white mx-1" style="font-size:12px;">${fullSheets}</span> എണ്ണം ഇനിയുണ്ട്
+                    </span>
+                    <span class="mt-1 opacity-75" style="font-size:9.5px; color:#0f172a; font-weight:600;">
+                        <i class="fas fa-print"></i> പ്രിന്റ് കഴിഞ്ഞാൽ ബാക്കി ഷീറ്റുകൾ: <span class="fw-bolder text-primary" style="font-size:10px;">${newWhiteSheetsBalance}</span> എണ്ണം.
+                    </span>
+                </div>
                 <span class="badge bg-light text-primary border border-primary p-1 ms-1 shadow-sm" style="font-size:9px; cursor:pointer;" onclick="editStickerStock('sheets', ${fullSheets}, ${historicalRatio})" title="ടോട്ടൽ സ്റ്റോക്ക് മാറ്റാൻ ക്ലിക്ക് ചെയ്യുക"><i class="fas fa-edit"></i> മാറ്റുക</span>
             </div>
         </div>
@@ -5783,6 +5793,7 @@ window.updatePrintPrediction = function () {
         if (newDisplay) newDisplay.innerHTML = stockHtml;
     }
 };
+
 window.toggleLeftDrawer = function () {
     let drawer = $('#left-drawer');
     let overlay = $('#left-drawer-overlay');
