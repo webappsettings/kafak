@@ -2809,6 +2809,15 @@ async function runPrintLogic(checkboxes, directData = null) {
             stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
+        // 🔥 NEW: Resend/Return 'R' Badge Logic
+        let isResend = String(d.adminMeta || '').includes('R');
+        let resendDotHtml = '';
+        if (isResend) {
+            // State color dot undenkil athinte thazhe (32mm), illengil mukalil (20mm)
+            let rTop = (s && s !== 'KERALA') ? '32mm' : '20mm';
+            resendDotHtml = `<div style="position:absolute; top:${rTop}; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:#dc2626; color:#fff; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;">R</div>`;
+        }
+
         // 🔥 SMART PROVIDER LABEL LOGIC (Speed Post vs Speed Safe)
         let rawProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
 
@@ -2845,6 +2854,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         htmlContent += `
         <div class="label-page">
             ${stateDotHtml}
+            ${resendDotHtml}
             <div class="address-sec">
                 <div class="to-label">To,</div>
                 <div class="cust-name">${safe(d.name)}</div>
