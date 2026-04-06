@@ -1580,9 +1580,17 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         buttons = `${dateHtml}${trkBtnHtml}<button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
     }
 
+    let currentProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
+    let stateForProv = String(d.state || d.State || 'KERALA').toUpperCase().trim();
+
+    // 🔥 FIX: Hardcode ozhivakki, sheet-il ninnum thaniye edukkunnu
+    if (!currentProvider || currentProvider === 'COURIER' || currentProvider === 'UNDEFINED' || currentProvider === 'N/A') {
+        currentProvider = getDefaultCourierForState(stateForProv);
+    }
+
     let providerOptions = '';
     availableProviders.forEach(prov => {
-        let isSelected = (String(d.provider || d.Courier_Provider).toUpperCase() === String(prov).toUpperCase()) ? 'selected' : '';
+        let isSelected = (currentProvider === String(prov).toUpperCase().trim()) ? 'selected' : '';
         providerOptions += `<option value="${prov}" ${isSelected}>${prov}</option>`;
     });
 
@@ -3143,7 +3151,24 @@ function confirmDispatchAction(oid, code) {
     isScanProcessing = false; // 🔥 Unlock Scanner for next scan
 }
 
+// 🔥 DYNAMIC DEFAULT COURIER FINDER (Hardcode ozhivakki Sheet-il ninnum edukkunnu)
+function getDefaultCourierForState(stateName) {
+    let s = String(stateName || 'KERALA').toUpperCase().trim();
 
+    if (typeof courierRates !== 'undefined' && courierRates) {
+        // ഷീറ്റിൽ നിന്നും വരുന്ന ഡാറ്റയിൽ DEFAULT ആയി സെറ്റ് ചെയ്ത കൊറിയർ ഏതാണെന്ന് നോക്കുന്നു
+        let defObj = courierRates[`${s} DEFAULT`] || courierRates[`${s}_DEFAULT`] || courierRates[`${s}`] || courierRates['REST OF INDIA DEFAULT'] || courierRates['REST OF INDIA'];
+
+        if (defObj) {
+            if (defObj.provider) return String(defObj.provider).toUpperCase().trim();
+            if (defObj.Provider) return String(defObj.Provider).toUpperCase().trim();
+            if (defObj.name) return String(defObj.name).toUpperCase().trim();
+        }
+    }
+
+    // ഡാറ്റ ലോഡ് ആയില്ലെങ്കിൽ മാത്രം വർക്ക് ആവുന്ന ഒരു ബാക്കപ്പ്
+    return s === 'KERALA' ? 'INDIA POST' : 'SPEED POST';
+}
 
 function getZoneKey(stateName) {
     if (!stateName) return 'REST OF INDIA';
@@ -6930,8 +6955,12 @@ window.showDayDetails = function (dateStr) {
         }
 
         let state = String(o.state || o.State || 'KERALA').toUpperCase().trim();
-        let courier = String(o.courier || o.Courier_Provider || o.provider || 'N/A').toUpperCase().trim();
-        if (!courier || courier === 'UNDEFINED') courier = 'N/A';
+        let courier = String(o.courier || o.Courier_Provider || o.provider || '').toUpperCase().trim();
+
+        // 🔥 FIX: Day book-lum hardcode ozhivakki sheet-il ninnum edukkunnu
+        if (!courier || courier === 'UNDEFINED' || courier === 'N/A' || courier === 'COURIER') {
+            courier = getDefaultCourierForState(state);
+        }
 
         stats.status[currentStatus] = (stats.status[currentStatus] || 0) + 1;
 
