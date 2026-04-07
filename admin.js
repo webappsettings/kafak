@@ -9706,12 +9706,19 @@ function uploadPostalTrackers(trackers) {
     }).catch(err => Swal.fire('Error', 'Network Error', 'error'));
 }
 
+
 // ==========================================
 // 📦 TRACKING BALANCE REFRESHER
 // ==========================================
+let isFetchingBalance = false; // 🔥 ഒരേസമയം 2 തവണ ചെക്ക് ചെയ്യുന്നത് തടയാനുള്ള ലോക്ക്
+
 window.refreshTrackingBalance = function () {
+    if (isFetchingBalance) return; // ഓൾറെഡി ചെക്ക് ചെയ്യുന്നുണ്ടെങ്കിൽ വീണ്ടും ചെയ്യില്ല
+
     let displays = document.querySelectorAll('#tracking-balance-display');
     if (displays.length === 0) return;
+
+    isFetchingBalance = true; // ലോക്ക് ചെയ്യുന്നു
 
     displays.forEach(d => {
         d.innerHTML = '<i class="fas fa-spinner fa-spin text-muted" style="font-size:11px;"></i>';
@@ -9727,16 +9734,28 @@ window.refreshTrackingBalance = function () {
                 <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ${data.speed}</span>
             `;
         });
+        isFetchingBalance = false; // ലോക്ക് അഴിക്കുന്നു
     }).catch(e => {
         displays.forEach(d => {
             d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`;
         });
+        isFetchingBalance = false; // ലോക്ക് അഴിക്കുന്നു
     });
 }
 
-// സ്ക്രീൻ ലോഡ് ആകുമ്പോഴും കാർഡുകൾ വരയ്ക്കുമ്പോഴും തനിയെ ബാലൻസ് കാണിക്കാൻ:
+// ഓരോ തവണ സ്ക്രീനിൽ ലോഡ് ആകുമ്പോഴും തനിയെ ബാലൻസ് കാണിക്കാൻ:
 setInterval(() => {
-    if (document.getElementById('tracking-balance-display') && document.getElementById('tracking-balance-display').innerText.includes('Checking')) {
+    let displays = document.querySelectorAll('#tracking-balance-display');
+    let needsUpdate = false;
+
+    displays.forEach(d => {
+        if (d.innerText.includes('Checking')) {
+            needsUpdate = true;
+        }
+    });
+
+    // അപ്ഡേറ്റ് ആവശ്യമുണ്ടെങ്കിൽ മാത്രം ഒരൊറ്റ തവണ വിളിക്കുന്നു
+    if (needsUpdate && !isFetchingBalance) {
         refreshTrackingBalance();
     }
 }, 2000);
