@@ -9565,8 +9565,8 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
 // 📦 POSTAL TRACKER SCANNER (WITH VERIFY & EDIT)
 // ==========================================
 let scannedTrackers = [];
-let html5QrCode = null;
-let isScanPaused = false; // സ്കാൻ ചെയ്ത ശേഷം എഡിറ്റ് ചെയ്യാൻ ക്യാമറ താൽക്കാലികമായി നിർത്താൻ
+let postalQrScanner = null; // 🔥 എറർ ഒഴിവാക്കാൻ പേര് മാറ്റിയിട്ടുണ്ട്
+let isScanPaused = false;
 
 window.openPostalScanner = function () {
     scannedTrackers = [];
@@ -9605,15 +9605,15 @@ window.openPostalScanner = function () {
         cancelButtonText: 'Close',
         allowOutsideClick: false,
         didOpen: () => {
-            // ടൈപ്പ് ചെയ്യുമ്പോൾ ബട്ടൺ Enable/Disable ആക്കാൻ
             document.getElementById('verify-track-input').addEventListener('input', function () {
                 let val = this.value.toUpperCase().trim();
                 document.getElementById('btn-confirm-track').disabled = (val.length !== 13);
             });
 
-            html5QrCode = new Html5Qrcode("postal-reader");
-            html5QrCode.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 250, height: 100 } }, onPostalScanSuccess)
-                .catch(err => console.log("Camera Error"));
+            // 🔥 ക്യാമറയുടെ പേര് മാറ്റി
+            postalQrScanner = new Html5Qrcode("postal-reader");
+            postalQrScanner.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 250, height: 100 } }, onPostalScanSuccess)
+                .catch(err => console.log("Camera Error: ", err));
         },
         preConfirm: () => {
             if (scannedTrackers.length === 0) {
@@ -9623,8 +9623,9 @@ window.openPostalScanner = function () {
             return scannedTrackers;
         }
     }).then((result) => {
-        if (html5QrCode) {
-            html5QrCode.stop().then(() => html5QrCode.clear()).catch(e => console.log(e));
+        // 🔥 ക്യാമറയുടെ പേര് മാറ്റി
+        if (postalQrScanner) {
+            postalQrScanner.stop().then(() => postalQrScanner.clear()).catch(e => console.log(e));
         }
         if (result.isConfirmed) {
             uploadPostalTrackers(result.value);
@@ -9633,35 +9634,32 @@ window.openPostalScanner = function () {
 }
 
 function onPostalScanSuccess(decodedText) {
-    if (isScanPaused) return; // Verify ചെയ്യുന്നത് വരെ പുതിയത് സ്കാൻ ചെയ്യില്ല
+    if (isScanPaused) return;
 
     let text = decodedText.trim().toUpperCase();
 
     if (text.length === 13 && text.endsWith("IN")) {
-        isScanPaused = true; // ക്യാമറ താൽക്കാലികമായി നിർത്തുന്നു
-        playBeep();
+        isScanPaused = true;
+        if (typeof playBeep === 'function') playBeep();
 
         let inputEl = document.getElementById('verify-track-input');
         inputEl.value = text;
 
         document.getElementById('btn-confirm-track').disabled = false;
 
-        // ശ്രദ്ധ കിട്ടാൻ ചെറിയൊരു കളർ മാറ്റം
         inputEl.style.backgroundColor = '#d1e7dd';
         setTimeout(() => { inputEl.style.backgroundColor = ''; }, 500);
     }
 }
 
-// തെറ്റിയാൽ ഡിലീറ്റ് ചെയ്ത് വീണ്ടും സ്കാൻ ചെയ്യാൻ
 window.clearVerifyInput = function () {
     let inputEl = document.getElementById('verify-track-input');
     inputEl.value = "";
     document.getElementById('btn-confirm-track').disabled = true;
-    isScanPaused = false; // ക്യാമറ വീണ്ടും ഓൺ ആകുന്നു
+    isScanPaused = false;
     inputEl.focus();
 }
 
-// ശരിയാണെങ്കിൽ ലിസ്റ്റിലേക്ക് മാറ്റാൻ
 window.confirmScannedTracker = function () {
     let inputEl = document.getElementById('verify-track-input');
     let text = inputEl.value.toUpperCase().trim();
@@ -9680,11 +9678,9 @@ window.confirmScannedTracker = function () {
     let type = text.startsWith("E") ? "Speed" : "Normal";
     scannedTrackers.push({ id: text, type: type });
 
-    // എണ്ണം അപ്ഡേറ്റ് ചെയ്യുന്നു
     document.getElementById('count-cl').innerText = scannedTrackers.filter(t => t.type === 'Normal').length;
     document.getElementById('count-el').innerText = scannedTrackers.filter(t => t.type === 'Speed').length;
 
-    // ലിസ്റ്റിലേക്ക് കാണിക്കുന്നു
     let list = document.getElementById('scanned-list');
     let color = type === 'Speed' ? 'text-danger' : 'text-primary';
     let bg = type === 'Speed' ? 'bg-danger' : 'bg-primary';
@@ -9696,11 +9692,9 @@ window.confirmScannedTracker = function () {
     `;
     list.insertAdjacentHTML('afterbegin', li);
 
-    // അടുത്ത സ്കാനിങ്ങിന് റെഡിയാകുന്നു
     clearVerifyInput();
 }
 
-// ഡാറ്റ ഷീറ്റിലേക്ക് സേവ് ചെയ്യുന്നു
 function uploadPostalTrackers(trackers) {
     Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
     fetch(scriptURL, {
@@ -9709,7 +9703,6 @@ function uploadPostalTrackers(trackers) {
     }).then(res => res.json()).then(data => {
         if (data.result === 'success') {
             Swal.fire('Success', `${data.added} Trackers saved to sheet!`, 'success');
-            // സേവ് ചെയ്ത ശേഷം ഡാഷ്‌ബോർഡിലെ ബാലൻസ് റിഫ്രഷ് ചെയ്യുന്നു
             if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
         } else {
             Swal.fire('Error', 'Failed to save', 'error');
