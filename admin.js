@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbxSjrGSLj6Q9-gT1PT--jv86CshANOv8eNTJWBBfVp9cacAXUZkVc7izkSJ807bMUoM2A/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwBzF76RADnKiMpehiBceiLyiAqEXH8RjW3hV3jsYWu2Ii1DlAHzlexOLyWkxqUDe0Yeg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -571,34 +571,55 @@ function renderTabs(orders) {
     });
 
     const getTopActionsHtml = (id) => {
+        // 🔥 Tracking Control Panel HTML (ഒതുക്കത്തിൽ ഡിസൈൻ ചെയ്തത്)
+        const trackingPanelHtml = `
+        <div class="d-flex align-items-center justify-content-between p-2 mt-2 mb-3 rounded shadow-sm w-100" style="background-color: #f8fafc; border: 1px solid #cbd5e1; font-size: 12px;">
+            <div class="form-check form-switch m-0 d-flex align-items-center gap-2">
+                <input class="form-check-input mt-0" type="checkbox" id="auto-track-toggle" checked style="cursor:pointer; transform: scale(1.2);">
+                <label class="form-check-label fw-bold text-dark mb-0" for="auto-track-toggle">Auto-Track</label>
+            </div>
+            <div class="d-flex align-items-center gap-1" id="tracking-balance-display">
+                <span class="badge text-dark border" style="background:#e2e8f0;">Checking...</span>
+            </div>
+            <button class="btn btn-sm btn-white border shadow-sm py-1 px-2" onclick="refreshTrackingBalance()" title="Refresh Balance">
+                <i class="fas fa-sync-alt text-primary" style="font-size:11px;"></i>
+            </button>
+        </div>
+    `;
+
         if (id === 'paid_new') return `
-            <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
-                <div class="d-flex gap-2">
-                    <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
-                    <button onclick="startScanner('verify')" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold small bg-white"><i class="fas fa-check-double"></i> Verify</button>
-                </div>
-                <div class="d-flex gap-2">
-                    <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
-                    <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
-                </div>
-            </div>`;
+        <div class="d-flex justify-content-between align-items-center px-1 w-100">
+            <div class="d-flex gap-2">
+                <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                <button onclick="startScanner('verify')" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold small bg-white"><i class="fas fa-check-double"></i> Verify</button>
+            </div>
+            <div class="d-flex gap-2">
+                <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
+                <button onclick="printSelected()" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Print</button>
+            </div>
+        </div>
+        ${trackingPanelHtml}`; // ഇവിടെയാണ് പാനൽ വരുന്നത്
+
         if (id === 'paid_print') return `
-            <div class="d-flex justify-content-between align-items-center mb-3 px-1 w-100">
-                <div class="d-flex gap-2">
-                    <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
-                    <button onclick="startScanner('verify')" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold small bg-white"><i class="fas fa-check-double"></i> Verify</button>
-                </div>
-                <div class="d-flex gap-2">
-                    <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
-                    <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
-                </div>
-            </div>`;
+        <div class="d-flex justify-content-between align-items-center px-1 w-100">
+            <div class="d-flex gap-2">
+                <button onclick="startScanner('dispatch')" class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i class="fas fa-qrcode"></i> Scan</button>
+                <button onclick="startScanner('verify')" class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold small bg-white"><i class="fas fa-check-double"></i> Verify</button>
+            </div>
+            <div class="d-flex gap-2">
+                <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all"><i class="far fa-square"></i> All</button>
+                <button onclick="printSelected('printed')" class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️ Reprint</button>
+            </div>
+        </div>
+        ${trackingPanelHtml}`; // ഇവിടെയും പാനൽ വരും
+
         if (id === 'disp_new') return `
-            <div class="text-center mb-3 w-100">
-                <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
-                    <i class="fas fa-barcode"></i> Courier Scan
-                </button>
-            </div>`;
+        <div class="text-center mb-3 w-100">
+            <button onclick="startScanner('tracking')" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
+                <i class="fas fa-barcode"></i> Courier Scan
+            </button>
+        </div>`;
+
         return '';
     };
 
@@ -2682,8 +2703,15 @@ async function runPrintLogic(checkboxes, directData = null) {
         }
     });
 
+    // 🔥 NEW: Toggle Switch ON aano ennu check cheyyunnu
+    let autoTrackEnabled = true;
+    let toggleEl = document.getElementById('auto-track-toggle');
+    if (toggleEl && !toggleEl.checked) {
+        autoTrackEnabled = false; // Switch OFF anenkil false aakum
+    }
+
     // 🔥 2. സെർവറിൽ പോയി അസൈൻ ചെയ്യാത്ത പുതിയ ബാർകോഡുകൾ എടുത്തുകൊണ്ടുവരുന്നു
-    if (ordersNeedingTracking.length > 0) {
+    if (autoTrackEnabled && ordersNeedingTracking.length > 0) { // Switch ON anenkil mathram work aakum
         try {
             let res = await fetch(scriptURL, {
                 method: 'POST',
@@ -2699,11 +2727,12 @@ async function runPrintLogic(checkboxes, directData = null) {
                     if (order) order.tracking = assigned.tracking;
                     if (globalOrder) globalOrder.tracking = assigned.tracking;
 
-                    // സിങ്ക് ക്യൂവിൽ ഇത് Dispatched ആക്കാനും ട്രാക്കിങ് അപ്ഡേറ്റ് ചെയ്യാനും നൽകുന്നു
                     updateOrder(assigned.oid, 'Dispatched', assigned.tracking, true);
                     updateAdminMeta(assigned.oid, 'tracked', 'T');
                 });
-                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+                // 🔥 NEW: Print cheytha udane automatic aayi remaining balance refresh cheythu kanikkunnu!
+                if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
             }
         } catch (e) {
             console.log("Tracker assignment failed", e);
