@@ -2932,14 +2932,16 @@ async function runPrintLogic(checkboxes, directData = null) {
             printCourierBorder = "1px solid #dc2626";
         }
 
-        // 🔥 FIX 2: Tracking Barcode HTML - എവിടെയാണ് വരുന്നത് എന്ന് കാണാൻ
+        // 🔥 BEAUTIFUL TRACKING BARCODE CONTAINER
         let trackingBarcodeHtml = '';
         if (d.tracking) {
-            let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:45mm; height:12mm; margin-bottom:2px;" />` : '';
+            let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:42mm; height:10mm; display:block; margin:0 auto;" />` : '';
+
             trackingBarcodeHtml = `
-            <div style="position:absolute; top:4mm; right:4mm; text-align:center; z-index:50;">
+            <div style="position:absolute; top:4mm; right:4mm; text-align:center; z-index:50; background-color: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 4px; min-width: 45mm;">
+                <div style="font-size: 7px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Tracking ID</div>
                 ${barcodeImg}
-                <div style="font-size:11px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000; background:#fff; padding:0 2px;">${d.tracking}</div>
+                <div style="font-size:12px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000; margin-top:2px;">${d.tracking}</div>
             </div>`;
         }
 
