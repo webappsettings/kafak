@@ -18,11 +18,6 @@ let showAllTracking = false;
 // 🔥 SMART SEARCH (Debouncing - ടൈപ്പിംഗ് ഫാസ്റ്റ് ആക്കാൻ)
 let searchTimeout;
 
-// 🔥 LOAD BARCODE GENERATOR
-const barcodeScript = document.createElement('script');
-barcodeScript.src = "https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js";
-document.head.appendChild(barcodeScript);
-
 window.handleSmartSearch = function (value) {
     // ആരെങ്കിലും വേഗത്തിൽ ടൈപ്പ് ചെയ്തുകൊണ്ടിരിക്കുകയാണെങ്കിൽ പഴയ സെർച്ച് ക്യാൻസൽ ചെയ്യുന്നു
     clearTimeout(searchTimeout);
@@ -2951,13 +2946,14 @@ async function runPrintLogic(checkboxes, directData = null) {
             printCourierBorder = "1px solid #dc2626";
         }
 
-        // 🔥 Tracking Barcode HTML (Top Right)
+        // 🔥 Tracking Barcode HTML (Top Right) - FIX 
         let trackingBarcodeHtml = '';
-        if (item.trackBarcodeSrc) {
+        if (d.tracking) {
+            let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:45mm; height:12mm; margin-bottom:2px;" />` : '';
             trackingBarcodeHtml = `
             <div style="position:absolute; top:4mm; right:4mm; text-align:center; z-index:50;">
-                <img src="${item.trackBarcodeSrc}" style="width:45mm; height:12mm; margin-bottom:2px;" />
-                <div style="font-size:11px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000;">${d.tracking}</div>
+                ${barcodeImg}
+                <div style="font-size:11px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000; background:#fff; padding:0 2px;">${d.tracking}</div>
             </div>`;
         }
 
