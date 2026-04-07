@@ -2665,7 +2665,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 DEBUG VERSION: PRINT LABELS WITH CONSOLE LOGS
+// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Fixed Sync & Status Issues)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2680,14 +2680,16 @@ async function runPrintLogic(checkboxes, directData = null) {
 
     if (ordersToPrint.length === 0) return;
 
-    console.log("🔴 STEP 1: Total Orders to Print:", ordersToPrint.length);
-
     Swal.fire({
         title: 'Generating Labels...',
         html: `Fetching Tracking IDs from server...`,
         allowOutsideClick: false,
         didOpen: () => { Swal.showLoading(); }
     });
+
+    // 🔥 Pending updates ആദ്യമേ എടുക്കുന്നു
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let isModified = false;
 
     let ordersNeedingTracking = [];
     ordersToPrint.forEach(o => {
@@ -2699,57 +2701,48 @@ async function runPrintLogic(checkboxes, directData = null) {
             else provider = 'SPEED POST';
         }
 
-        console.log(`👉 Order ${o.orderid} | Provider: ${provider} | Current Tracking: ${o.tracking || 'Empty'}`);
-
         if (!o.tracking && (provider.includes('INDIA POST') || provider.includes('SPEED POST') || provider.includes('POST'))) {
             let type = provider.includes('SPEED') ? 'Speed' : 'Normal';
             ordersNeedingTracking.push({ oid: o.orderid, type: type });
         }
     });
 
-    console.log("🔴 STEP 2: Orders needing tracking from server:", ordersNeedingTracking);
-
     let autoTrackEnabled = true;
     let toggleEl = document.getElementById('auto-track-toggle');
-    if (toggleEl) {
-        autoTrackEnabled = toggleEl.checked;
-        console.log("🔴 STEP 3: Auto-Track Switch is:", autoTrackEnabled ? "ON" : "OFF");
-    } else {
-        console.log("🔴 STEP 3: Auto-Track Switch NOT FOUND! Defaulting to ON.");
+    if (toggleEl && !toggleEl.checked) {
+        autoTrackEnabled = false;
     }
 
     if (autoTrackEnabled && ordersNeedingTracking.length > 0) {
         try {
-            console.log("🔴 STEP 4: Fetching IDs from Google Sheet...");
             let res = await fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'assignTrackers', orders: ordersNeedingTracking })
             });
             let data = await res.json();
 
-            console.log("🔴 STEP 5: Server Response:", data);
-
             if (data.result === 'success' && data.assigned && data.assigned.length > 0) {
                 data.assigned.forEach(assigned => {
                     let order = ordersToPrint.find(o => o.orderid === assigned.oid);
                     let globalOrder = allOrders.find(o => o.orderid === assigned.oid);
+
                     if (order) order.tracking = assigned.tracking;
                     if (globalOrder) globalOrder.tracking = assigned.tracking;
 
-                    updateOrder(assigned.oid, 'Dispatched', assigned.tracking, true);
-                    updateAdminMeta(assigned.oid, 'tracked', 'T');
+                    // 🔥 ട്രാക്കിങ് മാത്രം അപ്ഡേറ്റ് ചെയ്യുന്നു (സ്റ്റാറ്റസ് ഡിസ്പാച്ച്ഡ് ആക്കുന്നില്ല!)
+                    let existingIndex = updates.findIndex(u => u.oid === assigned.oid && u.action === 'tracking');
+                    if (existingIndex > -1) {
+                        updates[existingIndex].tracking = assigned.tracking;
+                    } else {
+                        updates.push({ oid: assigned.oid, action: 'tracking', tracking: assigned.tracking, status: (order ? order.Status : 'Paid'), time: new Date().getTime() });
+                    }
+                    isModified = true;
                 });
-                console.log("🔴 STEP 6: Successfully assigned to local orders!");
                 if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
-                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-            } else {
-                console.warn("⚠️ Server returned success, but no tracking IDs were assigned! (Is it out of stock in sheet?)");
             }
         } catch (e) {
-            console.error("❌ ERROR: Tracker assignment failed", e);
+            console.log("Tracker assignment failed", e);
         }
-    } else {
-        console.log("🔴 SKIP SERVER: Either no orders need tracking, or switch is OFF.");
     }
 
     Swal.fire({
@@ -2765,8 +2758,6 @@ async function runPrintLogic(checkboxes, directData = null) {
     document.body.appendChild(tempDiv);
 
     const labelsData = [];
-    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-    let isModified = false;
 
     for (let i = 0; i < ordersToPrint.length; i++) {
         const d = ordersToPrint[i];
@@ -2775,10 +2766,9 @@ async function runPrintLogic(checkboxes, directData = null) {
             Swal.getHtmlContainer().querySelector('b').innerText = i + 1;
         }
 
-        console.log(`✅ Rendering Print for ${d.orderid} | Final Tracking: ${d.tracking || 'None'}`);
-
         let seqNum = (window.paidRankMap && window.paidRankMap[d.orderid]) ? window.paidRankMap[d.orderid] : (i + 1);
 
+        // 🔥 'P' ആഡ് ചെയ്യുന്നത് താങ്കളുടെ പഴയ കോഡിലെ ഈ ഭാഗത്താണ്
         let currentMeta = String(d.adminMeta || '');
         if (!currentMeta.includes('P')) {
             let printTimestamp = Date.now();
@@ -2839,13 +2829,8 @@ async function runPrintLogic(checkboxes, directData = null) {
                 try {
                     JsBarcode(bcCanvas, d.tracking, { format: "CODE128", displayValue: false, width: 2, height: 40, margin: 0 });
                     trackBarcodeSrc = bcCanvas.toDataURL("image/png");
-                    console.log(`🖼️ Barcode generated successfully for ${d.tracking}`);
-                } catch (e) {
-                    console.error(`❌ Barcode Generation Err for ${d.tracking}:`, e);
-                }
+                } catch (e) { console.error("Barcode Err:", e); }
                 bcCanvas.remove();
-            } else if (d.tracking) {
-                console.warn("⚠️ JsBarcode library is not loaded!");
             }
 
             setTimeout(() => {
@@ -2952,16 +2937,20 @@ async function runPrintLogic(checkboxes, directData = null) {
             printCourierBorder = "1px solid #dc2626";
         }
 
-        // 🔥 BEAUTIFUL TRACKING BARCODE CONTAINER
+        // 🔥 BEAUTIFUL TRACKING BARCODE CONTAINER (UPDATED)
         let trackingBarcodeHtml = '';
         if (d.tracking) {
-            let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:42mm; height:10mm; display:block; margin:0 auto;" />` : '';
+            // ബാർകോഡിന്റെ ഉയരം 10mm ൽ നിന്നും 7.5mm ആയി കുറച്ചു
+            let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:43mm; height:7.5mm; display:block; margin:0 auto;" />` : '';
 
             trackingBarcodeHtml = `
-            <div style="position:absolute; top:4mm; right:4mm; text-align:center; z-index:50; background-color: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 4px; min-width: 45mm;">
-                <div style="font-size: 7px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Tracking ID</div>
+            <div style="position:absolute; top:4mm; right:4mm; text-align:center; z-index:50; background-color: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 5px; min-width: 48mm;">
+                <img src="images/indiapostlogo.svg" style="position:absolute; top:5px; right:5px; height:10px;" alt="Logo" />
+                
+                <div style="font-size: 7px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; text-align:left; padding-left:1px;">Consignment ID</div>
+                
                 ${barcodeImg}
-                <div style="font-size:12px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000; margin-top:2px;">${d.tracking}</div>
+                <div style="font-size:12px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000; margin-top:3px;">${d.tracking}</div>
             </div>`;
         }
 
