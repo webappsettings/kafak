@@ -2665,7 +2665,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Fixed Default Courier Issue)
+// 🔥 DEBUG VERSION: PRINT LABELS WITH CONSOLE LOGS
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2680,6 +2680,8 @@ async function runPrintLogic(checkboxes, directData = null) {
 
     if (ordersToPrint.length === 0) return;
 
+    console.log("🔴 STEP 1: Total Orders to Print:", ordersToPrint.length);
+
     Swal.fire({
         title: 'Generating Labels...',
         html: `Fetching Tracking IDs from server...`,
@@ -2687,17 +2689,17 @@ async function runPrintLogic(checkboxes, directData = null) {
         didOpen: () => { Swal.showLoading(); }
     });
 
-    // 🔥 1. ട്രാക്കിങ് ആവശ്യമുള്ള ഓർഡറുകൾ കണ്ടെത്തുന്നു (തിരുത്തിയ ഭാഗം)
     let ordersNeedingTracking = [];
     ordersToPrint.forEach(o => {
         let s = String(o.state || '').toUpperCase().trim();
         let provider = String(o.provider || o.Courier_Provider || '').toUpperCase().trim();
 
-        // കോറിയർ സെലക്ട് ചെയ്തിട്ടില്ലെങ്കിൽ ഡിഫോൾട്ട് ഇന്ത്യ പോസ്റ്റ് ആക്കുന്ന ലോജിക് ഇവിടെയും വെച്ചു
         if (!provider || provider === 'COURIER' || provider === 'UNDEFINED') {
             if (s === 'KERALA') provider = 'INDIA POST';
             else provider = 'SPEED POST';
         }
+
+        console.log(`👉 Order ${o.orderid} | Provider: ${provider} | Current Tracking: ${o.tracking || 'Empty'}`);
 
         if (!o.tracking && (provider.includes('INDIA POST') || provider.includes('SPEED POST') || provider.includes('POST'))) {
             let type = provider.includes('SPEED') ? 'Speed' : 'Normal';
@@ -2705,20 +2707,27 @@ async function runPrintLogic(checkboxes, directData = null) {
         }
     });
 
+    console.log("🔴 STEP 2: Orders needing tracking from server:", ordersNeedingTracking);
+
     let autoTrackEnabled = true;
     let toggleEl = document.getElementById('auto-track-toggle');
-    if (toggleEl && !toggleEl.checked) {
-        autoTrackEnabled = false;
+    if (toggleEl) {
+        autoTrackEnabled = toggleEl.checked;
+        console.log("🔴 STEP 3: Auto-Track Switch is:", autoTrackEnabled ? "ON" : "OFF");
+    } else {
+        console.log("🔴 STEP 3: Auto-Track Switch NOT FOUND! Defaulting to ON.");
     }
 
-    // 🔥 2. സെർവറിൽ പോയി അസൈൻ ചെയ്യാത്ത പുതിയ ബാർകോഡുകൾ എടുത്തുകൊണ്ടുവരുന്നു
     if (autoTrackEnabled && ordersNeedingTracking.length > 0) {
         try {
+            console.log("🔴 STEP 4: Fetching IDs from Google Sheet...");
             let res = await fetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'assignTrackers', orders: ordersNeedingTracking })
             });
             let data = await res.json();
+
+            console.log("🔴 STEP 5: Server Response:", data);
 
             if (data.result === 'success' && data.assigned && data.assigned.length > 0) {
                 data.assigned.forEach(assigned => {
@@ -2730,12 +2739,17 @@ async function runPrintLogic(checkboxes, directData = null) {
                     updateOrder(assigned.oid, 'Dispatched', assigned.tracking, true);
                     updateAdminMeta(assigned.oid, 'tracked', 'T');
                 });
+                console.log("🔴 STEP 6: Successfully assigned to local orders!");
                 if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            } else {
+                console.warn("⚠️ Server returned success, but no tracking IDs were assigned! (Is it out of stock in sheet?)");
             }
         } catch (e) {
-            console.log("Tracker assignment failed", e);
+            console.error("❌ ERROR: Tracker assignment failed", e);
         }
+    } else {
+        console.log("🔴 SKIP SERVER: Either no orders need tracking, or switch is OFF.");
     }
 
     Swal.fire({
@@ -2760,6 +2774,8 @@ async function runPrintLogic(checkboxes, directData = null) {
         if (Swal.getHtmlContainer()) {
             Swal.getHtmlContainer().querySelector('b').innerText = i + 1;
         }
+
+        console.log(`✅ Rendering Print for ${d.orderid} | Final Tracking: ${d.tracking || 'None'}`);
 
         let seqNum = (window.paidRankMap && window.paidRankMap[d.orderid]) ? window.paidRankMap[d.orderid] : (i + 1);
 
@@ -2816,7 +2832,6 @@ async function runPrintLogic(checkboxes, directData = null) {
             tempDiv.appendChild(qrNode);
             new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
 
-            // 🔥 1D Barcode ജനറേറ്റ് ചെയ്യാൻ ക്യാൻവാസ് DOM-ൽ വെക്കുന്നു
             let trackBarcodeSrc = '';
             if (d.tracking && typeof window.JsBarcode !== 'undefined') {
                 const bcCanvas = document.createElement('canvas');
@@ -2824,8 +2839,13 @@ async function runPrintLogic(checkboxes, directData = null) {
                 try {
                     JsBarcode(bcCanvas, d.tracking, { format: "CODE128", displayValue: false, width: 2, height: 40, margin: 0 });
                     trackBarcodeSrc = bcCanvas.toDataURL("image/png");
-                } catch (e) { console.error("Barcode Err:", e); }
+                    console.log(`🖼️ Barcode generated successfully for ${d.tracking}`);
+                } catch (e) {
+                    console.error(`❌ Barcode Generation Err for ${d.tracking}:`, e);
+                }
                 bcCanvas.remove();
+            } else if (d.tracking) {
+                console.warn("⚠️ JsBarcode library is not loaded!");
             }
 
             setTimeout(() => {
