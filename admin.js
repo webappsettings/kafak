@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbw_v6QrhXXd6P1lKzBqBV9bQL50zFcSAaj_iDXRl6Isf2C4FysE2cv1BTwzK4rkvdM2/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbynjMxlFrN2vvFV3mpBcmGIzE225f7PoOZsbj634cJqjszHyAdfqpM9X7xxJH152lbr/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -17,6 +17,11 @@ let showAllTracking = false;
 
 // 🔥 SMART SEARCH (Debouncing - ടൈപ്പിംഗ് ഫാസ്റ്റ് ആക്കാൻ)
 let searchTimeout;
+
+// 🔥 LOAD BARCODE GENERATOR
+const barcodeScript = document.createElement('script');
+barcodeScript.src = "https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js";
+document.head.appendChild(barcodeScript);
 
 window.handleSmartSearch = function (value) {
     // ആരെങ്കിലും വേഗത്തിൽ ടൈപ്പ് ചെയ്തുകൊണ്ടിരിക്കുകയാണെങ്കിൽ പഴയ സെർച്ച് ക്യാൻസൽ ചെയ്യുന്നു
@@ -2644,7 +2649,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 PRINT LABELS & DEDUCT EXACT STOCK (With Accurate Provider Logic & Payment Status check)
+// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Preserved Old Logic)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2658,6 +2663,52 @@ async function runPrintLogic(checkboxes, directData = null) {
     }
 
     if (ordersToPrint.length === 0) return;
+
+    Swal.fire({
+        title: 'Generating Labels...',
+        html: `Fetching Tracking IDs from server...`,
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    // 🔥 1. ട്രാക്കിങ് ആവശ്യമുള്ള ഓർഡറുകൾ കണ്ടെത്തുന്നു
+    let ordersNeedingTracking = [];
+    ordersToPrint.forEach(o => {
+        let provider = String(o.provider || o.Courier_Provider || '').toUpperCase();
+        // India Post അല്ലെങ്കിൽ Speed Post ആണെങ്കിൽ മാത്രം
+        if (!o.tracking && (provider.includes('INDIA POST') || provider.includes('SPEED POST') || provider.includes('POST'))) {
+            let type = provider.includes('SPEED') ? 'Speed' : 'Normal';
+            ordersNeedingTracking.push({ oid: o.orderid, type: type });
+        }
+    });
+
+    // 🔥 2. സെർവറിൽ പോയി അസൈൻ ചെയ്യാത്ത പുതിയ ബാർകോഡുകൾ എടുത്തുകൊണ്ടുവരുന്നു
+    if (ordersNeedingTracking.length > 0) {
+        try {
+            let res = await fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'assignTrackers', orders: ordersNeedingTracking })
+            });
+            let data = await res.json();
+
+            if (data.result === 'success' && data.assigned && data.assigned.length > 0) {
+                // ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
+                data.assigned.forEach(assigned => {
+                    let order = ordersToPrint.find(o => o.orderid === assigned.oid);
+                    let globalOrder = allOrders.find(o => o.orderid === assigned.oid);
+                    if (order) order.tracking = assigned.tracking;
+                    if (globalOrder) globalOrder.tracking = assigned.tracking;
+
+                    // സിങ്ക് ക്യൂവിൽ ഇത് Dispatched ആക്കാനും ട്രാക്കിങ് അപ്ഡേറ്റ് ചെയ്യാനും നൽകുന്നു
+                    updateOrder(assigned.oid, 'Dispatched', assigned.tracking, true);
+                    updateAdminMeta(assigned.oid, 'tracked', 'T');
+                });
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            }
+        } catch (e) {
+            console.log("Tracker assignment failed", e);
+        }
+    }
 
     Swal.fire({
         title: 'Generating Labels...',
@@ -2737,10 +2788,20 @@ async function runPrintLogic(checkboxes, directData = null) {
             tempDiv.appendChild(qrNode);
             new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
 
+            // 🔥 1D Barcode ജനറേറ്റ് ചെയ്യുന്നു (JsBarcode ഉപയോഗിച്ച്)
+            let trackBarcodeSrc = '';
+            if (d.tracking && typeof JsBarcode !== 'undefined') {
+                const canvas = document.createElement('canvas');
+                try {
+                    JsBarcode(canvas, d.tracking, { format: "CODE128", displayValue: false, width: 2, height: 40, margin: 0 });
+                    trackBarcodeSrc = canvas.toDataURL("image/png");
+                } catch (e) { }
+            }
+
             setTimeout(() => {
                 const canvas = qrNode.querySelector('canvas');
                 let qrImgSrc = canvas ? canvas.toDataURL("image/png") : '';
-                labelsData.push({ details: d, qrSrc: qrImgSrc, seqNum: seqNum });
+                labelsData.push({ details: d, qrSrc: qrImgSrc, seqNum: seqNum, trackBarcodeSrc: trackBarcodeSrc });
                 qrNode.remove();
                 resolve();
             }, 50);
@@ -2780,6 +2841,7 @@ async function runPrintLogic(checkboxes, directData = null) {
                 page-break-inside: avoid;
                 box-sizing: border-box;
                 overflow: hidden;
+                position: relative;
             }
         }
         * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
@@ -2808,7 +2870,6 @@ async function runPrintLogic(checkboxes, directData = null) {
 
         let orderTime = fmtDate(d.timestamp, d.orderid);
 
-        // 🔥 PAID ആയോ എന്ന് ചെക്ക് ചെയ്ത് തീയതി മാറ്റുന്നു
         let statusStr = String(d.Status || d.status || 'Pending').trim().toLowerCase();
         let isPaid = ['paid', 'dispatched', 'delivered', 'completed'].includes(statusStr);
         let paidTimeHtml = isPaid ? `P: ${fmtDate(d.paidDate || d.timestamp, d.orderid)}` : `<span style="color:#dc2626;">P: No</span>`;
@@ -2824,16 +2885,13 @@ async function runPrintLogic(checkboxes, directData = null) {
             stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
-        // 🔥 NEW: Resend/Return 'R' Badge Logic
         let isResend = String(d.adminMeta || '').includes('R');
         let resendDotHtml = '';
         if (isResend) {
-            // State color dot undenkil athinte thazhe (32mm), illengil mukalil (20mm)
             let rTop = (s && s !== 'KERALA') ? '32mm' : '20mm';
             resendDotHtml = `<div style="position:absolute; top:${rTop}; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:#dc2626; color:#fff; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;">R</div>`;
         }
 
-        // 🔥 SMART PROVIDER LABEL LOGIC (Speed Post vs Speed Safe)
         let rawProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
 
         if (!rawProvider || rawProvider === 'COURIER' || rawProvider === 'UNDEFINED') {
@@ -2842,32 +2900,41 @@ async function runPrintLogic(checkboxes, directData = null) {
         }
 
         let printCourierText = rawProvider;
-        let printCourierColor = "#9a9a9a"; // Default gray
+        let printCourierColor = "#9a9a9a";
         let printCourierBorder = "none";
 
         if (rawProvider.includes('INDIA POST')) {
-            printCourierText = 'Parcel[C](1187359678)';
-            printCourierColor = '#64748b'; // Slate gray
+            printCourierText = 'Parcel[C]';
+            printCourierColor = '#64748b';
         } else if (rawProvider.includes('SPEED POST')) {
-            // 🔥 Speed Post - Red Color
-            printCourierText = 'Speed[E](1187359678)';
-            printCourierColor = '#dc2626'; // Red color
+            printCourierText = 'Speed[E]';
+            printCourierColor = '#dc2626';
             printCourierBorder = "1px dashed #dc2626";
         } else if (rawProvider.includes('SPEED SAFE')) {
-            // 🔥 Speed Safe - Gray Color (No Special Code)
             printCourierText = 'SPEED SAFE';
-            printCourierColor = '#64748b'; // Slate gray
+            printCourierColor = '#64748b';
         } else if (rawProvider.includes('DTDC')) {
             printCourierText = 'DTDC';
-            printCourierColor = '#64748b'; // Slate gray
+            printCourierColor = '#64748b';
         } else if (rawProvider === 'DIRECT') {
             printCourierText = 'DIRECT DELIVERY';
-            printCourierColor = '#dc2626'; // Red color
+            printCourierColor = '#dc2626';
             printCourierBorder = "1px solid #dc2626";
+        }
+
+        // 🔥 Tracking Barcode HTML (Top Right)
+        let trackingBarcodeHtml = '';
+        if (item.trackBarcodeSrc) {
+            trackingBarcodeHtml = `
+            <div style="position:absolute; top:4mm; right:4mm; text-align:center; z-index:50;">
+                <img src="${item.trackBarcodeSrc}" style="width:45mm; height:12mm; margin-bottom:2px;" />
+                <div style="font-size:11px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000;">${d.tracking}</div>
+            </div>`;
         }
 
         htmlContent += `
         <div class="label-page">
+            ${trackingBarcodeHtml}
             ${stateDotHtml}
             ${resendDotHtml}
             <div class="address-sec">
@@ -5509,6 +5576,10 @@ function injectLeftDrawer() {
                     <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-primary border-opacity-25">
                         <h6 class="fw-bold text-primary m-0" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-sticky-note me-1"></i> A4 PRINT MANAGER</h6>
                     </div>
+
+                    <button class="btn w-100 fw-bold mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="background-color:#ffc107; border-radius:10px; padding:10px; font-size:13px; border:2px solid #d97706; color:#000;" onclick="openPostalScanner()">
+                        <i class="fas fa-barcode fs-5"></i> <span>SCAN POSTAL TRACKERS</span>
+                    </button>
                     
                     <div id="a4-stock-display-container" class="mb-3 w-100">
                         <div class="text-center p-2 text-muted small"><i class="fas fa-spinner fa-spin text-primary me-1"></i> Loading Stock...</div>
@@ -9459,3 +9530,93 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
         col.style.display = isMatch ? '' : 'none';
     });
 };
+
+
+// ==========================================
+// 📦 POSTAL TRACKER SCANNER LOGIC
+// ==========================================
+let scannedTrackers = [];
+
+window.openPostalScanner = function () {
+    scannedTrackers = [];
+    let html = `
+        <div class="text-center">
+            <div id="postal-reader" style="width: 100%; max-width: 400px; margin: 0 auto; border-radius:10px; overflow:hidden;"></div>
+            <div class="mt-3">
+                <div class="d-flex justify-content-around mb-2 fw-bold" style="font-size:12px;">
+                    <span class="text-primary">Normal <span class="badge bg-primary ms-1" id="count-cl">0</span></span>
+                    <span class="text-danger">Speed <span class="badge bg-danger ms-1" id="count-el">0</span></span>
+                </div>
+                <ul id="scanned-list" class="list-group text-start" style="max-height: 150px; overflow-y: auto; font-size:11px;"></ul>
+            </div>
+        </div>
+    `;
+
+    Swal.fire({
+        title: '<i class="fas fa-barcode"></i> Add Postal IDs',
+        html: html,
+        showCancelButton: true,
+        confirmButtonText: '<i class="fas fa-cloud-upload-alt"></i> Save to Sheet',
+        confirmButtonColor: '#198754',
+        allowOutsideClick: false,
+        didOpen: () => {
+            html5QrCode = new Html5Qrcode("postal-reader");
+            html5QrCode.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 250, height: 100 } }, onPostalScanSuccess)
+                .catch(err => alert("Camera Error"));
+        },
+        preConfirm: () => {
+            if (scannedTrackers.length === 0) {
+                Swal.showValidationMessage('No barcodes scanned!');
+                return false;
+            }
+            return scannedTrackers;
+        }
+    }).then((result) => {
+        if (html5QrCode) html5QrCode.stop().then(() => html5QrCode.clear());
+        if (result.isConfirmed) {
+            uploadPostalTrackers(result.value);
+        }
+    });
+}
+
+function onPostalScanSuccess(decodedText) {
+    if (isScanProcessing) return;
+    let text = decodedText.trim().toUpperCase();
+
+    // Validate: 13 chars, ends with IN, starts with CL/CP or EL
+    if (text.length === 13 && text.endsWith("IN")) {
+        let type = "";
+        if (text.startsWith("CL") || text.startsWith("CP")) type = "Normal";
+        else if (text.startsWith("EL")) type = "Speed";
+
+        if (type) {
+            if (!scannedTrackers.some(t => t.id === text)) {
+                isScanProcessing = true;
+                playBeep();
+                scannedTrackers.push({ id: text, type: type });
+
+                let clCount = scannedTrackers.filter(t => t.type === 'Normal').length;
+                let elCount = scannedTrackers.filter(t => t.type === 'Speed').length;
+                document.getElementById('count-cl').innerText = clCount;
+                document.getElementById('count-el').innerText = elCount;
+
+                let list = document.getElementById('scanned-list');
+                let color = type === 'Speed' ? 'text-danger' : 'text-primary';
+                list.innerHTML = `<li class="list-group-item py-1 fw-bold ${color}">${text}</li>` + list.innerHTML;
+
+                setTimeout(() => { isScanProcessing = false; }, 600);
+            }
+        }
+    }
+}
+
+function uploadPostalTrackers(trackers) {
+    Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'addPostalTrackers', trackers: trackers })
+    }).then(res => res.json()).then(data => {
+        if (data.result === 'success') Swal.fire('Success', `${trackers.length} Trackers saved to sheet!`, 'success');
+        else Swal.fire('Error', 'Failed to save', 'error');
+    }).catch(err => Swal.fire('Error', 'Network Error', 'error'));
+}
