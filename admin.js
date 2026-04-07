@@ -2665,7 +2665,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Preserved Old Logic)
+// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Fixed Courier ID & Barcode Render)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2691,22 +2691,20 @@ async function runPrintLogic(checkboxes, directData = null) {
     let ordersNeedingTracking = [];
     ordersToPrint.forEach(o => {
         let provider = String(o.provider || o.Courier_Provider || '').toUpperCase();
-        // India Post അല്ലെങ്കിൽ Speed Post ആണെങ്കിൽ മാത്രം
         if (!o.tracking && (provider.includes('INDIA POST') || provider.includes('SPEED POST') || provider.includes('POST'))) {
             let type = provider.includes('SPEED') ? 'Speed' : 'Normal';
             ordersNeedingTracking.push({ oid: o.orderid, type: type });
         }
     });
 
-    // 🔥 NEW: Toggle Switch ON aano ennu check cheyyunnu
     let autoTrackEnabled = true;
     let toggleEl = document.getElementById('auto-track-toggle');
     if (toggleEl && !toggleEl.checked) {
-        autoTrackEnabled = false; // Switch OFF anenkil false aakum
+        autoTrackEnabled = false;
     }
 
     // 🔥 2. സെർവറിൽ പോയി അസൈൻ ചെയ്യാത്ത പുതിയ ബാർകോഡുകൾ എടുത്തുകൊണ്ടുവരുന്നു
-    if (autoTrackEnabled && ordersNeedingTracking.length > 0) { // Switch ON anenkil mathram work aakum
+    if (autoTrackEnabled && ordersNeedingTracking.length > 0) {
         try {
             let res = await fetch(scriptURL, {
                 method: 'POST',
@@ -2715,7 +2713,6 @@ async function runPrintLogic(checkboxes, directData = null) {
             let data = await res.json();
 
             if (data.result === 'success' && data.assigned && data.assigned.length > 0) {
-                // ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
                 data.assigned.forEach(assigned => {
                     let order = ordersToPrint.find(o => o.orderid === assigned.oid);
                     let globalOrder = allOrders.find(o => o.orderid === assigned.oid);
@@ -2725,9 +2722,8 @@ async function runPrintLogic(checkboxes, directData = null) {
                     updateOrder(assigned.oid, 'Dispatched', assigned.tracking, true);
                     updateAdminMeta(assigned.oid, 'tracked', 'T');
                 });
-
-                // 🔥 NEW: Print cheytha udane automatic aayi remaining balance refresh cheythu kanikkunnu!
                 if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
             }
         } catch (e) {
             console.log("Tracker assignment failed", e);
@@ -2812,14 +2808,16 @@ async function runPrintLogic(checkboxes, directData = null) {
             tempDiv.appendChild(qrNode);
             new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
 
-            // 🔥 1D Barcode ജനറേറ്റ് ചെയ്യുന്നു (JsBarcode ഉപയോഗിച്ച്)
+            // 🔥 FIX: 1D Barcode ജനറേറ്റ് ചെയ്യാൻ ക്യാൻവാസ് DOM-ൽ വെക്കുന്നു
             let trackBarcodeSrc = '';
-            if (d.tracking && typeof JsBarcode !== 'undefined') {
-                const canvas = document.createElement('canvas');
+            if (d.tracking && typeof window.JsBarcode !== 'undefined') {
+                const bcCanvas = document.createElement('canvas');
+                tempDiv.appendChild(bcCanvas); // ഇത് കൊടുത്താലേ ബാർകോഡ് കൃത്യമായി വരയൂ
                 try {
-                    JsBarcode(canvas, d.tracking, { format: "CODE128", displayValue: false, width: 2, height: 40, margin: 0 });
-                    trackBarcodeSrc = canvas.toDataURL("image/png");
-                } catch (e) { }
+                    JsBarcode(bcCanvas, d.tracking, { format: "CODE128", displayValue: false, width: 2, height: 40, margin: 0 });
+                    trackBarcodeSrc = bcCanvas.toDataURL("image/png");
+                } catch (e) { console.error("Barcode Err:", e); }
+                bcCanvas.remove();
             }
 
             setTimeout(() => {
@@ -2846,27 +2844,9 @@ async function runPrintLogic(checkboxes, directData = null) {
 
     let extraCss = `
         @media print {
-            @page { 
-                size: 105mm 148mm; /* Perfect A6 Paper Size */
-                margin: 0mm; 
-            }
-            body {
-                width: 105mm;
-                height: 148mm;
-                margin: 0;
-                padding: 0;
-            }
-            .label-page {
-                width: 105mm !important;
-                height: 148mm !important;
-                max-height: 148mm !important;
-                margin: 0 !important;
-                page-break-after: always;
-                page-break-inside: avoid;
-                box-sizing: border-box;
-                overflow: hidden;
-                position: relative;
-            }
+            @page { size: 105mm 148mm; margin: 0mm; }
+            body { width: 105mm; height: 148mm; margin: 0; padding: 0; }
+            .label-page { width: 105mm !important; height: 148mm !important; max-height: 148mm !important; margin: 0 !important; page-break-after: always; page-break-inside: avoid; box-sizing: border-box; overflow: hidden; position: relative; }
         }
         * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; color-adjust: exact !important; }
     `;
@@ -2893,7 +2873,6 @@ async function runPrintLogic(checkboxes, directData = null) {
         }
 
         let orderTime = fmtDate(d.timestamp, d.orderid);
-
         let statusStr = String(d.Status || d.status || 'Pending').trim().toLowerCase();
         let isPaid = ['paid', 'dispatched', 'delivered', 'completed'].includes(statusStr);
         let paidTimeHtml = isPaid ? `P: ${fmtDate(d.paidDate || d.timestamp, d.orderid)}` : `<span style="color:#dc2626;">P: No</span>`;
@@ -2905,7 +2884,6 @@ async function runPrintLogic(checkboxes, directData = null) {
             if (s.includes('LAK')) dotColor = '#0dcaf0';
             else if (s.includes('KARN')) dotColor = '#d97706';
             else if (s.includes('TAMIL') || s.includes('TN')) dotColor = '#795548';
-
             stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
@@ -2927,11 +2905,12 @@ async function runPrintLogic(checkboxes, directData = null) {
         let printCourierColor = "#9a9a9a";
         let printCourierBorder = "none";
 
+        // 🔥 FIX 1: പഴയ കോഡിലെ (1187359678) തിരികെ കൊണ്ടുവന്നു
         if (rawProvider.includes('INDIA POST')) {
-            printCourierText = 'Parcel[C]';
+            printCourierText = 'Parcel[C](1187359678)';
             printCourierColor = '#64748b';
         } else if (rawProvider.includes('SPEED POST')) {
-            printCourierText = 'Speed[E]';
+            printCourierText = 'Speed[E](1187359678)';
             printCourierColor = '#dc2626';
             printCourierBorder = "1px dashed #dc2626";
         } else if (rawProvider.includes('SPEED SAFE')) {
@@ -2946,7 +2925,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             printCourierBorder = "1px solid #dc2626";
         }
 
-        // 🔥 Tracking Barcode HTML (Top Right) - FIX 
+        // 🔥 FIX 2: Tracking Barcode HTML
         let trackingBarcodeHtml = '';
         if (d.tracking) {
             let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:45mm; height:12mm; margin-bottom:2px;" />` : '';
