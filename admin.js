@@ -2665,7 +2665,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Fixed Courier ID & Barcode Render)
+// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Fixed Default Courier Issue)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2687,10 +2687,18 @@ async function runPrintLogic(checkboxes, directData = null) {
         didOpen: () => { Swal.showLoading(); }
     });
 
-    // 🔥 1. ട്രാക്കിങ് ആവശ്യമുള്ള ഓർഡറുകൾ കണ്ടെത്തുന്നു
+    // 🔥 1. ട്രാക്കിങ് ആവശ്യമുള്ള ഓർഡറുകൾ കണ്ടെത്തുന്നു (തിരുത്തിയ ഭാഗം)
     let ordersNeedingTracking = [];
     ordersToPrint.forEach(o => {
-        let provider = String(o.provider || o.Courier_Provider || '').toUpperCase();
+        let s = String(o.state || '').toUpperCase().trim();
+        let provider = String(o.provider || o.Courier_Provider || '').toUpperCase().trim();
+
+        // കോറിയർ സെലക്ട് ചെയ്തിട്ടില്ലെങ്കിൽ ഡിഫോൾട്ട് ഇന്ത്യ പോസ്റ്റ് ആക്കുന്ന ലോജിക് ഇവിടെയും വെച്ചു
+        if (!provider || provider === 'COURIER' || provider === 'UNDEFINED') {
+            if (s === 'KERALA') provider = 'INDIA POST';
+            else provider = 'SPEED POST';
+        }
+
         if (!o.tracking && (provider.includes('INDIA POST') || provider.includes('SPEED POST') || provider.includes('POST'))) {
             let type = provider.includes('SPEED') ? 'Speed' : 'Normal';
             ordersNeedingTracking.push({ oid: o.orderid, type: type });
@@ -2808,11 +2816,11 @@ async function runPrintLogic(checkboxes, directData = null) {
             tempDiv.appendChild(qrNode);
             new QRCode(qrNode, { text: d.orderid, width: 90, height: 90, colorDark: "#000000", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H });
 
-            // 🔥 FIX: 1D Barcode ജനറേറ്റ് ചെയ്യാൻ ക്യാൻവാസ് DOM-ൽ വെക്കുന്നു
+            // 🔥 1D Barcode ജനറേറ്റ് ചെയ്യാൻ ക്യാൻവാസ് DOM-ൽ വെക്കുന്നു
             let trackBarcodeSrc = '';
             if (d.tracking && typeof window.JsBarcode !== 'undefined') {
                 const bcCanvas = document.createElement('canvas');
-                tempDiv.appendChild(bcCanvas); // ഇത് കൊടുത്താലേ ബാർകോഡ് കൃത്യമായി വരയൂ
+                tempDiv.appendChild(bcCanvas);
                 try {
                     JsBarcode(bcCanvas, d.tracking, { format: "CODE128", displayValue: false, width: 2, height: 40, margin: 0 });
                     trackBarcodeSrc = bcCanvas.toDataURL("image/png");
@@ -2905,7 +2913,6 @@ async function runPrintLogic(checkboxes, directData = null) {
         let printCourierColor = "#9a9a9a";
         let printCourierBorder = "none";
 
-        // 🔥 FIX 1: പഴയ കോഡിലെ (1187359678) തിരികെ കൊണ്ടുവന്നു
         if (rawProvider.includes('INDIA POST')) {
             printCourierText = 'Parcel[C](1187359678)';
             printCourierColor = '#64748b';
@@ -2925,7 +2932,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             printCourierBorder = "1px solid #dc2626";
         }
 
-        // 🔥 FIX 2: Tracking Barcode HTML
+        // 🔥 FIX 2: Tracking Barcode HTML - എവിടെയാണ് വരുന്നത് എന്ന് കാണാൻ
         let trackingBarcodeHtml = '';
         if (d.tracking) {
             let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:45mm; height:12mm; margin-bottom:2px;" />` : '';
