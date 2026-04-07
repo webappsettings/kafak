@@ -9562,46 +9562,70 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
 
 
 // ==========================================
-// 📦 POSTAL TRACKER SCANNER LOGIC
+// 📦 POSTAL TRACKER SCANNER (WITH VERIFY & EDIT)
 // ==========================================
 let scannedTrackers = [];
+let html5QrCode = null;
+let isScanPaused = false; // സ്കാൻ ചെയ്ത ശേഷം എഡിറ്റ് ചെയ്യാൻ ക്യാമറ താൽക്കാലികമായി നിർത്താൻ
 
 window.openPostalScanner = function () {
     scannedTrackers = [];
+    isScanPaused = false;
+
     let html = `
         <div class="text-center">
             <div id="postal-reader" style="width: 100%; max-width: 400px; margin: 0 auto; border-radius:10px; overflow:hidden;"></div>
+
+            <div class="mt-3 p-2 border rounded shadow-sm" style="background:#fff3cd; border-color:#ffeeba;">
+                <label class="fw-bold small text-dark mb-1"><i class="fas fa-edit text-warning"></i> Verify / Edit Scanned Code:</label>
+                <div class="input-group shadow-sm">
+                    <input type="text" id="verify-track-input" class="form-control fw-bold text-uppercase text-center fs-5" placeholder="Scanning..." maxlength="13">
+                    <button class="btn btn-warning px-3" onclick="clearVerifyInput()" title="Clear & Scan Again"><i class="fas fa-times"></i></button>
+                    <button class="btn btn-success fw-bold px-3" onclick="confirmScannedTracker()" id="btn-confirm-track" disabled><i class="fas fa-check"></i> ADD</button>
+                </div>
+                <div class="text-muted mt-1" style="font-size:10px;">Check the code and click ADD</div>
+            </div>
+
             <div class="mt-3">
                 <div class="d-flex justify-content-around mb-2 fw-bold" style="font-size:12px;">
                     <span class="text-primary">Normal <span class="badge bg-primary ms-1" id="count-cl">0</span></span>
                     <span class="text-danger">Speed <span class="badge bg-danger ms-1" id="count-el">0</span></span>
                 </div>
-                <ul id="scanned-list" class="list-group text-start" style="max-height: 150px; overflow-y: auto; font-size:11px;"></ul>
+                <ul id="scanned-list" class="list-group text-start shadow-sm" style="max-height: 120px; overflow-y: auto; font-size:12px;"></ul>
             </div>
         </div>
     `;
 
     Swal.fire({
-        title: '<i class="fas fa-barcode"></i> Add Postal IDs',
+        title: '<i class="fas fa-barcode"></i> Postal Scanner',
         html: html,
         showCancelButton: true,
-        confirmButtonText: '<i class="fas fa-cloud-upload-alt"></i> Save to Sheet',
+        confirmButtonText: '<i class="fas fa-cloud-upload-alt"></i> Save All to Sheet',
         confirmButtonColor: '#198754',
+        cancelButtonText: 'Close',
         allowOutsideClick: false,
         didOpen: () => {
+            // ടൈപ്പ് ചെയ്യുമ്പോൾ ബട്ടൺ Enable/Disable ആക്കാൻ
+            document.getElementById('verify-track-input').addEventListener('input', function () {
+                let val = this.value.toUpperCase().trim();
+                document.getElementById('btn-confirm-track').disabled = (val.length !== 13);
+            });
+
             html5QrCode = new Html5Qrcode("postal-reader");
             html5QrCode.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 250, height: 100 } }, onPostalScanSuccess)
-                .catch(err => alert("Camera Error"));
+                .catch(err => console.log("Camera Error"));
         },
         preConfirm: () => {
             if (scannedTrackers.length === 0) {
-                Swal.showValidationMessage('No barcodes scanned!');
+                Swal.showValidationMessage('No verified barcodes to save!');
                 return false;
             }
             return scannedTrackers;
         }
     }).then((result) => {
-        if (html5QrCode) html5QrCode.stop().then(() => html5QrCode.clear());
+        if (html5QrCode) {
+            html5QrCode.stop().then(() => html5QrCode.clear()).catch(e => console.log(e));
+        }
         if (result.isConfirmed) {
             uploadPostalTrackers(result.value);
         }
@@ -9609,43 +9633,128 @@ window.openPostalScanner = function () {
 }
 
 function onPostalScanSuccess(decodedText) {
-    if (isScanProcessing) return;
+    if (isScanPaused) return; // Verify ചെയ്യുന്നത് വരെ പുതിയത് സ്കാൻ ചെയ്യില്ല
+
     let text = decodedText.trim().toUpperCase();
 
-    // Validate: 13 chars, ends with IN, starts with CL/CP or EL
     if (text.length === 13 && text.endsWith("IN")) {
-        let type = "";
-        if (text.startsWith("CL") || text.startsWith("CP")) type = "Normal";
-        else if (text.startsWith("EL")) type = "Speed";
+        isScanPaused = true; // ക്യാമറ താൽക്കാലികമായി നിർത്തുന്നു
+        playBeep();
 
-        if (type) {
-            if (!scannedTrackers.some(t => t.id === text)) {
-                isScanProcessing = true;
-                playBeep();
-                scannedTrackers.push({ id: text, type: type });
+        let inputEl = document.getElementById('verify-track-input');
+        inputEl.value = text;
 
-                let clCount = scannedTrackers.filter(t => t.type === 'Normal').length;
-                let elCount = scannedTrackers.filter(t => t.type === 'Speed').length;
-                document.getElementById('count-cl').innerText = clCount;
-                document.getElementById('count-el').innerText = elCount;
+        document.getElementById('btn-confirm-track').disabled = false;
 
-                let list = document.getElementById('scanned-list');
-                let color = type === 'Speed' ? 'text-danger' : 'text-primary';
-                list.innerHTML = `<li class="list-group-item py-1 fw-bold ${color}">${text}</li>` + list.innerHTML;
-
-                setTimeout(() => { isScanProcessing = false; }, 600);
-            }
-        }
+        // ശ്രദ്ധ കിട്ടാൻ ചെറിയൊരു കളർ മാറ്റം
+        inputEl.style.backgroundColor = '#d1e7dd';
+        setTimeout(() => { inputEl.style.backgroundColor = ''; }, 500);
     }
 }
 
+// തെറ്റിയാൽ ഡിലീറ്റ് ചെയ്ത് വീണ്ടും സ്കാൻ ചെയ്യാൻ
+window.clearVerifyInput = function () {
+    let inputEl = document.getElementById('verify-track-input');
+    inputEl.value = "";
+    document.getElementById('btn-confirm-track').disabled = true;
+    isScanPaused = false; // ക്യാമറ വീണ്ടും ഓൺ ആകുന്നു
+    inputEl.focus();
+}
+
+// ശരിയാണെങ്കിൽ ലിസ്റ്റിലേക്ക് മാറ്റാൻ
+window.confirmScannedTracker = function () {
+    let inputEl = document.getElementById('verify-track-input');
+    let text = inputEl.value.toUpperCase().trim();
+
+    if (text.length !== 13 || !text.endsWith("IN") || !(text.startsWith("C") || text.startsWith("E"))) {
+        Swal.showValidationMessage("Invalid Format! Example: CL123456789IN");
+        return;
+    }
+
+    if (scannedTrackers.some(t => t.id === text)) {
+        alert("This ID is already added in the list!");
+        clearVerifyInput();
+        return;
+    }
+
+    let type = text.startsWith("E") ? "Speed" : "Normal";
+    scannedTrackers.push({ id: text, type: type });
+
+    // എണ്ണം അപ്ഡേറ്റ് ചെയ്യുന്നു
+    document.getElementById('count-cl').innerText = scannedTrackers.filter(t => t.type === 'Normal').length;
+    document.getElementById('count-el').innerText = scannedTrackers.filter(t => t.type === 'Speed').length;
+
+    // ലിസ്റ്റിലേക്ക് കാണിക്കുന്നു
+    let list = document.getElementById('scanned-list');
+    let color = type === 'Speed' ? 'text-danger' : 'text-primary';
+    let bg = type === 'Speed' ? 'bg-danger' : 'bg-primary';
+
+    let li = `
+        <li class="list-group-item d-flex justify-content-between align-items-center py-1 fw-bold ${color}">
+            ${text} <span class="badge ${bg}">${type}</span>
+        </li>
+    `;
+    list.insertAdjacentHTML('afterbegin', li);
+
+    // അടുത്ത സ്കാനിങ്ങിന് റെഡിയാകുന്നു
+    clearVerifyInput();
+}
+
+// ഡാറ്റ ഷീറ്റിലേക്ക് സേവ് ചെയ്യുന്നു
 function uploadPostalTrackers(trackers) {
     Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'addPostalTrackers', trackers: trackers })
     }).then(res => res.json()).then(data => {
-        if (data.result === 'success') Swal.fire('Success', `${trackers.length} Trackers saved to sheet!`, 'success');
-        else Swal.fire('Error', 'Failed to save', 'error');
+        if (data.result === 'success') {
+            Swal.fire('Success', `${data.added} Trackers saved to sheet!`, 'success');
+            // സേവ് ചെയ്ത ശേഷം ഡാഷ്‌ബോർഡിലെ ബാലൻസ് റിഫ്രഷ് ചെയ്യുന്നു
+            if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
+        } else {
+            Swal.fire('Error', 'Failed to save', 'error');
+        }
     }).catch(err => Swal.fire('Error', 'Network Error', 'error'));
 }
+
+// ==========================================
+// 📦 TRACKING BALANCE REFRESHER
+// ==========================================
+window.refreshTrackingBalance = function () {
+    let displays = document.querySelectorAll('#tracking-balance-display');
+    if (displays.length === 0) return;
+
+    displays.forEach(d => {
+        d.innerHTML = '<i class="fas fa-spinner fa-spin text-muted" style="font-size:11px;"></i>';
+    });
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'getTrackingBalance' })
+    }).then(res => res.json()).then(data => {
+        displays.forEach(d => {
+            d.innerHTML = `
+                <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ${data.normal}</span> 
+                <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ${data.speed}</span>
+            `;
+        });
+    }).catch(e => {
+        displays.forEach(d => {
+            d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`;
+        });
+    });
+}
+
+// സ്ക്രീൻ ലോഡ് ആകുമ്പോഴും കാർഡുകൾ വരയ്ക്കുമ്പോഴും തനിയെ ബാലൻസ് കാണിക്കാൻ:
+setInterval(() => {
+    if (document.getElementById('tracking-balance-display') && document.getElementById('tracking-balance-display').innerText.includes('Checking')) {
+        refreshTrackingBalance();
+    }
+}, 2000);
+
+// ടാബ് മാറുമ്പോഴെല്ലാം ബാലൻസ് തനിയെ അപ്ഡേറ്റ് ആകാൻ ഇത് കൂടി കൊടുക്കുക
+document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(() => {
+        if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
+    }, 3000);
+});
