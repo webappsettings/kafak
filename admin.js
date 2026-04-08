@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbwBzF76RADnKiMpehiBceiLyiAqEXH8RjW3hV3jsYWu2Ii1DlAHzlexOLyWkxqUDe0Yeg/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbyZxXkRh5gO7K3wak61Vbo2cif6eqbLEcmUUVlITxJ_aougNZrlG7SAVjPK6woDqCWGpg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1511,15 +1511,17 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
 
     let waSelectorHTML = `
     <div class="mt-2 mb-2 d-flex gap-1" onclick="highlightCard(this)">
-        <div class="input-group input-group-sm flex-nowrap" style="width:65px; border-radius:5px; overflow:hidden;">
-            <span class="input-group-text bg-light text-muted border-secondary border-opacity-25 px-1 py-0" style="font-size:11px;">+</span>
-            <input type="text" id="wa-cc-${type}-${index}" class="form-control border-secondary border-opacity-25 text-center fw-bold px-1 py-0 text-dark" value="91" style="font-size:12px;">
+        <div class="d-flex align-items-center gap-1 flex-grow-1">
+            <select id="wa-select-${type}-${index}" 
+                onchange="updateAdminMeta('${d.orderid}', 'contact', this.value);" 
+                class="form-select form-select-sm shadow-none border-secondary text-secondary" 
+                style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
+            
+            <button class="btn btn-sm btn-light border text-primary px-2 py-1 shadow-sm" onclick="openPhoneEditModal('${d.orderid}')" title="Edit Numbers" style="border-radius: 5px;">
+                <i class="fas fa-edit"></i>
+            </button>
         </div>
-        <select id="wa-select-${type}-${index}" 
-            onchange="updateAdminMeta('${d.orderid}', 'contact', this.value);" 
-            class="form-select form-select-sm shadow-none border-secondary text-secondary flex-grow-1" 
-            style="font-size:11px; font-weight:700; padding:4px 25px 4px 8px;">${opts}</select>
-        <button class="btn btn-sm btn-success" onclick="openSimpleWA(${index}, this, '${type}')" title="Open WhatsApp Chat"><i class="fab fa-whatsapp"></i></button>
+        <button class="btn btn-sm btn-success px-3" onclick="openSimpleWA(${index}, this, '${type}')" title="Open WhatsApp Chat" style="border-radius: 5px;"><i class="fab fa-whatsapp fs-6"></i></button>
     </div>`;
 
     let contactMap = {};
@@ -8792,27 +8794,41 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
     });
 };
 
-// 🔥 NEW HELPER: Smartly Attach Country Code
-window.formatWAPhone = function (phoneNum, cc) {
-    let cleanNum = String(phoneNum || '').replace(/[^0-9]/g, '');
-    cleanNum = cleanNum.replace(/^0+/, ''); // മുന്നിലുള്ള പൂജ്യങ്ങൾ ഒഴിവാക്കാൻ
+// 🔥 UPDATED: SMART PHONE NUMBER FORMATTER (Handles Foreign Numbers & Empty CC)
+window.formatWAPhone = function (phone, ccInput) {
+    if (!phone) return "";
 
-    cc = String(cc || '91').replace(/[^0-9]/g, '');
-    if (!cc) cc = '91';
+    let num = String(phone).replace(/\D/g, ""); // നമ്പറുകൾ ഒഴികെ ബാക്കിയെല്ലാം ഒഴിവാക്കുന്നു
 
-    // 10 അക്കമുള്ള ഇന്ത്യൻ നമ്പർ ആണെങ്കിൽ കോഡ് ചേർക്കുന്നു
-    if (cleanNum.length === 10 && cc === '91') {
-        cleanNum = '91' + cleanNum;
+    // ബോക്സിലെ കോഡ് ശൂന്യമാണോ എന്ന് നോക്കുന്നു (പഴയ കോഡിലെ പിഴവ് ഇവിടെയാണ് തിരുത്തിയത്)
+    let cc = (ccInput !== undefined && ccInput !== null) ? String(ccInput).replace(/\D/g, "") : "91";
+
+    // 1. നമ്മൾ കോഡ് ബോക്സിൽ നിന്നും 91 ഡിലീറ്റ് ചെയ്ത് കാലിയാക്കിയാൽ, കസ്റ്റമർ നൽകിയ നമ്പർ അതുപോലെ എടുക്കാം
+    if (cc === "") {
+        return num;
     }
-    // നേരത്തെ 91 ഉണ്ടെങ്കിലും ഇപ്പോൾ മറ്റൊരു കോഡ് (eg: 971) ആണ് അടിച്ചതെങ്കിൽ അത് മാറ്റുന്നു
-    else if (cleanNum.length > 10 && cleanNum.startsWith('91') && cc !== '91') {
-        cleanNum = cc + cleanNum.substring(2);
+
+    // 2. നമ്പർ കൃത്യം 10 അക്കമാണെങ്കിൽ നമ്മൾ ബോക്സിൽ നൽകിയ കോഡ് (91) ചേർക്കുന്നു
+    if (num.length === 10) {
+        return cc + num;
     }
-    // കോഡ് ഒട്ടും ഇല്ലെങ്കിൽ അത് ചേർക്കുന്നു
-    else if (!cleanNum.startsWith(cc)) {
-        cleanNum = cc + cleanNum;
+
+    // 3. നമ്പർ 10 ൽ കൂടുതലുണ്ടെങ്കിൽ (അതായത് കസ്റ്റമർ ഓൾറെഡി രാജ്യത്തിന്റെ കോഡ് നൽകിയിട്ടുണ്ടെങ്കിൽ)
+    if (num.length > 10) {
+        if (num.startsWith("0")) { // 0 വെച്ചാണ് തുടങ്ങുന്നതെങ്കിൽ 0 കളയുന്നു
+            num = num.substring(1);
+            if (num.length === 10) return cc + num;
+        }
+
+        if (num.startsWith(cc)) { // കസ്റ്റമർ നൽകിയ നമ്പറിൽ ഓൾറെഡി 91 ഉണ്ടെങ്കിൽ വീണ്ടും ചേർക്കില്ല
+            return num;
+        }
+
+        // കസ്റ്റമറുടെ നമ്പറിൽ വേറെ ഏതെങ്കിലും രാജ്യത്തിന്റെ കോഡ് (ഉദാ: 971, 44) ഉണ്ടെങ്കിൽ, 91 ചേർക്കില്ല! അതുപോലെ എടുക്കും.
+        return num;
     }
-    return cleanNum;
+
+    return cc + num;
 };
 
 
@@ -9231,7 +9247,7 @@ window.sendWA = function (index, type = 'pending') {
         alert("Number not found!");
     }
 }
-// 🔥 SEND PAYMENT RECEIPT WA (Direct Delivery Compatible)
+// 🔥 SEND PAYMENT RECEIPT WA 
 window.sendPaymentWA = function (oid, index, type = 'paid') {
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) { alert("Order Data Missing!"); return; }
@@ -9252,21 +9268,9 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     let finalNum = formatWAPhone(targetNum, cc);
     if (!finalNum) { alert("No valid number found!"); return; }
 
-    // തുക കാൽക്കുലേറ്റ് ചെയ്യുന്നു (Direct Delivery ആണെങ്കിൽ അത് പരിഗണിക്കും)
-    const n = parseInt(order.quantity) || 1;
-    const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
-    let courier = parseInt(order.Courier_Charge) || 0;
-
-    // Direct Delivery ആണെങ്കിൽ Meta-യിൽ നിന്ന് റേറ്റ് ഉറപ്പുവരുത്തുന്നു
-    if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
-        let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
-        if (match) courier = parseInt(match[2]) || 0;
-    }
-
-    let totalAmount = base + courier;
-
+    // ട്രാക്കിംഗ് ലിങ്കും മെസ്സേജും സെറ്റ് ചെയ്യുന്നു
     let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
-    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n💰 *Amount: ₹${totalAmount}*\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
+    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
 
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }
@@ -9769,3 +9773,87 @@ document.addEventListener('DOMContentLoaded', function () {
         if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
     }, 3000);
 });
+
+
+// 🔥 EDIT PHONE NUMBERS MODAL & LOGIC
+window.openPhoneEditModal = function (oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) { Swal.fire('Error', 'Order not found!', 'error'); return; }
+
+    let html = `
+        <div class="text-start">
+            <label class="form-label small fw-bold text-muted mb-1">Main Phone</label>
+            <input type="text" id="edit-ph-main" class="form-control mb-3" value="${order.phone || ''}">
+
+            <label class="form-label small fw-bold text-muted mb-1">WhatsApp Number</label>
+            <input type="text" id="edit-ph-wa" class="form-control mb-3" value="${order.whatsapp || ''}">
+
+            <label class="form-label small fw-bold text-muted mb-1">Alternative Phone</label>
+            <input type="text" id="edit-ph-alt" class="form-control mb-3" value="${order.altphone || ''}">
+
+            <label class="form-label small fw-bold text-muted mb-1">Paid Number (GPay/PhonePe)</label>
+            <input type="text" id="edit-ph-paid" class="form-control mb-3" value="${order.paidNum || ''}">
+            
+            <div class="alert alert-warning mt-2 mb-0" style="font-size:11px; padding:8px;">
+                <i class="fas fa-info-circle"></i> <b>Country Code:</b> വിദേശ നമ്പറുകൾ (eg: 97150...) ആണെങ്കിൽ കോഡ് ഉൾപ്പെടെ തന്നെ അടിക്കുക. സാധാരണ 10 അക്ക നമ്പറിന് മുൻപിൽ '91' ചേർക്കേണ്ടതില്ല.
+            </div>
+        </div>
+    `;
+
+    Swal.fire({
+        title: '<i class="fas fa-phone-alt text-primary"></i> Edit Phones',
+        html: html,
+        showCancelButton: true,
+        confirmButtonText: '<i class="fas fa-save"></i> Save Changes',
+        confirmButtonColor: '#198754',
+        preConfirm: () => {
+            return {
+                phone: document.getElementById('edit-ph-main').value.trim(),
+                whatsapp: document.getElementById('edit-ph-wa').value.trim(),
+                altphone: document.getElementById('edit-ph-alt').value.trim(),
+                paidNum: document.getElementById('edit-ph-paid').value.trim()
+            }
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            savePhoneNumbers(oid, result.value);
+        }
+    });
+}
+
+function savePhoneNumbers(oid, data) {
+    Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({
+            action: 'updatePhoneNumbers',
+            orderid: oid,
+            phone: data.phone,
+            whatsapp: data.whatsapp,
+            altphone: data.altphone,
+            paidNum: data.paidNum
+        })
+    }).then(res => res.json()).then(resData => {
+        if (resData.result === 'success') {
+            // ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
+            let order = allOrders.find(o => o.orderid === oid);
+            if (order) {
+                order.phone = data.phone;
+                order.whatsapp = data.whatsapp;
+                order.altphone = data.altphone;
+                order.paidNum = data.paidNum;
+            }
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+            // UI റിഫ്രഷ് ചെയ്യുന്നു
+            if (typeof renderTabs === 'function') renderTabs(allOrders);
+
+            Swal.fire('Saved!', 'Phone numbers updated successfully.', 'success');
+        } else {
+            Swal.fire('Error', resData.message || 'Failed to save', 'error');
+        }
+    }).catch(e => {
+        Swal.fire('Error', 'Network Error', 'error');
+    });
+}
