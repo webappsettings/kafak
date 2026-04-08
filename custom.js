@@ -629,6 +629,7 @@ function setRefreshLoading(isLoading) {
   }
 }
 
+// 🔥 CONTROL VISIBILITY (Admin can Edit, Customer can Re-Order if Delivered)
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
@@ -642,8 +643,24 @@ function handleEditControlsVisibility(d) {
     $('#btn-edit-addr').css('display', 'inline-block');
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').prop('disabled', false);
-    $('#quick-qty').css('border', '2px solid #dc3545');
     $('#btn-req-modify').remove();
+
+    // 🔥 മിസ്സായ ഭാഗം ഇതാണ് (Dispatched, Delivered, Completed, Refunded സ്റ്റാറ്റസുകളിൽ പുതിയ ഓർഡർ ബട്ടൺ കാണിക്കാൻ)
+    if (['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+      $('#quick-qty').css('border', '2px solid #15803d');
+      $('.btn-update-sage')
+        .prop('disabled', false)
+        .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
+        .html(`<i class="fas fa-plus-circle me-1"></i> CREATE NEW ORDER`)
+        .attr('onclick', 'processCleanReorder()');
+    } else {
+      // സാധാരണ ഓർഡറുകൾ അപ്ഡേറ്റ് ചെയ്യാൻ
+      $('#quick-qty').css('border', '2px solid #dc3545');
+      $('.btn-update-sage')
+        .css({ 'background': '#2563eb', 'border-color': '#2563eb' })
+        .html(t.btn_update || "Update Order")
+        .attr('onclick', 'submitQuickOrder()');
+    }
     return;
   }
 
@@ -659,7 +676,7 @@ function handleEditControlsVisibility(d) {
     $('.btn-update-sage')
       .show()
       .prop('disabled', false)
-      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#16a34a', 'border-color': '#15803d' }) // പച്ച നിറം
+      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#16a34a', 'border-color': '#15803d' })
       .html(`<i class="fas fa-shopping-cart me-1"></i> ${t.btn_order || 'PLACE ORDER'}`);
 
     $('.btn-update-sage').attr('onclick', 'submitQuickOrder()');
@@ -2065,8 +2082,23 @@ function checkForChanges() {
   const t = translations[lang] || translations['en'];
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-
   const status = String(savedOrderData.Status || '').toLowerCase();
+
+  // 🔥 ADMIN OVERRIDE FOR COMPLETED STATES (അഡ്മിന് പുതിയ ഓർഡർ ബട്ടൺ എപ്പോഴും ആക്ടീവ് ആക്കി നിർത്താൻ)
+  if (isAdmin && ['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
+    btnUpdate.prop('disabled', false)
+      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
+      .html(`<i class="fas fa-plus-circle me-1"></i> CREATE NEW ORDER`);
+
+    if (isChanged) {
+      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
+    } else {
+      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
+    }
+    return;
+  }
+
+  // Customer Logic for Delivered/Completed/Refunded
   if (['delivered', 'completed', 'refunded'].includes(status)) {
     btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
 
@@ -2078,7 +2110,7 @@ function checkForChanges() {
     return;
   }
 
-  // Admin Logic
+  // Admin Logic (For Pending/Paid etc)
   if (isAdmin && editingOrderId) {
     if (isQtyChanged) {
       let oldQty = parseInt(savedQty) || 0;
@@ -2089,7 +2121,6 @@ function checkForChanges() {
       let oldBase = (courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
       let newBase = (courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
 
-      // 🔥 കൃത്യമായി ഫൈനൽ റേറ്റ് എടുക്കുന്നു
       let oldCourier = window.getDeliveryCharge(stateVal, oldQty, prov);
       let newCourier = window.getDeliveryCharge(stateVal, newQty, prov);
 
@@ -2127,13 +2158,12 @@ function checkForChanges() {
     }
   }
 
-  // Standard User Logic (🔥 FIX INCLUDED HERE)
+  // Standard User Logic (Or Admin with no OrderID)
   if (!isAdmin || !isQtyChanged) {
     if (!editingOrderId) {
-      // 🔥 FIX: Draft / New Order ആണെങ്കിൽ എപ്പോഴും Button Enable ആയിരിക്കണം!
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#16a34a', 'border-color': '#15803d' });
 
-      if (btnUpdate.html().indexOf('fa-shopping-cart') === -1 && btnUpdate.html().indexOf('fa-shopping-bag') === -1) {
+      if (btnUpdate.html().indexOf('fa-shopping-cart') === -1 && btnUpdate.html().indexOf('fa-shopping-bag') === -1 && btnUpdate.html().indexOf('fa-plus-circle') === -1) {
         btnUpdate.html(`<i class="fas fa-shopping-cart me-1"></i> ${t.btn_order || 'PLACE ORDER'}`);
       }
 
@@ -2156,28 +2186,52 @@ function checkForChanges() {
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
 function selectEditPO(val) { $('#edit-postoffice').val(val); updateSummaryDisplay(); }
 
+// 🔥 INSTANT ADMIN UI (Optimistic Update - Zero Waiting Time!)
 function setupAdminView(oid) {
-  const adminUI = `<div id="admin-action-bar" style="display:none; position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 12000; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);"><div class="container p-0 d-flex justify-content-between align-items-center"><div id="admin-btn-container" style="flex-grow:1; margin-right:15px;"></div><button onclick="window.location.href='admin.html?search=${oid}'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button></div></div>`;
-  $('body').append(adminUI); $('body').css('padding-bottom', '100px');
+  // 1. ഡാറ്റ ലോഡ് ആവുന്നതിന് മുൻപ് തന്നെ കാണിക്കാനുള്ള ഡിഫോൾട്ട് ബട്ടണുകൾ!
+  const adminUI = `
+  <div id="admin-action-bar" style="position: fixed; bottom: 0; left: 0; width: 100%; background: white; padding: 15px; z-index: 999999; border-top: 1px solid #ddd; box-shadow: 0 -4px 20px rgba(0,0,0,0.15);">
+      <div class="container p-0 d-flex justify-content-between align-items-center">
+          <div id="admin-btn-container" style="flex-grow:1; margin-right:15px;">
+              <div class="d-flex gap-2 w-100">
+                  <button onclick="adminAction('${oid}', 'Sent')" class="btn btn-primary btn-sm fw-bold flex-grow-1 shadow-sm">💬 MARK SENT</button>
+                  <button onclick="adminAction('${oid}', 'Paid')" class="btn btn-warning btn-sm fw-bold flex-grow-1 shadow-sm text-dark">💰 MARK PAID</button>
+                  <button onclick="syncSingleOrder('${oid}')" class="btn btn-info text-white btn-sm shadow-sm" style="width:45px;" title="Sync to Server"><i class="fas fa-cloud-upload-alt"></i></button>
+              </div>
+          </div>
+          <button onclick="window.location.href='admin.html?search=${oid}'" class="btn btn-light rounded-circle shadow-sm" style="width:45px; height:45px; border:1px solid #eee; display:flex; align-items:center; justify-content:center;"><i class="fas fa-times text-danger" style="font-size:20px;"></i></button>
+      </div>
+  </div>`;
 
-  // 🔥 ADMIN FAST LOAD LOGIC: നിങ്ങൾ പറഞ്ഞ സൂപ്പർ ഫാസ്റ്റ് ലോജിക്!
+  $('body').append(adminUI);
+  $('body').css('padding-bottom', '100px');
+
+  // 2. ഫോൺ നമ്പർ ഇൻപുട്ട് മായ്ക്കുന്നു, ഒപ്പം ഫുൾ സ്ക്രീൻ ലോഡർ പൂർണ്ണമായും ഓഫ് ചെയ്യുന്നു!
+  $('#step-0').hide();
+  showLoader(false);
+
   let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
   let localAdminOrder = allOrders.find(o => String(o.orderid) === String(oid));
 
   if (localAdminOrder) {
-    // 1. Local കാഷെയിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ ഉടൻ തന്നെ ലോഡർ ഒഴിവാക്കി സ്ക്രീൻ കാണിക്കുന്നു (Zero Delay)
-    showLoader(false);
-    $('#step-0').hide();
-
+    // ഫോണിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ ഉടൻ കാണിക്കുന്നു
     updateAdminUI(localAdminOrder.Status || 'Pending', oid);
-    loadOrderData(localAdminOrder, false); // കാഷെ ഡാറ്റ വെച്ച് UI വരയ്ക്കുന്നു
-
-    // 2. ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ മാറ്റങ്ങൾ ഉണ്ടോ എന്ന് ചെക്ക് ചെയ്യുന്നു (UI ബ്ലോക്ക് ആവില്ല)
-    fetchOrder(oid, true); // true = silent background fetch
+    loadOrderData(localAdminOrder, false);
+    fetchOrder(oid, true);
   } else {
-    // ലോക്കലിൽ ഇല്ലെങ്കിൽ (ആദ്യമായി തുറക്കുമ്പോൾ) മാത്രം ലോഡർ കാണിച്ച് സർവറിൽ നിന്നും എടുക്കുന്നു
-    showLoader(true);
-    fetchOrder(oid, false);
+    // 3. ഡാറ്റ ഇല്ലെങ്കിൽ സ്ക്രീൻ ബ്ലോക്ക് ചെയ്യില്ല! പകരം താഴെ ബട്ടൺ കാണിച്ചുകൊണ്ട് നടുവിൽ ചെറിയൊരു മെസ്സേജ് മാത്രം വരും.
+    $('#wizard-view').hide();
+    $('#returning-user-view').show();
+    $('#status-area').html(`
+        <div class="text-center py-5 mt-5">
+            <i class="fas fa-spinner fa-spin text-primary fs-3 mb-2"></i><br>
+            <span class="fw-bold text-muted" style="font-size:12px;">Loading order details...</span><br>
+            <span style="font-size:10px; color:#888;">(You can use the buttons below without waiting)</span>
+        </div>
+    `).show();
+
+    // ബാക്ക്ഗ്രൗണ്ടിൽ സൈലന്റ് ആയി ഡാറ്റ എടുക്കുന്നു (isSilent = true)
+    fetchOrder(oid, true);
   }
 }
 
