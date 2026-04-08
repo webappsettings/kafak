@@ -1075,7 +1075,7 @@ window.prevStep = function () {
 }
 
 
-// 🔥 ഫംഗ്ഷനിൽ 'async' ചേർത്തിട്ടുണ്ട് (സെർവറിൽ നിന്ന് ഡാറ്റ വരുന്നത് വരെ കാത്തിരിക്കാൻ)
+// 🔥 FAST ORDER SUBMIT (With Admin New Order Creation Support)
 window.submitQuickOrder = async function () {
   if ($('.btn-update-sage').prop('disabled')) return;
 
@@ -1084,20 +1084,16 @@ window.submitQuickOrder = async function () {
   const phoneCheck = $('#edit-phone').val() || (typeof userData !== 'undefined' && userData ? userData.phone : null);
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
 
-  // 🔥 STRICT SERVER CHECK: പുതിയ ഓർഡർ ഉണ്ടാക്കുന്നതിന് മുൻപ് സെർവറിൽ നേരിട്ട് ചെക്ക് ചെയ്യുന്നു!
+  // 🔥 STRICT SERVER CHECK: പുതിയ ഓർഡർ ഉണ്ടാക്കുന്നതിന് മുൻപ് ചെക്ക് ചെയ്യുന്നു
   if (!editingOrderId && phoneCheck) {
-    showLoader(true); // ലോഡിംഗ് കാണിക്കുന്നു
-
+    showLoader(true);
     try {
       if (!isAdmin) {
-        // കസ്റ്റമർ ആണെങ്കിൽ ഗൂഗിൾ ഷീറ്റിൽ പോയി ലൈവ് ആയി ചെക്ക് ചെയ്യുന്നു
         let res = await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`);
         let data = await res.json();
 
         if (data.result === 'success' && data.data && data.data.orderid) {
           let s = String(data.data.Status || 'pending').toLowerCase();
-
-          // ആക്ടീവ് ഓർഡർ ഉണ്ടെങ്കിൽ പുതിയത് ഉണ്ടാക്കാൻ സമ്മതിക്കില്ല!
           if (!['delivered', 'completed', 'refunded'].includes(s)) {
             showLoader(false);
             const lang = $('#language-select').val() || 'en';
@@ -1107,9 +1103,9 @@ window.submitQuickOrder = async function () {
             Swal.fire({
               icon: 'info', title: t.title_active_order, text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' }
             }).then(() => {
-              window.location.href = `order.html?phone=${phoneCheck}`; // ആക്ടീവ് ഓർഡറിലേക്ക് മാറ്റുന്നു
+              window.location.href = `order.html?phone=${phoneCheck}`;
             });
-            return; // 🔥 പുതിയ ഓർഡർ ഉണ്ടാക്കുന്നത് ഇവിടെ വെച്ച് ബ്ലോക്ക് ചെയ്യുന്നു!
+            return;
           }
         }
       } else {
@@ -1140,7 +1136,6 @@ window.submitQuickOrder = async function () {
   }
   $('#edit-postoffice').val(finalPO);
 
-  //if ($('#adm-phone').length) $('#edit-phone').val($('#adm-phone').val());
   if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
 
   const newName = $('#edit-name').val();
@@ -1149,7 +1144,6 @@ window.submitQuickOrder = async function () {
   const newPhone = $('#edit-phone').val();
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
-  // 🔥 NEW: Alt നമ്പർ നിർബന്ധമാക്കുന്നു
   const newAlt = $('#edit-altphone').val();
   if (!newAlt || newAlt.length < 8 || newAlt.length > 15) {
     showAlert(getAlert('err_alt_required'));
@@ -1169,7 +1163,6 @@ window.submitQuickOrder = async function () {
   else if (selectedRadio === 'paid') newFlag = 'G';
   let finalMeta = currentMeta + newFlag;
 
-  // Customer Language (🔥 FIX: സ്ക്രീനിൽ കാണുന്ന ഭാഷ തന്നെ സെർവറിലേക്ക് അയക്കുന്നു)
   let custLang = $('#language-select').val() || 'en';
 
   const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -1179,7 +1172,6 @@ window.submitQuickOrder = async function () {
     orderid: editingOrderId,
     name: newName,
     phone: newPhone,
-    // 🔥 FIX: അഡ്മിൻ എഡിറ്റ് ചെയ്യുമ്പോൾ കൃത്യമായ പഴയ നമ്പർ തന്നെ എടുക്കാൻ
     oldPhone: (typeof savedOrderData !== 'undefined' && savedOrderData.phone) ? savedOrderData.phone : currentLoginPhone,
     whatsapp: $('#edit-whatsapp').val(),
     altphone: $('#edit-altphone').val(),
@@ -1193,13 +1185,48 @@ window.submitQuickOrder = async function () {
     paidNum: $('#edit-paid-by').val() || '',
     adminMeta: finalMeta,
     message: '',
-    // 🔥 FIX: കസ്റ്റമർ ഐഡി നഷ്ടപ്പെടാതെ സെർവറിലേക്ക് അയക്കാൻ
     custId: (typeof savedOrderData !== 'undefined' && savedOrderData.custId) ? savedOrderData.custId : myCustId,
     language: custLang,
     source: orderSource
   };
 
   if (isAdmin) {
+
+    // 🔥 ADMIN CREATING A NEW ORDER
+    if (!editingOrderId) {
+      showLoader(true);
+      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+        .then(res => res.json())
+        .then(res => {
+          showLoader(false);
+          if (res.result === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Order Created! 🎉',
+              html: `The new order has been created successfully.<br><br><b>Order ID:</b> <span class="text-primary">${res.orderid}</span>`,
+              confirmButtonColor: '#15803d',
+              confirmButtonText: 'Go to Admin Dashboard',
+              showCancelButton: true,
+              cancelButtonText: 'View Order Page'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = `admin.html?search=${res.orderid}`;
+              } else {
+                window.location.href = `order.html?oid=${res.orderid}`;
+              }
+            });
+          } else {
+            Swal.fire('Error', 'Failed to create new order', 'error');
+          }
+        }).catch(err => {
+          showLoader(false);
+          Swal.fire('Error', 'Network Error', 'error');
+        });
+      return;
+    }
+
+
+    // 🔥 ADMIN UPDATING AN EXISTING ORDER
     let targetPhone = getSelectedWAPhone(finalData);
     const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
 
@@ -1245,7 +1272,6 @@ window.submitQuickOrder = async function () {
                 msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
               }
 
-              // 🔥 SIMPLE WA OPEN
               window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
             });
           });
@@ -1264,6 +1290,8 @@ window.submitQuickOrder = async function () {
       });
     return;
   }
+
+  // CUSTOMER ORDER CREATION / UPDATE
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
