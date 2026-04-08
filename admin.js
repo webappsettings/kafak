@@ -2708,7 +2708,7 @@ window.printSelected = async function (sourceTab = 'new') {
 }
 
 
-// 🔥 UPDATED: PRINT LABELS WITH POSTAL BARCODE SYSTEM (Fixed Sync & Status Issues)
+// 🔥 UPDATED: PRINT LABELS (Smart Loading Message & Zero Balance Skip)
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -2723,14 +2723,14 @@ async function runPrintLogic(checkboxes, directData = null) {
 
     if (ordersToPrint.length === 0) return;
 
+    // 🔥 1. Initial Message (Fetching message aadyame kanikkilla)
     Swal.fire({
         title: 'Generating Labels...',
-        html: `Fetching Tracking IDs from server...`,
+        html: `Preparing orders...`,
         allowOutsideClick: false,
         didOpen: () => { Swal.showLoading(); }
     });
 
-    // 🔥 Pending updates ആദ്യമേ എടുക്കുന്നു
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let isModified = false;
 
@@ -2756,7 +2756,22 @@ async function runPrintLogic(checkboxes, directData = null) {
         autoTrackEnabled = false;
     }
 
+    // 🔥 SPEED BOOST: ബാലൻസ് പൂജ്യം ആണെങ്കിൽ ട്രാക്കിങ് അസൈൻ ചെയ്യാൻ സെർവറിലേക്ക് റിക്വസ്റ്റ് അയക്കില്ല!
+    if (window.trackingBalance && window.trackingBalance.fetched) {
+        if (window.trackingBalance.normal <= 0) {
+            ordersNeedingTracking = ordersNeedingTracking.filter(o => o.type !== 'Normal');
+        }
+        if (window.trackingBalance.speed <= 0) {
+            ordersNeedingTracking = ordersNeedingTracking.filter(o => o.type !== 'Speed');
+        }
+    }
+
+    // 🔥 2. ആവശ്യമെങ്കിൽ മാത്രം സെർവറിൽ പോകുന്നു (അപ്പോൾ മാത്രം Fetching എന്ന് കാണിക്കുന്നു)
     if (autoTrackEnabled && ordersNeedingTracking.length > 0) {
+        if (Swal.getHtmlContainer()) {
+            Swal.getHtmlContainer().innerHTML = `Fetching Tracking IDs...`;
+        }
+
         try {
             let res = await fetch(scriptURL, {
                 method: 'POST',
@@ -2765,6 +2780,9 @@ async function runPrintLogic(checkboxes, directData = null) {
             let data = await res.json();
 
             if (data.result === 'success' && data.assigned && data.assigned.length > 0) {
+                let assignedNormalCount = 0;
+                let assignedSpeedCount = 0;
+
                 data.assigned.forEach(assigned => {
                     let order = ordersToPrint.find(o => o.orderid === assigned.oid);
                     let globalOrder = allOrders.find(o => o.orderid === assigned.oid);
@@ -2772,7 +2790,6 @@ async function runPrintLogic(checkboxes, directData = null) {
                     if (order) order.tracking = assigned.tracking;
                     if (globalOrder) globalOrder.tracking = assigned.tracking;
 
-                    // 🔥 ട്രാക്കിങ് മാത്രം അപ്ഡേറ്റ് ചെയ്യുന്നു (സ്റ്റാറ്റസ് ഡിസ്പാച്ച്ഡ് ആക്കുന്നില്ല!)
                     let existingIndex = updates.findIndex(u => u.oid === assigned.oid && u.action === 'tracking');
                     if (existingIndex > -1) {
                         updates[existingIndex].tracking = assigned.tracking;
@@ -2780,20 +2797,25 @@ async function runPrintLogic(checkboxes, directData = null) {
                         updates.push({ oid: assigned.oid, action: 'tracking', tracking: assigned.tracking, status: (order ? order.Status : 'Paid'), time: new Date().getTime() });
                     }
                     isModified = true;
+
+                    if (assigned.tracking.startsWith('E')) assignedSpeedCount++;
+                    else assignedNormalCount++;
                 });
-                if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
+
+                if (window.trackingBalance && window.trackingBalance.fetched) {
+                    window.trackingBalance.normal = Math.max(0, window.trackingBalance.normal - assignedNormalCount);
+                    window.trackingBalance.speed = Math.max(0, window.trackingBalance.speed - assignedSpeedCount);
+                    if (typeof updateBalanceUI === 'function') updateBalanceUI();
+                }
             }
         } catch (e) {
             console.log("Tracker assignment failed", e);
         }
     }
 
-    Swal.fire({
-        title: 'Generating Labels...',
-        html: `Processing <b>1</b> of <b>${ordersToPrint.length}</b>`,
-        allowOutsideClick: false,
-        didOpen: () => { Swal.showLoading(); }
-    });
+    if (Swal.getHtmlContainer()) {
+        Swal.getHtmlContainer().innerHTML = `Processing <b>1</b> of <b>${ordersToPrint.length}</b>`;
+    }
 
     const styles = document.getElementById('label-css').innerHTML;
     const tempDiv = document.createElement('div');
@@ -2811,7 +2833,6 @@ async function runPrintLogic(checkboxes, directData = null) {
 
         let seqNum = (window.paidRankMap && window.paidRankMap[d.orderid]) ? window.paidRankMap[d.orderid] : (i + 1);
 
-        // 🔥 'P' ആഡ് ചെയ്യുന്നത് താങ്കളുടെ പഴയ കോഡിലെ ഈ ഭാഗത്താണ്
         let currentMeta = String(d.adminMeta || '');
         if (!currentMeta.includes('P')) {
             let printTimestamp = Date.now();
@@ -2892,8 +2913,8 @@ async function runPrintLogic(checkboxes, directData = null) {
     if (isModified) {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
-        updateSyncButtonUI();
-        renderTabs(allOrders);
+        if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+        if (typeof renderTabs === 'function') renderTabs(allOrders);
     }
 
     const printWin = window.open('', 'AddressPrintWindow', 'width=600,height=800');
@@ -2980,18 +3001,14 @@ async function runPrintLogic(checkboxes, directData = null) {
             printCourierBorder = "1px solid #dc2626";
         }
 
-        // 🔥 BEAUTIFUL TRACKING BARCODE CONTAINER (UPDATED)
         let trackingBarcodeHtml = '';
         if (d.tracking) {
-            // ബാർകോഡിന്റെ ഉയരം 10mm ൽ നിന്നും 7.5mm ആയി കുറച്ചു
             let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width:43mm; height:7.5mm; display:block; margin:0 auto;" />` : '';
 
             trackingBarcodeHtml = `
             <div style="position:absolute; top:4mm; right:4mm; text-align:center; z-index:50; background-color: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 6px; padding: 5px; min-width: 48mm;">
                 <img src="images/indiapostlogo.svg" style="position:absolute; top:5px; right:5px; height:10px;" alt="Logo" />
-                
                 <div style="font-size: 7px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; text-align:left; padding-left:1px;">Consignment ID</div>
-                
                 ${barcodeImg}
                 <div style="font-size:12px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000; margin-top:3px;">${d.tracking}</div>
             </div>`;
