@@ -2361,10 +2361,30 @@ function renderSyncList() {
         });
     }
 
+    // --- F. PHONE NUMBERS UPDATES ---
+    let phoneUpdates = pendingUpdates.filter(u => u.action === 'phones');
+    if (phoneUpdates.length > 0) {
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">📱 Phone Number Updates</div>`;
+        phoneUpdates.forEach(u => {
+            let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
+            let custName = order.name || 'Unknown User';
+
+            itemsHtml += `
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #8b5cf6 !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoUpdate('${u.oid}', 'phones')" title="Discard"><i class="fas fa-times"></i></button>
+                <div class="fw-bold text-dark mb-2" style="font-size:13px;"><i class="fas fa-user-circle text-muted me-1"></i> ${custName}</div>
+                <div class="d-flex flex-wrap gap-2 mt-1">
+                    <span class="badge bg-light text-dark border px-2 py-1"><i class="fas fa-phone-alt text-primary me-1"></i> ${u.data.phone || '-'}</span>
+                    <span class="badge bg-light text-dark border px-2 py-1"><i class="fab fa-whatsapp text-success me-1"></i> ${u.data.whatsapp || '-'}</span>
+                    ${u.data.altphone ? `<span class="badge bg-light text-dark border px-2 py-1"><i class="fas fa-phone-square text-secondary me-1"></i> ${u.data.altphone}</span>` : ''}
+                </div>
+            </div>`;
+        });
+    }
+
     list.innerHTML = itemsHtml;
 }
 
-// 🔥 UPDATED UNDO LOGIC (Supports Meta Separate Undo)
 // 🔥 UNIVERSAL UNDO UPDATE (Restores Everything to Previous State)
 window.undoUpdate = function (oid, type) {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -2379,9 +2399,22 @@ window.undoUpdate = function (oid, type) {
             pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'paidNum'));
         }
     }
-    // 2. META UNDO (Contact Prefs, Printed, Tracked) & COURIER UNDO
+    // 🔥 2. NEW: PHONES UNDO (നമ്മൾ പുതിയതായി ചേർത്തത്)
+    else if (type === 'phones') {
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action === 'phones');
+        if (removedItem) {
+            let order = allOrders.find(o => o.orderid === oid);
+            if (order) {
+                order.phone = removedItem.oldPhones.phone;
+                order.whatsapp = removedItem.oldPhones.whatsapp;
+                order.altphone = removedItem.oldPhones.altphone;
+                order.paidNum = removedItem.oldPhones.paidNum;
+            }
+            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'phones'));
+        }
+    }
+    // 3. META UNDO (Contact Prefs, Printed, Tracked) & COURIER UNDO
     else if (type === true || type === 'meta') {
-        // Here we need to check if it's a courier meta or normal meta
         let metaIndex = pendingUpdates.findIndex(u => u.oid === oid && u.action === 'meta');
 
         if (metaIndex > -1) {
@@ -2405,9 +2438,9 @@ window.undoUpdate = function (oid, type) {
             pendingUpdates.splice(metaIndex, 1); // Remove from list
         }
     }
-    // 3. STATUS UNDO (Pending, Sent, Paid, Dispatched etc)
+    // 4. STATUS UNDO (Pending, Sent, Paid, Dispatched etc)
     else {
-        removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum');
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones');
         if (removedItem) {
             let orderIndex = allOrders.findIndex(o => o.orderid === oid);
             if (orderIndex !== -1) {
@@ -2421,7 +2454,7 @@ window.undoUpdate = function (oid, type) {
                 if (removedItem.status === 'Dispatched') delete allOrders[orderIndex]['Dispatched Date'];
                 if (removedItem.status === 'Paid') delete allOrders[orderIndex]['Paid Date'];
             }
-            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum'));
+            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones'));
         }
     }
 
@@ -2454,13 +2487,11 @@ window.undoExpenseUpdate = function (id) {
     updateSyncButtonUI();
 };
 
-// 🔥 NEW: Discard All Function (With Instant Smart Revert)
 window.discardAllUpdates = function () {
     if (!confirm("Are you sure you want to discard ALL pending changes?")) return;
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    // 🔥 1. കാർഡുകളിലെ മാറ്റങ്ങളെല്ലാം തൽക്ഷണം പഴയപടിയാക്കുന്നു (Revert Local Changes)
     pendingUpdates.forEach(u => {
         let order = allOrders.find(o => o.orderid === u.oid);
         if (order) {
@@ -2472,7 +2503,7 @@ window.discardAllUpdates = function () {
                     order.Grand_Total = u.oldTotal;
                 }
                 if (u.oldMeta !== undefined) {
-                    order.adminMeta = u.oldMeta; // 'S' ടാഗ് ഉൾപ്പെടെ പഴയപടിയാക്കുന്നു
+                    order.adminMeta = u.oldMeta;
                 }
             } else if (u.action === 'status') {
                 order.Status = u.oldStatus || "Pending";
@@ -2481,30 +2512,26 @@ window.discardAllUpdates = function () {
                 if (u.status === 'Paid') delete order['Paid Date'];
             } else if (u.action === 'paidNum') {
                 order.paidNum = u.oldNum || "";
+            } else if (u.action === 'phones') { // 🔥 NEW
+                order.phone = u.oldPhones.phone;
+                order.whatsapp = u.oldPhones.whatsapp;
+                order.altphone = u.oldPhones.altphone;
+                order.paidNum = u.oldPhones.paidNum;
             }
         }
     });
 
-    // 🔥 2. ക്ലീൻ ചെയ്ത ഡാറ്റ ലോക്കൽ മെമ്മറിയിലേക്ക് സേവ് ചെയ്യുന്നു
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-
-    // 3. Sync ക്യൂ ക്ലിയർ ചെയ്യുന്നു
     localStorage.removeItem('pendingUpdates');
     localStorage.removeItem('pendingExpenses');
 
-    // 4. സ്ക്രീനും ലെഫ്റ്റ് ഡ്രോയറും തൽക്ഷണം റിഫ്രഷ് ചെയ്യുന്നു
     renderTabs(allOrders);
-
     $('#syncModal').modal('hide');
     updateSyncButtonUI();
     showToast('info', 'All changes discarded');
-
-    // 5. ബാക്ക്ഗ്രൗണ്ടിൽ സെർവറിൽ നിന്നും ഒന്നുകൂടി ഉറപ്പാക്കാൻ ഡാറ്റ എടുക്കുന്നു
     fetchOrders(true);
 }
 
-// 🔥 FINAL UPLOAD
-// 🔥 UPDATED: FINAL UPLOAD (Orders + Expenses ഒരുമിച്ച് സിങ്ക് ആവാൻ)
 // 🔥 UPDATED: FINAL UPLOAD (With Refund Deletion Logic)
 function finalConfirmSync() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -2517,28 +2544,42 @@ function finalConfirmSync() {
 
     let promises = [];
 
-    // 🔥 1 & 2. COMBINED SYNC (Status, Tracking & META എല്ലാം ഒരുമിച്ച് അയക്കുന്നു)
-    let bulkUpdates = pendingUpdates.filter(u => u.action !== 'paidNum' && !u.deleteRefund);
+    // 1. COMBINED SYNC
+    let bulkUpdates = pendingUpdates.filter(u => u.action !== 'paidNum' && u.action !== 'phones' && !u.deleteRefund);
     if (bulkUpdates.length > 0) {
         promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: bulkUpdates }) }));
     }
-    // 🔥 3. Refund Deletions (ഇതാണ് പുതിയത്)
+
+    // 2. Refund Deletions
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
     refundDeletions.forEach(u => {
         promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'deleteRefund', oid: u.oid }) }));
     });
 
-    // 4. Expenses Sync
+    // 3. Expenses Sync
     pendingExpenses.forEach(exp => {
         promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: exp }) }));
     });
 
-    // 🔥 5. Paid Number Sync
+    // 4. Paid Number Sync
     let paidNumUpdates = pendingUpdates.filter(u => u.action === 'paidNum');
     paidNumUpdates.forEach(u => {
+        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updatePaidNum', oid: u.oid, num: u.num }) }));
+    });
+
+    // 🔥 5. NEW: Phones Sync
+    let phoneUpdates = pendingUpdates.filter(u => u.action === 'phones');
+    phoneUpdates.forEach(u => {
         promises.push(fetch(scriptURL, {
             method: 'POST',
-            body: JSON.stringify({ action: 'updatePaidNum', oid: u.oid, num: u.num })
+            body: JSON.stringify({
+                action: 'updatePhoneNumbers',
+                orderid: u.oid,
+                phone: u.data.phone,
+                whatsapp: u.data.whatsapp,
+                altphone: u.data.altphone,
+                paidNum: u.data.paidNum
+            })
         }));
     });
 
@@ -9821,39 +9862,58 @@ window.openPhoneEditModal = function (oid) {
     });
 }
 
-function savePhoneNumbers(oid, data) {
-    Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
+window.savePhoneNumbers = function (oid, data) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) { Swal.fire('Error', 'Order not found!', 'error'); return; }
 
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({
-            action: 'updatePhoneNumbers',
-            orderid: oid,
-            phone: data.phone,
-            whatsapp: data.whatsapp,
-            altphone: data.altphone,
-            paidNum: data.paidNum
-        })
-    }).then(res => res.json()).then(resData => {
-        if (resData.result === 'success') {
-            // ലോക്കൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
-            let order = allOrders.find(o => o.orderid === oid);
-            if (order) {
-                order.phone = data.phone;
-                order.whatsapp = data.whatsapp;
-                order.altphone = data.altphone;
-                order.paidNum = data.paidNum;
-            }
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'phones');
 
-            // UI റിഫ്രഷ് ചെയ്യുന്നു
-            if (typeof renderTabs === 'function') renderTabs(allOrders);
+    // പഴയ നമ്പറുകൾ സേവ് ചെയ്തു വെക്കാം (അൺഡൂ ചെയ്യാൻ)
+    let oldPhones = existingIndex > -1 ? updates[existingIndex].oldPhones : {
+        phone: order.phone || "",
+        whatsapp: order.whatsapp || "",
+        altphone: order.altphone || "",
+        paidNum: order.paidNum || ""
+    };
 
-            Swal.fire('Saved!', 'Phone numbers updated successfully.', 'success');
-        } else {
-            Swal.fire('Error', resData.message || 'Failed to save', 'error');
-        }
-    }).catch(e => {
-        Swal.fire('Error', 'Network Error', 'error');
+    // ഓർഡർ ലോക്കലായി മാത്രം അപ്ഡേറ്റ് ചെയ്യുന്നു
+    order.phone = data.phone;
+    order.whatsapp = data.whatsapp;
+    order.altphone = data.altphone;
+    order.paidNum = data.paidNum;
+
+    let updateObj = {
+        oid: oid,
+        action: 'phones',
+        data: data,
+        oldPhones: oldPhones,
+        time: new Date().getTime()
+    };
+
+    // പഴയ നമ്പറും പുതിയ നമ്പറും സെയിം ആണെങ്കിൽ സിങ്ക് ലിസ്റ്റിൽ നിന്ന് ഒഴിവാക്കാം
+    let isSame = (data.phone === oldPhones.phone && data.whatsapp === oldPhones.whatsapp && data.altphone === oldPhones.altphone && data.paidNum === oldPhones.paidNum);
+
+    if (isSame) {
+        if (existingIndex > -1) updates.splice(existingIndex, 1);
+    } else {
+        if (existingIndex > -1) updates[existingIndex] = updateObj;
+        else updates.push(updateObj);
+    }
+
+    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+    if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+    if (typeof renderTabs === 'function') renderTabs(allOrders);
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Added to Sync Queue!',
+        text: 'Check WA button. Then click Sync.',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
     });
 }
