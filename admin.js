@@ -9705,17 +9705,34 @@ function uploadPostalTrackers(trackers) {
 
 
 // ==========================================
-// 📦 TRACKING BALANCE REFRESHER
+// 📦 TRACKING BALANCE REFRESHER (OPTIMIZED FOR SPEED)
 // ==========================================
-let isFetchingBalance = false; // 🔥 ഒരേസമയം 2 തവണ ചെക്ക് ചെയ്യുന്നത് തടയാനുള്ള ലോക്ക്
+let isFetchingBalance = false;
+window.trackingBalance = { normal: 0, speed: 0, fetched: false };
 
-window.refreshTrackingBalance = function () {
-    if (isFetchingBalance) return; // ഓൾറെഡി ചെക്ക് ചെയ്യുന്നുണ്ടെങ്കിൽ വീണ്ടും ചെയ്യില്ല
+// UI അപ്ഡേറ്റ് ചെയ്യാൻ മാത്രം (സെർവറിൽ പോകില്ല)
+window.updateBalanceUI = function () {
+    let displays = document.querySelectorAll('#tracking-balance-display');
+    displays.forEach(d => {
+        d.innerHTML = `
+            <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ${window.trackingBalance.normal}</span> 
+            <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ${window.trackingBalance.speed}</span>
+        `;
+    });
+};
 
+window.refreshTrackingBalance = function (force = false) {
     let displays = document.querySelectorAll('#tracking-balance-display');
     if (displays.length === 0) return;
 
-    isFetchingBalance = true; // ലോക്ക് ചെയ്യുന്നു
+    // 🔥 ഓൾറെഡി ഡാറ്റ ഉണ്ടെങ്കിൽ, ഫോഴ്സ് (Refresh button click) ചെയ്തില്ലെങ്കിൽ സെർവറിൽ പോകില്ല! (SPEED BOOST)
+    if (window.trackingBalance.fetched && force !== true) {
+        updateBalanceUI();
+        return;
+    }
+
+    if (isFetchingBalance) return;
+    isFetchingBalance = true;
 
     displays.forEach(d => {
         d.innerHTML = '<i class="fas fa-spinner fa-spin text-muted" style="font-size:11px;"></i>';
@@ -9725,36 +9742,25 @@ window.refreshTrackingBalance = function () {
         method: 'POST',
         body: JSON.stringify({ action: 'getTrackingBalance' })
     }).then(res => res.json()).then(data => {
-        displays.forEach(d => {
-            d.innerHTML = `
-                <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ${data.normal}</span> 
-                <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ${data.speed}</span>
-            `;
-        });
-        isFetchingBalance = false; // ലോക്ക് അഴിക്കുന്നു
+        window.trackingBalance = { normal: data.normal, speed: data.speed, fetched: true };
+        updateBalanceUI();
+        isFetchingBalance = false;
     }).catch(e => {
         displays.forEach(d => {
             d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`;
         });
-        isFetchingBalance = false; // ലോക്ക് അഴിക്കുന്നു
+        isFetchingBalance = false;
     });
 }
 
-// ഓരോ തവണ സ്ക്രീനിൽ ലോഡ് ആകുമ്പോഴും തനിയെ ബാലൻസ് കാണിക്കാൻ:
+// സ്ക്രീനിൽ ലോഡ് ആകുമ്പോഴും തനിയെ ബാലൻസ് കാണിക്കാൻ:
 setInterval(() => {
     let displays = document.querySelectorAll('#tracking-balance-display');
     let needsUpdate = false;
-
     displays.forEach(d => {
-        if (d.innerText.includes('Checking')) {
-            needsUpdate = true;
-        }
+        if (d.innerText.includes('Checking')) needsUpdate = true;
     });
-
-    // അപ്ഡേറ്റ് ആവശ്യമുണ്ടെങ്കിൽ മാത്രം ഒരൊറ്റ തവണ വിളിക്കുന്നു
-    if (needsUpdate && !isFetchingBalance) {
-        refreshTrackingBalance();
-    }
+    if (needsUpdate && !isFetchingBalance) refreshTrackingBalance(false);
 }, 2000);
 
 // ടാബ് മാറുമ്പോഴെല്ലാം ബാലൻസ് തനിയെ അപ്ഡേറ്റ് ആകാൻ ഇത് കൂടി കൊടുക്കുക
