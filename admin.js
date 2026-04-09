@@ -942,7 +942,7 @@ function renderTabs(orders) {
                     </div>`;
                 }
 
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 205px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`;
+                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 258px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`;
                 lastDateMap[dateKey] = dateLabel;
             }
 
