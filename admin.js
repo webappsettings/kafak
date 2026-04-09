@@ -3094,7 +3094,7 @@ window.formatDateSimple = function (dateObj, format) {
 
 
 // Ensure editTracking is available
-function editTracking(oid, currentVal) {
+function editTracking(oid, currentVal, fromScanner = false) {
     Swal.fire({
         title: 'TRACKING ID',
         input: 'text',
@@ -3103,7 +3103,26 @@ function editTracking(oid, currentVal) {
         confirmButtonText: 'SAVE'
     }).then((result) => {
         if (result.isConfirmed) {
-            updateOrder(oid, 'Dispatched', result.value.trim().toUpperCase());
+            let trackNum = result.value.trim().toUpperCase();
+            // 🔥 Skip Confirm ആക്കി (true), അതുകൊണ്ട് ഇനി "Change status to Dispatched?" എന്ന് ചോദിക്കില്ല
+            updateOrder(oid, 'Dispatched', trackNum, true);
+
+            // സ്കാനറിൽ നിന്നാണ് വരുന്നതെങ്കിൽ വീണ്ടും സ്കാനർ ഓൺ ആക്കാം
+            if (fromScanner) {
+                let order = allOrders.find(o => o.orderid === oid);
+                showScanFeedback("TRACKING UPDATED ✅", order, trackNum, false, "Moved to Tracked Tab Successfully");
+
+                scanStep = 1;
+                setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 800);
+                if (html5QrCode) html5QrCode.resume();
+                isScanProcessing = false;
+            }
+        } else {
+            // ക്യാൻസൽ അടിച്ചാൽ സ്കാനർ തിരികെ ഓൺ ആക്കുന്നു
+            if (fromScanner && html5QrCode) {
+                html5QrCode.resume();
+                isScanProcessing = false;
+            }
         }
     });
 }
@@ -4302,7 +4321,6 @@ function onScanSuccess(decodedText) {
                     scanStep = 2;
                     let msg = (order.Status === 'Dispatched') ? "UPDATE TRACKING BARCODE" : "NOW SCAN COURIER BARCODE";
 
-                    // 🔥 NEW: മാന്വൽ ആയി ട്രാക്കിങ് അടിക്കാനുള്ള ബട്ടൺ ഇവിടെ ചേർത്തു
                     let manualBtnHtml = `<div class="mt-3"><button onclick="enterTrackingManually('${tempOid}')" class="btn btn-dark w-100 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; padding:10px;"><i class="fas fa-keyboard me-2 text-warning"></i>TYPE MANUALLY</button></div>`;
 
                     let subMsg = ((order.Status === 'Dispatched') ? "Order is already dispatched. Scanning to update tracking." : "Ready to link Tracking ID") + manualBtnHtml;
@@ -4310,11 +4328,13 @@ function onScanSuccess(decodedText) {
                     $('#scan-mode-title').text(msg);
                     showScanFeedback("QR DETECTED ✅", order, decodedText, false, subMsg);
 
+                    // 🔥 ഡിലേ കൂട്ടി നൽകി (1 സെക്കൻഡ് കാത്തിരുന്ന ശേഷം മാത്രം അടുത്ത സ്കാൻ എടുക്കും)
                     html5QrCode.pause();
-                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 600);
+                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1200);
                 }
             } else {
-                setTimeout(() => { isScanProcessing = false; }, 300);
+                // QR അല്ലാത്തത് സ്കാൻ ചെയ്താൽ കാണിക്കുന്ന എറർ ഡിലേ കൂട്ടി (ആദ്യമേ എറർ വരില്ല)
+                setTimeout(() => { isScanProcessing = false; }, 800);
             }
         }
 
@@ -4398,11 +4418,11 @@ function showScanFeedback(statusHtml, order, code = "", isError = false, extraMs
     if (code) {
         let label = (code.startsWith("ORD-") || code.startsWith("K-")) ? "QR CODE" : "BARCODE";
 
-        // 🔥 ട്രാക്കിങ് ബാർകോഡ് ആണെങ്കിൽ എഡിറ്റ് ബട്ടൺ കാണിക്കാൻ
+        // 🔥 ട്രാക്കിങ് ബാർകോഡ് ആണെങ്കിൽ എഡിറ്റ് ബട്ടൺ കാണിക്കാൻ (ക്ലോസ് ആവില്ല)
         let editBtnHtml = "";
         if (label === "BARCODE" && order && order.orderid) {
             editBtnHtml = `
-            <button onclick="editTracking('${order.orderid}', '${code}'); $('#scanner-modal').hide(); stopScanner();" 
+            <button onclick="if(html5QrCode) html5QrCode.pause(); editTracking('${order.orderid}', '${code}', true);" 
                     class="btn btn-sm btn-outline-secondary mt-2 fw-bold" 
                     style="font-size:10px; padding: 4px 15px; border-radius: 6px;">
                 <i class="fas fa-edit"></i> Edit Manually
@@ -4422,7 +4442,7 @@ function showScanFeedback(statusHtml, order, code = "", isError = false, extraMs
         htmlContent += `<div style="text-align:center; font-size:13px; color:${isError ? '#dc3545' : '#555'}; font-weight:600; margin-bottom:10px; padding:5px; background:rgba(255,255,255,0.5); border-radius:5px;">${extraMsg}</div>`;
     }
 
-    // 3. CURRENT ORDER DETAILS (Large)
+    // 3. CURRENT ORDER DETAILS (Large) - പേരും ഫോൺ നമ്പറും ചേർത്തു!
     if (order) {
         let safe = (v) => String(v || '').toUpperCase();
 
