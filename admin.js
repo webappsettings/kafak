@@ -4329,7 +4329,7 @@ function onScanSuccess(decodedText) {
                     $('#scan-mode-title').text(msg);
                     showScanFeedback("QR DETECTED ✅", order, decodedText, false, subMsg);
 
-                    // 🔥 ഡിലേ കൂട്ടി നൽകി (1 സെക്കൻഡ് കാത്തിരുന്ന ശേഷം മാത്രം അടുത്ത സ്കാൻ എടുക്കും)
+                    // 🔥 ഡിലേ കൂട്ടി നൽകി (1.2 സെക്കൻഡ് കാത്തിരുന്ന ശേഷം മാത്രം അടുത്ത സ്കാൻ എടുക്കും)
                     html5QrCode.pause();
                     setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1200);
                 }
@@ -4341,10 +4341,16 @@ function onScanSuccess(decodedText) {
 
         // 👉 STEP 2: SCAN BARCODE (For both modes)
         else if (scanStep === 2) {
-            if (!decodedText.startsWith("ORD-") && !decodedText.startsWith("K-")) {
+            let currentOrder = allOrders.find(o => o.orderid === tempOid);
 
+            // വീണ്ടും QR കോഡ് സ്കാൻ ചെയ്താലോ, അല്ലെങ്കിൽ ബാർകോഡിന്റെ ഫോർമാറ്റിൽ അല്ലാത്തത് സ്കാൻ ചെയ്താലോ
+            if (decodedText.startsWith("ORD-") || decodedText.startsWith("K-")) {
+                // 🔥 ഇതാണ് താങ്കൾ പറഞ്ഞ മാറ്റം (customer details പാസ്സ് ചെയ്തു)
+                showScanFeedback("SCAN BARCODE (NOT QR) ⚠️", currentOrder, decodedText, true, "Please scan the shipping barcode (Not QR)");
+                setTimeout(() => { isScanProcessing = false; }, 1000);
+            }
+            else {
                 let duplicateOrder = allOrders.find(o => o.tracking === decodedText && o.orderid !== tempOid);
-                let currentOrder = allOrders.find(o => o.orderid === tempOid);
 
                 if (duplicateOrder) {
                     let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name} (${duplicateOrder.phone})</b>`;
@@ -4362,20 +4368,22 @@ function onScanSuccess(decodedText) {
                     }, 50);
 
                     if (scanMode === 'tracking_single') {
-                        setTimeout(() => { stopScanner(); isScanProcessing = false; }, 500);
+                        setTimeout(() => { closeScanner(); isScanProcessing = false; }, 500);
                     } else {
                         scanStep = 1;
                         setTimeout(() => { $('#scan-mode-title').text("SCAN NEXT ORDER QR"); }, 800);
+
+                        // ബാർകോഡ് സേവ് ചെയ്ത ശേഷം അടുത്തത് സ്കാൻ ചെയ്യാൻ 1 സെക്കൻഡ് ഡിലേ
                         html5QrCode.pause();
-                        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 800);
+                        setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1000);
                     }
                 }
-            } else {
-                showScanFeedback("SCAN BARCODE (NOT QR) ⚠️", null, decodedText, true);
-                setTimeout(() => { isScanProcessing = false; }, 1000);
             }
         }
-    } else if (scanMode === 'verify') {
+    }
+
+    // 🔍 MODE 3: VERIFY (QR Only)
+    else if (scanMode === 'verify') {
         if (decodedText.startsWith("ORD-") || decodedText.startsWith("K-")) {
             let order = allOrders.find(o => o.orderid === decodedText);
             if (!order) {
