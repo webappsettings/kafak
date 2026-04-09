@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbzrdnG92SRsEXvDlw-HZmV9fmVHhUNTbWGA7yA5Q2_a_87We2znwi2rZ-HnrZoEj0RNZA/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxxYTSFGQRvgLprLQmffDXXzH3hNuOA_grcC4cmn95uUakrQB6qav3nozNt2dxYsEIt/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -9981,7 +9981,7 @@ window.savePhoneNumbers = function (oid, data) {
     });
 }
 
-// 🔥 GENERATE INDIA POST SHIPPING LABEL
+// 🔥 GENERATE INDIA POST SHIPPING LABEL (WITH DYNAMIC API TESTING)
 function generateLabel(oid) {
     let order = allOrders.find(o => o.orderid === oid);
 
@@ -9990,47 +9990,74 @@ function generateLabel(oid) {
         return;
     }
 
-    // ട്രാക്കിങ് നമ്പർ ഇല്ലാതെ ലേബൽ ഉണ്ടാക്കാൻ കഴിയില്ല
     if (!order.tracking || order.tracking.trim() === "") {
         Swal.fire({
             icon: 'warning',
             title: 'No Tracking ID',
-            text: 'Please add a Tracking ID/Article Number before generating the label.'
+            text: 'Please add a Tracking ID before generating the label.'
         });
         return;
     }
 
+    // 🔥 API Test cheyyan ulla Input Box (Default values set cheythittundu)
     Swal.fire({
-        title: 'Generating Label...',
-        text: 'Connecting to India Post Server...',
-        allowOutsideClick: false,
-        didOpen: () => { Swal.showLoading(); }
-    });
-
-    let payload = {
-        action: 'generateLabel',
-        orderData: order
-    };
-
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-    })
-        .then(res => res.json())
-        .then(data => {
-            console.log("India Post API Response:", data); // ഡീബഗ്ഗ് ചെയ്യാൻ വേണ്ടി
-
-            // 🔥 FIX: result ആണ് നോക്കേണ്ടത്, status അല്ല!
-            if (data && data.result !== 'error' && !data.error) {
-                Swal.fire("Success!", "Label Generated Successfully!", "success");
-                // ഇതിന്റെ ബാക്കി നമ്മൾ പിന്നീട് ചെയ്യും
-            } else {
-                // എറർ മെസ്സേജ് കൃത്യമായി സ്ക്രീനിൽ കാണിക്കാൻ
-                Swal.fire("API Failed", data.message || data.error || "Could not generate label from India Post", "error");
+        title: 'Test India Post API',
+        html: `
+            <div style="text-align: left; font-size: 13px;">
+                <label class="fw-bold text-secondary">Login URL:</label>
+                <input id="swal-apiUrl" class="swal2-input" value="https://test.cept.gov.in/beextcustomer/v1/access/login" style="width: 100%; margin: 5px 0 15px 0; font-size: 13px; padding: 5px 10px;">
+                
+                <label class="fw-bold text-secondary">Username (Client ID):</label>
+                <input id="swal-apiUser" class="swal2-input" value="1187359678" style="width: 100%; margin: 5px 0 15px 0; font-size: 13px; padding: 5px 10px;">
+                
+                <label class="fw-bold text-secondary">Password (Client Secret):</label>
+                <input id="swal-apiPass" class="swal2-input" value="Dop@1234" style="width: 100%; margin: 5px 0 15px 0; font-size: 13px; padding: 5px 10px;">
+            </div>
+        `,
+        showCancelButton: true,
+        confirmButtonText: 'Test API & Generate',
+        cancelButtonText: 'Cancel',
+        preConfirm: () => {
+            return {
+                apiUrl: document.getElementById('swal-apiUrl').value.trim(),
+                apiUser: document.getElementById('swal-apiUser').value.trim(),
+                apiPass: document.getElementById('swal-apiPass').value.trim()
             }
-        })
-        .catch(err => {
-            console.error(err);
-            Swal.fire("Error", "Something went wrong while connecting to the server.", "error");
-        });
+        }
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            Swal.fire({
+                title: 'Connecting...',
+                text: 'Testing API credentials with India Post...',
+                allowOutsideClick: false,
+                didOpen: () => { Swal.showLoading(); }
+            });
+
+            let payload = {
+                action: 'generateLabel',
+                orderData: order,
+                apiConfig: result.value // 🔥 Type cheytha API details koodi backend-lekk ayakkunnu
+            };
+
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify(payload)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log("India Post API Response:", data);
+
+                    if (data && data.result !== 'error' && !data.error) {
+                        Swal.fire("Success!", "API Working! Label Generated Successfully!", "success");
+                    } else {
+                        Swal.fire("API Failed", data.message || data.error || "Could not connect to India Post", "error");
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    Swal.fire("Error", "Server connection failed.", "error");
+                });
+        }
+    });
 }
