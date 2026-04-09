@@ -4345,17 +4345,30 @@ function onScanSuccess(decodedText) {
 
             // വീണ്ടും QR കോഡ് സ്കാൻ ചെയ്താലോ, അല്ലെങ്കിൽ ബാർകോഡിന്റെ ഫോർമാറ്റിൽ അല്ലാത്തത് സ്കാൻ ചെയ്താലോ
             if (decodedText.startsWith("ORD-") || decodedText.startsWith("K-")) {
-                // 🔥 ഇതാണ് താങ്കൾ പറഞ്ഞ മാറ്റം (customer details പാസ്സ് ചെയ്തു)
-                showScanFeedback("SCAN BARCODE (NOT QR) ⚠️", currentOrder, decodedText, true, "Please scan the shipping barcode (Not QR)");
-                setTimeout(() => { isScanProcessing = false; }, 1000);
+
+                // 🔥 TYPE MANUALLY ബട്ടൺ ചുവന്ന തീമിൽ ഉണ്ടാക്കുന്നു
+                let manualBtnHtml = `<div class="mt-3"><button onclick="if(html5QrCode) html5QrCode.pause(); enterTrackingManually('${tempOid}')" class="btn btn-danger w-100 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; padding:10px; border: 2px solid #b91c1c;"><i class="fas fa-keyboard me-2 text-white"></i>TYPE TRACKING ID</button></div>`;
+
+                let subMsg = "Please scan the shipping barcode (Not QR)<br>Or type it manually." + manualBtnHtml;
+
+                // കസ്റ്റമർ ഡീറ്റെയിൽസും ഈ പുതിയ ബട്ടണും ചേർത്ത് ചുവന്ന അലർട്ട് കാണിക്കുന്നു
+                showScanFeedback("SCAN BARCODE (NOT QR) ⚠️", currentOrder, decodedText, true, subMsg);
+
+                // വീണ്ടും സ്കാൻ ചെയ്യാൻ അല്പം ഡിലേ കൊടുക്കുന്നു
+                html5QrCode.pause();
+                setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500);
             }
             else {
                 let duplicateOrder = allOrders.find(o => o.tracking === decodedText && o.orderid !== tempOid);
 
                 if (duplicateOrder) {
-                    let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name} (${duplicateOrder.phone})</b>`;
+                    let manualBtnHtml = `<div class="mt-3"><button onclick="if(html5QrCode) html5QrCode.pause(); enterTrackingManually('${tempOid}')" class="btn btn-danger w-100 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; padding:10px; border: 2px solid #b91c1c;"><i class="fas fa-keyboard me-2 text-white"></i>TYPE TRACKING ID</button></div>`;
+                    let errorMsg = `Duplicate! Assigned to: <b>${duplicateOrder.name} (${duplicateOrder.phone})</b>` + manualBtnHtml;
+
                     showScanFeedback("BARCODE ALREADY USED ⚠️", currentOrder, decodedText, true, errorMsg);
-                    setTimeout(() => { isScanProcessing = false; }, 1500);
+
+                    html5QrCode.pause();
+                    setTimeout(() => { html5QrCode.resume(); isScanProcessing = false; }, 1500);
                 }
                 else {
                     // 🔥 1. സ്ക്രീനിൽ ഉടൻ തന്നെ റിസൾട്ട് കാണിക്കുന്നു (No Delay at all!)
