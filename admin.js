@@ -7,7 +7,7 @@ if ('caches' in window) {
     });
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbyhid0P-dUz-oelNFBwhe-OBlfMQFP10acUtRlpZQVI0k3r7fM7cBGSXyShxYQWmyxJCQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzrdnG92SRsEXvDlw-HZmV9fmVHhUNTbWGA7yA5Q2_a_87We2znwi2rZ-HnrZoEj0RNZA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -10020,16 +10020,13 @@ function generateLabel(oid) {
         .then(data => {
             console.log("India Post API Response:", data); // ഡീബഗ്ഗ് ചെയ്യാൻ വേണ്ടി
 
-            // API യിൽ നിന്ന് മറുപടി കിട്ടിയാൽ
-            if (data && data.status !== 'error') {
+            // 🔥 FIX: result ആണ് നോക്കേണ്ടത്, status അല്ല!
+            if (data && data.result !== 'error' && !data.error) {
                 Swal.fire("Success!", "Label Generated Successfully!", "success");
-
-                // ⚠️ ശ്രദ്ധിക്കുക: ഇന്ത്യ പോസ്റ്റ് ഇവിടെ ലേബലിന്റെ ഡാറ്റ (Base64 PDF) ആണ് തരുന്നത്. 
-                // അത് കിട്ടിക്കഴിഞ്ഞാൽ നമുക്കത് ബ്രൗസറിൽ പ്രിന്റ് ചെയ്യാനുള്ള കോഡ് ഇതിന്റെ കൂടെ ചേർക്കാം.
-                // ഇപ്പോൾ റെസ്പോൺസ് എന്ത് വരുന്നു എന്ന് കൺസോളിൽ നോക്കാം.
-
+                // ഇതിന്റെ ബാക്കി നമ്മൾ പിന്നീട് ചെയ്യും
             } else {
-                Swal.fire("Failed", data.message || "Could not generate label from India Post", "error");
+                // എറർ മെസ്സേജ് കൃത്യമായി സ്ക്രീനിൽ കാണിക്കാൻ
+                Swal.fire("API Failed", data.message || data.error || "Could not generate label from India Post", "error");
             }
         })
         .catch(err => {
