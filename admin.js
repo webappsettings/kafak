@@ -3104,6 +3104,7 @@ function editTracking(oid, currentVal, fromScanner = false) {
     }).then((result) => {
         if (result.isConfirmed) {
             let trackNum = result.value.trim().toUpperCase();
+
             // 🔥 Skip Confirm ആക്കി (true), അതുകൊണ്ട് ഇനി "Change status to Dispatched?" എന്ന് ചോദിക്കില്ല
             updateOrder(oid, 'Dispatched', trackNum, true);
 
