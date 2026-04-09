@@ -1441,6 +1441,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             ${resendBadge} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${langBadge}
+            
+            <button onclick="event.stopPropagation(); generateLabel('${d.orderid}')" class="btn btn-sm btn-outline-primary d-flex align-items-center shadow-sm" style="font-size:10px; font-weight:bold; border-radius:6px; padding: 2px 8px; background: #f0f9ff;">
+                <i class="fas fa-print me-1"></i> Label
+            </button>
         </div>`;
 
     let menuItems = '';
@@ -9975,4 +9979,61 @@ window.savePhoneNumbers = function (oid, data) {
         showConfirmButton: false,
         timer: 3000
     });
+}
+
+// 🔥 GENERATE INDIA POST SHIPPING LABEL
+function generateLabel(oid) {
+    let order = allOrders.find(o => o.orderid === oid);
+
+    if (!order) {
+        Swal.fire("Error", "Order not found!", "error");
+        return;
+    }
+
+    // ട്രാക്കിങ് നമ്പർ ഇല്ലാതെ ലേബൽ ഉണ്ടാക്കാൻ കഴിയില്ല
+    if (!order.tracking || order.tracking.trim() === "") {
+        Swal.fire({
+            icon: 'warning',
+            title: 'No Tracking ID',
+            text: 'Please add a Tracking ID/Article Number before generating the label.'
+        });
+        return;
+    }
+
+    Swal.fire({
+        title: 'Generating Label...',
+        text: 'Connecting to India Post Server...',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    let payload = {
+        action: 'generateLabel',
+        orderData: order
+    };
+
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    })
+        .then(res => res.json())
+        .then(data => {
+            console.log("India Post API Response:", data); // ഡീബഗ്ഗ് ചെയ്യാൻ വേണ്ടി
+
+            // API യിൽ നിന്ന് മറുപടി കിട്ടിയാൽ
+            if (data && data.status !== 'error') {
+                Swal.fire("Success!", "Label Generated Successfully!", "success");
+
+                // ⚠️ ശ്രദ്ധിക്കുക: ഇന്ത്യ പോസ്റ്റ് ഇവിടെ ലേബലിന്റെ ഡാറ്റ (Base64 PDF) ആണ് തരുന്നത്. 
+                // അത് കിട്ടിക്കഴിഞ്ഞാൽ നമുക്കത് ബ്രൗസറിൽ പ്രിന്റ് ചെയ്യാനുള്ള കോഡ് ഇതിന്റെ കൂടെ ചേർക്കാം.
+                // ഇപ്പോൾ റെസ്പോൺസ് എന്ത് വരുന്നു എന്ന് കൺസോളിൽ നോക്കാം.
+
+            } else {
+                Swal.fire("Failed", data.message || "Could not generate label from India Post", "error");
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            Swal.fire("Error", "Something went wrong while connecting to the server.", "error");
+        });
 }
