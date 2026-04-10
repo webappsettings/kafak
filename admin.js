@@ -3038,7 +3038,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             let topLogoHtml = '';
 
             if (rawProvider.includes('SPEED POST')) {
-                topLogoHtml = `<img src="images/ems_logo.png" style="width: 188px;height: 17px;margin-bottom: 3px;margin-top: -9px;" alt="EMS Speed Post" />`;
+                topLogoHtml = `<img src="images/ems_logo.png" style="width: 188px;height: 17px;margin-bottom: 2px;margin-top: -9px;" alt="EMS Speed Post" />`;
             } else {
                 topLogoHtml = `
                     <img src="images/indiapostlogo.svg" style="position:absolute;top: -7px;right: 7px;height: 18px;" alt="India Post" />
