@@ -3036,10 +3036,23 @@ async function runPrintLogic(checkboxes, directData = null) {
         if (d.tracking) {
             let barcodeImg = item.trackBarcodeSrc ? `<img src="${item.trackBarcodeSrc}" style="width: 48mm;height: 7.4mm;display:block;margin:0 auto;" />` : '';
 
+            // 🔥 FIX: പോസ്റ്റ് ടൈപ്പ് അനുസരിച്ച് ലോഗോയും ഹെഡറും മാറ്റുന്നു
+            let topLogoHtml = '';
+
+            if (rawProvider.includes('SPEED POST')) {
+                // സ്പീഡ് പോസ്റ്റ് ആണെങ്കിൽ EMS ലോഗോ വെക്കുന്നു (Consignment ID ടെക്സ്റ്റ് ഒഴിവാക്കി)
+                topLogoHtml = `<img src="images/ems_logo.png" style="width: 150px; height: 17px; margin-bottom: 3px;" alt="EMS Speed Post" />`;
+            } else {
+                // സാധാ പോസ്റ്റ് ആണെങ്കിൽ പഴയ ഡിസൈൻ വെക്കുന്നു
+                topLogoHtml = `
+                    <img src="images/indiapostlogo.svg" style="position:absolute;top: -7px;right: 7px;height: 18px;" alt="indiapostlogo" />
+                    <div style="font-size: 7px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; text-align:left; padding:0 5px;">Consignment ID</div>
+                `;
+            }
+
             trackingBarcodeHtml = `
             <div style="position:absolute;top:4mm;right:4mm;text-align:center;z-index:50;background-color: #ffffff;border: 1.5px solid #cbd5e1;border-radius: 6px;padding: 4px 10px;min-width: 50mm;">
-                <img src="images/indiapostlogo.svg" style="position:absolute;top: -7px;right: 7px;height: 18px;" alt="indiapostlogo" />
-                <div style="font-size: 7px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; text-align:left; padding:0 5px;">Consignment ID</div>
+                ${topLogoHtml}
                 ${barcodeImg}
                 <div style="font-size:11px; font-weight:900; letter-spacing:1px; font-family:monospace; color:#000; margin-top:2px;">${d.tracking}</div>
             </div>`;
