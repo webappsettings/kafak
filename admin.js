@@ -5699,16 +5699,16 @@ function injectLeftDrawer() {
         <div class="tab-content flex-grow-1 p-3 overflow-auto" id="drawer-tabContent">
             
             <div class="tab-pane fade show active h-100" id="drawer-design" role="tabpanel">
+
+            <button class="align-items-center btn d-flex fw-bold gap-2 justify-content-center mb-3 mx-auto shadow-sm" style="background-color:#ffc107; border-radius:10px; padding:10px; font-size:13px; border:2px solid #d97706; color:#000;" onclick="openPostalScanner()">
+                <i class="fas fa-barcode fs-5"></i> <span>SCAN POSTAL TRACKERS</span>
+            </button>
                 
                 <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 mb-4 shadow-sm mx-auto" style="max-width: 350px;">
                     <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-primary border-opacity-25">
                         <h6 class="fw-bold text-primary m-0" style="font-size:11px; letter-spacing:0.5px;"><i class="fas fa-sticky-note me-1"></i> A4 PRINT MANAGER</h6>
                     </div>
 
-                    <button class="btn w-100 fw-bold mb-3 shadow-sm d-flex justify-content-center align-items-center gap-2" style="background-color:#ffc107; border-radius:10px; padding:10px; font-size:13px; border:2px solid #d97706; color:#000;" onclick="openPostalScanner()">
-                        <i class="fas fa-barcode fs-5"></i> <span>SCAN POSTAL TRACKERS</span>
-                    </button>
-                    
                     <div id="a4-stock-display-container" class="mb-3 w-100">
                         <div class="text-center p-2 text-muted small"><i class="fas fa-spinner fa-spin text-primary me-1"></i> Loading Stock...</div>
                     </div>
@@ -9779,21 +9779,46 @@ window.confirmScannedTracker = function () {
     let type = text.startsWith("E") ? "Speed" : "Normal";
     scannedTrackers.push({ id: text, type: type });
 
+    updatePostalTrackerUI(); // ലിസ്റ്റ് കാണിക്കാനുള്ള പുതിയ ഫംഗ്ഷൻ വിളിക്കുന്നു
+
+    clearVerifyInput();
+}
+
+// 🔥 ലിസ്റ്റ് സ്ക്രീനിൽ കാണിക്കാനും ഡിലീറ്റ് ചെയ്യാനുമുള്ള പുതിയ ഫംഗ്ഷനുകൾ
+window.updatePostalTrackerUI = function () {
     document.getElementById('count-cl').innerText = scannedTrackers.filter(t => t.type === 'Normal').length;
     document.getElementById('count-el').innerText = scannedTrackers.filter(t => t.type === 'Speed').length;
 
     let list = document.getElementById('scanned-list');
-    let color = type === 'Speed' ? 'text-danger' : 'text-primary';
-    let bg = type === 'Speed' ? 'bg-danger' : 'bg-primary';
+    list.innerHTML = ''; // നിലവിലെ ലിസ്റ്റ് ക്ലിയർ ചെയ്യുന്നു
 
-    let li = `
-        <li class="list-group-item d-flex justify-content-between align-items-center py-1 fw-bold ${color}">
-            ${text} <span class="badge ${bg}">${type}</span>
-        </li>
-    `;
-    list.insertAdjacentHTML('afterbegin', li);
+    // പുതിയത് മുകളിൽ വരാൻ റിവേഴ്സ് ഓർഡറിൽ കാണിക്കുന്നു
+    for (let i = scannedTrackers.length - 1; i >= 0; i--) {
+        let t = scannedTrackers[i];
+        let color = t.type === 'Speed' ? 'text-danger' : 'text-primary';
+        let bg = t.type === 'Speed' ? 'bg-danger' : 'bg-primary';
 
-    clearVerifyInput();
+        let li = `
+            <li class="list-group-item d-flex justify-content-between align-items-center py-1 fw-bold ${color}">
+                <div class="d-flex align-items-center gap-2">
+                    <button class="btn btn-sm btn-danger py-0 px-1 shadow-sm d-flex align-items-center justify-content-center" style="font-size:11px; border-radius:4px; height: 20px; width: 22px;" onclick="removeScannedTracker('${t.id}')" title="Remove">
+                        <i class="fas fa-times text-white"></i>
+                    </button>
+                    <span>${t.id}</span>
+                </div>
+                <span class="badge ${bg}">${t.type}</span>
+            </li>
+        `;
+        list.insertAdjacentHTML('beforeend', li);
+    }
+}
+
+window.removeScannedTracker = function (id) {
+    // ഡിലീറ്റ് ബട്ടൺ അമർത്തുമ്പോൾ array-യിൽ നിന്നും ആ നമ്പർ ഒഴിവാക്കുന്നു
+    scannedTrackers = scannedTrackers.filter(t => t.id !== id);
+
+    // അതിനുശേഷം ലിസ്റ്റ് ഒന്നുകൂടി പുതുക്കുന്നു
+    updatePostalTrackerUI();
 }
 
 function uploadPostalTrackers(trackers) {
