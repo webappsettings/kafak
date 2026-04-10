@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbxxYTSFGQRvgLprLQmffDXXzH3hNuOA_grcC4cmn95uUakrQB6qav3nozNt2dxYsEIt/exec`;
+const sc = `https://script.google.com/macros/s/AKfycby2veyCKQhGmauPKwxiz-ielFHY_wAcaotAqXXSU6Qojl5KSIqh0YkC6Jv1_iiCywt9GQ/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -2274,6 +2274,13 @@ function setupAdminView(oid) {
 }
 
 window.updateAdminUI = function (serverStatus, oid) {
+
+  // 🔥 അഡ്മിൻ 'Loading' ഹൈഡ് ചെയ്യുന്നു
+  if ($('#status-area').html().includes('fa-spinner') && serverStatus !== 'Pending') {
+    $('#status-area').empty();
+    $('#returning-user-view').show();
+  }
+
   let status = String(serverStatus || '').trim();
   status = status.charAt(0).toUpperCase() + status.slice(1);
 
@@ -2333,6 +2340,81 @@ window.updateAdminUI = function (serverStatus, oid) {
 
   $('#admin-btn-container').html(btnHTML);
   $('#admin-action-bar').slideDown();
+}
+
+// 🔥 UPDATE: syncSingleOrder-ൽ ഒറ്റ റിക്വസ്റ്റിൽ ഡാറ്റ അപ്ഡേറ്റ് ആവാനുള്ള കോഡ്
+window.syncSingleOrder = function (oid) {
+  // 🔥 Sync button amarthumpol thanne background loading FORCE STOP cheyyunnu!
+  if (typeof bgFetchController !== 'undefined' && bgFetchController) bgFetchController.abort();
+
+  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let myUpdate = updates.find(u => u.oid === oid);
+
+  if (!myUpdate) {
+    Swal.fire({ icon: 'info', title: 'Already Synced', text: 'No pending local changes.', timer: 1500, showConfirmButton: false, toast: true, position: 'top' });
+    if (typeof userData !== 'undefined') updateAdminUI(userData.Status, oid);
+    return;
+  }
+
+  const btn = $('#admin-btn-container button').find('.fa-cloud-upload-alt').parent();
+  let originalHtml = btn.html();
+  btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
+
+  let promises = [];
+
+  if (myUpdate.deleteRefund) {
+    promises.push(fetch(sc, {
+      method: 'POST',
+      body: JSON.stringify({ action: 'deleteRefund', oid: oid })
+    }));
+  }
+
+  promises.push(fetch(sc, {
+    method: 'POST',
+    body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
+  }));
+
+  Promise.all(promises)
+    .then(responses => Promise.all(responses.map(r => r.json())))
+    .then(dataList => {
+
+      // 🔥 FIX: സെർവറിൽ നിന്നും സക്സസ് മറുപടി വന്നോ എന്ന് നോക്കുന്നു
+      let successResponse = dataList.find(d => d.result === 'success');
+
+      if (successResponse) {
+
+        let newUpdates = updates.filter(u => u.oid !== oid);
+        localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
+
+        Swal.fire({ icon: 'success', title: 'Synced Successfully! ☁️', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
+
+        // 🔥 FIX: സിങ്ക് ചെയ്യുമ്പോൾ സെർവറിൽ നിന്നും ആ ഓർഡറിന്റെ മുഴുവൻ വിവരങ്ങളും തിരികെ വന്നിട്ടുണ്ടെങ്കിൽ അത് ലോഡ് ചെയ്യുന്നു
+        if (successResponse.orderData) {
+          let d = successResponse.orderData;
+          d.Status = myUpdate.status;
+
+          // കാഷെ അപ്ഡേറ്റ് ചെയ്യുന്നു
+          let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let orderIdx = allOrders.findIndex(o => String(o.orderid) === String(oid));
+          if (orderIdx > -1) {
+            allOrders[orderIdx] = { ...allOrders[orderIdx], ...d };
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+          }
+
+          // സ്ക്രീനിൽ ഡാറ്റ കാണിക്കുന്നു (Phone, WhatsApp, Name എല്ലാം വരും!)
+          loadOrderData(d, true);
+        }
+
+        updateAdminUI(myUpdate.status, oid);
+      } else {
+        alert("Sync Failed: Server Error");
+        btn.html(originalHtml).prop('disabled', false);
+      }
+    })
+    .catch(err => {
+      alert("Network Error. Try again.");
+      btn.html(originalHtml).prop('disabled', false);
+    });
 }
 
 window.adminAction = async function (oid, status) {
@@ -2511,7 +2593,10 @@ window.syncSingleOrder = function (oid) {
     .then(responses => Promise.all(responses.map(r => r.json())))
     .then(dataList => {
 
-      if (dataList.some(d => d.result === 'success')) {
+      // ഡാറ്റ ലിസ്റ്റിൽ വിജയകരമായ ഒരു റെസ്പോൺസ് എങ്കിലും ഉണ്ടോ എന്ന് നോക്കുന്നു
+      let successResponse = dataList.find(d => d.result === 'success');
+
+      if (successResponse) {
 
         // Remove from Local
         let newUpdates = updates.filter(u => u.oid !== oid);
@@ -2519,6 +2604,23 @@ window.syncSingleOrder = function (oid) {
 
         // Show Success
         Swal.fire({ icon: 'success', title: 'Synced Successfully! ☁️', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
+
+        // 🔥 FIX: സെർവറിൽ നിന്നും ആ ഓർഡറിന്റെ മുഴുവൻ വിവരങ്ങളും തിരികെ വന്നിട്ടുണ്ടെങ്കിൽ അത് ലോഡ് ചെയ്യുന്നു
+        if (successResponse.orderData) {
+          let d = successResponse.orderData;
+          d.Status = myUpdate.status; // നമ്മൾ ഇപ്പോഴാക്കിയ സ്റ്റാറ്റസ് കൊടുക്കുന്നു
+
+          // കാഷെയിൽ അപ്ഡേറ്റ് ചെയ്യുന്നു
+          let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let orderIdx = allOrders.findIndex(o => String(o.orderid) === String(oid));
+          if (orderIdx > -1) {
+            allOrders[orderIdx] = { ...allOrders[orderIdx], ...d };
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+          }
+
+          // സ്ക്രീനിൽ ഡാറ്റ കാണിക്കാൻ ലോഡ് ചെയ്യുന്നു (isServerData = true)
+          loadOrderData(d, true);
+        }
 
         // Update UI Button (Blue -> Grey)
         updateAdminUI(myUpdate.status, oid);
