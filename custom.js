@@ -452,6 +452,15 @@ function syncUserDataBackground(phone) {
     // 2. 🔥 SERVER SUCCESS
     if (userRes && userRes.result === 'success' && userRes.data) {
       let serverData = userRes.data;
+
+      // 🔥 FIX: ലോക്കലിൽ സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള അപ്ഡേറ്റ് ഉണ്ടെങ്കിൽ അത് നിലനിർത്തുന്നു
+      let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+      let myPending = pendingUpdates.find(u => String(u.oid) === String(serverData.orderid));
+      if (myPending && myPending.status) {
+        serverData.Status = myPending.status;
+        serverData.status = myPending.status;
+      }
+
       let finalData = { ...localData, ...serverData };
       finalData.Status = serverData.Status || "Pending";
 
@@ -2543,6 +2552,14 @@ function fetchOrder(orderId, isSilent = false) {
       if (res.result === 'success' && res.data) {
         $('#step-0').hide();
         let d = res.data;
+
+        // 🔥 FIX: സെർവറിൽ നിന്ന് ഡാറ്റ വരുമ്പോഴേക്കും അഡ്മിൻ സ്റ്റാറ്റസ് മാറ്റിയിട്ടുണ്ടെങ്കിൽ (Pending Sync), ആ പുതിയ സ്റ്റാറ്റസ് നിലനിർത്തുന്നു!
+        let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+        let myPending = pendingUpdates.find(u => String(u.oid) === String(orderId));
+        if (myPending && myPending.status) {
+          d.Status = myPending.status;
+          d.status = myPending.status;
+        }
 
         // 🔥 അഡ്മിൻ ആണെങ്കിൽ സെർവറിൽ നിന്നുള്ള പുതിയ ഡാറ്റ കാഷെയിലേക്ക് (allOrdersCache) നേരിട്ട് സേവ് ചെയ്യുന്നു
         if (SafeStorage.getItem('kafakAdmin') === 'true') {
