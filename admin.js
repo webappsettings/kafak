@@ -2990,13 +2990,13 @@ async function runPrintLogic(checkboxes, directData = null) {
             if (s.includes('LAK')) dotColor = '#0dcaf0';
             else if (s.includes('KARN')) dotColor = '#d97706';
             else if (s.includes('TAMIL') || s.includes('TN')) dotColor = '#795548';
-            stateDotHtml = `<div style="position:absolute; top:20mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
+            stateDotHtml = `<div style="position:absolute; top:22mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:${dotColor}; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;"></div>`;
         }
 
         let isResend = String(d.adminMeta || '').includes('R');
         let resendDotHtml = '';
         if (isResend) {
-            let rTop = (s && s !== 'KERALA') ? '32mm' : '20mm';
+            let rTop = (s && s !== 'KERALA') ? '33mm' : '20mm';
             resendDotHtml = `<div style="position:absolute; top:${rTop}; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:#dc2626; color:#fff; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;">R</div>`;
         }
 
