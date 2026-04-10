@@ -4721,9 +4721,9 @@ tabButtons.forEach(btn => {
     });
 });
 
-// 🔥 SMART FRAUD DETECTOR: Checks Phone, WhatsApp, Alt, AND PAID NUM (Fixed 10-Digit Matching)
+// 🔥 UPDATE: checkCrossLinking function (To find ALL linked orders instead of just one)
 function checkCrossLinking(currentOrder) {
-    // 🔥 നമ്പർ 10 അക്കമാക്കി മാറ്റാനുള്ള ഫംഗ്ഷൻ (Country code 91 ഒഴിവാക്കാൻ)
+    // നമ്പർ 10 അക്കമാക്കി മാറ്റാനുള്ള ഫംഗ്ഷൻ (Country code 91 ഒഴിവാക്കാൻ)
     const get10Digit = (n) => {
         let clean = String(n || '').replace(/[^0-9]/g, '');
         return clean.length > 10 ? clean.slice(-10) : clean;
@@ -4735,11 +4735,12 @@ function checkCrossLinking(currentOrder) {
         currentOrder.whatsapp,
         currentOrder.altphone,
         currentOrder.paidNum
-    ]
-        .map(get10Digit)
-        .filter(n => n.length >= 10 && !n.startsWith('0000'));
+    ].map(get10Digit).filter(n => n.length >= 10 && !n.startsWith('0000'));
 
     if (myNums.length === 0) return null;
+
+    let matchedOrders = [];
+    let primaryMatch = null;
 
     // 2. ബാക്കിയുള്ള എല്ലാ ഓർഡറുകളുമായും ഒത്തുനോക്കുന്നു 
     // (ഏറ്റവും പുതിയത് ആദ്യം കിട്ടാൻ reverse ചെയ്യുന്നു)
@@ -4754,17 +4755,23 @@ function checkCrossLinking(currentOrder) {
             other.whatsapp,
             other.altphone,
             other.paidNum
-        ]
-            .map(get10Digit)
-            .filter(n => n.length >= 10);
+        ].map(get10Digit).filter(n => n.length >= 10);
 
-        // 3. ക്രോസ് ചെക്കിംഗ് (മാച്ച് ആയാൽ ഉടൻ അലർട്ട് കാണിക്കും)
+        // 3. ക്രോസ് ചെക്കിംഗ് (എല്ലാ മാച്ചുകളും Array-യിലേക്ക് മാറ്റുന്നു)
         for (let myN of myNums) {
             if (theirNums.includes(myN)) {
-                return { order: other, matchedNum: myN };
+                matchedOrders.push(other);
+                if (!primaryMatch) primaryMatch = myN;
+                break; // ഈ ഓർഡറിൽ മാച്ച് കിട്ടിയാൽ പിന്നെ അടുത്ത 'other' ഓർഡറിലേക്ക് പോകാൻ
             }
         }
     }
+
+    // 4. മാച്ച് കിട്ടിയ ഓർഡറുകൾ എല്ലാം തിരികെ അയക്കുന്നു
+    if (matchedOrders.length > 0) {
+        return { orders: matchedOrders, matchedNum: primaryMatch };
+    }
+
     return null;
 }
 
