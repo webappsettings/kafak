@@ -1337,84 +1337,108 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     }
 
     let fraudAlertHtml = '';
-    // 🔥 NEW FIXED: Cross Linking Alert UI
+    // 🔥 NEW FIXED: Cross Linking Alert UI (Supports Multiple Orders & Full IDs)
     if (currentStatus === 'Pending' || currentStatus === 'Sent' || currentStatus === 'Paid') {
         let linkData = checkCrossLinking(d);
         if (linkData) {
-            let linkedOrder = linkData.order;
+            // ഒന്നിലധികം ഓർഡറുകൾ ഉണ്ടെങ്കിൽ (linkData.orders) അതെടുക്കുന്നു, അല്ലെങ്കിൽ സിംഗിൾ ഓർഡർ എടുക്കുന്നു
+            let linkedOrders = linkData.orders ? linkData.orders : (linkData.order ? [linkData.order] : []);
             let matchedNum = linkData.matchedNum;
 
-            let linkStatus = String(linkedOrder.Status || 'Pending');
-            let linkColor = linkStatus === 'Paid' ? 'danger' : 'warning';
-            let linkIcon = linkStatus === 'Paid' ? 'exclamation-triangle' : 'link';
+            if (linkedOrders.length > 0) {
+                let orderIds = [];
+                let dates = [];
+                let statuses = [];
+                let linkContacts = {};
+                let isPaidFound = false;
 
-            let linkDateStr = '';
-            if (linkedOrder.timestamp) {
-                let lDate = new Date(linkedOrder.timestamp);
-                if (isNaN(lDate.getTime()) && typeof parseOrderDate === 'function') lDate = parseOrderDate(linkedOrder.timestamp);
-                if (!isNaN(lDate.getTime())) {
-                    linkDateStr = lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
-                }
-            }
+                const cleanNumLinked = (n) => String(n || '').replace(/[^0-9]/g, '');
+                const addLinkedContact = (type, num) => {
+                    let clNum = cleanNumLinked(num);
+                    if (clNum && clNum.length >= 10) {
+                        if (!linkContacts[clNum]) linkContacts[clNum] = [];
+                        // ഒരേ ഐക്കൺ രണ്ടുതവണ വരാതിരിക്കാൻ
+                        if (!linkContacts[clNum].includes(type)) linkContacts[clNum].push(type);
+                    }
+                };
 
-            let linkContacts = {};
-            const cleanNumLinked = (n) => String(n || '').replace(/[^0-9]/g, '');
+                // എല്ലാ ഓർഡറുകളുടെയും ഡാറ്റ എടുക്കുന്നു
+                linkedOrders.forEach(linkedOrder => {
+                    // പൂർണ്ണമായ ഓർഡർ ഐഡി (Full ID)
+                    if (linkedOrder.orderid) {
+                        orderIds.push(`<span class="text-dark fw-bold font-monospace">${linkedOrder.orderid}</span>`);
+                    }
 
-            const addLinkedContact = (type, num) => {
-                let clNum = cleanNumLinked(num);
-                if (clNum && clNum.length >= 10) {
-                    if (!linkContacts[clNum]) linkContacts[clNum] = [];
-                    linkContacts[clNum].push(type);
-                }
-            };
+                    // തീയതി
+                    if (linkedOrder.timestamp) {
+                        let lDate = new Date(linkedOrder.timestamp);
+                        if (isNaN(lDate.getTime()) && typeof parseOrderDate === 'function') lDate = parseOrderDate(linkedOrder.timestamp);
+                        if (!isNaN(lDate.getTime())) {
+                            dates.push(lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true }));
+                        }
+                    }
 
-            addLinkedContact('<i class="fas fa-phone-alt text-primary" title="Phone"></i>', linkedOrder.phone);
-            addLinkedContact('<i class="fab fa-whatsapp text-success" title="WhatsApp"></i>', linkedOrder.whatsapp);
-            addLinkedContact('<i class="fas fa-phone-square text-secondary" title="Alt Phone"></i>', linkedOrder.altphone);
-            if (linkedOrder.paidNum) {
-                addLinkedContact('<i class="fas fa-money-bill-wave text-success" title="Paid Num"></i>', linkedOrder.paidNum);
-            }
+                    // സ്റ്റാറ്റസ്
+                    let st = String(linkedOrder.Status || 'Pending');
+                    let displaySt = st.charAt(0).toUpperCase() + st.slice(1);
+                    if (displaySt === 'Paid') isPaidFound = true;
 
-            let radioHtml = '';
-            let isFirstRadio = true;
-            for (let num in linkContacts) {
-                let icons = linkContacts[num].join('<span style="margin-left:3px;"></span>');
-                let checkedStr = isFirstRadio ? 'checked' : '';
-                radioHtml += `
+                    let colorClass = 'text-secondary';
+                    if (['Paid', 'Delivered', 'Completed'].includes(displaySt)) colorClass = 'text-success';
+                    else if (displaySt === 'Pending') colorClass = 'text-warning text-dark';
+                    else if (displaySt === 'Dispatched') colorClass = 'text-info text-dark';
+
+                    statuses.push(`<span class="fw-bold ${colorClass}">${displaySt}</span>`);
+
+                    // കോൺടാക്റ്റ് വിവരങ്ങൾ
+                    addLinkedContact('<i class="fas fa-phone-alt text-primary" title="Phone"></i>', linkedOrder.phone);
+                    addLinkedContact('<i class="fab fa-whatsapp text-success" title="WhatsApp"></i>', linkedOrder.whatsapp);
+                    addLinkedContact('<i class="fas fa-phone-square text-secondary" title="Alt Phone"></i>', linkedOrder.altphone);
+                    if (linkedOrder.paidNum) {
+                        addLinkedContact('<i class="fas fa-money-bill-wave text-success" title="Paid Num"></i>', linkedOrder.paidNum);
+                    }
+                });
+
+                // ഒരെണ്ണമെങ്കിലും 'Paid' ആണെങ്കിൽ അലർട്ട് ചുവപ്പായി കാണിക്കാൻ
+                let linkColor = isPaidFound ? 'danger' : 'warning';
+                let linkIcon = isPaidFound ? 'exclamation-triangle' : 'link';
+                let titleName = linkedOrders[0].name || 'Unknown';
+
+                // ഫോൺ നമ്പറുകൾക്കായുള്ള റേഡിയോ ബട്ടൺ
+                let radioHtml = '';
+                let isFirstRadio = true;
+                for (let num in linkContacts) {
+                    let icons = linkContacts[num].join('<span style="margin-left:3px;"></span>');
+                    let checkedStr = isFirstRadio ? 'checked' : '';
+                    radioHtml += `
                 <label class="d-flex align-items-center me-3 mb-1" style="cursor:pointer; font-size:11px;" onclick="event.stopPropagation();">
                     <input type="radio" name="link_wa_${d.orderid}" value="${num}" ${checkedStr} class="me-1" style="margin:0; cursor:pointer; transform: scale(0.9);">
                     ${icons} <span class="fw-bold ms-1 text-dark">${num.slice(-10)}</span>
                 </label>`;
-                isFirstRadio = false;
-            }
+                    isFirstRadio = false;
+                }
 
-            let linkWaBtn = `<button type="button" class="btn btn-sm btn-success py-0 px-2 shadow-sm ms-auto d-flex align-items-center" style="font-size:10px; height:24px; border-radius:6px;" onclick="event.stopPropagation(); let sel = document.querySelector('input[name=\\'link_wa_${d.orderid}\\']:checked'); if(sel){ let v = sel.value; if(v.length===10) v='91'+v; window.open('https://wa.me/'+v, '_blank'); }"><i class="fab fa-whatsapp me-1" style="font-size:12px;"></i> WA</button>`;
+                let linkWaBtn = `<button type="button" class="btn btn-sm btn-success py-0 px-2 shadow-sm ms-auto d-flex align-items-center" style="font-size:10px; height:24px; border-radius:6px;" onclick="event.stopPropagation(); let sel = document.querySelector('input[name=\\'link_wa_${d.orderid}\\']:checked'); if(sel){ let v = sel.value; if(v.length===10) v='91'+v; window.open('https://wa.me/'+v, '_blank'); }"><i class="fab fa-whatsapp me-1" style="font-size:12px;"></i> WA</button>`;
 
-            let hideArchiveFor = ['archive', 'sent', 'dispatched', 'delivered', 'completed'];
-            let showArchiveBtn = !hideArchiveFor.includes(linkStatus.toLowerCase());
-
-            let archiveBtnHtml = showArchiveBtn ? `<button onclick="event.stopPropagation(); highlightCard(this); archiveOrder('${linkedOrder.orderid}')" class="btn btn-sm btn-outline-danger fw-bold shadow-sm py-0 px-2" style="font-size:9px;"><i class="fas fa-archive"></i></button>` : '';
-
-            fraudAlertHtml = `
+                fraudAlertHtml = `
             <div class="alert alert-${linkColor} p-2 mb-3 mt-1 shadow-sm border-${linkColor}" style="border-radius:10px; border-width: 2px;" onclick="event.stopPropagation();">
-                <div class="d-flex justify-content-between align-items-start">
+                <div class="d-flex justify-content-between align-items-start mb-1">
                     <div style="font-size:11px; font-weight:800; color:#b91c1c;">
-                        <i class="fas fa-${linkIcon}"></i> Linked: ${linkedOrder.name} <span class="badge bg-secondary bg-opacity-25 text-dark ms-1" style="font-size:9px;">[${linkStatus}]</span>
-                    </div>
-                    <div style="font-size:9px; font-weight:700; color:#666; text-align:right;">
-                        ${linkDateStr}
+                        <i class="fas fa-${linkIcon}"></i> Linked: ${titleName}
                     </div>
                 </div>
                 
-                <div class="d-flex justify-content-between align-items-center mt-2 mb-2 pb-2" style="border-bottom: 1px solid rgba(0,0,0,0.05);">
-                    <div style="font-size:10px; color:#555; display:flex; align-items:center; gap:8px;">
-                        ID: <b>${linkedOrder.orderid.slice(-5)}</b> 
+                <div class="d-flex flex-column gap-1 mt-1 mb-2 pb-2" style="border-bottom: 1px solid rgba(0,0,0,0.05); font-size:10px; color:#555;">
+                    <div><span class="text-muted">Order IDs:</span> ${orderIds.join(', ')}</div>
+                    <div><span class="text-muted">Statuses:</span> ${statuses.join(', ')}</div>
+                    ${dates.length > 0 ? `<div><span class="text-muted">Dates:</span> ${dates.join(', ')}</div>` : ''}
+                    
+                    <div class="mt-1">
                         <div onclick="event.stopPropagation(); document.getElementById('searchInput').value='${matchedNum}'; filterOrders();" 
-                             style="cursor:pointer; background:#e0f2fe; color:#0284c7; padding:2px 6px; border-radius:4px; border:1px solid #bae6fd; font-weight: bold;" title="Compare Both Orders">
-                             <i class="fas fa-search" style="font-size:10px;"></i> Compare
+                             style="cursor:pointer; background:#e0f2fe; color:#0284c7; padding:3px 8px; border-radius:4px; border:1px solid #bae6fd; font-weight: bold; display:inline-block;" title="Search Linked Number">
+                             <i class="fas fa-search" style="font-size:10px;"></i> Search Linked Number
                         </div>
                     </div>
-                    ${archiveBtnHtml}
                 </div>
                 
                 <div class="d-flex align-items-center flex-wrap" style="background:rgba(255,255,255,0.7); padding:6px; border-radius:6px; border:1px solid rgba(0,0,0,0.05);">
@@ -1424,6 +1448,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
                     ${linkWaBtn}
                 </div>
             </div>`;
+            }
         }
     }
 
