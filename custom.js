@@ -15,6 +15,7 @@ let isEditMode = false;
 var savedOrderData = {};
 let globalQtyList = [];
 let adminPhone = '7788990313';
+let bgFetchController = null;
 
 const STORAGE_KEY = 'kafakCustomerData';
 
@@ -2336,6 +2337,9 @@ window.updateAdminUI = function (serverStatus, oid) {
 
 window.adminAction = async function (oid, status) {
   // 1. ARCHIVE: Direct Server Call (No Change)
+
+  if (bgFetchController) bgFetchController.abort();
+
   if (status === 'Archive') {
     if (!confirm(`Move this order to Archive? (Updates Server Directly)`)) return;
 
@@ -2534,7 +2538,10 @@ window.clearAdminCache = function () {
 }
 
 function fetchOrder(orderId, isSilent = false) {
-  // Silent അല്ലെങ്കിൽ (അതായത് Local-ൽ ഡാറ്റ ഇല്ലെങ്കിൽ) മാത്രം ലോഡർ കാണിക്കുന്നു
+  // Puthiya request povunnathinu munp pazhayathu odunnuvengil ath cancel cheyyunnu
+  if (bgFetchController) bgFetchController.abort();
+  bgFetchController = new AbortController();
+
   if (!isSilent) {
     $('#step-0').hide();
     $('#wizard-view').hide();
@@ -2544,7 +2551,8 @@ function fetchOrder(orderId, isSilent = false) {
   let safeOid = encodeURIComponent(orderId);
   let fetchUrl = `${sc}?action=getOrder&oid=${safeOid}&t=${Date.now()}`;
 
-  fetch(fetchUrl)
+  // signal: bgFetchController.signal cherkkunnu
+  fetch(fetchUrl, { signal: bgFetchController.signal })
     .then(res => res.json())
     .then(res => {
       if (!isSilent) showLoader(false);
@@ -2588,6 +2596,11 @@ function fetchOrder(orderId, isSilent = false) {
       }
     })
     .catch((err) => {
+      // Nammal force cancel cheythathal error varathirikkan
+      if (err.name === 'AbortError') {
+        console.log("Background load cancelled for priority sync.");
+        return;
+      }
       console.error("Fetch/Load Error: ", err);
       if (!isSilent) showLoader(false);
       if (!isSilent && err.message && err.message.includes('fetch')) {
