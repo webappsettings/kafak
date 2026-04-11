@@ -1290,7 +1290,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if (totalBottles === 0) totalBottles = parseInt(d.quantity) || 1;
 
     if (isCompact) {
-        let phoneDisplay = d.phone ? d.phone.replace(/[^0-9]/g, '').slice(-10) : '';
+        let phoneDisplay = d.phone ? String(d.phone || '').replace(/[^0-9]/g, '').slice(-10) : '';
         return `
         <div class="col-12 col-md-6 col-lg-6" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
             <div class="order-card p-0 shadow-sm border-0 mb-2" style="border-radius:10px; overflow:hidden;">
