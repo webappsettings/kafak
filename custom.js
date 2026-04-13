@@ -558,6 +558,7 @@ window.loadOrderData = function (d, isServerData = false) {
   // 2. 🔥 CRITICAL FIX: Veroru order link thurakkumpol logout aavathirikkan pazhaya code ozhivakki!
   // Pakaram, puthiya order-le phone number thanne nilavile active number-aayi (Session Context) system sweekarikkunnu.
   if (!isAdmin && d.phone) {
+    window.activeCustomerData = d;
     currentLoginPhone = d.phone;
     SafeStorage.setItem('lastUsedPhone', d.phone);
   }
@@ -1063,12 +1064,11 @@ window.nextStep = async function () {
     const mainPh = $('#phone').val();
     const altPh = $('#altphone').val();
 
-    // 1. Alt നമ്പർ നിർബന്ധമാക്കുന്നു
-    if (!altPh || altPh.length < 8 || altPh.length > 15) {
+    if (!isAdmin && (!altPh || altPh.length < 8 || altPh.length > 15)) {
       return showAlert(getAlert('err_alt_required'));
     }
-    // 2. മെയിൻ നമ്പറും Alt നമ്പറും ഒന്നാകാൻ പാടില്ല
-    if (altPh === mainPh) {
+
+    if (altPh && altPh === mainPh) {
       return showAlert(getAlert('err_alt_same'));
     }
   }
@@ -1093,6 +1093,25 @@ window.submitQuickOrder = async function () {
 
   const phoneCheck = $('#edit-phone').val() || (typeof userData !== 'undefined' && userData ? userData.phone : null);
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
+  // -------------------------------------------------------------------------
+
+  if (!editingOrderId && window.activeCustomerData && window.activeCustomerData.history) {
+    let restrictedStatuses = ['pending', 'sent', 'archive'];
+    let hasActiveOrder = window.activeCustomerData.history.some(o => restrictedStatuses.includes(String(o.status).toLowerCase()));
+
+    if (hasActiveOrder && !isAdmin) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Active Order Exists! ⚠️',
+        html: 'താങ്കൾക്ക് നിലവിൽ പ്രോസസ്സ് ചെയ്തുകൊണ്ടിരിക്കുന്ന ഒരു ഓർഡർ ഉണ്ട്.</b>',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#ffc107'
+      });
+      return;
+    }
+  }
+  // -------------------------------------------------------------------------
 
   // 🔥 STRICT SERVER CHECK: പുതിയ ഓർഡർ ഉണ്ടാക്കുന്നതിന് മുൻപ് ചെക്ക് ചെയ്യുന്നു
   if (!editingOrderId && phoneCheck) {
@@ -1155,11 +1174,12 @@ window.submitQuickOrder = async function () {
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
 
   const newAlt = $('#edit-altphone').val();
-  if (!newAlt || newAlt.length < 8 || newAlt.length > 15) {
+  if (!isAdmin && (!newAlt || newAlt.length < 8 || newAlt.length > 15)) {
     showAlert(getAlert('err_alt_required'));
     return;
   }
-  if (newAlt === newPhone) {
+  // നമ്പർ കൊടുത്തിട്ടുണ്ടെങ്കിൽ മാത്രം രണ്ടും ഒന്നാണോ എന്ന് നോക്കുന്നു
+  if (newAlt && newAlt === newPhone) {
     showAlert(getAlert('err_alt_same'));
     return;
   }
