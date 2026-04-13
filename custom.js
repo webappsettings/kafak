@@ -1027,6 +1027,8 @@ window.nextStep = async function () {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang];
 
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
   if (currentStep === 1 && !$('#name').val()) return showAlert(getAlert('err_name'));
   if (currentStep === 2 && !/^[0-9]{8,15}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
 
