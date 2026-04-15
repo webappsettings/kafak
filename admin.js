@@ -445,25 +445,30 @@ function handleUrlSearch() {
     }
 }
 
-// 🔥 2. UPDATED: FETCH ORDERS (Fixes Search Issue)
+// 🔥 2. UPDATED: FETCH ORDERS (Fixes Search Issue & Adds Pre-Indexing)
 function fetchOrders(forceLoad = false) {
     let savedOrders = localStorage.getItem('allOrdersCache');
     let hasData = false;
 
+    // 🔥 പുതിയ ഫംഗ്ഷൻ: സെർച്ച് 100 മടങ്ങ് വേഗത്തിലാക്കാൻ എല്ലാ ഡാറ്റയും ഒറ്റ സ്ട്രിംഗ് ആക്കുന്നു
+    const buildSearchString = (orders) => {
+        orders.forEach(o => {
+            o._searchStr = `${o.name || ''} ${o.orderid || ''} ${o.house || ''} ${o.place || ''} ${o.postoffice || ''} ${o.district || ''} ${o.state || ''} ${o.pincode || ''} ${o.phone || ''} ${o.whatsapp || ''} ${o.paidNum || ''}`.toLowerCase();
+        });
+    };
+
     // A. Cache ഉണ്ടെങ്കിൽ ലോഡ് ചെയ്യുന്നു
     if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
+        buildSearchString(allOrders); // 🔥 കാഷെയിൽ നിന്നും വരുമ്പോഴും ഇൻഡക്സ് ചെയ്യുന്നു
         filterOrders(false);
         hasData = true;
-
-        // ✅ FIX: Cache ഉണ്ടെങ്കിലും ഇവിടെ വെച്ച് തന്നെ സെർച്ച് നടക്കും
         handleUrlSearch();
     }
 
-    // Cache ഉണ്ടെങ്കിൽ, Force Load (Refresh) അല്ലെങ്കിൽ ഇവിടെ വെച്ച് നിർത്തും
     if (hasData && !forceLoad) return;
 
-    // B. Server Fetch (Refresh അടിക്കുമ്പോൾ നടക്കുന്നത്)
+    // B. Server Fetch
     document.getElementById('loader').style.display = 'flex';
     fetch(`${scriptURL}?action=getAllOrders`)
         .then(res => res.json())
@@ -471,12 +476,11 @@ function fetchOrders(forceLoad = false) {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 allOrders = response.data;
+                buildSearchString(allOrders); // 🔥 സെർവറിൽ നിന്നും വരുമ്പോഴും ഇൻഡക്സ് ചെയ്യുന്നു
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 filterOrders(false);
                 updateSyncButtonUI();
                 fetchDashboardDataBg();
-
-                // ✅ FIX: പുതിയ ഡാറ്റ വന്നാലും സെർച്ച് നടക്കും
                 handleUrlSearch();
             }
         })
@@ -1741,14 +1745,6 @@ function updateSyncButtonUI() {
 }
 
 
-// 🔥 1. ഗ്ലോബൽ കാർഡ് ലിമിറ്റ് (തുടക്കത്തിൽ 30 എണ്ണം മാത്രം ലോഡ് ചെയ്യും)
-window.tabLimits = { pending: 30, sent: 30, paid: 30, dispatched: 30, completed: 30 };
-
-window.loadMoreCards = function (tabName) {
-    window.tabLimits[tabName] += 50; // Load More അടിച്ചാൽ 50 എണ്ണം വീതം കൂടും
-    filterOrders(false); // ലിമിറ്റ് റീസെറ്റ് ചെയ്യാതെ വീണ്ടും വരയ്ക്കുന്നു
-};
-
 // 🔥 1. ഗ്ലോബൽ കാർഡ് ലിമിറ്റ് (തുടക്കത്തിൽ 20 എണ്ണം മാത്രം ലോഡ് ചെയ്യും)
 window.tabLimits = { pending: 20, sent: 20, paid: 20, dispatched: 20, completed: 20 };
 
@@ -1759,7 +1755,7 @@ window.loadMoreCards = function (tabName) {
     renderTabsWithLimit(true);
 };
 
-// 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ (DOM ൽ മാറ്റം വരുന്നത് കുറയ്ക്കുന്നു)
+// 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ (Zero Lag Search)
 window.filterOrders = function (resetLimits = true) {
     let searchInput = document.getElementById('searchInput');
     let term = searchInput ? searchInput.value.toLowerCase().trim() : '';
@@ -1788,23 +1784,13 @@ window.filterOrders = function (resetLimits = true) {
         else if ($('#pills-completed-tab').hasClass('active')) activeStatus = ['Completed', 'Delivered', 'Refunded', 'Archive'];
 
         let termClean = term.replace(/[^0-9]/g, '');
-        let htmlBuffer = ''; // ഒരൊറ്റ സ്ട്രിംഗ് ആക്കി വെച്ച് അവസാനം മാത്രം DOM-ൽ ഇടുന്നു (സ്പീഡിന്)
+        let isNumericSearch = termClean.length >= 4;
+        let htmlBuffer = '';
 
+        // 🔥 SUPER FAST SEARCH LOGIC (No Array Creations, No Inner Loops!)
         let matches = allOrders.filter(o => {
-            if ((o.name || '').toLowerCase().includes(term)) return true;
-            if ((o.orderid || '').toLowerCase().includes(term)) return true;
-
-            let addressStr = [o.house, o.place, o.postoffice, o.district, o.state, o.pincode].join(' ').toLowerCase();
-            if (addressStr.includes(term)) return true;
-
-            if (termClean.length >= 4) { // 4 അക്കത്തിൽ കൂടുതൽ ഉണ്ടെങ്കിൽ മാത്രം നമ്പർ സെർച്ച്
-                let p = String(o.phone || '').replace(/[^0-9]/g, '');
-                let w = String(o.whatsapp || '').replace(/[^0-9]/g, '');
-                let paid = String(o.paidNum || '').replace(/[^0-9]/g, '');
-                let zClean = String(o.paidNum || "").replace(/[^0-9]/g, '');
-
-                if (p.includes(termClean) || w.includes(termClean) || paid.includes(termClean) || zClean.includes(termClean)) return true;
-            }
+            if (o._searchStr && o._searchStr.includes(term)) return true;
+            if (isNumericSearch && o._searchStr && o._searchStr.includes(termClean)) return true;
             return false;
         });
 
@@ -1819,7 +1805,6 @@ window.filterOrders = function (resetLimits = true) {
             htmlBuffer = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
         } else {
             let prevWasActive = true;
-            // സെർച്ച് റിസൾട്ടും 100 എണ്ണത്തിൽ നിർത്തുന്നു (ലാഗ് ഒഴിവാക്കാൻ)
             let limitedMatches = matches.slice(0, 100);
 
             limitedMatches.forEach(d => {
@@ -1847,7 +1832,7 @@ window.filterOrders = function (resetLimits = true) {
                 </div>
             </div>`;
 
-        searchList.innerHTML = htmlBuffer; // ഒറ്റയടിക്ക് DOM-ൽ ഇടുന്നു
+        searchList.innerHTML = htmlBuffer;
 
     } else {
         // --- NORMAL TAB MODE ---
@@ -4675,20 +4660,20 @@ function searchOnServer(term) {
             btn.prop('disabled', false).html(originalText);
 
             if (data.result === 'success' && data.orders.length > 0) {
-                // റിസൾട്ട് കാണിക്കാൻ ലിസ്റ്റ് ക്ലിയർ ചെയ്യുന്നു
                 const searchList = document.getElementById('list-search');
                 searchList.innerHTML = `<div class="alert alert-success small fw-bold text-center">Found ${data.orders.length} result(s) from Server!</div>`;
 
                 data.orders.forEach(d => {
-                    // പുതിയ ഡാറ്റ ലോക്കൽ ലിസ്റ്റിലേക്ക് താൽക്കാലികമായി ചേർക്കുന്നു (കാർഡ് ജനറേറ്റ് ചെയ്യാൻ)
-                    // ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ ചെക്ക് ചെയ്യുന്നു
                     let exists = allOrders.findIndex(o => o.orderid === d.orderid);
-                    if (exists === -1) allOrders.push(d);
+                    if (exists === -1) {
+                        // 🔥 ഡാറ്റ ലോക്കലിലേക്ക് ചേർക്കുമ്പോൾ സെർച്ച് സ്ട്രിംഗ് കൂടി ചേർക്കുന്നു
+                        d._searchStr = `${d.name || ''} ${d.orderid || ''} ${d.house || ''} ${d.place || ''} ${d.postoffice || ''} ${d.district || ''} ${d.state || ''} ${d.pincode || ''} ${d.phone || ''} ${d.whatsapp || ''} ${d.paidNum || ''}`.toLowerCase();
+                        allOrders.push(d);
+                    }
 
                     let idx = allOrders.findIndex(o => o.orderid === d.orderid);
                     searchList.innerHTML += createCardHTML(d, idx, 'search', d.Status);
                 });
-
             } else {
                 Swal.fire({ icon: 'warning', title: 'Not Found', text: 'No orders found in the Sheet.', toast: true, position: 'top' });
             }
