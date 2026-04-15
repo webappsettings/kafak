@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycby2veyCKQhGmauPKwxiz-ielFHY_wAcaotAqXXSU6Qojl5KSIqh0YkC6Jv1_iiCywt9GQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycby0FKN1jwmorhTc0kLo_csODZM7j-p6SCsMtiY28skoBtGUnL3zOlprfp7IQmfO1Mt7Lw/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -367,8 +367,6 @@ $(document).ready(function () {
   $('.form-select').on('change', function () {
     updateLiveAddressPreview();
   });
-
-  showIOSInstallPrompt();
 
 });
 
@@ -871,7 +869,45 @@ function backgroundUserCheck(phone) {
   fetch(`${sc}?action=getCustomer&phone=${phone}`).then(res => res.json()).then(res => { if (res.result === 'success' && res.data && res.data.custId) myCustId = res.data.custId; }).catch(e => console.log("Bg check fail"));
 }
 
-window.submitWizardOrder = function () {
+window.submitWizardOrder = async function () { // 🔥 async ആക്കി മാറ്റി
+
+  const phoneCheck = $('#phone').val();
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
+  // 🔥 STRICT CHECK: വേഗത്തിൽ ഫോം ഫിൽ ചെയ്താലും പുതിയ ഓർഡർ ആവുന്നത് പൂർണ്ണമായി തടയാൻ!
+  if (!editingOrderId && phoneCheck && !isAdmin) {
+    showLoader(true);
+    try {
+      let res = await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`);
+      let data = await res.json();
+
+      if (data.result === 'success' && data.data && data.data.orderid) {
+        let s = String(data.data.Status || 'pending').toLowerCase();
+        // Pending, Sent, Paid, Dispatched തുടങ്ങിയ ആക്ടീവ് സ്റ്റാറ്റസുകൾ ആണോ എന്ന് നോക്കുന്നു
+        if (!['delivered', 'completed', 'refunded'].includes(s)) {
+          showLoader(false);
+          const lang = $('#language-select').val() || 'en';
+          const t = translations[lang] || {};
+          const msg = (t.msg_active_order || "You already have an active order: OID_HERE").replace('OID_HERE', data.data.orderid);
+
+          Swal.fire({
+            icon: 'info',
+            title: t.title_active_order || "Active Order Exists",
+            text: msg,
+            confirmButtonColor: '#2563eb',
+            customClass: { popup: 'ios-popup' }
+          }).then(() => {
+            // 🔥 നേരെ പഴയ ഓർഡർ ഓപ്പൺ ആക്കുന്നു!
+            window.location.href = `order.html?phone=${phoneCheck}`;
+          });
+          return; // പുതിയ ഓർഡർ സേവ് ആകുന്നത് തടയുന്നു!
+        }
+      }
+    } catch (e) {
+      console.log("Wizard server check failed, proceeding...");
+    }
+    showLoader(false);
+  }
 
   // 🔥 App vazhiyano thurannirikkunnathu ennu check cheyyunnu
   const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
@@ -879,7 +915,7 @@ window.submitWizardOrder = function () {
 
   // 🔥 FIX 1: Admin Wizard-il select cheytha WhatsApp option Meta aayi edukkaan
   let wizMeta = '';
-  if (localStorage.getItem('kafakAdmin') === 'true' && $('#wiz-target-wa').length) {
+  if (isAdmin && $('#wiz-target-wa').length) {
     wizMeta = $('#wiz-target-wa').val() || 'M';
   }
 
@@ -901,7 +937,7 @@ window.submitWizardOrder = function () {
     custId: myCustId,
     language: $('#language-select').val() || 'en',
     source: orderSource,
-    adminMeta: wizMeta // 🔥 Meta data puthiyathayi cherthu
+    adminMeta: wizMeta
   };
 
   saveToLocal(finalData.phone, finalData);
@@ -3457,112 +3493,6 @@ window.clearUserLogin = function () {
       window.location.href = "order.html";
     }
   });
-}
-
-// 🔥 SMART PWA INSTALL BUTTON LOGIC
-let deferredPrompt;
-
-window.addEventListener('beforeinstallprompt', (e) => {
-  // ബ്രൗസറിന്റെ തനിയെ വരുന്ന പോപ്പപ്പ് തടയുന്നു (നമുക്ക് ബട്ടൺ വഴി കൊടുത്താൽ മതി)
-  e.preventDefault();
-  deferredPrompt = e;
-
-  // ആപ്പ് ഇല്ലാത്തവർക്ക് മാത്രം ബട്ടൺ കാണിക്കുന്നു
-  $('#install-app-btn').fadeIn();
-});
-
-// ബട്ടണിൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ ഇൻസ്റ്റാൾ പോപ്പപ്പ് കാണിക്കാൻ
-window.installPWA = async function () {
-  if (deferredPrompt) {
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    if (outcome === 'accepted') {
-      console.log('User installed the app');
-      $('#install-app-btn').fadeOut();
-    }
-    deferredPrompt = null;
-  }
-};
-
-$(document).on('click', '#install-app-btn', async function () {
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  if (isIOS) {
-    showIOSInstallPrompt(); // iPhone ആണെങ്കിൽ മെസ്സേജ് കാണിക്കും
-  } else {
-    installPWA(); // അല്ലാത്തവയ്ക്ക് സാധാരണ ഇൻസ്റ്റാൾ
-  }
-});
-
-// ആപ്പ് ഇൻസ്റ്റാൾ ആയിക്കഴിഞ്ഞാൽ കൗണ്ട് ചെയ്യാൻ
-window.addEventListener('appinstalled', () => {
-  $('#install-app-btn').hide();
-  deferredPrompt = null;
-  console.log('PWA was installed');
-
-  let isAlreadyCounted = localStorage.getItem('kafak_app_counted');
-
-  if (!isAlreadyCounted) {
-    // 1. കസ്റ്റമറുടെ ഫോൺ നമ്പർ എടുക്കുന്നു (ലഭ്യമാണെങ്കിൽ)
-    let userPhone = $('#phone').val() || currentLoginPhone || "Unknown";
-
-    // 2. ഏത് ഫോൺ ആണെന്ന് കണ്ടുപിടിക്കുന്നു (Android / iOS)
-    let deviceType = /iPad|iPhone|iPod/.test(navigator.userAgent) ? "Apple iOS" :
-      (/Android/.test(navigator.userAgent) ? "Android" : "Other");
-
-    // 3. സർവറിലേക്ക് വിവരങ്ങൾ അയക്കുന്നു
-    fetch(`${sc}?action=logInstall&phone=${userPhone}&device=${encodeURIComponent(deviceType)}`)
-      .then(res => res.json())
-      .then(data => {
-        console.log("New Install Counted!");
-        localStorage.setItem('kafak_app_counted', 'true');
-      })
-      .catch(err => console.log("Install tracking failed"));
-  } else {
-    console.log("Already installed before, not counting again.");
-  }
-});
-
-
-// 🔥 iOS (iPhone/iPad) INSTALL PROMPT LOGIC (ON BUTTON CLICK ONLY)
-window.showIOSInstallPrompt = function () {
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-  const isStandalone = window.navigator.standalone === true || window.matchMedia('(display-mode: standalone)').matches;
-
-  // ഐഫോൺ ആണെന്നും, ആപ്പ് ആയിട്ടല്ല തുറന്നിരിക്കുന്നതെന്നും ഉറപ്പാക്കുന്നു
-  if (isIOS && !isStandalone) {
-
-    // പഴയത് സ്ക്രീനിൽ ഉണ്ടെങ്കിൽ അത് കളയുന്നു (തുടർച്ചയായി ക്ലിക്ക് ചെയ്താൽ ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ)
-    $('#ios-install-prompt').remove();
-
-    const iosPromptHtml = `
-      <div id="ios-install-prompt" class="fade-in" style="position:fixed; bottom:25px; left:50%; transform:translateX(-50%); width:90%; max-width:350px; background:#ffffff; padding:15px; border-radius:15px; box-shadow:0 10px 40px rgba(0,0,0,0.2); z-index:99999; text-align:center; border: 1px solid #f0f0f0;">
-          <div style="font-size:14px; color:#1a1a1a; font-weight:800; margin-bottom:8px;">
-              📱 Install KAFAK App
-          </div>
-          <div style="font-size:12px; color:#1f2937; line-height:1.6; margin-bottom:12px;">
-              താഴെ കാണുന്ന <b>Share</b> ഐക്കണിൽ <i class="fas fa-external-link-square-alt text-primary mx-1"></i> ക്ലിക്ക് ചെയ്ത് <b>"Add to Home Screen"</b> തിരഞ്ഞെടുക്കുക.
-              
-              <div style="margin-top:8px; padding-top:8px; border-top:1px dashed #e5e7eb; font-size:11px; color:#6b7280;">
-                  Tap the <b>Share</b> icon below and select <b>"Add to Home Screen"</b>
-              </div>
-          </div>
-          <button onclick="closeIOSPrompt()" class="btn btn-sm btn-dark rounded-pill shadow-sm px-4 fw-bold" style="font-size:11px; letter-spacing:1px;">OK, GOT IT / ശരി</button>
-          
-          <div style="position:absolute; bottom:-8px; left:50%; transform:translateX(-50%); width:0; height:0; border-left:10px solid transparent; border-right:10px solid transparent; border-top:10px solid #ffffff;"></div>
-      </div>
-      `;
-
-    // ക്ലിക്ക് ചെയ്യുമ്പോൾ തന്നെ സ്ക്രീനിൽ കാണിക്കുന്നു (No Delay)
-    $('body').append(iosPromptHtml);
-
-  } else if (!isIOS) {
-    // ഐഫോൺ അല്ലാത്തവർ ഈ ഫംഗ്ഷൻ വിളിച്ചാൽ ഒരു അലർട്ട് കൊടുക്കാം (Optional)
-    console.log("This device is not an iOS device or already installed.");
-  }
-}
-// യൂസർ OK അടിച്ചാൽ മെസ്സേജ് ക്ലോസ് ചെയ്യുന്നു
-window.closeIOSPrompt = function () {
-  $('#ios-install-prompt').fadeOut(300, function () { $(this).remove(); });
 }
 
 // 🔥 Copy Tracking ID Function
