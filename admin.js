@@ -159,7 +159,10 @@ function updateAdminMeta(oid, type, value) {
 
     localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
     updateSyncButtonUI();
-    renderTabs(allOrders);
+
+    if (type !== 'contact') {
+        filterOrders(false);
+    }
 
     let msg = type === 'unprint' ? 'Moved to Unprinted Tab!' : 'Saved!';
     Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1000, icon: 'success', title: msg });
@@ -486,7 +489,7 @@ function fetchOrders(forceLoad = false) {
 
 // 🔥 RENDER TABS (With PERFECT Date Grouping & State Filters)
 // 🔥 1. RENDER TABS (With DIRECT Courier Full Amount Fix & Refunded Filter)
-function renderTabs(orders) {
+function renderTabs(orders, externalCounts = null) {
     const listNew = document.getElementById('list-sub-new');
     const listSent = document.getElementById('list-sub-sent');
     const listPaidNew = document.getElementById('list-paid-new');
@@ -1201,6 +1204,26 @@ function renderTabs(orders) {
         setTimeout(() => { window.scrollTo(0, parseInt(savedScroll)); }, 100);
     }
 
+    // 🔥 LOAD MORE BUTTONS (Based on True Server Count)
+    const addSmartLoadMoreBtn = (listElement, trueCount, currentLoaded, tabKey) => {
+        if (listElement && trueCount > currentLoaded) {
+            let left = trueCount - currentLoaded;
+            listElement.innerHTML += `
+            <div class="text-center my-4 fade-in">
+                <button onclick="loadMoreCards('${tabKey}')" class="btn btn-outline-secondary btn-sm fw-bold rounded-pill px-4 shadow-sm" style="border: 2px solid #ccc;">
+                    <i class="fas fa-chevron-down me-1"></i> Load More (${left} Orders Left)
+                </button>
+            </div>`;
+        }
+    };
+
+    if (externalCounts) {
+        addSmartLoadMoreBtn(listNew, externalCounts.pending, subCounts.new, 'pending');
+        addSmartLoadMoreBtn(listSent, externalCounts.sent, subCounts.sent, 'sent');
+        // ശ്രദ്ധിക്കുക: Paid, Dispatched ടാബുകൾ sub-tabs ആയി തിരിച്ചതുകൊണ്ട് ഇതിൽ എണ്ണം കൃത്യമായി കിട്ടാൻ കുറച്ച് കൂടി ലോജിക് വേണം.
+        // തൽക്കാലം ഇത് പ്രധാന ടാബുകൾക്ക് നൽകുന്നു.
+    }
+
     if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
 }
 
@@ -1726,21 +1749,27 @@ window.loadMoreCards = function (tabName) {
     filterOrders(false); // ലിമിറ്റ് റീസെറ്റ് ചെയ്യാതെ വീണ്ടും വരയ്ക്കുന്നു
 };
 
-// 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ
+// 🔥 1. ഗ്ലോബൽ കാർഡ് ലിമിറ്റ് (തുടക്കത്തിൽ 20 എണ്ണം മാത്രം ലോഡ് ചെയ്യും)
+window.tabLimits = { pending: 20, sent: 20, paid: 20, dispatched: 20, completed: 20 };
+
+window.loadMoreCards = function (tabName) {
+    window.tabLimits[tabName] += 30; // Load More അടിച്ചാൽ 30 എണ്ണം വീതം കൂടും
+    // 🔥 വീണ്ടും മുഴുവനായി വരയ്ക്കുന്നതിന് പകരം പുതിയവ മാത്രം ചേർക്കാൻ ഭാവിയിൽ മാറ്റാം. 
+    // തൽക്കാലം ഇത് ഏറ്റവും കുറഞ്ഞ ഡാറ്റ മാത്രം എടുത്ത് വരയ്ക്കും
+    renderTabsWithLimit(true);
+};
+
+// 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ (DOM ൽ മാറ്റം വരുന്നത് കുറയ്ക്കുന്നു)
 window.filterOrders = function (resetLimits = true) {
-    let term = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
+    let searchInput = document.getElementById('searchInput');
+    let term = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
-    // സെർച്ച് ചെയ്യുമ്പോഴോ ടാബ് മാറുമ്പോഴോ ലിമിറ്റ് 30 ആക്കി റീസെറ്റ് ചെയ്യാൻ
     if (resetLimits) {
-        window.tabLimits = { pending: 30, sent: 30, paid: 30, dispatched: 30, completed: 30 };
+        window.tabLimits = { pending: 20, sent: 20, paid: 20, dispatched: 20, completed: 20 };
     }
 
-    // Clear Button Visibility
     const clearBtn = document.getElementById('btn-clear-search');
-    if (clearBtn) {
-        if (term.length > 0) clearBtn.style.display = 'block';
-        else clearBtn.style.display = 'none';
-    }
+    if (clearBtn) clearBtn.style.display = term.length > 0 ? 'block' : 'none';
 
     const tabsContainer = document.getElementById('tabs-container');
     const searchResultsArea = document.getElementById('search-results-area');
@@ -1750,28 +1779,31 @@ window.filterOrders = function (resetLimits = true) {
         // --- SEARCH MODE ---
         if (tabsContainer) tabsContainer.style.display = 'none';
         if (searchResultsArea) searchResultsArea.style.display = 'block';
-        if (searchList) searchList.innerHTML = '';
+        if (!searchList) return;
 
         let activeStatus = [];
         if ($('#pills-pending-tab').hasClass('active')) activeStatus = ['Pending', 'Sent'];
         else if ($('#pills-paid-tab').hasClass('active')) activeStatus = ['Paid'];
         else if ($('#pills-dispatched-tab').hasClass('active')) activeStatus = ['Dispatched'];
-        else if ($('#pills-completed-tab').hasClass('active')) activeStatus = ['Completed', 'Delivered'];
+        else if ($('#pills-completed-tab').hasClass('active')) activeStatus = ['Completed', 'Delivered', 'Refunded', 'Archive'];
 
         let termClean = term.replace(/[^0-9]/g, '');
+        let htmlBuffer = ''; // ഒരൊറ്റ സ്ട്രിംഗ് ആക്കി വെച്ച് അവസാനം മാത്രം DOM-ൽ ഇടുന്നു (സ്പീഡിന്)
 
         let matches = allOrders.filter(o => {
             if ((o.name || '').toLowerCase().includes(term)) return true;
             if ((o.orderid || '').toLowerCase().includes(term)) return true;
 
-            let addressStr = [o.house, o.place, o.postoffice, o.district, o.state, o.pincode].map(s => String(s || '').toLowerCase()).join(' ');
+            let addressStr = [o.house, o.place, o.postoffice, o.district, o.state, o.pincode].join(' ').toLowerCase();
             if (addressStr.includes(term)) return true;
 
-            if (termClean.length > 0) {
+            if (termClean.length >= 4) { // 4 അക്കത്തിൽ കൂടുതൽ ഉണ്ടെങ്കിൽ മാത്രം നമ്പർ സെർച്ച്
                 let p = String(o.phone || '').replace(/[^0-9]/g, '');
                 let w = String(o.whatsapp || '').replace(/[^0-9]/g, '');
                 let paid = String(o.paidNum || '').replace(/[^0-9]/g, '');
-                if (p.includes(termClean) || w.includes(termClean) || paid.includes(termClean)) return true;
+                let zClean = String(o.paidNum || "").replace(/[^0-9]/g, '');
+
+                if (p.includes(termClean) || w.includes(termClean) || paid.includes(termClean) || zClean.includes(termClean)) return true;
             }
             return false;
         });
@@ -1784,21 +1816,28 @@ window.filterOrders = function (resetLimits = true) {
         });
 
         if (matches.length === 0) {
-            if (searchList) searchList.innerHTML = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
+            htmlBuffer = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
         } else {
             let prevWasActive = true;
-            matches.forEach(d => {
+            // സെർച്ച് റിസൾട്ടും 100 എണ്ണത്തിൽ നിർത്തുന്നു (ലാഗ് ഒഴിവാക്കാൻ)
+            let limitedMatches = matches.slice(0, 100);
+
+            limitedMatches.forEach(d => {
                 let isCurrentActive = activeStatus.includes(d.Status);
                 if (activeStatus.length > 0 && prevWasActive && !isCurrentActive) {
-                    if (searchList) searchList.innerHTML += `<div class="text-center my-2"><span class="badge bg-secondary bg-opacity-25 text-secondary rounded-pill px-3" style="font-size:10px;">OTHER RESULTS</span></div>`;
+                    htmlBuffer += `<div class="text-center my-2"><span class="badge bg-secondary bg-opacity-25 text-secondary rounded-pill px-3" style="font-size:10px;">OTHER RESULTS</span></div>`;
                     prevWasActive = false;
                 }
                 let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
-                if (searchList) searchList.innerHTML += createCardHTML(d, originalIndex, 'search', d.Status);
+                htmlBuffer += createCardHTML(d, originalIndex, 'search', d.Status);
             });
+
+            if (matches.length > 100) {
+                htmlBuffer += `<div class="text-center text-muted small mt-2">Showing top 100 results. Please be more specific.</div>`;
+            }
         }
 
-        let serverBtnHtml = `
+        htmlBuffer += `
             <div class="col-12 mt-3 text-center">
                 <div class="p-3 border rounded-3 bg-light shadow-sm">
                     <div class="small text-muted mb-2">കാണുന്നില്ലേ? പഴയ ഓർഡറുകൾക്കായി ഷീറ്റിൽ സെർച്ച് ചെയ്യുക</div>
@@ -1807,28 +1846,39 @@ window.filterOrders = function (resetLimits = true) {
                     </button>
                 </div>
             </div>`;
-        if (searchList) searchList.innerHTML += serverBtnHtml;
+
+        searchList.innerHTML = htmlBuffer; // ഒറ്റയടിക്ക് DOM-ൽ ഇടുന്നു
 
     } else {
-        // --- NORMAL TAB MODE (LIMITING ENABLED) ---
+        // --- NORMAL TAB MODE ---
         if (tabsContainer) tabsContainer.style.display = 'block';
         if (searchResultsArea) searchResultsArea.style.display = 'none';
 
-        renderTabsWithLimit();
+        renderTabsWithLimit(false);
     }
-}
+};
 
-// 🔥 1.5 പുതിയ Helper ഫംഗ്ഷൻ (renderTabs-നെ സ്പീഡ് ആക്കാൻ)
-function renderTabsWithLimit() {
+// 🔥 3. LIMITING LOGIC (Render Tabs called ONLY when needed)
+function renderTabsWithLimit(forceFullRender = false) {
     if (!allOrders || allOrders.length === 0) return;
 
     let limitedOrders = [];
     let counts = { pending: 0, sent: 0, paid: 0, dispatched: 0, completed: 0 };
+    let totalCounts = { pending: 0, sent: 0, paid: 0, dispatched: 0, completed: 0 };
 
-    let sortedOrders = [...allOrders].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    // സോർട്ടിങ് ആവശ്യമുള്ളപ്പോൾ മാത്രം ചെയ്യുന്നു (ഇതും സ്പീഡ് കൂട്ടും)
+    let sortedOrders = allOrders;
+    if (forceFullRender) {
+        sortedOrders = [...allOrders].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+    }
+
+    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     sortedOrders.forEach(o => {
-        let st = String(o.Status || 'Pending').toLowerCase();
+        // നിലവിലെ സ്റ്റാറ്റസ് എടുക്കാൻ (പെൻഡിങ് ലിസ്റ്റിൽ ഉണ്ടെങ്കിൽ അതെടുക്കും)
+        let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones');
+        let st = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).toLowerCase() : String(o.Status || 'Pending').toLowerCase();
+
         let tab = '';
 
         if (st === 'pending' || st === 'draft') tab = 'pending';
@@ -1837,13 +1887,17 @@ function renderTabsWithLimit() {
         else if (st === 'dispatched') tab = 'dispatched';
         else if (st === 'completed' || st === 'delivered' || st === 'refunded' || st === 'archive') tab = 'completed';
 
-        if (tab && counts[tab] < window.tabLimits[tab]) {
-            limitedOrders.push(o);
-            counts[tab]++;
+        if (tab) {
+            totalCounts[tab]++; // ശരിക്കുമുള്ള എണ്ണം
+            if (counts[tab] < window.tabLimits[tab]) {
+                limitedOrders.push(o);
+                counts[tab]++;
+            }
         }
     });
 
-    renderTabs(limitedOrders);
+    // ഇവിടെ പഴയ renderTabs-നെ പുതിയ limited ഡാറ്റ വെച്ച് വിളിക്കുന്നു
+    renderTabs(limitedOrders, totalCounts);
 }
 // 🔥 ARCHIVE / DELETE ORDER FUNCTION
 // 🔥 ARCHIVE ORDER FUNCTION
@@ -2517,13 +2571,12 @@ window.undoUpdate = function (oid, type) {
     updatePrintPrediction();
     renderLiveStockTracker();
 
-    // 🔥 ഇത് കാർഡുകളെ തൽക്ഷണം പഴയ ടാബിലേക്ക് മാറ്റും!
-    filterOrders(false);
-
-    // 🔥 FIX: സെർച്ച് ചെയ്തുകൊണ്ടിരിക്കുന്ന സമയത്താണ് അൺഡൂ അടിക്കുന്നതെങ്കിൽ ആ കാർഡും തൽക്ഷണം റിഫ്രഷ് ആവാൻ!
+    // 🔥 ഇത് കാർഡുകളെ തൽക്ഷണം പഴയ ടാബിലേക്ക് മാറ്റും! (ലിമിറ്റ് റീസെറ്റ് ചെയ്യാതെ)
     let searchInput = document.getElementById('searchInput');
     if (searchInput && searchInput.value.trim() !== "") {
-        filterOrders();
+        filterOrders(false); // സെർച്ച് ചെയ്യുകയാണെങ്കിലും ലിമിറ്റ് കളയാതെ റീലോഡ് ചെയ്യും
+    } else {
+        renderTabsWithLimit(false); // നോർമൽ മോഡിൽ ലിമിറ്റ് കളയാതെ റീലോഡ് ചെയ്യും
     }
 }
 // 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
@@ -8927,7 +8980,7 @@ window.toggleStateFilter = function (stateLabel) {
     }
 };
 
-// 🔥 INSTANT UI UPDATE LOGIC (Updated to preserve Direct Delivery)
+// 🔥 INSTANT STATUS CHANGE (100% Reload-Free DOM Removal)
 window.instantStatusChange = function (btnElement, oid, targetStatus) {
     let msg = targetStatus === 'Paid' ? 'Mark as Paid?' : `Move to ${targetStatus}?`;
 
@@ -8938,23 +8991,42 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            // 1. ലോക്കൽ മെമ്മറിയിൽ മാറ്റം വരുത്തുന്നു (Refresh ഇല്ലാതെ ശരിയാകാൻ)
             let order = allOrders.find(o => o.orderid === oid);
             if (order && order.adminMeta && order.adminMeta.includes('DDelivery')) {
                 order.provider = 'Direct';
                 order.Courier_Provider = 'Direct';
-                // ചാർജ്ജ് കൂടി ഉറപ്പുവരുത്തുന്നു
                 let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
                 if (match) order.Courier_Charge = parseInt(match[2]);
             }
 
-            // 2. 'Yes' അടിച്ചാൽ ഉടൻ തന്നെ കാർഡ് സ്ക്രീനിൽ നിന്ന് മായുന്നു
+            // 🔥 1. കാർഡ് സ്ക്രീനിൽ നിന്ന് തൽക്ഷണം മായ്ക്കുന്നു (സ്പീഡിന് വേണ്ടി)
             let cardDiv = $(btnElement).closest('.col-12.col-md-12.col-lg-12');
             if (!cardDiv.length) cardDiv = $(btnElement).closest('.col-12');
 
-            cardDiv.fadeOut(100, function () {
-                // 3. കാർഡ് മാഞ്ഞതിന് ശേഷം മാത്രം ബാക്ക്ഗ്രൗണ്ടിൽ അപ്‌ഡേറ്റ് ചെയ്യുന്നു
-                updateOrder(oid, targetStatus, null, true);
+            cardDiv.fadeOut(200, function () {
+                $(this).remove(); // പൂർണ്ണമായി DOM ൽ നിന്നും കളയുന്നു
+
+                // 🔥 2. ബാക്ക്ഗ്രൗണ്ടിൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
+                // ഇവിടെ updateOrder-ന് പകരം നമ്മൾ നേരിട്ട് ഡാറ്റ സേവ് ചെയ്യുകയാണ്, കാരണം updateOrder വീണ്ടും ഫുൾ റീലോഡ് ആക്കും!
+                let oldStatus = order ? order.Status : 'Pending';
+                if (order) order.Status = targetStatus;
+
+                let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+                updates.push({
+                    oid: oid,
+                    action: 'status',
+                    status: targetStatus,
+                    oldStatus: oldStatus,
+                    time: new Date().getTime(),
+                    deleteRefund: false
+                });
+
+                localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+                if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+
+                // 🔥 നോട്ട്: ഇവിടെ filterOrders() വിളിക്കുന്നില്ല! അതാണ് ഈ സ്പീഡിന്റെ രഹസ്യം.
             });
         }
     });
