@@ -796,6 +796,8 @@ function renderTabs(orders, externalCounts = null) {
     window.showAllPending = window.showAllPending || false;
     window.showAllDispNew = window.showAllDispNew || false;
 
+    let htmlDrawCounts = { pending: 0, paid: 0, dispatched: 0 };
+
     orders.forEach((d, i) => {
         let info = getOrderInfo(d);
         let status = info.status;
@@ -954,7 +956,12 @@ function renderTabs(orders, externalCounts = null) {
             }
 
             let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
-            targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId);
+            if (htmlDrawCounts[type] === undefined) htmlDrawCounts[type] = 0;
+
+            if (htmlDrawCounts[type] < window.tabLimits[type]) {
+                targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId);
+                htmlDrawCounts[type]++;
+            }
         }
     });
 
@@ -1838,8 +1845,7 @@ window.filterOrders = function (resetLimits = true) {
         // --- NORMAL TAB MODE ---
         if (tabsContainer) tabsContainer.style.display = 'block';
         if (searchResultsArea) searchResultsArea.style.display = 'none';
-
-        renderTabsWithLimit(false);
+        renderTabs(allOrders);
     }
 };
 
@@ -4774,10 +4780,28 @@ window.openPaidNumWA = function (num) {
     }
 }
 
-// 🔥 AUTO SCROLL RESTORE SYSTEM
-// 1. നമ്മൾ സ്ക്രോൾ ചെയ്യുമ്പോൾ ആ സ്ഥാനം സേവ് ചെയ്യുന്നു
+// 🔥 AUTO SCROLL RESTORE & INFINITE LAZY LOADING
 window.addEventListener('scroll', function () {
+    // 1. സ്ക്രോൾ പൊസിഷൻ സേവ് ചെയ്യുന്നു
     localStorage.setItem('lastScrollPosition', window.scrollY);
+
+    // 2. 🔥 AUTO LAZY LOADING (താഴെ എത്തുമ്പോൾ തനിയെ അടുത്ത കാർഡുകൾ ലോഡ് ആകും)
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+        let activeTabPane = document.querySelector('.tab-pane.active');
+        if (activeTabPane) {
+            // ആക്ടീവ് ടാബിലുള്ള Load More ബട്ടൺ കണ്ടുപിടിക്കുന്നു
+            let loadMoreBtn = activeTabPane.querySelector('button[onclick^="loadMoreCards"]');
+
+            if (loadMoreBtn && !loadMoreBtn.classList.contains('loading-active')) {
+                // ഒന്നിലധികം തവണ ലോഡ് ആവാതിരിക്കാൻ ഒരു ക്ലാസ്സ് കൊടുക്കുന്നു
+                loadMoreBtn.classList.add('loading-active');
+                loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+
+                // ബട്ടൺ തനിയെ ക്ലിക്ക് ചെയ്യുന്നു!
+                loadMoreBtn.click();
+            }
+        }
+    }
 });
 
 // 2. ടാബ് മാറുമ്പോൾ സ്ക്രോൾ മുകളിലേക്ക് തന്നെ പോകാൻ (Optional)
