@@ -417,7 +417,7 @@ function fetchRatesBackground() {
                 console.log("✅ Rates Updated & Saved to LocalStorage");
 
                 if (typeof allOrders !== 'undefined' && allOrders && allOrders.length > 0) {
-                    renderTabs(allOrders);
+                    filterOrders(false);
                 }
             }
         })
@@ -450,7 +450,7 @@ function fetchOrders(forceLoad = false) {
     // A. Cache ഉണ്ടെങ്കിൽ ലോഡ് ചെയ്യുന്നു
     if (savedOrders) {
         allOrders = JSON.parse(savedOrders);
-        renderTabs(allOrders);
+        filterOrders(false);
         hasData = true;
 
         // ✅ FIX: Cache ഉണ്ടെങ്കിലും ഇവിടെ വെച്ച് തന്നെ സെർച്ച് നടക്കും
@@ -469,7 +469,7 @@ function fetchOrders(forceLoad = false) {
             if (response.result === 'success') {
                 allOrders = response.data;
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
-                renderTabs(allOrders);
+                filterOrders(false);
                 updateSyncButtonUI();
                 fetchDashboardDataBg();
 
@@ -1718,96 +1718,86 @@ function updateSyncButtonUI() {
 }
 
 
-// 🔥 UPDATED: POWERFUL SEARCH (Includes WA, Alt Phone & Space Fix)
-// 🔥 UPDATED: POWERFUL SEARCH (Address Filter + Active Tab Priority)
-function filterOrders() {
-    const term = document.getElementById('searchInput').value.trim().toLowerCase();
-    const termClean = term.replace(/[^0-9]/g, ''); // സെർച്ച് ടേമിലെ നമ്പർ മാത്രം
+// 🔥 1. ഗ്ലോബൽ കാർഡ് ലിമിറ്റ് (തുടക്കത്തിൽ 30 എണ്ണം മാത്രം ലോഡ് ചെയ്യും)
+window.tabLimits = { pending: 30, sent: 30, paid: 30, dispatched: 30, completed: 30 };
+
+window.loadMoreCards = function (tabName) {
+    window.tabLimits[tabName] += 50; // Load More അടിച്ചാൽ 50 എണ്ണം വീതം കൂടും
+    filterOrders(false); // ലിമിറ്റ് റീസെറ്റ് ചെയ്യാതെ വീണ്ടും വരയ്ക്കുന്നു
+};
+
+// 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ
+window.filterOrders = function (resetLimits = true) {
+    let term = document.getElementById('searchInput') ? document.getElementById('searchInput').value.toLowerCase().trim() : '';
+
+    // സെർച്ച് ചെയ്യുമ്പോഴോ ടാബ് മാറുമ്പോഴോ ലിമിറ്റ് 30 ആക്കി റീസെറ്റ് ചെയ്യാൻ
+    if (resetLimits) {
+        window.tabLimits = { pending: 30, sent: 30, paid: 30, dispatched: 30, completed: 30 };
+    }
 
     // Clear Button Visibility
     const clearBtn = document.getElementById('btn-clear-search');
-    if (term.length > 0) clearBtn.style.display = 'block';
-    else clearBtn.style.display = 'none';
+    if (clearBtn) {
+        if (term.length > 0) clearBtn.style.display = 'block';
+        else clearBtn.style.display = 'none';
+    }
 
     const tabsContainer = document.getElementById('tabs-container');
     const searchResultsArea = document.getElementById('search-results-area');
     const searchList = document.getElementById('list-search');
 
     if (term.length > 0) {
-        tabsContainer.style.display = 'none';
-        searchResultsArea.style.display = 'block';
-        searchList.innerHTML = '';
+        // --- SEARCH MODE ---
+        if (tabsContainer) tabsContainer.style.display = 'none';
+        if (searchResultsArea) searchResultsArea.style.display = 'block';
+        if (searchList) searchList.innerHTML = '';
 
-        // 1. FIND ACTIVE TAB STATUS (To prioritize results)
         let activeStatus = [];
-        // Check which tab button is active (Assuming standard Bootstrap IDs)
         if ($('#pills-pending-tab').hasClass('active')) activeStatus = ['Pending', 'Sent'];
         else if ($('#pills-paid-tab').hasClass('active')) activeStatus = ['Paid'];
         else if ($('#pills-dispatched-tab').hasClass('active')) activeStatus = ['Dispatched'];
         else if ($('#pills-completed-tab').hasClass('active')) activeStatus = ['Completed', 'Delivered'];
 
-        // 2. FILTER LOGIC
+        let termClean = term.replace(/[^0-9]/g, '');
+
         let matches = allOrders.filter(o => {
-            // A. Text Search (Name, ID)
             if ((o.name || '').toLowerCase().includes(term)) return true;
             if ((o.orderid || '').toLowerCase().includes(term)) return true;
 
-            // B. Address Search (House, Place, District, State, Pin) 🔥 NEW
-            let addressStr = [
-                o.house, o.place, o.postoffice,
-                o.district, o.state, o.pincode
-            ].map(s => String(s || '').toLowerCase()).join(' ');
-
+            let addressStr = [o.house, o.place, o.postoffice, o.district, o.state, o.pincode].map(s => String(s || '').toLowerCase()).join(' ');
             if (addressStr.includes(term)) return true;
 
-            // C. Number Search (Phone, WA, Alt, Paid Num)
             if (termClean.length > 0) {
                 let p = String(o.phone || '').replace(/[^0-9]/g, '');
                 let w = String(o.whatsapp || '').replace(/[^0-9]/g, '');
                 let paid = String(o.paidNum || '').replace(/[^0-9]/g, '');
-
-                if (p.includes(termClean)) return true;
-                if (w.includes(termClean)) return true;
-                if (paid.includes(termClean)) return true;
+                if (p.includes(termClean) || w.includes(termClean) || paid.includes(termClean)) return true;
             }
             return false;
         });
 
-        // 3. SORT LOGIC (Active Tab First) 🔥 NEW
         matches.sort((a, b) => {
-            // Check if items belong to the active tab
             let aIsActive = activeStatus.includes(a.Status) ? 1 : 0;
             let bIsActive = activeStatus.includes(b.Status) ? 1 : 0;
-
-            // Priority 1: Active Tab Status comes first
             if (aIsActive !== bIsActive) return bIsActive - aIsActive;
-
-            // Priority 2: Sort by Date (Newest First) within groups
             return new Date(b.timestamp) - new Date(a.timestamp);
         });
 
-        // 4. RENDER RESULTS
         if (matches.length === 0) {
-            searchList.innerHTML = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
+            if (searchList) searchList.innerHTML = `<div class="text-center text-muted mt-3 mb-2">No local results found.</div>`;
         } else {
-            // Show a small header if prioritizing
             let prevWasActive = true;
-
             matches.forEach(d => {
                 let isCurrentActive = activeStatus.includes(d.Status);
-
-                // Optional: Add a separator line between Active Tab results and Others
                 if (activeStatus.length > 0 && prevWasActive && !isCurrentActive) {
-                    searchList.innerHTML += `<div class="text-center my-2"><span class="badge bg-secondary bg-opacity-25 text-secondary rounded-pill px-3" style="font-size:10px;">OTHER RESULTS</span></div>`;
+                    if (searchList) searchList.innerHTML += `<div class="text-center my-2"><span class="badge bg-secondary bg-opacity-25 text-secondary rounded-pill px-3" style="font-size:10px;">OTHER RESULTS</span></div>`;
                     prevWasActive = false;
                 }
-
                 let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
-                searchList.innerHTML += createCardHTML(d, originalIndex, 'search', d.Status);
+                if (searchList) searchList.innerHTML += createCardHTML(d, originalIndex, 'search', d.Status);
             });
         }
 
-        // Search Server Button
         let serverBtnHtml = `
             <div class="col-12 mt-3 text-center">
                 <div class="p-3 border rounded-3 bg-light shadow-sm">
@@ -1817,14 +1807,43 @@ function filterOrders() {
                     </button>
                 </div>
             </div>`;
-
-        searchList.innerHTML += serverBtnHtml;
+        if (searchList) searchList.innerHTML += serverBtnHtml;
 
     } else {
-        tabsContainer.style.display = 'block';
-        searchResultsArea.style.display = 'none';
-        renderTabs(allOrders);
+        // --- NORMAL TAB MODE (LIMITING ENABLED) ---
+        if (tabsContainer) tabsContainer.style.display = 'block';
+        if (searchResultsArea) searchResultsArea.style.display = 'none';
+
+        renderTabsWithLimit();
     }
+}
+
+// 🔥 1.5 പുതിയ Helper ഫംഗ്ഷൻ (renderTabs-നെ സ്പീഡ് ആക്കാൻ)
+function renderTabsWithLimit() {
+    if (!allOrders || allOrders.length === 0) return;
+
+    let limitedOrders = [];
+    let counts = { pending: 0, sent: 0, paid: 0, dispatched: 0, completed: 0 };
+
+    let sortedOrders = [...allOrders].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
+
+    sortedOrders.forEach(o => {
+        let st = String(o.Status || 'Pending').toLowerCase();
+        let tab = '';
+
+        if (st === 'pending' || st === 'draft') tab = 'pending';
+        else if (st === 'sent') tab = 'sent';
+        else if (st === 'paid') tab = 'paid';
+        else if (st === 'dispatched') tab = 'dispatched';
+        else if (st === 'completed' || st === 'delivered' || st === 'refunded' || st === 'archive') tab = 'completed';
+
+        if (tab && counts[tab] < window.tabLimits[tab]) {
+            limitedOrders.push(o);
+            counts[tab]++;
+        }
+    });
+
+    renderTabs(limitedOrders);
 }
 // 🔥 ARCHIVE / DELETE ORDER FUNCTION
 // 🔥 ARCHIVE ORDER FUNCTION
@@ -2073,7 +2092,7 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
         if (document.getElementById('searchInput') && document.getElementById('searchInput').value.trim().length > 0) {
             filterOrders();
         } else {
-            renderTabs(allOrders);
+            filterOrders(false);
         }
         updateSyncButtonUI();
     };
@@ -2499,7 +2518,7 @@ window.undoUpdate = function (oid, type) {
     renderLiveStockTracker();
 
     // 🔥 ഇത് കാർഡുകളെ തൽക്ഷണം പഴയ ടാബിലേക്ക് മാറ്റും!
-    renderTabs(allOrders);
+    filterOrders(false);
 
     // 🔥 FIX: സെർച്ച് ചെയ്തുകൊണ്ടിരിക്കുന്ന സമയത്താണ് അൺഡൂ അടിക്കുന്നതെങ്കിൽ ആ കാർഡും തൽക്ഷണം റിഫ്രഷ് ആവാൻ!
     let searchInput = document.getElementById('searchInput');
@@ -2554,7 +2573,7 @@ window.discardAllUpdates = function () {
     localStorage.removeItem('pendingUpdates');
     localStorage.removeItem('pendingExpenses');
 
-    renderTabs(allOrders);
+    filterOrders(false);
     $('#syncModal').modal('hide');
     updateSyncButtonUI();
     showToast('info', 'All changes discarded');
@@ -2629,7 +2648,7 @@ function finalConfirmSync() {
 function discardLocalChanges() {
     confirmAction("ലോക്കൽ മാറ്റങ്ങൾ കളയണോ?", () => {
         localStorage.removeItem('pendingUpdates');
-        renderTabs(allOrders);
+        filterOrders(false);
         updateSyncButtonUI();
         showToast("info", "Discarded");
     });
@@ -2943,7 +2962,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
         localStorage.setItem('pendingUpdates', JSON.stringify(updates));
         if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-        if (typeof renderTabs === 'function') renderTabs(allOrders);
+        if (typeof renderTabs === 'function') filterOrders(false);
     }
 
     const printWin = window.open('', 'AddressPrintWindow', 'width=600,height=800');
@@ -4559,7 +4578,7 @@ function toggleSort() {
     const icon = currentSortDir === 'desc' ? 'fa-sort-amount-down' : 'fa-sort-amount-up';
     $('#btn-sort i').attr('class', `fas ${icon}`);
 
-    renderTabs(allOrders); // Re-render
+    filterOrders(false); // Re-render
 }
 
 // 🔥 OPEN WHATSAPP (Fix for W/M/A Codes)
@@ -4701,7 +4720,7 @@ window.savePaidNum = function (oid, val) {
     localStorage.setItem('pendingUpdates', JSON.stringify(updates));
     updateSyncButtonUI();
 
-    setTimeout(() => { renderTabs(allOrders); }, 100);
+    setTimeout(() => { filterOrders(false); }, 100);
 
     showToast('success', 'Paid Number Saved ✅');
 }
@@ -4835,20 +4854,20 @@ function loadFlatpickr(callback) {
 
 window.loadOldTrackingOrders = function () {
     showAllTracking = true;
-    renderTabs(allOrders); // വീണ്ടും റീ-റെൻഡർ ചെയ്യുന്നു
+    filterOrders(false);
 };
 
 window.loadOldSentOrders = function () {
     window.showAllSent = true;
-    renderTabs(allOrders);
+    filterOrders(false);
 };
 window.loadOldPendingOrders = function () {
     window.showAllPending = true;
-    renderTabs(allOrders);
+    filterOrders(false);
 };
 window.loadOldDispNewOrders = function () {
     window.showAllDispNew = true;
-    renderTabs(allOrders);
+    filterOrders(false);
 };
 
 
@@ -6215,7 +6234,7 @@ window.printProductLabels = function () {
         if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
         if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
         updateSyncButtonUI();
-        renderTabs(allOrders); // UI യിൽ തൽക്ഷണം മാറ്റങ്ങൾ വരാൻ
+        filterOrders(false); // UI യിൽ തൽക്ഷണം മാറ്റങ്ങൾ വരാൻ
     }, 500);
 }
 
@@ -8846,7 +8865,7 @@ window.bulkCompleteOrders = function (tabType) {
 
             let searchInput = document.getElementById('searchInput');
             if (searchInput && searchInput.value.trim() !== "") filterOrders();
-            else renderTabs(allOrders);
+            else filterOrders(false);
 
             Swal.fire({
                 icon: 'success',
@@ -9034,7 +9053,7 @@ window.changeCourier = async function (oid, newProvider) {
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
     if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-    if (typeof renderTabs === 'function') renderTabs(allOrders);
+    if (typeof renderTabs === 'function') filterOrders(false);
 
     // 🔥 FIX 1: Search Tab Refresh Fix
     if (document.getElementById('searchInput') && document.getElementById('searchInput').value.trim() !== '') {
@@ -9238,7 +9257,7 @@ window.openDirectDeliveryPopup = function (oid) {
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-            if (typeof renderTabs === 'function') renderTabs(allOrders);
+            if (typeof renderTabs === 'function') filterOrders(false);
 
             if (document.getElementById('searchInput') && document.getElementById('searchInput').value.trim() !== '') {
                 if (typeof filterOrders === 'function') filterOrders();
@@ -9249,7 +9268,7 @@ window.openDirectDeliveryPopup = function (oid) {
                 Swal.fire({ icon: 'success', title: 'Added to Sync List!', text: msg, toast: true, position: 'top-end', showConfirmButton: false, timer: 2500 });
             }
         } else {
-            if (typeof renderTabs === 'function') renderTabs(allOrders);
+            if (typeof renderTabs === 'function') filterOrders(false);
         }
     });
 };
@@ -9285,7 +9304,7 @@ window.confirmUnprint = function (oid) {
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-            if (typeof renderTabs === 'function') renderTabs(allOrders);
+            if (typeof renderTabs === 'function') filterOrders(false);
 
             Swal.fire({ icon: 'success', title: 'Reverted to Unprinted!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
         }
@@ -10036,7 +10055,7 @@ window.savePhoneNumbers = function (oid, data) {
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
     if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-    if (typeof renderTabs === 'function') renderTabs(allOrders);
+    if (typeof renderTabs === 'function') filterOrders(false);
 
     Swal.fire({
         icon: 'success',
