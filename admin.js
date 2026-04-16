@@ -8989,7 +8989,7 @@ window.toggleStateFilter = function (stateLabel) {
     }
 };
 
-// 🔥 INSTANT STATUS CHANGE (100% Reload-Free DOM Removal)
+// 🔥 INSTANT STATUS CHANGE (With Auto-Move to New Tab & Top Sorting)
 window.instantStatusChange = function (btnElement, oid, targetStatus) {
     let msg = targetStatus === 'Paid' ? 'Mark as Paid?' : `Move to ${targetStatus}?`;
 
@@ -9000,6 +9000,15 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
     }).then((result) => {
         if (result.isConfirmed) {
 
+            // 1. കാർഡ് ഏറ്റവും മുകളിൽ വരാൻ ഇപ്പോഴത്തെ സമയം എടുക്കുന്നു (Action Date)
+            let now = new Date();
+            let y = now.getFullYear();
+            let m = String(now.getMonth() + 1).padStart(2, '0');
+            let d = String(now.getDate()).padStart(2, '0');
+            let h = String(now.getHours()).padStart(2, '0');
+            let min = String(now.getMinutes()).padStart(2, '0');
+            let finalActionDate = `${y}-${m}-${d} ${h}:${min}`;
+
             let order = allOrders.find(o => o.orderid === oid);
             if (order && order.adminMeta && order.adminMeta.includes('DDelivery')) {
                 order.provider = 'Direct';
@@ -9008,17 +9017,20 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
                 if (match) order.Courier_Charge = parseInt(match[2]);
             }
 
-            // 🔥 1. കാർഡ് സ്ക്രീനിൽ നിന്ന് തൽക്ഷണം മായ്ക്കുന്നു (സ്പീഡിന് വേണ്ടി)
+            // 2. കാർഡ് സ്ക്രീനിൽ നിന്ന് തൽക്ഷണം മായുന്നു (ലാഗ് ഒഴിവാക്കാൻ അനിമേഷൻ)
             let cardDiv = $(btnElement).closest('.col-12.col-md-12.col-lg-12');
             if (!cardDiv.length) cardDiv = $(btnElement).closest('.col-12');
 
             cardDiv.fadeOut(200, function () {
-                $(this).remove(); // പൂർണ്ണമായി DOM ൽ നിന്നും കളയുന്നു
+                $(this).remove(); // പഴയ കാർഡ് മായ്ക്കുന്നു
 
-                // 🔥 2. ബാക്ക്ഗ്രൗണ്ടിൽ ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
-                // ഇവിടെ updateOrder-ന് പകരം നമ്മൾ നേരിട്ട് ഡാറ്റ സേവ് ചെയ്യുകയാണ്, കാരണം updateOrder വീണ്ടും ഫുൾ റീലോഡ് ആക്കും!
+                // 3. ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
                 let oldStatus = order ? order.Status : 'Pending';
-                if (order) order.Status = targetStatus;
+                if (order) {
+                    order.Status = targetStatus;
+                    if (targetStatus === 'Paid') order.paidDate = finalActionDate;
+                    if (targetStatus === 'Dispatched') order['Dispatched Date'] = finalActionDate;
+                }
 
                 let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
                 updates.push({
@@ -9026,6 +9038,7 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
                     action: 'status',
                     status: targetStatus,
                     oldStatus: oldStatus,
+                    actionDate: finalActionDate, // 🔥 ഇത് ചേർത്താലേ കാർഡ് ഏറ്റവും മുകളിൽ വരൂ!
                     time: new Date().getTime(),
                     deleteRefund: false
                 });
@@ -9035,7 +9048,9 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
 
                 if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
 
-                // 🔥 നോട്ട്: ഇവിടെ filterOrders() വിളിക്കുന്നില്ല! അതാണ് ഈ സ്പീഡിന്റെ രഹസ്യം.
+                // 4. 🔥 ഏറ്റവും പ്രധാനം: കാർഡ് പുതിയ ടാബിൽ ഉടനടി വരച്ചു ചേർക്കുന്നു! 
+                // നമ്മൾ സെർച്ച് വളരെ സ്പീഡ് ആക്കിയത് കൊണ്ട് ഇത് ലാഗ് ഇല്ലാതെ തൽക്ഷണം വരും.
+                filterOrders(false);
             });
         }
     });
