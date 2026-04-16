@@ -897,12 +897,12 @@ function renderTabs(orders, externalCounts = null) {
             if (status === 'Completed') timelineStats[fullKey].C++;
 
             if (['Pending', 'Sent', 'Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
-                let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
-                let totalC = parseInt(o.Courier_Charge) || 0;
-                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                let actualC = parseInt(d.Actual_Courier_Cost) || parseInt(d.actualCourierCost) || 0;
+                let totalC = parseInt(d.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(d.state, d.provider || d.Courier_Provider, qty);
                 if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
 
-                let rawProvider = String(o.provider || o.Courier_Provider || o['Courier Provider'] || 'Other').trim();
+                let rawProvider = String(d.provider || d.Courier_Provider || d['Courier Provider'] || 'Other').trim();
 
                 if (rawProvider.toUpperCase() === 'DIRECT') {
                     actualC = totalC;
