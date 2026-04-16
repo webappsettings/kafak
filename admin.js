@@ -1013,14 +1013,15 @@ function renderTabs(orders, externalCounts = null) {
         }
     });
 
-    // 🔥 SMART LOAD MORE BUTTONS (Pro Lazy Loading UI)
+    // 🔥 SMART LOAD MORE BUTTONS (Manual Click for History Tabs)
     const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
         currentDrawn = currentDrawn || 0;
         if (listElement && totalAvailable > currentDrawn) {
+            let left = totalAvailable - currentDrawn;
             listElement.innerHTML += `
-            <div class="text-center my-4 pb-4 w-100 lazy-load-trigger" id="loader-box-${tabKey}">
-                <button onclick="triggerLazyLoad('${tabKey}', this)" class="btn btn-light rounded-pill px-4 py-2 shadow-sm fw-bold text-muted" style="font-size:12px; border:1px solid #e2e8f0; transition:all 0.3s;">
-                    <i class="fas fa-chevron-down me-1"></i> Scroll down to load more
+            <div class="text-center my-4 pb-4 w-100" id="loader-box-${tabKey}">
+                <button onclick="loadMoreCards('${tabKey}')" class="btn btn-light rounded-pill px-4 py-2 shadow-sm fw-bold text-secondary" style="font-size:12px; border:1px solid #e2e8f0; transition:all 0.3s;">
+                    <i class="fas fa-history me-1"></i> Load Older Orders (${left})
                 </button>
             </div>`;
         }
@@ -1782,14 +1783,21 @@ function updateSyncButtonUI() {
 }
 
 
-// 🔥 1. Sub-Tab Limits (Initial 20 cards per section)
+// 🔥 1. SMART TAB LIMITS (Active Tabs: Unlimited, History Tabs: 20)
 window.tabLimits = {
-    new: 20, sent: 20, paid_new: 20, paid_print: 20, disp_new: 20, disp_track: 20
+    new: 999999, sent: 20, paid_new: 999999, paid_print: 999999, disp_new: 999999, disp_track: 20
 };
 
 window.loadMoreCards = function (tabKey) {
-    window.tabLimits[tabKey] += 50; // Load More adikkumpol 50 ennam koodum
-    filterOrders(false); // UI refresh cheyyunnu
+    // ലോഡ് ആവുന്ന സമയത്ത് ബട്ടൺ കറങ്ങാൻ (Loading അനിമേഷൻ)
+    let btn = document.querySelector(`#loader-box-${tabKey} button`);
+    if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+
+    // ചെറിയൊരു ഡിലേ കൊടുത്ത് ലോഡ് ചെയ്യുന്നു (സ്ക്രീൻ ഫ്രീസ് ആവാതിരിക്കാൻ)
+    setTimeout(() => {
+        window.tabLimits[tabKey] += 50; // ക്ലിക്ക് ചെയ്യുമ്പോൾ 50 എണ്ണം വീതം കൂടും
+        filterOrders(false);
+    }, 50);
 };
 
 // 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ (Zero Lag Search)
@@ -10253,34 +10261,3 @@ function generateLabel(oid) {
     });
 }
 
-// 🔥 PRO LAZY LOADING TRIGGER (With Animation Delay)
-window.triggerLazyLoad = function (tabKey, btnElement) {
-    if (btnElement.disabled) return;
-
-    btnElement.disabled = true;
-    // പ്രൊഫഷണൽ ലോഡിങ് സ്പിന്നർ കാണിക്കുന്നു
-    btnElement.innerHTML = '<i class="fas fa-circle-notch fa-spin text-primary fs-5"></i><span class="ms-2 text-dark fw-bold">Loading...</span>';
-    btnElement.classList.add('lazy-loader-box');
-
-    // അര സെക്കൻഡ് (500ms) കാത്തിരുന്ന ശേഷം ഡാറ്റ ലോഡ് ചെയ്യുന്നു (പ്രൊഫഷണൽ ഫീൽ കിട്ടാൻ)
-    setTimeout(() => {
-        window.tabLimits[tabKey] += 20; // അടുത്ത 20 കാർഡുകൾ എടുക്കുന്നു
-        filterOrders(false);
-    }, 500);
-};
-
-// 🔥 AUTO SCROLL DETECTOR (Instagram/Facebook Style)
-window.addEventListener('scroll', function () {
-    localStorage.setItem('lastScrollPosition', window.scrollY);
-
-    // സ്ക്രീനിന്റെ ഏറ്റവും താഴെ എത്തുന്നതിന് അല്പം മുൻപ് തന്നെ തനിയെ ലോഡ് ആവും
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 700) {
-        let activeTabPane = document.querySelector('.tab-pane.active');
-        if (activeTabPane) {
-            let loadMoreBtn = activeTabPane.querySelector('.lazy-load-trigger button');
-            if (loadMoreBtn && !loadMoreBtn.disabled) {
-                loadMoreBtn.click(); // തനിയെ ബട്ടൺ അമർത്തുന്നു
-            }
-        }
-    }
-});
