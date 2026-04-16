@@ -879,108 +879,145 @@ function renderTabs(orders, externalCounts = null) {
             if (type === 'dispatched') displayDateRaw = info.dDate.getTime();
 
             let dateLabel = getTimelineLabel(displayDateRaw);
+            let fullKey = `${dateKey}_${dateLabel}`;
 
-            if (dateKey === 'disp_track' && !showAllTracking) {
-                if (!visibleDates.disp_track.has(dateLabel) && visibleDates.disp_track.size >= 3) {
-                    oldTrackingCount++; return;
-                }
-                visibleDates.disp_track.add(dateLabel);
-            }
-            if (dateKey === 'sent' && !window.showAllSent) {
-                if (!visibleDates.sent.has(dateLabel) && visibleDates.sent.size >= 3) {
-                    oldSentCount++; return;
-                }
-                visibleDates.sent.add(dateLabel);
+            if (!timelineStats[fullKey]) {
+                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, qtyCounts: {}, D: 0, C: 0, R: 0 };
             }
 
-            let safeGroupId = dateKey + '_' + dateLabel.replace(/[^a-zA-Z0-9]/g, '_');
-
-            if (dateLabel !== lastDateMap[dateKey]) {
-                if (lastDateMap[dateKey] !== '') firstDateFlags[dateKey] = false;
-                let extraHtml = '';
-                let sStats = timelineStats[`${dateKey}_${dateLabel}`];
-                if (sStats) {
-                    // 1. COURIER & COST SECTION (Mattiya bhagam)
-                    let courierDetails = [];
-                    for (let p in sStats.couriers) {
-                        // onclick-ൽ event പാസ്സ് ചെയ്യുന്നു
-                        courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
-                    }
-
-                    let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
-
-                    // Cost 0 anenkil ₹0 ennu kanikkathirikkan
-                    let costDisplay = sStats.cost > 0 ? `₹${sStats.cost} ` : '';
-
-                    // Courier detailso cost-o undenkil mathram aa section kanikkuka (cost 0 anenkilum filter varum)
-                    if (courierDetails.length > 0 || sStats.cost > 0) {
-                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ${costDisplay}${courierStr}</span>`;
-                    }
-
-                    // 2. ORDER COUNT SECTION
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-box-open text-muted me-1" style="font-size:10px;"></i> ${sStats.count}</span>`;
-
-                    // 3. BOTTLE QUANTITY FILTER SECTION
-                    let qtyDetails = [];
-                    if (sStats.qtyCounts) {
-                        let sortedKeys = Object.keys(sStats.qtyCounts).sort((a, b) => a - b);
-                        sortedKeys.forEach(q => {
-                            qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleQtyFilter(event, this, '${q}', '${safeGroupId}')">${q}x${sStats.qtyCounts[q]}</span>`);
-                        });
-                    }
-                    let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:8.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
-
-                    extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-wine-bottle text-muted me-1" style="font-size:10px;"></i> ${sStats.bottles} ${qtyStr}</span>`;
-
-                    // 4. BADGES (D & C) SECTION
-                    let badgeStr = "";
-                    if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
-                    if (sStats.C > 0) badgeStr += `<span class="text-success fw-bold ms-1" style="font-size:10px;">(${sStats.C} C)</span>`;
-
-                    if (badgeStr !== "") {
-                        extraHtml += `<span class="ms-2 ps-1 border-start border-secondary d-flex align-items-center">${badgeStr}</span>`;
-                    }
-                }
-
-                let groupCbHtml = '';
-                if (dateKey === 'paid_new' || dateKey === 'paid_print') {
-                    groupCbHtml = `
-                    <div class="form-check ms-3 mb-0 d-flex align-items-center" onclick="event.stopPropagation();">
-                        <input class="form-check-input mt-0 group-cb-${safeGroupId}" type="checkbox" id="cb-${safeGroupId}" style="width:13px; height:13px; cursor:pointer; border-color: #64748b;" onclick="toggleGroup('${safeGroupId}', this.checked)">
-                        <label class="form-check-label text-dark ms-1 fw-bold" for="cb-${safeGroupId}" style="font-size:10px; cursor:pointer; margin-top:2px;"></label>
-                    </div>`;
-                }
-
-                targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 258px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`;
-                lastDateMap[dateKey] = dateLabel;
+            if (!timelineStats[fullKey].couriers) {
+                timelineStats[fullKey].couriers = {};
             }
 
-            let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
+            timelineStats[fullKey].count++;
+            timelineStats[fullKey].bottles += qty;
+            timelineStats[fullKey].qtyCounts[qty] = (timelineStats[fullKey].qtyCounts[qty] || 0) + 1;
+
+            if (status === 'Delivered') timelineStats[fullKey].D++;
+            if (status === 'Completed') timelineStats[fullKey].C++;
+
+            if (['Pending', 'Sent', 'Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
+                let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
+                let totalC = parseInt(o.Courier_Charge) || 0;
+                if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+
+                let rawProvider = String(o.provider || o.Courier_Provider || o['Courier Provider'] || 'Other').trim();
+
+                if (rawProvider.toUpperCase() === 'DIRECT') {
+                    actualC = totalC;
+                }
+
+                let shortProvider = rawProvider.replace(/Courier|Couriers|Logistics/ig, '').trim();
+                if (shortProvider.length > 12) {
+                    shortProvider = shortProvider.substring(0, 10) + '..';
+                }
+                if (!shortProvider) shortProvider = 'Other';
+
+                if (!timelineStats[fullKey].couriers[shortProvider]) {
+                    timelineStats[fullKey].couriers[shortProvider] = { count: 0, cost: 0 };
+                }
+                timelineStats[fullKey].couriers[shortProvider].count++;
+                timelineStats[fullKey].couriers[shortProvider].cost += actualC;
+                timelineStats[fullKey].cost += actualC;
+
+                if (status === 'Dispatched' || status === 'Paid') {
+                    if (tabCourierTotal[dateKey] !== undefined) {
+                        tabCourierTotal[dateKey] += actualC;
+                    }
+                }
+            }
+
+            // 🔥 SPEED BOOST: ഡാറ്റ എല്ലാം കാൽക്കുലേറ്റ് ചെയ്തു കഴിഞ്ഞു. ഇനി കാർഡ് വരയ്ക്കാൻ ലിമിറ്റ് നോക്കുന്നു.
             if (htmlDrawCounts[type] === undefined) htmlDrawCounts[type] = 0;
 
             if (htmlDrawCounts[type] < window.tabLimits[type]) {
+
+                let safeGroupId = dateKey + '_' + dateLabel.replace(/[^a-zA-Z0-9]/g, '_');
+
+                // ഹെഡർ വരയ്ക്കുന്നു
+                if (dateLabel !== lastDateMap[dateKey]) {
+                    if (lastDateMap[dateKey] !== '') firstDateFlags[dateKey] = false;
+                    let extraHtml = '';
+                    let sStats = timelineStats[`${dateKey}_${dateLabel}`];
+                    if (sStats) {
+                        let courierDetails = [];
+                        for (let p in sStats.couriers) {
+                            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
+                        }
+                        let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
+                        let costDisplay = sStats.cost > 0 ? `₹${sStats.cost} ` : '';
+                        if (courierDetails.length > 0 || sStats.cost > 0) {
+                            extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ${costDisplay}${courierStr}</span>`;
+                        }
+
+                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-box-open text-muted me-1" style="font-size:10px;"></i> ${sStats.count}</span>`;
+
+                        let qtyDetails = [];
+                        if (sStats.qtyCounts) {
+                            let sortedKeys = Object.keys(sStats.qtyCounts).sort((a, b) => a - b);
+                            sortedKeys.forEach(q => {
+                                qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleQtyFilter(event, this, '${q}', '${safeGroupId}')">${q}x${sStats.qtyCounts[q]}</span>`);
+                            });
+                        }
+                        let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:8.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
+                        extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-wine-bottle text-muted me-1" style="font-size:10px;"></i> ${sStats.bottles} ${qtyStr}</span>`;
+
+                        let badgeStr = "";
+                        if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
+                        if (sStats.C > 0) badgeStr += `<span class="text-success fw-bold ms-1" style="font-size:10px;">(${sStats.C} C)</span>`;
+                        if (badgeStr !== "") {
+                            extraHtml += `<span class="ms-2 ps-1 border-start border-secondary d-flex align-items-center">${badgeStr}</span>`;
+                        }
+                    }
+
+                    let groupCbHtml = '';
+                    if (dateKey === 'paid_new' || dateKey === 'paid_print') {
+                        groupCbHtml = `
+                        <div class="form-check ms-3 mb-0 d-flex align-items-center" onclick="event.stopPropagation();">
+                            <input class="form-check-input mt-0 group-cb-${safeGroupId}" type="checkbox" id="cb-${safeGroupId}" style="width:13px; height:13px; cursor:pointer; border-color: #64748b;" onclick="toggleGroup('${safeGroupId}', this.checked)">
+                            <label class="form-check-label text-dark ms-1 fw-bold" for="cb-${safeGroupId}" style="font-size:10px; cursor:pointer; margin-top:2px;"></label>
+                        </div>`;
+                    }
+
+                    targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 258px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`;
+                    lastDateMap[dateKey] = dateLabel;
+                }
+
+                // കാർഡ് വരയ്ക്കുന്നു
+                let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
                 targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId);
+
+                // വരച്ച കാർഡിന്റെ എണ്ണം கூட்டുന്നു
                 htmlDrawCounts[type]++;
             }
         }
     });
 
-    const addLoadMoreBtn = (listElement, count, funcName) => {
-        if (count > 0 && listElement) {
+    // 🔥 SMART LOAD MORE BUTTONS (Lazy Loading - True Counts vs Drawn Counts)
+    let tCounts = externalCounts || counts; // ശരിക്കുമുള്ള സെർവർ ഡാറ്റയുടെ എണ്ണം
+
+    const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
+        if (listElement && totalAvailable > currentDrawn) {
+            let left = totalAvailable - currentDrawn;
             listElement.innerHTML += `
-            <div class="text-center my-4">
-                <button onclick="${funcName}()" class="btn btn-light border border-secondary border-opacity-50 text-secondary btn-sm rounded-pill px-4 shadow-sm fw-bold" style="font-size:11px;">
-                    <i class="fas fa-history me-1"></i> Load Old Orders (${count})
+            <div class="text-center my-4 pb-3">
+                <button onclick="loadMoreCards('${tabKey}')" class="btn btn-outline-secondary btn-sm fw-bold rounded-pill px-4 shadow-sm" style="border: 2px solid #ccc;">
+                    <i class="fas fa-chevron-down me-1"></i> Load More (${left} Left)
                 </button>
             </div>`;
         }
     };
 
-    if (!showAllTracking) addLoadMoreBtn(listDispTracked, oldTrackingCount, 'loadOldTrackingOrders');
-    if (!window.showAllSent) addLoadMoreBtn(listSent, oldSentCount, 'loadOldSentOrders');
-    if (!window.showAllPending) addLoadMoreBtn(listNew, oldPendingCount, 'loadOldPendingOrders');
-    if (!window.showAllDispNew) addLoadMoreBtn(listDispNew, oldDispNewCount, 'loadOldDispNewOrders');
+    // ഓരോ സബ്-ടാബുകൾക്കും ബട്ടൺ നൽകുന്നു
+    addSmartLoadBtn(listNew, htmlDrawCounts['pending'], tCounts.pending, 'pending');
+    addSmartLoadBtn(listSent, htmlDrawCounts['pending'], tCounts.pending, 'pending');
+    addSmartLoadBtn(listPaidNew, htmlDrawCounts['paid'], tCounts.paid, 'paid');
+    addSmartLoadBtn(listPaidPrinted, htmlDrawCounts['paid'], tCounts.paid, 'paid');
+    addSmartLoadBtn(listDispNew, htmlDrawCounts['dispatched'], tCounts.dispatched, 'dispatched');
+    addSmartLoadBtn(listDispTracked, htmlDrawCounts['dispatched'], tCounts.dispatched, 'dispatched');
 
+    // --- EMPTY UI LOGIC ---
     const getEmptyUI = (msg, subMsg, icon) => `
         <div class="text-center w-100 py-5 mt-3 fade-in d-flex flex-column align-items-center justify-content-center">
             <div style="width: 80px; height: 80px; background: #f8f9fa; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border: 1px dashed #ced4da;">
@@ -997,6 +1034,7 @@ function renderTabs(orders, externalCounts = null) {
     if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
     if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
+    // --- STICKY HEADER LOGIC ---
     const populateStickyHeader = (id, oCount, cTotal, sStats) => {
         let el = document.getElementById(`sticky-header-${id}`);
         if (!el) return;
@@ -1010,7 +1048,7 @@ function renderTabs(orders, externalCounts = null) {
         let totalTabCost = 0;
         let qStats = {};
         let oStats = {};
-        let cStats = {}; // 🔥 NEW: കൊറിയർ പ്രൊവൈഡർ സ്റ്റാറ്റ്സ്
+        let cStats = {};
 
         orders.forEach(o => {
             let info = getOrderInfo(o);
@@ -1050,7 +1088,6 @@ function renderTabs(orders, externalCounts = null) {
                 bCount += qty;
                 qStats[qty] = (qStats[qty] || 0) + 1;
 
-                // 1. ഓർഡർ കൗണ്ട് കാൽക്കുലേഷൻ
                 let currentPhone = String(o.phone || '').replace(/[^0-9]/g, '');
                 if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
                 let localOrders = 1;
@@ -1067,7 +1104,6 @@ function renderTabs(orders, externalCounts = null) {
                 if (tOrds === 0) tOrds = 1;
                 oStats[tOrds] = (oStats[tOrds] || 0) + 1;
 
-                // 2. കൊറിയർ ബ്രേക്ക്ഡൗൺ കാൽക്കുലേഷൻ
                 let rawP = String(o.provider || o.Courier_Provider || 'Other').trim();
                 let shortP = rawP.replace(/Courier|Couriers|Logistics/ig, '').trim();
                 if (shortP.length > 12) shortP = shortP.substring(0, 10) + '..';
@@ -1086,21 +1122,18 @@ function renderTabs(orders, externalCounts = null) {
             }
         });
 
-        // ബോട്ടിൽ ബ്രേക്ക്ഡൗൺ
         let qtyDetails = [];
         Object.keys(qStats).sort((a, b) => a - b).forEach(q => {
             qtyDetails.push(`<span class="qty-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabQtyFilter(event, this, '${q}')"><span style="color:#16a34a; font-weight:900; font-size:10px;">${q}</span> Btl x ${qStats[q]}</span>`);
         });
         let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
 
-        // ഓർഡർ ബ്രേക്ക്ഡൗൺ
         let ordDetails = [];
         Object.keys(oStats).sort((a, b) => a - b).forEach(ord => {
             ordDetails.push(`<span class="ord-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabOrdFilter(event, this, '${ord}')"><span style="color:#0284c7; font-weight:900; font-size:10px;">${ord}</span> Ord x ${oStats[ord]}</span>`);
         });
         let ordStr = ordDetails.length > 0 ? `<span style="font-size:9.5px; color:#64748b; font-weight:600; margin-left:4px;">(${ordDetails.join(', ')})</span>` : '';
 
-        // 🔥 കൊറിയർ ബ്രേക്ക്ഡൗൺ HTML
         let courierDetails = [];
         for (let p in cStats) {
             courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabCourierFilter(event, this, '${p}')">${p} ${cStats[p].count}: ${cStats[p].cost}</span>`);
@@ -1213,26 +1246,6 @@ function renderTabs(orders, externalCounts = null) {
     let savedScroll = localStorage.getItem('lastScrollPosition');
     if (savedScroll && parseInt(savedScroll) > 0) {
         setTimeout(() => { window.scrollTo(0, parseInt(savedScroll)); }, 100);
-    }
-
-    // 🔥 LOAD MORE BUTTONS (Based on True Server Count)
-    const addSmartLoadMoreBtn = (listElement, trueCount, currentLoaded, tabKey) => {
-        if (listElement && trueCount > currentLoaded) {
-            let left = trueCount - currentLoaded;
-            listElement.innerHTML += `
-            <div class="text-center my-4 fade-in">
-                <button onclick="loadMoreCards('${tabKey}')" class="btn btn-outline-secondary btn-sm fw-bold rounded-pill px-4 shadow-sm" style="border: 2px solid #ccc;">
-                    <i class="fas fa-chevron-down me-1"></i> Load More (${left} Orders Left)
-                </button>
-            </div>`;
-        }
-    };
-
-    if (externalCounts) {
-        addSmartLoadMoreBtn(listNew, externalCounts.pending, subCounts.new, 'pending');
-        addSmartLoadMoreBtn(listSent, externalCounts.sent, subCounts.sent, 'sent');
-        // ശ്രദ്ധിക്കുക: Paid, Dispatched ടാബുകൾ sub-tabs ആയി തിരിച്ചതുകൊണ്ട് ഇതിൽ എണ്ണം കൃത്യമായി കിട്ടാൻ കുറച്ച് കൂടി ലോജിക് വേണം.
-        // തൽക്കാലം ഇത് പ്രധാന ടാബുകൾക്ക് നൽകുന്നു.
     }
 
     if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
@@ -1752,14 +1765,14 @@ function updateSyncButtonUI() {
 }
 
 
-// 🔥 1. ഗ്ലോബൽ കാർഡ് ലിമിറ്റ് (തുടക്കത്തിൽ 20 എണ്ണം മാത്രം ലോഡ് ചെയ്യും)
-window.tabLimits = { pending: 20, sent: 20, paid: 20, dispatched: 20, completed: 20 };
+// 🔥 1. Sub-Tab Limits (Initial 20 cards per section)
+window.tabLimits = {
+    new: 20, sent: 20, paid_new: 20, paid_print: 20, disp_new: 20, disp_track: 20
+};
 
-window.loadMoreCards = function (tabName) {
-    window.tabLimits[tabName] += 30; // Load More അടിച്ചാൽ 30 എണ്ണം വീതം കൂടും
-    // 🔥 വീണ്ടും മുഴുവനായി വരയ്ക്കുന്നതിന് പകരം പുതിയവ മാത്രം ചേർക്കാൻ ഭാവിയിൽ മാറ്റാം. 
-    // തൽക്കാലം ഇത് ഏറ്റവും കുറഞ്ഞ ഡാറ്റ മാത്രം എടുത്ത് വരയ്ക്കും
-    renderTabsWithLimit(true);
+window.loadMoreCards = function (tabKey) {
+    window.tabLimits[tabKey] += 50; // Load More adikkumpol 50 ennam koodum
+    filterOrders(false); // UI refresh cheyyunnu
 };
 
 // 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ (Zero Lag Search)
