@@ -928,10 +928,10 @@ function renderTabs(orders, externalCounts = null) {
                 }
             }
 
-            // 🔥 SPEED BOOST: ഡാറ്റ എല്ലാം കാൽക്കുലേറ്റ് ചെയ്തു കഴിഞ്ഞു. ഇനി കാർഡ് വരയ്ക്കാൻ ലിമിറ്റ് നോക്കുന്നു.
-            if (htmlDrawCounts[type] === undefined) htmlDrawCounts[type] = 0;
+            // 🔥 SPEED BOOST FIX: type ന് പകരം dateKey ഉപയോഗിക്കുന്നു!
+            if (htmlDrawCounts[dateKey] === undefined) htmlDrawCounts[dateKey] = 0;
 
-            if (htmlDrawCounts[type] < window.tabLimits[type]) {
+            if (htmlDrawCounts[dateKey] < window.tabLimits[dateKey]) {
 
                 let safeGroupId = dateKey + '_' + dateLabel.replace(/[^a-zA-Z0-9]/g, '_');
 
@@ -988,16 +988,17 @@ function renderTabs(orders, externalCounts = null) {
                 let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
                 targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId);
 
-                // വരച്ച കാർഡിന്റെ എണ്ണം கூட்டുന്നു
-                htmlDrawCounts[type]++;
+                // 🔥 FIX: വരച്ച കാർഡിന്റെ എണ്ണം കൃത്യമായ dateKey യിൽ കൂട്ടുന്നു
+                htmlDrawCounts[dateKey]++;
             }
         }
     });
 
     // 🔥 SMART LOAD MORE BUTTONS (Lazy Loading - True Counts vs Drawn Counts)
-    let tCounts = externalCounts || counts; // ശരിക്കുമുള്ള സെർവർ ഡാറ്റയുടെ എണ്ണം
-
     const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
+        // currentDrawn undefined ആണെങ്കിൽ 0 ആക്കുന്നു
+        currentDrawn = currentDrawn || 0;
+
         if (listElement && totalAvailable > currentDrawn) {
             let left = totalAvailable - currentDrawn;
             listElement.innerHTML += `
@@ -1009,13 +1010,13 @@ function renderTabs(orders, externalCounts = null) {
         }
     };
 
-    // ഓരോ സബ്-ടാബുകൾക്കും ബട്ടൺ നൽകുന്നു
-    addSmartLoadBtn(listNew, htmlDrawCounts['pending'], tCounts.pending, 'pending');
-    addSmartLoadBtn(listSent, htmlDrawCounts['pending'], tCounts.pending, 'pending');
-    addSmartLoadBtn(listPaidNew, htmlDrawCounts['paid'], tCounts.paid, 'paid');
-    addSmartLoadBtn(listPaidPrinted, htmlDrawCounts['paid'], tCounts.paid, 'paid');
-    addSmartLoadBtn(listDispNew, htmlDrawCounts['dispatched'], tCounts.dispatched, 'dispatched');
-    addSmartLoadBtn(listDispTracked, htmlDrawCounts['dispatched'], tCounts.dispatched, 'dispatched');
+    // 🔥 FIX: ഓരോ സബ്-ടാബുകൾക്കും ശരിയായ പേരിൽ (dateKey) ബട്ടൺ നൽകുന്നു
+    addSmartLoadBtn(listNew, htmlDrawCounts['new'], subCounts.new, 'new');
+    addSmartLoadBtn(listSent, htmlDrawCounts['sent'], subCounts.sent, 'sent');
+    addSmartLoadBtn(listPaidNew, htmlDrawCounts['paid_new'], subCounts.paid_new, 'paid_new');
+    addSmartLoadBtn(listPaidPrinted, htmlDrawCounts['paid_print'], subCounts.paid_print, 'paid_print');
+    addSmartLoadBtn(listDispNew, htmlDrawCounts['disp_new'], subCounts.disp_new, 'disp_new');
+    addSmartLoadBtn(listDispTracked, htmlDrawCounts['disp_track'], subCounts.disp_track, 'disp_track');
 
     // --- EMPTY UI LOGIC ---
     const getEmptyUI = (msg, subMsg, icon) => `
