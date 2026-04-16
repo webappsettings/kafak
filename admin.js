@@ -7,6 +7,25 @@ if ('caches' in window) {
     });
 }
 
+// 🔥 SMOOTH LAZY LOAD CSS ANIMATION
+if (!$('#lazy-load-css').length) {
+    $('<style id="lazy-load-css">').html(`
+        .card-lazy-enter {
+            animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .lazy-loader-box {
+            background: transparent !important;
+            border: none !important;
+            box-shadow: none !important;
+        }
+    `).appendTo('head');
+}
+
 const scriptURL = "https://script.google.com/macros/s/AKfycby0FKN1jwmorhTc0kLo_csODZM7j-p6SCsMtiY28skoBtGUnL3zOlprfp7IQmfO1Mt7Lw/exec";
 
 // Beep Sound for Scanner
@@ -994,23 +1013,20 @@ function renderTabs(orders, externalCounts = null) {
         }
     });
 
-    // 🔥 SMART LOAD MORE BUTTONS (Lazy Loading - True Counts vs Drawn Counts)
+    // 🔥 SMART LOAD MORE BUTTONS (Pro Lazy Loading UI)
     const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
-        // currentDrawn undefined ആണെങ്കിൽ 0 ആക്കുന്നു
         currentDrawn = currentDrawn || 0;
-
         if (listElement && totalAvailable > currentDrawn) {
-            let left = totalAvailable - currentDrawn;
             listElement.innerHTML += `
-            <div class="text-center my-4 pb-3">
-                <button onclick="loadMoreCards('${tabKey}')" class="btn btn-outline-secondary btn-sm fw-bold rounded-pill px-4 shadow-sm" style="border: 2px solid #ccc;">
-                    <i class="fas fa-chevron-down me-1"></i> Load More (${left} Left)
+            <div class="text-center my-4 pb-4 w-100 lazy-load-trigger" id="loader-box-${tabKey}">
+                <button onclick="triggerLazyLoad('${tabKey}', this)" class="btn btn-light rounded-pill px-4 py-2 shadow-sm fw-bold text-muted" style="font-size:12px; border:1px solid #e2e8f0; transition:all 0.3s;">
+                    <i class="fas fa-chevron-down me-1"></i> Scroll down to load more
                 </button>
             </div>`;
         }
     };
 
-    // 🔥 FIX: ഓരോ സബ്-ടാബുകൾക്കും ശരിയായ പേരിൽ (dateKey) ബട്ടൺ നൽകുന്നു
+    // ഓരോ സബ്-ടാബുകൾക്കും ബട്ടൺ നൽകുന്നു
     addSmartLoadBtn(listNew, htmlDrawCounts['new'], subCounts.new, 'new');
     addSmartLoadBtn(listSent, htmlDrawCounts['sent'], subCounts.sent, 'sent');
     addSmartLoadBtn(listPaidNew, htmlDrawCounts['paid_new'], subCounts.paid_new, 'paid_new');
@@ -1337,10 +1353,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if (totalOrders === 0) totalOrders = 1;
     if (totalBottles === 0) totalBottles = parseInt(d.quantity) || 1;
 
-    if (isCompact) {
+    iif(isCompact) {
         let phoneDisplay = d.phone ? String(d.phone || '').replace(/[^0-9]/g, '').slice(-10) : '';
         return `
-        <div class="col-12 col-md-6 col-lg-6" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
+        <div class="col-12 col-md-6 col-lg-6 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
             <div class="order-card p-0 shadow-sm border-0 mb-2" style="border-radius:10px; overflow:hidden;">
                 <div class="d-flex align-items-center justify-content-between p-3 bg-white" 
                      onclick="toggleCardUI(this.parentElement)" 
@@ -1700,7 +1716,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     let directEditBtn = isDirectSelected ? `<button class="btn btn-sm btn-warning ms-1 me-2 shadow-sm" style="padding:2px 6px; font-size:10px; border-radius:4px;" onclick="event.stopPropagation(); openDirectDeliveryPopup('${d.orderid}')" title="Edit Delivery Charge"><i class="fas fa-edit"></i></button>` : '';
 
     return `
-    <div class="col-12 col-md-12 col-lg-12" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
+    <div class="col-12 col-md-12 col-lg-12 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
         <div class="order-card p-3">
             <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>${headerLeft}</div>
@@ -4794,29 +4810,7 @@ window.openPaidNumWA = function (num) {
     }
 }
 
-// 🔥 AUTO SCROLL RESTORE & INFINITE LAZY LOADING
-window.addEventListener('scroll', function () {
-    // 1. സ്ക്രോൾ പൊസിഷൻ സേവ് ചെയ്യുന്നു
-    localStorage.setItem('lastScrollPosition', window.scrollY);
 
-    // 2. 🔥 AUTO LAZY LOADING (താഴെ എത്തുമ്പോൾ തനിയെ അടുത്ത കാർഡുകൾ ലോഡ് ആകും)
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
-        let activeTabPane = document.querySelector('.tab-pane.active');
-        if (activeTabPane) {
-            // ആക്ടീവ് ടാബിലുള്ള Load More ബട്ടൺ കണ്ടുപിടിക്കുന്നു
-            let loadMoreBtn = activeTabPane.querySelector('button[onclick^="loadMoreCards"]');
-
-            if (loadMoreBtn && !loadMoreBtn.classList.contains('loading-active')) {
-                // ഒന്നിലധികം തവണ ലോഡ് ആവാതിരിക്കാൻ ഒരു ക്ലാസ്സ് കൊടുക്കുന്നു
-                loadMoreBtn.classList.add('loading-active');
-                loadMoreBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
-
-                // ബട്ടൺ തനിയെ ക്ലിക്ക് ചെയ്യുന്നു!
-                loadMoreBtn.click();
-            }
-        }
-    }
-});
 
 // 2. ടാബ് മാറുമ്പോൾ സ്ക്രോൾ മുകളിലേക്ക് തന്നെ പോകാൻ (Optional)
 const tabButtons = document.querySelectorAll('button[data-bs-toggle="pill"]');
@@ -10258,3 +10252,35 @@ function generateLabel(oid) {
         }
     });
 }
+
+// 🔥 PRO LAZY LOADING TRIGGER (With Animation Delay)
+window.triggerLazyLoad = function (tabKey, btnElement) {
+    if (btnElement.disabled) return;
+
+    btnElement.disabled = true;
+    // പ്രൊഫഷണൽ ലോഡിങ് സ്പിന്നർ കാണിക്കുന്നു
+    btnElement.innerHTML = '<i class="fas fa-circle-notch fa-spin text-primary fs-5"></i><span class="ms-2 text-dark fw-bold">Loading...</span>';
+    btnElement.classList.add('lazy-loader-box');
+
+    // അര സെക്കൻഡ് (500ms) കാത്തിരുന്ന ശേഷം ഡാറ്റ ലോഡ് ചെയ്യുന്നു (പ്രൊഫഷണൽ ഫീൽ കിട്ടാൻ)
+    setTimeout(() => {
+        window.tabLimits[tabKey] += 20; // അടുത്ത 20 കാർഡുകൾ എടുക്കുന്നു
+        filterOrders(false);
+    }, 500);
+};
+
+// 🔥 AUTO SCROLL DETECTOR (Instagram/Facebook Style)
+window.addEventListener('scroll', function () {
+    localStorage.setItem('lastScrollPosition', window.scrollY);
+
+    // സ്ക്രീനിന്റെ ഏറ്റവും താഴെ എത്തുന്നതിന് അല്പം മുൻപ് തന്നെ തനിയെ ലോഡ് ആവും
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 700) {
+        let activeTabPane = document.querySelector('.tab-pane.active');
+        if (activeTabPane) {
+            let loadMoreBtn = activeTabPane.querySelector('.lazy-load-trigger button');
+            if (loadMoreBtn && !loadMoreBtn.disabled) {
+                loadMoreBtn.click(); // തനിയെ ബട്ടൺ അമർത്തുന്നു
+            }
+        }
+    }
+});
