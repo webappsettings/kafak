@@ -1353,7 +1353,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if (totalOrders === 0) totalOrders = 1;
     if (totalBottles === 0) totalBottles = parseInt(d.quantity) || 1;
 
-    iif(isCompact) {
+    if (isCompact) {
         let phoneDisplay = d.phone ? String(d.phone || '').replace(/[^0-9]/g, '').slice(-10) : '';
         return `
         <div class="col-12 col-md-6 col-lg-6 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
