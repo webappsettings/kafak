@@ -26,7 +26,7 @@ if (!$('#lazy-load-css').length) {
     `).appendTo('head');
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycby0FKN1jwmorhTc0kLo_csODZM7j-p6SCsMtiY28skoBtGUnL3zOlprfp7IQmfO1Mt7Lw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbxodCZBoog4q8z0CLyPbA0wxPUAFr0_hLWsVfEP7Vg_uglHVzues0LcjlyGjRjU-wXo4Q/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -2563,7 +2563,7 @@ window.undoUpdate = function (oid, type) {
             pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'paidNum'));
         }
     }
-    // 🔥 2. NEW: PHONES UNDO (നമ്മൾ പുതിയതായി ചേർത്തത്)
+    // 2. PHONES UNDO
     else if (type === 'phones') {
         removedItem = pendingUpdates.find(u => u.oid === oid && u.action === 'phones');
         if (removedItem) {
@@ -2577,69 +2577,75 @@ window.undoUpdate = function (oid, type) {
             pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'phones'));
         }
     }
-    // 3. META UNDO (Contact Prefs, Printed, Tracked) & COURIER UNDO
+    // 🔥 3. NEW: TRACKING UNDO (Restores Local Balance & Updates Server)
+    else if (type === 'tracking') {
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action === 'tracking');
+        if (removedItem) {
+            let order = allOrders.find(o => o.orderid === oid);
+            if (order) delete order.tracking;
+
+            let tType = String(removedItem.tracking).startsWith('E') ? 'Speed' : 'Normal';
+
+            // ലോക്കൽ ബാലൻസിലേക്ക് തിരികെ കയറ്റുന്നു
+            if (window.trackingBalance && window.trackingBalance.fetched) {
+                if (tType === 'Speed') window.trackingBalance.speed += 1;
+                else window.trackingBalance.normal += 1;
+            }
+
+            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'tracking'));
+
+            // 🔥 'Used' സ്റ്റാറ്റസ് മായ്ച്ചു കളയാൻ സെർവറിലേക്ക് നിർദേശം നൽകുന്നു (REVERT)
+            fetch(scriptURL, {
+                method: 'POST',
+                body: JSON.stringify({ action: 'revertTrackers', trackers: [{ id: removedItem.tracking, type: tType }] })
+            });
+        }
+    }
+    // 4. META UNDO (Contact Prefs, Printed, Tracked) & COURIER UNDO
     else if (type === true || type === 'meta') {
         let metaIndex = pendingUpdates.findIndex(u => u.oid === oid && u.action === 'meta');
-
         if (metaIndex > -1) {
             removedItem = pendingUpdates[metaIndex];
             let order = allOrders.find(o => o.orderid === oid);
-
             if (order) {
-                // A. Restore Courier if it was a courier update
                 if (removedItem.provider !== undefined) {
                     order.provider = removedItem.oldProvider;
                     order.Courier_Provider = removedItem.oldProvider;
                     order.Courier_Charge = removedItem.oldCharge;
                     order.Grand_Total = removedItem.oldTotal;
                 }
-
-                // B. Restore Meta String if it was a preference update
                 if (removedItem.meta !== undefined && removedItem.oldMeta !== undefined) {
                     order.adminMeta = removedItem.oldMeta;
                 }
             }
-            pendingUpdates.splice(metaIndex, 1); // Remove from list
+            pendingUpdates.splice(metaIndex, 1);
         }
     }
-    // 4. STATUS UNDO (Pending, Sent, Paid, Dispatched etc)
+    // 5. STATUS UNDO
     else {
-        removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones');
+        removedItem = pendingUpdates.find(u => u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones' && u.action !== 'tracking');
         if (removedItem) {
             let orderIndex = allOrders.findIndex(o => o.orderid === oid);
             if (orderIndex !== -1) {
-                // Restore old status
                 allOrders[orderIndex].Status = removedItem.oldStatus || "Pending";
-
-                // Remove tracking if it was added during this step
                 if (removedItem.tracking) delete allOrders[orderIndex].tracking;
-
-                // Remove Dispatch Date if it was added
                 if (removedItem.status === 'Dispatched') delete allOrders[orderIndex]['Dispatched Date'];
                 if (removedItem.status === 'Paid') delete allOrders[orderIndex]['Paid Date'];
             }
-            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones'));
+            pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones' && u.action !== 'tracking'));
         }
     }
 
-    // Save final state back to Local Storage
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     localStorage.setItem('pendingUpdates', JSON.stringify(pendingUpdates));
 
-    // Refresh UI
     renderSyncList();
     updateSyncButtonUI();
+    if (typeof updateBalanceUI === 'function') updateBalanceUI();
 
-    updatePrintPrediction();
-    renderLiveStockTracker();
-
-    // 🔥 ഇത് കാർഡുകളെ തൽക്ഷണം പഴയ ടാബിലേക്ക് മാറ്റും! (ലിമിറ്റ് റീസെറ്റ് ചെയ്യാതെ)
     let searchInput = document.getElementById('searchInput');
-    if (searchInput && searchInput.value.trim() !== "") {
-        filterOrders(false); // സെർച്ച് ചെയ്യുകയാണെങ്കിലും ലിമിറ്റ് കളയാതെ റീലോഡ് ചെയ്യും
-    } else {
-        renderTabsWithLimit(false); // നോർമൽ മോഡിൽ ലിമിറ്റ് കളയാതെ റീലോഡ് ചെയ്യും
-    }
+    if (searchInput && searchInput.value.trim() !== "") filterOrders(false);
+    else renderTabsWithLimit(false);
 }
 // 🔥 3. UNDO EXPENSE (എക്സ്പെൻസ് സിങ്ക് ചെയ്യുന്നത് ക്യാൻസൽ ചെയ്യാൻ)
 window.undoExpenseUpdate = function (id) {
@@ -2650,10 +2656,12 @@ window.undoExpenseUpdate = function (id) {
     updateSyncButtonUI();
 };
 
+// 🔥 DISCARD ALL (Restores Everything including Tracking Numbers)
 window.discardAllUpdates = function () {
     if (!confirm("Are you sure you want to discard ALL pending changes?")) return;
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let revertedTrackersForBackend = [];
 
     pendingUpdates.forEach(u => {
         let order = allOrders.find(o => o.orderid === u.oid);
@@ -2675,14 +2683,31 @@ window.discardAllUpdates = function () {
                 if (u.status === 'Paid') delete order['Paid Date'];
             } else if (u.action === 'paidNum') {
                 order.paidNum = u.oldNum || "";
-            } else if (u.action === 'phones') { // 🔥 NEW
+            } else if (u.action === 'phones') {
                 order.phone = u.oldPhones.phone;
                 order.whatsapp = u.oldPhones.whatsapp;
                 order.altphone = u.oldPhones.altphone;
                 order.paidNum = u.oldPhones.paidNum;
+            } else if (u.action === 'tracking') { // 🔥 NEW: RESTORE TRACKING
+                delete order.tracking;
+                let tType = String(u.tracking).startsWith('E') ? 'Speed' : 'Normal';
+
+                if (window.trackingBalance && window.trackingBalance.fetched) {
+                    if (tType === 'Speed') window.trackingBalance.speed += 1;
+                    else window.trackingBalance.normal += 1;
+                }
+                revertedTrackersForBackend.push({ id: u.tracking, type: tType });
             }
         }
     });
+
+    // 🔥 ഡിലീറ്റ് ചെയ്ത എല്ലാ ട്രാക്കിങ് നമ്പറുകളുടെയും 'Used' സ്റ്റാറ്റസ് മായ്ക്കാൻ സെർവറിലേക്ക് അയക്കുന്നു (REVERT)
+    if (revertedTrackersForBackend.length > 0) {
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'revertTrackers', trackers: revertedTrackersForBackend })
+        });
+    }
 
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     localStorage.removeItem('pendingUpdates');
@@ -2693,7 +2718,8 @@ window.discardAllUpdates = function () {
     filterOrders(false);
     $('#syncModal').modal('hide');
     updateSyncButtonUI();
-    showToast('info', 'All changes discarded');
+    if (typeof updateBalanceUI === 'function') updateBalanceUI();
+    showToast('info', 'All changes discarded & Tracking numbers restored!');
     fetchOrders(true);
 }
 
