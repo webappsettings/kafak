@@ -501,7 +501,9 @@ function fetchOrders(forceLoad = false) {
                 updateSyncButtonUI();
                 fetchDashboardDataBg();
                 handleUrlSearch();
-                if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance(true);
+                if (forceLoad && typeof refreshTrackingBalance === 'function') {
+                    refreshTrackingBalance(true);
+                }
             }
         })
         .catch(err => {
