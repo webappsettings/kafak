@@ -1704,12 +1704,12 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     </div>`;
 }
 // 🔥 UPDATED: Sync Button UI (Orders + Expenses കൂട്ടാൻ)
-// 🔥 2. UPDATED SYNC BUTTON UI (Expense ഫോമിനുള്ളിൽ സിങ്ക് ബട്ടൺ കാണിക്കാൻ)
 function updateSyncButtonUI() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
 
-    let totalPending = pendingUpdates.length + pendingExpenses.length;
+    let totalPending = pendingUpdates.length + pendingExpenses.length + pendingPostalTrackers.length;
 
     const syncBtn = $('#sync-btn');
     const logoPlaceholder = $('#logo-placeholder');
@@ -2230,12 +2230,13 @@ window.syncWithServer = function () {
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
-    let allOrdersLocal = JSON.parse(localStorage.getItem('allOrdersCache') || "[]"); // കസ്റ്റമർ ഡാറ്റ എടുക്കാൻ
+    let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]"); // 🔥 ചേർത്തു
+    let allOrdersLocal = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
 
     const list = document.getElementById('sync-preview-list');
     const countDisplay = document.getElementById('sync-count-display');
 
-    let totalCount = pendingUpdates.length + pendingExpenses.length;
+    let totalCount = pendingUpdates.length + pendingExpenses.length + pendingPostalTrackers.length;
     countDisplay.innerText = totalCount;
     list.innerHTML = '';
 
@@ -2259,6 +2260,22 @@ function renderSyncList() {
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
 
     let itemsHtml = '';
+
+    // 🔥 POSTAL TRACKERS UI IN SYNC
+    if (pendingPostalTrackers.length > 0) {
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">📮 Scanned Postal Trackers</div>`;
+        pendingPostalTrackers.forEach(t => {
+            let badgeClass = t.type === 'Speed' ? 'bg-danger' : 'bg-primary';
+            itemsHtml += `
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #ffc107 !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="removeScannedTracker('${t.id}')" title="Discard"><i class="fas fa-times"></i></button>
+                <div class="fw-bold text-dark d-flex align-items-center" style="font-size:14px;">
+                    <i class="fas fa-barcode text-muted me-2"></i> ${t.id}
+                    <span class="badge ${badgeClass} ms-2" style="font-size:10px;">${t.type}</span>
+                </div>
+            </div>`;
+        });
+    }
 
     // --- A. COURIER UPDATES (NEW BEAUTIFUL UI) ---
     if (courierUpdates.length > 0) {
@@ -2609,6 +2626,8 @@ window.discardAllUpdates = function () {
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
     localStorage.removeItem('pendingUpdates');
     localStorage.removeItem('pendingExpenses');
+    localStorage.removeItem('pendingPostalTrackers');
+    scannedTrackers = [];
 
     filterOrders(false);
     $('#syncModal').modal('hide');
@@ -2621,8 +2640,9 @@ window.discardAllUpdates = function () {
 function finalConfirmSync() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
 
-    if (pendingUpdates.length === 0 && pendingExpenses.length === 0) return;
+    if (pendingUpdates.length === 0 && pendingExpenses.length === 0 && pendingPostalTrackers.length === 0) return;
 
     const btn = $('#syncModal button.btn-dark');
     btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> UPLOADING...');
@@ -2668,9 +2688,16 @@ function finalConfirmSync() {
         }));
     });
 
+    // 🔥 Postal Trackers Sync Logic
+    if (pendingPostalTrackers.length > 0) {
+        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addPostalTrackers', trackers: pendingPostalTrackers }) }));
+    }
+
     Promise.all(promises).then(() => {
         localStorage.removeItem('pendingUpdates');
         localStorage.removeItem('pendingExpenses');
+        localStorage.removeItem('pendingPostalTrackers');
+        scannedTrackers = [];
         $('#syncModal').modal('hide');
         showToast('success', 'Synced Successfully!');
         updateSyncButtonUI();
@@ -9771,12 +9798,14 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
 // ==========================================
 // 📦 POSTAL TRACKER SCANNER (WITH VERIFY & EDIT)
 // ==========================================
-let scannedTrackers = [];
-let postalQrScanner = null; // 🔥 എറർ ഒഴിവാക്കാൻ പേര് മാറ്റിയിട്ടുണ്ട്
+// ==========================================
+// 📦 POSTAL TRACKER SCANNER (WITH LOCAL SYNC)
+// ==========================================
+let scannedTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
+let postalQrScanner = null;
 let isScanPaused = false;
 
 window.openPostalScanner = function () {
-    scannedTrackers = [];
     isScanPaused = false;
 
     let html = `
@@ -9806,37 +9835,27 @@ window.openPostalScanner = function () {
     Swal.fire({
         title: '<i class="fas fa-barcode"></i> Postal Scanner',
         html: html,
-        showCancelButton: true,
-        confirmButtonText: '<i class="fas fa-cloud-upload-alt"></i> Save All to Sheet',
-        confirmButtonColor: '#198754',
-        cancelButtonText: 'Close',
+        showCancelButton: false,
+        confirmButtonText: 'Close Window',
+        confirmButtonColor: '#333',
         allowOutsideClick: false,
         didOpen: () => {
+            updatePostalTrackerUI(); // വിൻഡോ തുറക്കുമ്പോൾ തന്നെ പഴയ സേവ് ചെയ്തവ ലോഡ് ചെയ്യുന്നു
+
             document.getElementById('verify-track-input').addEventListener('input', function () {
                 let val = this.value.toUpperCase().trim();
                 document.getElementById('btn-confirm-track').disabled = (val.length !== 13);
             });
 
-            // 🔥 ക്യാമറയുടെ പേര് മാറ്റി
             postalQrScanner = new Html5Qrcode("postal-reader");
             postalQrScanner.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 250, height: 100 } }, onPostalScanSuccess)
                 .catch(err => console.log("Camera Error: ", err));
-        },
-        preConfirm: () => {
-            if (scannedTrackers.length === 0) {
-                Swal.showValidationMessage('No verified barcodes to save!');
-                return false;
-            }
-            return scannedTrackers;
         }
     }).then((result) => {
-        // 🔥 ക്യാമറയുടെ പേര് മാറ്റി
         if (postalQrScanner) {
             postalQrScanner.stop().then(() => postalQrScanner.clear()).catch(e => console.log(e));
         }
-        if (result.isConfirmed) {
-            uploadPostalTrackers(result.value);
-        }
+        updateSyncButtonUI(); // വിൻഡോ ക്ലോസ് ചെയ്യുമ്പോൾ സിങ്ക് ബാഡ്ജ് അപ്ഡേറ്റ് ചെയ്യുന്നു
     });
 }
 
@@ -9866,6 +9885,7 @@ window.clearVerifyInput = function () {
     isScanPaused = false;
 }
 
+
 window.confirmScannedTracker = function () {
     let inputEl = document.getElementById('verify-track-input');
     let text = inputEl.value.toUpperCase().trim();
@@ -9884,20 +9904,26 @@ window.confirmScannedTracker = function () {
     let type = text.startsWith("E") ? "Speed" : "Normal";
     scannedTrackers.push({ id: text, type: type });
 
-    updatePostalTrackerUI(); // ലിസ്റ്റ് കാണിക്കാനുള്ള പുതിയ ഫംഗ്ഷൻ വിളിക്കുന്നു
+    // 🔥 ലോക്കൽ മെമ്മറിയിലേക്ക് സേവ് ചെയ്യുന്നു
+    localStorage.setItem('pendingPostalTrackers', JSON.stringify(scannedTrackers));
 
+    updatePostalTrackerUI();
+    updateSyncButtonUI(); // സിങ്ക് ബട്ടൺ അലർട്ട് തൽക്ഷണം കാണിക്കാൻ
     clearVerifyInput();
 }
 
-// 🔥 ലിസ്റ്റ് സ്ക്രീനിൽ കാണിക്കാനും ഡിലീറ്റ് ചെയ്യാനുമുള്ള പുതിയ ഫംഗ്ഷനുകൾ
 window.updatePostalTrackerUI = function () {
-    document.getElementById('count-cl').innerText = scannedTrackers.filter(t => t.type === 'Normal').length;
-    document.getElementById('count-el').innerText = scannedTrackers.filter(t => t.type === 'Speed').length;
+    let clCount = document.getElementById('count-cl');
+    if (clCount) clCount.innerText = scannedTrackers.filter(t => t.type === 'Normal').length;
+
+    let elCount = document.getElementById('count-el');
+    if (elCount) elCount.innerText = scannedTrackers.filter(t => t.type === 'Speed').length;
 
     let list = document.getElementById('scanned-list');
-    list.innerHTML = ''; // നിലവിലെ ലിസ്റ്റ് ക്ലിയർ ചെയ്യുന്നു
+    if (!list) return; // സിങ്ക് വിൻഡോയിൽ നിന്ന് ഡിലീറ്റ് ചെയ്യുമ്പോൾ എറർ വരാതിരിക്കാൻ
 
-    // പുതിയത് മുകളിൽ വരാൻ റിവേഴ്സ് ഓർഡറിൽ കാണിക്കുന്നു
+    list.innerHTML = '';
+
     for (let i = scannedTrackers.length - 1; i >= 0; i--) {
         let t = scannedTrackers[i];
         let color = t.type === 'Speed' ? 'text-danger' : 'text-primary';
@@ -9919,11 +9945,15 @@ window.updatePostalTrackerUI = function () {
 }
 
 window.removeScannedTracker = function (id) {
-    // ഡിലീറ്റ് ബട്ടൺ അമർത്തുമ്പോൾ array-യിൽ നിന്നും ആ നമ്പർ ഒഴിവാക്കുന്നു
     scannedTrackers = scannedTrackers.filter(t => t.id !== id);
-
-    // അതിനുശേഷം ലിസ്റ്റ് ഒന്നുകൂടി പുതുക്കുന്നു
+    localStorage.setItem('pendingPostalTrackers', JSON.stringify(scannedTrackers));
     updatePostalTrackerUI();
+    updateSyncButtonUI();
+
+    // സിങ്ക് വിൻഡോ ഓപ്പൺ ആണെങ്കിൽ അവിടെയും ലിസ്റ്റ് അപ്ഡേറ്റ് ആവാൻ
+    if (document.getElementById('sync-preview-list')) {
+        renderSyncList();
+    }
 }
 
 function uploadPostalTrackers(trackers) {
