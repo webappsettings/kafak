@@ -254,15 +254,18 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('dashboard-section').style.display = 'none';
         }
 
+        // 🔥 ആദ്യമായി ലോഡ് ചെയ്യുമ്പോൾ കാഷെ ഉണ്ടെങ്കിൽ അത് കാണിക്കാൻ
         document.addEventListener('DOMContentLoaded', function () {
             setTimeout(() => {
                 if (window.trackingBalance && window.trackingBalance.fetched) {
-                    updateBalanceUI();
+                    if (typeof updateBalanceUI === 'function') updateBalanceUI();
                 }
+
+                // ബാക്ക്ഗ്രൗണ്ടിൽ പുതിയ ഡാറ്റ (32) എടുക്കാൻ
                 if (typeof refreshTrackingBalance === 'function') {
                     refreshTrackingBalance(true);
                 }
-            }, 1000);
+            }, 1500); // 1.5 സെക്കൻഡ് ഡിലേ
         });
 
         const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
@@ -10055,13 +10058,14 @@ function uploadPostalTrackers(trackers) {
 }
 
 
-
 // 🔥 Cache-ൽ നിന്ന് പഴയ ബാലൻസ് എടുക്കുന്നു
 let savedBal = localStorage.getItem('trackingBalanceCache');
 window.trackingBalance = savedBal ? JSON.parse(savedBal) : { normal: 0, speed: 0, fetched: false };
+window.isFetchingBalance = false; // 🔥 സ്റ്റക്ക് ആവാതിരിക്കാൻ ഗ്ലോബൽ ആക്കി
 
 window.updateBalanceUI = function () {
     let displays = document.querySelectorAll('.tracking-balance-display-class');
+    if (displays.length === 0) return; // കാർഡുകൾ വന്നിട്ടില്ലെങ്കിൽ സ്കിപ്പ് ചെയ്യാം
 
     let pendingTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
     let pendingNormal = pendingTrackers.filter(t => t.type === 'Normal').length;
@@ -10079,31 +10083,40 @@ window.updateBalanceUI = function () {
 };
 
 window.refreshTrackingBalance = function (force = false) {
+    // കാഷെയിൽ ഡാറ്റ ഉണ്ട്, പുതിയത് വേണ്ട എങ്കിൽ UI മാത്രം അപ്ഡേറ്റ് ചെയ്യുക
     if (window.trackingBalance.fetched && force !== true) {
-        updateBalanceUI();
+        if (typeof updateBalanceUI === 'function') updateBalanceUI();
         return;
     }
 
-    if (isFetchingBalance) return;
-    isFetchingBalance = true;
+    // 🔥 മുമ്പ് എറർ വന്ന് സ്റ്റക്ക് ആയിട്ടുണ്ടെങ്കിൽ അത് ഒഴിവാക്കാൻ
+    if (window.isFetchingBalance) return;
+    window.isFetchingBalance = true;
 
+    // സ്പിന്നർ കാണിക്കാൻ (UI ലോഡ് ആയിട്ടുണ്ടെങ്കിൽ മാത്രം)
     let displays = document.querySelectorAll('.tracking-balance-display-class');
-    displays.forEach(d => { d.innerHTML = '<i class="fas fa-spinner fa-spin text-muted" style="font-size:11px;"></i>'; });
+    displays.forEach(d => {
+        d.innerHTML = '<i class="fas fa-spinner fa-spin text-primary" style="font-size:11px;"></i>';
+    });
 
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'getTrackingBalance' })
     }).then(res => res.json()).then(data => {
-        window.trackingBalance = { normal: data.normal, speed: data.speed, fetched: true };
+        window.trackingBalance = { normal: data.normal || 0, speed: data.speed || 0, fetched: true };
         localStorage.setItem('trackingBalanceCache', JSON.stringify(window.trackingBalance));
-        updateBalanceUI();
-        isFetchingBalance = false;
+
+        window.isFetchingBalance = false; // ഫെച്ചിങ് കഴിഞ്ഞാൽ റീസെറ്റ് ചെയ്യുന്നു
+        if (typeof updateBalanceUI === 'function') updateBalanceUI();
     }).catch(e => {
+        console.log("Tracking Fetch Error:", e);
+        window.isFetchingBalance = false; // എറർ വന്നാലും റീസെറ്റ് ചെയ്യണം!
+
         let errDisplays = document.querySelectorAll('.tracking-balance-display-class');
         errDisplays.forEach(d => { d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`; });
-        isFetchingBalance = false;
     });
-}
+};
+
 
 // സ്ക്രീനിൽ ലോഡ് ആകുമ്പോഴും തനിയെ ബാലൻസ് കാണിക്കാൻ:
 setInterval(() => {
