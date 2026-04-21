@@ -4618,35 +4618,7 @@ function toggleSort() {
     filterOrders(false); // Re-render
 }
 
-// 🔥 OPEN WHATSAPP (Fix for W/M/A Codes)
-// 🔥 1. OPEN WHATSAPP (Fixed Unique ID & Country Code)
-window.openSimpleWA = function (index, btnElement, type = 'pending') {
-    if (btnElement) highlightCard(btnElement);
 
-    const d = allOrders[index];
-    let phoneNum = "";
-
-    const dropdown = document.getElementById(`wa-select-${type}-${index}`);
-    let code = dropdown ? dropdown.value : '';
-
-    // 🔥 NEW: Get Country Code
-    const ccInput = document.getElementById(`wa-cc-${type}-${index}`);
-    let cc = ccInput ? ccInput.value : '91';
-
-    if (code === 'W') phoneNum = d.whatsapp;
-    else if (code === 'A') phoneNum = d.altphone;
-    else if (code === 'M') phoneNum = d.phone;
-    else if (code === 'G') phoneNum = d.paidNum;
-    else phoneNum = d.whatsapp || d.phone;
-
-    let finalNum = formatWAPhone(phoneNum, cc);
-
-    if (finalNum) {
-        window.open(`https://wa.me/${finalNum}`, '_blank');
-    } else {
-        alert("Number not found!");
-    }
-}
 // 🔥 SERVER SIDE SEARCH FUNCTION
 function searchOnServer(term) {
     let btn = $('#list-search button.btn-dark');
@@ -9027,41 +8999,42 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
     });
 };
 
-// 🔥 UPDATED: SMART PHONE NUMBER FORMATTER (Handles Foreign Numbers & Empty CC)
+// 🔥 UPDATED: SMART PHONE NUMBER FORMATTER (Supports Foreign & Indian numbers perfectly)
 window.formatWAPhone = function (phone, ccInput) {
     if (!phone) return "";
 
-    let num = String(phone).replace(/\D/g, ""); // നമ്പറുകൾ ഒഴികെ ബാക്കിയെല്ലാം ഒഴിവാക്കുന്നു
+    let numStr = String(phone).replace(/[^0-9]/g, ""); // നമ്പറുകൾ ഒഴികെ ബാക്കിയെല്ലാം ഒഴിവാക്കുന്നു
+    if (numStr === "") return "";
 
-    // ബോക്സിലെ കോഡ് ശൂന്യമാണോ എന്ന് നോക്കുന്നു (പഴയ കോഡിലെ പിഴവ് ഇവിടെയാണ് തിരുത്തിയത്)
-    let cc = (ccInput !== undefined && ccInput !== null) ? String(ccInput).replace(/\D/g, "") : "91";
+    let cc = (ccInput !== undefined && ccInput !== null) ? String(ccInput).replace(/[^0-9]/g, "") : "91";
 
-    // 1. നമ്മൾ കോഡ് ബോക്സിൽ നിന്നും 91 ഡിലീറ്റ് ചെയ്ത് കാലിയാക്കിയാൽ, കസ്റ്റമർ നൽകിയ നമ്പർ അതുപോലെ എടുക്കാം
+    // 1. കോഡ് ഇല്ലാതെ കൃത്യം 10 അക്കമാണെങ്കിൽ -> '91' ചേർക്കുന്നു
+    if (numStr.length === 10) {
+        return cc + numStr;
+    }
+
+    // 2. 10 ൽ കൂടുതലുണ്ടെങ്കിൽ (അതായത് കോഡ് ഓൾറെഡി ഉണ്ടെങ്കിൽ)
+    if (numStr.length > 10) {
+        if (numStr.startsWith("0")) { // 0 വെച്ചാണ് തുടങ്ങുന്നതെങ്കിൽ 0 കളയുന്നു
+            numStr = numStr.substring(1);
+            if (numStr.length === 10) return cc + numStr;
+        }
+
+        if (numStr.startsWith(cc)) { // കസ്റ്റമർ നൽകിയ നമ്പറിൽ ഓൾറെഡി കോഡ് (91) ഉണ്ടെങ്കിൽ
+            return numStr;
+        }
+
+        // കസ്റ്റമർ നൽകിയ നമ്പറിൽ വേറെ ഏതെങ്കിലും രാജ്യത്തിന്റെ കോഡ് (ഉദാ: 971, 44) ഉണ്ടെങ്കിൽ അത് മാറ്റാതെ തന്നെ എടുക്കും.
+        return numStr;
+    }
+
+    // 3. CC ബോക്സ് കാലിയാക്കി വെച്ചിട്ടുണ്ടെങ്കിൽ കസ്റ്റമർ നൽകിയ നമ്പർ അതുപോലെ എടുക്കാം
     if (cc === "") {
-        return num;
+        return numStr;
     }
 
-    // 2. നമ്പർ കൃത്യം 10 അക്കമാണെങ്കിൽ നമ്മൾ ബോക്സിൽ നൽകിയ കോഡ് (91) ചേർക്കുന്നു
-    if (num.length === 10) {
-        return cc + num;
-    }
-
-    // 3. നമ്പർ 10 ൽ കൂടുതലുണ്ടെങ്കിൽ (അതായത് കസ്റ്റമർ ഓൾറെഡി രാജ്യത്തിന്റെ കോഡ് നൽകിയിട്ടുണ്ടെങ്കിൽ)
-    if (num.length > 10) {
-        if (num.startsWith("0")) { // 0 വെച്ചാണ് തുടങ്ങുന്നതെങ്കിൽ 0 കളയുന്നു
-            num = num.substring(1);
-            if (num.length === 10) return cc + num;
-        }
-
-        if (num.startsWith(cc)) { // കസ്റ്റമർ നൽകിയ നമ്പറിൽ ഓൾറെഡി 91 ഉണ്ടെങ്കിൽ വീണ്ടും ചേർക്കില്ല
-            return num;
-        }
-
-        // കസ്റ്റമറുടെ നമ്പറിൽ വേറെ ഏതെങ്കിലും രാജ്യത്തിന്റെ കോഡ് (ഉദാ: 971, 44) ഉണ്ടെങ്കിൽ, 91 ചേർക്കില്ല! അതുപോലെ എടുക്കും.
-        return num;
-    }
-
-    return cc + num;
+    // പത്തിൽ താഴെയാണെങ്കിലോ മറ്റോ ഡിഫോൾട്ട് ആയി കോഡ് ചേർക്കുന്നു
+    return cc + numStr;
 };
 
 
@@ -9392,7 +9365,33 @@ window.updateAdminMeta = function (oid, action, value) {
     if (typeof originalUpdateAdminMeta === 'function') originalUpdateAdminMeta(oid, action, value);
 };
 
-// 🔥 SEND INVOICE WA (Fixed Alt Phone Issue)
+
+// 🔥 OPEN WHATSAPP CHAT ONLY
+window.openSimpleWA = function (index, btnElement, type = 'pending') {
+    if (btnElement) highlightCard(btnElement);
+
+    const d = allOrders[index];
+    let phoneNum = "";
+
+    const dropdown = document.getElementById(`wa-select-${type}-${index}`);
+    let code = dropdown ? dropdown.value : '';
+
+    if (code === 'W') phoneNum = d.whatsapp;
+    else if (code === 'A') phoneNum = d.altphone;
+    else if (code === 'M') phoneNum = d.phone;
+    else if (code === 'G') phoneNum = d.paidNum;
+    else phoneNum = d.whatsapp || d.phone;
+
+    let finalNum = formatWAPhone(phoneNum, '91'); // CC എപ്പോഴും 91 ആയി എടുക്കും
+
+    if (finalNum) {
+        window.open(`https://wa.me/${finalNum}`, '_blank');
+    } else {
+        alert("Number not found!");
+    }
+}
+
+// 🔥 SEND INVOICE / PENDING WA
 window.sendWA = function (index, type = 'pending') {
     const d = allOrders[index];
     if (!d) return;
@@ -9400,11 +9399,9 @@ window.sendWA = function (index, type = 'pending') {
     const adminPhone = '7788990313';
     const safe = (val) => String(val || '').trim().toUpperCase();
 
-    // 1. DATE FORMATTING
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
     const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-    // 2. CALCULATE PRICE 
     const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
     let courier = 0;
@@ -9431,34 +9428,23 @@ window.sendWA = function (index, type = 'pending') {
 
     const total = base + courier;
 
-    // 3. GENERATE MESSAGE
     const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
     const isEng = (d.language === 'en');
     const editText = isEng ? "To check status or edit order: 👇" : "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
 
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
 
-    // 🔥 ALT PHONE ഫിക്സ് ചെയ്തത് ഇവിടെയാണ്!
     let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
     const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
-    let paymentNote = "";
-    if (isEng) {
-        paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
-    } else {
-        paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
-    }
+    let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_" : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
 
     const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
 
-    // 4. TARGET PHONE
     let phoneNum = "";
     const dropdown = document.getElementById(`wa-select-${type}-${index}`);
     let code = dropdown ? dropdown.value : '';
-
-    const ccInput = document.getElementById(`wa-cc-${type}-${index}`);
-    let cc = ccInput ? ccInput.value : '91';
 
     if (code === 'W') phoneNum = d.whatsapp;
     else if (code === 'A') phoneNum = d.altphone;
@@ -9466,13 +9452,7 @@ window.sendWA = function (index, type = 'pending') {
     else if (code === 'G') phoneNum = d.paidNum;
     else phoneNum = d.whatsapp || d.phone;
 
-    let finalNum = "";
-    if (typeof formatWAPhone === 'function') {
-        finalNum = formatWAPhone(phoneNum, cc);
-    } else {
-        let cleanNum = String(phoneNum || '').replace(/[^0-9]/g, '');
-        finalNum = cleanNum.length === 10 ? cc + cleanNum : cleanNum;
-    }
+    let finalNum = formatWAPhone(phoneNum, '91');
 
     if (finalNum) {
         window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(header + details + footer)}`, '_blank');
@@ -9480,6 +9460,7 @@ window.sendWA = function (index, type = 'pending') {
         alert("Number not found!");
     }
 }
+
 // 🔥 SEND PAYMENT RECEIPT WA 
 window.sendPaymentWA = function (oid, index, type = 'paid') {
     let order = allOrders.find(o => o.orderid === oid);
@@ -9488,9 +9469,6 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     let dropdown = document.getElementById(`wa-select-${type}-${index}`);
     let code = dropdown ? dropdown.value : 'W';
 
-    let ccInput = document.getElementById(`wa-cc-${type}-${index}`);
-    let cc = ccInput ? ccInput.value : '91';
-
     let targetNum = "";
     if (code === 'M') targetNum = order.phone;
     else if (code === 'W') targetNum = order.whatsapp;
@@ -9498,10 +9476,9 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     else if (code === 'G') targetNum = order.paidNum;
     else targetNum = order.whatsapp || order.phone;
 
-    let finalNum = formatWAPhone(targetNum, cc);
+    let finalNum = formatWAPhone(targetNum, '91');
     if (!finalNum) { alert("No valid number found!"); return; }
 
-    // ട്രാക്കിംഗ് ലിങ്കും മെസ്സേജും സെറ്റ് ചെയ്യുന്നു
     let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
     let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
 
@@ -9887,7 +9864,6 @@ window.clearVerifyInput = function () {
     inputEl.value = "";
     document.getElementById('btn-confirm-track').disabled = true;
     isScanPaused = false;
-    inputEl.focus();
 }
 
 window.confirmScannedTracker = function () {
