@@ -603,7 +603,8 @@ function renderTabs(orders, externalCounts = null) {
                 <label class="form-check-label fw-bold text-dark mb-0" for="auto-track-toggle">Auto-Track</label>
             </div>
             <div class="d-flex align-items-center gap-1" id="tracking-balance-display">
-                <span class="badge text-dark border" style="background:#e2e8f0;">Checking...</span>
+                <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ?</span> 
+                <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ?</span>
             </div>
             <button class="btn btn-sm btn-white border shadow-sm py-1 px-2" onclick="refreshTrackingBalance()" title="Refresh Balance">
                 <i class="fas fa-sync-alt text-primary" style="font-size:11px;"></i>
@@ -10008,13 +10009,17 @@ function uploadPostalTrackers(trackers) {
 let isFetchingBalance = false;
 window.trackingBalance = { normal: 0, speed: 0, fetched: false };
 
-// UI അപ്ഡേറ്റ് ചെയ്യാൻ മാത്രം (സെർവറിൽ പോകില്ല)
 window.updateBalanceUI = function () {
     let displays = document.querySelectorAll('#tracking-balance-display');
+
+    // ഡാറ്റ എടുത്തിട്ടുണ്ടെങ്കിൽ എണ്ണം കാണിക്കും, ഇല്ലെങ്കിൽ '?' എന്ന് കാണിക്കും
+    let n = window.trackingBalance.fetched ? window.trackingBalance.normal : '?';
+    let s = window.trackingBalance.fetched ? window.trackingBalance.speed : '?';
+
     displays.forEach(d => {
         d.innerHTML = `
-            <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ${window.trackingBalance.normal}</span> 
-            <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ${window.trackingBalance.speed}</span>
+            <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ${n}</span> 
+            <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ${s}</span>
         `;
     });
 };
@@ -10060,14 +10065,6 @@ setInterval(() => {
     });
     if (needsUpdate && !isFetchingBalance) refreshTrackingBalance(false);
 }, 2000);
-
-// ടാബ് മാറുമ്പോഴെല്ലാം ബാലൻസ് തനിയെ അപ്ഡേറ്റ് ആകാൻ ഇത് കൂടി കൊടുക്കുക
-document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(() => {
-        if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance();
-    }, 3000);
-});
-
 
 // 🔥 EDIT PHONE NUMBERS MODAL & LOGIC
 window.openPhoneEditModal = function (oid) {
