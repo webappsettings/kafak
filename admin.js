@@ -6029,7 +6029,7 @@ function injectLeftDrawer() {
     }
 }
 
-// 🔥 ADVANCED SMART PRINT PREDICTOR (WITH PERFECT INITIAL LOAD & LOOSE STICKER LOGIC)
+// 🔥 ADVANCED SMART PRINT PREDICTOR (FIXED LOOSE STICKER BUG)
 window.updatePrintPrediction = function (isManualSheetChange = false) {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
@@ -6046,7 +6046,7 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
     let unprintedStickers = 0;
     let printedStickers = 0;
     let db = window.globalInventoryDB;
-    let stkDB = db.sticker || { total: 0, start: "", exempt: 0, countOffset: 0, avgUsage: 0.2 };
+    let stkDB = db.sticker || { total: 0, start: "", exempt: 0, countOffset: 0 };
 
     let isStarted = stkDB.start ? true : false;
     let startMs = isStarted ? new Date(stkDB.start).getTime() : 0;
@@ -6084,9 +6084,9 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
         });
     }
 
-    let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
+    // 🔥 BUG FIX: Removed reliance on avgUsage for stickers. Always use strict ratio (e.g. 5)
+    let historicalRatio = ratio;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
-    let historicalRatio = Math.round(1 / (avg || 0.2));
 
     // 1. ആകെ ഉപയോഗിച്ച സ്റ്റിക്കറുകൾ (സിസ്റ്റം + മാനുവൽ)
     let totalStickersUsed = isStarted ? (usedStickers + countOffset) : 0;
@@ -6100,11 +6100,10 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
 
     // 3. ബാക്കിയുള്ള സ്റ്റിക്കറുകൾ
     let remainingStickers = totalCapacityStickers - totalStickersUsed;
-    if (remainingStickers < 0) remainingStickers = 0;
 
     // 4. ഇതിനെ ഷീറ്റും ലൂസുമാക്കി മാറ്റുന്നു
     let fullSheets = Math.floor(remainingStickers / historicalRatio);
-    let looseStickers = Math.round(remainingStickers % historicalRatio);
+    let looseStickers = remainingStickers >= 0 ? Math.round(remainingStickers % historicalRatio) : 0;
 
     window.currentLooseStickers = looseStickers;
 
@@ -6125,8 +6124,6 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
     }
 
     let modeBox = document.getElementById('print-qty-mode');
-
-    // Dropdown value changes based on manual input or existing calculation
     let targetPrintCount = isManualSheetChange ? (manualSheets * ratio) : (modeBox && modeBox.value ? parseInt(modeBox.value) : actualLabelsToPrint);
 
     if (modeBox) {
@@ -6177,7 +6174,6 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
 
     let newLooseBalance = Math.max(0, (looseStickers + selectedPrintCount) - unprintedStickers);
 
-    // 🔥 Calculate White Sheets Balance
     let consumedSheets = Math.ceil(selectedPrintCount / ratio);
     let newWhiteSheetsBalance = Math.max(0, fullSheets - consumedSheets);
 
@@ -6240,7 +6236,6 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
         if (newDisplay) newDisplay.innerHTML = stockHtml;
     }
 };
-
 window.toggleLeftDrawer = function () {
     let drawer = $('#left-drawer');
     let overlay = $('#left-drawer-overlay');
