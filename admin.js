@@ -254,9 +254,14 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('dashboard-section').style.display = 'none';
         }
 
-        if (window.trackingBalance.fetched) {
-            updateBalanceUI();
-        }
+        // 🔥 കാഷെയിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ കാണിക്കാനും, ഇല്ലെങ്കിൽ ആദ്യമായി പുതിയത് എടുക്കാനും
+        setTimeout(() => {
+            if (window.trackingBalance && window.trackingBalance.fetched) {
+                updateBalanceUI();
+            } else {
+                if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance(true);
+            }
+        }, 1000);
 
         const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
         tabEls.forEach(tabEl => {
@@ -498,16 +503,57 @@ function fetchOrders(forceLoad = false) {
         .then(response => {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
-                allOrders = response.data;
+                let serverOrders = response.data;
+                let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+
+                // 🔥 CRITICAL FIX: സിങ്ക് ചെയ്യാത്ത ലോക്കൽ ഡാറ്റ (Tracking, Status, Courier) തിരികെ കാർഡുകളിലേക്ക് വെക്കുന്നു! (റിഫ്രഷ് അടിച്ചാലും പോവില്ല)
+                if (pendingUpdates.length > 0) {
+                    serverOrders.forEach(o => {
+                        let pStat = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones');
+                        if (pStat) {
+                            o.Status = pStat.status;
+                            if (pStat.tracking) o.tracking = pStat.tracking; // ട്രാക്കിങ് നമ്പർ നിലനിർത്താൻ
+                            if (pStat.actionDate) {
+                                if (pStat.status === 'Paid') o.paidDate = pStat.actionDate;
+                                if (pStat.status === 'Dispatched') o['Dispatched Date'] = pStat.actionDate;
+                                if (pStat.status === 'Completed' || pStat.status === 'Delivered') o['Delivered Date'] = pStat.actionDate;
+                            }
+                        }
+
+                        let pMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
+                        if (pMeta) {
+                            o.adminMeta = pMeta.meta;
+                            if (pMeta.provider !== undefined) {
+                                o.provider = pMeta.provider;
+                                o.Courier_Provider = pMeta.provider;
+                                o.Courier_Charge = pMeta.charge;
+                                o.Grand_Total = pMeta.total;
+                                o.grandTotal = pMeta.total;
+                            }
+                        }
+
+                        let pPaidNum = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'paidNum');
+                        if (pPaidNum) o.paidNum = pPaidNum.num;
+
+                        let pPhones = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'phones');
+                        if (pPhones) {
+                            o.phone = pPhones.data.phone;
+                            o.whatsapp = pPhones.data.whatsapp;
+                            o.altphone = pPhones.data.altphone;
+                            o.paidNum = pPhones.data.paidNum;
+                        }
+                    });
+                }
+
+                allOrders = serverOrders;
                 buildSearchString(allOrders);
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 filterOrders(false);
                 updateSyncButtonUI();
                 fetchDashboardDataBg();
                 handleUrlSearch();
-                if (forceLoad && typeof refreshTrackingBalance === 'function') {
-                    refreshTrackingBalance(true);
-                }
+
+                if (forceLoad && typeof refreshTrackingBalance === 'function') refreshTrackingBalance(true);
             }
         })
         .catch(err => {
@@ -10006,19 +10052,22 @@ function uploadPostalTrackers(trackers) {
 }
 
 
-// ==========================================
-// 📦 TRACKING BALANCE REFRESHER (OPTIMIZED FOR SPEED)
-// ==========================================
-let isFetchingBalance = false;
+
+// 🔥 Cache-ൽ നിന്ന് പഴയ ബാലൻസ് എടുക്കുന്നു
 let savedBal = localStorage.getItem('trackingBalanceCache');
 window.trackingBalance = savedBal ? JSON.parse(savedBal) : { normal: 0, speed: 0, fetched: false };
 
 window.updateBalanceUI = function () {
     let displays = document.querySelectorAll('#tracking-balance-display');
 
-    // Data cache-il undo ennu check cheyyunnu
-    let n = window.trackingBalance.fetched ? window.trackingBalance.normal : '?';
-    let s = window.trackingBalance.fetched ? window.trackingBalance.speed : '?';
+    // 🔥 ലോക്കൽ ആയി സ്കാൻ ചെയ്തു വെച്ച (സിങ്ക് ചെയ്യാത്ത) ട്രാക്കറുകൾ എടുക്കുന്നു
+    let pendingTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
+    let pendingNormal = pendingTrackers.filter(t => t.type === 'Normal').length;
+    let pendingSpeed = pendingTrackers.filter(t => t.type === 'Speed').length;
+
+    // 🔥 സെർവർ ബാലൻസിന്റെ കൂടെ ലോക്കൽ ട്രാക്കറുകൾ കൂടി ചേർക്കുന്നു (എണ്ണം കുറയാതിരിക്കാൻ)
+    let n = window.trackingBalance.fetched ? (window.trackingBalance.normal + pendingNormal) : '?';
+    let s = window.trackingBalance.fetched ? (window.trackingBalance.speed + pendingSpeed) : '?';
 
     displays.forEach(d => {
         d.innerHTML = `
@@ -10032,7 +10081,6 @@ window.refreshTrackingBalance = function (force = false) {
     let displays = document.querySelectorAll('#tracking-balance-display');
     if (displays.length === 0) return;
 
-    // 🔥 ഓൾറെഡി ഡാറ്റ ഉണ്ടെങ്കിൽ, ഫോഴ്സ് (Refresh button click) ചെയ്തില്ലെങ്കിൽ സെർവറിൽ പോകില്ല! (SPEED BOOST)
     if (window.trackingBalance.fetched && force !== true) {
         updateBalanceUI();
         return;
@@ -10041,23 +10089,21 @@ window.refreshTrackingBalance = function (force = false) {
     if (isFetchingBalance) return;
     isFetchingBalance = true;
 
-    displays.forEach(d => {
-        d.innerHTML = '<i class="fas fa-spinner fa-spin text-muted" style="font-size:11px;"></i>';
-    });
+    displays.forEach(d => { d.innerHTML = '<i class="fas fa-spinner fa-spin text-muted" style="font-size:11px;"></i>'; });
 
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'getTrackingBalance' })
     }).then(res => res.json()).then(data => {
         window.trackingBalance = { normal: data.normal, speed: data.speed, fetched: true };
+
+        // 🔥 സിങ്ക് ആയ ബാലൻസ് കാഷെയിലേക്ക് സേവ് ചെയ്യുന്നു
         localStorage.setItem('trackingBalanceCache', JSON.stringify(window.trackingBalance));
 
         updateBalanceUI();
         isFetchingBalance = false;
     }).catch(e => {
-        displays.forEach(d => {
-            d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`;
-        });
+        displays.forEach(d => { d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`; });
         isFetchingBalance = false;
     });
 }
