@@ -9857,9 +9857,17 @@ window.openPostalScanner = function () {
         }
     }).then((result) => {
         if (postalQrScanner) {
-            postalQrScanner.stop().then(() => postalQrScanner.clear()).catch(e => console.log(e));
+            try {
+                // സ്കാനർ വർക്ക് ചെയ്യുന്നുണ്ടെങ്കിൽ മാത്രം സ്റ്റോപ്പ് ചെയ്യുക
+                postalQrScanner.stop().then(() => {
+                    postalQrScanner.clear();
+                }).catch(e => console.log(e));
+            } catch (err) {
+                // സ്കാനർ ഓൺ ആവുന്നതിന് മുൻപ് വിൻഡോ ക്ലോസ് ചെയ്താൽ വരുന്ന എറർ ബൈപാസ് ചെയ്യാൻ
+                try { postalQrScanner.clear(); } catch (e) { }
+            }
         }
-        updateSyncButtonUI(); // വിൻഡോ ക്ലോസ് ചെയ്യുമ്പോൾ സിങ്ക് ബാഡ്ജ് അപ്ഡേറ്റ് ചെയ്യുന്നു
+        updateSyncButtonUI(); // എറർ വന്നാലും സിങ്ക് ബട്ടൺ കൃത്യമായി അപ്ഡേറ്റ് ആകും!
     });
 }
 
