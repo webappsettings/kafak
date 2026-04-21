@@ -5985,9 +5985,13 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
     let currentBalance = Math.max(0, parseFloat(stkDB.total || 0) - actualUsedSheets);
 
     let historicalRatio = Math.round(1 / (avg || 0.2));
-    let fullSheets = Math.floor(currentBalance + 0.0001);
-    let looseStickers = Math.round((currentBalance - fullSheets) * historicalRatio);
-    if (looseStickers >= historicalRatio) { fullSheets += 1; looseStickers = 0; }
+
+    // 🔥 NEW: കൃത്യമായി മുറിച്ച സ്റ്റിക്കറുകളുടെ എണ്ണം എടുക്കാൻ (Negative values പാടില്ല)
+    let rawLooseStickers = Math.round(countOffset * historicalRatio);
+    let looseStickers = Math.max(0, rawLooseStickers); // പൂജ്യത്തിൽ താഴെ പോവാതിരിക്കാൻ
+
+    // ബാക്കി വരുന്ന പൂർണ്ണമായ A4 ഷീറ്റുകൾ
+    let fullSheets = Math.max(0, Math.floor(currentBalance + 0.0001));
 
     window.currentLooseStickers = looseStickers;
 
