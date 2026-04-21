@@ -900,52 +900,7 @@ function renderTabs(orders, externalCounts = null) {
             let dateLabel = getTimelineLabel(displayDateRaw);
             let fullKey = `${dateKey}_${dateLabel}`;
 
-            if (!timelineStats[fullKey]) {
-                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, qtyCounts: {}, D: 0, C: 0, R: 0 };
-            }
 
-            if (!timelineStats[fullKey].couriers) {
-                timelineStats[fullKey].couriers = {};
-            }
-
-            timelineStats[fullKey].count++;
-            timelineStats[fullKey].bottles += qty;
-            timelineStats[fullKey].qtyCounts[qty] = (timelineStats[fullKey].qtyCounts[qty] || 0) + 1;
-
-            if (status === 'Delivered') timelineStats[fullKey].D++;
-            if (status === 'Completed') timelineStats[fullKey].C++;
-
-            if (['Pending', 'Sent', 'Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
-                let actualC = parseInt(d.Actual_Courier_Cost) || parseInt(d.actualCourierCost) || 0;
-                let totalC = parseInt(d.Courier_Charge) || 0;
-                if (totalC <= 0) totalC = getCourierRate(d.state, d.provider || d.Courier_Provider, qty);
-                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
-
-                let rawProvider = String(d.provider || d.Courier_Provider || d['Courier Provider'] || 'Other').trim();
-
-                if (rawProvider.toUpperCase() === 'DIRECT') {
-                    actualC = totalC;
-                }
-
-                let shortProvider = rawProvider.replace(/Courier|Couriers|Logistics/ig, '').trim();
-                if (shortProvider.length > 12) {
-                    shortProvider = shortProvider.substring(0, 10) + '..';
-                }
-                if (!shortProvider) shortProvider = 'Other';
-
-                if (!timelineStats[fullKey].couriers[shortProvider]) {
-                    timelineStats[fullKey].couriers[shortProvider] = { count: 0, cost: 0 };
-                }
-                timelineStats[fullKey].couriers[shortProvider].count++;
-                timelineStats[fullKey].couriers[shortProvider].cost += actualC;
-                timelineStats[fullKey].cost += actualC;
-
-                if (status === 'Dispatched' || status === 'Paid') {
-                    if (tabCourierTotal[dateKey] !== undefined) {
-                        tabCourierTotal[dateKey] += actualC;
-                    }
-                }
-            }
 
             // 🔥 SPEED BOOST FIX: type ന് പകരം dateKey ഉപയോഗിക്കുന്നു!
             if (htmlDrawCounts[dateKey] === undefined) htmlDrawCounts[dateKey] = 0;
