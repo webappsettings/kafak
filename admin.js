@@ -3088,8 +3088,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         let isResend = String(d.adminMeta || '').includes('R');
         let resendDotHtml = '';
         if (isResend) {
-            let rTop = (s && s !== 'KERALA') ? '33mm' : '20mm';
-            resendDotHtml = `<div style="position:absolute; top:${rTop}; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:#dc2626; color:#fff; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center; border: 1.5px solid #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.3); z-index: 20;">R</div>`;
+            resendDotHtml = `<div style="position:absolute; top:39mm; right:6mm; width:10mm; height:10mm; border-radius:50%; background-color:#dc2626; color:#fff; font-weight:900; font-size:16px; display:flex; align-items:center; justify-content:center; z-index: 20;">R</div>`;
         }
 
         let rawProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
