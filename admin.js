@@ -9800,17 +9800,16 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
 
 
 // ==========================================
-// 📦 POSTAL TRACKER SCANNER (WITH VERIFY & EDIT)
-// ==========================================
-// ==========================================
 // 📦 POSTAL TRACKER SCANNER (WITH LOCAL SYNC)
 // ==========================================
 let scannedTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
 let postalQrScanner = null;
 let isScanPaused = false;
+let isPostalScannerRunning = false; // 🔥 പുതുതായി ചേർത്തത് (ക്യാമറ ഓൺ ആയോ എന്ന് നോക്കാൻ)
 
 window.openPostalScanner = function () {
     isScanPaused = false;
+    isPostalScannerRunning = false; // വിൻഡോ തുറക്കുമ്പോൾ Reset ചെയ്യുന്നു
 
     let html = `
         <div class="text-center">
@@ -9844,7 +9843,7 @@ window.openPostalScanner = function () {
         confirmButtonColor: '#333',
         allowOutsideClick: false,
         didOpen: () => {
-            updatePostalTrackerUI(); // വിൻഡോ തുറക്കുമ്പോൾ തന്നെ പഴയ സേവ് ചെയ്തവ ലോഡ് ചെയ്യുന്നു
+            updatePostalTrackerUI();
 
             document.getElementById('verify-track-input').addEventListener('input', function () {
                 let val = this.value.toUpperCase().trim();
@@ -9853,21 +9852,23 @@ window.openPostalScanner = function () {
 
             postalQrScanner = new Html5Qrcode("postal-reader");
             postalQrScanner.start({ facingMode: "environment" }, { fps: 15, qrbox: { width: 250, height: 100 } }, onPostalScanSuccess)
+                .then(() => {
+                    isPostalScannerRunning = true; // 🔥 ക്യാമറ പൂർണ്ണമായും ഓൺ ആയെന്ന് ഉറപ്പാക്കുന്നു
+                })
                 .catch(err => console.log("Camera Error: ", err));
         }
     }).then((result) => {
         if (postalQrScanner) {
-            try {
-                // സ്കാനർ വർക്ക് ചെയ്യുന്നുണ്ടെങ്കിൽ മാത്രം സ്റ്റോപ്പ് ചെയ്യുക
+            // 🔥 ക്യാമറ ഓൺ ആയെങ്കിൽ മാത്രം Stop ചെയ്യുന്നു, അല്ലാത്തപക്ഷം വെറുതെ Clear ചെയ്യുന്നു
+            if (isPostalScannerRunning) {
                 postalQrScanner.stop().then(() => {
                     postalQrScanner.clear();
                 }).catch(e => console.log(e));
-            } catch (err) {
-                // സ്കാനർ ഓൺ ആവുന്നതിന് മുൻപ് വിൻഡോ ക്ലോസ് ചെയ്താൽ വരുന്ന എറർ ബൈപാസ് ചെയ്യാൻ
+            } else {
                 try { postalQrScanner.clear(); } catch (e) { }
             }
         }
-        updateSyncButtonUI(); // എറർ വന്നാലും സിങ്ക് ബട്ടൺ കൃത്യമായി അപ്ഡേറ്റ് ആകും!
+        updateSyncButtonUI(); // എറർ ഇല്ലാതെ സിങ്ക് ബട്ടൺ അപ്ഡേറ്റ് ആകും
     });
 }
 
