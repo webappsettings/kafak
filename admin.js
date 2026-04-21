@@ -365,6 +365,7 @@ function showDashboard() {
     }
 
     fetchRatesBackground();
+    processOfflineReverts();
     fetchOrders();
     fetchInventoryBg();
     injectLeftDrawer();
@@ -2619,13 +2620,8 @@ window.undoUpdate = function (oid, type) {
 
             pendingUpdates = pendingUpdates.filter(u => !(u.oid === oid && u.action === 'tracking'));
 
-            // 🔥 'Used' സ്റ്റാറ്റസ് മായ്ച്ചു കളയാൻ സെർവറിലേക്ക് നിർദേശം നൽകുന്നു (REVERT)
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'revertTrackers', trackers: [{ id: removedItem.tracking, type: tType }] })
-            }).then(res => res.json()).then(data => {
-                console.log("Tracker Reverted:", data); // വർക്ക് ആയോ എന്ന് കൺസോളിൽ കാണാൻ
-            }).catch(e => console.error("Revert Error:", e));
+            // 🔥 'Used' സ്റ്റാറ്റസ് മായ്ച്ചു കളയാൻ സെർവറിലേക്ക് നിർദേശം നൽകുന്നു (OFFLINE SAFE)
+            safeRevertTrackers([{ id: removedItem.tracking, type: tType }]);
         }
     }
     // 4. META UNDO (Contact Prefs, Printed, Tracked) & COURIER UNDO
@@ -2728,12 +2724,9 @@ window.discardAllUpdates = function () {
         }
     });
 
-    // 🔥 ഡിലീറ്റ് ചെയ്ത എല്ലാ ട്രാക്കിങ് നമ്പറുകളുടെയും 'Used' സ്റ്റാറ്റസ് മായ്ക്കാൻ സെർവറിലേക്ക് അയക്കുന്നു (REVERT)
+    // 🔥 ഡിലീറ്റ് ചെയ്ത എല്ലാ ട്രാക്കിങ് നമ്പറുകളുടെയും 'Used' സ്റ്റാറ്റസ് മായ്ക്കാൻ സെർവറിലേക്ക് അയക്കുന്നു (OFFLINE SAFE)
     if (revertedTrackersForBackend.length > 0) {
-        fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify({ action: 'revertTrackers', trackers: revertedTrackersForBackend })
-        });
+        safeRevertTrackers(revertedTrackersForBackend);
     }
 
     localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
@@ -10364,3 +10357,44 @@ function generateLabel(oid) {
     });
 }
 
+// 🔥 SAFE REVERT LOGIC (Handles Offline Situations)
+window.safeRevertTrackers = function (trackersArray) {
+    if (!trackersArray || trackersArray.length === 0) return;
+
+    let offlineReverts = JSON.parse(localStorage.getItem('offlineRevertTrackers') || "[]");
+
+    if (!navigator.onLine) {
+        // Net illenkil local aayi save cheyyunnu
+        let combined = offlineReverts.concat(trackersArray);
+        localStorage.setItem('offlineRevertTrackers', JSON.stringify(combined));
+        console.log("Offline: Trackers saved to local revert queue.");
+        return;
+    }
+
+    // Net undenkil server-lekku ayakkunnu
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify({ action: 'revertTrackers', trackers: trackersArray })
+    }).catch(e => {
+        // Ayakkunna samayathu net poyal, local aayi save cheyyunnu
+        let combined = offlineReverts.concat(trackersArray);
+        localStorage.setItem('offlineRevertTrackers', JSON.stringify(combined));
+    });
+};
+
+window.processOfflineReverts = function () {
+    if (!navigator.onLine) return;
+
+    let offlineReverts = JSON.parse(localStorage.getItem('offlineRevertTrackers') || "[]");
+    if (offlineReverts.length > 0) {
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'revertTrackers', trackers: offlineReverts })
+        }).then(res => res.json()).then(data => {
+            if (data.result === 'success') {
+                localStorage.removeItem('offlineRevertTrackers'); // Server-il ethiyal local clear cheyyunnu
+                console.log("Offline tracking numbers reverted successfully!");
+            }
+        }).catch(e => console.log("Waiting for net to revert trackers..."));
+    }
+};
