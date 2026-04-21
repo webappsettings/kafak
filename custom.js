@@ -3194,8 +3194,16 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
           }
         }
 
-        // 🔥 SIMPLE WA OPEN
-        window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+        // 🔥 DIRECT WHATSAPP OPEN (Fixes Emojis & Extra Window Issue)
+        let isMobile = /iPhone|Android|iPad|iPod/i.test(navigator.userAgent);
+
+        if (isMobile) {
+          // മൊബൈൽ ആണെങ്കിൽ നേരിട്ട് ആപ്പ് ഓപ്പൺ ആകും (ഇമോജി മിസ്സ് ആവില്ല)
+          window.location.href = `whatsapp://send?phone=${targetPhone}&text=${encodeURIComponent(msg)}`;
+        } else {
+          // കമ്പ്യൂട്ടർ ആണെങ്കിൽ WhatsApp Web നേരിട്ട് ഓപ്പൺ ആകും
+          window.open(`https://api.whatsapp.com/send?phone=${targetPhone}&text=${encodeURIComponent(msg)}`, '_blank');
+        }
 
         $('#admin-qty-actions').slideUp();
         $('#admin-diff-viewer').slideUp();
