@@ -254,14 +254,16 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('dashboard-section').style.display = 'none';
         }
 
-        // 🔥 കാഷെയിൽ ഡാറ്റ ഉണ്ടെങ്കിൽ കാണിക്കാനും, ഇല്ലെങ്കിൽ ആദ്യമായി പുതിയത് എടുക്കാനും
-        setTimeout(() => {
-            if (window.trackingBalance && window.trackingBalance.fetched) {
-                updateBalanceUI();
-            } else {
-                if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance(true);
-            }
-        }, 1000);
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                if (window.trackingBalance && window.trackingBalance.fetched) {
+                    updateBalanceUI();
+                }
+                if (typeof refreshTrackingBalance === 'function') {
+                    refreshTrackingBalance(true);
+                }
+            }, 1000);
+        });
 
         const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
         tabEls.forEach(tabEl => {
@@ -652,15 +654,15 @@ function renderTabs(orders, externalCounts = null) {
                 <input class="form-check-input mt-0" type="checkbox" id="auto-track-toggle" checked style="cursor:pointer; transform: scale(1.2);">
                 <label class="form-check-label fw-bold text-dark mb-0" for="auto-track-toggle">Auto-Track</label>
             </div>
-            <div class="d-flex align-items-center gap-1" id="tracking-balance-display">
-                <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ?</span> 
+            <div class="d-flex align-items-center gap-1 tracking-balance-display-class">
+                <span class="badge bg-primary shadow-sm" style="font-size:10px;">Normal: ?</span>
                 <span class="badge bg-danger shadow-sm" style="font-size:10px;">Speed: ?</span>
             </div>
-            <button class="btn btn-sm btn-white border shadow-sm py-1 px-2" onclick="refreshTrackingBalance()" title="Refresh Balance">
+            <button class="btn btn-sm btn-white border shadow-sm py-1 px-2" onclick="refreshTrackingBalance(true)" title="Refresh Balance">
                 <i class="fas fa-sync-alt text-primary" style="font-size:11px;"></i>
             </button>
         </div>
-    `;
+        `;
 
         if (id === 'paid_new') return `
         <div class="d-flex justify-content-between align-items-center px-1 w-100">
@@ -1269,6 +1271,7 @@ function renderTabs(orders, externalCounts = null) {
 
     updateSyncButtonUI();
     checkSelectAllStatus();
+    if (typeof updateBalanceUI === 'function') updateBalanceUI(); // 🔥 കാർഡുകൾ ലോഡ് ആകുമ്പോൾ ഈ ലൈൻ വർക്ക് ആയാൽ മാത്രമേ '?' മാറി എണ്ണം വരൂ!
 
     let savedScroll = localStorage.getItem('lastScrollPosition');
     if (savedScroll && parseInt(savedScroll) > 0) {
@@ -10058,14 +10061,12 @@ let savedBal = localStorage.getItem('trackingBalanceCache');
 window.trackingBalance = savedBal ? JSON.parse(savedBal) : { normal: 0, speed: 0, fetched: false };
 
 window.updateBalanceUI = function () {
-    let displays = document.querySelectorAll('#tracking-balance-display');
+    let displays = document.querySelectorAll('.tracking-balance-display-class');
 
-    // 🔥 ലോക്കൽ ആയി സ്കാൻ ചെയ്തു വെച്ച (സിങ്ക് ചെയ്യാത്ത) ട്രാക്കറുകൾ എടുക്കുന്നു
     let pendingTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
     let pendingNormal = pendingTrackers.filter(t => t.type === 'Normal').length;
     let pendingSpeed = pendingTrackers.filter(t => t.type === 'Speed').length;
 
-    // 🔥 സെർവർ ബാലൻസിന്റെ കൂടെ ലോക്കൽ ട്രാക്കറുകൾ കൂടി ചേർക്കുന്നു (എണ്ണം കുറയാതിരിക്കാൻ)
     let n = window.trackingBalance.fetched ? (window.trackingBalance.normal + pendingNormal) : '?';
     let s = window.trackingBalance.fetched ? (window.trackingBalance.speed + pendingSpeed) : '?';
 
@@ -10078,9 +10079,6 @@ window.updateBalanceUI = function () {
 };
 
 window.refreshTrackingBalance = function (force = false) {
-    let displays = document.querySelectorAll('#tracking-balance-display');
-    if (displays.length === 0) return;
-
     if (window.trackingBalance.fetched && force !== true) {
         updateBalanceUI();
         return;
@@ -10089,6 +10087,7 @@ window.refreshTrackingBalance = function (force = false) {
     if (isFetchingBalance) return;
     isFetchingBalance = true;
 
+    let displays = document.querySelectorAll('.tracking-balance-display-class');
     displays.forEach(d => { d.innerHTML = '<i class="fas fa-spinner fa-spin text-muted" style="font-size:11px;"></i>'; });
 
     fetch(scriptURL, {
@@ -10096,14 +10095,12 @@ window.refreshTrackingBalance = function (force = false) {
         body: JSON.stringify({ action: 'getTrackingBalance' })
     }).then(res => res.json()).then(data => {
         window.trackingBalance = { normal: data.normal, speed: data.speed, fetched: true };
-
-        // 🔥 സിങ്ക് ആയ ബാലൻസ് കാഷെയിലേക്ക് സേവ് ചെയ്യുന്നു
         localStorage.setItem('trackingBalanceCache', JSON.stringify(window.trackingBalance));
-
         updateBalanceUI();
         isFetchingBalance = false;
     }).catch(e => {
-        displays.forEach(d => { d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`; });
+        let errDisplays = document.querySelectorAll('.tracking-balance-display-class');
+        errDisplays.forEach(d => { d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`; });
         isFetchingBalance = false;
     });
 }
