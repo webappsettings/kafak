@@ -10124,38 +10124,60 @@ window.updateBalanceUI = function () {
 };
 
 window.refreshTrackingBalance = function (force = false) {
-    // കാഷെയിൽ ഡാറ്റ ഉണ്ട്, പുതിയത് വേണ്ട എങ്കിൽ UI മാത്രം അപ്ഡേറ്റ് ചെയ്യുക
     if (window.trackingBalance.fetched && force !== true) {
         if (typeof updateBalanceUI === 'function') updateBalanceUI();
         return;
     }
 
-    // 🔥 മുമ്പ് എറർ വന്ന് സ്റ്റക്ക് ആയിട്ടുണ്ടെങ്കിൽ അത് ഒഴിവാക്കാൻ
     if (window.isFetchingBalance) return;
     window.isFetchingBalance = true;
 
-    // സ്പിന്നർ കാണിക്കാൻ (UI ലോഡ് ആയിട്ടുണ്ടെങ്കിൽ മാത്രം)
+    // Spinner kanikkan
     let displays = document.querySelectorAll('.tracking-balance-display-class');
     displays.forEach(d => {
         d.innerHTML = '<i class="fas fa-spinner fa-spin text-primary" style="font-size:11px;"></i>';
     });
 
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify({ action: 'getTrackingBalance' })
-    }).then(res => res.json()).then(data => {
-        window.trackingBalance = { normal: data.normal || 0, speed: data.speed || 0, fetched: true };
-        localStorage.setItem('trackingBalanceCache', JSON.stringify(window.trackingBalance));
+    // 🔥 MAIN FIX: Offline aayi kidakkunna reverts undenkil adyam athu serverilekku ayakkunnu
+    let offlineReverts = JSON.parse(localStorage.getItem('offlineRevertTrackers') || "[]");
 
-        window.isFetchingBalance = false; // ഫെച്ചിങ് കഴിഞ്ഞാൽ റീസെറ്റ് ചെയ്യുന്നു
-        if (typeof updateBalanceUI === 'function') updateBalanceUI();
-    }).catch(e => {
-        console.log("Tracking Fetch Error:", e);
-        window.isFetchingBalance = false; // എറർ വന്നാലും റീസെറ്റ് ചെയ്യണം!
+    if (navigator.onLine && offlineReverts.length > 0) {
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'revertTrackers', trackers: offlineReverts })
+        }).then(res => res.json()).then(data => {
+            if (data.result === 'success') {
+                localStorage.removeItem('offlineRevertTrackers'); // Local ninnu maaykkunnu
+                console.log("Offline tracking numbers reverted before refresh!");
+            }
+            fetchCurrentBalance(); // Athinu shesham mathram balance edukkunnu
+        }).catch(e => {
+            fetchCurrentBalance();
+        });
+    } else {
+        // Offline reverts illenkil nere balance edukkunnu
+        fetchCurrentBalance();
+    }
 
-        let errDisplays = document.querySelectorAll('.tracking-balance-display-class');
-        errDisplays.forEach(d => { d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`; });
-    });
+    // 📦 Serveril ninnu puthiya balance edukkunna main function
+    function fetchCurrentBalance() {
+        fetch(scriptURL, {
+            method: 'POST',
+            body: JSON.stringify({ action: 'getTrackingBalance' })
+        }).then(res => res.json()).then(data => {
+            window.trackingBalance = { normal: data.normal || 0, speed: data.speed || 0, fetched: true };
+            localStorage.setItem('trackingBalanceCache', JSON.stringify(window.trackingBalance));
+
+            window.isFetchingBalance = false;
+            if (typeof updateBalanceUI === 'function') updateBalanceUI();
+        }).catch(e => {
+            console.log("Tracking Fetch Error:", e);
+            window.isFetchingBalance = false;
+
+            let errDisplays = document.querySelectorAll('.tracking-balance-display-class');
+            errDisplays.forEach(d => { d.innerHTML = `<span class="badge bg-warning text-dark" style="font-size:10px;">Error</span>`; });
+        });
+    }
 };
 
 
