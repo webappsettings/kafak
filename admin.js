@@ -9525,7 +9525,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     if (!finalNum) { alert("No valid number found!"); return; }
 
     let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
-    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 days.*\n*4-5 ദിവസത്തിനുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ്.*\n\n👇 *Order Status:*\n${trackLink}`;
+    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 working days.*\n*4-5 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;
 
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }
