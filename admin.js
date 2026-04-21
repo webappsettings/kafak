@@ -2214,13 +2214,14 @@ window.editDeliveredDate = async function (oid, currentDate) {
     }
 }
 
-// 🔥 1. SYNC CLICK FIX (ഓർഡറുകളും എക്സ്പെൻസുകളും ചെക്ക് ചെയ്യാൻ)
+// 🔥 1. SYNC CLICK FIX (ഓർഡറുകൾ, എക്സ്പെൻസ്, ട്രാക്കറുകൾ ചെക്ക് ചെയ്യാൻ)
 window.syncWithServer = function () {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
+    let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]"); // 🔥 പുതിയതായി ചേർത്തു
 
-    // രണ്ടും ഇല്ലെങ്കിൽ മാത്രം റിട്ടേൺ ചെയ്യുക
-    if (pendingUpdates.length === 0 && pendingExpenses.length === 0) return;
+    // മൂന്നും ഇല്ലെങ്കിൽ മാത്രം റിട്ടേൺ ചെയ്യുക
+    if (pendingUpdates.length === 0 && pendingExpenses.length === 0 && pendingPostalTrackers.length === 0) return;
 
     renderSyncList();
     new bootstrap.Modal(document.getElementById('syncModal')).show();
