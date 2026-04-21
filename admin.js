@@ -254,6 +254,10 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('dashboard-section').style.display = 'none';
         }
 
+        if (window.trackingBalance.fetched) {
+            updateBalanceUI();
+        }
+
         const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
         tabEls.forEach(tabEl => {
             tabEl.addEventListener('shown.bs.tab', function (event) {
@@ -10007,12 +10011,13 @@ function uploadPostalTrackers(trackers) {
 // 📦 TRACKING BALANCE REFRESHER (OPTIMIZED FOR SPEED)
 // ==========================================
 let isFetchingBalance = false;
-window.trackingBalance = { normal: 0, speed: 0, fetched: false };
+let savedBal = localStorage.getItem('trackingBalanceCache');
+window.trackingBalance = savedBal ? JSON.parse(savedBal) : { normal: 0, speed: 0, fetched: false };
 
 window.updateBalanceUI = function () {
     let displays = document.querySelectorAll('#tracking-balance-display');
 
-    // ഡാറ്റ എടുത്തിട്ടുണ്ടെങ്കിൽ എണ്ണം കാണിക്കും, ഇല്ലെങ്കിൽ '?' എന്ന് കാണിക്കും
+    // Data cache-il undo ennu check cheyyunnu
     let n = window.trackingBalance.fetched ? window.trackingBalance.normal : '?';
     let s = window.trackingBalance.fetched ? window.trackingBalance.speed : '?';
 
@@ -10046,6 +10051,8 @@ window.refreshTrackingBalance = function (force = false) {
         body: JSON.stringify({ action: 'getTrackingBalance' })
     }).then(res => res.json()).then(data => {
         window.trackingBalance = { normal: data.normal, speed: data.speed, fetched: true };
+        localStorage.setItem('trackingBalanceCache', JSON.stringify(window.trackingBalance));
+
         updateBalanceUI();
         isFetchingBalance = false;
     }).catch(e => {
