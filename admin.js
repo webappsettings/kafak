@@ -1920,7 +1920,7 @@ function renderTabsWithLimit(forceFullRender = false) {
 
     sortedOrders.forEach(o => {
         // നിലവിലെ സ്റ്റാറ്റസ് എടുക്കാൻ (പെൻഡിങ് ലിസ്റ്റിൽ ഉണ്ടെങ്കിൽ അതെടുക്കും)
-        let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones');
+        let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones' && u.action !== 'tracking');
         let st = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).toLowerCase() : String(o.Status || 'Pending').toLowerCase();
 
         let tab = '';
@@ -2288,10 +2288,11 @@ window.syncWithServer = function () {
 };
 
 // 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST (Includes Sticker & Resend Info)
+// 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST (Includes Sticker & Resend Info)
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
-    let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]"); // 🔥 ചേർത്തു
+    let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
     let allOrdersLocal = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
 
     const list = document.getElementById('sync-preview-list');
@@ -2313,10 +2314,11 @@ function renderSyncList() {
         return;
     }
 
-    // 1. Separate Updates
-    let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && u.action !== 'paidNum' && !u.deleteRefund);
-    let metaUpdates = pendingUpdates.filter(u => u.action === 'meta' && u.meta !== undefined); // WhatsApp/Print flags
-    let courierUpdates = pendingUpdates.filter(u => u.action === 'meta' && u.provider !== undefined); // 🔥 Courier Changes
+    // 1. Separate Updates (🔥 FIX: Separated all specific actions to avoid conflicts)
+    let orderUpdates = pendingUpdates.filter(u => u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones' && u.action !== 'tracking' && !u.deleteRefund);
+    let trackingUpdates = pendingUpdates.filter(u => u.action === 'tracking');
+    let metaUpdates = pendingUpdates.filter(u => u.action === 'meta' && u.meta !== undefined);
+    let courierUpdates = pendingUpdates.filter(u => u.action === 'meta' && u.provider !== undefined);
     let paidNumUpdates = pendingUpdates.filter(u => u.action === 'paidNum');
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
 
@@ -2333,6 +2335,35 @@ function renderSyncList() {
                 <div class="fw-bold text-dark d-flex align-items-center" style="font-size:14px;">
                     <i class="fas fa-barcode text-muted me-2"></i> ${t.id}
                     <span class="badge ${badgeClass} ms-2" style="font-size:10px;">${t.type}</span>
+                </div>
+            </div>`;
+        });
+    }
+
+    // 🔥 AUTO-ASSIGNED TRACKERS (From Printing)
+    if (trackingUpdates.length > 0) {
+        itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">🚚 Auto-Assigned Trackers (From Print)</div>`;
+        trackingUpdates.forEach(u => {
+            let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
+            let custName = order.name || 'Unknown User';
+            let custPhone = String(order.phone || 'N/A').replace(/[^0-9]/g, '');
+            let tType = String(u.tracking).startsWith('E') ? 'Speed' : 'Normal';
+            let tClass = tType === 'Speed' ? 'danger' : 'primary';
+
+            itemsHtml += `
+            <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid var(--bs-${tClass}) !important;">
+                <button class="btn btn-sm btn-outline-danger border-0 position-absolute top-0 end-0 mt-1 me-1 rounded-circle" style="width:28px;height:28px;padding:0;" onclick="undoUpdate('${u.oid}', 'tracking')" title="Discard & Return Tracker"><i class="fas fa-times"></i></button>
+                
+                <div class="d-flex justify-content-between align-items-start mb-2 pe-4">
+                    <div>
+                        <div class="fw-bold text-dark" style="font-size:14px;"><i class="fas fa-user-circle text-muted me-1"></i> ${custName}</div>
+                        <div class="text-muted mt-1 fw-bold" style="font-size:11px;"><i class="fas fa-phone-alt me-1 text-${tClass}"></i> ${custPhone}</div>
+                    </div>
+                    <div class="badge bg-light text-secondary border border-secondary border-opacity-25" style="font-size:9px;">${u.oid.split('-').pop()}</div>
+                </div>
+                
+                <div class="bg-light p-2 rounded border border-dashed mt-2">
+                    <div class="fw-bold text-dark" style="font-size:12px;"><i class="fas fa-barcode me-1 text-muted"></i> Track: <span class="text-${tClass}">${u.tracking}</span> <span class="badge bg-${tClass} ms-1" style="font-size:9px;">${tType}</span></div>
                 </div>
             </div>`;
         });
@@ -2458,39 +2489,33 @@ function renderSyncList() {
 
             let changedLines = [];
 
-            // 1. കോൺടാക്ട് മാറ്റിയതാണെങ്കിൽ
             if (oldStatus.contact !== newStatus.contact) {
                 let contactIcon = newStatus.contact === 'whatsapp' ? 'fab fa-whatsapp text-success' : (newStatus.contact === 'alt' ? 'fas fa-phone-square text-secondary' : (newStatus.contact === 'paid' ? 'fas fa-money-bill-wave text-success' : 'fas fa-phone-alt text-primary'));
                 let contactLabel = newStatus.contact === 'whatsapp' ? 'WhatsApp' : (newStatus.contact === 'alt' ? 'Alt Phone' : (newStatus.contact === 'paid' ? 'Paid Phone' : 'Main Phone'));
                 changedLines.push(`Contact: <span class="fw-bold text-dark"><i class="${contactIcon}"></i> ${contactLabel}</span>`);
             }
 
-            // 2. പ്രിന്റ് മാറ്റിയതാണെങ്കിൽ (QR Label)
             if (!oldMetaStr.includes('P') && newMetaStr.includes('P')) {
                 changedLines.push(`Status: <span class="fw-bold text-dark"><i class="fas fa-print text-warning"></i> Marked as Printed</span>`);
             } else if (oldMetaStr.includes('P') && !newMetaStr.includes('P')) {
                 changedLines.push(`Status: <span class="fw-bold text-dark"><i class="fas fa-undo text-secondary"></i> Moved back to Unprinted</span>`);
             }
 
-            // 3. ട്രാക്കിങ് മാറ്റിയതാണെങ്കിൽ
             if (!oldMetaStr.includes('T') && newMetaStr.includes('T')) {
                 changedLines.push(`Tab: <span class="fw-bold text-dark"><i class="fas fa-truck text-info"></i> Moved to Tracked Tab</span>`);
             } else if (oldMetaStr.includes('T') && !newMetaStr.includes('T')) {
                 changedLines.push(`Tab: <span class="fw-bold text-danger"><i class="fas fa-undo text-secondary"></i> Removed from Tracked Tab</span>`);
             }
 
-            // 4. 🔥 പുതിയത്: സ്റ്റിക്കർ പ്രിന്റ് അടിച്ചതാണെങ്കിൽ (S Tag)
             if (!oldMetaStr.includes('S') && newMetaStr.includes('S')) {
                 let qty = order.quantity || 1;
                 changedLines.push(`Action: <span class="fw-bold text-dark"><i class="fas fa-sticky-note text-danger"></i> Label Printed (Qty: ${qty})</span>`);
             }
 
-            // 5. 🔥 പുതിയത്: Resend (R Tag)
             if (!oldMetaStr.includes('R') && newMetaStr.includes('R')) {
                 changedLines.push(`Action: <span class="fw-bold text-danger"><i class="fas fa-reply-all"></i> Marked for Resend</span>`);
             }
 
-            // എന്തെങ്കിലും കാരണം കൊണ്ട് മാച്ച് ആയില്ലെങ്കിൽ
             if (changedLines.length === 0) changedLines.push("Internal Meta Updated");
 
             let detailsHtml = changedLines.map(line => `<div class="mt-1 text-muted" style="font-size:12px;">${line}</div>`).join('');
@@ -8913,7 +8938,7 @@ window.bulkCompleteOrders = function (tabType) {
     today.setHours(0, 0, 0, 0); // കൃത്യമായ ദിവസത്തിന്റെ കണക്ക് കിട്ടാൻ
 
     allOrders.forEach(o => {
-        let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+        let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones' && u.action !== 'tracking');
         let status = (local && local.status) ? local.status : (o.Status || 'Pending');
 
         let localMeta = pendingUpdates.find(u => u.oid === o.orderid && u.action === 'meta' && u.meta !== undefined);
