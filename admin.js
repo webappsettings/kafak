@@ -5981,18 +5981,25 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
 
     let avg = stkDB.avgUsage !== undefined ? parseFloat(stkDB.avgUsage) : 0.2;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
-
-    let actualUsedSheets = isStarted ? Math.max(0, ((usedStickers * avg) + (countOffset * avg)) - (parseFloat(stkDB.exempt) || 0)) : 0;
-    let currentBalance = Math.max(0, parseFloat(stkDB.total || 0) - actualUsedSheets);
-
     let historicalRatio = Math.round(1 / (avg || 0.2));
 
-    // 🔥 NEW: കൃത്യമായി മുറിച്ച സ്റ്റിക്കറുകളുടെ എണ്ണം എടുക്കാൻ (Negative values പാടില്ല)
-    let rawLooseStickers = Math.round(countOffset * historicalRatio);
-    let looseStickers = Math.max(0, rawLooseStickers); // പൂജ്യത്തിൽ താഴെ പോവാതിരിക്കാൻ
+    // 1. ആകെ ഉപയോഗിച്ച സ്റ്റിക്കറുകൾ (സിസ്റ്റം + മാനുവൽ)
+    let totalStickersUsed = isStarted ? (usedStickers + countOffset) : 0;
+    if (totalStickersUsed < 0) totalStickersUsed = 0;
 
-    // ബാക്കി വരുന്ന പൂർണ്ണമായ A4 ഷീറ്റുകൾ
-    let fullSheets = Math.max(0, Math.floor(currentBalance + 0.0001));
+    // 2. വാങ്ങിയ ആകെ ഷീറ്റുകളിൽ നിന്നുള്ള മൊത്തം സ്റ്റിക്കർ കപ്പാസിറ്റി
+    let totalSheetsPurchased = parseFloat(stkDB.total || 0);
+    let exemptSheets = parseFloat(stkDB.exempt || 0);
+    let netAvailableSheets = totalSheetsPurchased - exemptSheets;
+    let totalCapacityStickers = netAvailableSheets * historicalRatio;
+
+    // 3. ബാക്കിയുള്ള സ്റ്റിക്കറുകൾ
+    let remainingStickers = totalCapacityStickers - totalStickersUsed;
+    if (remainingStickers < 0) remainingStickers = 0;
+
+    // 4. ഇതിനെ ഷീറ്റും ലൂസുമാക്കി മാറ്റുന്നു
+    let fullSheets = Math.floor(remainingStickers / historicalRatio);
+    let looseStickers = Math.round(remainingStickers % historicalRatio);
 
     window.currentLooseStickers = looseStickers;
 
@@ -8349,9 +8356,15 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
         if (k === 'sticker') {
             let historicalRatio = Math.round(1 / (avg || 0.2));
-            let fullSheets = Math.floor(bal + 0.0001);
-            let looseStickers = Math.round((bal - fullSheets) * historicalRatio);
-            if (looseStickers >= historicalRatio) { fullSheets += 1; looseStickers = 0; }
+            let totalSheetsPurchased = parseFloat(db[k].total || 0);
+            let exemptSheets = parseFloat(db[k].exempt || 0);
+            let totalCapacityStickers = (totalSheetsPurchased - exemptSheets) * historicalRatio;
+
+            let remainingStickers = totalCapacityStickers - liveCount;
+            if (remainingStickers < 0) remainingStickers = 0;
+
+            let fullSheets = Math.floor(remainingStickers / historicalRatio);
+            let looseStickers = Math.round(remainingStickers % historicalRatio);
 
             balDisplay = `${fullSheets} <span class="text-muted fw-normal" style="font-size:9px;">A4</span>`;
             if (looseStickers > 0) balDisplay += ` <span class="badge bg-secondary ms-1" style="font-size:8px;">+${looseStickers} stk</span>`;
@@ -8780,10 +8793,10 @@ window.editStickerStock = function (type, currentValue, ratio) {
             if (!db.sticker) db.sticker = { total: 0, countOffset: 0 };
 
             if (type === 'loose') {
-                let diff = newValue - currentValue;
-                db.sticker.countOffset = (parseFloat(db.sticker.countOffset) || 0) - diff;
+                let diff = currentValue - newValue; // കുറഞ്ഞാൽ ഉപയോഗിച്ചു എന്നർത്ഥം
+                db.sticker.countOffset = (parseFloat(db.sticker.countOffset) || 0) + diff;
             } else if (type === 'sheets') {
-                let diff = newValue - currentValue;
+                let diff = newValue - currentValue; // പുതിയത് കൂടിയാൽ വാങ്ങി എന്നർത്ഥം
                 db.sticker.total = (parseFloat(db.sticker.total) || 0) + diff;
             }
 
