@@ -495,12 +495,13 @@ function fetchOrders(forceLoad = false) {
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 allOrders = response.data;
-                buildSearchString(allOrders); // 🔥 സെർവറിൽ നിന്നും വരുമ്പോഴും ഇൻഡക്സ് ചെയ്യുന്നു
+                buildSearchString(allOrders);
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
                 filterOrders(false);
                 updateSyncButtonUI();
                 fetchDashboardDataBg();
                 handleUrlSearch();
+                if (typeof refreshTrackingBalance === 'function') refreshTrackingBalance(true);
             }
         })
         .catch(err => {
