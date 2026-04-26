@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzYZ1X4kfMwzTO3Bzz8X73Ha6nVkYp7iaHn_Iyn9fkrvrnL_djeR5G4mSNhh0j78PymHw/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwOHZ3Temwubhjociv9FznEKdbqa5uLljU4vlLEEpoHY9yE-br-QrQhKKeb_GQ1lWCxEA/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1138,6 +1138,7 @@ window.submitQuickOrder = async function () {
     quantity: $('#quick-qty').val(),
     paidNum: $('#edit-paid-by').val() || '',
     adminMeta: finalMeta,
+    product: $('#admin-product-type').val() || (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
     message: '',
     custId: (typeof savedOrderData !== 'undefined' && savedOrderData.custId) ? savedOrderData.custId : myCustId,
     language: custLang,
@@ -1362,10 +1363,22 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   if (isAdmin) {
     $('#quick-qty').prev('label').show(); // "You Selected" Label
-    //$('#edit-phone, #edit-whatsapp, #edit-altphone').closest('.mb-3').hide();
+
+    // 🔥 NEW: Product Selection Box (Cheruthen Support)
+    let savedProduct = d.product || 'Vanthen';
+    let prodSelectHTML = `
+        <div id="admin-product-panel" class="mb-3 p-3 bg-white border border-warning rounded shadow-sm fade-in">
+            <label class="small text-muted fw-bold mb-1" style="font-size:11px; letter-spacing:1px;">SELECT PRODUCT 🍯</label>
+            <select id="admin-product-type" class="form-select form-select-sm fw-bold border-warning text-dark" onchange="updatePrice($('#quick-qty').val(), true)">
+                <option value="Vanthen" ${savedProduct === 'Vanthen' ? 'selected' : ''}>Vanthen (Wild Honey)</option>
+                <option value="Cheruthen" ${savedProduct === 'Cheruthen' ? 'selected' : ''}>Cheruthen (Stingless Honey)</option>
+            </select>
+        </div>
+      `;
 
     let commHTML = `
-      <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
+        ${prodSelectHTML}
+        <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
           <div class="d-flex align-items-center mb-2">
               <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly></div>
@@ -1814,50 +1827,53 @@ window.updatePrice = function (qty, isQuick) {
 
   const lang = $('#language-select').val() || 'ml';
   const t = translations[lang];
+
   const n = parseInt(qty);
 
-  // 🔥 വാട്സ്ആപ്പിലെ അതേ ലോജിക് വിസാർഡിലും കൊടുക്കുന്നു! (Sheet Price Sync)
-  const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
-
-  let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
-
-  // 🔥 FIX: ഷീറ്റിൽ നിന്നും അഡ്മിൻ സേവ് ചെയ്ത കൊറിയർ ഉണ്ടെങ്കിൽ അത് എടുക്കുന്നു
-  let savedProvider = null;
-  if (typeof savedOrderData !== 'undefined' && savedOrderData.courier) {
-    savedProvider = savedOrderData.courier;
+  // 🔥 NEW: Check Product Type for Pricing
+  let productType = 'Vanthen';
+  if ($('#admin-product-type').length) {
+    productType = $('#admin-product-type').val();
+  } else if (typeof savedOrderData !== 'undefined' && savedOrderData.product) {
+    productType = savedOrderData.product;
   }
 
-  const zone = getZoneKey(currentState, savedProvider);
-
-  // 🔥🔥🔥 MARGIN FIX STARTS HERE (100% Dynamic & Safe) 🔥🔥🔥
+  let base = 0;
   let totalCourier = 0;
 
-  if (typeof courierRates !== 'undefined') {
-    // 🔥 DTDC മാറ്റി Empty ആക്കി (അപ്പോൾ അത് കൃത്യമായി DEFAULT റേറ്റ് എടുക്കും)
-    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+  if (productType === 'Cheruthen') {
+    // 🔥 CHERUTHEN STRICT PRICING
+    if (n === 1) { base = 900; totalCourier = 80; }
+    else if (n === 2) { base = 1800; totalCourier = 100; }
+    else { base = n * 900; totalCourier = n * 80; } // Default scaling
+  } else {
+    // 🔥 VANTHEN PRICING (Original Logic)
+    base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
-    // 🔥 സ്പേസ് ഉള്ളതും അടിവര ഉള്ളതും ഡിഫോൾട്ടും ആയ എല്ലാ കീകളും ചെക്ക് ചെയ്യുന്നു
-    let zoneData = (p ? (courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`]) : null)
-      || courierRates[`${zone} DEFAULT`]
-      || courierRates[`${zone}_DEFAULT`]
-      || courierRates[zone]
-      || courierRates['REST OF INDIA DEFAULT']
-      || courierRates['REST OF INDIA'];
+    let currentState = isQuick ? $('#edit-state').val() : ((userData && userData.state) ? userData.state : ($('#state').val() || 'KERALA'));
+    let savedProvider = null;
+    if (typeof savedOrderData !== 'undefined' && savedOrderData.courier) savedProvider = savedOrderData.courier;
 
-    if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
-      let courierBaseRate = window.parseDynamicRate(zoneData.baseRate, n);
-      let margin = window.parseDynamicRate(zoneData.serviceCharge, n);
-      totalCourier = courierBaseRate + margin;
-    } else if (zoneData && zoneData[n] !== undefined) {
-      totalCourier = Number(zoneData[n]);
+    const zone = getZoneKey(currentState, savedProvider);
+
+    if (typeof courierRates !== 'undefined') {
+      let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+      let zoneData = (p ? (courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`]) : null)
+        || courierRates[`${zone} DEFAULT`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone]
+        || courierRates['REST OF INDIA DEFAULT'] || courierRates['REST OF INDIA'];
+
+      if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+        let courierBaseRate = window.parseDynamicRate(zoneData.baseRate, n);
+        let margin = window.parseDynamicRate(zoneData.serviceCharge, n);
+        totalCourier = courierBaseRate + margin;
+      } else if (zoneData && zoneData[n] !== undefined) {
+        totalCourier = Number(zoneData[n]);
+      }
     }
+    if (totalCourier === 0) totalCourier = (n * 60) + 20;
   }
 
-  // ഫീൽഡുകൾ ഒന്നും വർക്ക് ആയില്ലെങ്കിൽ ഡിഫോൾട്ട് ആയി 80 രൂപ വെക്കുന്നു (60+20)
-  if (totalCourier === 0) totalCourier = (n * 60) + 20;
-
   const total = base + totalCourier;
-  // 🔥🔥🔥 MARGIN FIX ENDS HERE 🔥🔥🔥
 
   let htmlContent = `
       <div class="price-row"><span>${t.lbl_honey_price} (<span class="qty-count">${n}</span>)</span><span>₹<span class="val-base">${base}</span></span></div>
@@ -2030,7 +2046,7 @@ window.checkForChanges = function () {
   var currAlt = $('#edit-altphone').val() || '';
   var currLang = $('#language-select').val() || 'en';
 
-  // 🔥 NEW: Add PO, District, State
+  // 🔥 NEW: Add PO, District, State, Product
   var currPO = '';
   if ($('#edit-postoffice-select').is(':visible') && $('#edit-postoffice-select').val()) {
     currPO = $('#edit-postoffice-select').val();
@@ -2039,6 +2055,9 @@ window.checkForChanges = function () {
   }
   var currDist = $('#edit-district').val() || '';
   var currState = $('#edit-state').val() || '';
+
+  // Product ന്റെ ഇപ്പോഴത്തെ വാല്യൂ
+  var currProduct = $('#admin-product-type').length ? $('#admin-product-type').val() : 'Vanthen';
 
   // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
@@ -2050,10 +2069,13 @@ window.checkForChanges = function () {
   var savedPin = (savedOrderData.pincode || '') + '';
   var savedAlt = (savedOrderData.altphone || '') + '';
 
-  // 🔥 NEW: Add PO, District, State
+  // 🔥 NEW: Add PO, District, State, Product
   var savedPO = (savedOrderData.postoffice || '') + '';
   var savedDist = (savedOrderData.district || '') + '';
   var savedState = (savedOrderData.state || '') + '';
+
+  // Product ന്റെ പഴയ വാല്യൂ
+  var savedProduct = (savedOrderData.product || 'Vanthen') + '';
 
   // 3. Compare
   var isChanged = false;
@@ -2068,10 +2090,11 @@ window.checkForChanges = function () {
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
-  // 🔥 NEW: Compare PO, Dist, State
+  // 🔥 NEW: Compare PO, Dist, State, Product
   if (String(currPO).trim().toUpperCase() !== String(savedPO).trim().toUpperCase()) isChanged = true;
   if (String(currDist).trim().toUpperCase() !== String(savedDist).trim().toUpperCase()) isChanged = true;
   if (String(currState).trim().toUpperCase() !== String(savedState).trim().toUpperCase()) isChanged = true;
+  if (String(currProduct) !== String(savedProduct)) isChanged = true;
 
   // UI Updates
   var btnUpdate = $('.btn-update-sage');
@@ -2086,7 +2109,7 @@ window.checkForChanges = function () {
   if (isAdmin && ['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
 
     if (isChanged && !isQtyChanged) {
-      // 🔥 Address മാത്രമാണ് മാറ്റിയതെങ്കിൽ "UPDATE DETAILS" എന്ന് വരണം (പുതിയ ഓർഡർ ആവരുത്)
+      // 🔥 Address/Product മാത്രമാണ് മാറ്റിയതെങ്കിൽ "UPDATE DETAILS" എന്ന് വരണം (പുതിയ ഓർഡർ ആവരുത്)
       btnUpdate.prop('disabled', false)
         .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' })
         .html(`<i class="fas fa-save me-1"></i> UPDATE DETAILS`)
@@ -2127,11 +2150,25 @@ window.checkForChanges = function () {
       let stateVal = $('#edit-state').val();
       let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
 
-      let oldBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
-      let newBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
+      // 🔥 Product Logic added here for diff viewer
+      let productType = currProduct;
+      let oldBase = 0; let newBase = 0;
+
+      if (productType === 'Cheruthen') {
+        oldBase = (oldQty === 1) ? 900 : (oldQty === 2 ? 1800 : oldQty * 900);
+        newBase = (newQty === 1) ? 900 : (newQty === 2 ? 1800 : newQty * 900);
+      } else {
+        oldBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
+        newBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
+      }
 
       let oldCourier = window.getDeliveryCharge(stateVal, oldQty, prov);
       let newCourier = window.getDeliveryCharge(stateVal, newQty, prov);
+
+      if (productType === 'Cheruthen') {
+        oldCourier = (oldQty === 1) ? 80 : (oldQty === 2 ? 100 : oldQty * 80);
+        newCourier = (newQty === 1) ? 80 : (newQty === 2 ? 100 : newQty * 80);
+      }
 
       let oldTotal = oldBase + oldCourier;
       let newTotal = newBase + newCourier;
@@ -2164,7 +2201,6 @@ window.checkForChanges = function () {
       $('#admin-qty-actions').slideUp();
       $('#admin-action-bar').slideDown();
 
-      // 🔥 FIX: Enable the button if address/details changed!
       if (isChanged) {
         btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' }).text(t.btn_update || "Update Order");
         btnUpdate.show();
@@ -2174,7 +2210,6 @@ window.checkForChanges = function () {
       }
     }
 
-    // Address Box Save Button Update for Admin
     if (isChanged) {
       btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
     } else {
@@ -2944,48 +2979,53 @@ function sendToWhatsapp() {
     if (safe(savedOrderData.state) !== safe(d.state)) changes.push(`🌍 STATE: *${safe(d.state)}*`);
   }
 
-  // 4. Calculate Total (Fixed Sync with updatePrice logic)
+  // 4. Calculate Total (Cheruthen + Vanthen Logic)
   const n = parseInt(d.quantity);
-  const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
-  let savedProvider = (typeof savedOrderData !== 'undefined' && savedOrderData.courier) ? savedOrderData.courier : null;
-  const zone = getZoneKey(d.state, savedProvider);
+  let productType = d.product || (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen');
+  let base = 0;
+  let courier = 0;
 
-  let courierBase = 0;
-  let serviceMargin = 0;
+  if (productType === 'Cheruthen') {
+    if (n === 1) { base = 900; courier = 80; }
+    else if (n === 2) { base = 1800; courier = 100; }
+    else { base = n * 900; courier = n * 80; }
+  } else {
+    base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
+    let savedProvider = (typeof savedOrderData !== 'undefined' && savedOrderData.courier) ? savedOrderData.courier : null;
+    const zone = getZoneKey(d.state, savedProvider);
 
-  if (typeof courierRates !== 'undefined') {
-    // 🔥 DTDC മാറ്റി DEFAULT സപ്പോർട്ട് കൊണ്ടുവന്നു
-    let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+    let courierBase = 0;
+    let serviceMargin = 0;
 
-    let zoneData = (p ? (courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`]) : null)
-      || courierRates[`${zone} DEFAULT`]
-      || courierRates[`${zone}_DEFAULT`]
-      || courierRates[zone]
-      || courierRates['REST OF INDIA DEFAULT']
-      || courierRates['REST OF INDIA'];
+    if (typeof courierRates !== 'undefined') {
+      let p = savedProvider ? String(savedProvider).toUpperCase().trim() : '';
+      let zoneData = (p ? (courierRates[`${zone} ${p}`] || courierRates[`${zone}_${p}`]) : null)
+        || courierRates[`${zone} DEFAULT`] || courierRates[`${zone}_DEFAULT`] || courierRates[zone]
+        || courierRates['REST OF INDIA DEFAULT'] || courierRates['REST OF INDIA'];
 
-    if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
-      courierBase = window.parseDynamicRate(zoneData.baseRate, n);
-      serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
-    } else if (zoneData && zoneData[n] !== undefined) {
-      courierBase = Number(zoneData[n]);
+      if (zoneData && typeof zoneData === 'object' && zoneData.baseRate !== undefined) {
+        courierBase = window.parseDynamicRate(zoneData.baseRate, n);
+        serviceMargin = window.parseDynamicRate(zoneData.serviceCharge, n);
+      } else if (zoneData && zoneData[n] !== undefined) {
+        courierBase = Number(zoneData[n]);
+      }
     }
+    courier = courierBase + serviceMargin;
   }
 
-  const courier = courierBase + serviceMargin;
   const total = base + courier;
 
   // 5. Generate Message Header
   const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
   let header = "";
 
-  // 🔥 LOGIC UPDATE: Custom Header for Admin
+  // 🔥 NEW: Product Name Display
+  let productDisplay = productType === 'Cheruthen' ? "*🍯 Product: Cheruthen (Stingless Honey)*" : "*🍯 Product: Vanthen (Wild Honey)*";
+
   if (isAdmin) {
-    // Admin sending Invoice to Customer
-    header = `*🧾 ORDER INVOICE* - KAFAK HONEY 🍯\n⌚ _${formattedTime}_\n\nHere is your order details 👇\nനിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇\n🔗 _${editLink}_\n`;
+    header = `*🧾 ORDER INVOICE* - KAFAK HONEY\n⌚ _${formattedTime}_\n\nHere is your order details 👇\nനിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇\n🔗 _${editLink}_\n`;
   } else {
-    // Customer placing order (Standard)
     if (isUpdate) {
       header = `*${t.wa_header_update}*\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
       if (changes.length > 0) {
@@ -3001,8 +3041,7 @@ function sendToWhatsapp() {
 
   let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
-  const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
-
+  const details = `\n____________________________________\n${productDisplay}\n\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
   // Payment Note
   let paymentNote = "";
   if (lang === 'en') {
@@ -3231,6 +3270,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     quantity: $('#quick-qty').val(),
     paidNum: $('#edit-paid-by').val() || '',
     adminMeta: finalMeta,
+    product: $('#admin-product-type').val() || (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
     message: '',
     custId: myCustId,
     language: custLang,

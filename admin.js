@@ -26,7 +26,7 @@ if (!$('#lazy-load-css').length) {
     `).appendTo('head');
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbzYZ1X4kfMwzTO3Bzz8X73Ha6nVkYp7iaHn_Iyn9fkrvrnL_djeR5G4mSNhh0j78PymHw/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwOHZ3Temwubhjociv9FznEKdbqa5uLljU4vlLEEpoHY9yE-br-QrQhKKeb_GQ1lWCxEA/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1732,6 +1732,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
 
     let directEditBtn = isDirectSelected ? `<button class="btn btn-sm btn-warning ms-1 me-2 shadow-sm" style="padding:2px 6px; font-size:10px; border-radius:4px;" onclick="event.stopPropagation(); openDirectDeliveryPopup('${d.orderid}')" title="Edit Delivery Charge"><i class="fas fa-edit"></i></button>` : '';
 
+    // 🔥 NEW: Cheruthen Badge
+    let productType = d.product || 'Vanthen';
+    let productBadge = productType === 'Cheruthen' ? `<span class="badge bg-warning text-dark ms-2 shadow-sm border border-dark" style="font-size:9px; letter-spacing:0.5px; position:relative; top:-2px;">CHERUTHEN</span>` : '';
+
     return `
     <div class="col-12 col-md-12 col-lg-12 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
         <div class="order-card p-3">
@@ -1742,7 +1746,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             ${fraudAlertHtml}
             <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
             ${paidTimeHTML}
-            <div class="cust-name">${safe(d.name)}</div>
+            <div class="cust-name">${safe(d.name)} ${productBadge}</div>
             <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
@@ -3251,6 +3255,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             <div class="address-sec">
                 <div class="to-label">To,</div>
                 <div class="cust-name">${safe(d.name)}</div>
+                ${(d.product === 'Cheruthen' || d.product === 'Cheruthen') ? `<div style="font-size:11px; font-weight:900; background:#000; color:#fff; padding:2px 5px; border-radius:3px; display:inline-block; margin-top:2px; margin-bottom:2px;">CHERUTHEN (Stingless)</div>` : ''}
                 <div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div>
                 <div class="cust-pin">PIN: ${d.pincode}</div>
                 <div class="cust-ph">PH: ${printPhone}</div>
@@ -3583,12 +3588,23 @@ function getZoneKey(stateName) {
 
 function calculatePriceInfo(u, qty, state, provider) {
     const n = parseInt(qty) || 0;
-    const basePrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n])
-        ? Number(courierRates.prices[n])
-        : (n * 650);
+    let productType = u.product || u.product || 'Vanthen';
 
-    // ഷീറ്റിൽ ഇതിനകം സേവ് ചെയ്ത ചാർജ് ഉണ്ടെങ്കിൽ അത് എടുക്കുന്നു, ഇല്ലെങ്കിൽ പുതിയത് കാൽക്കുലേറ്റ് ചെയ്യുന്നു
-    let displayCharge = (u.Courier_Charge !== undefined && u.Courier_Charge !== "") ? Number(u.Courier_Charge) : getCourierRate(state, provider, n);
+    let basePrice = 0;
+    let displayCharge = 0;
+
+    if (productType === 'Cheruthen') {
+        // 🔥 CHERUTHEN STRICT PRICING FOR ADMIN CARDS
+        if (n === 1) { basePrice = 900; displayCharge = 80; }
+        else if (n === 2) { basePrice = 1800; displayCharge = 100; }
+        else { basePrice = n * 900; displayCharge = n * 80; }
+    } else {
+        // 🔥 VANTHEN PRICING
+        basePrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n])
+            ? Number(courierRates.prices[n])
+            : (n * 650);
+        displayCharge = (u.Courier_Charge !== undefined && u.Courier_Charge !== "") ? Number(u.Courier_Charge) : getCourierRate(state, provider, n);
+    }
 
     // സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള അപ്ഡേറ്റ് (Meta) വല്ലതും ഉണ്ടോ എന്ന് നോക്കുന്നു
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -3598,7 +3614,6 @@ function calculatePriceInfo(u, qty, state, provider) {
         displayCharge = Number(myMeta.charge);
     }
 
-    // 🔥 പുതിയ മാറ്റം: വിലയുടെ ബ്രേക്ക്ഡൗൺ കൂടി നൽകുന്നു
     return {
         total: `₹${basePrice + displayCharge}/-`,
         breakdownText: `<span class="text-muted" style="font-size:9px; margin-right:4px;">(${basePrice} + ${displayCharge})</span> ₹${basePrice + displayCharge}/-`
