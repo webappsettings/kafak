@@ -3252,10 +3252,10 @@ async function runPrintLogic(checkboxes, directData = null) {
             ${trackingBarcodeHtml}
             ${stateDotHtml}
             ${resendDotHtml}
+            ${(d.product === 'Cheruthen' || d.product === 'Cheruthen') ? `<div style="font-size: 11px; font-weight: 900; background: #bb1a00; color: #fff; padding: 2px 5px; border-radius: 3px; display: inline-block; margin-top: 16px; position: absolute; top: 20px; left: 138px;">St</div>` : ''}
             <div class="address-sec">
                 <div class="to-label">To,</div>
                 <div class="cust-name">${safe(d.name)}</div>
-                ${(d.product === 'Cheruthen' || d.product === 'Cheruthen') ? `<div style="font-size:11px; font-weight:900; background:#000; color:#fff; padding:2px 5px; border-radius:3px; display:inline-block; margin-top:2px; margin-bottom:2px;">CHERUTHEN (Stingless)</div>` : ''}
                 <div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div>
                 <div class="cust-pin">PIN: ${d.pincode}</div>
                 <div class="cust-ph">PH: ${printPhone}</div>
