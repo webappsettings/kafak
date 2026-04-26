@@ -2018,7 +2018,7 @@ window.showStep = function (s) {
 
 setTimeout(updateLiveAddressPreview, 1000);
 
-function checkForChanges() {
+window.checkForChanges = function () {
   // 1. Current Values
   var currQty = $('#quick-qty').val() || '';
   var currName = $('#edit-name').val() || '';
@@ -2030,6 +2030,16 @@ function checkForChanges() {
   var currAlt = $('#edit-altphone').val() || '';
   var currLang = $('#language-select').val() || 'en';
 
+  // 🔥 NEW: Add PO, District, State
+  var currPO = '';
+  if ($('#edit-postoffice-select').is(':visible') && $('#edit-postoffice-select').val()) {
+    currPO = $('#edit-postoffice-select').val();
+  } else {
+    currPO = $('#edit-postoffice').val() || '';
+  }
+  var currDist = $('#edit-district').val() || '';
+  var currState = $('#edit-state').val() || '';
+
   // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
   var savedName = (savedOrderData.name || '') + '';
@@ -2039,7 +2049,11 @@ function checkForChanges() {
   var savedPlace = (savedOrderData.place || '') + '';
   var savedPin = (savedOrderData.pincode || '') + '';
   var savedAlt = (savedOrderData.altphone || '') + '';
-  var savedLang = (savedOrderData.language || 'en') + '';
+
+  // 🔥 NEW: Add PO, District, State
+  var savedPO = (savedOrderData.postoffice || '') + '';
+  var savedDist = (savedOrderData.district || '') + '';
+  var savedState = (savedOrderData.state || '') + '';
 
   // 3. Compare
   var isChanged = false;
@@ -2054,20 +2068,36 @@ function checkForChanges() {
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
 
+  // 🔥 NEW: Compare PO, Dist, State
+  if (String(currPO).trim().toUpperCase() !== String(savedPO).trim().toUpperCase()) isChanged = true;
+  if (String(currDist).trim().toUpperCase() !== String(savedDist).trim().toUpperCase()) isChanged = true;
+  if (String(currState).trim().toUpperCase() !== String(savedState).trim().toUpperCase()) isChanged = true;
+
   // UI Updates
   var btnUpdate = $('.btn-update-sage');
   var btnSave = $('#address-edit-box button');
   const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || translations['en'];
+  const t = translations[lang] || { txt_save_changes: "Save Changes", txt_no_changes: "No Changes", btn_update: "Update Order", btn_order: "PLACE ORDER" };
 
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   const status = String(savedOrderData.Status || '').toLowerCase();
 
-  // 🔥 ADMIN OVERRIDE FOR COMPLETED STATES (അഡ്മിന് പുതിയ ഓർഡർ ബട്ടൺ എപ്പോഴും ആക്ടീവ് ആക്കി നിർത്താൻ)
+  // 🔥 ADMIN OVERRIDE FOR COMPLETED STATES
   if (isAdmin && ['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
-    btnUpdate.prop('disabled', false)
-      .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
-      .html(`<i class="fas fa-plus-circle me-1"></i> CREATE NEW ORDER`);
+
+    if (isChanged && !isQtyChanged) {
+      // 🔥 Address മാത്രമാണ് മാറ്റിയതെങ്കിൽ "UPDATE DETAILS" എന്ന് വരണം (പുതിയ ഓർഡർ ആവരുത്)
+      btnUpdate.prop('disabled', false)
+        .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' })
+        .html(`<i class="fas fa-save me-1"></i> UPDATE DETAILS`)
+        .attr('onclick', 'submitQuickOrder()');
+    } else {
+      // Qty മാറുകയോ, ഒന്നും മാറാതിരിക്കുകയോ ചെയ്താൽ "CREATE NEW ORDER" കാണിക്കുക
+      btnUpdate.prop('disabled', false)
+        .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
+        .html(`<i class="fas fa-plus-circle me-1"></i> CREATE NEW ORDER`)
+        .attr('onclick', 'processCleanReorder()');
+    }
 
     if (isChanged) {
       btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
@@ -2089,16 +2119,16 @@ function checkForChanges() {
     return;
   }
 
-  // Admin Logic (For Pending/Paid etc)
+  // Admin Logic (For Pending/Paid/Sent etc)
   if (isAdmin && editingOrderId) {
-    if (isQtyChanged) {
+    if (isQtyChanged && ['paid', 'dispatched'].includes(status)) {
       let oldQty = parseInt(savedQty) || 0;
       let newQty = parseInt(currQty) || 0;
       let stateVal = $('#edit-state').val();
       let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
 
-      let oldBase = (courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
-      let newBase = (courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
+      let oldBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
+      let newBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
 
       let oldCourier = window.getDeliveryCharge(stateVal, oldQty, prov);
       let newCourier = window.getDeliveryCharge(stateVal, newQty, prov);
@@ -2133,11 +2163,27 @@ function checkForChanges() {
       $('#admin-diff-viewer').slideUp();
       $('#admin-qty-actions').slideUp();
       $('#admin-action-bar').slideDown();
-      btnUpdate.show();
+
+      // 🔥 FIX: Enable the button if address/details changed!
+      if (isChanged) {
+        btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' }).text(t.btn_update || "Update Order");
+        btnUpdate.show();
+      } else {
+        btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed', 'background': '#6b7280', 'border-color': '#6b7280' }).text(t.txt_no_changes || "No Changes");
+        btnUpdate.show();
+      }
     }
+
+    // Address Box Save Button Update for Admin
+    if (isChanged) {
+      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
+    } else {
+      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
+    }
+    return;
   }
 
-  // Standard User Logic (Or Admin with no OrderID)
+  // Standard User Logic
   if (!isAdmin || !isQtyChanged) {
     if (!editingOrderId) {
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#16a34a', 'border-color': '#15803d' });
@@ -2160,6 +2206,11 @@ function checkForChanges() {
     }
   }
 }
+
+$(document).on('change', '#edit-postoffice-select', function () {
+  $('#edit-postoffice').val($(this).val());
+  updateSummaryDisplay();
+});
 
 
 function toggleAddressEdit() { $('.address-box').slideToggle(); }
