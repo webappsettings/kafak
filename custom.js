@@ -134,6 +134,26 @@ window.updateWizardLocDisplay = function () {
   $('#display-dist-state').text(`${$('#place').val() || ''}, ${userData.district || ''}`.toUpperCase());
 }
 
+// 🔥 NEW: Product മാറുമ്പോൾ അളവുകളും (300g/600g) വിലയും തനിയെ മാറാൻ
+window.onProductChange = function () {
+  let activeQtySelector = $('#wizard-view').is(':visible') ? '#quantity' : '#quick-qty';
+  let currentQty = $(activeQtySelector).val();
+
+  renderQtyDropdowns(); // ഡ്രോപ്പ്-ഡൗൺ അപ്ഡേറ്റ് ചെയ്യുന്നു
+
+  if (currentQty) {
+    $(activeQtySelector).val(currentQty);
+  } else {
+    $(activeQtySelector).val('1');
+  }
+
+  updatePrice($(activeQtySelector).val(), activeQtySelector === '#quick-qty');
+
+  if (typeof checkForChanges === 'function') {
+    checkForChanges();
+  }
+};
+
 
 function formatPrettyDate(dateStr) {
   if (!dateStr) return "";
@@ -819,6 +839,7 @@ window.submitWizardOrder = async function () { // 🔥 async ആക്കി മ
     district: userData.district,
     state: userData.state || 'Kerala',
     quantity: $('#quantity').val(),
+    product: $('#admin-product-type').length ? $('#admin-product-type').val() : 'Vanthen', // 🔥 NEW
     message: '',
     custId: myCustId,
     language: $('#language-select').val() || 'en',
@@ -916,7 +937,8 @@ window.startWizard = function () {
   updateFooterButtons('wizard');
 
   // 🔥 NEW: Admin Label Logic
-  $('#admin-wiz-label').remove(); // പഴയത് ഉണ്ടെങ്കിൽ കളയുന്നു (ഡ്യൂപ്ലിക്കേറ്റ് വരാതിരിക്കാൻ)
+  $('#admin-wiz-label').remove();
+  $('#admin-product-panel').remove();
 
   if (localStorage.getItem('kafakAdmin') === 'true') {
     let labelHtml = `
@@ -927,7 +949,20 @@ window.startWizard = function () {
                 </span>
             </div>
          `;
-    $('#wizard-view').prepend(labelHtml); // വിസാർഡിന്റെ ഏറ്റവും മുകളിൽ ചേർക്കുന്നു
+    $('#wizard-view').prepend(labelHtml);
+
+    // 🔥 NEW: വിസാർഡിൽ 'Quantity' ക്ക് മുകളിൽ Product Select വരാൻ
+    let prodSelectHTML = `
+        <div id="admin-product-panel" class="mb-3 p-3 bg-white border border-warning rounded shadow-sm fade-in w-100">
+            <label class="small text-muted fw-bold mb-1" style="font-size:11px; letter-spacing:1px;">SELECT PRODUCT 🍯</label>
+            <select id="admin-product-type" class="form-select form-select-sm fw-bold border-warning text-dark" onchange="onProductChange()">
+                <option value="Vanthen" selected>Vanthen (Wild Honey)</option>
+                <option value="Cheruthen">Cheruthen (Stingless Honey)</option>
+            </select>
+        </div>
+    `;
+    $(prodSelectHTML).prependTo('.wiz-step[data-step="7"]');
+    renderQtyDropdowns(); // തനിയെ അളവുകൾ സെറ്റ് ആകാൻ
   }
 
   currentStep = 1;
@@ -1357,6 +1392,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   // Admin Panel Setup (Placeholder)
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  $('#admin-product-panel').remove();
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
   $('#admin-qty-actions').remove();
@@ -1364,20 +1400,28 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   if (isAdmin) {
     $('#quick-qty').prev('label').show(); // "You Selected" Label
 
-    // 🔥 NEW: Product Selection Box (Cheruthen Support)
+    // 🔥 NEW: Product Selection Box (Cheruthen Support - മുകളിലേക്ക് മാറ്റി)
     let savedProduct = d.product || 'Vanthen';
     let prodSelectHTML = `
-        <div id="admin-product-panel" class="mb-3 p-3 bg-white border border-warning rounded shadow-sm fade-in">
+        <div id="admin-product-panel" class="mb-3 p-3 bg-white border border-warning rounded shadow-sm fade-in w-100">
             <label class="small text-muted fw-bold mb-1" style="font-size:11px; letter-spacing:1px;">SELECT PRODUCT 🍯</label>
-            <select id="admin-product-type" class="form-select form-select-sm fw-bold border-warning text-dark" onchange="updatePrice($('#quick-qty').val(), true)">
+            <select id="admin-product-type" class="form-select form-select-sm fw-bold border-warning text-dark" onchange="onProductChange()">
                 <option value="Vanthen" ${savedProduct === 'Vanthen' ? 'selected' : ''}>Vanthen (Wild Honey)</option>
                 <option value="Cheruthen" ${savedProduct === 'Cheruthen' ? 'selected' : ''}>Cheruthen (Stingless Honey)</option>
             </select>
         </div>
-      `;
+    `;
+
+    $('#admin-product-panel').remove();
+    $(prodSelectHTML).insertBefore($('#quick-qty').prev('label'));
+
+    let existingQty = d.quantity;
+    renderQtyDropdowns(); // 🔥 ഇവിടെവെച്ച് ഡ്രോപ്പ്-ഡൗൺ അപ്ഡേറ്റ് ചെയ്യുന്നു
+    if (existingQty) {
+      $('#quick-qty').val(existingQty);
+    }
 
     let commHTML = `
-        ${prodSelectHTML}
         <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
           <div class="d-flex align-items-center mb-2">
@@ -2864,18 +2908,33 @@ function fetchCourierRates() {
   if (cacheValid) { serverFetch; return Promise.resolve(true); } else { return serverFetch; }
 }
 
+// 🔥 UPDATED: Dynamic Quantity Dropdowns (Vanthen & Cheruthen)
 function renderQtyDropdowns() {
   if (!globalQtyList || globalQtyList.length === 0) return;
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
   let optionsHTML = `<option value="" disabled selected>${t.dd_select || "Select Quantity"}</option>`;
 
+  // 🔥 NEW: Product ഏതാണെന്ന് നോക്കുന്നു
+  let productType = 'Vanthen';
+  if ($('#admin-product-type').length) {
+    productType = $('#admin-product-type').val();
+  } else if (typeof savedOrderData !== 'undefined' && savedOrderData.product) {
+    productType = savedOrderData.product;
+  }
+
+  let isCheruthen = (productType === 'Cheruthen');
+  let multiplier = isCheruthen ? 300 : 650;
+
   globalQtyList.forEach(qty => {
-    const totalGrams = qty * 650;
+    const totalGrams = qty * multiplier;
     let weightText;
     if (totalGrams >= 1000) { weightText = (totalGrams / 1000).toFixed(2) + " " + (t.txt_kg || "kg"); } else { weightText = totalGrams + (t.txt_g || "g"); }
     let bottleLabel = (qty === 1) ? (t.txt_bottle || "Bottle") : (t.txt_bottles || "Bottles");
+
     let label = `${qty} ${bottleLabel} (${weightText})`;
+    if (isCheruthen) label = `${qty} Bottle (${weightText}) - Cheruthen`;
+
     optionsHTML += `<option value="${qty}">${label}</option>`;
   });
   $('#quantity').html(optionsHTML);
@@ -2885,9 +2944,8 @@ function renderQtyDropdowns() {
   if (editingOrderId && typeof savedOrderData !== 'undefined' && savedOrderData.quantity) {
 
     let currentStatus = String(savedOrderData.Status || '').toLowerCase();
-    let isOrderDone = ['delivered', 'completed', 'refunded'].includes(currentStatus); // 🔥 refunded ചേർത്തു!
+    let isOrderDone = ['delivered', 'completed', 'refunded'].includes(currentStatus);
 
-    // 🔥 ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ പഴയ കുപ്പിയുടെ എണ്ണം തനിയെ വരുന്നത് തടയുന്നു!
     if (!isOrderDone) {
       $('#quick-qty').val(savedOrderData.quantity);
       if (!$('#quick-qty').val()) {
@@ -2896,7 +2954,6 @@ function renderQtyDropdowns() {
       }
       updatePrice($('#quick-qty').val(), true);
     } else {
-      // ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ ഒന്നും ഫിൽ ആവില്ല, വെറും സെലക്ട് ബോക്സ് മാത്രം വരും
       $('#quick-qty').val('');
     }
   }
@@ -2909,7 +2966,6 @@ function renderQtyDropdowns() {
     }
   }
 }
-
 // Helper Toast (if not already exists)
 function showToast(icon, title) {
   Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: icon, title: title });
