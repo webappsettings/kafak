@@ -9077,7 +9077,7 @@ window.toggleStateFilter = function (stateLabel) {
     }
 };
 
-// 🔥 INSTANT STATUS CHANGE (With Auto-Move to New Tab & Top Sorting)
+// 🔥 INSTANT STATUS CHANGE (With Auto-Move to New Tab & Meta Cleanup)
 window.instantStatusChange = function (btnElement, oid, targetStatus) {
     let msg = targetStatus === 'Paid' ? 'Mark as Paid?' : `Move to ${targetStatus}?`;
 
@@ -9088,7 +9088,6 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
     }).then((result) => {
         if (result.isConfirmed) {
 
-            // 1. കാർഡ് ഏറ്റവും മുകളിൽ വരാൻ ഇപ്പോഴത്തെ സമയം എടുക്കുന്നു (Action Date)
             let now = new Date();
             let y = now.getFullYear();
             let m = String(now.getMonth() + 1).padStart(2, '0');
@@ -9098,6 +9097,20 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
             let finalActionDate = `${y}-${m}-${d} ${h}:${min}`;
 
             let order = allOrders.find(o => o.orderid === oid);
+            let oldStatus = order ? order.Status : 'Pending';
+
+            // 🔥 FIX 1: പഴയ കസ്റ്റമറുടെ അനാവശ്യ ടാഗുകൾ മായ്ച്ചു കളയുന്നു (P, S, T)
+            let currentMeta = order ? String(order.adminMeta || '') : '';
+            let cleanMeta = currentMeta;
+            let metaCleaned = false;
+
+            if (['Pending', 'Sent', 'pending', 'sent'].includes(oldStatus.toLowerCase()) && targetStatus === 'Paid') {
+                if (currentMeta.includes('P') || currentMeta.includes('S') || currentMeta.includes('T')) {
+                    cleanMeta = currentMeta.replace(/P_\d+/g, '').replace(/[PST]/g, '').replace(/\s+/g, ' ').trim();
+                    metaCleaned = true;
+                }
+            }
+
             if (order && order.adminMeta && order.adminMeta.includes('DDelivery')) {
                 order.provider = 'Direct';
                 order.Courier_Provider = 'Direct';
@@ -9105,19 +9118,17 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
                 if (match) order.Courier_Charge = parseInt(match[2]);
             }
 
-            // 2. കാർഡ് സ്ക്രീനിൽ നിന്ന് തൽക്ഷണം മായുന്നു (ലാഗ് ഒഴിവാക്കാൻ അനിമേഷൻ)
             let cardDiv = $(btnElement).closest('.col-12.col-md-12.col-lg-12');
             if (!cardDiv.length) cardDiv = $(btnElement).closest('.col-12');
 
             cardDiv.fadeOut(200, function () {
-                $(this).remove(); // പഴയ കാർഡ് മായ്ക്കുന്നു
+                $(this).remove();
 
-                // 3. ഡാറ്റ അപ്ഡേറ്റ് ചെയ്യുന്നു
-                let oldStatus = order ? order.Status : 'Pending';
                 if (order) {
                     order.Status = targetStatus;
                     if (targetStatus === 'Paid') order.paidDate = finalActionDate;
                     if (targetStatus === 'Dispatched') order['Dispatched Date'] = finalActionDate;
+                    if (metaCleaned) order.adminMeta = cleanMeta;
                 }
 
                 let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -9126,18 +9137,21 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
                     action: 'status',
                     status: targetStatus,
                     oldStatus: oldStatus,
-                    actionDate: finalActionDate, // 🔥 ഇത് ചേർത്താലേ കാർഡ് ഏറ്റവും മുകളിൽ വരൂ!
+                    actionDate: finalActionDate,
                     time: new Date().getTime(),
                     deleteRefund: false
                 });
+
+                if (metaCleaned) {
+                    let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
+                    if (metaIdx > -1) updates[metaIdx].meta = cleanMeta;
+                    else updates.push({ oid: oid, action: 'meta', meta: cleanMeta, oldMeta: currentMeta, time: new Date().getTime() });
+                }
 
                 localStorage.setItem('pendingUpdates', JSON.stringify(updates));
                 localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
                 if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-
-                // 4. 🔥 ഏറ്റവും പ്രധാനം: കാർഡ് പുതിയ ടാബിൽ ഉടനടി വരച്ചു ചേർക്കുന്നു! 
-                // നമ്മൾ സെർച്ച് വളരെ സ്പീഡ് ആക്കിയത് കൊണ്ട് ഇത് ലാഗ് ഇല്ലാതെ തൽക്ഷണം വരും.
                 filterOrders(false);
             });
         }
@@ -9458,7 +9472,7 @@ window.openDirectDeliveryPopup = function (oid) {
     });
 };
 
-// 🔥 FIX 2: CLEANUP ORPHANED META TAGS & ADD SYNC INDICATION
+// 🔥 FIX 3: CLEANUP ORPHANED META TAGS & IMMEDIATE UI REFRESH
 window.confirmUnprint = function (oid) {
     Swal.fire({
         title: 'Revert Status?',
@@ -9473,7 +9487,9 @@ window.confirmUnprint = function (oid) {
             if (!order) return;
 
             let oldMeta = String(order.adminMeta || '');
-            let newMeta = oldMeta.replace(/(^|\s)P?_\d+/g, '').replace(/\s+/g, ' ').trim();
+
+            // 🔥 'P' എന്ന അക്ഷരവും 'P_Time' ഉം കൃത്യമായി മായ്ക്കുന്നു!
+            let newMeta = oldMeta.replace(/P_\d+/g, '').replace(/P/g, '').replace(/\s+/g, ' ').trim();
             order.adminMeta = newMeta;
 
             let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
@@ -9489,7 +9505,11 @@ window.confirmUnprint = function (oid) {
             localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
             if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
-            if (typeof renderTabs === 'function') filterOrders(false);
+
+            // 🔥 കാർഡ് സ്ക്രീനിൽ നിന്ന് തൽക്ഷണം മാറ്റാൻ
+            let searchInput = document.getElementById('searchInput');
+            if (searchInput && searchInput.value.trim() !== "") filterOrders();
+            else filterOrders(false);
 
             Swal.fire({ icon: 'success', title: 'Reverted to Unprinted!', toast: true, position: 'top-end', showConfirmButton: false, timer: 2000 });
         }
