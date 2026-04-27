@@ -1043,248 +1043,6 @@ window.prevStep = function () {
   currentStep--; showStep(currentStep);
 }
 
-
-// 🔥 FAST ORDER SUBMIT (With Admin New Order Creation Support)
-window.submitQuickOrder = async function () {
-  if ($('.btn-update-sage').prop('disabled')) return;
-
-  if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
-
-  const phoneCheck = $('#edit-phone').val() || (typeof userData !== 'undefined' && userData ? userData.phone : null);
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-
-  // -------------------------------------------------------------------------
-
-  if (!editingOrderId && window.activeCustomerData && window.activeCustomerData.history) {
-    let restrictedStatuses = ['pending', 'sent', 'archive'];
-    let hasActiveOrder = window.activeCustomerData.history.some(o => restrictedStatuses.includes(String(o.status).toLowerCase()));
-
-    if (hasActiveOrder && !isAdmin) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Active Order Exists! ⚠️',
-        html: 'താങ്കൾക്ക് നിലവിൽ പ്രോസസ്സ് ചെയ്തുകൊണ്ടിരിക്കുന്ന ഒരു ഓർഡർ ഉണ്ട്.</b>',
-        confirmButtonText: 'OK',
-        confirmButtonColor: '#ffc107'
-      });
-      return;
-    }
-  }
-  // -------------------------------------------------------------------------
-
-  // 🔥 STRICT SERVER CHECK: പുതിയ ഓർഡർ ഉണ്ടാക്കുന്നതിന് മുൻപ് ചെക്ക് ചെയ്യുന്നു
-  if (!editingOrderId && phoneCheck) {
-    showLoader(true);
-    try {
-      if (!isAdmin) {
-        let res = await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`);
-        let data = await res.json();
-
-        if (data.result === 'success' && data.data && data.data.orderid) {
-          let s = String(data.data.Status || 'pending').toLowerCase();
-          if (!['delivered', 'completed', 'refunded'].includes(s)) {
-            showLoader(false);
-            const lang = $('#language-select').val() || 'en';
-            const t = translations[lang] || translations['en'];
-            const msg = (t.msg_active_order).replace('OID_HERE', data.data.orderid);
-
-            Swal.fire({
-              icon: 'info', title: t.title_active_order, text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' }
-            }).then(() => {
-              window.location.href = `order.html?phone=${phoneCheck}`;
-            });
-            return;
-          }
-        }
-      } else {
-        // അഡ്മിൻ ആണെങ്കിൽ കാഷെയിൽ നിന്ന് പെട്ടെന്ന് ചെക്ക് ചെയ്യുന്നു
-        let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
-        let latestActive = cachedOrders.find(o => String(o.phone) === String(phoneCheck) && !['delivered', 'completed', 'refunded'].includes(String(o.Status).toLowerCase()));
-        if (latestActive) {
-          showLoader(false);
-          Swal.fire({ icon: 'info', title: 'Active Order Found!', text: `Switching to active order: ${latestActive.orderid}` }).then(() => {
-            window.location.href = `order.html?oid=${latestActive.orderid}`;
-          });
-          return;
-        }
-      }
-    } catch (e) {
-      console.log("Server check failed, proceeding...");
-    }
-    showLoader(false);
-  }
-
-  // PO Check
-  let finalPO = $('#edit-postoffice').val();
-  if ($('#edit-postoffice-select').is(':visible')) finalPO = $('#edit-postoffice-select').val();
-  if (!finalPO) {
-    showAlert(getAlert('err_select_po') || "Please Select Post Office");
-    if ($('.address-box').is(':hidden')) toggleAddressEdit();
-    return;
-  }
-  $('#edit-postoffice').val(finalPO);
-
-  if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
-
-  const newName = $('#edit-name').val();
-  if (!newName) { showAlert(getAlert('err_name')); return; }
-
-  const newPhone = $('#edit-phone').val();
-  if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
-
-  const newAlt = $('#edit-altphone').val();
-  if (!isAdmin && (!newAlt || newAlt.length < 8 || newAlt.length > 15)) {
-    showAlert(getAlert('err_alt_required'));
-    return;
-  }
-  // നമ്പർ കൊടുത്തിട്ടുണ്ടെങ്കിൽ മാത്രം രണ്ടും ഒന്നാണോ എന്ന് നോക്കുന്നു
-  if (newAlt && newAlt === newPhone) {
-    showAlert(getAlert('err_alt_same'));
-    return;
-  }
-
-  // META Logic
-  let currentMeta = (savedOrderData.adminMeta || '').replace(/[MWAG]/g, '');
-  let selectedRadio = $('input[name="target_wa"]:checked').val();
-  let newFlag = 'M';
-  if (selectedRadio === 'whatsapp') newFlag = 'W';
-  else if (selectedRadio === 'alt') newFlag = 'A';
-  else if (selectedRadio === 'paid') newFlag = 'G';
-  let finalMeta = currentMeta + newFlag;
-
-  let custLang = $('#language-select').val() || 'en';
-
-  const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
-  const orderSource = isApp ? "App 📱" : "Web 🌐";
-
-  const finalData = {
-    orderid: editingOrderId,
-    name: newName,
-    phone: newPhone,
-    oldPhone: (typeof savedOrderData !== 'undefined' && savedOrderData.phone) ? savedOrderData.phone : currentLoginPhone,
-    whatsapp: $('#edit-whatsapp').val(),
-    altphone: $('#edit-altphone').val(),
-    house: $('#edit-house').val(),
-    place: $('#edit-place').val(),
-    pincode: $('#edit-pincode').val(),
-    postoffice: finalPO,
-    district: $('#edit-district').val(),
-    state: $('#edit-state').val(),
-    quantity: $('#quick-qty').val(),
-    paidNum: $('#edit-paid-by').val() || '',
-    adminMeta: finalMeta,
-    product: $('#admin-product-type').val() || (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
-    message: '',
-    custId: (typeof savedOrderData !== 'undefined' && savedOrderData.custId) ? savedOrderData.custId : myCustId,
-    language: custLang,
-    source: orderSource
-  };
-
-  if (isAdmin) {
-
-    // 🔥 ADMIN CREATING A NEW ORDER
-    if (!editingOrderId) {
-      showLoader(true);
-      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
-        .then(res => res.json())
-        .then(res => {
-          showLoader(false);
-          if (res.result === 'success') {
-            Swal.fire({
-              icon: 'success',
-              title: 'Order Created! 🎉',
-              html: `The new order has been created successfully.<br><br><b>Order ID:</b> <span class="text-primary">${res.orderid}</span>`,
-              confirmButtonColor: '#15803d',
-              confirmButtonText: 'Go to Admin Dashboard',
-              showCancelButton: true,
-              cancelButtonText: 'View Order Page'
-            }).then((result) => {
-              if (result.isConfirmed) {
-                window.location.href = `admin.html?search=${res.orderid}`;
-              } else {
-                window.location.href = `order.html?oid=${res.orderid}`;
-              }
-            });
-          } else {
-            Swal.fire('Error', 'Failed to create new order', 'error');
-          }
-        }).catch(err => {
-          showLoader(false);
-          Swal.fire('Error', 'Network Error', 'error');
-        });
-      return;
-    }
-
-
-    // 🔥 ADMIN UPDATING AN EXISTING ORDER
-    let targetPhone = getSelectedWAPhone(finalData);
-    const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
-
-    // CASE: Paid -> Qty Increased
-    if (oldStatus === 'paid') {
-      let oldQty = parseInt(savedOrderData.quantity) || 0;
-      let newQty = parseInt(finalData.quantity) || 0;
-
-      if (newQty > oldQty) {
-        let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
-        let stateVal = finalData.state || 'KERALA';
-
-        let newBase = (courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
-        let oldBase = (courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
-
-        let oldCourier = window.getDeliveryCharge(stateVal, oldQty, prov);
-        let newCourier = window.getDeliveryCharge(stateVal, newQty, prov);
-
-        let oldTotal = oldBase + oldCourier;
-        let newTotal = newBase + newCourier;
-        let balance = newTotal - oldTotal;
-
-        showLoader(true);
-
-        fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
-          .then(res => res.json())
-          .then(res => {
-            fetch(sc, {
-              method: 'POST',
-              body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
-            }).then(() => {
-              updateLocalCache(finalData, 'Sent');
-              savedOrderData.quantity = newQty;
-              savedOrderData.adminMeta = finalMeta;
-
-              updateAdminUI('Sent', finalData.orderid);
-              showLoader(false);
-
-              let msg = "";
-              if (custLang === 'ml') {
-                msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
-              } else {
-                msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
-              }
-
-              window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
-            });
-          });
-        return;
-      }
-    }
-
-    showLoader(true);
-    fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
-      .then(() => {
-        updateLocalCache(finalData, savedOrderData.Status);
-        savedOrderData.quantity = finalData.quantity;
-        savedOrderData.adminMeta = finalMeta;
-        showLoader(false);
-        Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
-      });
-    return;
-  }
-
-  // CUSTOMER ORDER CREATION / UPDATE
-  playVideoAnimation(finalData.name, () => postOrder(finalData));
-}
-
 window.processCleanReorder = function () {
   let selectedQty = $('#quick-qty').val();
 
@@ -2077,7 +1835,6 @@ window.showStep = function (s) {
 };
 
 setTimeout(updateLiveAddressPreview, 1000);
-
 window.checkForChanges = function () {
   // 1. Current Values
   var currQty = $('#quick-qty').val() || '';
@@ -2090,7 +1847,6 @@ window.checkForChanges = function () {
   var currAlt = $('#edit-altphone').val() || '';
   var currLang = $('#language-select').val() || 'en';
 
-  // 🔥 NEW: Add PO, District, State, Product
   var currPO = '';
   if ($('#edit-postoffice-select').is(':visible') && $('#edit-postoffice-select').val()) {
     currPO = $('#edit-postoffice-select').val();
@@ -2099,8 +1855,6 @@ window.checkForChanges = function () {
   }
   var currDist = $('#edit-district').val() || '';
   var currState = $('#edit-state').val() || '';
-
-  // Product ന്റെ ഇപ്പോഴത്തെ വാല്യൂ
   var currProduct = $('#admin-product-type').length ? $('#admin-product-type').val() : 'Vanthen';
 
   // 2. Saved Values
@@ -2112,14 +1866,10 @@ window.checkForChanges = function () {
   var savedPlace = (savedOrderData.place || '') + '';
   var savedPin = (savedOrderData.pincode || '') + '';
   var savedAlt = (savedOrderData.altphone || '') + '';
-
-  // 🔥 NEW: Add PO, District, State, Product
   var savedPO = (savedOrderData.postoffice || '') + '';
   var savedDist = (savedOrderData.district || '') + '';
   var savedState = (savedOrderData.state || '') + '';
-
-  // Product ന്റെ പഴയ വാല്യൂ
-  var savedProduct = (savedOrderData.product || 'Vanthen') + '';
+  var savedProduct = (savedOrderData.product || savedOrderData.Product || 'Vanthen') + '';
 
   // 3. Compare
   var isChanged = false;
@@ -2133,8 +1883,6 @@ window.checkForChanges = function () {
   if (String(currPlace).trim().toUpperCase() !== String(savedPlace).trim().toUpperCase()) isChanged = true;
   if (String(currPin) !== String(savedPin)) isChanged = true;
   if (String(currAlt) !== String(savedAlt)) isChanged = true;
-
-  // 🔥 NEW: Compare PO, Dist, State, Product
   if (String(currPO).trim().toUpperCase() !== String(savedPO).trim().toUpperCase()) isChanged = true;
   if (String(currDist).trim().toUpperCase() !== String(savedDist).trim().toUpperCase()) isChanged = true;
   if (String(currState).trim().toUpperCase() !== String(savedState).trim().toUpperCase()) isChanged = true;
@@ -2149,44 +1897,7 @@ window.checkForChanges = function () {
   const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
   const status = String(savedOrderData.Status || '').toLowerCase();
 
-  // 🔥 ADMIN OVERRIDE FOR COMPLETED STATES
-  if (isAdmin && ['dispatched', 'delivered', 'completed', 'refunded'].includes(status)) {
-
-    if (isChanged && !isQtyChanged) {
-      // 🔥 Address/Product മാത്രമാണ് മാറ്റിയതെങ്കിൽ "UPDATE DETAILS" എന്ന് വരണം (പുതിയ ഓർഡർ ആവരുത്)
-      btnUpdate.prop('disabled', false)
-        .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' })
-        .html(`<i class="fas fa-save me-1"></i> UPDATE DETAILS`)
-        .attr('onclick', 'submitQuickOrder()');
-    } else {
-      // Qty മാറുകയോ, ഒന്നും മാറാതിരിക്കുകയോ ചെയ്താൽ "CREATE NEW ORDER" കാണിക്കുക
-      btnUpdate.prop('disabled', false)
-        .css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' })
-        .html(`<i class="fas fa-plus-circle me-1"></i> CREATE NEW ORDER`)
-        .attr('onclick', 'processCleanReorder()');
-    }
-
-    if (isChanged) {
-      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
-    } else {
-      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
-    }
-    return;
-  }
-
-  // Customer Logic for Delivered/Completed/Refunded
-  if (['delivered', 'completed', 'refunded'].includes(status)) {
-    btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' });
-
-    if (isChanged) {
-      btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
-    } else {
-      btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
-    }
-    return;
-  }
-
-  // Admin Logic (For Pending/Paid/Sent etc)
+  // 🔥 ADMIN LOGIC
   if (isAdmin && editingOrderId) {
     if (isQtyChanged && ['paid', 'dispatched'].includes(status)) {
       let oldQty = parseInt(savedQty) || 0;
@@ -2194,7 +1905,6 @@ window.checkForChanges = function () {
       let stateVal = $('#edit-state').val();
       let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
 
-      // 🔥 Product Logic added here for diff viewer
       let productType = currProduct;
       let oldBase = 0; let newBase = 0;
 
@@ -2243,13 +1953,13 @@ window.checkForChanges = function () {
     } else {
       $('#admin-diff-viewer').slideUp();
       $('#admin-qty-actions').slideUp();
-      $('#admin-action-bar').slideDown();
+      $('#admin-action-bar').show();
 
       if (isChanged) {
-        btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' }).text(t.btn_update || "Update Order");
+        btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' }).html('<i class="fas fa-save me-1"></i> SAVE CHANGES').attr('onclick', 'submitQuickOrder()');
         btnUpdate.show();
       } else {
-        btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed', 'background': '#6b7280', 'border-color': '#6b7280' }).text(t.txt_no_changes || "No Changes");
+        btnUpdate.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed', 'background': '#6b7280', 'border-color': '#6b7280' }).html('<i class="fas fa-save me-1"></i> NO CHANGES');
         btnUpdate.show();
       }
     }
@@ -2262,20 +1972,23 @@ window.checkForChanges = function () {
     return;
   }
 
-  // Standard User Logic
+  // Customer Logic for Delivered/Completed/Refunded
+  if (!isAdmin && ['delivered', 'completed', 'refunded'].includes(status)) {
+    btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#15803d', 'border-color': '#15803d' }).html(`<i class="fas fa-shopping-bag me-1"></i> ${t.btn_order_again || 'വീണ്ടും ഓർഡർ ചെയ്യാം'}`).attr('onclick', 'processCleanReorder()');
+    if (isChanged) btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
+    else btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
+    return;
+  }
+
+  // Standard User Logic (Active Orders)
   if (!isAdmin || !isQtyChanged) {
     if (!editingOrderId) {
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#16a34a', 'border-color': '#15803d' });
-
       if (btnUpdate.html().indexOf('fa-shopping-cart') === -1 && btnUpdate.html().indexOf('fa-shopping-bag') === -1 && btnUpdate.html().indexOf('fa-plus-circle') === -1) {
         btnUpdate.html(`<i class="fas fa-shopping-cart me-1"></i> ${t.btn_order || 'PLACE ORDER'}`);
       }
-
-      if (isChanged) {
-        btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
-      } else {
-        btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
-      }
+      if (isChanged) btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
+      else btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
     } else if (isChanged) {
       btnUpdate.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer', 'background': '#2563eb', 'border-color': '#2563eb' }).text(t.btn_update || "Update Order");
       btnSave.prop('disabled', false).css({ 'opacity': '1', 'cursor': 'pointer' }).text(t.txt_save_changes || "Save Changes");
@@ -2284,6 +1997,351 @@ window.checkForChanges = function () {
       btnSave.prop('disabled', true).css({ 'opacity': '0.5', 'cursor': 'not-allowed' }).text(t.txt_no_changes || "No Changes");
     }
   }
+}
+
+// 🔥 FAST ORDER SUBMIT (With Admin New Order Creation Support)
+window.submitQuickOrder = async function () {
+  if ($('.btn-update-sage').prop('disabled')) return;
+
+  if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); return; }
+
+  const phoneCheck = $('#edit-phone').val() || (typeof userData !== 'undefined' && userData ? userData.phone : null);
+  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+
+  if (!editingOrderId && window.activeCustomerData && window.activeCustomerData.history) {
+    let restrictedStatuses = ['pending', 'sent', 'archive'];
+    let hasActiveOrder = window.activeCustomerData.history.some(o => restrictedStatuses.includes(String(o.status).toLowerCase()));
+
+    if (hasActiveOrder && !isAdmin) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Active Order Exists! ⚠️',
+        html: 'താങ്കൾക്ക് നിലവിൽ പ്രോസസ്സ് ചെയ്തുകൊണ്ടിരിക്കുന്ന ഒരു ഓർഡർ ഉണ്ട്.</b>',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#ffc107'
+      });
+      return;
+    }
+  }
+
+  if (!editingOrderId && phoneCheck) {
+    showLoader(true);
+    try {
+      if (!isAdmin) {
+        let res = await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`);
+        let data = await res.json();
+
+        if (data.result === 'success' && data.data && data.data.orderid) {
+          let s = String(data.data.Status || 'pending').toLowerCase();
+          if (!['delivered', 'completed', 'refunded'].includes(s)) {
+            showLoader(false);
+            const lang = $('#language-select').val() || 'en';
+            const t = translations[lang] || translations['en'];
+            const msg = (t.msg_active_order).replace('OID_HERE', data.data.orderid);
+
+            Swal.fire({
+              icon: 'info', title: t.title_active_order, text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' }
+            }).then(() => {
+              window.location.href = `order.html?phone=${phoneCheck}`;
+            });
+            return;
+          }
+        }
+      } else {
+        let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+        let latestActive = cachedOrders.find(o => String(o.phone) === String(phoneCheck) && !['delivered', 'completed', 'refunded'].includes(String(o.Status).toLowerCase()));
+        if (latestActive) {
+          showLoader(false);
+          Swal.fire({ icon: 'info', title: 'Active Order Found!', text: `Switching to active order: ${latestActive.orderid}` }).then(() => {
+            window.location.href = `order.html?oid=${latestActive.orderid}`;
+          });
+          return;
+        }
+      }
+    } catch (e) {
+      console.log("Server check failed, proceeding...");
+    }
+    showLoader(false);
+  }
+
+  let finalPO = $('#edit-postoffice').val();
+  if ($('#edit-postoffice-select').is(':visible')) finalPO = $('#edit-postoffice-select').val();
+  if (!finalPO) {
+    showAlert(getAlert('err_select_po') || "Please Select Post Office");
+    if ($('.address-box').is(':hidden')) toggleAddressEdit();
+    return;
+  }
+  $('#edit-postoffice').val(finalPO);
+
+  if ($('#adm-paid').length) $('#edit-paid-by').val($('#adm-paid').val());
+
+  const newName = $('#edit-name').val();
+  if (!newName) { showAlert(getAlert('err_name')); return; }
+
+  const newPhone = $('#edit-phone').val();
+  if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); return; }
+
+  const newAlt = $('#edit-altphone').val();
+  if (!isAdmin && (!newAlt || newAlt.length < 8 || newAlt.length > 15)) {
+    showAlert(getAlert('err_alt_required'));
+    return;
+  }
+  if (newAlt && newAlt === newPhone) {
+    showAlert(getAlert('err_alt_same'));
+    return;
+  }
+
+  let currentMeta = (typeof savedOrderData !== 'undefined' ? savedOrderData.adminMeta || '' : '').replace(/[MWAG]/g, '');
+  let selectedRadio = $('input[name="target_wa"]:checked').val();
+  let newFlag = 'M';
+  if (selectedRadio === 'whatsapp') newFlag = 'W';
+  else if (selectedRadio === 'alt') newFlag = 'A';
+  else if (selectedRadio === 'paid') newFlag = 'G';
+  let finalMeta = currentMeta + newFlag;
+
+  let custLang = $('#language-select').val() || 'en';
+
+  const isApp = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+  const orderSource = isApp ? "App 📱" : "Web 🌐";
+
+  const finalData = {
+    orderid: editingOrderId,
+    name: newName,
+    phone: newPhone,
+    oldPhone: (typeof savedOrderData !== 'undefined' && savedOrderData.phone) ? savedOrderData.phone : currentLoginPhone,
+    whatsapp: $('#edit-whatsapp').val(),
+    altphone: $('#edit-altphone').val(),
+    house: $('#edit-house').val(),
+    place: $('#edit-place').val(),
+    pincode: $('#edit-pincode').val(),
+    postoffice: finalPO,
+    district: $('#edit-district').val(),
+    state: $('#edit-state').val(),
+    quantity: $('#quick-qty').val(),
+    paidNum: $('#edit-paid-by').val() || '',
+    adminMeta: finalMeta,
+    product: $('#admin-product-type').length ? $('#admin-product-type').val() : (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
+    message: '',
+    custId: (typeof savedOrderData !== 'undefined' && savedOrderData.custId) ? savedOrderData.custId : myCustId,
+    language: custLang,
+    source: orderSource
+  };
+
+  if (isAdmin) {
+
+    // 🔥 ADMIN CREATING A NEW ORDER
+    if (!editingOrderId) {
+      showLoader(true);
+      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+        .then(res => res.json())
+        .then(res => {
+          showLoader(false);
+          if (res.result === 'success') {
+            Swal.fire({
+              icon: 'success',
+              title: 'Order Created! 🎉',
+              html: `The new order has been created successfully.<br><br><b>Order ID:</b> <span class="text-primary">${res.orderid}</span>`,
+              confirmButtonColor: '#15803d',
+              confirmButtonText: 'Go to Admin Dashboard',
+              showCancelButton: true,
+              cancelButtonText: 'View Order Page'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                window.location.href = `admin.html?search=${res.orderid}`;
+              } else {
+                window.location.href = `order.html?oid=${res.orderid}`;
+              }
+            });
+          } else {
+            Swal.fire('Error', 'Failed to create new order', 'error');
+          }
+        }).catch(err => {
+          showLoader(false);
+          Swal.fire('Error', 'Network Error', 'error');
+        });
+      return;
+    }
+
+    // --- ADMIN UPDATING AN EXISTING ORDER ---
+    const oldStatus = String(savedOrderData.Status || 'Pending').toLowerCase();
+
+    // CASE: Paid -> Qty Increased (Special Flow)
+    if (oldStatus === 'paid') {
+      let oldQty = parseInt(savedOrderData.quantity) || 0;
+      let newQty = parseInt(finalData.quantity) || 0;
+
+      if (newQty > oldQty) {
+        let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
+        let stateVal = finalData.state || 'KERALA';
+
+        let productType = finalData.product || 'Vanthen';
+        let oldBase = 0; let newBase = 0;
+
+        if (productType === 'Cheruthen') {
+          oldBase = (oldQty === 1) ? 900 : (oldQty === 2 ? 1800 : oldQty * 900);
+          newBase = (newQty === 1) ? 900 : (newQty === 2 ? 1800 : newQty * 900);
+        } else {
+          oldBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[oldQty]) ? Number(courierRates.prices[oldQty]) : (oldQty * 650);
+          newBase = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[newQty]) ? Number(courierRates.prices[newQty]) : (newQty * 650);
+        }
+
+        let oldCourier = window.getDeliveryCharge(stateVal, oldQty, prov);
+        let newCourier = window.getDeliveryCharge(stateVal, newQty, prov);
+
+        if (productType === 'Cheruthen') {
+          oldCourier = (oldQty === 1) ? 80 : (oldQty === 2 ? 100 : oldQty * 80);
+          newCourier = (newQty === 1) ? 80 : (newQty === 2 ? 100 : newQty * 80);
+        }
+
+        let oldTotal = oldBase + oldCourier;
+        let newTotal = newBase + newCourier;
+        let balance = newTotal - oldTotal;
+
+        showLoader(true);
+
+        fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+          .then(res => res.json())
+          .then(res => {
+            fetch(sc, {
+              method: 'POST',
+              body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
+            }).then(() => {
+              updateLocalCache(finalData, 'Sent');
+              savedOrderData.quantity = newQty;
+              savedOrderData.adminMeta = finalMeta;
+              savedOrderData.product = finalData.product;
+
+              updateAdminUI('Sent', finalData.orderid);
+              showLoader(false);
+
+              let msg = "";
+              let targetPhone = getSelectedWAPhone(finalData);
+
+              if (custLang === 'ml') {
+                msg = `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${newQty}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`;
+              } else {
+                msg = `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${newQty}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
+              }
+
+              window.open(`https://wa.me/${targetPhone}?text=${encodeURIComponent(msg)}`, '_blank');
+            });
+          });
+        return;
+      }
+    }
+
+    // 🔥 MAIN LOGIC: Popup for Update or Create New
+    let canUpdate = ['pending', 'sent', 'archive'].includes(oldStatus);
+
+    let processCreateNew = function () {
+      let newData = { ...finalData };
+      newData.orderid = null; // Force new order ID
+      showLoader(true);
+      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: newData }) })
+        .then(res => res.json())
+        .then(res => {
+          showLoader(false);
+          if (res.result === 'success') {
+            newData.orderid = res.orderid;
+            newData.Status = 'Pending';
+            newData.timestamp = res.timestamp;
+
+            let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+            allOrders.unshift(newData);
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+            Swal.fire({
+              icon: 'success', title: 'New Order Created! 🎉', html: `<b>Order ID:</b> <span class="text-primary">${res.orderid}</span>`,
+              confirmButtonColor: '#25D366', confirmButtonText: '<i class="fab fa-whatsapp"></i> Send Invoice',
+              showCancelButton: true, cancelButtonText: 'View Dashboard'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                let idx = allOrders.findIndex(o => o.orderid === res.orderid);
+                if (idx > -1) sendWA(idx, 'pending');
+              } else {
+                window.location.href = `admin.html?search=${res.orderid}`;
+              }
+            });
+          } else {
+            Swal.fire('Error', 'Failed to create new order', 'error');
+          }
+        }).catch(err => {
+          showLoader(false);
+          Swal.fire('Error', 'Network Error', 'error');
+        });
+    };
+
+    let processUpdate = function () {
+      showLoader(true);
+      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+        .then(() => {
+          updateLocalCache(finalData, savedOrderData.Status);
+          savedOrderData.quantity = finalData.quantity;
+          savedOrderData.adminMeta = finalMeta;
+          savedOrderData.product = finalData.product;
+
+          let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let orderIdx = allOrders.findIndex(o => o.orderid === finalData.orderid);
+          if (orderIdx > -1) {
+            allOrders[orderIdx] = { ...allOrders[orderIdx], ...finalData, product: finalData.product, Status: savedOrderData.Status };
+            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+          }
+
+          showLoader(false);
+          Swal.fire({
+            icon: 'success',
+            title: 'Updated Successfully!',
+            text: 'Do you want to send the updated invoice via WhatsApp?',
+            showCancelButton: true,
+            confirmButtonText: '<i class="fab fa-whatsapp"></i> Send WA',
+            cancelButtonText: 'Close',
+            confirmButtonColor: '#25D366'
+          }).then((res) => {
+            if (res.isConfirmed && orderIdx > -1) {
+              sendWA(orderIdx, 'pending');
+            }
+          });
+        });
+    };
+
+    if (!canUpdate) {
+      // 🔥 Status is Paid, Dispatched, Delivered, Completed, Refunded (FORCE NEW ORDER)
+      Swal.fire({
+        title: 'Order is Locked! 🔒',
+        html: `This order is marked as <b>${oldStatus.toUpperCase()}</b>.<br>Changes will be saved as a <b>New Order</b>.`,
+        icon: 'info',
+        showCancelButton: true,
+        confirmButtonText: 'Create as New Order',
+        confirmButtonColor: '#2563eb'
+      }).then((res) => {
+        if (res.isConfirmed) processCreateNew();
+      });
+    } else {
+      // 🔥 Pending, Sent, Archive -> (ALLOW CHOICE)
+      Swal.fire({
+        title: 'Save Changes',
+        text: 'How do you want to save this order?',
+        icon: 'question',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Update Same Order',
+        denyButtonText: 'Create as New Order',
+        cancelButtonText: 'Cancel',
+        confirmButtonColor: '#15803d',
+        denyButtonColor: '#2563eb'
+      }).then((res) => {
+        if (res.isConfirmed) {
+          processUpdate();
+        } else if (res.isDenied) {
+          processCreateNew();
+        }
+      });
+    }
+    return;
+  }
+
+  // CUSTOMER ORDER CREATION / UPDATE
+  playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
 $(document).on('change', '#edit-postoffice-select', function () {
