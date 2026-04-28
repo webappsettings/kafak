@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbzbaCA0pyhxfrXTb9_LVlfUvFqxymTzkx6UifMZABBL6p5G59vLCdsTGy68AvxqWhQnTQ/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbydyrOC6rlF4RZ0TE0rOlzm91o9pPbydRpEnWC4X957Vs3qvcTM4rGg7AiEbG4FiiTUew/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1377,7 +1377,7 @@ function updateStatusUI(d) {
   const t = translations[lang] || translations['en'];
 
   let s = String(d.Status || d.status || 'pending').toLowerCase();
-  let msg = String(d.message || "").trim();
+  let msg = String(d.deliveryNews || d.message || "").trim();
 
   // 🚚 CHECK FOR 'OUT FOR DELIVERY'
   let isOutForDelivery = msg.includes("Out for Delivery");
