@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwOHZ3Temwubhjociv9FznEKdbqa5uLljU4vlLEEpoHY9yE-br-QrQhKKeb_GQ1lWCxEA/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzbaCA0pyhxfrXTb9_LVlfUvFqxymTzkx6UifMZABBL6p5G59vLCdsTGy68AvxqWhQnTQ/exec`;
 
 let currentStep = 0;
 let editingOrderId = null;
@@ -1377,6 +1377,44 @@ function updateStatusUI(d) {
   const t = translations[lang] || translations['en'];
 
   let s = String(d.Status || d.status || 'pending').toLowerCase();
+  let msg = String(d.message || "").trim();
+
+  // 🚚 CHECK FOR 'OUT FOR DELIVERY'
+  let isOutForDelivery = msg.includes("Out for Delivery");
+  let isOrderDone = ['delivered', 'completed', 'refunded'].includes(s);
+
+  let deliveryAlertHtml = "";
+
+  // ഡെലിവറി കഴിഞ്ഞിട്ടില്ലെങ്കിൽ മാത്രം ഈ മെസ്സേജ് കാണിക്കുന്നു
+  if (isOutForDelivery && !isOrderDone) {
+    let dateMatch = msg.match(/Delivery: ([\d-]+)/);
+    let dateStr = dateMatch ? dateMatch[1] : "";
+
+    deliveryAlertHtml = `
+        <div class="out-for-delivery-alert mb-4 p-3 shadow-sm d-flex align-items-center gap-3 fade-in" 
+             style="background: #f0fdf4; border: 2px solid #22c55e; border-radius: 16px; position: relative; overflow: hidden;">
+            <div class="pulse-container">
+                <div class="pulse-dot"></div>
+            </div>
+            <div class="flex-grow-1">
+                <div style="font-size: 13px; font-weight: 800; color: #166534; letter-spacing: 0.5px;">
+                   🚚 OUT FOR DELIVERY
+                </div>
+                <div style="font-size: 11px; color: #15803d; font-weight: 600;">
+                   നിങ്ങളുടെ ഓർഡർ ഇന്ന് ലഭിക്കുന്നതാണ്. (${dateStr})
+                </div>
+            </div>
+            <div style="opacity: 0.2; position: absolute; right: -10px; bottom: -10px; font-size: 50px;">🚚</div>
+        </div>
+
+        <style>
+            .pulse-container { width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; }
+            .pulse-dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; position: relative; }
+            .pulse-dot::after { content: ''; position: absolute; width: 100%; height: 100%; background: #22c55e; border-radius: 50%; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
+            @keyframes ping { 75%, 100% { transform: scale(3); opacity: 0; } }
+        </style>
+      `;
+  }
 
   // Status Logic
   const isPaid = ['paid', 'dispatched', 'delivered', 'refunded', 'completed'].includes(s);
@@ -1384,7 +1422,8 @@ function updateStatusUI(d) {
   const isDelivered = ['delivered', 'completed'].includes(s);
   const isRefunded = (s === 'refunded');
 
-  let timelineHTML = `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;">
+  // ടൈംലൈനിന് മുൻപായി ഔട്ട് ഫോർ ഡെലിവറി കോഡ് ചേർക്കുന്നു
+  let timelineHTML = deliveryAlertHtml + `<div class="tracking-wrapper" style="opacity:0; transition: opacity 0.5s ease-in-out;">
         <h6 class="fw-bold mb-4 ps-1" style="font-size:13px; color:#374151; letter-spacing:0.5px;">${t.lbl_order_status}</h6>
         <div class="modern-timeline">`;
 
