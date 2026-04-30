@@ -31,7 +31,10 @@ function checkStockStatus() {
     .then(data => {
       if (data.status === 'no') {
         isOutOfStock = true;
-        showPreBookingAlert();
+        // പുതിയ കസ്റ്റമർ വിസാർഡ് (Wizard) ഓപ്പൺ ആക്കിയിട്ടുണ്ടെങ്കിൽ മാത്രം അലർട്ട് കാണിക്കുക
+        if ($('#wizard-view').is(':visible') && currentStep === 1) {
+          showPreBookingAlert();
+        }
       }
     })
     .catch(error => {
@@ -39,9 +42,9 @@ function checkStockStatus() {
     });
 }
 
-// മനോഹരമായ (Beautiful) UI അലർട്ട് കാണിക്കാൻ
-function showPreBookingAlert() {
-  const lang = $('#language-select').val() || 'en'; // നിലവിൽ സെലക്ട് ചെയ്ത ഭാഷ എടുക്കുന്നു
+// മനോഹരമായ (Beautiful) UI അലർട്ട് കാണിക്കാൻ (Callback സഹിതം)
+function showPreBookingAlert(callback) {
+  const lang = $('#language-select').val() || 'en';
   let alertHtml = '';
 
   if (lang === 'ml') {
@@ -49,7 +52,7 @@ function showPreBookingAlert() {
             <div style="font-size: 16px; color: #333; text-align: left;">
                 <p><b>⚠️ ക്ഷമിക്കണം, നിലവിൽ തേൻ സ്റ്റോക്ക് തീർന്നിരിക്കുകയാണ്!</b></p>
                 <p>എന്നാൽ നിങ്ങൾക്ക് ഇപ്പോൾ തന്നെ <b>മുൻകൂട്ടി ബുക്ക് ചെയ്യാവുന്നതാണ്.</b></p>
-                <p style="color: #d97706; font-weight: bold;">നേരത്തെ ബുക്ക് ചെയ്യാൻ അഡ്രസ്സ് ഫുൾ കൊടുക്കുക. പുതിയ സ്റ്റോക്ക് വന്നാൽ ഉടൻ നിങ്ങളെ അറിയിക്കുന്നതാണ്.</p>
+                <p style="color: #d97706; font-weight: bold;">പുതിയ ഓർഡർ നൽകി നിങ്ങൾക്ക് പ്രീ-ബുക്ക് ചെയ്യാം. പുതിയ സ്റ്റോക്ക് വന്നാൽ ഉടൻ നിങ്ങളെ അറിയിക്കുന്നതാണ്.</p>
             </div>
         `;
   } else {
@@ -57,7 +60,7 @@ function showPreBookingAlert() {
             <div style="font-size: 16px; color: #333; text-align: left;">
                 <p><b>⚠️ Sorry, currently out of stock!</b></p>
                 <p>However, you can <b>pre-book your order</b> now.</p>
-                <p style="color: #d97706; font-weight: bold;">Please fill in your full address to book early. We will notify you as soon as the new stock arrives.</p>
+                <p style="color: #d97706; font-weight: bold;">Please proceed to place your order to pre-book. We will notify you as soon as the new stock arrives.</p>
             </div>
         `;
   }
@@ -66,9 +69,14 @@ function showPreBookingAlert() {
     title: lang === 'ml' ? '🍯 പ്രീ-ബുക്കിംഗ് (Pre-Booking)' : '🍯 Pre-Booking Open!',
     html: alertHtml,
     icon: 'info',
-    confirmButtonText: lang === 'ml' ? 'ശരി, ബുക്ക് ചെയ്യാം' : 'OK, Book Now',
+    confirmButtonText: lang === 'ml' ? 'ശരി, മുന്നോട്ട് പോകാം' : 'OK, Proceed',
     confirmButtonColor: '#ff9800',
     allowOutsideClick: false
+  }).then((result) => {
+    // OK അമർത്തിയാൽ ബാക്കി ഓർഡർ പ്രോസസ്സ് തുടരും
+    if (result.isConfirmed && typeof callback === 'function') {
+      callback();
+    }
   });
 }
 
@@ -1016,6 +1024,11 @@ window.startWizard = function () {
 
   currentStep = 1;
   showStep(1);
+
+  // 🔥 സ്റ്റോക്ക് ഇല്ലെങ്കിൽ പുതിയ കസ്റ്റമർക്ക് അലർട്ട് കൊടുക്കുന്നു
+  if (isOutOfStock) {
+    showPreBookingAlert();
+  }
 }
 window.showStep = function (s) {
   $('.wiz-step').hide();
@@ -1100,18 +1113,28 @@ window.processCleanReorder = function () {
     return;
   }
 
-  // 1. പഴയ ആക്ടീവ് ഓർഡർ ഐഡി മാത്രം കളയുന്നു, എന്നാൽ Status 'Delivered' ആയി നിലനിർത്തുന്നു (അലർട്ട് വരാതിരിക്കാൻ ഇത് നിർബന്ധമാണ്!)
-  if (currentLoginPhone && localUsersMap[currentLoginPhone]) {
-    delete localUsersMap[currentLoginPhone].orderid;
-    localUsersMap[currentLoginPhone].Status = 'delivered'; // 🔥 ഇതാണ് മാറ്റം! ഇത് കൊടുത്താൽ Active Order Found എന്ന് വരില്ല.
-    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+  // ഓർഡർ സബ്മിറ്റ് ചെയ്യാനുള്ള പ്രധാന ഫംഗ്ഷൻ (ഇതൊരു വേരിയബിളിൽ വെക്കുന്നു)
+  let proceedToOrder = function () {
+    // 1. പഴയ ആക്ടീവ് ഓർഡർ ഐഡി മാത്രം കളയുന്നു, എന്നാൽ Status 'Delivered' ആയി നിലനിർത്തുന്നു
+    if (currentLoginPhone && localUsersMap[currentLoginPhone]) {
+      delete localUsersMap[currentLoginPhone].orderid;
+      localUsersMap[currentLoginPhone].Status = 'delivered';
+      SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+    }
+
+    editingOrderId = null; // പുതിയ ഓർഡർ ആണെന്ന് സിസ്റ്റത്തെ അറിയിക്കുന്നു
+
+    // 2. യാതൊരു എററുകളും ഇല്ലാതെ ഓർഡർ സബ്മിറ്റ് ചെയ്യുന്നു
+    $('.btn-update-sage').attr('onclick', 'submitQuickOrder()');
+    submitQuickOrder();
+  };
+
+  // 🔥 സ്റ്റോക്ക് ഇല്ലെങ്കിൽ ആദ്യം അലർട്ട് കാണിച്ച്, OK അടിച്ചാൽ മാത്രം ഓർഡർ സബ്മിറ്റ് ചെയ്യും
+  if (isOutOfStock) {
+    showPreBookingAlert(proceedToOrder);
+  } else {
+    proceedToOrder(); // സ്റ്റോക്ക് ഉണ്ടെങ്കിൽ പഴയതുപോലെ നേരിട്ട് ഓർഡർ ആകും
   }
-
-  editingOrderId = null; // പുതിയ ഓർഡർ ആണെന്ന് സിസ്റ്റത്തെ അറിയിക്കുന്നു
-
-  // 2. യാതൊരു എററുകളും ഇല്ലാതെ ഓർഡർ സബ്മിറ്റ് ചെയ്യുന്നു
-  $('.btn-update-sage').attr('onclick', 'submitQuickOrder()');
-  submitQuickOrder();
 };
 
 // 🔥 Helper to Update All Caches (Fixes Phone Change Issue)
