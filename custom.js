@@ -44,6 +44,11 @@ function checkStockStatus() {
 
 // മനോഹരമായ (Beautiful) UI അലർട്ട് കാണിക്കാൻ (Callback സഹിതം)
 function showPreBookingAlert(callback) {
+
+  if (document.activeElement) {
+    document.activeElement.blur();
+  }
+
   const lang = $('#language-select').val() || 'en';
   let alertHtml = '';
 
@@ -1034,11 +1039,37 @@ window.showStep = function (s) {
   $('.wiz-step').hide();
   if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
   else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
-  const pct = (s / 7) * 100; $('#wiz-progress').css('width', `${pct}%`);
-  const btn = $('#btn-wiz-next'); const lang = $('#language-select').val();
-  if (s === 7) { btn.html(translations[lang].btn_order); btn.addClass('btn-brand-green'); updatePrice($('#quantity').val(), false); }
-  else { btn.html(translations[lang].btn_next); btn.removeClass('btn-brand-green'); }
-  if (s !== 6) setTimeout(() => { $(`.wiz-step[data-step="${s}"] input`).first().focus(); }, 300);
+
+  const pct = (s / 7) * 100;
+  $('#wiz-progress').css('width', `${pct}%`);
+
+  const btn = $('#btn-wiz-next');
+  const lang = $('#language-select').val() || 'en';
+  const t = translations[lang] || {};
+
+  if (s === 7) {
+    btn.html(t.btn_order || "PLACE ORDER");
+    btn.addClass('btn-brand-green');
+    updatePrice($('#quantity').val(), false);
+  } else {
+    btn.html(t.btn_next || "NEXT");
+    btn.removeClass('btn-brand-green');
+  }
+
+  // Live Address Preview ഓട്ടോമാറ്റിക് ആയി വരാൻ
+  if (s === 5 && typeof updateLiveAddressPreview === 'function') {
+    setTimeout(updateLiveAddressPreview, 50);
+  }
+
+  // 🔥 FOCUS LOGIC (എല്ലാ ഫീൽഡിലും ഫോക്കസ് വരാൻ)
+  setTimeout(() => {
+    if (s === 1 && typeof isOutOfStock !== 'undefined' && isOutOfStock) {
+      if (document.activeElement) document.activeElement.blur();
+    }
+    else {
+      $(`.wiz-step[data-step="${s}"] input`).first().focus();
+    }
+  }, 300);
 }
 
 window.nextStep = async function () {
