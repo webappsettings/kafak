@@ -1,8 +1,8 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbydyrOC6rlF4RZ0TE0rOlzm91o9pPbydRpEnWC4X957Vs3qvcTM4rGg7AiEbG4FiiTUew/exec`;
-
+const sc = `https://script.google.com/macros/s/AKfycbwTO930mx6jQXvqmvbSdcRGGYmp0MtJEemztRt_j1IgUrRzfYH8MsbmGnuO7a08FDuB_w/exec`;
+let isOutOfStock = false;
 let currentStep = 0;
 let editingOrderId = null;
 let userData = {};
@@ -24,6 +24,49 @@ const SafeStorage = {
   setItem: function (key, val) { try { localStorage.setItem(key, val); } catch (e) { } },
   removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
 };
+
+// സ്റ്റോക്ക് ഉണ്ടോ എന്ന് നോക്കാനുള്ള ഫംഗ്ഷൻ
+function checkStockStatus() {
+  google.script.run.withSuccessHandler(function (stockStatus) {
+    if (stockStatus === 'no') {
+      isOutOfStock = true;
+      showPreBookingAlert();
+    }
+  }).getStockSettings();
+}
+
+// മനോഹരമായ (Beautiful) UI അലർട്ട് കാണിക്കാൻ
+function showPreBookingAlert() {
+  const lang = $('#language-select').val() || 'en'; // നിലവിൽ സെലക്ട് ചെയ്ത ഭാഷ എടുക്കുന്നു
+  let alertHtml = '';
+
+  if (lang === 'ml') {
+    alertHtml = `
+            <div style="font-size: 16px; color: #333; text-align: left;">
+                <p><b>⚠️ ക്ഷമിക്കണം, നിലവിൽ തേൻ സ്റ്റോക്ക് തീർന്നിരിക്കുകയാണ്!</b></p>
+                <p>എന്നാൽ നിങ്ങൾക്ക് ഇപ്പോൾ തന്നെ <b>മുൻകൂട്ടി ബുക്ക് ചെയ്യാവുന്നതാണ്.</b></p>
+                <p style="color: #d97706; font-weight: bold;">നേരത്തെ ബുക്ക് ചെയ്യാൻ അഡ്രസ്സ് ഫുൾ കൊടുക്കുക. പുതിയ സ്റ്റോക്ക് വന്നാൽ ഉടൻ നിങ്ങളെ അറിയിക്കുന്നതാണ്.</p>
+            </div>
+        `;
+  } else {
+    alertHtml = `
+            <div style="font-size: 16px; color: #333; text-align: left;">
+                <p><b>⚠️ Sorry, currently out of stock!</b></p>
+                <p>However, you can <b>pre-book your order</b> now.</p>
+                <p style="color: #d97706; font-weight: bold;">Please fill in your full address to book early. We will notify you as soon as the new stock arrives.</p>
+            </div>
+        `;
+  }
+
+  Swal.fire({
+    title: lang === 'ml' ? '🍯 പ്രീ-ബുക്കിംഗ് (Pre-Booking)' : '🍯 Pre-Booking Open!',
+    html: alertHtml,
+    icon: 'info',
+    confirmButtonText: lang === 'ml' ? 'ശരി, ബുക്ക് ചെയ്യാം' : 'OK, Book Now',
+    confirmButtonColor: '#ff9800',
+    allowOutsideClick: false
+  });
+}
 
 // --- UPDATED LOADER LOGIC ---
 let loaderInterval;
@@ -245,6 +288,8 @@ window.getDeliveryCharge = function (state, qty, provider) {
 };
 
 $(document).ready(function () {
+
+  checkStockStatus();
 
   const savedLang = localStorage.getItem('activeLang') || 'ml';
   if (savedLang) {
@@ -3521,10 +3566,19 @@ function sendToWhatsapp() {
   const details = `\n____________________________________\n${productDisplay}\n\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
   // Payment Note
   let paymentNote = "";
-  if (lang === 'en') {
-    paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
+
+  if (isOutOfStock) {
+    if (lang === 'en') {
+      paymentNote = "\n\n⏳ *Status: Waiting / Pre-booked*\n_We will notify you with the payment details as soon as the stock arrives._";
+    } else {
+      paymentNote = "\n\n⏳ *Status: Waiting / Pre-booked*\n_സ്റ്റോക്ക് വരുന്നതനുസരിച്ച് നിങ്ങളെ പേയ്‌മെന്റ് വിവരങ്ങൾ അറിയിക്കുന്നതാണ്._";
+    }
   } else {
-    paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+    if (lang === 'en') {
+      paymentNote = "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_";
+    } else {
+      paymentNote = "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
+    }
   }
 
   const footer = `\n\n*${t.txt_gpay}: ${targetAdminPhone} (KAFAK LLP)*${paymentNote}`;
@@ -3579,7 +3633,6 @@ function updateEditUIState(data) {
     updatePrice(data.quantity, true);
   }
 }
-// 🔥 SEND PAYMENT RECEIPT WHATSAPP (Updated Message)
 // 🔥 SEND PAYMENT RECEIPT (English + Malayalam Combined)
 window.sendPaymentWA = function (oid) {
   let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
