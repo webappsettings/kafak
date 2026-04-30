@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbwTO930mx6jQXvqmvbSdcRGGYmp0MtJEemztRt_j1IgUrRzfYH8MsbmGnuO7a08FDuB_w/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbwhbrVt4LydVfvUuEIN75lKxLwJ4eiKkQHULheIc5sQ9g4qNUElwwi2ab0-V_ika4Ig_w/exec`;
 let isOutOfStock = false;
 let currentStep = 0;
 let editingOrderId = null;
@@ -25,14 +25,18 @@ const SafeStorage = {
   removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
 };
 
-// സ്റ്റോക്ക് ഉണ്ടോ എന്ന് നോക്കാനുള്ള ഫംഗ്ഷൻ
 function checkStockStatus() {
-  google.script.run.withSuccessHandler(function (stockStatus) {
-    if (stockStatus === 'no') {
-      isOutOfStock = true;
-      showPreBookingAlert();
-    }
-  }).getStockSettings();
+  fetch(`${sc}?action=checkStock`)
+    .then(response => response.json())
+    .then(data => {
+      if (data.status === 'no') {
+        isOutOfStock = true;
+        showPreBookingAlert();
+      }
+    })
+    .catch(error => {
+      console.error("Stock check failed:", error);
+    });
 }
 
 // മനോഹരമായ (Beautiful) UI അലർട്ട് കാണിക്കാൻ
