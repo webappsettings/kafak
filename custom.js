@@ -1968,15 +1968,6 @@ function updateLiveAddressPreview() {
   $('#live-addr-preview').html(previewHtml);
 }
 
-// ആ സ്ക്രീനിലേക്ക് വരുമ്പോൾ തന്നെ ഓട്ടോമാറ്റിക് ആയി വരാൻ 
-const originalShowStep = window.showStep;
-window.showStep = function (s) {
-  originalShowStep(s);
-  if (s === 5) { // 5 ആണ് Place ഇൻപുട്ട് ഉള്ള സ്ക്രീൻ
-    setTimeout(updateLiveAddressPreview, 50);
-  }
-};
-
 setTimeout(updateLiveAddressPreview, 1000);
 
 window.checkForChanges = function () {
