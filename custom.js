@@ -3764,7 +3764,7 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
 };
 
 // ------------------------------------------------------------------------------
-// 🔥 BEAUTIFUL INLINE LIVE TRACKING WIDGET (INDIA POST) - FIXED
+// 🔥 BEAUTIFUL INLINE LIVE TRACKING WIDGET (INDIA POST) - SMART PO MATCHING
 // ------------------------------------------------------------------------------
 window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
   let cleanTrackId = String(trackId).trim();
@@ -3782,7 +3782,6 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
     .then(res => {
       let eventsArray = null;
 
-      // 🔥 FIX: ഡാറ്റ ഏത് ഫോർമാറ്റിൽ വന്നാലും കൃത്യമായി എടുക്കാനുള്ള ലോജിക് (Old & New API Support)
       if (res.data && res.data.events) {
         eventsArray = res.data.events;
       } else if (res.data && Array.isArray(res.data) && res.data.length > 0 && res.data[0].tracking_details) {
@@ -3794,7 +3793,7 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
       }
 
       if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
-        let latest = eventsArray[0]; // ഏറ്റവും പുതിയ ഇവന്റ് എടുക്കുന്നു
+        let latest = eventsArray[0];
 
         let officeName = latest.office || 'In Transit';
         let eventMsg = latest.event || latest.status || 'Status Updated';
@@ -3803,16 +3802,23 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
 
         let isAtDestination = false;
         let isOutForDelivery = false;
-
-        let searchPO = expectedPO ? expectedPO.split(' ')[0].toLowerCase() : '';
         let evntLow = eventMsg.toLowerCase();
+
+        // 🔥 SMART PO MATCHING LOGIC (Removes PO, SO, BO, HO etc.)
+        let cleanExpected = expectedPO ? expectedPO.replace(/\b(PO|SO|BO|HO|GPO|H\.O|S\.O|B\.O|P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase() : '';
+        let cleanOffice = officeName.replace(/\b(PO|SO|BO|HO|GPO|H\.O|S\.O|B\.O|P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase();
+
+        let isSameOffice = false;
+        if (cleanExpected && cleanOffice && (cleanOffice.includes(cleanExpected) || cleanExpected.includes(cleanOffice))) {
+          isSameOffice = true;
+        }
 
         if (evntLow.includes('out for delivery')) {
           isOutForDelivery = true;
         } else if (
           evntLow.includes('destination') ||
           evntLow.includes('delivered') ||
-          (searchPO && officeName.toLowerCase().includes(searchPO))
+          isSameOffice
         ) {
           isAtDestination = true;
         }
@@ -3853,12 +3859,10 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
 
         widget.html(html);
       } else {
-        // ഡാറ്റ ഇല്ലാത്ത അവസ്ഥയിൽ ഹൈഡ് ചെയ്യുന്നതിന് പകരം എറർ മെസ്സേജ് കാണിക്കുന്നു
         widget.html(`<div class="text-danger small mt-2 fw-bold" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-exclamation-circle"></i> Tracking details currently unavailable</div>`);
       }
     })
     .catch(err => {
-      // നെറ്റ് വർക്ക് എറർ വന്നാൽ കാണിക്കാൻ
       widget.html(`<div class="text-danger small mt-2 fw-bold" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-wifi"></i> Connection failed. Please try again.</div>`);
     });
 }
