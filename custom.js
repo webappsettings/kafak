@@ -3764,43 +3764,49 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
 };
 
 // ------------------------------------------------------------------------------
-// 🔥 BEAUTIFUL INLINE LIVE TRACKING WIDGET (INDIA POST)
+// 🔥 BEAUTIFUL INLINE LIVE TRACKING WIDGET (INDIA POST) - FIXED
 // ------------------------------------------------------------------------------
 window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
-  let widget = $(`#inline-track-${trackId}`);
+  let cleanTrackId = String(trackId).trim();
+  let widget = $(`#inline-track-${cleanTrackId}`);
 
-  // ലോഡിങ് ആനിമേഷൻ
+  if (widget.length === 0) return;
+
   widget.html(`<div class="text-muted small mt-3 d-flex align-items-center gap-2 fw-bold" style="font-size:11px;">
         <div class="spinner-border spinner-border-sm text-primary" style="width: 12px; height: 12px; border-width: 2px;"></div> 
         Fetching Live Location...
     </div>`);
 
-  // ഗൂഗിൾ ഷീറ്റിലെ ട്രാക്കിംഗ് API-ലേക്ക് റിക്വസ്റ്റ് അയക്കുന്നു
-  fetch(`${sc}?action=trackIndiaPost&trackingId=${trackId}`)
+  fetch(`${sc}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
     .then(res => res.json())
     .then(res => {
-      let trackingData = null;
-      if (res.result === 'success' && res.data) {
-        if (Array.isArray(res.data) && res.data.length > 0) trackingData = res.data[0];
-        else if (res.data.tracking_details) trackingData = res.data; // ഫെയിൽസേഫ്
+      let eventsArray = null;
+
+      // 🔥 FIX: ഡാറ്റ ഏത് ഫോർമാറ്റിൽ വന്നാലും കൃത്യമായി എടുക്കാനുള്ള ലോജിക് (Old & New API Support)
+      if (res.data && res.data.events) {
+        eventsArray = res.data.events;
+      } else if (res.data && Array.isArray(res.data) && res.data.length > 0 && res.data[0].tracking_details) {
+        eventsArray = res.data[0].tracking_details;
+      } else if (res.data && res.data.tracking_details) {
+        eventsArray = res.data.tracking_details;
+      } else if (res.status_code === 200 && Array.isArray(res.data)) {
+        eventsArray = res.data[0].tracking_details;
       }
 
-      if (trackingData && trackingData.tracking_details && trackingData.tracking_details.length > 0) {
-        let latest = trackingData.tracking_details[0]; // ഏറ്റവും പുതിയ ഇവന്റ്
+      if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
+        let latest = eventsArray[0]; // ഏറ്റവും പുതിയ ഇവന്റ് എടുക്കുന്നു
 
         let officeName = latest.office || 'In Transit';
-        let eventMsg = latest.event || 'Status Updated';
+        let eventMsg = latest.event || latest.status || 'Status Updated';
         let eventDate = latest.date ? latest.date.split('T')[0] : '';
         let eventTime = latest.time || '';
 
         let isAtDestination = false;
         let isOutForDelivery = false;
 
-        // പോസ്റ്റ് ഓഫീസ് മാച്ച് ചെയ്യാനുള്ള ലോജിക് (ഉദാഹരണത്തിന്: "Padne SO" യിൽ നിന്ന് "Padne" എടുക്കുന്നു)
         let searchPO = expectedPO ? expectedPO.split(' ')[0].toLowerCase() : '';
         let evntLow = eventMsg.toLowerCase();
 
-        // സ്റ്റാറ്റസ് ചെക്കിങ്
         if (evntLow.includes('out for delivery')) {
           isOutForDelivery = true;
         } else if (
@@ -3811,7 +3817,6 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
           isAtDestination = true;
         }
 
-        // കസ്റ്റം ഭാഷയിലുള്ള സ്പെഷ്യൽ മെസ്സേജുകൾ
         let destAlert = '';
         if (isOutForDelivery) {
           let msg = lang === 'ml' ? `🚚 പാഴ്സൽ ഇന്ന് ഡെലിവറി ചെയ്യുന്നതാണ്!` : `🚚 Parcel will be delivered today!`;
@@ -3821,14 +3826,12 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
           destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#10b981; color:#fff; font-size: 11px; letter-spacing: 0.5px; animation: popIn 0.5s ease;"><i class="fas fa-check-circle me-1"></i> ${msg}</div>`;
         }
 
-        // CSS ആനിമേഷൻ (Pulse effect)
         let cssAnim = `<style>
                     .live-pulse { width:10px; height:10px; background:#3b82f6; border-radius:50%; position:relative; }
                     .live-pulse::after { content:''; position:absolute; width:100%; height:100%; background:#3b82f6; border-radius:50%; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
                     @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
                 </style>`;
 
-        // മനോഹരമായ കാർഡ് UI
         let html = `${cssAnim}
                 <div class="p-3 mt-3 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; position:relative; overflow:hidden;">
                     <div class="d-flex align-items-center gap-2 mb-2">
@@ -3850,10 +3853,12 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
 
         widget.html(html);
       } else {
-        widget.html(''); // ഡാറ്റ ഇല്ലെങ്കിൽ ഹൈഡ് ചെയ്യും
+        // ഡാറ്റ ഇല്ലാത്ത അവസ്ഥയിൽ ഹൈഡ് ചെയ്യുന്നതിന് പകരം എറർ മെസ്സേജ് കാണിക്കുന്നു
+        widget.html(`<div class="text-danger small mt-2 fw-bold" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-exclamation-circle"></i> Tracking details currently unavailable</div>`);
       }
     })
     .catch(err => {
-      widget.html('');
+      // നെറ്റ് വർക്ക് എറർ വന്നാൽ കാണിക്കാൻ
+      widget.html(`<div class="text-danger small mt-2 fw-bold" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-wifi"></i> Connection failed. Please try again.</div>`);
     });
 }
