@@ -3778,44 +3778,44 @@ window.showFullTrackingPopup = function (trackId, eventsJson) {
 
   // പോപ്പപ്പിന് വേണ്ടിയുള്ള പ്രത്യേക CSS (Padding & Scroll Line Fix)
   let timelineCss = `<style>
-        .kaffak-timeline-wrapper {
+        .kafak-timeline-wrapper {
             text-align: left; max-height: 400px; overflow-y: auto; 
             padding: 20px 15px 20px 25px; /* 🔥 ഇടതുവശത്തെ പാഡിംഗ് കൃത്യമാക്കി */
         }
-        .kaffak-timeline-item {
+        .kafak-timeline-item {
             position: relative; margin-bottom: 20px; padding-left: 35px; z-index: 2;
         }
         /* 🔥 ഒരൊറ്റ നീളൻ ലൈനിന് പകരം ഓരോ ഐറ്റത്തിനും അതിന്റേതായ ലൈൻ (സ്ക്രോൾ ബഗ് ഫിക്സ്) */
-        .kaffak-timeline-item:not(:last-child)::after {
+        .kafak-timeline-item:not(:last-child)::after {
             content: ''; position: absolute; 
             left: 9px; top: 22px; height: calc(100% + 20px); 
             width: 2px; background: #cbd5e1; z-index: 1;
         }
-        .kaffak-timeline-dot {
-            position: absolute; left: 0; top: 12px; 
+        .kafak-timeline-dot {
+            position: absolute; left: 3px; top: 12px; 
             width: 14px; height: 14px; border-radius: 50%;
             border: 3px solid #fff; box-shadow: 0 0 0 2px #cbd5e1;
             z-index: 3; background: #fff;
         }
-        .kaffak-timeline-item.latest .kaffak-timeline-dot {
+        .kafak-timeline-item.latest .kafak-timeline-dot {
             background: #16a34a; box-shadow: 0 0 0 2px #16a34a;
         }
-        .kaffak-timeline-item.old .kaffak-timeline-dot {
+        .kafak-timeline-item.old .kafak-timeline-dot {
             background: #94a3b8;
         }
-        .kaffak-timeline-content {
+        .kafak-timeline-content {
             padding: 10px 15px; border-radius: 12px; background: #f8fafc;
         }
-        .kaffak-timeline-item.latest .kaffak-timeline-content {
+        .kafak-timeline-item.latest .kafak-timeline-content {
             background: #f0fdf4; border: 1px solid #b91c1c20;
         }
     </style>`;
 
-  let timelineHtml = timelineCss + `<div class="kaffak-timeline-wrapper">`;
+  let timelineHtml = timelineCss + `<div class="kafak-timeline-wrapper">`;
 
   events.forEach((ev, idx) => {
     let isLatest = idx === 0;
-    let itemClass = isLatest ? 'kaffak-timeline-item latest' : 'kaffak-timeline-item old';
+    let itemClass = isLatest ? 'kafak-timeline-item latest' : 'kafak-timeline-item old';
     let statusColor = isLatest ? '#16a34a' : '#1e293b';
 
     let datePart = ev.date ? ev.date.split('T')[0] : '';
@@ -3823,8 +3823,8 @@ window.showFullTrackingPopup = function (trackId, eventsJson) {
 
     timelineHtml += `
             <div class="${itemClass}">
-                <span class="kaffak-timeline-dot"></span>
-                <div class="kaffak-timeline-content shadow-sm">
+                <span class="kafak-timeline-dot"></span>
+                <div class="kafak-timeline-content shadow-sm">
                     <div style="font-size:10px; font-weight:700; color:#94a3b8;">${datePart} • ${timePart}</div>
                     <div style="font-size:13px; font-weight:800; color:${statusColor};">${ev.event || ev.status || 'Updated'}</div>
                     <div style="font-size:11px; color:#64748b;"><i class="fas fa-map-marker-alt me-1"></i>${ev.office || 'Post Office'}</div>
