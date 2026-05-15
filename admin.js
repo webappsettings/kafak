@@ -1547,10 +1547,6 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             ${resendBadge} 
             <span class="badge rounded-pill bg-${statusColor}" style="font-size:10px;">${currentStatus}</span>
             ${langBadge}
-            
-            <button onclick="event.stopPropagation(); generateLabel('${d.orderid}')" class="btn btn-sm btn-outline-primary d-flex align-items-center shadow-sm" style="font-size:10px; font-weight:bold; border-radius:6px; padding: 2px 8px; background: #f0f9ff;">
-                <i class="fas fa-print me-1"></i> Label
-            </button>
         </div>`;
 
     let menuItems = '';
@@ -1704,8 +1700,14 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         let isInTrackedList = (trackNum || meta.isTracked);
         let scanIconBtn = `<button onclick="event.stopPropagation(); highlightCard(this); startScanner('tracking_single', '${d.orderid}')" class="btn btn-outline-dark shadow-sm d-flex align-items-center justify-content-center" title="Scan Barcode" style="width:40px; border-radius:10px;"><i class="fas fa-barcode"></i></button>`;
 
+        let isPost = rawProvider.includes('POST') || rawProvider.includes('INDIA');
+
         if (trackNum) {
-            trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 TRK: ${trackNum}</button>${scanIconBtn}<a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 40px; flex:none;"><i class="fas fa-search"></i></a></div>`;
+            let searchBtnHtml = isPost
+                ? `<button onclick="event.stopPropagation(); highlightCard(this); showAdminTrackingPopup('${trackNum}');" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 40px; flex:none; background:#0f172a; color:#fff;"><i class="fas fa-history"></i></button>`
+                : `<a href="${trackLink}" target="_blank" onclick="event.stopPropagation(); highlightCard(this);" class="btn btn-custom btn-track d-flex align-items-center justify-content-center" style="width: 40px; flex:none;"><i class="fas fa-search"></i></a>`;
+
+            trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn-custom btn-track flex-grow-1" onclick="highlightCard(this); editTracking('${d.orderid}', '${trackNum}')">🚚 TRK: ${trackNum}</button>${scanIconBtn}${searchBtnHtml}</div>`;
         } else {
             let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
             trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>${scanIconBtn}${moveBtn}</div>`;
@@ -10328,87 +10330,6 @@ window.savePhoneNumbers = function (oid, data) {
     });
 }
 
-// 🔥 GENERATE INDIA POST SHIPPING LABEL (WITH DYNAMIC API TESTING)
-function generateLabel(oid) {
-    let order = allOrders.find(o => o.orderid === oid);
-
-    if (!order) {
-        Swal.fire("Error", "Order not found!", "error");
-        return;
-    }
-
-    if (!order.tracking || order.tracking.trim() === "") {
-        Swal.fire({
-            icon: 'warning',
-            title: 'No Tracking ID',
-            text: 'Please add a Tracking ID before generating the label.'
-        });
-        return;
-    }
-
-    // 🔥 API Test cheyyan ulla Input Box (Default values set cheythittundu)
-    Swal.fire({
-        title: 'Test India Post API',
-        html: `
-            <div style="text-align: left; font-size: 13px;">
-                <label class="fw-bold text-secondary">Login URL:</label>
-                <input id="swal-apiUrl" class="swal2-input" value="https://test.cept.gov.in/beextcustomer/v1/access/login" style="width: 100%; margin: 5px 0 15px 0; font-size: 13px; padding: 5px 10px;">
-                
-                <label class="fw-bold text-secondary">Username (Client ID):</label>
-                <input id="swal-apiUser" class="swal2-input" value="1187359678" style="width: 100%; margin: 5px 0 15px 0; font-size: 13px; padding: 5px 10px;">
-                
-                <label class="fw-bold text-secondary">Password (Client Secret):</label>
-                <input id="swal-apiPass" class="swal2-input" value="Dop@1234" style="width: 100%; margin: 5px 0 15px 0; font-size: 13px; padding: 5px 10px;">
-            </div>
-        `,
-        showCancelButton: true,
-        confirmButtonText: 'Test API & Generate',
-        cancelButtonText: 'Cancel',
-        preConfirm: () => {
-            return {
-                apiUrl: document.getElementById('swal-apiUrl').value.trim(),
-                apiUser: document.getElementById('swal-apiUser').value.trim(),
-                apiPass: document.getElementById('swal-apiPass').value.trim()
-            }
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-
-            Swal.fire({
-                title: 'Connecting...',
-                text: 'Testing API credentials with India Post...',
-                allowOutsideClick: false,
-                didOpen: () => { Swal.showLoading(); }
-            });
-
-            let payload = {
-                action: 'generateLabel',
-                orderData: order,
-                apiConfig: result.value // 🔥 Type cheytha API details koodi backend-lekk ayakkunnu
-            };
-
-            fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(payload)
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log("India Post API Response:", data);
-
-                    if (data && data.result !== 'error' && !data.error) {
-                        Swal.fire("Success!", "API Working! Label Generated Successfully!", "success");
-                    } else {
-                        Swal.fire("API Failed", data.message || data.error || "Could not connect to India Post", "error");
-                    }
-                })
-                .catch(err => {
-                    console.error(err);
-                    Swal.fire("Error", "Server connection failed.", "error");
-                });
-        }
-    });
-}
-
 // 🔥 SAFE REVERT LOGIC (Handles Offline Situations)
 window.safeRevertTrackers = function (trackersArray) {
     if (!trackersArray || trackersArray.length === 0) return;
@@ -10450,3 +10371,99 @@ window.processOfflineReverts = function () {
         }).catch(e => console.log("Waiting for net to revert trackers..."));
     }
 };
+
+// ==========================================================
+// 🔥 ADMIN PANEL: INDIA POST LIVE TRACKING POPUP
+// ==========================================================
+window.showAdminTrackingPopup = function (trackId) {
+    let cleanTrackId = String(trackId).trim();
+
+    // 1. ആദ്യം ഒരു ലോഡിംഗ് പോപ്പപ്പ് കാണിക്കുക
+    Swal.fire({
+        title: '<div style="font-size:16px; font-weight:800;">Fetching Live Location...</div>',
+        html: `<div class="text-center my-3"><div class="spinner-border text-primary" style="width: 2rem; height: 2rem;"></div></div>`,
+        showConfirmButton: false,
+        allowOutsideClick: false,
+        customClass: { popup: 'rounded-4' }
+    });
+
+    // 2. ആപ്പ്സ് സ്ക്രിപ്റ്റ് വഴി ലൈവ് ഡാറ്റ എടുക്കുക (sc എന്ന വേരിയബിൾ ഉണ്ടെന്ന് ഉറപ്പാക്കുക)
+    fetch(`${sc}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
+        .then(res => res.json())
+        .then(res => {
+            let eventsArray = null;
+
+            if (res.data && res.data.events) eventsArray = res.data.events;
+            else if (res.data && Array.isArray(res.data) && res.data.length > 0 && res.data[0].tracking_details) eventsArray = res.data[0].tracking_details;
+            else if (res.data && res.data.tracking_details) eventsArray = res.data.tracking_details;
+            else if (res.status_code === 200 && Array.isArray(res.data)) eventsArray = res.data[0].tracking_details;
+
+            if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
+                // ഡാറ്റ കിട്ടിയാൽ ടൈംലൈൻ കാണിക്കുക
+                let eventsJson = encodeURIComponent(JSON.stringify(eventsArray));
+                renderAdminTimeline(cleanTrackId, eventsJson);
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'No Data Found',
+                    text: 'Tracking details are currently unavailable for this ID.',
+                    confirmButtonColor: '#333'
+                });
+            }
+        })
+        .catch(err => {
+            Swal.fire({
+                icon: 'error',
+                title: 'Connection Failed',
+                text: 'Could not fetch tracking data. Please try again.',
+                confirmButtonColor: '#333'
+            });
+        });
+};
+
+// 3. പോപ്പപ്പിൽ ടൈംലൈൻ വരയ്ക്കാനുള്ള ഫംഗ്ഷൻ
+window.renderAdminTimeline = function (trackId, eventsJson) {
+    let events = JSON.parse(decodeURIComponent(eventsJson));
+
+    let timelineCss = `<style>
+        .kaffak-timeline-wrapper { text-align: left; max-height: 400px; overflow-y: auto; padding: 20px 15px 20px 25px; }
+        .kaffak-timeline-item { position: relative; margin-bottom: 20px; padding-left: 35px; z-index: 2; }
+        .kaffak-timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 9px; top: 22px; height: calc(100% + 20px); width: 2px; background: #cbd5e1; z-index: 1; }
+        .kaffak-timeline-dot { position: absolute; left: 0; top: 12px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px #cbd5e1; z-index: 3; background: #fff; }
+        .kaffak-timeline-item.latest .kaffak-timeline-dot { background: #16a34a; box-shadow: 0 0 0 2px #16a34a; }
+        .kaffak-timeline-item.old .kaffak-timeline-dot { background: #94a3b8; }
+        .kaffak-timeline-content { padding: 10px 15px; border-radius: 12px; background: #f8fafc; }
+        .kaffak-timeline-item.latest .kaffak-timeline-content { background: #f0fdf4; border: 1px solid #b91c1c20; }
+    </style>`;
+
+    let timelineHtml = timelineCss + `<div class="kaffak-timeline-wrapper">`;
+
+    events.forEach((ev, idx) => {
+        let isLatest = idx === 0;
+        let itemClass = isLatest ? 'kaffak-timeline-item latest' : 'kaffak-timeline-item old';
+        let statusColor = isLatest ? '#16a34a' : '#1e293b';
+
+        let datePart = ev.date ? ev.date.split('T')[0] : '';
+        let timePart = ev.time || '';
+
+        timelineHtml += `
+            <div class="${itemClass}">
+                <span class="kaffak-timeline-dot"></span>
+                <div class="kaffak-timeline-content shadow-sm">
+                    <div style="font-size:10px; font-weight:700; color:#94a3b8;">${datePart} • ${timePart}</div>
+                    <div style="font-size:13px; font-weight:800; color:${statusColor};">${ev.event || ev.status || 'Updated'}</div>
+                    <div style="font-size:11px; color:#64748b;"><i class="fas fa-map-marker-alt me-1"></i>${ev.office || 'Post Office'}</div>
+                </div>
+            </div>`;
+    });
+    timelineHtml += `</div>`;
+
+    Swal.fire({
+        title: `<div style="font-size:16px; font-weight:800;">Tracking Journey: ${trackId}</div>`,
+        html: timelineHtml,
+        showCloseButton: true,
+        confirmButtonText: 'Close',
+        confirmButtonColor: '#333',
+        customClass: { popup: 'rounded-4', htmlContainer: 'p-0' }
+    });
+}
