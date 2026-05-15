@@ -3766,70 +3766,177 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
   }
 };
 
-// 🔥 FULL HISTORY കാണിക്കാനുള്ള പുതിയ ഫംഗ്‌ഷൻ
+
+
+// ==============================================================================
+// 🔥 BEAUTIFUL TIMELINE & TRUCK LOADING ANIMATION FOR INDIA POST
+// ==============================================================================
+
+// --- 1. FULL HISTORY കാണിക്കാനുള്ള പോപ്പപ്പ് ഫംഗ്‌ഷൻ (FIXED UI) ---
 window.showFullTrackingPopup = function (trackId, eventsJson) {
   let events = JSON.parse(decodeURIComponent(eventsJson));
-  let timelineHtml = `<div style="text-align:left; max-height: 400px; overflow-y: auto; padding: 10px 15px; border-left: 2px solid #e2e8f0; margin-left: 10px;">`;
+
+  // പോപ്പപ്പിന് വേണ്ടിയുള്ള പ്രത്യേക CSS (z-index ഫിക്സ് ഉൾപ്പെടെ)
+  let timelineCss = `<style>
+        .kaffak-timeline-wrapper {
+            text-align: left; max-height: 400px; overflow-y: auto; 
+            padding: 20px 10px 20px 30px; 
+            position: relative;
+        }
+        .kaffak-timeline-wrapper::before {
+            content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
+            width: 2px; background: #e2e8f0; z-index: 1;
+        }
+        .kaffak-timeline-item {
+            position: relative; margin-bottom: 25px; padding-left: 15px; z-index: 2;
+        }
+        .kaffak-timeline-dot {
+            position: absolute; left: -21px; top: 12px; 
+            width: 14px; height: 14px; border-radius: 50%;
+            border: 3px solid #fff; box-shadow: 0 0 0 2px #e2e8f0;
+            z-index: 3; 
+        }
+        .kaffak-timeline-item.latest .kaffak-timeline-dot {
+            background: #16a34a; box-shadow: 0 0 0 2px #16a34a;
+        }
+        .kaffak-timeline-item.old .kaffak-timeline-dot {
+            background: #94a3b8;
+        }
+        .kaffak-timeline-content {
+            padding: 10px 15px; border-radius: 12px; background: #f8fafc;
+        }
+        .kaffak-timeline-item.latest .kaffak-timeline-content {
+            background: #f0fdf4; border: 1px solid #b91c1c20;
+        }
+    </style>`;
+
+  let timelineHtml = timelineCss + `<div class="kaffak-timeline-wrapper">`;
 
   events.forEach((ev, idx) => {
     let isLatest = idx === 0;
-    let color = isLatest ? '#16a34a' : '#64748b'; // ലാസ്റ്റ് ഉള്ളതിന് പച്ച നിറം
-    let bg = isLatest ? '#f0fdf4' : 'transparent';
+    let itemClass = isLatest ? 'kaffak-timeline-item latest' : 'kaffak-timeline-item old';
+    let statusColor = isLatest ? '#16a34a' : '#1e293b';
+
+    let datePart = ev.date ? ev.date.split('T')[0] : '';
+    let timePart = ev.time || '';
 
     timelineHtml += `
-            <div style="position: relative; margin-bottom: 20px; padding-left: 20px; background:${bg}; border-radius:8px; padding:10px;">
-                <span style="position: absolute; left: -21px; top: 15px; background: ${color}; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 2px ${color};"></span>
-                <div style="font-size:10px; font-weight:700; color:#94a3b8;">${ev.date.split('T')[0]} • ${ev.time}</div>
-                <div style="font-size:13px; font-weight:800; color:${isLatest ? '#16a34a' : '#1e293b'};">${ev.event}</div>
-                <div style="font-size:11px; color:#64748b;"><i class="fas fa-map-marker-alt me-1"></i>${ev.office}</div>
+            <div class="${itemClass}">
+                <span class="kaffak-timeline-dot"></span>
+                <div class="kaffak-timeline-content shadow-sm">
+                    <div style="font-size:10px; font-weight:700; color:#94a3b8;">${datePart} • ${timePart}</div>
+                    <div style="font-size:13px; font-weight:800; color:${statusColor};">${ev.event || ev.status || 'Updated'}</div>
+                    <div style="font-size:11px; color:#64748b;"><i class="fas fa-map-marker-alt me-1"></i>${ev.office || 'Post Office'}</div>
+                </div>
             </div>`;
   });
   timelineHtml += `</div>`;
 
   Swal.fire({
-    title: `<div style="font-size:16px; font-weight:800;">Full Tracking Journey</div>`,
+    title: `<div style="font-size:16px; font-weight:800;">Tracking Journey: ${trackId}</div>`,
     html: timelineHtml,
     showCloseButton: true,
     confirmButtonText: 'Close',
     confirmButtonColor: '#333',
-    customClass: { popup: 'rounded-4' }
+    customClass: { popup: 'rounded-4', htmlContainer: 'p-0' }
   });
 }
 
-// 🔥 ഇൻലൈൻ കാർഡ് ലോഡിങ് ഫംഗ്‌ഷൻ (Updated)
+// --- 2. ഇൻലൈൻ കാർഡ് ലോഡിങ് ഫംഗ്‌ഷൻ (TRUCK ANIMATION & SMART PO ADDED) ---
 window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
   let cleanTrackId = String(trackId).trim();
   let widget = $(`#inline-track-${cleanTrackId}`);
   if (widget.length === 0) return;
 
+  // 🔥 മനോഹരമായ ട്രക്ക് ലോഡിംഗ് ആനിമേഷൻ
+  let truckLoaderCss = `<style>
+        @keyframes truckMove { 0% { left: -20px; } 100% { left: 100%; } }
+        .truck-load-container {
+            width: 100%; margin-top: 15px; padding: 10px 0; text-align: center;
+        }
+        .truck-road {
+            width: 80%; height: 2px; background: #cbd5e1; border-radius: 2px;
+            margin: 0 auto; position: relative; overflow: hidden;
+        }
+        .truck-icon-mover {
+            position: absolute; top: -13px; color: #3b82f6; font-size: 16px;
+            animation: truckMove 2s linear infinite;
+        }
+    </style>`;
+
+  let truckLoaderHtml = truckLoaderCss + `
+        <div class="truck-load-container">
+            <div class="truck-road">
+                <i class="fas fa-truck truck-icon-mover"></i>
+            </div>
+            <div class="text-muted fw-bold mt-2" style="font-size:11px;">Fetching Live Location...</div>
+        </div>`;
+
+  // ആദ്യം ലോഡർ കാണിക്കുന്നു
+  widget.html(truckLoaderHtml);
+
+  // API-യിൽ നിന്ന് ഡാറ്റ എടുക്കുന്നു
   fetch(`${sc}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
     .then(res => res.json())
     .then(res => {
       let eventsArray = null;
-      if (res.data && res.data.events) eventsArray = res.data.events;
-      else if (res.data && Array.isArray(res.data) && res.data[0].tracking_details) eventsArray = res.data[0].tracking_details;
-      else if (res.data && res.data.tracking_details) eventsArray = res.data.tracking_details;
-      else if (res.status_code === 200 && Array.isArray(res.data)) eventsArray = res.data[0].tracking_details;
 
-      if (eventsArray && eventsArray.length > 0) {
+      // API ഡാറ്റ ഫോർമാറ്റുകൾ (Old & New Support)
+      if (res.data && res.data.events) {
+        eventsArray = res.data.events;
+      } else if (res.data && Array.isArray(res.data) && res.data.length > 0 && res.data[0].tracking_details) {
+        eventsArray = res.data[0].tracking_details;
+      } else if (res.data && res.data.tracking_details) {
+        eventsArray = res.data.tracking_details;
+      } else if (res.status_code === 200 && Array.isArray(res.data)) {
+        eventsArray = res.data[0].tracking_details;
+      }
+
+      if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
         let latest = eventsArray[0];
-        let eventsJson = encodeURIComponent(JSON.stringify(eventsArray)); // പോപ്പപ്പിലേക്ക് അയക്കാൻ
+        let eventsJson = encodeURIComponent(JSON.stringify(eventsArray));
 
-        // --- SMART PO MATCHING (പഴയ ലോജിക് തന്നെ) ---
+        let officeName = latest.office || 'In Transit';
+        let eventMsg = latest.event || latest.status || 'Status Updated';
+        let eventDate = latest.date ? latest.date.split('T')[0] : '';
+        let eventTime = latest.time || '';
+
+        let isAtDestination = false;
+        let isOutForDelivery = false;
+        let evntLow = eventMsg.toLowerCase();
+
+        // 🔥 SMART PO MATCHING LOGIC
         let cleanExpected = expectedPO ? expectedPO.replace(/\b(PO|SO|BO|HO|GPO|P O|S O|B O|H O|H\.O|S\.O|B\.O|P\.O|G\.P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase() : '';
-        let cleanOffice = latest.office.replace(/\b(PO|SO|BO|HO|GPO|P O|S O|B O|H O|H\.O|S\.O|B\.O|P\.O|G\.P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase();
-        let isSameOffice = (cleanExpected && cleanOffice && (cleanOffice.includes(cleanExpected) || cleanExpected.includes(cleanOffice)));
+        let cleanOffice = officeName.replace(/\b(PO|SO|BO|HO|GPO|P O|S O|B O|H O|H\.O|S\.O|B\.O|P\.O|G\.P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase();
 
-        let destAlert = '';
-        if (latest.event.toLowerCase().includes('out for delivery')) {
-          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#22c55e; color:#fff; font-size: 11px;"><i class="fas fa-motorcycle me-1"></i> ${lang === 'ml' ? '🚚 പാഴ്സൽ ഇന്ന് ലഭിക്കും!' : '🚚 Parcel will be delivered today!'}</div>`;
-        } else if (isSameOffice && !latest.event.toLowerCase().includes('delivered')) {
-          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#10b981; color:#fff; font-size: 11px;"><i class="fas fa-check-circle me-1"></i> ${lang === 'ml' ? `🎉 നിങ്ങളുടെ ഓഫീസിൽ (${latest.office}) എത്തി!` : `🎉 Reached your Office (${latest.office})!`}</div>`;
+        let isSameOffice = false;
+        if (cleanExpected && cleanOffice && (cleanOffice.includes(cleanExpected) || cleanExpected.includes(cleanOffice))) {
+          isSameOffice = true;
         }
 
-        // 🔥 മനോഹരമായ പുതിയ ഹെഡിംഗും ഹിസ്റ്ററി ബട്ടണും
-        let html = `
-                <div class="p-3 mt-3 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; position:relative;">
+        if (evntLow.includes('out for delivery')) {
+          isOutForDelivery = true;
+        } else if (evntLow.includes('destination') || evntLow.includes('delivered') || isSameOffice) {
+          isAtDestination = true;
+        }
+
+        let destAlert = '';
+        if (isOutForDelivery) {
+          let msg = lang === 'ml' ? `🚚 പാഴ്സൽ ഇന്ന് ഡെലിവറി ചെയ്യുന്നതാണ്!` : `🚚 Parcel will be delivered today!`;
+          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#22c55e; color:#fff; font-size: 11px; letter-spacing: 0.5px;"><i class="fas fa-motorcycle me-1"></i> ${msg}</div>`;
+        } else if (isAtDestination && !evntLow.includes('delivered')) {
+          let msg = lang === 'ml' ? `🎉 പാഴ്സൽ നിങ്ങളുടെ പോസ്റ്റ് ഓഫീസിൽ (${officeName}) എത്തിയിട്ടുണ്ട്!` : `🎉 Parcel has reached your local Post Office (${officeName})!`;
+          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#10b981; color:#fff; font-size: 11px; letter-spacing: 0.5px;"><i class="fas fa-check-circle me-1"></i> ${msg}</div>`;
+        }
+
+        let pulseCss = `<style>
+                    .live-pulse { width:10px; height:10px; background:#3b82f6; border-radius:50%; position:relative; }
+                    .live-pulse::after { content:''; position:absolute; width:100%; height:100%; background:#3b82f6; border-radius:50%; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
+                    @keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
+                </style>`;
+
+        let html = `${pulseCss}
+                <div class="p-3 mt-3 rounded-3 shadow-sm fade-in" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; position:relative; animation: popIn 0.3s ease;">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                          <div class="d-flex align-items-center gap-2">
                             <div class="live-pulse"></div>
@@ -3839,15 +3946,24 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
                             <i class="fas fa-history me-1"></i> HISTORY
                          </button>
                     </div>
-                    <div class="fw-bolder text-dark mb-1" style="font-size: 14px;"><i class="fas fa-map-marker-alt text-danger me-1"></i> ${latest.office}</div>
-                    <div style="font-size: 12px; font-weight: 700; color: #334155;">${latest.event}</div>
-                    <div class="text-muted mt-1" style="font-size: 10px; font-weight: 600;"><i class="far fa-clock me-1"></i> ${latest.date.split('T')[0]} • ${latest.time}</div>
+                    <div class="fw-bolder text-dark mb-1" style="font-size: 14px;">
+                         <i class="fas fa-map-marker-alt text-danger me-1"></i> ${officeName}
+                    </div>
+                    <div style="font-size: 12px; font-weight: 700; color: #334155;">
+                         ${eventMsg}
+                    </div>
+                    <div class="text-muted mt-1" style="font-size: 10px; font-weight: 600;">
+                         <i class="far fa-clock me-1"></i> ${eventDate} • ${eventTime}
+                    </div>
                     ${destAlert}
                 </div>`;
 
         widget.html(html);
       } else {
-        widget.html('');
+        widget.html(`<div class="text-danger small mt-2 fw-bold text-center" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-exclamation-circle"></i> Tracking details currently unavailable</div>`);
       }
+    })
+    .catch(err => {
+      widget.html(`<div class="text-danger small mt-2 fw-bold text-center" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-wifi"></i> Connection failed</div>`);
     });
 }
