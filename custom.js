@@ -1551,6 +1551,7 @@ function updateStatusUI(d) {
     if (index === 2 && item.active && d.tracking && !isRefunded) {
       let trackNum = String(d.tracking || '').trim();
       let rawProvider = String(d.courier || d.Courier_Provider || d.provider || 'Courier').trim().toUpperCase();
+      let isPost = rawProvider.includes('POST') || rawProvider.includes('INDIA');
 
       let trackLink = '';
       if (rawProvider.includes('DTDC')) {
@@ -1564,27 +1565,29 @@ function updateStatusUI(d) {
         trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
       }
 
+      let trackBtnHtml = isPost ? '' : `
+    <button onclick="trackParcel('${trackNum}', '${rawProvider}', '${trackLink}')" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px; border:none;">
+        ${t.btn_track} <i class="fas fa-history ms-1" style="font-size:9px;"></i>
+    </button>`;
+
       extraContent = `
-        <div class="mt-3 p-2 rounded-3 shadow-sm d-flex flex-column" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
-            <div class="d-flex align-items-center justify-content-between">
-                <div class="d-flex flex-column">
-                    <div style="font-size:9px; font-weight:800; color:#64748b; text-transform:uppercase; margin-bottom:2px; letter-spacing:0.5px;">
-                        <i class="fas fa-truck text-primary me-1"></i> ${rawProvider}
-                    </div>
-                    <div class="d-flex align-items-center gap-2">
-                        <span class="fw-bolder text-dark" style="font-size:11px; font-family:monospace; letter-spacing:0.5px;">${trackNum}</span>
-                        <button onclick="copyTrackingID('${trackNum}', this)" class="btn btn-sm btn-white p-0 d-flex align-items-center justify-content-center shadow-sm" style="width:24px; height:24px; border-radius:6px; border:1px solid #cbd5e1; background:#fff;" title="Copy ID">
-                            <i class="far fa-copy text-secondary" style="font-size:12px;"></i>
-                        </button>
-                    </div>
+    <div class="mt-3 p-2 rounded-3 shadow-sm d-flex flex-column" style="background: #f8fafc; border: 1px solid #e2e8f0; border-left: 4px solid #3b82f6;">
+        <div class="d-flex align-items-center justify-content-between">
+            <div class="d-flex flex-column">
+                <div style="font-size:9px; font-weight:800; color:#64748b; text-transform:uppercase; margin-bottom:2px; letter-spacing:0.5px;">
+                    <i class="fas fa-truck text-primary me-1"></i> ${rawProvider}
                 </div>
-                <button onclick="trackParcel('${trackNum}', '${rawProvider}', '${trackLink}')" class="btn btn-warning shadow-sm rounded-pill px-3 py-1 fw-bold d-flex align-items-center" style="font-size:11px; letter-spacing:0.5px; border:none;">
-                    ${t.btn_track} <i class="fas fa-history ms-1" style="font-size:9px;"></i>
-                </button>
+                <div class="d-flex align-items-center gap-2">
+                    <span class="fw-bolder text-dark" style="font-size:11px; font-family:monospace; letter-spacing:0.5px;">${trackNum}</span>
+                    <button onclick="copyTrackingID('${trackNum}', this)" class="btn btn-sm btn-white p-0 d-flex align-items-center justify-content-center shadow-sm" style="width:24px; height:24px; border-radius:6px; border:1px solid #cbd5e1; background:#fff;" title="Copy ID">
+                        <i class="far fa-copy text-secondary" style="font-size:12px;"></i>
+                    </button>
+                </div>
             </div>
-            
-            <div id="inline-track-${trackNum}"></div>
-        </div>`;
+            ${trackBtnHtml} 
+        </div>
+        <div id="inline-track-${trackNum}"></div>
+    </div>`;
     }
 
     let rowClass = (item.isRefund) ? "timeline-row refunded-text" : (item.active ? "timeline-row completed" : "timeline-row");
@@ -3763,106 +3766,88 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
   }
 };
 
-// ------------------------------------------------------------------------------
-// 🔥 BEAUTIFUL INLINE LIVE TRACKING WIDGET (INDIA POST) - SMART PO MATCHING
-// ------------------------------------------------------------------------------
+// 🔥 FULL HISTORY കാണിക്കാനുള്ള പുതിയ ഫംഗ്‌ഷൻ
+window.showFullTrackingPopup = function (trackId, eventsJson) {
+  let events = JSON.parse(decodeURIComponent(eventsJson));
+  let timelineHtml = `<div style="text-align:left; max-height: 400px; overflow-y: auto; padding: 10px 15px; border-left: 2px solid #e2e8f0; margin-left: 10px;">`;
+
+  events.forEach((ev, idx) => {
+    let isLatest = idx === 0;
+    let color = isLatest ? '#16a34a' : '#64748b'; // ലാസ്റ്റ് ഉള്ളതിന് പച്ച നിറം
+    let bg = isLatest ? '#f0fdf4' : 'transparent';
+
+    timelineHtml += `
+            <div style="position: relative; margin-bottom: 20px; padding-left: 20px; background:${bg}; border-radius:8px; padding:10px;">
+                <span style="position: absolute; left: -21px; top: 15px; background: ${color}; width: 10px; height: 10px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 2px ${color};"></span>
+                <div style="font-size:10px; font-weight:700; color:#94a3b8;">${ev.date.split('T')[0]} • ${ev.time}</div>
+                <div style="font-size:13px; font-weight:800; color:${isLatest ? '#16a34a' : '#1e293b'};">${ev.event}</div>
+                <div style="font-size:11px; color:#64748b;"><i class="fas fa-map-marker-alt me-1"></i>${ev.office}</div>
+            </div>`;
+  });
+  timelineHtml += `</div>`;
+
+  Swal.fire({
+    title: `<div style="font-size:16px; font-weight:800;">Full Tracking Journey</div>`,
+    html: timelineHtml,
+    showCloseButton: true,
+    confirmButtonText: 'Close',
+    confirmButtonColor: '#333',
+    customClass: { popup: 'rounded-4' }
+  });
+}
+
+// 🔥 ഇൻലൈൻ കാർഡ് ലോഡിങ് ഫംഗ്‌ഷൻ (Updated)
 window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
   let cleanTrackId = String(trackId).trim();
   let widget = $(`#inline-track-${cleanTrackId}`);
-
   if (widget.length === 0) return;
-
-  widget.html(`<div class="text-muted small mt-3 d-flex align-items-center gap-2 fw-bold" style="font-size:11px;">
-        <div class="spinner-border spinner-border-sm text-primary" style="width: 12px; height: 12px; border-width: 2px;"></div> 
-        Fetching Live Location...
-    </div>`);
 
   fetch(`${sc}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
     .then(res => res.json())
     .then(res => {
       let eventsArray = null;
+      if (res.data && res.data.events) eventsArray = res.data.events;
+      else if (res.data && Array.isArray(res.data) && res.data[0].tracking_details) eventsArray = res.data[0].tracking_details;
+      else if (res.data && res.data.tracking_details) eventsArray = res.data.tracking_details;
+      else if (res.status_code === 200 && Array.isArray(res.data)) eventsArray = res.data[0].tracking_details;
 
-      if (res.data && res.data.events) {
-        eventsArray = res.data.events;
-      } else if (res.data && Array.isArray(res.data) && res.data.length > 0 && res.data[0].tracking_details) {
-        eventsArray = res.data[0].tracking_details;
-      } else if (res.data && res.data.tracking_details) {
-        eventsArray = res.data.tracking_details;
-      } else if (res.status_code === 200 && Array.isArray(res.data)) {
-        eventsArray = res.data[0].tracking_details;
-      }
-
-      if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
+      if (eventsArray && eventsArray.length > 0) {
         let latest = eventsArray[0];
+        let eventsJson = encodeURIComponent(JSON.stringify(eventsArray)); // പോപ്പപ്പിലേക്ക് അയക്കാൻ
 
-        let officeName = latest.office || 'In Transit';
-        let eventMsg = latest.event || latest.status || 'Status Updated';
-        let eventDate = latest.date ? latest.date.split('T')[0] : '';
-        let eventTime = latest.time || '';
-
-        let isAtDestination = false;
-        let isOutForDelivery = false;
-        let evntLow = eventMsg.toLowerCase();
-
-        // 🔥 SMART PO MATCHING LOGIC (Removes PO, SO, BO, HO etc.)
-        let cleanExpected = expectedPO ? expectedPO.replace(/\b(PO|SO|BO|HO|GPO|H\.O|S\.O|B\.O|P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase() : '';
-        let cleanOffice = officeName.replace(/\b(PO|SO|BO|HO|GPO|H\.O|S\.O|B\.O|P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase();
-
-        let isSameOffice = false;
-        if (cleanExpected && cleanOffice && (cleanOffice.includes(cleanExpected) || cleanExpected.includes(cleanOffice))) {
-          isSameOffice = true;
-        }
-
-        if (evntLow.includes('out for delivery')) {
-          isOutForDelivery = true;
-        } else if (
-          evntLow.includes('destination') ||
-          evntLow.includes('delivered') ||
-          isSameOffice
-        ) {
-          isAtDestination = true;
-        }
+        // --- SMART PO MATCHING (പഴയ ലോജിക് തന്നെ) ---
+        let cleanExpected = expectedPO ? expectedPO.replace(/\b(PO|SO|BO|HO|GPO|P O|S O|B O|H O|H\.O|S\.O|B\.O|P\.O|G\.P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase() : '';
+        let cleanOffice = latest.office.replace(/\b(PO|SO|BO|HO|GPO|P O|S O|B O|H O|H\.O|S\.O|B\.O|P\.O|G\.P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase();
+        let isSameOffice = (cleanExpected && cleanOffice && (cleanOffice.includes(cleanExpected) || cleanExpected.includes(cleanOffice)));
 
         let destAlert = '';
-        if (isOutForDelivery) {
-          let msg = lang === 'ml' ? `🚚 പാഴ്സൽ ഇന്ന് ഡെലിവറി ചെയ്യുന്നതാണ്!` : `🚚 Parcel will be delivered today!`;
-          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#22c55e; color:#fff; font-size: 11px; letter-spacing: 0.5px; animation: popIn 0.5s ease;"><i class="fas fa-motorcycle me-1"></i> ${msg}</div>`;
-        } else if (isAtDestination && !evntLow.includes('delivered')) {
-          let msg = lang === 'ml' ? `🎉 പാഴ്സൽ നിങ്ങളുടെ പോസ്റ്റ് ഓഫീസിൽ (${officeName}) എത്തിയിട്ടുണ്ട്!` : `🎉 Parcel has reached your local Post Office (${officeName})!`;
-          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#10b981; color:#fff; font-size: 11px; letter-spacing: 0.5px; animation: popIn 0.5s ease;"><i class="fas fa-check-circle me-1"></i> ${msg}</div>`;
+        if (latest.event.toLowerCase().includes('out for delivery')) {
+          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#22c55e; color:#fff; font-size: 11px;"><i class="fas fa-motorcycle me-1"></i> ${lang === 'ml' ? '🚚 പാഴ്സൽ ഇന്ന് ലഭിക്കും!' : '🚚 Parcel will be delivered today!'}</div>`;
+        } else if (isSameOffice && !latest.event.toLowerCase().includes('delivered')) {
+          destAlert = `<div class="mt-2 p-2 rounded-2 fw-bold text-center shadow-sm" style="background:#10b981; color:#fff; font-size: 11px;"><i class="fas fa-check-circle me-1"></i> ${lang === 'ml' ? `🎉 നിങ്ങളുടെ ഓഫീസിൽ (${latest.office}) എത്തി!` : `🎉 Reached your Office (${latest.office})!`}</div>`;
         }
 
-        let cssAnim = `<style>
-                    .live-pulse { width:10px; height:10px; background:#3b82f6; border-radius:50%; position:relative; }
-                    .live-pulse::after { content:''; position:absolute; width:100%; height:100%; background:#3b82f6; border-radius:50%; animation: ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite; }
-                    @keyframes popIn { 0% { transform: scale(0.9); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
-                </style>`;
-
-        let html = `${cssAnim}
-                <div class="p-3 mt-3 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; position:relative; overflow:hidden;">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                         <div class="live-pulse"></div>
-                         <span class="fw-bold" style="font-size: 10px; color:#0284c7; letter-spacing: 1px;">LIVE LOCATION</span>
+        // 🔥 മനോഹരമായ പുതിയ ഹെഡിംഗും ഹിസ്റ്ററി ബട്ടണും
+        let html = `
+                <div class="p-3 mt-3 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; position:relative;">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                         <div class="d-flex align-items-center gap-2">
+                            <div class="live-pulse"></div>
+                            <span class="fw-bold" style="font-size: 10px; color:#0284c7; letter-spacing: 1px;">LIVE LOCATION</span>
+                         </div>
+                         <button onclick="showFullTrackingPopup('${cleanTrackId}', '${eventsJson}')" class="btn btn-sm p-0 px-2 rounded-pill shadow-sm" style="background:#fff; border:1px solid #bae6fd; font-size:9px; font-weight:800; color:#0369a1;">
+                            <i class="fas fa-history me-1"></i> HISTORY
+                         </button>
                     </div>
-                    <div class="fw-bolder text-dark mb-1" style="font-size: 14px;">
-                         <i class="fas fa-map-marker-alt text-danger me-1"></i> ${officeName}
-                    </div>
-                    <div style="font-size: 12px; font-weight: 700; color: #334155;">
-                         ${eventMsg}
-                    </div>
-                    <div class="text-muted mt-1" style="font-size: 10px; font-weight: 600;">
-                         <i class="far fa-clock me-1"></i> ${eventDate} • ${eventTime}
-                    </div>
+                    <div class="fw-bolder text-dark mb-1" style="font-size: 14px;"><i class="fas fa-map-marker-alt text-danger me-1"></i> ${latest.office}</div>
+                    <div style="font-size: 12px; font-weight: 700; color: #334155;">${latest.event}</div>
+                    <div class="text-muted mt-1" style="font-size: 10px; font-weight: 600;"><i class="far fa-clock me-1"></i> ${latest.date.split('T')[0]} • ${latest.time}</div>
                     ${destAlert}
-                    <i class="fas fa-shipping-fast" style="position:absolute; right:-15px; bottom:-15px; font-size:55px; color:#3b82f6; opacity:0.1;"></i>
                 </div>`;
 
         widget.html(html);
       } else {
-        widget.html(`<div class="text-danger small mt-2 fw-bold" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-exclamation-circle"></i> Tracking details currently unavailable</div>`);
+        widget.html('');
       }
-    })
-    .catch(err => {
-      widget.html(`<div class="text-danger small mt-2 fw-bold" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-wifi"></i> Connection failed. Please try again.</div>`);
     });
 }
