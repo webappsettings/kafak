@@ -10387,8 +10387,8 @@ window.showAdminTrackingPopup = function (trackId) {
         customClass: { popup: 'rounded-4' }
     });
 
-    // 2. ആപ്പ്സ് സ്ക്രിപ്റ്റ് വഴി ലൈവ് ഡാറ്റ എടുക്കുക (sc എന്ന വേരിയബിൾ ഉണ്ടെന്ന് ഉറപ്പാക്കുക)
-    fetch(`${sc}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
+    // 2. ആപ്പ്സ് സ്ക്രിപ്റ്റ് വഴി ലൈവ് ഡാറ്റ എടുക്കുക (sc മാറ്റി scriptURL ആക്കിയിട്ടുണ്ട്)
+    fetch(`${scriptURL}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
         .then(res => res.json())
         .then(res => {
             let eventsArray = null;
