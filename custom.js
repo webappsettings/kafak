@@ -3842,24 +3842,25 @@ window.showFullTrackingPopup = function (trackId, eventsJson) {
   });
 }
 
-// --- 2. ഇൻലൈൻ കാർഡ് ലോഡിങ് ഫംഗ്‌ഷൻ (TRUCK ANIMATION & SMART PO ADDED) ---
+// --- 2. ഇൻലൈൻ കാർഡ് ലോഡിങ് ഫംഗ്‌ഷൻ (TRUCK ANIMATION & POP-IN FIXED) ---
 window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
   let cleanTrackId = String(trackId).trim();
   let widget = $(`#inline-track-${cleanTrackId}`);
   if (widget.length === 0) return;
 
-  // 🔥 മനോഹരമായ ട്രക്ക് ലോഡിംഗ് ആനിമേഷൻ
+  // 🔥 ട്രക്ക് കട്ട് ആവാതിരിക്കാനുള്ള CSS ഫിക്സ്
   let truckLoaderCss = `<style>
-        @keyframes truckMove { 0% { left: -20px; } 100% { left: 100%; } }
+        @keyframes truckMove { 0% { left: -30px; } 100% { left: 100%; } }
         .truck-load-container {
-            width: 100%; margin-top: 15px; padding: 10px 0; text-align: center;
+            width: 100%; margin-top: 15px; padding: 15px 0 10px 0; text-align: center; overflow: hidden;
         }
         .truck-road {
             width: 80%; height: 2px; background: #cbd5e1; border-radius: 2px;
-            margin: 0 auto; position: relative; overflow: hidden;
+            margin: 0 auto; position: relative; 
+            /* overflow: hidden; ഒഴിവാക്കി, പകരം പുറത്തുള്ള കണ്ടെയ്നറിൽ നൽകി */
         }
         .truck-icon-mover {
-            position: absolute; top: -13px; color: #3b82f6; font-size: 16px;
+            position: absolute; top: -14px; color: #3b82f6; font-size: 16px;
             animation: truckMove 2s linear infinite;
         }
     </style>`;
@@ -3869,19 +3870,16 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
             <div class="truck-road">
                 <i class="fas fa-truck truck-icon-mover"></i>
             </div>
-            <div class="text-muted fw-bold mt-2" style="font-size:11px;">Fetching Live Location...</div>
+            <div class="text-muted fw-bold mt-3" style="font-size:11px;">Fetching Live Location...</div>
         </div>`;
 
-  // ആദ്യം ലോഡർ കാണിക്കുന്നു
   widget.html(truckLoaderHtml);
 
-  // API-യിൽ നിന്ന് ഡാറ്റ എടുക്കുന്നു
   fetch(`${sc}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
     .then(res => res.json())
     .then(res => {
       let eventsArray = null;
 
-      // API ഡാറ്റ ഫോർമാറ്റുകൾ (Old & New Support)
       if (res.data && res.data.events) {
         eventsArray = res.data.events;
       } else if (res.data && Array.isArray(res.data) && res.data.length > 0 && res.data[0].tracking_details) {
@@ -3905,7 +3903,6 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
         let isOutForDelivery = false;
         let evntLow = eventMsg.toLowerCase();
 
-        // 🔥 SMART PO MATCHING LOGIC
         let cleanExpected = expectedPO ? expectedPO.replace(/\b(PO|SO|BO|HO|GPO|P O|S O|B O|H O|H\.O|S\.O|B\.O|P\.O|G\.P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase() : '';
         let cleanOffice = officeName.replace(/\b(PO|SO|BO|HO|GPO|P O|S O|B O|H O|H\.O|S\.O|B\.O|P\.O|G\.P\.O)\b/gi, '').replace(/[^a-zA-Z0-9 ]/g, '').trim().toLowerCase();
 
@@ -3935,8 +3932,9 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
                     @keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
                 </style>`;
 
+        // 🔥 ഡബിൾ ആനിമേഷൻ ഒഴിവാക്കി (fade-in ഉം inline animation ഉം എടുത്തുമാറ്റി)
         let html = `${pulseCss}
-                <div class="p-3 mt-3 rounded-3 shadow-sm fade-in" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; position:relative; animation: popIn 0.3s ease;">
+                <div class="p-3 mt-3 rounded-3 shadow-sm" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border: 1px solid #bae6fd; position:relative;">
                     <div class="d-flex align-items-center justify-content-between mb-2">
                          <div class="d-flex align-items-center gap-2">
                             <div class="live-pulse"></div>
