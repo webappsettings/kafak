@@ -10426,21 +10426,21 @@ window.renderAdminTimeline = function (trackId, eventsJson) {
     let events = JSON.parse(decodeURIComponent(eventsJson));
 
     let timelineCss = `<style>
-        .kaffak-timeline-wrapper { text-align: left; max-height: 400px; overflow-y: auto; padding: 20px 15px 20px 25px; }
-        .kaffak-timeline-item { position: relative; margin-bottom: 20px; padding-left: 35px; z-index: 2; }
-        .kaffak-timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 9px; top: 22px; height: calc(100% + 20px); width: 2px; background: #cbd5e1; z-index: 1; }
-        .kaffak-timeline-dot { position: absolute; left: 0; top: 12px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px #cbd5e1; z-index: 3; background: #fff; }
-        .kaffak-timeline-item.latest .kaffak-timeline-dot { background: #16a34a; box-shadow: 0 0 0 2px #16a34a; }
-        .kaffak-timeline-item.old .kaffak-timeline-dot { background: #94a3b8; }
-        .kaffak-timeline-content { padding: 10px 15px; border-radius: 12px; background: #f8fafc; }
-        .kaffak-timeline-item.latest .kaffak-timeline-content { background: #f0fdf4; border: 1px solid #b91c1c20; }
+        .kafak-timeline-wrapper { text-align: left; max-height: 400px; overflow-y: auto; padding: 20px 15px 20px 25px; }
+        .kafak-timeline-item { position: relative; margin-bottom: 20px; padding-left: 35px; z-index: 2; }
+        .kafak-timeline-item:not(:last-child)::after { content: ''; position: absolute; left: 9px; top: 22px; height: calc(100% + 20px); width: 2px; background: #cbd5e1; z-index: 1; }
+        .kafak-timeline-dot { position: absolute; left: 3px; top: 12px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 2px #cbd5e1; z-index: 3; background: #fff; }
+        .kafak-timeline-item.latest .kafak-timeline-dot { background: #16a34a; box-shadow: 0 0 0 2px #16a34a; }
+        .kafak-timeline-item.old .kafak-timeline-dot { background: #94a3b8; }
+        .kafak-timeline-content { padding: 10px 15px; border-radius: 12px; background: #f8fafc; }
+        .kafak-timeline-item.latest .kafak-timeline-content { background: #f0fdf4; border: 1px solid #b91c1c20; }
     </style>`;
 
-    let timelineHtml = timelineCss + `<div class="kaffak-timeline-wrapper">`;
+    let timelineHtml = timelineCss + `<div class="kafak-timeline-wrapper">`;
 
     events.forEach((ev, idx) => {
         let isLatest = idx === 0;
-        let itemClass = isLatest ? 'kaffak-timeline-item latest' : 'kaffak-timeline-item old';
+        let itemClass = isLatest ? 'kafak-timeline-item latest' : 'kafak-timeline-item old';
         let statusColor = isLatest ? '#16a34a' : '#1e293b';
 
         let datePart = ev.date ? ev.date.split('T')[0] : '';
@@ -10448,8 +10448,8 @@ window.renderAdminTimeline = function (trackId, eventsJson) {
 
         timelineHtml += `
             <div class="${itemClass}">
-                <span class="kaffak-timeline-dot"></span>
-                <div class="kaffak-timeline-content shadow-sm">
+                <span class="kafak-timeline-dot"></span>
+                <div class="kafak-timeline-content shadow-sm">
                     <div style="font-size:10px; font-weight:700; color:#94a3b8;">${datePart} • ${timePart}</div>
                     <div style="font-size:13px; font-weight:800; color:${statusColor};">${ev.event || ev.status || 'Updated'}</div>
                     <div style="font-size:11px; color:#64748b;"><i class="fas fa-map-marker-alt me-1"></i>${ev.office || 'Post Office'}</div>
