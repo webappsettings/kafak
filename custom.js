@@ -3772,29 +3772,30 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
 // 🔥 BEAUTIFUL TIMELINE & TRUCK LOADING ANIMATION FOR INDIA POST
 // ==============================================================================
 
-// --- 1. FULL HISTORY കാണിക്കാനുള്ള പോപ്പപ്പ് ഫംഗ്‌ഷൻ (FIXED UI) ---
+// --- 1. FULL HISTORY കാണിക്കാനുള്ള പോപ്പപ്പ് ഫംഗ്‌ഷൻ (UI FIXED) ---
 window.showFullTrackingPopup = function (trackId, eventsJson) {
   let events = JSON.parse(decodeURIComponent(eventsJson));
 
-  // പോപ്പപ്പിന് വേണ്ടിയുള്ള പ്രത്യേക CSS (z-index ഫിക്സ് ഉൾപ്പെടെ)
+  // പോപ്പപ്പിന് വേണ്ടിയുള്ള പ്രത്യേക CSS (Padding & Scroll Line Fix)
   let timelineCss = `<style>
         .kaffak-timeline-wrapper {
             text-align: left; max-height: 400px; overflow-y: auto; 
-            padding: 20px 10px 20px 30px; 
-            position: relative;
-        }
-        .kaffak-timeline-wrapper::before {
-            content: ''; position: absolute; left: 15px; top: 0; bottom: 0;
-            width: 2px; background: #e2e8f0; z-index: 1;
+            padding: 20px 15px 20px 25px; /* 🔥 ഇടതുവശത്തെ പാഡിംഗ് കൃത്യമാക്കി */
         }
         .kaffak-timeline-item {
-            position: relative; margin-bottom: 25px; padding-left: 15px; z-index: 2;
+            position: relative; margin-bottom: 20px; padding-left: 35px; z-index: 2;
+        }
+        /* 🔥 ഒരൊറ്റ നീളൻ ലൈനിന് പകരം ഓരോ ഐറ്റത്തിനും അതിന്റേതായ ലൈൻ (സ്ക്രോൾ ബഗ് ഫിക്സ്) */
+        .kaffak-timeline-item:not(:last-child)::after {
+            content: ''; position: absolute; 
+            left: 9px; top: 22px; height: calc(100% + 20px); 
+            width: 2px; background: #cbd5e1; z-index: 1;
         }
         .kaffak-timeline-dot {
-            position: absolute; left: -21px; top: 12px; 
+            position: absolute; left: 0; top: 12px; 
             width: 14px; height: 14px; border-radius: 50%;
-            border: 3px solid #fff; box-shadow: 0 0 0 2px #e2e8f0;
-            z-index: 3; 
+            border: 3px solid #fff; box-shadow: 0 0 0 2px #cbd5e1;
+            z-index: 3; background: #fff;
         }
         .kaffak-timeline-item.latest .kaffak-timeline-dot {
             background: #16a34a; box-shadow: 0 0 0 2px #16a34a;
