@@ -50,5 +50,18 @@
     "statename": "KERALA",
     "latitude": "11.1776600",
     "longitude": "75.9188790"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Valiyaparamba PO",
+    "pincode": "673637",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "11.1605",
+    "longitude": "76.1027"
   }
 ]
