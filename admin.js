@@ -26,7 +26,7 @@ if (!$('#lazy-load-css').length) {
     `).appendTo('head');
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbxfvqLYh64fdVtkwZD_RzbZerftT5DXCmuj3HNr6No6AhfUwof3u1p0Kn4UVSULkZPM8w/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbzbjuEEyl34NaCgEccc2MruDcua-HM6SC5yNi1T5MYVYTF19_AU6aOSSS9wMyQx10uK/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -833,7 +833,7 @@ function renderTabs(orders, externalCounts = null) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
                 if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+                if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
                 let rawProvider = String(o.provider || o.Courier_Provider || o['Courier Provider'] || 'Other').trim();
 
@@ -1145,7 +1145,7 @@ function renderTabs(orders, externalCounts = null) {
                 let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
                 let totalC = parseInt(o.Courier_Charge) || 0;
                 if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+                if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
                 if (rawP.toUpperCase() === 'DIRECT') actualC = totalC;
 
                 if (!cStats[shortP]) cStats[shortP] = { count: 0, cost: 0 };
@@ -3971,7 +3971,7 @@ function renderDashboard() {
                 let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
                 if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
-                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+                if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
                 trueCourierExp += actualC;
                 trueTotalCourier += totalC;
@@ -5187,7 +5187,7 @@ window.renderDetailedMonthlyOverview = function () {
             totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
-            if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+            if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 tCourierCost += totalC;
@@ -5483,7 +5483,7 @@ window.renderYearlyOverview = function () {
                 let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
                 if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
-                if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+                if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
                 yCourierCost += totalC;
                 yActualCourier += actualC;
@@ -7763,7 +7763,7 @@ window.renderPartnerList = function () {
             actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
             totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
-            if (actualC <= 0) actualC = totalC > 20 ? totalC - 20 : totalC;
+            if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 monthCourier += actualC;
@@ -9662,7 +9662,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     if (!finalNum) { alert("No valid number found!"); return; }
 
     let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
-    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 working days.*\n*4-5 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;
+    let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-7 working days.*\n*4-7 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;
 
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');
 }

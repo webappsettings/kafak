@@ -1,7 +1,7 @@
 ﻿// ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
-const sc = `https://script.google.com/macros/s/AKfycbxfvqLYh64fdVtkwZD_RzbZerftT5DXCmuj3HNr6No6AhfUwof3u1p0Kn4UVSULkZPM8w/exec`;
+const sc = `https://script.google.com/macros/s/AKfycbzbjuEEyl34NaCgEccc2MruDcua-HM6SC5yNi1T5MYVYTF19_AU6aOSSS9wMyQx10uK/exec`;
 let isOutOfStock = false;
 let currentStep = 0;
 let editingOrderId = null;
@@ -3358,7 +3358,7 @@ window.sendPaymentWA = function (oid) {
   let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
 
   // 🔥 UNIFIED MESSAGE (English & Malayalam)
-  let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-5 working days.*\n*4-5 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;
+  let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-7 working days.*\n*4-7 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;
 
   // Use Selected Number Logic
   let phone = getSelectedWAPhone(order);
