@@ -48,6 +48,64 @@ window.handleSmartSearch = function (value) {
     }, 400);
 };
 
+// 🔥 NEW: Global Set for Active Products (Default: Vanthen only)
+window.activeProducts = new Set(['Vanthen']);
+
+// 🔥 NEW: ഫിൽറ്ററുകൾ വരയ്ക്കാനും ക്ലിക്ക് ചെയ്യുമ്പോൾ അപ്ഡേറ്റ് ചെയ്യാനുമുള്ള ഫംഗ്ഷൻ
+window.renderProductFilters = function () {
+    if (typeof allOrders === 'undefined' || allOrders.length === 0) return;
+
+    // ഷീറ്റിൽ നിന്നും ലഭ്യമായ എല്ലാ പ്രൊഡക്റ്റുകളും ഡൈനാമിക് ആയി കണ്ടെത്തുന്നു
+    let productSet = new Set();
+    productSet.add('Vanthen'); // എപ്പോഴും ഇത് ആദ്യം വരാൻ
+
+    allOrders.forEach(o => {
+        let pName = o.product || o.Product || 'Vanthen';
+        productSet.add(pName.trim());
+    });
+
+    let html = `<div class="d-flex align-items-center flex-wrap gap-2 px-3 py-2 bg-white border-bottom shadow-sm sticky-top" style="top: 65px; z-index: 999;" id="global-product-filters">
+        <span class="text-muted fw-bold small me-1" style="font-size: 11px;"><i class="fas fa-filter"></i> VIEW:</span>`;
+
+    productSet.forEach(prod => {
+        let isChecked = window.activeProducts.has(prod) ? 'checked' : '';
+        let badgeColor = prod === 'Cheruthen' ? 'warning' : 'primary';
+
+        html += `
+        <div class="form-check form-switch m-0 d-flex align-items-center bg-light border px-2 py-1 rounded-pill shadow-sm" style="cursor:pointer;" onclick="toggleProductFilter(event, '${prod}', this)">
+            <input class="form-check-input mt-0 ms-0 me-2" type="checkbox" value="${prod}" ${isChecked} style="cursor:pointer; pointer-events:none;">
+            <label class="form-check-label fw-bold text-dark mb-0" style="font-size: 11px; pointer-events:none;">${prod}</label>
+        </div>`;
+    });
+
+    html += `</div>`;
+
+    // ഇത് ഹെഡറിനും (drawer-header) ടാബുകൾക്കും ഇടയിൽ കൊടുക്കുന്നു
+    $('#global-product-filters').remove(); // പഴയത് ഉണ്ടെങ്കിൽ കളയാൻ
+    $(html).insertAfter('.drawer-header');
+};
+
+// ചെക്ക് ബോക്സ് ക്ലിക്ക് ചെയ്യുമ്പോൾ പ്രവർത്തിക്കുന്ന ഫംഗ്ഷൻ
+window.toggleProductFilter = function (e, product, el) {
+    e.stopPropagation();
+    let checkbox = $(el).find('input[type="checkbox"]');
+    let isChecked = checkbox.prop('checked');
+
+    // ടോഗിൾ ചെയ്യുന്നു
+    if (isChecked) {
+        window.activeProducts.delete(product);
+        checkbox.prop('checked', false);
+    } else {
+        window.activeProducts.add(product);
+        checkbox.prop('checked', true);
+    }
+
+    // 🔥 ഡാഷ്‌ബോർഡ് ലൈവ് ആയി റീലോഡ് ചെയ്യുന്നു
+    if ($('#dashboard-drawer').hasClass('open')) {
+        renderDashboard(); // എല്ലാ കാൽക്കുലേഷൻ ഫംഗ്ഷനുകളും ഇതിനകത്തുണ്ട്
+    }
+};
+
 // 🔥 GLOBAL: Contact Selection Memory
 let contactMem = JSON.parse(localStorage.getItem('contactMem') || "{}");
 const globalBaseCost = 330;
@@ -3719,23 +3777,21 @@ function fetchDashboardDataBg() {
         });
 }
 
-// 🔥 FIX: ഡാഷ്‌ബോർഡ് തുറക്കുമ്പോൾ തന്നെ തീയതിയും പേരും കാണിക്കാൻ (Force UI Update)
 function openDashboard() {
     $('#drawer-overlay').fadeIn(200);
     $('#dashboard-drawer').addClass('open');
 
-    // 🔥 NEW: ലോഗിൻ ചെയ്ത ആളുടെ പേര് എടുത്തു ഹെഡറിൽ ഭംഗിയായി കാണിക്കുന്നു
     let loggedUser = localStorage.getItem('kafakAdminUser') || 'Admin';
-    // ആദ്യത്തെ അക്ഷരം ക്യാപിറ്റൽ ആക്കാൻ (ഉദാ: master -> Master)
     let displayName = loggedUser.charAt(0).toUpperCase() + loggedUser.slice(1);
 
-    // ഹെഡറിലെ HTML അപ്ഡേറ്റ് ചെയ്യുന്നു (നിങ്ങളുടെ ഡിസൈൻ അതുപോലെ കൊടുത്തു)
     $('.drawer-header h5').html(`<i class="fas fa-chart-line me-2 text-primary"></i>Accounts <span class="badge bg-dark bg-opacity-10 text-dark border border-secondary border-opacity-25 ms-1" style="font-size:10px; position:relative; top:-2px;">${displayName}</span>`);
+
+    // 🔥 NEW: ഫിൽറ്ററുകൾ ഹെഡറിന്റെ താഴെ ലോഡ് ചെയ്യുന്നു
+    renderProductFilters();
 
     initFlatpickrs();
     updateArrowUI();
 
-    // 🔥 ഡാഷ്‌ബോർഡ് തുറക്കുന്ന നിമിഷം തന്നെ തീയതി ബോക്സിലേക്ക് വെക്കുന്നു
     let formattedDate = flatpickr.formatDate(selectedDate, "d M Y");
     if (selectedDate.toDateString() === new Date().toDateString()) {
         formattedDate = "Today, " + formattedDate;
@@ -3879,48 +3935,37 @@ window.parseOrderDate = function (str, oid = "") {
     return d;
 };
 
-// 🔥 UPDATE DASHBOARD MAIN CARDS (With Breakdown & JSON Fixes)
-function renderDashboard() {
+// 🔥 UPDATE DASHBOARD MAIN CARDS (With Breakdown, JSON Fixes & Dynamic Product Filter)
+window.renderDashboard = function () {
     if (!dashboardData) return;
 
-    let d = dashboardData.daily;
     let mName = selectedDate.toLocaleString('en-US', { month: 'short' });
     let yName = selectedDate.getFullYear();
 
     $('#m-overview-title').text(`(${mName} ${yName})`);
 
-    // --- DAILY CARDS ---
-    $('#d-sales').text('₹' + d.sales.toLocaleString());
-    $('#d-expense').text('₹' + d.expense.toLocaleString());
-    $('#d-courier').text('₹' + d.courier.toLocaleString());
-    $('#d-profit').text('₹' + d.profit.toLocaleString());
-    $('#d-orders').text(d.count || 0);
-
-    $('.helper-text-dash').remove();
-    $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
-
-    if (d.profit >= 0) {
-        $('#d-profit').removeClass('text-danger').addClass('text-success');
-        $('#d-status-text').text("Cash in Hand 🚀").css('color', '#2e7d32');
-    } else {
-        $('#d-profit').removeClass('text-success').addClass('text-danger');
-        $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
-    }
-
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
+    let selDateStr = selectedDate.toDateString();
+
+    // 🟢 NEW: ഡെയിലി കണക്കുകൾ ലൈവ് ആയി ഫിൽറ്റർ ചെയ്യാൻ വേണ്ടി
+    let dSales = 0, dOrders = 0, dProductCost = 0, dCourierExp = 0, dOtherExp = 0;
 
     let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0, trueTotalCourier = 0;
     let monthBottles = 0, yearBottles = 0;
     let monthOrders = 0, yearOrders = 0;
 
-    let orderBreakdown = {}; // 🔥 NEW: ഓർഡറുകൾ എണ്ണി വെക്കാൻ
-    let costBreakdown = {};  // 🔥 NEW: ബോട്ടിൽ ചിലവുകൾ എണ്ണി വെക്കാൻ
+    let orderBreakdown = {};
+    let costBreakdown = {};
 
     allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
+
+        // 🔥 FIX: ചെക്ക് ചെയ്തിരിക്കുന്ന പ്രൊഡക്റ്റ് ആണോ എന്ന് നോക്കുന്നു (Live Product Filter)
+        let productType = (o.product || o.Product || 'Vanthen').trim();
+        if (typeof window.activeProducts !== 'undefined' && !window.activeProducts.has(productType)) return;
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr);
@@ -3928,7 +3973,24 @@ function renderDashboard() {
 
         let oYear = pDate.getFullYear();
         let oMonth = pDate.getMonth();
+        let isSelectedDay = (pDate.toDateString() === selDateStr);
         let qty = parseInt(o.quantity || o.Quantity) || 0;
+
+        let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
+        if (isNaN(amt) || amt <= 0) {
+            let pInfo = calculatePriceInfo(o, qty, o.state || o.State, o.provider || o.Courier_Provider);
+            amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
+        }
+
+        let pCost = parseFloat(o.Product_Base_Cost || o.productBaseCost);
+        let finalRowCost = (!isNaN(pCost) && pCost > 0) ? pCost : (qty * 330);
+
+        // --- ഡെയിലി കണക്കുകൾ ---
+        if (isSelectedDay) {
+            dSales += amt;
+            dOrders++;
+            dProductCost += finalRowCost;
+        }
 
         if (oYear === mY) {
             yearOrders++;
@@ -3937,20 +3999,12 @@ function renderDashboard() {
             if (oMonth === mM) {
                 monthOrders++;
                 monthBottles += qty;
-
-                let amt = parseInt(o.grandTotal || o.Grand_Total) || 0;
-                if (isNaN(amt) || amt <= 0) {
-                    let pInfo = calculatePriceInfo(o, qty, o.state || o.State, o.provider || o.Courier_Provider);
-                    amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
-                }
                 trueIncome += amt;
 
                 let key = `₹${amt}`;
                 if (!orderBreakdown[key]) orderBreakdown[key] = 0;
                 orderBreakdown[key]++;
 
-                let pCost = parseFloat(o.Product_Base_Cost || o.productBaseCost);
-                let finalRowCost = (!isNaN(pCost) && pCost > 0) ? pCost : (qty * 330);
                 trueProductCost += finalRowCost;
 
                 if (qty > 0) {
@@ -3966,15 +4020,21 @@ function renderDashboard() {
         if (status !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
             let dDate = parseOrderDate(dDateStr);
-            if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
-                let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
-                let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
-                if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
-                if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
+            let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+            let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
-                trueCourierExp += actualC;
-                trueTotalCourier += totalC;
+            if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
+            if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
+
+            if (!isNaN(dDate.getTime())) {
+                if (dDate.toDateString() === selDateStr) {
+                    dCourierExp += actualC;
+                }
+                if (dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+                    trueCourierExp += actualC;
+                    trueTotalCourier += totalC;
+                }
             }
         }
     });
@@ -3982,41 +4042,69 @@ function renderDashboard() {
     let trueOtherExp = 0;
     let monthMaterialExp = 0;
     let materialBreakdownArray = [];
-
-    // 🔥 NEW: കാറ്റഗറി തിരിച്ചുള്ള ബ്രേക്ക്ഡൗൺ സേവ് ചെയ്യാൻ
     let expenseCategories = { "Food": 0, "Travel": 0, "Ads": 0, "Refund": 0, "Other": [] };
 
     if (dashboardData && dashboardData.monthTimeline && dashboardData.monthTimeline.expense) {
         dashboardData.monthTimeline.expense.forEach(e => {
-            // 🔥 FIX: ഏത് മാസമാണോ സെലക്ട് ചെയ്തത്, ആ മാസത്തെ ചിലവുകൾ മാത്രം എടുക്കുന്നു!
             let eDate = parseOrderDate(e.date);
-            if (eDate.getFullYear() !== mY || eDate.getMonth() !== mM) return;
+            let isSelectedDay = (eDate.toDateString() === selDateStr);
+            let isSelectedMonth = (eDate.getFullYear() === mY && eDate.getMonth() === mM);
 
             let amt = Number(e.amount) || 0;
             if (amt <= 0) return;
 
             let catName = String(e.cat || '').toLowerCase();
 
-            if (catName.includes('material')) {
-                monthMaterialExp += amt;
-                materialBreakdownArray.push(amt);
-            } else if (catName === 'salary') {
-                // Do nothing for Salary
-            } else if (!e.isCourier) {
-                if (catName !== 'refund') trueOtherExp += amt;
+            // ഡെയിലി ചിലവുകൾ
+            if (isSelectedDay && catName !== 'salary' && !catName.includes('material') && catName !== 'refund') {
+                dOtherExp += amt;
+            }
 
-                if (catName.includes('food')) expenseCategories["Food"] += amt;
-                else if (catName.includes('travel') || catName.includes('transport')) expenseCategories["Travel"] += amt;
-                else if (catName.includes('ads') || catName.includes('marketing')) expenseCategories["Ads"] += amt;
-                else if (catName.includes('refund')) expenseCategories["Refund"] += amt;
-                else {
-                    let note = e.vendor || e.desc || 'Office Exp';
-                    expenseCategories["Other"].push(`₹${amt} (${note})`);
+            // മാസത്തെ ചിലവുകൾ
+            if (isSelectedMonth) {
+                if (catName.includes('material')) {
+                    monthMaterialExp += amt;
+                    materialBreakdownArray.push(amt);
+                } else if (catName === 'salary') {
+                    // Do nothing for Salary
+                } else if (!e.isCourier) {
+                    if (catName !== 'refund') trueOtherExp += amt;
+
+                    if (catName.includes('food')) expenseCategories["Food"] += amt;
+                    else if (catName.includes('travel') || catName.includes('transport')) expenseCategories["Travel"] += amt;
+                    else if (catName.includes('ads') || catName.includes('marketing')) expenseCategories["Ads"] += amt;
+                    else if (catName.includes('refund')) expenseCategories["Refund"] += amt;
+                    else {
+                        let note = e.vendor || e.desc || 'Office Exp';
+                        expenseCategories["Other"].push(`₹${amt} (${note})`);
+                    }
                 }
             }
         });
     }
 
+    // --- DAILY CARDS UI (Live Calculated) ---
+    let dTotalExpense = dProductCost + dCourierExp + dOtherExp;
+    let dProfit = dSales - dTotalExpense;
+
+    $('#d-sales').text('₹' + dSales.toLocaleString());
+    $('#d-expense').text('₹' + dTotalExpense.toLocaleString());
+    $('#d-courier').text('₹' + dCourierExp.toLocaleString());
+    $('#d-profit').text('₹' + dProfit.toLocaleString());
+    $('#d-orders').text(dOrders || 0);
+
+    $('.helper-text-dash').remove();
+    $('#d-profit').parent().append('<div class="helper-text-dash text-muted mt-1" style="font-size:9px;">(Sales - Courier - Exp)</div>');
+
+    if (dProfit >= 0) {
+        $('#d-profit').removeClass('text-danger').addClass('text-success');
+        $('#d-status-text').text("Cash in Hand 🚀").css('color', '#2e7d32');
+    } else {
+        $('#d-profit').removeClass('text-success').addClass('text-danger');
+        $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
+    }
+
+    // --- MONTHLY SETTINGS & GLOBALS ---
     window.currentMaterialBreakdownStr = materialBreakdownArray.length > 0 ? materialBreakdownArray.join(' + ') : '';
     window.currentExpenseCategories = expenseCategories;
 
@@ -4035,13 +4123,13 @@ function renderDashboard() {
 
     window.currentMonthOrders = monthOrders;
     window.currentMonthBottles = monthBottles;
+
     let breakdownArr = [];
     for (let a in orderBreakdown) {
         breakdownArr.push(`${a} x ${orderBreakdown[a]}`);
     }
     window.currentBreakdownStr = breakdownArr.join(', ');
 
-    // 👇 പുതുതായി ചേർത്തത് 👇
     let costBreakdownArr = [];
     for (let c in costBreakdown) {
         costBreakdownArr.push(`${c} x ${costBreakdown[c]}`);
@@ -4069,7 +4157,7 @@ function renderDashboard() {
         yearMaterialExp = dashboardData.yearly.materialExp;
     }
 
-    // 🔥 MATERIAL PURCHASES BOX
+    // 🔥 MATERIAL PURCHASES BOX (Old Code Restored)
     let materialHtml = `
     <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm">
         <div class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom border-secondary border-opacity-25">
@@ -4090,7 +4178,7 @@ function renderDashboard() {
     </div>
     `;
 
-    // 🔥 BOTTLES & ORDERS STATS UI 
+    // 🔥 BOTTLES & ORDERS STATS UI (Old Code Restored)
     let statsHtml = `
     <div id="extra-stats-container" class="row mb-3 px-1 mt-2">
         <div class="col-6 pe-2">
@@ -5103,7 +5191,7 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-// 🔥 1. DETAILED MONTHLY OVERVIEW (Archive & Date Bug Fixed)
+// 🔥 1. DETAILED MONTHLY OVERVIEW (Dynamic Product Filter & Excluded UI)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -5134,6 +5222,9 @@ window.renderDetailedMonthlyOverview = function () {
 
     let lifeIncome = 0, lifeBottleCost = 0, lifeCourier = 0;
 
+    // 🔥 NEW: Excluded ആക്കിയ പ്രൊഡക്റ്റുകളുടെ കണക്ക് വെക്കാൻ
+    let excludedStats = {};
+
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
     allOrders.forEach(o => {
@@ -5146,8 +5237,8 @@ window.renderDetailedMonthlyOverview = function () {
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
+        let productType = (o.product || o.Product || 'Vanthen').trim(); // പ്രൊഡക്റ്റ് എടുക്കുന്നു
 
-        // 🔥 FIX: Date പാർസറിലേക്ക് Order ID കൂടി അയക്കുന്നു
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr, o.orderid);
         if (isNaN(pDate.getTime())) return;
@@ -5189,31 +5280,43 @@ window.renderDetailedMonthlyOverview = function () {
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
-            if (!isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
+            // ഇത് ഏത് പ്രൊഡക്റ്റ് ആണെങ്കിലും കൂട്ടാം (താഴെ മാറ്റം വരും)
+        }
+
+        // 🔥 CRITICAL LOGIC: ചെക്ക് ചെയ്ത പ്രൊഡക്റ്റ് ആണെങ്കിൽ മാത്രം മെയിൻ കാൽക്കുലേഷനിലേക്ക് എടുക്കുന്നു
+        if (window.activeProducts.has(productType)) {
+            lifeIncome += amt;
+            lifeBottleCost += rowCost;
+            lifeCourier += actualC;
+
+            if (!isDirect && activeStatus !== 'paid' && !isNaN(dDate.getTime()) && dDate.getFullYear() === mY && dDate.getMonth() === mM) {
                 tCourierCost += totalC;
                 tActualCourier += actualC;
             }
-        }
 
-        lifeIncome += amt;
-        lifeBottleCost += rowCost;
-        lifeCourier += actualC;
+            if (isThisMonth) {
+                tSales += amt;
+                tBottles += qty;
+                tBottleCost += rowCost;
+                monthOrders++;
 
-        if (isThisMonth) {
-            tSales += amt;
-            tBottles += qty;
-            tBottleCost += rowCost;
-            monthOrders++;
+                if (activeStatus === 'paid') monthPaidCount += qty;
+                else monthDispatchedCount += qty;
 
-            if (activeStatus === 'paid') monthPaidCount += qty;
-            else monthDispatchedCount += qty;
+                let key = `₹${amt}`;
+                orderBreakdown[key] = (orderBreakdown[key] || 0) + 1;
 
-            let key = `₹${amt}`;
-            orderBreakdown[key] = (orderBreakdown[key] || 0) + 1;
-
-            if (qty > 0) {
-                let cKey = `₹${Math.round(rowCost / qty)}`;
-                costBreakdown[cKey] = (costBreakdown[cKey] || 0) + qty;
+                if (qty > 0) {
+                    let cKey = `₹${Math.round(rowCost / qty)}`;
+                    costBreakdown[cKey] = (costBreakdown[cKey] || 0) + qty;
+                }
+            }
+        } else {
+            // 🔥 ഒഴിവാക്കിയവ എണ്ണി വെക്കുന്നു
+            if (isThisMonth) {
+                if (!excludedStats[productType]) excludedStats[productType] = { qty: 0, amt: 0 };
+                excludedStats[productType].qty += qty;
+                excludedStats[productType].amt += amt;
             }
         }
     });
@@ -5279,10 +5382,9 @@ window.renderDetailedMonthlyOverview = function () {
     let prevBtn = `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> Prev</button>`;
     let nextBtn = isCurrentMonth ? `<div style="width:75px;"></div>` : `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right ms-1"></i></button>`;
 
-    // 🟢 LIFETIME BANK BALANCE UI
+    // 🟢 LIFETIME BANK BALANCE UI (ആക്ടീവ് പ്രൊഡക്റ്റ് അടിസ്ഥാനമാക്കി)
     let lifetimeHtml = `
     <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
-        
         <div class="d-flex justify-content-between align-items-center mb-2">
             <div style="font-size:12px; font-weight:800; color:#38bdf8; text-transform:uppercase; letter-spacing:1px;">
                 <i class="fas fa-university me-2"></i>LIFETIME BALANCE
@@ -5331,7 +5433,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
     </div>`;
 
-    // 🟢 MONTHLY PROFIT BREAKDOWN UI
+    // 🟢 MONTHLY PROFIT BREAKDOWN UI (ആക്ടീവ് പ്രൊഡക്റ്റുകളുടെ മാത്രം കണക്കുകൾ)
     let monthlyHtml = `
     <div class="p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
@@ -5441,8 +5543,29 @@ window.renderDetailedMonthlyOverview = function () {
                 </div>
             </div>
         </div>
-        ` : `<div class="text-center mt-3" style="font-size:11px; color:#f87171;">No profits to share this month.</div>`}
-    </div>`;
+        ` : `<div class="text-center mt-3" style="font-size:11px; color:#f87171;">No profits to share this month.</div>`}`;
+
+    // 🔥 NEW: Excluded Products UI (ചെക്ക് ബോക്സിൽ നിന്ന് ഒഴിവാക്കിയവ കാണിക്കാൻ)
+    let excludedHtml = '';
+    if (Object.keys(excludedStats).length > 0) {
+        let exItems = [];
+        for (let p in excludedStats) {
+            exItems.push(`${p} x ${excludedStats[p].qty} = ₹${excludedStats[p].amt.toLocaleString()}`);
+        }
+
+        excludedHtml = `
+        <div class="mt-3 p-3 rounded" style="background: rgba(239, 68, 68, 0.1); border: 1px dashed #ef4444;">
+            <div class="d-flex align-items-center mb-1">
+                <i class="fas fa-eye-slash text-danger me-2"></i>
+                <span style="font-size:11px; font-weight:bold; color:#ef4444; text-transform:uppercase;">Excluded from Calculation:</span>
+            </div>
+            <div style="font-size:12px; font-weight:800; color:#b91c1c; padding-left:22px;">
+                ${exItems.join('<br>')}
+            </div>
+        </div>`;
+    }
+
+    monthlyHtml += excludedHtml + `</div>`; // alert box ന്റെ അവസാനം
 
     $('#detailed-overview-container').html(lifetimeHtml + monthlyHtml);
 }
