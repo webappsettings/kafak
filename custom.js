@@ -581,9 +581,13 @@ function checkUserOnServerBackground(phone) {
           // ഓർഡർ ഡെലിവറി അല്ലെങ്കിൽ റീഫണ്ട് ആവാത്തതാണെങ്കിൽ മാത്രം എഡിറ്റ് വ്യൂവിലേക്ക് മാറ്റുന്നു
           if (status !== 'completed' && status !== 'delivered' && status !== 'refunded') {
 
+            // 🔥 FIX: 't' (Translation) വേരിയബിൾ ഡിഫൈൻ ചെയ്യുന്നു (Error ഒഴിവാക്കാൻ)
+            const lang = $('#language-select').val() || 'en';
+            const t = (typeof translations !== 'undefined' && translations[lang]) ? translations[lang] : {};
+
             Swal.fire({
-              title: t.title_welcome_back,
-              text: t.msg_loading_order,
+              title: t.title_welcome_back || "Welcome Back!",
+              text: t.msg_loading_order || "Loading your order...",
               icon: 'info',
               timer: 2000,
               showConfirmButton: false,
@@ -601,7 +605,8 @@ function checkUserOnServerBackground(phone) {
         }
       }
     })
-    .catch(err => console.log("Background check silent fail"));
+    // 🔥 FIX: എറർ എന്താണെന്ന് കൺസോളിൽ കാണിക്കാൻ 'err' കൂടി ചേർത്തു
+    .catch(err => console.log("Background check silent fail: ", err));
 }
 
 
