@@ -5270,6 +5270,7 @@ window.renderDetailedMonthlyOverview = function () {
         let rowCost = (!isNaN(dbCost) && dbCost > 0) ? dbCost : (qty * 330);
 
         let actualC = 0, totalC = 0;
+        let dDate = new Date(NaN);
         if (!isDirect && activeStatus !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr, o.orderid);
