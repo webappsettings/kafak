@@ -3948,9 +3948,7 @@ window.renderDashboard = function () {
     let mM = selectedDate.getMonth();
     let selDateStr = selectedDate.toDateString();
 
-    // 🟢 NEW: ഡെയിലി കണക്കുകൾ ലൈവ് ആയി ഫിൽറ്റർ ചെയ്യാൻ വേണ്ടി
     let dSales = 0, dOrders = 0, dProductCost = 0, dCourierExp = 0, dOtherExp = 0;
-
     let trueIncome = 0, trueProductCost = 0, trueCourierExp = 0, trueTotalCourier = 0;
     let monthBottles = 0, yearBottles = 0;
     let monthOrders = 0, yearOrders = 0;
@@ -3963,12 +3961,12 @@ window.renderDashboard = function () {
         let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
-        // 🔥 FIX: ചെക്ക് ചെയ്തിരിക്കുന്ന പ്രൊഡക്റ്റ് ആണോ എന്ന് നോക്കുന്നു (Live Product Filter)
         let productType = (o.product || o.Product || 'Vanthen').trim();
         if (typeof window.activeProducts !== 'undefined' && !window.activeProducts.has(productType)) return;
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
-        let pDate = parseOrderDate(pDateStr);
+        // 🔥 CRITICAL FIX: o.orderid കൂടി നൽകി!
+        let pDate = parseOrderDate(pDateStr, o.orderid);
         if (isNaN(pDate.getTime())) return;
 
         let oYear = pDate.getFullYear();
@@ -3985,7 +3983,6 @@ window.renderDashboard = function () {
         let pCost = parseFloat(o.Product_Base_Cost || o.productBaseCost);
         let finalRowCost = (!isNaN(pCost) && pCost > 0) ? pCost : (qty * 330);
 
-        // --- ഡെയിലി കണക്കുകൾ ---
         if (isSelectedDay) {
             dSales += amt;
             dOrders++;
@@ -4019,7 +4016,8 @@ window.renderDashboard = function () {
         // കൊറിയർ ചിലവ് (Dispatched Date വെച്ച്)
         if (status !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
-            let dDate = parseOrderDate(dDateStr);
+            // 🔥 CRITICAL FIX: o.orderid കൂടി നൽകി!
+            let dDate = parseOrderDate(dDateStr, o.orderid);
 
             let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
             let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
@@ -4083,7 +4081,6 @@ window.renderDashboard = function () {
         });
     }
 
-    // --- DAILY CARDS UI (Live Calculated) ---
     let dTotalExpense = dProductCost + dCourierExp + dOtherExp;
     let dProfit = dSales - dTotalExpense;
 
@@ -4104,7 +4101,6 @@ window.renderDashboard = function () {
         $('#d-status-text').text("Needs Attention 📉").css('color', '#dc3545');
     }
 
-    // --- MONTHLY SETTINGS & GLOBALS ---
     window.currentMaterialBreakdownStr = materialBreakdownArray.length > 0 ? materialBreakdownArray.join(' + ') : '';
     window.currentExpenseCategories = expenseCategories;
 
@@ -4137,7 +4133,6 @@ window.renderDashboard = function () {
     window.currentCostBreakdownStr = costBreakdownArr.join(', ');
 
     $('#sync-month-btn').remove();
-    // 🔥 മാസ്റ്റർ ലോഗിൻ ആണെങ്കിൽ മാത്രം Sync ബട്ടൺ കാണിക്കുക
     if (localStorage.getItem('kafakAdminUser') === 'master') {
         $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
     }
@@ -4157,7 +4152,6 @@ window.renderDashboard = function () {
         yearMaterialExp = dashboardData.yearly.materialExp;
     }
 
-    // 🔥 MATERIAL PURCHASES BOX (Old Code Restored)
     let materialHtml = `
     <div id="material-stats-container" class="mt-4 mb-2 p-3 bg-secondary bg-opacity-10 border border-secondary border-opacity-25 rounded-4 shadow-sm">
         <div class="d-flex align-items-center gap-2 mb-2 pb-2 border-bottom border-secondary border-opacity-25">
@@ -4178,7 +4172,6 @@ window.renderDashboard = function () {
     </div>
     `;
 
-    // 🔥 BOTTLES & ORDERS STATS UI (Old Code Restored)
     let statsHtml = `
     <div id="extra-stats-container" class="row mb-3 px-1 mt-2">
         <div class="col-6 pe-2">
@@ -4233,7 +4226,6 @@ window.renderDashboard = function () {
     if (typeof renderDetailedMonthlyOverview === 'function') renderDetailedMonthlyOverview();
     if (typeof renderYearlyOverview === 'function') renderYearlyOverview();
 
-    // 🔥 FIX: മാസം മാറ്റുമ്പോൾ തന്നെ സാലറി കാർഡുകളിലെ തുകയും അപ്ഡേറ്റ് ആകാൻ
     if (typeof renderPartnerList === 'function' && $('#partner-section').is(':visible')) {
         renderPartnerList();
     }
@@ -5191,7 +5183,7 @@ window.loadNextMonthDayBook = function () {
     changeDashDate();
 }
 
-// 🔥 1. DETAILED MONTHLY OVERVIEW (Dynamic Product Filter & Excluded UI)
+// 🔥 1. DETAILED MONTHLY OVERVIEW (Dynamic Product Filter, Excluded UI & Date Scope BUG FIXED)
 window.renderDetailedMonthlyOverview = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -5237,7 +5229,7 @@ window.renderDetailedMonthlyOverview = function () {
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
-        let productType = (o.product || o.Product || 'Vanthen').trim(); // പ്രൊഡക്റ്റ് എടുക്കുന്നു
+        let productType = (o.product || o.Product || 'Vanthen').trim();
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr, o.orderid);
@@ -5271,17 +5263,18 @@ window.renderDetailedMonthlyOverview = function () {
 
         let actualC = 0, totalC = 0;
         let dDate = new Date(NaN);
+
         if (!isDirect && activeStatus !== 'paid') {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
-            let dDate = parseOrderDate(dDateStr, o.orderid);
+
+            // 🔥 CRITICAL FIX: ഇവിടുത്തെ 'let' പൂർണ്ണമായും ഒഴിവാക്കി!
+            dDate = parseOrderDate(dDateStr, o.orderid);
 
             actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
             totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
 
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
-
-            // ഇത് ഏത് പ്രൊഡക്റ്റ് ആണെങ്കിലും കൂട്ടാം (താഴെ മാറ്റം വരും)
         }
 
         // 🔥 CRITICAL LOGIC: ചെക്ക് ചെയ്ത പ്രൊഡക്റ്റ് ആണെങ്കിൽ മാത്രം മെയിൻ കാൽക്കുലേഷനിലേക്ക് എടുക്കുന്നു
@@ -5313,7 +5306,6 @@ window.renderDetailedMonthlyOverview = function () {
                 }
             }
         } else {
-            // 🔥 ഒഴിവാക്കിയവ എണ്ണി വെക്കുന്നു
             if (isThisMonth) {
                 if (!excludedStats[productType]) excludedStats[productType] = { qty: 0, amt: 0 };
                 excludedStats[productType].qty += qty;
@@ -5383,7 +5375,7 @@ window.renderDetailedMonthlyOverview = function () {
     let prevBtn = `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadPreviousMonthDayBook()"><i class="fas fa-chevron-left me-1"></i> Prev</button>`;
     let nextBtn = isCurrentMonth ? `<div style="width:75px;"></div>` : `<button type="button" class="btn btn-sm btn-outline-secondary rounded-pill px-3 py-1 shadow-sm" style="font-size:11px; color:#cbd5e1; border-color:#475569;" onclick="loadNextMonthDayBook()">Next <i class="fas fa-chevron-right ms-1"></i></button>`;
 
-    // 🟢 LIFETIME BANK BALANCE UI (ആക്ടീവ് പ്രൊഡക്റ്റ് അടിസ്ഥാനമാക്കി)
+    // 🟢 LIFETIME BANK BALANCE UI 
     let lifetimeHtml = `
     <div class="alert p-4 mb-4 shadow-sm" style="border-radius:16px; background: linear-gradient(135deg, #0f172a, #1e293b); border: 2px solid #334155; position: relative; overflow: hidden;">
         <div class="d-flex justify-content-between align-items-center mb-2">
@@ -5434,7 +5426,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
     </div>`;
 
-    // 🟢 MONTHLY PROFIT BREAKDOWN UI (ആക്ടീവ് പ്രൊഡക്റ്റുകളുടെ മാത്രം കണക്കുകൾ)
+    // 🟢 MONTHLY PROFIT BREAKDOWN UI 
     let monthlyHtml = `
     <div class="p-4 rounded-4 shadow mb-2" style="background: linear-gradient(135deg, #1e293b, #0f172a);">
         <h6 class="fw-bold text-uppercase mb-4 text-center" style="letter-spacing:1px; color:#cbd5e1;">
@@ -5546,7 +5538,6 @@ window.renderDetailedMonthlyOverview = function () {
         </div>
         ` : `<div class="text-center mt-3" style="font-size:11px; color:#f87171;">No profits to share this month.</div>`}`;
 
-    // 🔥 NEW: Excluded Products UI (ചെക്ക് ബോക്സിൽ നിന്ന് ഒഴിവാക്കിയവ കാണിക്കാൻ)
     let excludedHtml = '';
     if (Object.keys(excludedStats).length > 0) {
         let exItems = [];
@@ -5566,7 +5557,7 @@ window.renderDetailedMonthlyOverview = function () {
         </div>`;
     }
 
-    monthlyHtml += excludedHtml + `</div>`; // alert box ന്റെ അവസാനം
+    monthlyHtml += excludedHtml + `</div>`;
 
     $('#detailed-overview-container').html(lifetimeHtml + monthlyHtml);
 }
