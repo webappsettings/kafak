@@ -5365,8 +5365,24 @@ window.renderDetailedMonthlyOverview = function () {
     let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 
-    let breakdownArr = []; for (let a in orderBreakdown) breakdownArr.push(`${a} x ${orderBreakdown[a]}`);
-    let costBreakdownArr = []; for (let c in costBreakdown) costBreakdownArr.push(`${c} x ${costBreakdown[c]}`);
+    // 🔥 DYNAMIC COLORING FOR CHERUTHEN (No Hardcoding)
+    let breakdownArr = [];
+    for (let a in orderBreakdown) {
+        if (a.toLowerCase().includes("cheruthen")) {
+            breakdownArr.push(`<span style="color: darkred; font-weight: bold;">${a} x ${orderBreakdown[a]}</span>`);
+        } else {
+            breakdownArr.push(`${a} x ${orderBreakdown[a]}`);
+        }
+    }
+
+    let costBreakdownArr = [];
+    for (let c in costBreakdown) {
+        if (c.toLowerCase().includes("cheruthen")) {
+            costBreakdownArr.push(`<span style="color: darkred; font-weight: bold;">${c} x ${costBreakdown[c]}</span>`);
+        } else {
+            costBreakdownArr.push(`${c} x ${costBreakdown[c]}`);
+        }
+    }
 
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
@@ -7907,11 +7923,13 @@ window.renderPartnerList = function () {
             if (activeStatus === 'paid') monthPaidCount += qty;
             else monthDispatchedCount += qty;
 
-            let key = `₹${amt}`;
+            // 🔥 DYNAMIC PRODUCT NAME & PRICE GROUPING
+            let pName = (o.product || o.Product || 'Vanthen').trim();
+            let key = (pName.toLowerCase() === 'vanthen') ? `₹${amt}` : `₹${amt}(${pName})`;
             orderBreakdown[key] = (orderBreakdown[key] || 0) + 1;
 
             if (qty > 0) {
-                let cKey = `₹${Math.round(rowCost / qty)}`;
+                let cKey = (pName.toLowerCase() === 'vanthen') ? `₹${Math.round(rowCost / qty)}` : `₹${Math.round(rowCost / qty)}(${pName})`;
                 costBreakdown[cKey] = (costBreakdown[cKey] || 0) + qty;
             }
 
