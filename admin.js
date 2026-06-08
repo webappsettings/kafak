@@ -7148,7 +7148,7 @@ async function submitExpense(e, editId = null) {
         .finally(() => btn.prop('disabled', false).html(originalText));
 }
 
-// 🔥 4. UPDATE DAY BOOK TO CALL UNIFIED MODALS (With DDelivery Fix)
+// 🔥 4. UPDATE DAY BOOK TO CALL UNIFIED MODALS (With DDelivery Fix & Dynamic Filter)
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
@@ -7169,6 +7169,10 @@ window.renderDayBookTable = function () {
     allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim();
         if (['Pending', 'Sent', 'Archive', 'Refunded'].includes(status)) return;
+
+        // 🔥 PRODUCT FILTER FIX FOR DAY BOOK
+        let productType = (o.product || o.Product || 'Vanthen').trim();
+        if (typeof window.activeProducts !== 'undefined' && !window.activeProducts.has(productType)) return;
 
         let qty = parseInt(o.quantity) || 0;
         let pDate = parseOrderDate(o.paidDate || o.timestamp);
@@ -7396,7 +7400,7 @@ window.renderDayBookTable = function () {
                         <div class="fw-bold text-danger" style="font-size:12px;"><i class="fas fa-receipt me-1"></i> ${title} ${proofHtml}</div>
                         <div class="text-secondary mt-1" style="font-size:10px;">-- ${subText} ${editHtml}</div>
                     </div>
-                    <div class="fw-bold text-danger fs-6">₹${e.amount.toLocaleString()}</div>
+                    <div class="fw-bold text-danger fs-6">-₹${e.amount.toLocaleString()}</div>
                 </div>`;
             });
         }
@@ -7829,6 +7833,10 @@ window.renderPartnerList = function () {
         if (sheetStatus === 'archive' || sheetStatus === 'refunded') return;
         if (activeStatus === 'archive' || activeStatus === 'refunded') return;
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
+
+        // 🔥 PRODUCT FILTER FIX FOR SALARY SECTION
+        let productType = (o.product || o.Product || 'Vanthen').trim();
+        if (typeof window.activeProducts !== 'undefined' && !window.activeProducts.has(productType)) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
 
