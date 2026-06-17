@@ -3,19 +3,6 @@
     "circlename": "Kerala Circle",
     "regionname": "Calicut Region",
     "divisionname": "Manjeri Division",
-    "officename": "Vengad PO",
-    "pincode": "679338",
-    "officetype": "PO",
-    "delivery": "Delivery",
-    "district": "MALAPPURAM",
-    "statename": "KERALA",
-    "latitude": "10.9691820",
-    "longitude": "76.1493890"
-  },
-  {
-    "circlename": "Kerala Circle",
-    "regionname": "Calicut Region",
-    "divisionname": "Manjeri Division",
     "officename": "Moorkkanad BO",
     "pincode": "679338",
     "officetype": "BO",
@@ -102,5 +89,18 @@
     "statename": "KERALA",
     "latitude": "58.8293110",
     "longitude": "23.5683440"
+  },
+  {
+    "circlename": "Kerala Circle",
+    "regionname": "Calicut Region",
+    "divisionname": "Manjeri Division",
+    "officename": "Vengad PO",
+    "pincode": "679338",
+    "officetype": "PO",
+    "delivery": "Delivery",
+    "district": "MALAPPURAM",
+    "statename": "KERALA",
+    "latitude": "10.9691820",
+    "longitude": "76.1493890"
   }
 ]
