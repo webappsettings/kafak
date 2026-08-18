@@ -1064,7 +1064,7 @@ function renderTabs(orders, externalCounts = null) {
                     }
 
                     let groupCbHtml = '';
-                    if (dateKey === 'paid_new' || dateKey === 'paid_print') {
+                    if (dateKey === 'paid_new' || dateKey === 'paid_print' || dateKey === 'disp_track') {
                         groupCbHtml = `
                         <div class="form-check ms-3 mb-0 d-flex align-items-center" onclick="event.stopPropagation();">
                             <input class="form-check-input mt-0 group-cb-${safeGroupId}" type="checkbox" id="cb-${safeGroupId}" style="width:13px; height:13px; cursor:pointer; border-color: #64748b;" onclick="toggleGroup('${safeGroupId}', this.checked)">
@@ -1770,7 +1770,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
             trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>${scanIconBtn}${moveBtn}</div>`;
         }
-        buttons = `${dateHtml}${trkBtnHtml}<button class="btn-custom btn-complete w-100" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>`;
+        // 🔥 FIX: Tracked ടാബിൽ ചെക്ക്ബോക്സും Booked സ്റ്റാറ്റസും കാണിക്കാനുള്ള കോഡ്
+        let cbHtml = '';
+        let isManifested = String(d.adminMeta || '').includes('IB'); // IB = IndiaPost Booked
+
+        if (isInTrackedList) {
+            if (isManifested) {
+                cbHtml = `<div class="d-flex align-items-center justify-content-center px-1"><span class="badge bg-success bg-opacity-10 text-success border border-success p-2" style="font-size:10px;"><i class="fas fa-check-circle"></i> BOOKED</span></div>`;
+            } else {
+                cbHtml = `<div style="width: 45px; display: flex; justify-content: center; align-items: center;"><input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div>`;
+            }
+        }
+
+        buttons = `${dateHtml}${trkBtnHtml}<div class="d-flex gap-2 w-100"><button class="btn-custom btn-complete flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>${cbHtml}</div>`;
     }
 
     let currentProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
@@ -10088,6 +10100,101 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
 
         col.style.display = isMatch ? '' : 'none';
     });
+};
+
+// 🔥 ഇന്ത്യ പോസ്റ്റിലേക്ക് ഒന്നിച്ചു ബുക്ക് ചെയ്യാനുള്ള ഫംഗ്ഷൻ
+window.bookSelectedAtIndiaPost = async function () {
+    // Tracked ടാബിലെ ടിക്ക് ചെയ്ത കാർഡുകൾ മാത്രം എടുക്കുന്നു
+    let selectedCheckboxes = document.querySelectorAll('#tab-dispatched .tab-pane.active .order-cb:checked');
+    let ordersToBook = [];
+
+    selectedCheckboxes.forEach(cb => {
+        let order = allOrders[cb.value];
+        if (order) {
+            let provider = String(order.provider || order.Courier_Provider || '').toUpperCase();
+
+            // ഇന്ത്യ പോസ്റ്റ് ആണെങ്കിൽ മാത്രം എടുക്കുന്നു
+            if (provider.includes('INDIA POST') || provider.includes('POST') || provider.includes('SPEED')) {
+                let meta = String(order.adminMeta || '');
+                // ഇതിനകം ബുക്ക് ചെയ്യാത്തതാണെന്ന് ഉറപ്പാക്കുന്നു (IB ഇല്ലാത്തവ)
+                if (!meta.includes('IB') && order.tracking) {
+                    ordersToBook.push(order);
+                }
+            }
+        }
+    });
+
+    if (ordersToBook.length === 0) {
+        Swal.fire('No Valid Orders', 'Select at least one unbooked India Post order!', 'warning');
+        return;
+    }
+
+    const result = await Swal.fire({
+        title: 'Book at India Post?',
+        text: `You have selected ${ordersToBook.length} order(s) for Manifesting.`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, Book Now',
+        confirmButtonColor: '#d33'
+    });
+
+    if (!result.isConfirmed) return;
+
+    Swal.fire({
+        title: 'Booking Orders...',
+        html: 'Sending data to India Post API...<br><b>Please wait...</b>',
+        allowOutsideClick: false,
+        didOpen: () => { Swal.showLoading(); }
+    });
+
+    // (സെർവറിലെ പുതിയ എപിഐയിലേക്ക് അയക്കാനുള്ള പേലോഡ്)
+    let payload = {
+        action: 'bulkIndiaPostBooking',
+        orders: ordersToBook.map(o => ({
+            oid: o.orderid,
+            tracking: o.tracking,
+            name: o.name,
+            phone: o.phone,
+            house: o.house,
+            place: o.place,
+            district: o.district,
+            state: o.state,
+            pincode: o.pincode
+        }))
+    };
+
+    try {
+        // 🔥 ഇത് ഗൂഗിൾ ആപ്പ്സ് സ്ക്രിപ്റ്റിലേക്ക് കണക്ട് ചെയ്യാൻ റെഡിയാക്കിയ കോഡാണ്. 
+        // തൽക്കാലം നമ്മൾ ലോക്കൽ ആയി മാത്രം സ്റ്റാറ്റസ് മാറ്റുന്നു. ആപ്പ്സ് സ്ക്രിപ്റ്റ് നമ്മൾ അടുത്തതായി എഴുതും.
+
+        // ലോക്കൽ ഡാറ്റയിൽ 'IB' (IndiaPost Booked) എന്ന ടാഗ് നൽകുന്നു
+        ordersToBook.forEach(o => {
+            updateAdminMeta(o.orderid, 'indiapost_booked', 'IB');
+        });
+
+        Swal.fire('Success!', `${ordersToBook.length} orders marked as booked!`, 'success');
+        setTimeout(() => { filterOrders(false); }, 500); // സ്ക്രീൻ റീഫ്രഷ് ചെയ്യാൻ
+
+    } catch (err) {
+        Swal.fire('Error', 'Network Error.', 'error');
+    }
+};
+
+// 🔥 അഡ്മിൻ മെറ്റ അപ്ഡേറ്റ് ചെയ്യുന്ന ഭാഗത്ത് പുതിയ സ്റ്റാറ്റസ് സേവ് ചെയ്യാൻ (ഇതും ഏറ്റവും താഴെ കൊടുക്കുക)
+
+window.updateAdminMeta = function (oid, type, value) {
+    if (type === 'indiapost_booked') {
+        let order = allOrders.find(o => o.orderid === oid);
+        if (order) {
+            let currentMeta = String(order.adminMeta || '');
+            if (!currentMeta.includes('IB')) {
+                order.adminMeta = currentMeta ? currentMeta + " IB" : "IB";
+                localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            }
+        }
+        return;
+    }
+    originalUpdateAdminMeta(oid, type, value);
 };
 
 
