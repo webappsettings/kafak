@@ -759,6 +759,30 @@ function renderTabs(orders, externalCounts = null) {
             </button>
         </div>`;
 
+        // 🔥 നമ്മൾ പുതിയതായി ചേർത്ത Tracked ടാബിലെ ബട്ടണും ടോട്ടൽ തുകയും
+        if (id === 'disp_track') {
+            let totalIPBooking = 0;
+            if (typeof allOrders !== 'undefined') {
+                allOrders.forEach(o => {
+                    let m = String(o.adminMeta || '');
+                    if (['Dispatched', 'Completed', 'Delivered'].includes(o.Status || 'Pending') && (o.tracking || m.includes('T')) && m.includes('IB_')) {
+                        let match = m.match(/IB_(\d+)/);
+                        if (match) totalIPBooking += parseInt(match[1]);
+                    }
+                });
+            }
+
+            let btnText = totalIPBooking > 0 ? `<i class="fas fa-cloud-upload-alt me-1"></i> India Post Book (Total: ₹${totalIPBooking})` : `<i class="fas fa-cloud-upload-alt me-1"></i> Book at India Post`;
+
+            return `
+            <div class="d-flex justify-content-between align-items-center px-1 w-100 mb-2 mt-2">
+                <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all shadow-sm"><i class="far fa-square"></i> All</button>
+                <button class="btn btn-sm btn-danger rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px; background-color:#dc2626; color:white;" onclick="bookSelectedAtIndiaPost()">
+                    ${btnText}
+                </button>
+            </div>`;
+        }
+
         return '';
     };
 
@@ -1773,13 +1797,19 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
             trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>${scanIconBtn}${moveBtn}</div>`;
         }
-        // 🔥 FIX: Tracked ടാബിൽ ബുക്ക് ചെയ്താലും ചെക്ക്ബോക്സ് നിലനിർത്താൻ
+        // 🔥 FIX: കാർഡിൽ ഓരോന്നിന്റെയും എമൗണ്ട് കാണിക്കാനും സിങ്ക് ചെയ്യാനും
         let cbHtml = '';
-        let isManifested = String(d.adminMeta || '').includes('IB'); // IB = IndiaPost Booked
+        let metaStr = String(d.adminMeta || '');
+        let isManifested = metaStr.includes('IB');
 
         if (isInTrackedList) {
-            // ബുക്ക് ആയതാണെങ്കിൽ മാത്രം പച്ച ബാഡ്ജ് കാണിക്കുന്നു
-            let bookedBadge = isManifested ? `<span class="badge bg-success bg-opacity-10 text-success border border-success px-2 py-1 me-2 d-flex align-items-center" style="font-size:10px;"><i class="fas fa-check-circle me-1"></i> BOOKED</span>` : '';
+            let bookedBadge = '';
+            if (isManifested) {
+                // ബുക്ക് ചെയ്ത എമൗണ്ട് IB_52 എന്നതിൽ നിന്ന് വേർതിരിച്ചെടുക്കുന്നു
+                let tMatch = metaStr.match(/IB_(\d+)/);
+                let tAmt = tMatch ? ` (₹${tMatch[1]})` : '';
+                bookedBadge = `<span class="badge bg-success bg-opacity-10 text-success border border-success px-2 py-1 me-2 d-flex align-items-center" style="font-size:10px;"><i class="fas fa-check-circle me-1"></i> BOOKED${tAmt}</span>`;
+            }
 
             cbHtml = `
             <div class="d-flex align-items-center">
@@ -10110,9 +10140,39 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
     });
 };
 
+
+// 🔥 ബുക്ക് ചെയ്ത ഡാറ്റ സെർവറിലേക്ക് സിങ്ക് ചെയ്യാൻ സഹായിക്കുന്ന ഫംഗ്ഷൻ
+window.markAsIndiaPostBooked = function (oid, tariff) {
+    let order = allOrders.find(o => o.orderid === oid);
+    if (!order) return;
+
+    let currentMeta = String(order.adminMeta || '');
+    if (currentMeta.includes('IB_')) return;
+
+    // പഴയ IB ഉണ്ടെങ്കിൽ അത് മാറ്റി തുകയോട് കൂടിയ പുതിയ IB_52 വെക്കുന്നു
+    let cleanMeta = currentMeta.replace(/\bIB\b/g, '').trim();
+    let newMeta = cleanMeta ? cleanMeta + " IB_" + tariff : "IB_" + tariff;
+
+    order.adminMeta = newMeta;
+
+    // 🔥 ഇത് സിങ്ക് ലിസ്റ്റിലേക്ക് ചേർക്കുന്നു (എല്ലാ ഫോണിലും കാണാൻ)
+    let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
+
+    if (metaIdx > -1) {
+        updates[metaIdx].meta = newMeta;
+    } else {
+        updates.push({ oid: oid, action: 'meta', meta: newMeta, oldMeta: currentMeta, status: order.Status, time: new Date().getTime() });
+    }
+
+    localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+
+    if (typeof updateSyncButtonUI === 'function') updateSyncButtonUI();
+};
+
 // 🔥 ഇന്ത്യ പോസ്റ്റിലേക്ക് ഒന്നിച്ചു ബുക്ക് ചെയ്യാനുള്ള യഥാർത്ഥ ഫംഗ്ഷൻ
 window.bookSelectedAtIndiaPost = async function () {
-    // 🔥 FIX: Tracked ലിസ്റ്റിൽ നിന്നുള്ള ഓർഡറുകൾ മാത്രം കൃത്യമായി എടുക്കാൻ സെലക്ടർ മാറ്റി
     let selectedCheckboxes = document.querySelectorAll('#list-disp-tracked .order-cb:checked');
     let ordersToBook = [];
 
@@ -10121,7 +10181,6 @@ window.bookSelectedAtIndiaPost = async function () {
         if (order) {
             let provider = String(order.provider || order.Courier_Provider || '').toUpperCase();
             if (provider.includes('INDIA POST') || provider.includes('POST') || provider.includes('SPEED')) {
-                // 🔥 IB (Booked) ആണെങ്കിലും അല്ലെങ്കിലും ട്രാക്കിങ് നമ്പർ ഉണ്ടെങ്കിൽ വീണ്ടും ടെസ്റ്റ് ചെയ്യാൻ അനുവദിക്കുന്നു
                 if (order.tracking) {
                     ordersToBook.push(order);
                 }
@@ -10130,7 +10189,7 @@ window.bookSelectedAtIndiaPost = async function () {
     });
 
     if (ordersToBook.length === 0) {
-        Swal.fire('No Valid Orders', 'Select at least one unbooked India Post order! (Check if courier is India Post)', 'warning');
+        Swal.fire('No Valid Orders', 'Select at least one India Post order to book!', 'warning');
         return;
     }
 
@@ -10172,25 +10231,76 @@ window.bookSelectedAtIndiaPost = async function () {
         method: 'POST',
         body: JSON.stringify(payload)
     }).then(res => res.json()).then(data => {
-        console.log("API Response:", data);
 
         if (data.success || data.result === 'success') {
+            let validBarcodes = {};
+            let errorBarcodes = {};
+
+            if (data.valid_articles) {
+                data.valid_articles.forEach(art => {
+                    validBarcodes[art.barcode_no] = art.calculated_tariff || 0;
+                });
+            }
+            if (data.error_articles) {
+                data.error_articles.forEach(art => {
+                    errorBarcodes[art.barcode_no] = art.errors ? art.errors.join(', ') : 'Rejected by India Post';
+                });
+            }
+
+            // 🔥 ബുക്ക് ചെയ്തതും എറർ വന്നതുമായവ ലിസ്റ്റ് ആയി കാണിക്കുന്ന ഭാഗം
+            let resultHtml = '<div style="text-align:left; max-height:300px; overflow-y:auto; font-size:13px; margin-top:10px;">';
+            let successCount = 0;
+
             ordersToBook.forEach(o => {
-                updateAdminMeta(o.orderid, 'indiapost_booked', 'IB');
+                if (validBarcodes[o.tracking] !== undefined) {
+                    let tariff = validBarcodes[o.tracking];
+                    markAsIndiaPostBooked(o.orderid, tariff);
+
+                    // സക്സസ്സ് ആയാൽ ലിസ്റ്റിൽ കാണിക്കുന്നത്
+                    resultHtml += `<div style="padding:10px; border-bottom:1px solid #eee; background:#f0fdf4; border-radius:6px; margin-bottom:5px;">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <strong class="text-success"><i class="fas fa-check-circle me-2"></i>${o.name}</strong>
+                                        <span class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25">₹${tariff}</span>
+                                    </div>
+                                   </div>`;
+                    successCount++;
+                } else if (errorBarcodes[o.tracking]) {
+                    // എറർ വന്നാൽ ലിസ്റ്റിൽ കാണിക്കുന്നത്
+                    resultHtml += `<div style="padding:10px; border-bottom:1px solid #eee; background:#fff5f5; border-radius:6px; margin-bottom:5px;">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <strong class="text-danger"><i class="fas fa-times-circle me-2"></i>${o.name}</strong>
+                                        <span class="badge bg-danger bg-opacity-10 text-danger border border-danger border-opacity-25">${o.tracking}</span>
+                                    </div>
+                                    <div class="text-danger small ms-4" style="font-size:11px;">Error: ${errorBarcodes[o.tracking]}</div>
+                                   </div>`;
+                }
+            });
+            resultHtml += '</div>';
+
+            let titleMsg = successCount > 0 ? `Booked ${successCount} out of ${ordersToBook.length}!` : 'Booking Failed!';
+            let iconType = successCount === ordersToBook.length ? 'success' : (successCount > 0 ? 'warning' : 'error');
+
+            Swal.fire({
+                title: titleMsg,
+                html: resultHtml,
+                icon: iconType,
+                confirmButtonText: 'OK',
+                customClass: { popup: 'ios-popup' }
+            }).then(() => {
+                filterOrders(false);
             });
 
-            let msg = data.summary ? `Booked ${data.summary.success_count} orders successfully!` : 'Orders marked as booked!';
-            Swal.fire('Success!', msg, 'success');
-            setTimeout(() => { filterOrders(false); }, 500);
         } else {
-            let errMsg = "Validation Error or Invalid Customer ID";
+            let errMsg = "Validation Error or API Error";
             if (data.errors && data.errors[0]) errMsg = data.errors[0].msg;
+            else if (data.message) errMsg = data.message;
             Swal.fire('Error', errMsg, 'error');
         }
     }).catch(err => {
         Swal.fire('Error', 'Network Error.', 'error');
     });
 };
+
 
 // 🔥 അഡ്മിൻ മെറ്റ അപ്ഡേറ്റ് ചെയ്യുന്ന ഭാഗത്ത് പുതിയ സ്റ്റാറ്റസ് സേവ് ചെയ്യാൻ (ഇതും ഏറ്റവും താഴെ കൊടുക്കുക)
 
