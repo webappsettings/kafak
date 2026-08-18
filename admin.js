@@ -775,7 +775,7 @@ function renderTabs(orders, externalCounts = null) {
             let btnText = totalIPBooking > 0 ? `<i class="fas fa-cloud-upload-alt me-1"></i> India Post Book (Total: ₹${totalIPBooking})` : `<i class="fas fa-cloud-upload-alt me-1"></i> Book at India Post`;
 
             return `
-            <div class="d-flex justify-content-between align-items-center px-1 w-100 mb-2 mt-2">
+            <div class="d-flex justify-content-end align-items-center px-1 w-100 mb-2 mt-2 gap-2">
                 <button onclick="toggleSelectAll()" class="btn btn-sm btn-light fw-bold text-secondary border-0 small btn-select-all shadow-sm"><i class="far fa-square"></i> All</button>
                 <button class="btn btn-sm btn-danger rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px; background-color:#dc2626; color:white;" onclick="bookSelectedAtIndiaPost()">
                     ${btnText}
@@ -804,10 +804,7 @@ function renderTabs(orders, externalCounts = null) {
     </div>`;
 
     let bulkTrackBtn = `
-    <div class="d-flex justify-content-center flex-wrap gap-2 mb-3 px-2 w-100">
-        <button class="btn btn-sm btn-danger rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px; background-color:#dc2626; color:white;" onclick="bookSelectedAtIndiaPost()">
-            <i class="fas fa-cloud-upload-alt me-1"></i> Book at India Post
-        </button>
+    <div class="d-flex justify-content-center mb-3 px-2 w-100">
         <button class="btn btn-sm btn-outline-success rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px;" onclick="bulkCompleteOrders('disp_tracked')">
             <i class="fas fa-check-double me-1"></i> Auto-Complete (Older than 3 days)
         </button>
@@ -1797,25 +1794,39 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
             trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>${scanIconBtn}${moveBtn}</div>`;
         }
-        // 🔥 FIX: കാർഡിൽ ഓരോന്നിന്റെയും എമൗണ്ട് കാണിക്കാനും സിങ്ക് ചെയ്യാനും
+        // 🔥 കാർഡിൽ ഓരോന്നിന്റെയും എമൗണ്ട് കാണിക്കാനും, കൊറിയർ അനുസരിച്ച് ചെക്ക്ബോക്സ് ഡിസേബിൾ ചെയ്യാനും
         let cbHtml = '';
         let metaStr = String(d.adminMeta || '');
         let isManifested = metaStr.includes('IB');
 
+        // നിലവിലുള്ള കൊറിയർ ഏതാണെന്ന് കണ്ടുപിടിക്കുന്നു
+        let stateForProv = String(d.state || d.State || 'KERALA').toUpperCase().trim();
+        let currentProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
+        if (!currentProvider || currentProvider === 'COURIER' || currentProvider === 'UNDEFINED' || currentProvider === 'N/A') {
+            currentProvider = getDefaultCourierForState(stateForProv);
+        }
+
+        // India Post / Speed Post ആണോ എന്ന് ചെക്ക് ചെയ്യുന്നു
+        let isIndiaPost = currentProvider.includes('INDIA POST') || (currentProvider.includes('SPEED') && !currentProvider.includes('SAFE')) || currentProvider === 'POST';
+
         if (isInTrackedList) {
             let bookedBadge = '';
             if (isManifested) {
-                // ബുക്ക് ചെയ്ത എമൗണ്ട് IB_52 എന്നതിൽ നിന്ന് വേർതിരിച്ചെടുക്കുന്നു
                 let tMatch = metaStr.match(/IB_(\d+)/);
                 let tAmt = tMatch ? ` (₹${tMatch[1]})` : '';
                 bookedBadge = `<span class="badge bg-success bg-opacity-10 text-success border border-success px-2 py-1 me-2 d-flex align-items-center" style="font-size:10px;"><i class="fas fa-check-circle me-1"></i> BOOKED${tAmt}</span>`;
             }
 
+            // India post ആണെങ്കിൽ മാത്രം ചെക്ക്ബോക്സ് enable ചെയ്യുന്നു
+            let cbState = isIndiaPost ? '' : 'disabled';
+            let cursorState = isIndiaPost ? 'cursor: pointer;' : 'cursor: not-allowed; opacity: 0.4;';
+            let toolTip = isIndiaPost ? '' : 'title="Only India Post / Speed Post orders can be booked"';
+
             cbHtml = `
             <div class="d-flex align-items-center">
                 ${bookedBadge}
-                <div style="width: 45px; display: flex; justify-content: center; align-items: center;">
-                    <input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();">
+                <div style="width: 45px; display: flex; justify-content: center; align-items: center;" ${toolTip}>
+                    <input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; ${cursorState}" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();" ${cbState}>
                 </div>
             </div>`;
         }
@@ -3522,18 +3533,14 @@ window.revertToPrinted = function (oid) {
 }
 
 
-// 🔥 FIX: Select Only Checkboxes in Active Tab
+// 🔥 FIX: Select Only Enabled Checkboxes in Active Tab
 function toggleSelectAll() {
-    // നിലവിൽ ഓപ്പൺ ആയിരിക്കുന്ന ടാബിലെ ചെക്ക്ബോക്സുകൾ മാത്രം എടുക്കുന്നു
-    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"])');
+    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"]):not(:disabled)');
     if (checkboxes.length === 0) return;
 
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
-
-    // ആ ടാബിലെ ചെക്ക്ബോക്സുകൾ മാത്രം മാറ്റുന്നു
     checkboxes.forEach(cb => cb.checked = !isAllChecked);
 
-    // ആ ടാബിലെ ബട്ടൺ സ്റ്റൈൽ മാത്രം മാറ്റുന്നു
     const activeBtn = document.querySelector('.tab-pane.active .btn-select-all');
     if (activeBtn) {
         if (!isAllChecked) {
@@ -3546,35 +3553,32 @@ function toggleSelectAll() {
             activeBtn.innerHTML = '<i class="far fa-square"></i> All';
         }
     }
-
-    // സ്മാർട്ട് ഗ്രൂപ്പ് ചെക്ക്ബോക്സുകൾ അപ്ഡേറ്റ് ചെയ്യുന്നു
     checkSelectAllStatus();
 }
 
-// 🔥 FIX: Check Select All Status (Active Tab Only)
 function checkSelectAllStatus() {
     updateSelectAllButton();
-
-    // നിലവിൽ ഓപ്പൺ ആയിരിക്കുന്ന ടാബിലെ സ്മാർട്ട് ഗ്രൂപ്പ് ചെക്ക്ബോക്സുകൾ മാത്രം അപ്ഡേറ്റ് ചെയ്യുന്നു
     document.querySelectorAll('.tab-pane.active [class*="group-cb-"]').forEach(groupCb => {
         let match = groupCb.className.match(/group-cb-([a-zA-Z0-9_]+)/);
         if (match && match[1]) {
             let groupId = match[1];
-            let childCbs = document.querySelectorAll(`.tab-pane.active .cb-group-${groupId}:not([style*="display: none"])`);
+            // ഡിസേബിൾ അല്ലാത്തവ മാത്രം നോക്കുന്നു
+            let childCbs = document.querySelectorAll(`.tab-pane.active .cb-group-${groupId}:not([style*="display: none"]):not(:disabled)`);
             if (childCbs.length > 0) {
                 let allChecked = Array.from(childCbs).every(cb => cb.checked);
                 groupCb.checked = allChecked;
+                groupCb.disabled = false;
             } else {
                 groupCb.checked = false;
+                groupCb.disabled = true; // ഗ്രൂപ്പിൽ എല്ലാം ഡിസേബിൾ ആണെങ്കിൽ ഹെഡറിലെ ചെക്ക്ബോക്സും ഡിസേബിൾ ആകും
             }
         }
     });
 }
 
 function updateSelectAllButton() {
-    // നിലവിലുള്ള ടാബിലെ ബട്ടണും ചെക്ക്ബോക്സും മാത്രം നോക്കുന്നു
     const activeBtn = document.querySelector('.tab-pane.active .btn-select-all');
-    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"])');
+    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"]):not(:disabled)');
 
     if (!activeBtn || checkboxes.length === 0) return;
 
@@ -3591,9 +3595,8 @@ function updateSelectAllButton() {
     }
 }
 
-// 🔥 Toggle Specific Date Group Checkboxes (Active Tab Only)
 window.toggleGroup = function (groupId, isChecked) {
-    let cbs = document.querySelectorAll(`.tab-pane.active .cb-group-${groupId}:not([style*="display: none"])`);
+    let cbs = document.querySelectorAll(`.tab-pane.active .cb-group-${groupId}:not([style*="display: none"]):not(:disabled)`);
     cbs.forEach(cb => cb.checked = isChecked);
     checkSelectAllStatus();
 };
