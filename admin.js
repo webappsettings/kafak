@@ -780,7 +780,10 @@ function renderTabs(orders, externalCounts = null) {
     </div>`;
 
     let bulkTrackBtn = `
-    <div class="d-flex justify-content-center mb-3 px-2 w-100">
+    <div class="d-flex justify-content-center flex-wrap gap-2 mb-3 px-2 w-100">
+        <button class="btn btn-sm btn-danger rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px; background-color:#dc2626; color:white;" onclick="bookSelectedAtIndiaPost()">
+            <i class="fas fa-cloud-upload-alt me-1"></i> Book at India Post
+        </button>
         <button class="btn btn-sm btn-outline-success rounded-pill fw-bold border-2 shadow-sm" style="font-size:11px; padding: 6px 15px;" onclick="bulkCompleteOrders('disp_tracked')">
             <i class="fas fa-check-double me-1"></i> Auto-Complete (Older than 3 days)
         </button>
@@ -10102,9 +10105,8 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
     });
 };
 
-// 🔥 ഇന്ത്യ പോസ്റ്റിലേക്ക് ഒന്നിച്ചു ബുക്ക് ചെയ്യാനുള്ള ഫംഗ്ഷൻ
+// 🔥 ഇന്ത്യ പോസ്റ്റിലേക്ക് ഒന്നിച്ചു ബുക്ക് ചെയ്യാനുള്ള യഥാർത്ഥ ഫംഗ്ഷൻ
 window.bookSelectedAtIndiaPost = async function () {
-    // Tracked ടാബിലെ ടിക്ക് ചെയ്ത കാർഡുകൾ മാത്രം എടുക്കുന്നു
     let selectedCheckboxes = document.querySelectorAll('#tab-dispatched .tab-pane.active .order-cb:checked');
     let ordersToBook = [];
 
@@ -10112,11 +10114,8 @@ window.bookSelectedAtIndiaPost = async function () {
         let order = allOrders[cb.value];
         if (order) {
             let provider = String(order.provider || order.Courier_Provider || '').toUpperCase();
-
-            // ഇന്ത്യ പോസ്റ്റ് ആണെങ്കിൽ മാത്രം എടുക്കുന്നു
             if (provider.includes('INDIA POST') || provider.includes('POST') || provider.includes('SPEED')) {
                 let meta = String(order.adminMeta || '');
-                // ഇതിനകം ബുക്ക് ചെയ്യാത്തതാണെന്ന് ഉറപ്പാക്കുന്നു (IB ഇല്ലാത്തവ)
                 if (!meta.includes('IB') && order.tracking) {
                     ordersToBook.push(order);
                 }
@@ -10147,11 +10146,10 @@ window.bookSelectedAtIndiaPost = async function () {
         didOpen: () => { Swal.showLoading(); }
     });
 
-    // (സെർവറിലെ പുതിയ എപിഐയിലേക്ക് അയക്കാനുള്ള പേലോഡ്)
     let payload = {
         action: 'bulkIndiaPostBooking',
         orders: ordersToBook.map(o => ({
-            oid: o.orderid,
+            orderid: o.orderid,
             tracking: o.tracking,
             name: o.name,
             phone: o.phone,
@@ -10159,25 +10157,36 @@ window.bookSelectedAtIndiaPost = async function () {
             place: o.place,
             district: o.district,
             state: o.state,
-            pincode: o.pincode
+            pincode: o.pincode,
+            quantity: o.quantity
         }))
     };
 
-    try {
-        // 🔥 ഇത് ഗൂഗിൾ ആപ്പ്സ് സ്ക്രിപ്റ്റിലേക്ക് കണക്ട് ചെയ്യാൻ റെഡിയാക്കിയ കോഡാണ്. 
-        // തൽക്കാലം നമ്മൾ ലോക്കൽ ആയി മാത്രം സ്റ്റാറ്റസ് മാറ്റുന്നു. ആപ്പ്സ് സ്ക്രിപ്റ്റ് നമ്മൾ അടുത്തതായി എഴുതും.
+    fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(payload)
+    }).then(res => res.json()).then(data => {
+        console.log("API Response:", data); // വല്ല എറർ ഉണ്ടെങ്കിലും കൺസോളിൽ കാണാൻ
 
-        // ലോക്കൽ ഡാറ്റയിൽ 'IB' (IndiaPost Booked) എന്ന ടാഗ് നൽകുന്നു
-        ordersToBook.forEach(o => {
-            updateAdminMeta(o.orderid, 'indiapost_booked', 'IB');
-        });
+        // India Post വിജയകരമായി ബുക്ക് ചെയ്താൽ success: true നൽകും
+        if (data.success || data.result === 'success') {
+            ordersToBook.forEach(o => {
+                updateAdminMeta(o.orderid, 'indiapost_booked', 'IB');
+            });
 
-        Swal.fire('Success!', `${ordersToBook.length} orders marked as booked!`, 'success');
-        setTimeout(() => { filterOrders(false); }, 500); // സ്ക്രീൻ റീഫ്രഷ് ചെയ്യാൻ
-
-    } catch (err) {
+            // വിജയകരമായി ബുക്ക് ചെയ്ത എണ്ണവും വിവരങ്ങളും കാണിക്കുന്നു
+            let msg = data.summary ? `Booked ${data.summary.success_count} orders successfully!` : 'Orders marked as booked!';
+            Swal.fire('Success!', msg, 'success');
+            setTimeout(() => { filterOrders(false); }, 500);
+        } else {
+            // പിൻകോഡോ ഫോൺ നമ്പറോ തെറ്റാണെങ്കിൽ അവർ തരുന്ന എറർ കാണിക്കാൻ
+            let errMsg = "Validation Error or Invalid Customer ID";
+            if (data.errors && data.errors[0]) errMsg = data.errors[0].msg;
+            Swal.fire('Error', errMsg, 'error');
+        }
+    }).catch(err => {
         Swal.fire('Error', 'Network Error.', 'error');
-    }
+    });
 };
 
 // 🔥 അഡ്മിൻ മെറ്റ അപ്ഡേറ്റ് ചെയ്യുന്ന ഭാഗത്ത് പുതിയ സ്റ്റാറ്റസ് സേവ് ചെയ്യാൻ (ഇതും ഏറ്റവും താഴെ കൊടുക്കുക)
