@@ -26,7 +26,7 @@ if (!$('#lazy-load-css').length) {
     `).appendTo('head');
 }
 
-const scriptURL = "https://script.google.com/macros/s/AKfycbwhYNiu3q1-CFNv7XKwVL2G9xlA-kFQeqKq-ZUy_ABleMwS7Yt39h8UyX3Ni9h7ZqEYYQ/exec";
+const scriptURL = "https://script.google.com/macros/s/AKfycbwXYJNmmnll-pd4Q3TG4BproOqapVTzWWB-TfzPYQhpKO2ddf_9oKeKgAya2WChbmXPLg/exec";
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -1773,19 +1773,24 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             let moveBtn = !isInTrackedList ? `<button onclick="event.stopPropagation(); updateAdminMeta('${d.orderid}', 'tracked', 'T')" class="btn btn-outline-secondary shadow-sm" title="Move to Tracked Tab" style="width:40px; border-radius:10px;"><i class="fas fa-arrow-right"></i></button>` : '';
             trkBtnHtml = `<div class="d-flex gap-1 mb-2 w-100"><button class="btn btn-danger flex-grow-1 fw-bold shadow-sm" style="border-radius:10px; font-size:12px; letter-spacing:0.5px;" onclick="highlightCard(this); editTracking('${d.orderid}', '')">⚠️ ADD TRK</button>${scanIconBtn}${moveBtn}</div>`;
         }
-        // 🔥 FIX: Tracked ടാബിൽ ചെക്ക്ബോക്സും Booked സ്റ്റാറ്റസും കാണിക്കാനുള്ള കോഡ്
+        // 🔥 FIX: Tracked ടാബിൽ ബുക്ക് ചെയ്താലും ചെക്ക്ബോക്സ് നിലനിർത്താൻ
         let cbHtml = '';
         let isManifested = String(d.adminMeta || '').includes('IB'); // IB = IndiaPost Booked
 
         if (isInTrackedList) {
-            if (isManifested) {
-                cbHtml = `<div class="d-flex align-items-center justify-content-center px-1"><span class="badge bg-success bg-opacity-10 text-success border border-success p-2" style="font-size:10px;"><i class="fas fa-check-circle"></i> BOOKED</span></div>`;
-            } else {
-                cbHtml = `<div style="width: 45px; display: flex; justify-content: center; align-items: center;"><input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();"></div>`;
-            }
+            // ബുക്ക് ആയതാണെങ്കിൽ മാത്രം പച്ച ബാഡ്ജ് കാണിക്കുന്നു
+            let bookedBadge = isManifested ? `<span class="badge bg-success bg-opacity-10 text-success border border-success px-2 py-1 me-2 d-flex align-items-center" style="font-size:10px;"><i class="fas fa-check-circle me-1"></i> BOOKED</span>` : '';
+
+            cbHtml = `
+            <div class="d-flex align-items-center">
+                ${bookedBadge}
+                <div style="width: 45px; display: flex; justify-content: center; align-items: center;">
+                    <input type="checkbox" class="order-cb cb-group-${groupId}" style="width: 22px; height: 22px; cursor: pointer;" value="${index}" onclick="event.stopPropagation(); checkSelectAllStatus();">
+                </div>
+            </div>`;
         }
 
-        buttons = `${dateHtml}${trkBtnHtml}<div class="d-flex gap-2 w-100"><button class="btn-custom btn-complete flex-grow-1" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>${cbHtml}</div>`;
+        buttons = `${dateHtml}${trkBtnHtml}<div class="d-flex justify-content-between align-items-center w-100"><button class="btn-custom btn-complete flex-grow-1 me-2" onclick="highlightCard(this); updateOrder('${d.orderid}', 'Completed')">✅ Complete</button>${cbHtml}</div>`;
     }
 
     let currentProvider = String(d.provider || d.Courier_Provider || '').toUpperCase().trim();
@@ -10116,8 +10121,8 @@ window.bookSelectedAtIndiaPost = async function () {
         if (order) {
             let provider = String(order.provider || order.Courier_Provider || '').toUpperCase();
             if (provider.includes('INDIA POST') || provider.includes('POST') || provider.includes('SPEED')) {
-                let meta = String(order.adminMeta || '');
-                if (!meta.includes('IB') && order.tracking) {
+                // 🔥 IB (Booked) ആണെങ്കിലും അല്ലെങ്കിലും ട്രാക്കിങ് നമ്പർ ഉണ്ടെങ്കിൽ വീണ്ടും ടെസ്റ്റ് ചെയ്യാൻ അനുവദിക്കുന്നു
+                if (order.tracking) {
                     ordersToBook.push(order);
                 }
             }
