@@ -10107,7 +10107,8 @@ window.toggleTabCourierFilter = function (event, element, providerName) {
 
 // 🔥 ഇന്ത്യ പോസ്റ്റിലേക്ക് ഒന്നിച്ചു ബുക്ക് ചെയ്യാനുള്ള യഥാർത്ഥ ഫംഗ്ഷൻ
 window.bookSelectedAtIndiaPost = async function () {
-    let selectedCheckboxes = document.querySelectorAll('#tab-dispatched .tab-pane.active .order-cb:checked');
+    // 🔥 FIX: Tracked ലിസ്റ്റിൽ നിന്നുള്ള ഓർഡറുകൾ മാത്രം കൃത്യമായി എടുക്കാൻ സെലക്ടർ മാറ്റി
+    let selectedCheckboxes = document.querySelectorAll('#list-disp-tracked .order-cb:checked');
     let ordersToBook = [];
 
     selectedCheckboxes.forEach(cb => {
@@ -10124,7 +10125,7 @@ window.bookSelectedAtIndiaPost = async function () {
     });
 
     if (ordersToBook.length === 0) {
-        Swal.fire('No Valid Orders', 'Select at least one unbooked India Post order!', 'warning');
+        Swal.fire('No Valid Orders', 'Select at least one unbooked India Post order! (Check if courier is India Post)', 'warning');
         return;
     }
 
@@ -10166,20 +10167,17 @@ window.bookSelectedAtIndiaPost = async function () {
         method: 'POST',
         body: JSON.stringify(payload)
     }).then(res => res.json()).then(data => {
-        console.log("API Response:", data); // വല്ല എറർ ഉണ്ടെങ്കിലും കൺസോളിൽ കാണാൻ
+        console.log("API Response:", data);
 
-        // India Post വിജയകരമായി ബുക്ക് ചെയ്താൽ success: true നൽകും
         if (data.success || data.result === 'success') {
             ordersToBook.forEach(o => {
                 updateAdminMeta(o.orderid, 'indiapost_booked', 'IB');
             });
 
-            // വിജയകരമായി ബുക്ക് ചെയ്ത എണ്ണവും വിവരങ്ങളും കാണിക്കുന്നു
             let msg = data.summary ? `Booked ${data.summary.success_count} orders successfully!` : 'Orders marked as booked!';
             Swal.fire('Success!', msg, 'success');
             setTimeout(() => { filterOrders(false); }, 500);
         } else {
-            // പിൻകോഡോ ഫോൺ നമ്പറോ തെറ്റാണെങ്കിൽ അവർ തരുന്ന എറർ കാണിക്കാൻ
             let errMsg = "Validation Error or Invalid Customer ID";
             if (data.errors && data.errors[0]) errMsg = data.errors[0].msg;
             Swal.fire('Error', errMsg, 'error');
