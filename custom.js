@@ -3689,6 +3689,7 @@ window.copyTrackingID = function (id, btnElement) {
   });
 }
 
+
 // 🔥 1. SMART TRACKING FUNCTION FOR CUSTOMERS
 window.trackParcel = function (trackingId, provider, defaultLink) {
   if (!trackingId || trackingId === 'null') {
@@ -3710,7 +3711,6 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
     fetch(`${sc}?action=trackIndiaPost&trackingId=${trackingId}`)
       .then(res => res.json())
       .then(res => {
-        // 🔥 പുതിയ ഫോർമാറ്റ് എടുക്കുന്നു
         let ipData = res.trackingData || res;
 
         if (ipData && ipData.status_code === 200 && ipData.data && ipData.data.length > 0) {
@@ -3721,8 +3721,13 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
             return;
           }
 
+          let sortedEvents = [...events].sort((a, b) => {
+            let dateA = new Date(`${a.date || ''} ${a.time || ''}`);
+            let dateB = new Date(`${b.date || ''} ${b.time || ''}`);
+            return dateB - dateA;
+          });
+
           let timelineHtml = `<div style="text-align:left; max-height: 350px; overflow-y: auto; padding: 10px 15px; border-left: 3px solid #3b82f6; margin-left: 15px; margin-top: 10px;">`;
-          let sortedEvents = [...events].reverse(); // പുതിയത് മുകളിൽ വരാൻ
 
           sortedEvents.forEach((ev, index) => {
             let isLatest = index === 0;
@@ -3788,18 +3793,20 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
       let eventsArray = null;
       let ipData = res.trackingData || res;
 
-      // 🔥 പുതിയ ഫോർമാറ്റിൽ നിന്നും ഡാറ്റ എടുക്കുന്നു
       if (ipData && ipData.status_code === 200 && ipData.data && ipData.data.length > 0) {
         eventsArray = ipData.data[0].tracking_details;
       }
 
       if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
-        // 🔥 FIX: അറേയിലെ ഏറ്റവും അവസാനത്തെ ഐറ്റം ആണ് ഏറ്റവും പുതിയ ലൈവ് സ്റ്റാറ്റസ്
-        let latest = eventsArray[eventsArray.length - 1];
+        // ഏറ്റവും പുതിയത് കണ്ടെത്താൻ സോർട്ട് ചെയ്ത് ഏറ്റവും ആദ്യത്തെ ഐറ്റം എടുക്കുന്നു
+        let sortedEvents = [...eventsArray].sort((a, b) => {
+          let dateA = new Date(`${a.date || ''} ${a.time || ''}`);
+          let dateB = new Date(`${b.date || ''} ${b.time || ''}`);
+          return dateB - dateA;
+        });
 
-        // ഹിസ്റ്ററി പോപ്പപ്പിന് വേണ്ടി മുഴുവൻ ഇവന്റുകളും റിവേഴ്സ് ചെയ്യുന്നു (പുതിയത് മുകളിൽ വരാൻ)
-        let reversedEvents = [...eventsArray].reverse();
-        let eventsJson = encodeURIComponent(JSON.stringify(reversedEvents));
+        let latest = sortedEvents[0];
+        let eventsJson = encodeURIComponent(JSON.stringify(sortedEvents));
 
         let officeName = latest.office || 'In Transit';
         let eventMsg = latest.event || 'Status Updated';

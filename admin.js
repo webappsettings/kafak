@@ -10760,10 +10760,7 @@ window.showAdminTrackingPopup = function (trackId) {
     fetch(`${scriptURL}?action=trackIndiaPost&trackingId=${trackId}`)
         .then(res => res.json())
         .then(res => {
-            // 🔥 പുതിയ ഫോർമാറ്റിൽ നിന്നും ഡാറ്റ കൃത്യമായി വേർതിരിച്ചെടുക്കുന്നു
             let ipData = res.trackingData || res;
-
-            console.log("📦 India Post Live Data (Admin):", ipData);
 
             if (ipData && ipData.status_code === 200 && ipData.data && ipData.data.length > 0) {
                 let articleData = ipData.data[0];
@@ -10774,25 +10771,28 @@ window.showAdminTrackingPopup = function (trackId) {
                     return;
                 }
 
+                // 🔥 ഏറ്റവും പുതിയ ഡാറ്റ മുകളിൽ വരാൻ ഡേറ്റ് & ടൈം അനുസരിച്ച് സോർട്ട് ചെയ്യുന്നു
+                let sortedEvents = [...events].sort((a, b) => {
+                    let dateA = new Date(`${a.date || ''} ${a.time || ''}`);
+                    let dateB = new Date(`${b.date || ''} ${b.time || ''}`);
+                    return dateB - dateA;
+                });
+
                 let timelineHtml = `<div style="text-align:left; max-height: 350px; overflow-y: auto; padding: 10px 15px; border-left: 3px solid #3b82f6; margin-left: 15px; margin-top: 10px;">`;
 
-                // 🔥 FIX: ഇന്ത്യ പോസ്റ്റ് തരുന്ന ലിസ്റ്റിലെ ഒടുവിലത്തെ ഡാറ്റയാണ് ഏറ്റവും പുതിയത്. 
-                // അത് മുകളിൽ വരാൻ `.reverse()` കൊടുക്കുന്നു.
-                let sortedEvents = [...events].reverse();
-
                 sortedEvents.forEach((ev, index) => {
-                    let isLatest = index === 0; // ഇപ്പോൾ ഇത് കൃത്യമായി ഏറ്റവും പുതിയതിലേക്ക് മാറും
+                    let isLatest = index === 0;
                     let dotColor = isLatest ? '#10b981' : '#cbd5e1';
                     let textColor = isLatest ? '#0f172a' : '#475569';
                     let dateStr = ev.date ? ev.date.split('T')[0] : '';
 
                     timelineHtml += `
-    <div style="position: relative; margin-bottom: 18px; padding-left: 20px;">
-        <span style="position: absolute; left: -26.5px; top: 2px; background: ${dotColor}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px ${dotColor};"></span>
-        <div style="font-size:10px; color:#64748b; font-weight:800; letter-spacing:0.5px;">${dateStr} • ${ev.time || ''}</div>
-        <div style="font-size:13px; font-weight:800; color:${textColor}; margin-top:2px;">${ev.event || 'Status Updated'}</div>
-        <div style="font-size:11px; color:#64748b; font-weight:600; margin-top:2px;"><i class="fas fa-map-marker-alt text-danger me-1">N/A</i> ${ev.office || 'Post Office'}</div>
-    </div>`;
+                    <div style="position: relative; margin-bottom: 18px; padding-left: 20px;">
+                        <span style="position: absolute; left: -26.5px; top: 2px; background: ${dotColor}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px ${dotColor};"></span>
+                        <div style="font-size:10px; color:#64748b; font-weight:800; letter-spacing:0.5px;">${dateStr} • ${ev.time || ''}</div>
+                        <div style="font-size:13px; font-weight:800; color:${textColor}; margin-top:2px;">${ev.event || 'Status Updated'}</div>
+                        <div style="font-size:11px; color:#64748b; font-weight:600; margin-top:2px;"><i class="fas fa-map-marker-alt text-danger me-1"></i> ${ev.office || 'Post Office'}</div>
+                    </div>`;
                 });
                 timelineHtml += `</div>`;
 
