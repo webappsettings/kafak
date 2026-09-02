@@ -10749,48 +10749,67 @@ window.processOfflineReverts = function () {
 // 🔥 ADMIN PANEL: INDIA POST LIVE TRACKING POPUP
 // ==========================================================
 window.showAdminTrackingPopup = function (trackId) {
-    let cleanTrackId = String(trackId).trim();
-
-    // 1. ആദ്യം ഒരു ലോഡിംഗ് പോപ്പപ്പ് കാണിക്കുക
     Swal.fire({
-        title: '<div style="font-size:16px; font-weight:800;">Fetching Live Location...</div>',
-        html: `<div class="text-center my-3"><div class="spinner-border text-primary" style="width: 2rem; height: 2rem;"></div></div>`,
-        showConfirmButton: false,
+        title: 'Tracking Parcel...',
+        html: `<div class="mt-2 text-primary fw-bold fs-5">${trackId}</div>
+               <div class="small text-muted mt-2">Fetching live status from India Post...</div>`,
         allowOutsideClick: false,
-        customClass: { popup: 'rounded-4' }
+        didOpen: () => { Swal.showLoading(); }
     });
 
-    // 2. ആപ്പ്സ് സ്ക്രിപ്റ്റ് വഴി ലൈവ് ഡാറ്റ എടുക്കുക (sc മാറ്റി scriptURL ആക്കിയിട്ടുണ്ട്)
-    fetch(`${scriptURL}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
+    fetch(`${scriptURL}?action=trackIndiaPost&trackingId=${trackId}`)
         .then(res => res.json())
         .then(res => {
-            let eventsArray = null;
+            // 🔥 പുതിയ ഫോർമാറ്റിൽ നിന്നും ഡാറ്റ കൃത്യമായി വേർതിരിച്ചെടുക്കുന്നു
+            let ipData = res.trackingData || res;
 
-            if (res.data && res.data.events) eventsArray = res.data.events;
-            else if (res.data && Array.isArray(res.data) && res.data.length > 0 && res.data[0].tracking_details) eventsArray = res.data[0].tracking_details;
-            else if (res.data && res.data.tracking_details) eventsArray = res.data.tracking_details;
-            else if (res.status_code === 200 && Array.isArray(res.data)) eventsArray = res.data[0].tracking_details;
+            console.log("📦 India Post Live Data (Admin):", ipData);
 
-            if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
-                // ഡാറ്റ കിട്ടിയാൽ ടൈംലൈൻ കാണിക്കുക
-                let eventsJson = encodeURIComponent(JSON.stringify(eventsArray));
-                renderAdminTimeline(cleanTrackId, eventsJson);
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'No Data Found',
-                    text: 'Tracking details are currently unavailable for this ID.',
-                    confirmButtonColor: '#333'
+            if (ipData && ipData.status_code === 200 && ipData.data && ipData.data.length > 0) {
+                let articleData = ipData.data[0];
+                let events = articleData.tracking_details || [];
+
+                if (events.length === 0) {
+                    Swal.fire({ icon: 'error', title: 'No Data Found', text: 'Tracking details are currently unavailable for this ID.', confirmButtonColor: '#333' });
+                    return;
+                }
+
+                let timelineHtml = `<div style="text-align:left; max-height: 350px; overflow-y: auto; padding: 10px 15px; border-left: 3px solid #3b82f6; margin-left: 15px; margin-top: 10px;">`;
+
+                // പുതിയ ഇവന്റുകൾ മുകളിൽ വരാൻ ഡാറ്റ റിവേഴ്സ് ചെയ്യുന്നു
+                let sortedEvents = [...events].reverse();
+
+                sortedEvents.forEach((ev, index) => {
+                    let isLatest = index === 0;
+                    let dotColor = isLatest ? '#10b981' : '#cbd5e1';
+                    let textColor = isLatest ? '#0f172a' : '#475569';
+                    let dateStr = ev.date ? ev.date.split('T')[0] : '';
+
+                    timelineHtml += `
+                    <div style="position: relative; margin-bottom: 18px; padding-left: 20px;">
+                        <span style="position: absolute; left: -26.5px; top: 2px; background: ${dotColor}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 0 0 1px ${dotColor};"></span>
+                        <div style="font-size:10px; color:#64748b; font-weight:800; letter-spacing:0.5px;">${dateStr} • ${ev.time || ''}</div>
+                        <div style="font-size:13px; font-weight:800; color:${textColor}; margin-top:2px;">${ev.event || 'Status Updated'}</div>
+                        <div style="font-size:11px; color:#64748b; font-weight:600; margin-top:2px;"><i class="fas fa-map-marker-alt text-danger me-1"></i> ${ev.office || 'Post Office'}</div>
+                    </div>`;
                 });
+                timelineHtml += `</div>`;
+
+                Swal.fire({
+                    title: `<div style="font-size:16px; font-weight:800;"><i class="fas fa-shipping-fast text-primary me-2"></i>Live Tracking Status</div>`,
+                    html: timelineHtml,
+                    showCloseButton: true,
+                    confirmButtonText: 'Close',
+                    confirmButtonColor: '#333',
+                    customClass: { popup: 'rounded-4 ios-popup' }
+                });
+            } else {
+                Swal.fire({ icon: 'error', title: 'No Data Found', text: 'Tracking details are currently unavailable for this ID.', confirmButtonColor: '#333' });
             }
         })
         .catch(err => {
-            Swal.fire({
-                icon: 'error',
-                title: 'Connection Failed',
-                text: 'Could not fetch tracking data. Please try again.',
-                confirmButtonColor: '#333'
-            });
+            console.error(err);
+            Swal.fire('Error', 'Network connection failed. Try again.', 'error');
         });
 };
 
