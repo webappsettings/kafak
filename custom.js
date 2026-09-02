@@ -3794,9 +3794,11 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
       }
 
       if (eventsArray && Array.isArray(eventsArray) && eventsArray.length > 0) {
-        // ഇന്ത്യ പോസ്റ്റ് പഴയ ഓർഡറുകൾ ആദ്യം തരുന്നതിനാൽ, അവസാനം കിടക്കുന്നതാണ് പുതിയ ഇവന്റ്
+        // 🔥 FIX: അറേയിലെ ഏറ്റവും അവസാനത്തെ ഐറ്റം ആണ് ഏറ്റവും പുതിയ ലൈവ് സ്റ്റാറ്റസ്
         let latest = eventsArray[eventsArray.length - 1];
-        let reversedEvents = [...eventsArray].reverse(); // ഹിസ്റ്ററി പോപ്പപ്പിന് വേണ്ടി റിവേഴ്സ് ചെയ്യുന്നു
+
+        // ഹിസ്റ്ററി പോപ്പപ്പിന് വേണ്ടി മുഴുവൻ ഇവന്റുകളും റിവേഴ്സ് ചെയ്യുന്നു (പുതിയത് മുകളിൽ വരാൻ)
+        let reversedEvents = [...eventsArray].reverse();
         let eventsJson = encodeURIComponent(JSON.stringify(reversedEvents));
 
         let officeName = latest.office || 'In Transit';
