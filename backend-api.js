@@ -53,6 +53,7 @@
     today() { return this.request('/admin/orders/today'); }
     order(id) { return this.request('/admin/order?' + new URLSearchParams({ oid: id })); }
     customer(phone) { return this.request('/admin/customer?' + new URLSearchParams({ phone })); }
+    courierSettings() { return this.request('/admin/courier-settings'); }
     ownOrder(id, accessToken) { return this.request('/public/order?' + new URLSearchParams({ oid: id }), { accessToken }); }
     mutation(path, data, requestId, { accessToken } = {}) {
       if (!/^[a-f\d]{8}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{4}-[a-f\d]{12}$/i.test(requestId || '')) return Promise.reject(new Error('Keep a request ID with this draft before submitting.'));

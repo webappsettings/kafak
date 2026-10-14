@@ -27,6 +27,9 @@ if (!$('#lazy-load-css').length) {
 }
 
 const scriptURL = "https://script.google.com/macros/s/AKfycbxVp0SErrllaT8E3E2dQyeNe0V2hFaIvA5Sz-RdjiMxb9HclcKqmNsRmcBwNNnPPPNBQw/exec";
+// Activated only by the coordinated backend cutover configuration.
+const businessCourierSettings = window.KAFAK_BACKEND === 'business'
+    ? new window.KafakBusinessCourierSettings(new window.KafakBusinessApi()) : null;
 
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
@@ -5810,8 +5813,7 @@ window.openSettingsModal = function () {
 window.loadCourierSettings = function () {
     $('#courier-settings-container').html('<div class="text-center text-muted p-3"><i class="fas fa-spinner fa-spin me-2"></i> Loading settings...</div>');
 
-    fetch(`${scriptURL}?action=getSettings`)
-        .then(res => res.json())
+    (businessCourierSettings ? businessCourierSettings.load() : fetch(`${scriptURL}?action=getSettings`).then(res => res.json()))
         .then(response => {
             if (response.status === 'success' && response.data) {
                 renderSettingsUI(response.data);
@@ -5936,6 +5938,12 @@ function renderSettingsUI(settingsData) {
 window.setDefaultCourier = function (state, rowNum) {
     showToast('info', 'Setting default...');
 
+    if (businessCourierSettings) {
+        return businessCourierSettings.default(rowNum)
+            .then(() => { showToast('success', 'Default courier updated!'); return loadCourierSettings(); })
+            .catch(error => showToast('error', error.message));
+    }
+
     fetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'setDefaultCourier', state: state, row: rowNum })
@@ -5956,6 +5964,7 @@ window.setDefaultCourier = function (state, rowNum) {
 
 // 🔥 UPDATE BASE COST
 window.updateBaseCost = function () {
+    if (businessCourierSettings) return showToast('info', 'Update the selected product cost in Kafak Business Product_Costs.');
     let newCost = $('#setting-base-cost').val();
     if (!newCost || isNaN(newCost) || newCost <= 0) return showToast('error', 'Enter valid amount.');
     if (!confirm(`Change Base Bottle Cost to ₹${newCost}? (Affects NEW orders only)`)) return;
@@ -5967,6 +5976,12 @@ window.updateCourierRate = function (rowNumber, stateName) {
     let newRates = $(`#courier-rate-${rowNumber}`).val();
     let newMargin = $(`#courier-margin-${rowNumber}`).val();
     if (!confirm(`Update rates for ${stateName}?\n\nRates: ${newRates}\nMargin: ₹${newMargin}`)) return;
+
+    if (businessCourierSettings) {
+        return businessCourierSettings.rates(rowNumber, newRates, newMargin)
+            .then(() => { showToast('success', 'Courier rates updated!'); return loadCourierSettings(); })
+            .catch(error => showToast('error', error.message));
+    }
 
     saveSettingToServer(`Rates for ${stateName}`, rowNumber, 'D', newRates);
     setTimeout(() => { saveSettingToServer(`Margin for ${stateName}`, rowNumber, 'F', newMargin); }, 1500);
@@ -5981,6 +5996,15 @@ window.addNewCourierRow = function () {
 
     if (!state || !provider || !rates) return showToast('error', 'Missing Information!');
     if (!confirm(`Add new courier rate for ${state} (${provider})?`)) return;
+
+    if (businessCourierSettings) {
+        const matching = businessCourierSettings.rows.filter(row => row.Parameter === state);
+        const groups = [...new Set((matching.length ? matching : businessCourierSettings.rows).map(row => row['Rate Group']))];
+        if (groups.length !== 1) return showToast('error', 'Select the product rate group in the database editor for this region.');
+        return businessCourierSettings.add(state, provider, rates, margin || 0, groups[0])
+            .then(() => { showToast('success', 'New courier added!'); return loadCourierSettings(); })
+            .catch(error => showToast('error', error.message));
+    }
 
     showToast('info', 'Adding new region...');
     fetch(scriptURL, {
