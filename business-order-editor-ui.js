@@ -36,6 +36,8 @@
     return response;}catch(error){if(error.status!==401)throw error;localStorage.removeItem('kafakAdmin');}
    }
    let last;try{last=JSON.parse(localStorage.getItem('kafak-business-last-order')||'null');}catch{}
+   const remembered=typeof localUsersMap==='object'?localUsersMap[normalized]:null;
+   if(remembered?.orderid&&remembered.accessToken)last=remembered;
    if(last?.orderid&&last.accessToken){
     try{
      const row=await editor.load(last.orderid,{token:last.accessToken});
