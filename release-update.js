@@ -1,6 +1,6 @@
 /* Update idle pages automatically without interrupting a form or upload. */
 (() => {
-  const release='20261015e'; let edited=false,checking=false;
+  const release='20261015f'; let edited=false,checking=false;
   document.addEventListener('input',()=>{edited=true;},true);
   document.addEventListener('change',()=>{edited=true;},true);
   async function check(){

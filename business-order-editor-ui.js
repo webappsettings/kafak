@@ -6,9 +6,12 @@
   const fromHash=new URLSearchParams(location.hash.slice(1)).get('access');
   if(new URLSearchParams(location.search).get('oid')===id&&/^[A-Za-z0-9_-]{43}$/.test(fromHash||''))return fromHash;
   let last;try{last=JSON.parse(localStorage.getItem('kafak-business-last-order')||'null');}catch{}
-  return last?.orderid===id?last.accessToken:undefined;
+  if(last?.orderid===id&&last.accessToken)return last.accessToken;
+  if(typeof savedOrderData==='object'&&savedOrderData?.orderid===id&&savedOrderData.accessToken)return savedOrderData.accessToken;
+  if(typeof localUsersMap==='object')return Object.values(localUsersMap).find(row=>row?.orderid===id&&row.accessToken)?.accessToken;
+  return undefined;
  }
- function confirmed(row){return {...row,accessToken:access(row.orderid),quote:{sku:row.sku,product:row.product,variant:row.variant,quantity:Number(row.quantity),productAmount:Number(row.Product_Amount),courierAmount:Number(row.Courier_Charge),total:Number(row.Grand_Total)}};}
+ function confirmed(row){return {...row,accessToken:access(row.orderid)||row.accessToken,quote:{sku:row.sku,product:row.product,variant:row.variant,quantity:Number(row.quantity),productAmount:Number(row.Product_Amount),courierAmount:Number(row.Courier_Charge),total:Number(row.Grand_Total)}};}
  window.kafakOrderEditorUI={editor,
   async track(article){
    if(localStorage.getItem('kafakAdmin')==='true')return api.request('/admin/parcel-tracking?'+new URLSearchParams({trackingId:article}));
@@ -28,9 +31,9 @@
   async customer(phone){
    const normalized=String(phone||'').replace(/\D/g,'').slice(-10);
    if(localStorage.getItem('kafakAdmin')==='true'){
-    const response=await api.customer(normalized);
+    try{const response=await api.customer(normalized);
     if(response.data?.orderid){const row=await editor.load(response.data.orderid,{admin:true});if(row)response.data={...response.data,...confirmed(row)};}
-    return response;
+    return response;}catch(error){if(error.status!==401)throw error;localStorage.removeItem('kafakAdmin');}
    }
    let last;try{last=JSON.parse(localStorage.getItem('kafak-business-last-order')||'null');}catch{}
    if(last?.orderid&&last.accessToken){
@@ -41,7 +44,12 @@
    }
    return {result:'success',data:{phone:normalized,authorized:false}};
   },
-  async read(id){const admin=localStorage.getItem('kafakAdmin')==='true';const row=await editor.load(id,{admin,token:access(id)});return row?{result:'success',data:confirmed(row)}:null;},
+  async read(id){
+   const token=access(id),admin=localStorage.getItem('kafakAdmin')==='true';let row;
+   if(admin){try{row=await editor.load(id,{admin:true});}catch(error){if(error.status!==401||!token)throw error;localStorage.removeItem('kafakAdmin');row=await editor.load(id,{token});}}
+   else row=await editor.load(id,{token});
+   return row?{result:'success',data:confirmed(row)}:null;
+  },
   async save(data,{increasePaid=false}={}){
    if(editor.current?.orderid!==data.orderid){
     const shown=typeof savedOrderData==='object'?savedOrderData:null;

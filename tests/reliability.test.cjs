@@ -186,10 +186,10 @@ test('business queue batches at 100, preserves failed jobs and acknowledges only
  await h.ctx.finalConfirmSync();assert.equal(calls,2);assert.equal(acks,1);assert.equal(h.queue('pendingUpdates')[0].oid,'K100');
 });
 
-test('failed reads stop the status spinner and offer login or retry without enabling stale edits',()=>{
+test('failed reads stop the status spinner and offer order-link help or retry without enabling stale edits',()=>{
  const code=customer.slice(customer.indexOf('function showOrderLoadError(error)'),customer.indexOf('function fetchOrder('));
  for(const status of [401,503]){
   const nodes=new Map();let hidden=false;const ctx={editingOrderId:'K-test',encodeURIComponent,showLoader:value=>hidden=value===false,$:selector=>{if(!nodes.has(selector))nodes.set(selector,{prop(k,v){this[k]=v;return this;},text(v){this.content=v;return this;},html(v){this.content=v;return this;},show(){return this;},hide(){this.hidden=true;return this;}});return nodes.get(selector);}};
-  vm.createContext(ctx);vm.runInContext(code,ctx);ctx.showOrderLoadError({status});assert(hidden);assert.equal(nodes.get('.btn-update-sage').disabled,true);assert.equal(nodes.get('#admin-action-bar').hidden,true);assert.match(nodes.get('#status-area').content,status===401?/Sign in again/:/Retry/);
+  vm.createContext(ctx);vm.runInContext(code,ctx);ctx.showOrderLoadError({status});assert(hidden);assert.equal(nodes.get('.btn-update-sage').disabled,true);assert.equal(nodes.get('#admin-action-bar').hidden,true);assert.match(nodes.get('#status-area').content,status===401?/complete order link/:/Retry/);
  }
 });

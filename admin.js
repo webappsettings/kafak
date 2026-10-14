@@ -10061,7 +10061,7 @@ window.sendWA = function (index, type = 'pending') {
 
     const total = base + courier;
 
-    const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
+    const editLink = `https://kafaklife.com/order.html?oid=${encodeURIComponent(d.orderid)}#access=${encodeURIComponent(d.accessToken||'')}`;
     const isEng = (d.language === 'en');
     const editText = isEng ? "To check status or edit order: 👇" : "നിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇";
 
@@ -10112,7 +10112,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
     let finalNum = formatWAPhone(targetNum, '91');
     if (!finalNum) { alert("No valid number found!"); return; }
 
-    let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
+    let trackLink = `https://kafaklife.com/order.html?oid=${encodeURIComponent(oid)}#access=${encodeURIComponent(order.accessToken||'')}`;
     let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-7 working days.*\n*4-7 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;
 
     window.open(`https://wa.me/${finalNum}?text=${encodeURIComponent(msg)}`, '_blank');

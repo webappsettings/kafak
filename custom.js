@@ -2880,9 +2880,8 @@ function showOrderLoadError(error) {
   $('#refresh-btn').prop('disabled',false).text('RETRY');
   $('.btn-update-sage').prop('disabled',true);
   $('#admin-action-bar').hide();
-  if(error.status===401){
-    const target='admin.html?search='+encodeURIComponent(editingOrderId||'');
-    $('#status-area').html('<div class="text-center py-3">Your session expired. <a href="'+target+'">Sign in again</a></div>').show();
+  if(error.status===401||error.status===404){
+    $('#status-area').html('<div class="text-center py-3">Please open the complete order link from your confirmation message. Your saved details are still available above.</div>').show();
   }else{
     $('#status-area').html('<div class="text-center py-3">Unable to load the latest order. <button type="button" class="btn btn-outline-dark btn-sm" onclick="manualRefresh()">Retry</button></div>').show();
   }
@@ -3461,7 +3460,7 @@ window.sendPaymentWA = function (oid) {
 
   if (!order) { alert("Order Data Missing!"); return; }
 
-  let trackLink = `https://kafaklife.com/order.html?oid=${oid}`;
+  let trackLink = order.accessToken ? KafakBusinessOrder.privateLink('https://kafaklife.com/order.html',order) : `https://kafaklife.com/order.html?oid=${oid}`;
 
   // 🔥 UNIFIED MESSAGE (English & Malayalam)
   let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-7 working days.*\n*4-7 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;

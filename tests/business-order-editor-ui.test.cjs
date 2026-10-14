@@ -25,3 +25,11 @@ test('missing editor state hydrates only the displayed version',async()=>{
  await assert.rejects(ui.save({...current,house:'New'}),/Refresh the order status/);
  assert.equal(calls.length,0);
 });
+
+test('expired admin state falls back to the customer private link without login',async()=>{
+ const calls=[],removed=[],token='a'.repeat(43);
+ class Editor{async load(id,options){calls.push(options);if(options.admin)throw Object.assign(Error('expired'),{status:401});this.current={orderid:id,version:1,quantity:1};return this.current;}}
+ const ctx={window:{KAFAK_BACKEND:'business'},KafakBusinessApi:class{},KafakBusinessOrderEditor:Editor,localStorage:{getItem:key=>key==='kafakAdmin'?'true':null,removeItem:key=>removed.push(key)},location:{hash:'#access='+token,search:'?oid=test'},URLSearchParams};
+ vm.createContext(ctx);vm.runInContext(source,ctx);const result=await ctx.window.kafakOrderEditorUI.read('test');
+ assert.equal(result.data.orderid,'test');assert.equal(result.data.accessToken,token);assert.equal(calls[1].token,token);assert.deepEqual(removed,['kafakAdmin']);
+});
