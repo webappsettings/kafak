@@ -11016,8 +11016,7 @@ window.showAdminTrackingPopup = function (trackId) {
         didOpen: () => { Swal.showLoading(); }
     });
 
-    fetch(`${scriptURL}?action=trackIndiaPost&trackingId=${trackId}`)
-        .then(res => res.json())
+    businessApi.request('/admin/parcel-tracking?'+new URLSearchParams({trackingId:trackId}))
         .then(res => {
             let ipData = res.trackingData || res;
 

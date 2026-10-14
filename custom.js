@@ -3811,8 +3811,7 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
       didOpen: () => { Swal.showLoading(); }
     });
 
-    fetch(`${sc}?action=trackIndiaPost&trackingId=${trackingId}`)
-      .then(res => res.json())
+    window.kafakOrderEditorUI.track(trackingId)
       .then(res => {
         let ipData = res.trackingData || res;
 
@@ -3890,8 +3889,7 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
 
   widget.html(truckLoaderHtml);
 
-  fetch(`${sc}?action=trackIndiaPost&trackingId=${cleanTrackId}`)
-    .then(res => res.json())
+  window.kafakOrderEditorUI.track(cleanTrackId)
     .then(res => {
       let eventsArray = null;
       let ipData = res.trackingData || res;
