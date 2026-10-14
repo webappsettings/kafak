@@ -70,6 +70,9 @@
     adminAction(data, requestId, { preview = false } = {}) {
       return this.mutation(preview ? '/admin/preview' : '/admin/action', data, requestId);
     }
+    createAdminOrder(data, requestId, { preview = false } = {}) {
+      return this.mutation(preview ? '/admin/create-preview' : '/admin/orders', data, requestId);
+    }
     editOwnOrder(id, accessToken, data, requestId) {
       return this.mutation('/public/order?' + new URLSearchParams({ oid: id }), data, requestId, { accessToken });
     }

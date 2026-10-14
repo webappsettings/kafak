@@ -40,3 +40,9 @@ test('staging previews cannot submit or create a pending request',async()=>{
  const transport=api(()=>assert.fail('must not submit'));transport.settings=async()=>({...settings,acceptingOrders:false});
  const order=new Order(transport,storage());await order.load();await order.price(fields.sku,fields.state);await assert.rejects(order.submit(fields),/preview/);assert.equal(order.pending,null);
 });
+test('a rate-limited retry after a lost response retains the original request identity',async()=>{
+ const saved=storage();let calls=0;
+ const transport=api(async()=>{if(++calls===1)throw new TypeError('lost response');throw Object.assign(new Error('rate limited'),{status:429});});
+ const first=new Order(transport,saved,()=> 'original-key');await first.load();await first.price(fields.sku,fields.state);await assert.rejects(first.submit(fields));
+ const reloaded=new Order(transport,saved);await assert.rejects(reloaded.retry(),/rate limited/);assert.equal(reloaded.pending.requestId,'original-key');assert(saved.getItem('kafak-business-pending-order'));
+});

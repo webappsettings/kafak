@@ -44,6 +44,9 @@
       if (!this.pending) throw new Error('There is no pending submission.');
       if (this.inFlight) return this.inFlight;
       const submission = this.pending;
+      const mayAlreadyExist = submission.attempted === true;
+      submission.attempted = true;
+      this.storage.setItem('kafak-business-pending-order', JSON.stringify(submission));
       this.inFlight = this.api.submitOrder(submission.data, submission.requestId).then(result => {
         if (result.result !== 'success' || !result.orderid || !result.accessToken || !result.quote) throw Object.assign(new Error('The order response was incomplete. Retry to confirm the same order.'), { uncertain: true });
         // Save the private link before removing retry information.
@@ -54,7 +57,7 @@
       }).catch(error => {
         // These errors explicitly reject a request before a transaction commits.
         // Network failures and 5xx retain the exact payload and UUID for retry.
-        if ([400, 409, 422, 429].includes(error.status)) {
+        if (!mayAlreadyExist && [400, 409, 422].includes(error.status)) {
           this.storage.removeItem('kafak-business-pending-order');
           this.pending = null; this.currentQuote = null;
         }
