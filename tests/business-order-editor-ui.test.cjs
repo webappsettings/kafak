@@ -13,3 +13,15 @@ test('imported paid address edits retain historical pricing even when the render
 test('an explicitly changed product still carries the reviewed SKU and quote',async()=>{
  const {ui,calls,current}=setup(true);await ui.save({...current,product:'Vanthen'});assert.equal(calls[0].sku,'vanthen-one');assert.equal(calls[0].expectedTotal,780);
 });
+
+test('address-only edits of current SKU orders retain the saved price',async()=>{
+ const {ui,calls,current}=setup();current.sku='vanthen-one';
+ await ui.save({...current,house:'Address only'});
+ assert.equal(calls[0].sku,undefined);assert.equal(calls[0].expectedTotal,undefined);
+});
+test('missing editor state hydrates only the displayed version',async()=>{
+ const {ui,calls,current}=setup();
+ ui.editor.current=null;
+ await assert.rejects(ui.save({...current,house:'New'}),/Refresh the order status/);
+ assert.equal(calls.length,0);
+});

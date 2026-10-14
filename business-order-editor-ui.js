@@ -37,11 +37,16 @@
   },
   async read(id){const admin=localStorage.getItem('kafakAdmin')==='true';const row=await editor.load(id,{admin,token:access(id)});return row?{result:'success',data:confirmed(row)}:null;},
   async save(data,{increasePaid=false}={}){
-   if(editor.current?.orderid!==data.orderid)throw Error('Reload this order before saving changes.');
+   if(editor.current?.orderid!==data.orderid){
+    const shown=typeof savedOrderData==='object'?savedOrderData:null;
+    if(!data.orderid||shown?.orderid!==data.orderid||!Number.isSafeInteger(shown.version))throw Error('Refresh the order status before saving changes.');
+    const row=await editor.load(data.orderid,{admin:localStorage.getItem('kafakAdmin')==='true',token:access(data.orderid)});
+    if(!row||row.version!==shown.version)throw Error('This order changed. Refresh its status before saving.');
+   }
    let sku=document.querySelector('#quick-qty')?.selectedOptions[0]?.dataset.sku;
    const current=editor.current;
-   const sameLegacyPack=!current.sku&&Number(data.quantity)===Number(current.quantity)&&!window.kafakCheckoutUI?.productChanged;
-   if(sameLegacyPack&&data.state===current.state)sku=undefined;
+   const sameSavedPack=(!current.sku||sku===current.sku)&&Number(data.quantity)===Number(current.quantity)&&!window.kafakCheckoutUI?.productChanged;
+   if(sameSavedPack&&data.state===current.state)sku=undefined;
    if(!sku&&Number(data.quantity)!==Number(editor.current.quantity))throw Error('Select an available product and quantity.');
    let expectedTotal;
    if(sku){const priced=window.kafakCheckoutUI?.checkout.priced;if(!priced||priced.sku!==sku||priced.state!==data.state)throw Error('Wait for the current delivery total before saving.');expectedTotal=priced.quote.total;}

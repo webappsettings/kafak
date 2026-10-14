@@ -482,8 +482,9 @@ window.handlePhoneNext = function () {
       return;
     }
 
-    // Active Orders (Paid/Pending) ആണെങ്കിൽ പഴയത് പോലെ Sync കഴിഞ്ഞ് കാണിക്കാം
-    showLoader(true);
+    // Show the saved order immediately; verify its latest version in the background.
+    loadOrderData(localData, false);
+    showLoader(false);
     syncUserDataBackground(phone).finally(() => {
       showLoader(false);
     });
@@ -507,11 +508,12 @@ function syncUserDataBackground(phone) {
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
   const userPromise = (window.kafakOrderEditorUI ? window.kafakOrderEditorUI.customer(phone) : fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`).then(res => res.json()))
-    .catch(() => null);
+    .catch(error => window.kafakOrderEditorUI ? {loadError:error} : null);
 
   const ratePromise = fetchCourierRates();
 
   return Promise.all([userPromise, ratePromise]).then(([userRes]) => {
+    if(userRes?.loadError){showOrderLoadError(userRes.loadError);return;}
     let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
 
     // 1. 🔥 NETWORK ERROR (ഇതാണ് Draft ചെക്കിങ്!)
@@ -708,7 +710,7 @@ window.manualRefresh = function () {
           loadOrderData(res.data, true);
         }
       })
-      .catch(err => console.error(err))
+      .catch(err => { console.error(err); if(window.kafakOrderEditorUI)showOrderLoadError(err); })
       .finally(() => {
         setTimeout(() => { setRefreshLoading(false); }, 500);
       });
@@ -2873,6 +2875,19 @@ window.clearAdminCache = function () {
   if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
 }
 
+function showOrderLoadError(error) {
+  showLoader(false);
+  $('#refresh-btn').prop('disabled',false).text('RETRY');
+  $('.btn-update-sage').prop('disabled',true);
+  $('#admin-action-bar').hide();
+  if(error.status===401){
+    const target='admin.html?search='+encodeURIComponent(editingOrderId||'');
+    $('#status-area').html('<div class="text-center py-3">Your session expired. <a href="'+target+'">Sign in again</a></div>').show();
+  }else{
+    $('#status-area').html('<div class="text-center py-3">Unable to load the latest order. <button type="button" class="btn btn-outline-dark btn-sm" onclick="manualRefresh()">Retry</button></div>').show();
+  }
+}
+
 function fetchOrder(orderId, isSilent = false) {
   // Puthiya request povunnathinu munp pazhayathu odunnuvengil ath cancel cheyyunnu
   if (bgFetchController) bgFetchController.abort();
@@ -2937,6 +2952,7 @@ function fetchOrder(orderId, isSilent = false) {
         return;
       }
       console.error("Fetch/Load Error: ", err);
+      if(window.kafakOrderEditorUI){showOrderLoadError(err);return;}
       if (!isSilent) showLoader(false);
       if (!isSilent && err.message && err.message.includes('fetch')) {
         Swal.fire({
@@ -3093,6 +3109,8 @@ function postOrder(data) {
       window.orderSuccess = false;
       stopOrderAnimation();
       $('#videoModal').fadeOut();
+      $('.btn-update-sage').data('is-processing',false).prop('disabled',false);
+      checkForChanges();
       showAlert(window.kafakCheckoutUI ? error.message : 'Order could not be confirmed. Refresh and check your order before trying again.');
     });
 }

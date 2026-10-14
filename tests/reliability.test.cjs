@@ -53,7 +53,7 @@ test('Logout keeps all kinds of unsynced changes',()=>{
 });
 test('Customer application failure closes loader and reports failure',async()=>{
  const code=customer.slice(customer.indexOf('function postOrder(data)'),customer.indexOf('// 2. Updated fetchCourierRates Function'));
- let hidden=false,notice='';const ctx={window:{},stopOrderAnimation(){},sc:'https://test.invalid',fetch:async()=>ok({result:'error'}),$(){return {fadeOut(){hidden=true;}}},showAlert:s=>notice=s};
+ let hidden=false,notice='';const ctx={window:{},stopOrderAnimation(){},sc:'https://test.invalid',fetch:async()=>ok({result:'error'}),$(){return {fadeOut(){hidden=true;},data(k,v){assert.equal(v,false);return this;},prop(k,v){assert.equal(v,false);return this;}}},checkForChanges(){},showAlert:s=>notice=s};
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({});assert(hidden);assert.equal(ctx.window.orderSuccess,false);assert.match(notice,/could not be confirmed/);
 });
 
@@ -184,4 +184,12 @@ test('business queue batches at 100, preserves failed jobs and acknowledges only
  const updates=Array.from({length:101},(_,i)=>({oid:'K'+i,action:'status',status:'Paid'}));let h,calls=0,acks=0;
  h=harness({pendingUpdates:updates},()=>assert.fail('Legacy writer must not run'),{send:async p=>{calls++;if(calls===2)throw Error('connection lost');assert.equal(p.updates.length,100);return {result:'success',count:100};},acknowledge:async()=>{acks++;assert.equal(h.queue('pendingUpdates').length,1);}});
  await h.ctx.finalConfirmSync();assert.equal(calls,2);assert.equal(acks,1);assert.equal(h.queue('pendingUpdates')[0].oid,'K100');
+});
+
+test('failed reads stop the status spinner and offer login or retry without enabling stale edits',()=>{
+ const code=customer.slice(customer.indexOf('function showOrderLoadError(error)'),customer.indexOf('function fetchOrder('));
+ for(const status of [401,503]){
+  const nodes=new Map();let hidden=false;const ctx={editingOrderId:'K-test',encodeURIComponent,showLoader:value=>hidden=value===false,$:selector=>{if(!nodes.has(selector))nodes.set(selector,{prop(k,v){this[k]=v;return this;},text(v){this.content=v;return this;},html(v){this.content=v;return this;},show(){return this;},hide(){this.hidden=true;return this;}});return nodes.get(selector);}};
+  vm.createContext(ctx);vm.runInContext(code,ctx);ctx.showOrderLoadError({status});assert(hidden);assert.equal(nodes.get('.btn-update-sage').disabled,true);assert.equal(nodes.get('#admin-action-bar').hidden,true);assert.match(nodes.get('#status-area').content,status===401?/Sign in again/:/Retry/);
+ }
 });
