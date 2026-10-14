@@ -23,7 +23,8 @@
       $('#delivery-price').textContent = money(quote.courierAmount);
       $('#total-price').textContent = money(quote.total);
       $('#provider').textContent = quote.provider;
-      $('#submit').disabled = false;
+      $('#submit').disabled = flow.settings.acceptingOrders !== true;
+      if (!flow.settings.acceptingOrders) $('#submit').textContent = 'Preview only · Ordering not active yet';
     } catch (error) { message(error.message); }
   }
   function showConfirmation(result) {

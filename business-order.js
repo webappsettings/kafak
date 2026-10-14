@@ -30,6 +30,7 @@
     }
     async submit(fields) {
       if (this.pending) throw new Error('Confirm the previous submission using Retry before starting another order.');
+      if (this.settings.acceptingOrders !== true) throw new Error('This preview is not accepting orders yet. Use the current order page.');
       const priced = this.currentQuote;
       if (!priced || priced.sku !== fields.sku || priced.state !== fields.state) throw new Error('Review the latest delivery total before submitting.');
       if (this.settings.stockStatus === 'no' && fields.preorderConfirmed !== true) throw new Error('Confirm this pre-order before submitting.');

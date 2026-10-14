@@ -4,7 +4,7 @@ const Order = require('../business-order.js');
 const storage = () => { const values = new Map(); return { getItem:k=>values.get(k),setItem:(k,v)=>values.set(k,v),removeItem:k=>values.delete(k) }; };
 const quote={sku:'variant',product:'Example',variant:'Pack',quantity:2,productAmount:3900,courierAmount:140,total:4040};
 const fields={sku:'variant',state:'KERALA',name:'Test',phone:'9000000000'};
-const settings={stockStatus:'yes',contactPhone:'9000000001'};
+const settings={stockStatus:'yes',contactPhone:'9000000001',acceptingOrders:true};
 const response={result:'success',orderid:'K-test',accessToken:'private-token',quote};
 function api(submitOrder){return {catalog:async()=>[],settings:async()=>settings,quote:async()=>quote,submitOrder};}
 test('reload after a lost response retries the exact order and UUID',async()=>{
@@ -35,4 +35,8 @@ test('private order token stays in the fragment; WhatsApp uses confirmed server 
 test('storage failure stops submission before contacting the server',async()=>{
  const saved=storage();saved.setItem=()=>{throw Error('quota');};
  const order=new Order(api(()=>assert.fail('must not submit')),saved);await order.load();await order.price(fields.sku,fields.state);await assert.rejects(order.submit(fields),/browser storage/);
+});
+test('staging previews cannot submit or create a pending request',async()=>{
+ const transport=api(()=>assert.fail('must not submit'));transport.settings=async()=>({...settings,acceptingOrders:false});
+ const order=new Order(transport,storage());await order.load();await order.price(fields.sku,fields.state);await assert.rejects(order.submit(fields),/preview/);assert.equal(order.pending,null);
 });
