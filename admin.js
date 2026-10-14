@@ -6235,6 +6235,9 @@ function injectLeftDrawer() {
                     <button class="btn btn-dark w-100 fw-bold rounded-pill shadow-sm py-2" onclick="openSettingsModal();">
                         <i class="fas fa-sliders-h me-1 text-warning"></i> Open Settings
                     </button>
+                    <a href="https://production.kafaklife.com/kafak-business/" target="_blank" rel="noopener noreferrer" class="btn btn-outline-dark w-100 fw-bold rounded-pill py-2 mt-3">
+                        <i class="fas fa-database me-1"></i> Kafak Business Database
+                    </a>
                 </div>
             </div>
             
