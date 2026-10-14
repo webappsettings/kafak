@@ -2033,7 +2033,7 @@ function hasOlderOrdersForTab(tabKey) {
 }
 
 window.loadMoreCards = async function (tabKey) {
-    if(businessApi&&businessHistoryNext){
+    if(hasOlderOrdersForTab(tabKey)){
         if(businessHistoryLoading)return;
         businessHistoryLoading=true;
         const generation=businessFetchSerial,cursor=businessHistoryNext;
