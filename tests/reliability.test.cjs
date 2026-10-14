@@ -53,8 +53,16 @@ test('Logout keeps all kinds of unsynced changes',()=>{
 });
 test('Customer application failure closes loader and reports failure',async()=>{
  const code=customer.slice(customer.indexOf('function postOrder(data)'),customer.indexOf('// 2. Updated fetchCourierRates Function'));
- let hidden=false,notice='';const ctx={window:{},sc:'https://test.invalid',fetch:async()=>ok({result:'error'}),$(){return {fadeOut(){hidden=true;}}},showAlert:s=>notice=s};
+ let hidden=false,notice='';const ctx={window:{},stopOrderAnimation(){},sc:'https://test.invalid',fetch:async()=>ok({result:'error'}),$(){return {fadeOut(){hidden=true;}}},showAlert:s=>notice=s};
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({});assert(hidden);assert.equal(ctx.window.orderSuccess,false);assert.match(notice,/could not be confirmed/);
+});
+
+test('Confirmed order appears without waiting for the loading video',async()=>{
+ const code=customer.slice(customer.indexOf('function postOrder(data)'),customer.indexOf('// 2. Updated fetchCourierRates Function'));
+ let visible=false,stopped=false;const delays=[];
+ const ctx={window:{},sc:'https://test.invalid',fetch:async()=>ok({result:'success',orderid:'K-test',timestamp:'2026-10-14T12:00:00Z'}),currentLoginPhone:null,localUsersMap:{},SafeStorage:{setItem(){}},STORAGE_KEY:'test',stopOrderAnimation(){stopped=true;},updateFooterButtons(){},sendToWhatsapp(){},setTimeout(fn,delay){delays.push(delay);},showAlert:message=>assert.fail(message),$(selector){return {fadeOut(){},hide(){},fadeIn(){if(selector==='#showsuccess')visible=true;}}}};
+ vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({name:'Test',phone:'0000000000'});
+ assert.equal(visible,true);assert.equal(stopped,true);assert.equal(ctx.window.orderSuccess,true);assert.deepEqual(delays,[1500]);
 });
 test('Cached quantity options come from product prices, not courier metadata',async()=>{
  const code=customer.slice(customer.indexOf('let courierRatesRequest = null;'),customer.indexOf('function renderQtyDropdowns()'));

@@ -2954,7 +2954,19 @@ function injectVideoCSS() {
 
 function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); if (v) v.load(); }
 
+let orderAnimationTimers = [];
+let orderNameInterval = null;
+function stopOrderAnimation() {
+  orderAnimationTimers.forEach(clearTimeout);
+  orderAnimationTimers = [];
+  clearInterval(orderNameInterval);
+  orderNameInterval = null;
+  const video = document.getElementById('honeyVideo');
+  if (video) video.pause();
+}
+
 function playVideoAnimation(userName, apiCallback) {
+  stopOrderAnimation();
   $('#videoModal').css('display', 'flex').fadeIn();
   const video = document.getElementById('honeyVideo');
   const label = $('#customLabel');
@@ -2976,18 +2988,18 @@ function playVideoAnimation(userName, apiCallback) {
 
   apiCallback();
 
-  setTimeout(() => { label.addClass('visible'); }, 4700);
-  setTimeout(() => { nameBadge.addClass('show-big'); }, 5500);
-  setTimeout(() => {
+  const later = (fn, delay) => orderAnimationTimers.push(setTimeout(fn, delay));
+  later(() => { label.addClass('visible'); }, 4700);
+  later(() => { nameBadge.addClass('show-big'); }, 5500);
+  later(() => {
     let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.innerText = "";
-    let typeInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(typeInterval); } }, 80);
+    orderNameInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(orderNameInterval); orderNameInterval = null; } }, 80);
   }, 5800);
-  setTimeout(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
-  setTimeout(() => { checkWrapper.addClass('show'); setTimeout(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
+  later(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
+  later(() => { checkWrapper.addClass('show'); later(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
 }
 
 function postOrder(data) {
-  const startTime = Date.now();
   window.orderSuccess = false;
 
   return fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
@@ -3021,17 +3033,12 @@ function postOrder(data) {
 
         window.orderSuccess = true;
 
-        const elapsed = Date.now() - startTime;
-        const minAnimationTime = 8800;
-        let waitTime = minAnimationTime - elapsed;
-        if (waitTime < 0) waitTime = 0;
-
-        setTimeout(() => {
-          $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
-        }, waitTime);
+        stopOrderAnimation();
+        $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
       }
     }).catch(() => {
       window.orderSuccess = false;
+      stopOrderAnimation();
       $('#videoModal').fadeOut();
       showAlert('Order could not be confirmed. Refresh and check your order before trying again.');
     });
