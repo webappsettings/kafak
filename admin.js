@@ -3764,36 +3764,25 @@ function getZoneKey(stateName) {
 
 
 function calculatePriceInfo(u, qty, state, provider) {
-    const n = parseInt(qty) || 0;
-    let productType = u.product || u.product || 'Vanthen';
-
-    let basePrice = 0;
-    let displayCharge = 0;
-
-    if (productType === 'Cheruthen') {
-        // 🔥 CHERUTHEN STRICT PRICING FOR ADMIN CARDS
-        if (n === 1) { basePrice = 900; displayCharge = 80; }
-        else if (n === 2) { basePrice = 1800; displayCharge = 100; }
-        else { basePrice = n * 900; displayCharge = n * 80; }
-    } else {
-        // 🔥 VANTHEN PRICING
-        basePrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n])
-            ? Number(courierRates.prices[n])
-            : (n * 650);
-        displayCharge = (u.Courier_Charge !== undefined && u.Courier_Charge !== "") ? Number(u.Courier_Charge) : getCourierRate(state, provider, n);
+    // A historical order always displays its saved amounts. Current catalog
+    // prices must never rewrite what an existing customer agreed to pay.
+    const amount = value => value !== null && value !== undefined && value !== '' && Number.isFinite(Number(value)) && Number(value) >= 0 ? Number(value) : null;
+    let displayCharge = amount(u.Courier_Charge);
+    let total = amount(u.Grand_Total) ?? amount(u.grandTotal);
+    let basePrice = amount(u.Product_Amount);
+    if (basePrice === null && total !== null && displayCharge !== null && total >= displayCharge) basePrice = Math.round((total - displayCharge) * 100) / 100;
+    const pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || '[]');
+    const meta = pendingUpdates.find(p => p.oid === u.orderid && p.action === 'meta' && p.charge !== undefined);
+    if (meta) {
+        displayCharge = amount(meta.charge);
+        total = amount(meta.total);
+        if (total === null && basePrice !== null && displayCharge !== null) total = Math.round((basePrice + displayCharge) * 100) / 100;
     }
-
-    // സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള അപ്ഡേറ്റ് (Meta) വല്ലതും ഉണ്ടോ എന്ന് നോക്കുന്നു
-    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-    let myMeta = pendingUpdates.find(p => p.oid === u.orderid && p.action === 'meta');
-
-    if (myMeta && myMeta.charge !== undefined) {
-        displayCharge = Number(myMeta.charge);
-    }
-
+    if (total === null && basePrice !== null && displayCharge !== null) total = Math.round((basePrice + displayCharge) * 100) / 100;
+    const display = value => value === null ? '—' : String(value);
     return {
-        total: `₹${basePrice + displayCharge}/-`,
-        breakdownText: `<span class="text-muted" style="font-size:9px; margin-right:4px;">(${basePrice} + ${displayCharge})</span> ₹${basePrice + displayCharge}/-`
+        total: total === null ? '—' : `₹${total}/-`,
+        breakdownText: `<span class="text-muted" style="font-size:9px; margin-right:4px;">(${display(basePrice)} + ${display(displayCharge)})</span> ${total === null ? '—' : `₹${total}/-`}`
     };
 }
 

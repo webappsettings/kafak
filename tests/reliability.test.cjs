@@ -169,3 +169,13 @@ test('Success tick waits for video, name and server in every completion order',(
   ctx.finishOrderPresentation();assert.equal(ticks,1);assert.equal(closed,0);timers[0]();timers[1]();assert.equal(closed,1);
  }
 });
+
+test('Admin cards retain stored historical prices instead of current product hardcodes',()=>{
+ const start=admin.indexOf('function calculatePriceInfo('),end=admin.indexOf('// ==========================================',start);
+ let pending=[];const ctx={localStorage:{getItem:()=>JSON.stringify(pending)}};vm.createContext(ctx);vm.runInContext(admin.slice(start,end),ctx);
+ assert.equal(ctx.calculatePriceInfo({product:'Cheruthen',Product_Amount:3900,Courier_Charge:140,Grand_Total:4040},2).total,'₹4040/-');
+ assert.equal(ctx.calculatePriceInfo({product:'Old product',Courier_Charge:80,Grand_Total:730},1).total,'₹730/-');
+ assert.match(ctx.calculatePriceInfo({Courier_Charge:80,Grand_Total:730},1).breakdownText,/650 \+ 80/);
+ assert.equal(ctx.calculatePriceInfo({},1).total,'—');
+ pending=[{oid:'K1',action:'meta',charge:150,total:4050}];assert.equal(ctx.calculatePriceInfo({orderid:'K1',Product_Amount:3900,Courier_Charge:140,Grand_Total:4040},2).total,'₹4050/-');
+});
