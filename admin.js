@@ -639,6 +639,11 @@ function fetchOrders(forceLoad = false) {
 // 🔥 RENDER TABS (With PERFECT Date Grouping & State Filters)
 // 🔥 1. RENDER TABS (With DIRECT Courier Full Amount Fix & Refunded Filter)
 function renderTabs(orders, externalCounts = null) {
+    const customerStats = buildCustomerStats(allOrders);
+    const createCardHTML = (...args) => {
+        while (args.length < 6) args.push(undefined);
+        return window.createCardHTML(...args, customerStats);
+    };
     const listNew = document.getElementById('list-sub-new');
     const listSent = document.getElementById('list-sub-sent');
     const listPaidNew = document.getElementById('list-paid-new');
@@ -662,8 +667,15 @@ function renderTabs(orders, externalCounts = null) {
         }
     });
 
+    // Per-render caches: fresh after edits, shared by ranking, sorting and cards.
+    const pendingById = new Map();
+    pendingUpdates.forEach(u => {
+        if (u.action !== 'meta' && u.action !== 'paidNum' && !pendingById.has(u.oid)) pendingById.set(u.oid, u);
+    });
+    const orderInfoCache = new Map();
     const getOrderInfo = (o) => {
-        let local = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
+        if (orderInfoCache.has(o)) return orderInfoCache.get(o);
+        let local = pendingById.get(o.orderid);
         let status = (local && local.status) ? local.status : (o.Status || 'Pending');
 
         // 🔥 Safe Date Parser (With OID Fix Included)
@@ -688,7 +700,9 @@ function renderTabs(orders, externalCounts = null) {
         let printDateRaw = printTimeMatch ? parseInt(printTimeMatch[1]) : pDateStr;
         let printDate = parseDt(printDateRaw);
 
-        return { status, tDate, pDate, dDate, pDateStr, dDateStr, isPrinted, printDateRaw, printDate };
+        const info = { status, tDate, pDate, dDate, pDateStr, dDateStr, isPrinted, printDateRaw, printDate };
+        orderInfoCache.set(o, info);
+        return info;
     };
 
     window.paidRankMap = {};
@@ -1394,7 +1408,21 @@ function updateBadgeUI(elementId, orderCount, bottleCount) {
 }
 
 // 🔥 FIXED: createCardHTML (With UI Text Format Fix)
-function createCardHTML(d, index, type, currentStatus, isCompact = false, groupId = '') {
+function buildCustomerStats(orders) {
+    const stats = new Map();
+    orders.forEach(o => {
+        let phone = String(o.phone || o.Phone || '').replace(/[^0-9]/g, '').slice(-10);
+        const status = String(o.Status || o.status || 'Pending').trim();
+        if (!phone || ['Refunded', 'Archive', 'Cancelled'].includes(status)) return;
+        const entry = stats.get(phone) || { orders: 0, bottles: 0 };
+        entry.orders++;
+        entry.bottles += parseInt(o.quantity) || parseInt(o.Quantity) || 1;
+        stats.set(phone, entry);
+    });
+    return stats;
+}
+
+function createCardHTML(d, index, type, currentStatus, isCompact = false, groupId = '', customerStats = null) {
 
     let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
 
@@ -1437,16 +1465,9 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
 
     if (currentPhone && typeof allOrders !== 'undefined') {
-        let custHistory = allOrders.filter(o => {
-            let p = String(o.phone || o.Phone || '').replace(/[^0-9]/g, '');
-            if (p.length > 10) p = p.slice(-10);
-            let s = String(o.Status || o.status || 'Pending').trim();
-            // 🔥 FIX: Archive, Cancelled, Refunded ഇവയെല്ലാം ഒഴിവാക്കുന്നു
-            return (p === currentPhone) && (s !== 'Refunded') && (s !== 'Archive') && (s !== 'Cancelled');
-        });
-
-        let localOrders = custHistory.length;
-        let localBottles = custHistory.reduce((sum, o) => sum + (parseInt(o.quantity) || parseInt(o.Quantity) || 1), 0);
+        const history = (customerStats || buildCustomerStats(allOrders)).get(currentPhone);
+        let localOrders = history ? history.orders : 0;
+        let localBottles = history ? history.bottles : 0;
 
         let serverOrders = parseInt(d.Total_Orders || d.total_orders) || 0;
         let serverBottles = parseInt(d.Total_Bottles || d.total_bottles) || 0;
@@ -2001,11 +2022,12 @@ window.filterOrders = function (resetLimits = true) {
         // 🔥 SUPER FAST SEARCH LOGIC (No Array Creations, No Inner Loops!)
         let matches = allOrders.filter(o => matchesOrderSearch(o, term));
 
+        const searchDates = new Map(matches.map(o => [o, new Date(o.timestamp).getTime()]));
         matches.sort((a, b) => {
             let aIsActive = activeStatus.includes(a.Status) ? 1 : 0;
             let bIsActive = activeStatus.includes(b.Status) ? 1 : 0;
             if (aIsActive !== bIsActive) return bIsActive - aIsActive;
-            return new Date(b.timestamp) - new Date(a.timestamp);
+            return searchDates.get(b) - searchDates.get(a);
         });
 
         if (matches.length === 0) {
@@ -2014,14 +2036,17 @@ window.filterOrders = function (resetLimits = true) {
             let prevWasActive = true;
             let limitedMatches = matches.slice(0, 100);
 
+            const orderIndices = new Map();
+            const customerStats = buildCustomerStats(allOrders);
+            allOrders.forEach((o, index) => { if (!orderIndices.has(o.orderid)) orderIndices.set(o.orderid, index); });
             limitedMatches.forEach(d => {
                 let isCurrentActive = activeStatus.includes(d.Status);
                 if (activeStatus.length > 0 && prevWasActive && !isCurrentActive) {
                     htmlBuffer += `<div class="text-center my-2"><span class="badge bg-secondary bg-opacity-25 text-secondary rounded-pill px-3" style="font-size:10px;">OTHER RESULTS</span></div>`;
                     prevWasActive = false;
                 }
-                let originalIndex = allOrders.findIndex(x => x.orderid === d.orderid);
-                htmlBuffer += createCardHTML(d, originalIndex, 'search', d.Status);
+                let originalIndex = orderIndices.get(d.orderid);
+                htmlBuffer += createCardHTML(d, originalIndex, 'search', d.Status, false, '', customerStats);
             });
 
             if (matches.length > 100) {

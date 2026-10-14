@@ -3041,7 +3041,9 @@ function postOrder(data) {
 // 2. Updated fetchCourierRates Function
 // 🔥 UPDATED: FETCH RATES (Fixes Disappearing Price Table)
 
+let courierRatesRequest = null;
 function fetchCourierRates() {
+  if (courierRatesRequest) return courierRatesRequest;
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
   const loadingTxt = t.loading || "Loading Options...";
@@ -3085,7 +3087,6 @@ function fetchCourierRates() {
           restoreQty = savedOrderData.quantity;
         }
         renderQtyDropdowns();
-        console.log('serverFetch=', serverFetch)
         if (restoreQty) {
           $('#quick-qty').val(restoreQty);
           updatePrice(restoreQty, true);
@@ -3093,7 +3094,8 @@ function fetchCourierRates() {
         return true;
       }
       return false;
-    }).catch(err => false);
+    }).catch(err => false).finally(() => { courierRatesRequest = null; });
+  courierRatesRequest = serverFetch;
 
   if (cacheValid) { serverFetch; return Promise.resolve(true); } else { return serverFetch; }
 }

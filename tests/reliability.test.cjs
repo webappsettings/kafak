@@ -57,7 +57,7 @@ test('Customer application failure closes loader and reports failure',async()=>{
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({});assert(hidden);assert.equal(ctx.window.orderSuccess,false);assert.match(notice,/could not be confirmed/);
 });
 test('Cached quantity options come from product prices, not courier metadata',async()=>{
- const code=customer.slice(customer.indexOf('function fetchCourierRates()'),customer.indexOf('function renderQtyDropdowns()'));
+ const code=customer.slice(customer.indexOf('let courierRatesRequest = null;'),customer.indexOf('function renderQtyDropdowns()'));
  const ctx={sc:'https://test.invalid',translations:{en:{}},$(){return {val:()=> 'en',html(){}}},SafeStorage:{getItem:()=>JSON.stringify({KERALA:{baseRate:'1:62',serviceCharge:'1:18'},prices:{1:650,2:1300}})},renderQtyDropdowns(){},fetch:async()=>{throw Error('offline');}};
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.fetchCourierRates();assert.deepEqual(Array.from(ctx.globalQtyList),[1,2]);
 });
@@ -97,4 +97,47 @@ test('Edit-page invoice uses the new order data and selected recipient', () => {
  assert.doesNotMatch(url.searchParams.get('text'),/oid=OLD|oid=STALE/);
  assert.ok(customer.includes('sendToWhatsapp(newData, getSelectedWAPhone(newData))'));
  assert.ok(!customer.includes("sendWA(orderIdx, 'pending')"));
+});
+
+test('Render lookup preserves first pending update and calculates dates once per order', () => {
+ const start = admin.indexOf('    const pendingById = new Map();');
+ const end = admin.indexOf('    window.paidRankMap = {};', start);
+ const ctx = {pendingUpdates:[{oid:'K1',action:'meta'}, {oid:'K1',status:'Paid'}, {oid:'K1',status:'Sent'}]};
+ vm.createContext(ctx);
+ vm.runInContext(admin.slice(start,end)+'\nthis.lookup = getOrderInfo;',ctx);
+ let reads=0;
+ const order={orderid:'K1',Status:'Pending',get timestamp(){reads++;return '2026-10-14T10:00:00Z';}};
+ const first=ctx.lookup(order);const initialReads=reads;
+ for(let i=0;i<100;i++) assert.equal(ctx.lookup(order),first);
+ assert.equal(reads,initialReads);assert.equal(first.status,'Paid');
+});
+
+test('Concurrent courier rate loads share a request and allow a later refresh', async () => {
+ const start=customer.indexOf('let courierRatesRequest = null;');
+ const end=customer.indexOf('function renderQtyDropdowns()',start);
+ let calls=0,resolve;
+ const chain={val:()=>'',html(){return this;}};
+ const ctx={$:()=>chain,translations:{en:{}},SafeStorage:{getItem:()=>null},sc:'https://test.invalid',
+ fetch:()=>{calls++;return new Promise(r=>resolve=r);}};
+ vm.createContext(ctx);vm.runInContext(customer.slice(start,end),ctx);
+ const a=ctx.fetchCourierRates(),b=ctx.fetchCourierRates();
+ assert.equal(a,b);assert.equal(calls,1);
+ resolve({json:async()=>({result:'error'})});await a;
+ const c=ctx.fetchCourierRates();assert.equal(calls,2);
+ resolve({json:async()=>({result:'error'})});await c;
+});
+
+test('Customer history index matches existing status and quantity rules', () => {
+ const code=admin.slice(admin.indexOf('function buildCustomerStats('),admin.indexOf('function createCardHTML('));
+ const ctx={};vm.createContext(ctx);vm.runInContext(code,ctx);
+ const rows=[{phone:'+91 3232 232321',quantity:2,Status:'Paid'},
+ {Phone:'3232232321',Quantity:3,status:'Delivered'},
+ ...['Refunded','Archive','Cancelled'].map(Status=>({phone:'3232232321',quantity:50,Status})),
+ {phone:'3232232321',Status:'Pending'}, {phone:'9999999999',quantity:4,Status:'Sent'}];
+ const stats=ctx.buildCustomerStats(rows);
+ assert.equal(stats.get('3232232321').orders,3);
+ assert.equal(stats.get('3232232321').bottles,6);
+ assert.equal(stats.get('9999999999').bottles,4);
+ rows[0].Status='Refunded';
+ assert.equal(ctx.buildCustomerStats(rows).get('3232232321').orders,2);
 });
