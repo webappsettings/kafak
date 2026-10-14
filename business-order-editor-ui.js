@@ -37,8 +37,8 @@
    }
    let last;try{last=JSON.parse(localStorage.getItem('kafak-business-last-order')||'null');}catch{}
    const remembered=typeof localUsersMap==='object'?localUsersMap[normalized]:null;
-   if(remembered?.orderid&&remembered.accessToken)last=remembered;
-   if(last?.orderid&&last.accessToken){
+   if(remembered?.orderid)last=remembered;
+   if(last?.orderid){
     try{
      const row=await editor.load(last.orderid,{token:last.accessToken});
      if(row&&String(row.phone||'').replace(/\D/g,'').slice(-10)===normalized)return {result:'success',data:{...confirmed(row),authorized:true}};
@@ -48,7 +48,7 @@
   },
   async read(id){
    const token=access(id),admin=localStorage.getItem('kafakAdmin')==='true';let row;
-   if(admin){try{row=await editor.load(id,{admin:true});}catch(error){if(error.status!==401||!token)throw error;localStorage.removeItem('kafakAdmin');row=await editor.load(id,{token});}}
+   if(admin){try{row=await editor.load(id,{admin:true});}catch(error){if(error.status!==401)throw error;localStorage.removeItem('kafakAdmin');row=await editor.load(id,{token});}}
    else row=await editor.load(id,{token});
    return row?{result:'success',data:confirmed(row)}:null;
   },
@@ -59,6 +59,7 @@
     const row=await editor.load(data.orderid,{admin:localStorage.getItem('kafakAdmin')==='true',token:access(data.orderid)});
     if(!row||row.version!==shown.version)throw Error('This order changed. Refresh its status before saving.');
    }
+   if(editor.current?.readOnly)throw Error('Please contact Kafak to change this order.');
    let sku=document.querySelector('#quick-qty')?.selectedOptions[0]?.dataset.sku;
    const current=editor.current;
    const sameSavedPack=(!current.sku||sku===current.sku)&&Number(data.quantity)===Number(current.quantity)&&!window.kafakCheckoutUI?.productChanged;
