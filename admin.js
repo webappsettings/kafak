@@ -73,7 +73,8 @@ window.handleSmartSearch = function (value) {
 };
 
 // 🔥 NEW: Global Set for Active Products (Default: Vanthen only)
-window.activeProducts = new Set(['Vanthen']);
+window.activeProducts = new Set(businessApi ? [] : ['Vanthen']);
+const defaultProductName=()=>businessApi ? window.businessDefaultProduct || '' : 'Vanthen';
 
 // 🔥 NEW: ഫിൽറ്ററുകൾ വരയ്ക്കാനും ക്ലിക്ക് ചെയ്യുമ്പോൾ അപ്ഡേറ്റ് ചെയ്യാനുമുള്ള ഫംഗ്ഷൻ
 window.renderProductFilters = function () {
@@ -81,10 +82,10 @@ window.renderProductFilters = function () {
 
     // ഷീറ്റിൽ നിന്നും ലഭ്യമായ എല്ലാ പ്രൊഡക്റ്റുകളും ഡൈനാമിക് ആയി കണ്ടെത്തുന്നു
     let productSet = new Set();
-    productSet.add('Vanthen'); // എപ്പോഴും ഇത് ആദ്യം വരാൻ
+    if(businessApi)(window.businessProductNames||[]).forEach(name=>productSet.add(name));else productSet.add('Vanthen'); // എപ്പോഴും ഇത് ആദ്യം വരാൻ
 
     allOrders.forEach(o => {
-        let pName = o.product || o.Product || 'Vanthen';
+        let pName = o.product || o.Product || defaultProductName();
         productSet.add(pName.trim());
     });
 
@@ -532,8 +533,12 @@ function fetchRatesBackground() {
     }
 
     console.log("🔄 Fetching latest rates from server...");
-    fetch(`${scriptURL}?action=getRates`)
-        .then(res => res.json())
+    (window.KAFAK_BACKEND === 'business' ? (async () => {
+        const api = new KafakBusinessApi();
+        const products = await api.catalog();
+        if (!products.length) throw Error('No active products are configured.');
+        return api.request('/public/rates?' + new URLSearchParams({sku: products[0].sku}));
+    })() : fetch(`${scriptURL}?action=getRates`).then(res => res.json()))
         .then(data => {
             if (data.result === 'success' && data.rates) {
                 courierRates = data.rates;
@@ -614,7 +619,10 @@ function fetchOrders(forceLoad = false) {
     (businessApi ? businessApi.feed() : fetch(`${scriptURL}?action=getAllOrders`).then(res => res.json()))
         .then(response => {
             if(businessApi&&fetchSerial!==businessFetchSerial)return;
-            if(businessApi)businessHistoryNext=response.next||null;
+            if(businessApi){
+                businessHistoryNext=response.next||null;window.businessDefaultProduct=response.defaultProduct;window.businessProductNames=response.products||[];
+                if(!window.businessProductsInitialized){window.activeProducts=new Set(response.defaultProduct?[response.defaultProduct]:response.products||[]);window.businessProductsInitialized=true;}
+            }
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 let serverOrders = response.data;
@@ -4146,7 +4154,7 @@ window.renderDashboard = function () {
         let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
 
-        let productType = (o.product || o.Product || 'Vanthen').trim();
+        let productType = (o.product || o.Product || defaultProductName()).trim();
         if (typeof window.activeProducts !== 'undefined' && !window.activeProducts.has(productType)) return;
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
@@ -5420,7 +5428,7 @@ window.renderDetailedMonthlyOverview = function () {
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
-        let productType = (o.product || o.Product || 'Vanthen').trim();
+        let productType = (o.product || o.Product || defaultProductName()).trim();
 
         let pDateStr = o.paidDate || o['Paid Date'] || o.Paid_Date || o.timestamp || o.Date || o.date;
         let pDate = parseOrderDate(pDateStr, o.orderid);
@@ -6932,7 +6940,7 @@ function submitDirectSale(data) {
             } else {
                 Swal.fire('Error', 'Failed to save', 'error');
             }
-        });
+        }).catch(error => Swal.fire({icon:'error',title:'Sale not saved',text:error.message}));
 }
 
 
@@ -6959,7 +6967,12 @@ window.deleteOfflineSale = function (oid) {
 //---------------new
 
 // 🔥 1. UNIFIED CREATE & EDIT WINDOW FOR DIRECT SALES (With Clear Delete Indication)
-window.showOfflineSaleModal = function (editOid = null) {
+window.showOfflineSaleModal = async function (editOid = null) {
+    let saleOptions = null;
+    if (businessApi) {
+        try { saleOptions = await businessApi.request('/admin/sale-options'); }
+        catch (error) { Swal.fire({icon:'error',title:'Sale options unavailable',text:error.message}); return; }
+    }
     let o = null;
     if (editOid) o = allOrders.find(x => x.orderid === editOid);
 
@@ -6968,6 +6981,7 @@ window.showOfflineSaleModal = function (editOid = null) {
 
     let savedRate = (typeof courierRates !== 'undefined' && courierRates.partnerRate) ? courierRates.partnerRate : 170;
     let savedMargin = (typeof courierRates !== 'undefined' && courierRates.partnerMargin) ? courierRates.partnerMargin : 50;
+    if(saleOptions){savedRate=saleOptions.partnerRate;savedMargin=saleOptions.partnerMargin;}
 
     let offName = o ? (o.name === 'Walk-in Customer' ? '' : o.name) : '';
     let offQty = o ? o.quantity : 1;
@@ -7098,6 +7112,21 @@ window.showOfflineSaleModal = function (editOid = null) {
         confirmButtonText: editOid ? '<i class="fas fa-save"></i> UPDATE SALE' : '<i class="fas fa-check-circle"></i> ADD TO ACCOUNTS',
         confirmButtonColor: editOid ? '#2563eb' : '#198754',
         didOpen: () => {
+            if (saleOptions) {
+                const item=document.getElementById('off-item'); item.replaceChildren();
+                const familyKey=p=>JSON.stringify([p.name,p.variant,p.packGrams,p.packSize,p.size,p.colour,p.unit]);
+                const current=saleOptions.products.find(p=>p.sku===o?.sku);
+                for(const product of saleOptions.products.filter(p=>Number(p.units)===1)){
+                    const option=new Option([product.name,product.variant,product.packGrams?product.packGrams+' g':product.packSize,product.size,product.colour].filter(Boolean).join(' · '),product.sku);
+                    option.dataset.price=product.price;option.dataset.cost=product.cost;option.dataset.family=familyKey(product);
+                    option.selected=Boolean(current&&familyKey(current)===familyKey(product));item.add(option);
+                }
+                const partners=document.getElementById('part-name');partners.replaceChildren();
+                saleOptions.partners.forEach(name=>partners.add(new Option(name,name,false,name===partName)));
+                document.getElementById('off-cost').readOnly=true;
+                if(!o)updateOfflineFields();
+                else if(o.Bulk_Grams!=null){document.getElementById('part-grams').value=o.Bulk_Grams;document.getElementById('part-rate').value=o.Bulk_Rate;document.getElementById('part-margin').value=o.Bulk_Margin;}
+            }
             if (isPartner) calcPartnerTotal(); else calcOfflineTotal();
         },
         preConfirm: async () => {
@@ -7139,6 +7168,26 @@ window.showOfflineSaleModal = function (editOid = null) {
                 };
             }
 
+            if (saleOptions) {
+                data.version=o?.version;
+                if(type==='offline'){
+                    const selected=document.getElementById('off-item').selectedOptions[0];
+                    const familyKey=p=>JSON.stringify([p.name,p.variant,p.packGrams,p.packSize,p.size,p.colour,p.unit]);
+                    const product=saleOptions.products.find(p=>familyKey(p)===selected?.dataset.family&&Number(p.units)===data.quantity);
+                    if(!product){Swal.showValidationMessage('Select a configured product quantity.');return false;}
+                    data.sku=product.sku;
+                    data.desc=`${data.quantity}x ${selected.textContent}`;
+                }else{
+                    data.product=saleOptions.bulkProduct;
+                    data.partner=document.getElementById('part-name').value;
+                    data.grams=Number(document.getElementById('part-grams').value);
+                    const rateValue=document.getElementById('part-rate').value, marginValue=document.getElementById('part-margin').value;
+                    if(rateValue===''||marginValue===''){Swal.showValidationMessage('Enter the bulk cost and margin per kg.');return false;}
+                    data.rate=Number(rateValue);data.margin=Number(marginValue);
+                    if(!Number.isFinite(data.rate)||!Number.isFinite(data.margin)||data.rate<0||data.margin<0){Swal.showValidationMessage('Enter valid bulk rates.');return false;}
+                    data.total=Math.round((Math.round(data.rate*100)+Math.round(data.margin*100))*data.grams/1000)/100;
+                }
+            }
             let fileInput = document.getElementById('offline-proof');
             let fileData = null;
             let fileName = null;
@@ -7372,12 +7421,12 @@ window.renderDayBookTable = function () {
     let dailyData = {};
     const initDate = (dStr) => { if (!dailyData[dStr]) dailyData[dStr] = { income: { orders: [], totalAmount: 0, totalBottles: 0 }, courier: { items: [], totalAmount: 0 }, expenses: [] }; };
 
-    allOrders.forEach(o => {
+    (businessApi ? dashboardData.monthOrders || [] : allOrders).forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim();
         if (['Pending', 'Sent', 'Archive', 'Refunded'].includes(status)) return;
 
         // 🔥 PRODUCT FILTER FIX FOR DAY BOOK
-        let productType = (o.product || o.Product || 'Vanthen').trim();
+        let productType = (o.product || o.Product || defaultProductName()).trim();
         if (typeof window.activeProducts !== 'undefined' && !window.activeProducts.has(productType)) return;
 
         let qty = parseInt(o.quantity) || 0;
@@ -7395,10 +7444,10 @@ window.renderDayBookTable = function () {
 
         // ഡയറക്ട് ഡെലിവറി അല്ലെങ്കിൽ മാത്രം കൊറിയർ ചാർജ് കാൽക്കുലേറ്റ് ചെയ്യുന്നു
         if (!isDirect) {
-            totalCourier = parseInt(o.Courier_Charge) || 0;
-            if (isNaN(totalCourier) || totalCourier <= 0) totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
-            actualCourier = parseInt(o.actualCourierCost) || parseInt(o.Actual_Courier_Cost) || 0;
-            if (isNaN(actualCourier) || actualCourier <= 0) actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier;
+            totalCourier = Number(o.Courier_Charge) || 0;
+            if (!businessApi && (isNaN(totalCourier) || totalCourier <= 0)) totalCourier = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
+            actualCourier = Number(o.actualCourierCost) || Number(o.Actual_Courier_Cost) || 0;
+            if (!businessApi && (isNaN(actualCourier) || actualCourier <= 0)) actualCourier = totalCourier > 20 ? totalCourier - 20 : totalCourier;
         }
 
         let applyCourierCost = (courierMode === 'actual') ? actualCourier : totalCourier;
@@ -7408,8 +7457,8 @@ window.renderDayBookTable = function () {
             let dStr = flatpickr.formatDate(pDate, "Y-m-d");
             initDate(dStr);
 
-            let amt = parseInt(o.grandTotal) || parseInt(o.Grand_Total) || 0;
-            if (isNaN(amt) || amt <= 0) {
+            let amt = Number(o.grandTotal) || Number(o.Grand_Total) || 0;
+            if (!businessApi && (isNaN(amt) || amt <= 0)) {
                 let pInfo = calculatePriceInfo(o, qty, o.state, o.provider || o.Courier_Provider);
                 amt = parseInt(pInfo.total.replace(/[^0-9]/g, '')) || 0;
             }
@@ -7417,7 +7466,7 @@ window.renderDayBookTable = function () {
             // ഡയറക്ട് ഡെലിവറി വരുമാനം കമ്പനിക്ക് കിട്ടുന്ന ₹650 ആയി ഫിക്സ് ചെയ്യുന്നു
             if (isDirect) {
                 let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
-                amt = standardPrice;
+                amt = businessApi ? Number(o.Product_Amount) : standardPrice;
             }
 
             dailyData[dStr].income.orders.push({ qty: qty, amt: amt, type: saleType, name: o.name, oid: o.orderid, receipt: o.receipt, msg: o.message });
@@ -7649,7 +7698,7 @@ window.showDayDetails = function (dateStr) {
     }
 
     // 2. ആ ദിവസത്തെ ഓർഡറുകൾ എടുക്കുന്നു
-    allOrders.forEach(o => {
+    (businessApi ? dashboardData.monthOrders || [] : allOrders).forEach(o => {
         let status = o.Status || 'Pending';
         if (status === 'Pending' || status === 'Sent' || status === 'Archive' || status === 'Refunded') return;
 
@@ -8041,7 +8090,7 @@ window.renderPartnerList = function () {
         if (!['paid', 'dispatched', 'delivered', 'completed'].includes(activeStatus)) return;
 
         // 🔥 PRODUCT FILTER FIX FOR SALARY SECTION
-        let productType = (o.product || o.Product || 'Vanthen').trim();
+        let productType = (o.product || o.Product || defaultProductName()).trim();
         if (typeof window.activeProducts !== 'undefined' && !window.activeProducts.has(productType)) return;
 
         let qty = parseInt(o.quantity || o.Quantity) || 1;
@@ -8114,7 +8163,7 @@ window.renderPartnerList = function () {
             else monthDispatchedCount += qty;
 
             // 🔥 DYNAMIC PRODUCT NAME & PRICE GROUPING
-            let pName = (o.product || o.Product || 'Vanthen').trim();
+            let pName = (o.product || o.Product || defaultProductName()).trim();
             let key = (pName.toLowerCase() === 'vanthen') ? `₹${amt}` : `₹${amt}(${pName})`;
             orderBreakdown[key] = (orderBreakdown[key] || 0) + 1;
 
@@ -8199,7 +8248,7 @@ window.renderPartnerList = function () {
 
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
 
-    if (businessApi) shares={Salam:0,Samad:0,Jazeela:0,...dashboardData.monthlyReport.partnerShares};
+    if (businessApi) shares={...(dashboardData.monthlyReport.productShares||dashboardData.monthlyReport.partnerShares)};
     let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : (businessApi ? 0 : 330);
 
     let todayDate = new Date();
@@ -8339,15 +8388,15 @@ window.renderPartnerList = function () {
         <div class="bg-light p-2 rounded-3 border mt-3">
             <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
                 <span class="fw-bold text-secondary">${businessApi?'Salam':'Salam (20%)'}:</span>
-                <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
+                <span class="fw-bold text-dark">₹${(shares.Salam||0).toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
                 <span class="fw-bold text-secondary">${businessApi?'Samad':'Samad (70%)'}:</span>
-                <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
+                <span class="fw-bold text-dark">₹${(shares.Samad||0).toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between" style="font-size:11px;">
                 <span class="fw-bold text-secondary">${businessApi?'Jazeela':'Jazeela (10%)'}:</span>
-                <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
+                <span class="fw-bold text-dark">₹${(shares.Jazeela||0).toLocaleString()}</span>
             </div>
         </div>
     </div>`;
@@ -8526,13 +8575,22 @@ function getTrackType(key) {
     return 'Bottle';
 }
 
-window.recalcRecordCount = function (key) {
+window.recalcRecordCount = async function (key) {
     let startStr = document.getElementById('rec-stop-start').value;
     let endStr = document.getElementById('rec-stop-end').value;
 
     let startTime = new Date(startStr).getTime();
     let endTime = new Date(endStr).getTime();
 
+    if(businessApi){
+        const request=(window.businessRecordingRequest||0)+1;window.businessRecordingRequest=request;
+        try{
+            const result=await businessApi.request('/admin/inventory-count?'+new URLSearchParams({key,start:new Date(startTime).toISOString(),end:new Date(endTime).toISOString()}));
+            if(request!==window.businessRecordingRequest)return;
+            document.getElementById('rec-calc-count').innerText=result.count;recalcRecordAvg();
+        }catch(error){showToast('error',error.message);}
+        return;
+    }
     let count = 0;
     let trackType = getTrackType(key);
 
@@ -8666,7 +8724,7 @@ window.stopRecording = function (key) {
 
 // 🔥 ADVANCED LIVE STOCK & YIELD TRACKER LOGIC (With List View & Global Counts)
 window.getLiveStockHtml = function (isExpanded = false) {
-    const standardItems = {
+    const standardItems = businessApi ? window.businessInventoryUsage.layout.standardItems : {
         bottles: { name: 'Empty Bottles', unit: 'Nos', icon: 'fa-wine-bottle', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
         honey: { name: 'Raw Honey', unit: 'KG', icon: 'fa-tint', color: 'warning', track: 'bottle', defAvg: 0.65, trkLbl: 'Btl' },
         pouch: { name: 'Shrink Pouch', unit: 'Nos', icon: 'fa-shopping-bag', color: 'primary', track: 'bottle', defAvg: 1, trkLbl: 'Btl' },
@@ -8677,7 +8735,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
         a6paper: { name: 'A6 Paper', unit: 'Nos', icon: 'fa-file-alt', color: 'dark', track: 'order', defAvg: 1, trkLbl: 'Ord' }
     };
 
-    const inkItems = {
+    const inkItems = businessApi ? window.businessInventoryUsage.layout.inkItems : {
         cyan: { name: 'Cyan Ink', unit: 'ML', icon: 'fa-fill-drip', color: 'info', track: 'print', defAvg: 0.05, trkLbl: 'Stk' },
         magenta: { name: 'Magenta Ink', unit: 'ML', icon: 'fa-fill-drip', color: 'danger', track: 'print', defAvg: 0.05, trkLbl: 'Stk' },
         yellow: { name: 'Yellow Ink', unit: 'ML', icon: 'fa-fill-drip', color: 'warning', track: 'print', defAvg: 0.05, trkLbl: 'Stk' },
@@ -8699,7 +8757,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    allOrders.forEach(o => {
+    if(!businessApi) allOrders.forEach(o => {
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || 'Pending').trim();
 
@@ -8792,6 +8850,11 @@ window.getLiveStockHtml = function (isExpanded = false) {
         for (let k in standardItems) calculateItem(k, standardItems[k]);
         for (let k in inkItems) calculateItem(k, inkItems[k]);
     });
+
+    if(businessApi){
+        used={...window.businessInventoryUsage.used};counts={...window.businessInventoryUsage.counts};
+        window.inventoryDetailsMap=window.businessInventoryUsage.details;
+    }
 
     const buildCard = (k, itemObj, isInk = false) => {
         let isStarted = db[k].start ? true : false;
@@ -9100,7 +9163,11 @@ window.toggleInvCollapseIcon = function () {
 };
 
 // റെൻഡർ ചെയ്യുമ്പോൾ Collapse സ്റ്റേറ്റ് നിലനിർത്താൻ
-window.renderLiveStockTracker = function () {
+window.renderLiveStockTracker = async function () {
+    if(businessApi){
+        try{window.businessInventoryUsage=await businessApi.request('/admin/inventory-usage');}
+        catch(error){showToast('error',error.message);return;}
+    }
     let isExpanded = $('#inventoryCollapse').hasClass('show');
     let html = window.getLiveStockHtml(isExpanded);
     if ($('#live-stock-box').length > 0) {
@@ -9578,6 +9645,17 @@ window.changeCourier = async function (oid, newProvider) {
     let newCharge = (typeof getCourierRate === 'function') ? getCourierRate(order.state, newProvider, qty) : 0;
     let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
     let newTotal = standardPrice + newCharge;
+    if (window.KAFAK_BACKEND === 'business' && newProvider !== oldProvider) {
+        try {
+            const quote = await new KafakBusinessApi().request('/admin/courier-quote?' + new URLSearchParams({oid, provider: newProvider}));
+            newCharge = quote.courierAmount;
+            newTotal = quote.total;
+        } catch (error) {
+            Swal.fire({icon:'error', title:'Courier not changed', text:error.message});
+            filterOrders(false);
+            return;
+        }
+    }
 
     let newMeta = oldMeta.replace(/DDelivery[a-zA-Z]+_\d+/g, '').trim();
 
@@ -9747,7 +9825,14 @@ window.openDirectDeliveryPopup = function (oid) {
 
             let qty = parseInt(order.quantity) || 1;
             let standardPrice = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[qty]) ? Number(courierRates.prices[qty]) : (qty * 650);
-            let newTotal = standardPrice + charge;
+            if (window.KAFAK_BACKEND === 'business') {
+                standardPrice = order.Product_Amount !== '' && order.Product_Amount != null ? Number(order.Product_Amount) : Number(oldTotal) - Number(oldCharge);
+                if (!Number.isFinite(standardPrice) || standardPrice < 0) {
+                    Swal.fire({icon:'error', title:'Delivery not changed', text:'The historical product amount must be corrected first.'});
+                    return;
+                }
+            }
+            let newTotal = Math.round((standardPrice + charge) * 100) / 100;
 
             let isCompleteRevert = (newProvider === oldProvider && newMeta === oldMeta);
 

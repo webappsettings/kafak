@@ -1,3 +1,9 @@
+let orderPageTransport;
+function orderServiceFetch(url, options) {
+  if(window.KAFAK_BACKEND!=='business')return fetch(url,options);
+  if(!orderPageTransport){const api=new KafakBusinessApi();orderPageTransport=new KafakBusinessAdminTransport(api,new KafakBusinessAdminCommands(api,localStorage),(...args)=>fetch(...args));}
+  return orderPageTransport.fetch(url,options);
+}
 // ------------------------------------------------------------------------------
 // 🔴 CONFIGURATION & GLOBALS
 // ------------------------------------------------------------------------------
@@ -197,6 +203,7 @@ window.updateWizardLocDisplay = function () {
 
 // 🔥 NEW: Product മാറുമ്പോൾ അളവുകളും (300g/600g) വിലയും തനിയെ മാറാൻ
 window.onProductChange = function () {
+  if(window.kafakCheckoutUI)return window.kafakCheckoutUI.changeProduct();
   let activeQtySelector = $('#wizard-view').is(':visible') ? '#quantity' : '#quick-qty';
   let currentQty = $(activeQtySelector).val();
 
@@ -499,8 +506,7 @@ function syncUserDataBackground(phone) {
   let localData = localUsersMap[phone] || {};
   let custIdParam = localData.custId ? `&custId=${localData.custId}` : '';
 
-  const userPromise = fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`)
-    .then(res => res.json())
+  const userPromise = (window.kafakOrderEditorUI ? window.kafakOrderEditorUI.customer(phone) : fetch(`${sc}?action=getCustomer&phone=${phone}${custIdParam}&t=${Date.now()}`).then(res => res.json()))
     .catch(() => null);
 
   const ratePromise = fetchCourierRates();
@@ -528,6 +534,11 @@ function syncUserDataBackground(phone) {
       }
 
       if (!isAdmin) clearUserLogin();
+      return;
+    }
+
+    if (window.kafakOrderEditorUI && !userRes.data?.authorized && !isAdmin) {
+      clearUserLogin();
       return;
     }
 
@@ -567,8 +578,7 @@ function syncUserDataBackground(phone) {
 
 
 function checkUserOnServerBackground(phone) {
-  fetch(`${sc}?action=getCustomer&phone=${phone}`)
-    .then(res => res.json())
+  (window.kafakOrderEditorUI ? window.kafakOrderEditorUI.customer(phone) : fetch(`${sc}?action=getCustomer&phone=${phone}`).then(res => res.json()))
     .then(data => {
       if ($('#wizard-view').is(':visible')) {
 
@@ -692,10 +702,9 @@ window.manualRefresh = function () {
     // 🔥 FIX 1: സ്ക്രീനിൽ ഓർഡർ ഉണ്ടെങ്കിൽ OID വെച്ച് മാത്രം ഫ്രഷ് ഡാറ്റ എടുക്കുന്നു. 
     // (ഇത് വഴി ഫോൺ നമ്പർ മാറിയാലും ഒരിക്കലും ലോഗ് ഔട്ട് ആവില്ല, സ്മൂത്ത് ആയി മാറും!)
     let safeOid = encodeURIComponent(editingOrderId);
-    fetch(`${sc}?action=getOrder&oid=${safeOid}&t=${Date.now()}`)
-      .then(res => res.json())
+    (window.kafakOrderEditorUI ? window.kafakOrderEditorUI.read(editingOrderId) : fetch(`${sc}?action=getOrder&oid=${safeOid}&t=${Date.now()}`).then(res => res.json()))
       .then(res => {
-        if (res.result === 'success' && res.data) {
+        if (res && res.result === 'success' && res.data) {
           loadOrderData(res.data, true);
         }
       })
@@ -852,8 +861,7 @@ window.submitWizardOrder = async function () { // 🔥 async ആക്കി മ
   if (!editingOrderId && phoneCheck && !isAdmin) {
     showLoader(true);
     try {
-      let res = await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`);
-      let data = await res.json();
+      let data = window.kafakOrderEditorUI ? await window.kafakOrderEditorUI.customer(phoneCheck) : await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`).then(res => res.json());
 
       if (data.result === 'success' && data.data && data.data.orderid) {
         let s = String(data.data.Status || 'pending').toLowerCase();
@@ -907,7 +915,7 @@ window.submitWizardOrder = async function () { // 🔥 async ആക്കി മ
     district: userData.district,
     state: userData.state || 'Kerala',
     quantity: $('#quantity').val(),
-    product: $('#admin-product-type').length ? $('#admin-product-type').val() : 'Vanthen', // 🔥 NEW
+    product: window.kafakCheckoutUI ? window.kafakCheckoutUI.productName() : $('#admin-product-type').length ? $('#admin-product-type').val() : 'Vanthen', // 🔥 NEW
     message: '',
     custId: myCustId,
     language: $('#language-select').val() || 'en',
@@ -1429,8 +1437,12 @@ window.markOrderDelivered = function (oid) {
     confirmButtonText: t.btn_yes_received,
     cancelButtonText: t.btn_not_yet,
     customClass: { popup: 'rounded-4 shadow-lg' }
-  }).then((result) => {
+  }).then(async (result) => {
     if (result.isConfirmed) {
+      if(window.kafakOrderEditorUI){
+        try{await window.kafakOrderEditorUI.delivered(oid);}
+        catch(error){Swal.fire({icon:'error',title:'Update not saved',text:error.message});return;}
+      }
 
       // 1. UI Feedback
       $('#btn-mark-delivered').parent().html(`
@@ -1467,7 +1479,7 @@ window.markOrderDelivered = function (oid) {
       }
 
       // 4. Server Update (Sends Date)
-      fetch(sc, {
+      if(!window.kafakOrderEditorUI) orderServiceFetch(sc, {
         method: 'POST',
         body: JSON.stringify({
           action: "bulkUpdateStatus",
@@ -2170,8 +2182,7 @@ window.submitQuickOrder = async function () {
     showLoader(true);
     try {
       if (!isAdmin) {
-        let res = await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`);
-        let data = await res.json();
+        let data = window.kafakOrderEditorUI ? await window.kafakOrderEditorUI.customer(phoneCheck) : await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`).then(res => res.json());
         if (data.result === 'success' && data.data && data.data.orderid) {
           let s = String(data.data.Status || 'pending').toLowerCase();
           if (!['delivered', 'completed', 'refunded'].includes(s)) {
@@ -2247,7 +2258,7 @@ window.submitQuickOrder = async function () {
     quantity: $('#quick-qty').val(),
     paidNum: $('#edit-paid-by').val() || '',
     adminMeta: finalMeta,
-    product: $('#admin-product-type').length ? $('#admin-product-type').val() : (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
+    product: window.kafakCheckoutUI ? window.kafakCheckoutUI.productName() : $('#admin-product-type').length ? $('#admin-product-type').val() : (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
     message: '',
     custId: (typeof savedOrderData !== 'undefined' && savedOrderData.custId) ? savedOrderData.custId : myCustId,
     language: custLang,
@@ -2257,8 +2268,7 @@ window.submitQuickOrder = async function () {
   if (isAdmin) {
     if (!editingOrderId) {
       showLoader(true);
-      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
-        .then(res => res.json())
+      (window.kafakCheckoutUI ? window.kafakCheckoutUI.submit(finalData).then(result=>{Object.assign(finalData,result.data);return result.res;}) : orderServiceFetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) }).then(res=>res.json()))
         .then(res => {
           showLoader(false);
           restoreBtn();
@@ -2296,6 +2306,21 @@ window.submitQuickOrder = async function () {
     let isProductChanged = (oldProduct !== newProduct);
 
     if (oldStatus === 'paid' && isQtyChanged && newQty > oldQty) {
+      if(window.kafakOrderEditorUI){
+        showLoader(true);
+        window.kafakOrderEditorUI.save(finalData,{increasePaid:true}).then(result=>{
+          Object.assign(finalData,result.data);savedOrderData={...savedOrderData,...result.data};
+          updateLocalCache(finalData,finalData.Status);updateAdminUI(finalData.Status,finalData.orderid);
+          showLoader(false);restoreBtn();
+          const balance=finalData.Balance_Due,newTotal=finalData.Grand_Total;
+          const msg=custLang==='ml'
+            ? `*ഓർഡർ അപ്‌ഡേറ്റ് ചെയ്തു!* ✅\nഓർഡർ നമ്പർ: ${finalData.orderid}\n\nഎണ്ണം കൂട്ടിയിട്ടുണ്ട്: ${oldQty} ➡️ *${finalData.quantity}*\n\n💰 *അടയ്ക്കാനുള്ള ബാക്കി തുക: ₹${balance}*\n(ആകെ: ₹${newTotal})\n\nബാക്കി തുക GPay ചെയ്താൽ അയക്കുന്നതാണ്. 👍`
+            : `*Order Updated!* ✅\nOrder ID: ${finalData.orderid}\n\nQty increased: ${oldQty} ➡️ *${finalData.quantity}*\n\n💰 *Balance to Pay: ₹${balance}*\n(Total: ₹${newTotal})\n\nPlease GPay the balance to confirm. 👍`;
+          window.open(`https://wa.me/${getSelectedWAPhone(finalData)}?text=${encodeURIComponent(msg)}`,'_blank');
+        }).catch(error=>{showLoader(false);restoreBtn();showAlert(error.message);});
+        return;
+      }
+
       let prov = (typeof savedOrderData !== 'undefined') ? (savedOrderData.courier || savedOrderData.provider) : '';
       let stateVal = finalData.state || 'KERALA';
       let productType = finalData.product || 'Vanthen';
@@ -2322,10 +2347,10 @@ window.submitQuickOrder = async function () {
       let balance = newTotal - oldTotal;
 
       showLoader(true);
-      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
+      orderServiceFetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
         .then(res => res.json())
         .then(res => {
-          fetch(sc, {
+          orderServiceFetch(sc, {
             method: 'POST',
             body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: "Sent" }] })
           }).then(() => {
@@ -2357,8 +2382,7 @@ window.submitQuickOrder = async function () {
       let newData = { ...finalData };
       newData.orderid = null;
       showLoader(true);
-      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: newData }) })
-        .then(res => res.json())
+      (window.kafakCheckoutUI ? window.kafakCheckoutUI.submit(newData).then(result=>{Object.assign(newData,result.data);return result.res;}) : orderServiceFetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: newData }) }).then(res=>res.json()))
         .then(res => {
           showLoader(false);
           restoreBtn();
@@ -2394,8 +2418,9 @@ window.submitQuickOrder = async function () {
 
     let processUpdate = function (showInvoicePrompt = false) {
       showLoader(true);
-      fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
-        .then(() => {
+      (window.kafakOrderEditorUI ? window.kafakOrderEditorUI.save(finalData).then(result=>{Object.assign(finalData,result.data);savedOrderData={...savedOrderData,...result.data};return result.res;}) : orderServiceFetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) }).then(res=>res.json()))
+        .then(result => {
+          if(result.result!=='success')throw Error('The order update was not confirmed');
           updateLocalCache(finalData, savedOrderData.Status);
           savedOrderData.quantity = finalData.quantity;
           savedOrderData.adminMeta = finalMeta;
@@ -2426,7 +2451,7 @@ window.submitQuickOrder = async function () {
           } else {
             Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
           }
-        }).catch(err => { showLoader(false); restoreBtn(); });
+        }).catch(err => { showLoader(false); restoreBtn(); showAlert(err.message); });
     };
 
     if (!isQtyChanged) {
@@ -2624,13 +2649,13 @@ window.syncSingleOrder = function (oid) {
   let promises = [];
 
   if (myUpdate.deleteRefund) {
-    promises.push(fetch(sc, {
+    promises.push(orderServiceFetch(sc, {
       method: 'POST',
       body: JSON.stringify({ action: 'deleteRefund', oid: oid })
     }));
   }
 
-  promises.push(fetch(sc, {
+  promises.push(orderServiceFetch(sc, {
     method: 'POST',
     body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [myUpdate] })
   }));
@@ -2640,11 +2665,11 @@ window.syncSingleOrder = function (oid) {
     .then(dataList => {
 
       // 🔥 FIX: സെർവറിൽ നിന്നും സക്സസ് മറുപടി വന്നോ എന്ന് നോക്കുന്നു
-      let successResponse = dataList.find(d => d.result === 'success');
+      let successResponse = dataList.every(d => d.result === 'success' || d.result === 'not_found') ? dataList[dataList.length - 1] : null;
 
       if (successResponse) {
 
-        let newUpdates = updates.filter(u => u.oid !== oid);
+        let newUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || '[]').filter(u => JSON.stringify(u) !== JSON.stringify(myUpdate));
         localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
 
         Swal.fire({ icon: 'success', title: 'Synced Successfully! ☁️', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
@@ -2690,7 +2715,7 @@ window.adminAction = async function (oid, status) {
     const originalContent = btnContainer.html();
     btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Archiving...</div>');
 
-    fetch(sc, {
+    orderServiceFetch(sc, {
       method: 'POST',
       body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] })
     })
@@ -2863,12 +2888,11 @@ function fetchOrder(orderId, isSilent = false) {
   let fetchUrl = `${sc}?action=getOrder&oid=${safeOid}&t=${Date.now()}`;
 
   // signal: bgFetchController.signal cherkkunnu
-  fetch(fetchUrl, { signal: bgFetchController.signal })
-    .then(res => res.json())
+  (window.kafakOrderEditorUI ? window.kafakOrderEditorUI.read(orderId) : fetch(fetchUrl, { signal: bgFetchController.signal }).then(res => res.json()))
     .then(res => {
       if (!isSilent) showLoader(false);
 
-      if (res.result === 'success' && res.data) {
+      if (res && res.result === 'success' && res.data) {
         $('#step-0').hide();
         let d = res.data;
 
@@ -3033,7 +3057,7 @@ function postOrder(data) {
   window.orderSuccess = false;
 
   const request = window.kafakCheckoutUI
-    ? window.kafakCheckoutUI.submit(data).then(result => { data = { ...data, ...result.data }; return result.res; })
+    ? (data.orderid ? window.kafakOrderEditorUI.save(data) : window.kafakCheckoutUI.submit(data)).then(result => { data = { ...data, ...result.data }; return result.res; })
     : fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
       .then(res => { if (!res.ok) throw new Error('Order request failed'); return res.json(); });
   return request
@@ -3058,7 +3082,7 @@ function postOrder(data) {
 
         // 🔥 FIX: നിലവിലുള്ള പൂർണ്ണമായ ഡാറ്റയോടൊപ്പം പുതിയവ ചേർത്ത് സേവ് ചെയ്യുന്നു
         let existingData = localUsersMap[data.phone] || {};
-        localUsersMap[data.phone] = { ...existingData, ...successData, Status: "Pending" };
+        localUsersMap[data.phone] = { ...existingData, ...successData, Status: window.kafakCheckoutUI ? successData.Status : "Pending" };
         SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 
         window.orderSuccess = true;
@@ -3484,7 +3508,7 @@ window.savePaidNumOnly = function (oid) {
   btn.html('<i class="fas fa-spinner fa-spin"></i>').prop('disabled', true);
 
   // 1. Save Number
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: cleanNum }) })
+  orderServiceFetch(sc, { method: 'POST', body: JSON.stringify({ action: 'updatePaidNum', oid: oid, num: cleanNum }) })
     .then(res => res.json())
     .then(data => {
       if (data.result === 'success') {
@@ -3504,7 +3528,7 @@ window.savePaidNumOnly = function (oid) {
         if (typeof userData !== 'undefined') userData.adminMeta = finalMeta;
 
         // Send Meta Update to Server
-        fetch(sc, {
+        orderServiceFetch(sc, {
           method: 'POST',
           body: JSON.stringify({ action: 'bulkUpdateStatus', updates: [{ oid: oid, action: 'meta', meta: finalMeta }] })
         }).then(() => console.log("Meta updated to G"));
@@ -3575,7 +3599,7 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
     quantity: $('#quick-qty').val(),
     paidNum: $('#edit-paid-by').val() || '',
     adminMeta: finalMeta,
-    product: $('#admin-product-type').val() || (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
+    product: window.kafakCheckoutUI ? window.kafakCheckoutUI.productName() : $('#admin-product-type').val() || (typeof savedOrderData !== 'undefined' && savedOrderData.product ? savedOrderData.product : 'Vanthen'),
     message: '',
     custId: myCustId,
     language: custLang,
@@ -3584,10 +3608,12 @@ window.handleQtyUpdateAction = function (targetStatus, balance, newTotal, oldQty
 
   showLoader(true);
 
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) })
-    .then(res => res.json())
+  (window.kafakOrderEditorUI ? window.kafakOrderEditorUI.save(finalData,{increasePaid:window.kafakOrderEditorUI.editor.current?.Status==='Paid'}).then(result=>{
+      Object.assign(finalData,result.data);balance=result.data.Balance_Due??balance;newTotal=result.data.Grand_Total;
+      savedOrderData={...savedOrderData,...result.data};return result.res;
+    }) : orderServiceFetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: finalData }) }).then(res => res.json()))
     .then(res => {
-      fetch(sc, {
+      orderServiceFetch(sc, {
         method: 'POST',
         body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: finalData.orderid, status: targetStatus }] })
       }).then(() => {
@@ -3660,7 +3686,7 @@ window.saveRadioSelection = function (oid, el) {
   if (typeof userData !== 'undefined') userData.adminMeta = finalMeta;
 
   // 3. Server Call
-  fetch(sc, {
+  orderServiceFetch(sc, {
     method: 'POST',
     body: JSON.stringify({
       action: 'bulkUpdateStatus',
