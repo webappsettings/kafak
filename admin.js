@@ -281,13 +281,23 @@ window.attemptLogin = function () {
 
 // 🔴 3. LOGOUT FUNCTION
 window.logoutAdmin = function () {
+    const pendingKeys = ['pendingUpdates', 'pendingExpenses', 'pendingPostalTrackers', 'offlineRevertTrackers'];
+    try {
+        if (window.kafakSyncInProgress || pendingKeys.some(key => JSON.parse(localStorage.getItem(key) || '[]').length > 0)) {
+            showToast('warning', 'Sync or discard pending changes before logging out.');
+            return;
+        }
+    } catch (error) {
+        showToast('error', 'Pending data could not be read. Logout cancelled to protect your changes.');
+        return;
+    }
     confirmAction("Logout ചെയ്യണോ?", () => {
         try {
             localStorage.removeItem('kafakAdmin');
             localStorage.removeItem('kafakAdminLoggedIn');
+            localStorage.removeItem('kafakAdminUser');
             localStorage.removeItem('activeAdminTab');
             localStorage.removeItem('allOrdersCache');
-            localStorage.removeItem('pendingUpdates');
             localStorage.removeItem('adminRatesCache');
         } catch (e) { console.error(e); }
         window.location.href = "index.html";
@@ -313,8 +323,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // 🔥 ആദ്യമായി ലോഡ് ചെയ്യുമ്പോൾ കാഷെ ഉണ്ടെങ്കിൽ അത് കാണിക്കാൻ
-        document.addEventListener('DOMContentLoaded', function () {
+        // Already inside DOMContentLoaded: another listener here would never run.
             setTimeout(() => {
+                if (localStorage.getItem('kafakAdmin') !== 'true') return;
                 if (window.trackingBalance && window.trackingBalance.fetched) {
                     if (typeof updateBalanceUI === 'function') updateBalanceUI();
                 }
@@ -324,8 +335,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     refreshTrackingBalance(true);
                 }
             }, 1500); // 1.5 സെക്കൻഡ് ഡിലേ
-        });
-
         const tabEls = document.querySelectorAll('button[data-bs-toggle="pill"]');
         tabEls.forEach(tabEl => {
             tabEl.addEventListener('shown.bs.tab', function (event) {
@@ -2869,7 +2878,39 @@ window.discardAllUpdates = function () {
 }
 
 // 🔥 UPDATED: FINAL UPLOAD (With Refund Deletion Logic)
-function finalConfirmSync() {
+async function finalConfirmSync() {
+    if (window.kafakSyncInProgress) return;
+    window.kafakSyncInProgress = true;
+    try {
+        // Web Locks also prevent simultaneous upload from another admin tab.
+        if (typeof navigator !== 'undefined' && navigator.locks) {
+            return await navigator.locks.request('kafak-admin-sync', { ifAvailable: true }, async lock => {
+                if (!lock) return showToast('warning', 'Sync is already running in another tab.');
+                return performConfirmedSync();
+            });
+        }
+        return await performConfirmedSync();
+    } catch (error) {
+        console.error('Sync stopped:', error.message);
+        showToast('error', 'Sync could not finish. Pending data was kept.');
+    } finally {
+        window.kafakSyncInProgress = false;
+    }
+}
+
+function removeConfirmedQueueEntries(key, confirmed) {
+    // Re-read storage after the response: edits added/changed during upload must survive.
+    const remaining = JSON.parse(localStorage.getItem(key) || '[]');
+    confirmed.forEach(item => {
+        const serialized = JSON.stringify(item);
+        const index = remaining.findIndex(current => JSON.stringify(current) === serialized);
+        if (index !== -1) remaining.splice(index, 1);
+    });
+    if (remaining.length) localStorage.setItem(key, JSON.stringify(remaining));
+    else localStorage.removeItem(key);
+}
+
+async function performConfirmedSync() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
     let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
@@ -2879,66 +2920,81 @@ function finalConfirmSync() {
     const btn = $('#syncModal button.btn-dark');
     btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> UPLOADING...');
 
-    let promises = [];
+    let jobs = [];
+    const addJob = (key, entries, payload) => jobs.push({ key, entries, payload });
 
     // 1. COMBINED SYNC
     let bulkUpdates = pendingUpdates.filter(u => u.action !== 'paidNum' && u.action !== 'phones' && !u.deleteRefund);
     if (bulkUpdates.length > 0) {
-        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'bulkUpdateStatus', updates: bulkUpdates }) }));
+        addJob('pendingUpdates', bulkUpdates, { action: 'bulkUpdateStatus', updates: bulkUpdates });
     }
 
     // 2. Refund Deletions
     let refundDeletions = pendingUpdates.filter(u => u.deleteRefund);
     refundDeletions.forEach(u => {
-        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'deleteRefund', oid: u.oid }) }));
+        addJob('pendingUpdates', [u], { action: 'deleteRefund', oid: u.oid });
     });
 
     // 3. Expenses Sync
     pendingExpenses.forEach(exp => {
-        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addExpense', data: exp }) }));
+        addJob('pendingExpenses', [exp], { action: 'addExpense', data: exp });
     });
 
     // 4. Paid Number Sync
     let paidNumUpdates = pendingUpdates.filter(u => u.action === 'paidNum');
     paidNumUpdates.forEach(u => {
-        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'updatePaidNum', oid: u.oid, num: u.num }) }));
+        addJob('pendingUpdates', [u], { action: 'updatePaidNum', oid: u.oid, num: u.num });
     });
 
     // 🔥 5. NEW: Phones Sync
     let phoneUpdates = pendingUpdates.filter(u => u.action === 'phones');
     phoneUpdates.forEach(u => {
-        promises.push(fetch(scriptURL, {
-            method: 'POST',
-            body: JSON.stringify({
+        addJob('pendingUpdates', [u], {
                 action: 'updatePhoneNumbers',
                 orderid: u.oid,
                 phone: u.data.phone,
                 whatsapp: u.data.whatsapp,
                 altphone: u.data.altphone,
                 paidNum: u.data.paidNum
-            })
-        }));
+        });
     });
 
     // 🔥 Postal Trackers Sync Logic
     if (pendingPostalTrackers.length > 0) {
-        promises.push(fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: 'addPostalTrackers', trackers: pendingPostalTrackers }) }));
+        addJob('pendingPostalTrackers', pendingPostalTrackers, { action: 'addPostalTrackers', trackers: pendingPostalTrackers });
     }
 
-    Promise.all(promises).then(() => {
-        localStorage.removeItem('pendingUpdates');
-        localStorage.removeItem('pendingExpenses');
-        localStorage.removeItem('pendingPostalTrackers');
-        scannedTrackers = [];
-        $('#syncModal').modal('hide');
-        showToast('success', 'Synced Successfully!');
+    try {
+        let failures = 0;
+        for (const job of jobs) {
+            try {
+                const response = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(job.payload) });
+                if (!response.ok) throw new Error('HTTP ' + response.status);
+                const result = await response.json();
+                const alreadyDeleted = job.payload.action === 'deleteRefund' && result.result === 'not_found';
+                if (!alreadyDeleted && result.result !== 'success' && result.status !== 'success') throw new Error('Server did not confirm success');
+                if (job.payload.action === 'bulkUpdateStatus' && Number(result.count) !== job.entries.length) {
+                    throw new Error('Only part of the batch was confirmed');
+                }
+                removeConfirmedQueueEntries(job.key, job.entries);
+            } catch (error) {
+                failures++;
+                console.error('Sync not confirmed:', job.payload.action, error.message);
+            }
+        }
+        scannedTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || '[]');
+        const stillPending = ['pendingUpdates', 'pendingExpenses', 'pendingPostalTrackers']
+            .some(key => JSON.parse(localStorage.getItem(key) || '[]').length > 0);
+        if (!stillPending) bootstrap.Modal.getInstance(document.getElementById('syncModal'))?.hide();
+        else renderSyncList();
+        showToast(failures ? 'warning' : 'success', failures
+            ? 'Some changes were not confirmed. Pending data kept; review before retrying.'
+            : stillPending ? 'Uploaded changes saved. New edits are still pending.' : 'Synced Successfully!');
         updateSyncButtonUI();
         fetchDashboardDataBg();
+    } finally {
         btn.prop('disabled', false).html('<i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW');
-    }).catch(() => {
-        showToast('error', 'Sync Failed! Try again later.');
-        btn.prop('disabled', false).html('<i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW');
-    });
+    }
 }
 
 function discardLocalChanges() {
@@ -10307,6 +10363,7 @@ window.bookSelectedAtIndiaPost = async function () {
 
 // 🔥 അഡ്മിൻ മെറ്റ അപ്ഡേറ്റ് ചെയ്യുന്ന ഭാഗത്ത് പുതിയ സ്റ്റാറ്റസ് സേവ് ചെയ്യാൻ (ഇതും ഏറ്റവും താഴെ കൊടുക്കുക)
 
+const updateAdminMetaBeforeIndiaPost = window.updateAdminMeta;
 window.updateAdminMeta = function (oid, type, value) {
     if (type === 'indiapost_booked') {
         let order = allOrders.find(o => o.orderid === oid);
@@ -10319,7 +10376,7 @@ window.updateAdminMeta = function (oid, type, value) {
         }
         return;
     }
-    originalUpdateAdminMeta(oid, type, value);
+    updateAdminMetaBeforeIndiaPost(oid, type, value);
 };
 
 

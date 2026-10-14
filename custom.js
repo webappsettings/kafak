@@ -2991,9 +2991,13 @@ function postOrder(data) {
   const startTime = Date.now();
   window.orderSuccess = false;
 
-  fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
-    .then(res => res.json())
+  return fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
     .then(res => {
+      if (!res.ok) throw new Error('Order request failed');
+      return res.json();
+    })
+    .then(res => {
+      if (!res || res.result !== 'success' || !res.orderid) throw new Error('Order was not confirmed');
       if (res.result === 'success') {
         // 🔥 FIX: നിലവിലെ മുഴുവൻ ഡാറ്റയും നിലനിർത്തിക്കൊണ്ട് പുതിയ Order ID കൂട്ടിച്ചേർക്കുന്നു
         successData = { ...data, orderid: res.orderid, timestamp: res.timestamp };
@@ -3027,7 +3031,11 @@ function postOrder(data) {
           $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
         }, waitTime);
       }
-    }).catch(() => { $('#videoModal').fadeOut(); showAlert("Connection failed. Try again."); });
+    }).catch(() => {
+      window.orderSuccess = false;
+      $('#videoModal').fadeOut();
+      showAlert('Order could not be confirmed. Refresh and check your order before trying again.');
+    });
 }
 
 
@@ -3050,7 +3058,8 @@ function fetchCourierRates() {
       // 🔥 FIX: 'KERALA' (UpperCase) ആണ് ഇപ്പോൾ കീ
       if (parsed && parsed.KERALA) {
         courierRates = parsed;
-        globalQtyList = Object.keys(parsed.KERALA).map(Number).sort((a, b) => a - b);
+        globalQtyList = Object.keys(parsed.prices || parsed.KERALA)
+          .map(Number).filter(qty => Number.isInteger(qty) && qty > 0).sort((a, b) => a - b);
         renderQtyDropdowns();
         cacheValid = true;
       }
