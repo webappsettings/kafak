@@ -2943,7 +2943,7 @@ function injectVideoCSS() {
         <div class="video-container">
             <video id="honeyVideo" muted playsinline preload="auto"><source src="honey_rotate.mp4" type="video/mp4"></video>
             <div class="digital-label" id="customLabel">
-                <div class="content-group"><img src="images/kafak_logo.svg" alt="Kafak"><div class="packed-text" data-i18n="lbl_reserved_for">RESERVED FOR</div></div>
+                <div class="content-group"><img src="logo.png" alt="Kafak"><div class="packed-text" data-i18n="lbl_reserved_for">RESERVED FOR</div></div>
                 <div class="check-wrapper" id="finalCheck"><svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg></div>
             </div>
             <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
