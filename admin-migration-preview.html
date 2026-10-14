@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAFAK Admin</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+
+
+    <link rel="manifest" href="manifest-admin.json">
+    <meta name="theme-color" content="#111111">
+    <link rel="apple-touch-icon" href="icon-192.png">
+
+    <style>
+        :root {
+            --brand-green: #2e7d32;
+            --brand-yellow: #f59e0b;
+            --light-bg: #e1e1e1;
+            --glass-bg: rgba(255, 255, 255, 0.98);
+        }
+
+        .last-no-border:last-child {
+            border-bottom: none !important;
+        }
+
+        .hover-bg-light:hover {
+            background-color: #f8f9fa;
+        }
+
+        .active-highlight-border {
+            border: 2px solid #2563eb !important;
+            /* Blue Border */
+            box-shadow: 0 0 15px rgba(37, 99, 235, 0.2) !important;
+            transform: scale(1.01);
+            z-index: 50;
+        }
+
+        .dot-indicator {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            display: inline-block;
+            margin-left: 4px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .dot-indicator.brown {
+            background-color: #795548;
+        }
+
+        /* Printed */
+        .dot-indicator.blue {
+            background-color: #2196F3;
+        }
+
+        /* Tracked */
+        body {
+            background: var(--light-bg);
+            font-family: 'Manrope', sans-serif;
+            padding-bottom: 100px;
+        }
+
+        /* HEADER */
+        .sticky-app-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            padding: 10px 15px 0 15px;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 28px;
+            width: auto;
+            opacity: 0.9;
+        }
+
+        .search-wrapper {
+            flex-grow: 1;
+            position: relative;
+        }
+
+        .search-compact {
+            width: 100%;
+            border: 1px solid #e5e7eb;
+            background: #f9fafb;
+            border-radius: 12px;
+            padding: 10px 15px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #333;
+            outline: none;
+        }
+
+        .btn-refresh {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-sync {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--brand-yellow);
+            border: none;
+            color: white;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+        }
+
+        .sync-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 2px 6px;
+            border-radius: 10px;
+            border: 2px solid white;
+        }
+
+        /* --- 1. BEAUTIFUL TABS (iPhone Style) --- */
+        .nav-pills {
+            background: #f2f4f6;
+            /* Light Grey Background */
+            padding: 5px;
+            border-radius: 14px;
+            display: flex;
+            gap: 0;
+            border: none !important;
+        }
+
+        .nav-pills .nav-link {
+            flex: 1;
+            border-radius: 10px;
+            padding: 10px 0;
+            font-size: 13px;
+            font-weight: 700;
+            color: #888;
+            background: transparent;
+            border: none;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .nav-pills .nav-link.active {
+            background: #ffffff;
+            color: #000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transform: scale(1);
+        }
+
+        .tab-badge {
+            background: #e0e0e0;
+            color: #333;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            margin-left: 5px;
+            vertical-align: middle;
+        }
+
+        .nav-link.active .tab-badge {
+            background: #000;
+            color: #fff;
+        }
+
+        /* --- 2. PURE WHITE CARDS --- */
+        .order-card {
+            background: #ffffff !important;
+            /* Force Pure White */
+            border: 1px solid #f0f0f0;
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s;
+        }
+
+        .order-card:active {
+            transform: scale(0.98);
+        }
+
+        /* Remove Old Border Lines & Backgrounds */
+        .status-Pending,
+        .status-Paid,
+        .status-Dispatched,
+        .status-Sent {
+            border-left: none !important;
+            background: #fff !important;
+        }
+
+        /* --- 3. COLORFUL ORDER ID BADGE --- */
+        .order-id-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            color: white !important;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Dynamic Colors for Order ID */
+        .bg-Pending {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        /* Orange */
+        .bg-Sent {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+        }
+
+        /* Blue */
+        .bg-Paid {
+            background: linear-gradient(135deg, #10b981, #059669);
+        }
+
+        /* Green */
+        .bg-Dispatched {
+            background: linear-gradient(135deg, #6366f1, #4f46e5);
+        }
+
+        /* Indigo */
+
+        /* --- 4. OTHER UI TWEAKS --- */
+        .cust-name {
+            font-size: 16px;
+            font-weight: 800;
+            color: #1a1a1a;
+            margin-top: 8px;
+            margin-bottom: 2px;
+        }
+
+        .cust-details {
+            color: #666;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            color: #334155;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+        }
+
+        .btn-custom {
+            border-radius: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.5px;
+            padding: 12px;
+        }
+
+        .btn-wa {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #bbf7d0;
+        }
+
+        .btn-paid {
+            background: #fef3c7;
+            color: #b45309;
+            border: 1px solid #fde68a;
+        }
+
+        .btn-dispatch {
+            background: #1f2937;
+            color: white;
+            border: 1px solid #1f2937;
+        }
+
+        .btn-track {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #bfdbfe;
+        }
+
+        .btn-complete {
+            background: #ffffff;
+            color: #2e7d32;
+            border: 1px solid #2e7d32;
+        }
+
+        .btn-top-action {
+            font-size: 9px;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            border: 1px solid #f3f4f6;
+            background: #f9fafb;
+            color: #6b7280;
+            margin-left: 5px;
+        }
+
+        .btn-print-mini {
+            background: white;
+            color: #374151;
+            border-color: #e5e7eb;
+        }
+
+        .btn-print-yellow {
+            background: #facc15;
+            color: black;
+            border: none;
+        }
+
+        .bottom-panel {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            padding: 20px 0;
+            border-top: 1px dashed #e5e7eb;
+        }
+
+        .btn-footer {
+            background: white;
+            border: 1px solid #e5e7eb;
+            color: #6b7280;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 8px 16px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+        }
+
+        .btn-footer-danger {
+            color: #e11d48;
+            border-color: #ffe4e6;
+            background: #fff1f2;
+        }
+
+        /* 🔴 SCANNER UI UPDATED */
+        #scanner-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 2000;
+            display: none;
+            flex-direction: column;
+        }
+
+        #reader {
+            width: 100%;
+            flex: 1;
+            background: #000;
+            object-fit: cover;
+        }
+
+        .scan-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 20px;
+            z-index: 2001;
+        }
+
+        .scan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            color: white;
+            margin-top: 10px;
+        }
+
+        .scan-title {
+            font-weight: 800;
+            font-size: 18px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-close-scan {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            backdrop-filter: blur(5px);
+            pointer-events: auto;
+        }
+
+        /* RESULT BOX STYLES */
+        /* 🔥 Result Box Style - Fix for Z-Index Overlay */
+        .scan-footer {
+            background: white;
+            border-radius: 20px 20px 0 0;
+            padding: 20px;
+            pointer-events: auto;
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.4);
+            text-align: center;
+            position: absolute;
+            /* Fix: Absolute position */
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2005;
+            /* Fix: High Z-Index to show above camera */
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .scan-status {
+            font-weight: 900;
+            color: var(--brand-green);
+            font-size: 22px;
+            margin-bottom: 5px;
+            display: block;
+            letter-spacing: -0.5px;
+        }
+
+        .last-scan-info {
+            font-size: 15px;
+            color: #333;
+            line-height: 1.4;
+            margin-top: 8px;
+        }
+
+        .last-scan-info b {
+            font-size: 18px;
+            color: black;
+            display: block;
+            margin-bottom: 2px;
+        }
+
+        /* SweetAlert & Login */
+        .ios-popup {
+            border-radius: 20px !important;
+            padding: 20px !important;
+            font-family: 'Manrope', sans-serif !important;
+        }
+
+        .ios-title {
+            font-size: 18px !important;
+            font-weight: 800 !important;
+            color: #000 !important;
+        }
+
+        .ios-btn {
+            border-radius: 12px !important;
+            background: black !important;
+            color: white !important;
+        }
+
+        .ios-btn-cancel {
+            border-radius: 12px !important;
+            background: #f2f2f2 !important;
+            color: #000 !important;
+        }
+
+        .login-card {
+            max-width: 320px;
+            margin: 15vh auto;
+            background: white;
+            padding: 30px;
+            border-radius: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
+            text-align: center;
+        }
+
+        .admin-input {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 2px solid #f3f4f6;
+            border-radius: 12px;
+            text-align: center;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .btn-black-login {
+            background: black;
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 800;
+            border: none;
+        }
+
+        #loader {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- HEADER --- */
+        .admin-header {
+            background: var(--glass-bg);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-title {
+            font-weight: 800;
+            font-size: 20px;
+            letter-spacing: -0.5px;
+            color: #1a1a1a;
+        }
+
+        .header-actions button {
+            border: none;
+            background: #f3f4f6;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: #333;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-actions button:hover {
+            background: #e5e7eb;
+            transform: scale(1.05);
+        }
+
+        /* --- TABS --- */
+        .status-tabs {
+            background: #fff;
+            padding: 10px 15px;
+            overflow-x: auto;
+            white-space: nowrap;
+            display: flex;
+            gap: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .status-tab {
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            color: #666;
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .status-tab.active {
+            background: #000;
+            color: #fff;
+            border-color: #000;
+        }
+
+        /* --- ORDERS LIST --- */
+        .orders-container {
+            padding: 15px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .order-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            position: relative;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .order-card:active {
+            transform: scale(0.98);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .order-id {
+            font-family: monospace;
+            font-weight: 700;
+            background: #f3f4f6;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .order-time {
+            font-size: 11px;
+            color: #888;
+            font-weight: 600;
+        }
+
+        .order-name {
+            font-weight: 800;
+            font-size: 16px;
+            color: #111;
+            margin-bottom: 2px;
+        }
+
+        .order-details {
+            font-size: 13px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .order-footer {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-badge {
+            font-size: 11px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 50px;
+            text-transform: uppercase;
+        }
+
+        /* STATUS COLORS */
+        .status-Pending {
+            background: #fff7ed;
+            color: #c2410c;
+        }
+
+        .status-Sent {
+            background: #eff6ff;
+            color: #1d4ed8;
+        }
+
+        .status-Paid {
+            background: #fefce8;
+            color: #a16207;
+        }
+
+        .status-Dispatched {
+            background: #f0fdf4;
+            color: #15803d;
+        }
+
+        .status-Delivered {
+            background: #fafafa;
+            color: #555;
+        }
+
+        /* --- SCANNER OVERLAY --- */
+        #scan-result-box {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            z-index: 2000;
+            border-top-left-radius: 24px;
+            border-top-right-radius: 24px;
+            box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.15);
+            padding: 25px;
+            display: none;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        /* --- 🔥 NEW DASHBOARD DRAWER (SLIDE OVER) --- */
+        .drawer-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            display: none;
+            backdrop-filter: blur(4px);
+        }
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: #f8f9fa;
+            z-index: 2100;
+            transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .drawer.open {
+            right: 0;
+        }
+
+        .drawer-header {
+            background: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+        }
+
+        .drawer-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* DASHBOARD TABS */
+        .nav-pills .nav-link {
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #666;
+            padding: 8px 20px;
+            background: #eee;
+            margin-right: 10px;
+        }
+
+        .nav-pills .nav-link.active {
+            background: #000;
+            color: #fff;
+        }
+
+        /* DATE NAVIGATOR */
+        .date-nav {
+            background: #fff;
+            padding: 12px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+            margin-bottom: 20px;
+            border: 1px solid #eee;
+        }
+
+        .date-btn {
+            border: none;
+            background: #f1f1f1;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            color: #333;
+        }
+
+        .date-btn:active {
+            transform: scale(0.9);
+        }
+
+        .date-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .date-display {
+            font-weight: 800;
+            font-size: 15px;
+            color: #000;
+        }
+
+        /* STAT CARDS */
+        .stat-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 16px;
+            border: 1px solid #eee;
+            text-align: center;
+            height: 100%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02);
+        }
+
+        .stat-val {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .stat-lbl {
+            font-size: 10px;
+            font-weight: 700;
+            color: #888;
+            text-transform: uppercase;
+            margin-top: 5px;
+        }
+
+        /* TIMELINE ITEM */
+        .timeline-item {
+            background: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border-left: 4px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.01);
+        }
+
+        .timeline-item.expense {
+            border-left-color: #dc3545;
+        }
+
+        .timeline-item.income {
+            border-left-color: #198754;
+        }
+
+        .timeline-item.courier {
+            border-left-color: #f59e0b;
+        }
+
+        /* PARTNER CARD */
+        .partner-card {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .partner-card:hover {
+            background: #f8f9fa;
+        }
+
+        .partner-card.selected {
+            border-color: #000;
+            background: #f0f0f0;
+        }
+
+        /* SEARCH BAR */
+        .search-container {
+            padding: 10px 15px;
+            background: white;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 12px;
+            border: 1px solid #eee;
+            background: #f8f9fa;
+            font-weight: 600;
+            outline: none;
+        }
+
+        .search-input:focus {
+            background: white;
+            border-color: #000;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        /* 🔥 STICKY SUB-TABS */
+        .sticky-sub-nav {
+            position: -webkit-sticky;
+            /* For Safari */
+            position: sticky;
+            top: 135px;
+            /* Main Header-ന്റെ ഏകദേശ ഉയരം. ആവശ്യം എങ്കിൽ ഇത് 130 ഓ 140 ഓ ആക്കി മാറ്റാം */
+            z-index: 900;
+            background: var(--light-bg);
+            /* ബോഡിയുടെ അതേ കളർ നൽകുന്നു, സ്ക്രോൾ ചെയ്യുമ്പോൾ പിന്നിലൂടെ എഴുത്ത് കാണാതിരിക്കാൻ */
+            padding-top: 5px;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .full-card-content .col-12 {
+            width: 100% !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="login-section" style="display: flex; height:100vh; align-items:center; justify-content:center;">
+        <div class="login-card">
+            <img src="logo.png" style="height: 35px; margin-bottom: 20px; opacity: 0.9;">
+            <h6 class="fw-bold mb-4 text-secondary text-uppercase" style="letter-spacing: 1px; font-size: 12px;">Admin
+                Access</h6>
+            <input type="text" id="adminUser" class="admin-input" placeholder="Username">
+            <input type="password" id="adminPass" class="admin-input" placeholder="Password">
+            <button onclick="attemptLogin()" class="btn-black-login">LOGIN</button>
+            <p id="loginMsg" class="text-danger mt-3 small fw-bold"></p>
+        </div>
+    </div>
+
+    <div id="dashboard-section" style="display: none;">
+        <div class="sticky-app-header">
+            <div class="header-top">
+                <button class="btn btn-refresh shadow-sm" onclick="toggleLeftDrawer()" title="Admin Tools"
+                    style="border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fas fa-bars" style="font-size: 16px; color: #0f172a;"></i>
+                </button>
+
+                <button onclick="fetchOrders(true)" class="btn-danger btn btn-refresh shadow-sm" title="Reload Data"
+                    style="border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fas fa-sync-alt" style="font-size: 14px;"></i>
+                </button>
+
+                <div class="search-wrapper">
+                    <div class="position-relative shadow-sm rounded-pill bg-white">
+                        <input type="text" id="searchInput" class="form-control border-0 rounded-pill ps-3 pe-4"
+                            placeholder="Search..." oninput="handleSmartSearch(this.value)"
+                            style="height: 42px; font-size: 12px;">
+                        <button id="btn-clear-search" onclick="clearSearch()"
+                            class="btn btn-sm text-secondary position-absolute top-50 end-0 translate-middle-y me-1"
+                            style="display:none; z-index: 5; border-radius: 50%; width: 28px; height: 28px;">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button onclick=" toggleSort()" class="btn btn-refresh shadow-sm" id="btn-sort" title="Sort Order"
+                    style="border-radius: 12px; border: 1px solid #e2e8f0;">
+                    <i class="fas fa-sort-amount-down" style="font-size: 14px; color: #333;"></i>
+                </button>
+
+                <button onclick="openDashboard()"
+                    class="btn btn-warning shadow-sm d-flex align-items-center justify-content-center"
+                    style="width: 42px; height: 42px; border-radius: 12px; padding: 0;">
+                    <i class="fa-chart-pie fas text-dark" style="font-size: 16px;"></i>
+                </button>
+
+                <button id="sync-btn" onclick="syncWithServer()" class="btn-sync">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <span class="sync-badge" id="sync-badge-count">0</span>
+                </button>
+                <div id="logo-placeholder" style="width:42px; display:flex; justify-content:center;"><img src="logo.png"
+                        class="logo-img" id="header-logo"></div>
+            </div>
+
+            <div class="nav nav-pills" id="pills-tab">
+                <button class="nav-link active" id="pills-pending-tab" data-bs-toggle="pill"
+                    data-bs-target="#tab-pending">
+                    New <span id="count-pending" class="tab-badge">0</span>
+                </button>
+                <button class="nav-link" id="pills-paid-tab" data-bs-toggle="pill" data-bs-target="#tab-paid">
+                    Paid <span id="count-paid" class="tab-badge">0</span>
+                </button>
+                <button class="nav-link" id="pills-dispatched-tab" data-bs-toggle="pill"
+                    data-bs-target="#tab-dispatched">
+                    Dsptd <span id="count-dispatched" class="tab-badge">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="container" style="max-width: 800px; padding-top: 15px;">
+            <div id="tabs-container">
+                <div class="tab-content">
+                    <div class="tab-pane fade show active" id="tab-pending">
+
+                        <div class="d-flex align-items-center justify-content-between mb-3 px-1 sticky-sub-nav"
+                            style="gap: 10px;">
+
+                            <a href="https://www.kafaklife.com/order.html" target="_blank"
+                                class="btn btn-dark shadow-sm rounded-pill d-flex align-items-center gap-2"
+                                style="padding: 6px 15px; font-size: 11px; font-weight: 800; border: 1px solid #333; height: 38px;">
+                                <div class="bg-warning text-dark rounded-circle d-flex align-items-center justify-content-center"
+                                    style="width: 20px; height: 20px; font-size: 10px;">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <span>CREATE</span>
+                            </a>
+
+                            <div class="d-flex bg-white p-1 rounded-pill border shadow-sm flex-grow-1"
+                                style="height: 38px;">
+                                <button onclick="switchSubTab('new')" id="btn-sub-new"
+                                    class="btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all d-flex align-items-center justify-content-center gap-1">
+                                    New <span id="badge-sub-new" class="badge bg-white text-dark ms-1 rounded-pill"
+                                        style="font-size:9px; padding: 2px 5px;">0</span>
+                                </button>
+                                <button onclick="switchSubTab('sent')" id="btn-sub-sent"
+                                    class="btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all d-flex align-items-center justify-content-center gap-1">
+                                    Sent <span id="badge-sub-sent"
+                                        class="badge bg-secondary text-white ms-1 rounded-pill"
+                                        style="font-size:9px; padding: 2px 5px;">0</span>
+                                </button>
+                            </div>
+
+                        </div>
+
+                        <div class="row g-2" id="list-sub-new"></div>
+                        <div class="row g-2" id="list-sub-sent" style="display:none;"></div>
+
+                    </div>
+
+                    <!-- <div class="tab-pane fade" id="tab-paid">
+                        <div class="d-flex justify-content-between align-items-center mb-3 px-1">
+                            <button onclick="startScanner('dispatch')"
+                                class="btn btn-sm btn-dark rounded-pill px-3 fw-bold small"><i
+                                    class="fas fa-qrcode"></i> Scan</button>
+                            <div class="d-flex gap-2">
+                                <button id="btn-select-all" onclick="toggleSelectAll()"
+                                    class="btn btn-sm btn-light fw-bold text-secondary border-0 small"><i
+                                        class="far fa-square"></i> All</button>
+                                <button onclick="printSelected()"
+                                    class="btn btn-sm btn-print-yellow rounded-pill px-3 fw-bold small">🖨️
+                                    Print</button>
+                            </div>
+                        </div>
+                        <div class="row g-2" id="list-paid"></div>
+                    </div> -->
+
+                    <div class="tab-pane fade" id="tab-paid">
+                        <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto sticky-sub-nav"
+                            style="max-width: 300px;">
+                            <button onclick="switchSubTab('paid_new')" id="btn-sub-paid-new"
+                                class="btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all">
+                                Unprinted <span id="badge-paid-new" class="badge bg-white text-dark ms-1 rounded-pill"
+                                    style="font-size:9px;">0</span>
+                            </button>
+                            <button onclick="switchSubTab('paid_printed')" id="btn-sub-paid-printed"
+                                class="btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all">
+                                Printed <span id="badge-paid-printed"
+                                    class="badge bg-secondary text-white ms-1 rounded-pill"
+                                    style="font-size:9px;">0</span>
+                            </button>
+                        </div>
+
+                        <div class="row g-2" id="list-paid-new"></div>
+                        <div class="row g-2" id="list-paid-printed" style="display:none;"></div>
+                    </div>
+
+                    <!-- <div class="tab-pane fade" id="tab-dispatched">
+                        <div class="text-center mb-3">
+                            <button onclick="startScanner('tracking')"
+                                class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold border-2 small">
+                                <i class="fas fa-barcode"></i> Courier Scan
+                            </button>
+                        </div>
+                        <div class="row g-2" id="list-dispatched"></div>
+                    </div> -->
+
+                    <div class="tab-pane fade" id="tab-dispatched">
+                        <div class="d-flex justify-content-center mb-3 bg-white p-1 rounded-pill border mx-auto sticky-sub-nav"
+                            style="max-width: 300px;">
+                            <button onclick="switchSubTab('disp_new')" id="btn-sub-disp-new"
+                                class="btn btn-sm rounded-pill flex-grow-1 fw-bold btn-dark transition-all">
+                                Dispatched <span id="badge-disp-new" class="badge bg-white text-dark ms-1 rounded-pill"
+                                    style="font-size:9px;">0</span>
+                            </button>
+                            <button onclick="switchSubTab('disp_tracked')" id="btn-sub-disp-tracked"
+                                class="btn btn-sm rounded-pill flex-grow-1 fw-bold text-muted transition-all">
+                                Tracked <span id="badge-disp-tracked"
+                                    class="badge bg-secondary text-white ms-1 rounded-pill"
+                                    style="font-size:9px;">0</span>
+                            </button>
+                        </div>
+
+                        <div class="row g-2" id="list-disp-new"></div>
+                        <div class="row g-2" id="list-disp-tracked" style="display:none;"></div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div id="search-results-area" style="display: none;">
+                <h6 class="fw-bold mb-3 text-muted text-center small" style="font-size:10px; letter-spacing:1px;">SEARCH
+                    RESULTS</h6>
+                <div class="row g-2" id="list-search"></div>
+            </div>
+
+            <div class="bottom-panel">
+                <button onclick="discardLocalChanges()" class="btn-footer btn-footer-danger"><i
+                        class="fas fa-trash-alt"></i> Discard</button>
+                <button onclick="logoutAdmin()" class="btn-footer"><i class="fas fa-sign-out-alt"></i> Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="scanner-modal">
+        <div id="reader"></div>
+        <div class="scan-overlay">
+            <div class="scan-header">
+                <div class="scan-title" id="scan-mode-title">SCANNING...</div>
+                <button onclick="stopScanner()" class="btn-close-scan"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="scan-footer" id="scan-result-box" style="display:none;">
+                <span class="scan-status" id="scan-status-text">SUCCESS</span>
+                <div class="last-scan-info" id="scan-info-text"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader" style="display:none;">
+        <div class="spinner-border text-success" role="status"></div>
+    </div>
+
+
+    <div id="scan-result-box">
+        <h6 class="fw-bold">SCAN RESULT</h6>
+        <div id="scan-oid" class="fw-bold fs-5 my-2">...</div>
+        <button id="btn-confirm-dispatch" class="btn btn-success w-100">CONFIRM</button>
+        <button onclick="cancelDispatchAction()" class="btn btn-light w-100 mt-2">CANCEL</button>
+    </div>
+    <div id="reader" style="width:0;height:0;overflow:hidden;"></div>
+
+    <div class="modal fade" id="syncModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 20px;">
+
+                <div class="modal-header border-0 pb-0 d-flex justify-content-between align-items-center">
+                    <h6 class="modal-title fw-bold text-secondary text-uppercase ls-1" style="font-size:12px;">Pending
+                        Updates</h6>
+
+                    <div class="d-flex align-items-center gap-2">
+                        <button onclick="discardAllUpdates()" class="btn btn-sm btn-outline-danger fw-bold"
+                            style="font-size:11px; border-radius:8px;">
+                            <i class="fas fa-trash-alt me-1"></i> Discard All
+                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                </div>
+
+                <div class="modal-body pt-2">
+                    <h4 class="fw-bold mb-3 text-dark"><span id="sync-count-display">0</span> Changes to Upload</h4>
+
+                    <div class="table-responsive bg-light rounded-4 p-2 border"
+                        style="max-height: 400px; overflow-y: auto;">
+                        <table class="table table-borderless align-middle mb-0" style="font-size:13px;">
+                            <tbody id="sync-preview-list">
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="mt-4 d-flex gap-2">
+                        <button class="btn btn-dark w-100 py-3 rounded-pill fw-bold shadow-sm"
+                            onclick="finalConfirmSync()">
+                            <i class="fas fa-cloud-upload-alt me-2"></i> UPLOAD NOW
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="drawer-overlay" id="drawer-overlay" onclick="closeDashboard()"></div>
+    <div class="drawer" id="dashboard-drawer">
+        <div class="drawer-header">
+            <h5 class="fw-bold m-0"><i class="fas fa-chart-line me-2"></i>Accounts</h5>
+            <button onclick="closeDashboard()" class="btn btn-light rounded-circle shadow-sm"
+                style="width:35px; height:35px;"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="px-3 pt-3">
+            <ul class="nav nav-pills w-100 p-1 bg-light rounded-pill" id="pills-tab" role="tablist">
+                <li class="nav-item flex-fill text-center">
+                    <button class="nav-link w-100 active rounded-pill py-2" id="tab-overview" data-bs-toggle="pill"
+                        data-bs-target="#pills-overview" type="button">📊 Overview</button>
+                </li>
+                <li class="nav-item flex-fill text-center">
+                    <button class="nav-link w-100 rounded-pill py-2" id="tab-expense" data-bs-toggle="pill"
+                        data-bs-target="#pills-expense" type="button">💸 Add Expense</button>
+                </li>
+            </ul>
+        </div>
+
+        <div class="drawer-body tab-content" style="padding-bottom: 100px;">
+
+            <div class="tab-pane fade show active" id="pills-overview">
+
+                <div class="d-flex justify-content-between align-items-center mb-4 px-1">
+                    <h6 class="fw-bold m-0 text-dark" style="font-size: 15px; letter-spacing: -0.5px;">Summary</h6>
+
+                    <div class="d-flex align-items-center bg-white border rounded-pill p-1 shadow-sm">
+                        <button class="btn btn-sm btn-light rounded-circle border-0 text-secondary"
+                            style="width:30px; height:30px; display:flex; align-items:center; justify-content:center;"
+                            onclick="changeDate(-1)">
+                            <i class="fas fa-chevron-left" style="font-size:12px;"></i>
+                        </button>
+
+                        <input type="text" id="dash-date"
+                            class="form-control form-control-sm border-0 text-center fw-bold text-dark shadow-none bg-transparent"
+                            style="width: 130px; cursor: pointer; font-size:13px;" readonly>
+
+                        <button id="btn-next-day" class="btn btn-sm btn-light rounded-circle border-0 text-secondary"
+                            style="width:30px; height:30px; display:flex; align-items:center; justify-content:center;"
+                            onclick="changeDate(1)">
+                            <i class="fas fa-chevron-right" style="font-size:12px;"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="row g-3 mb-4">
+                    <div class="col-6">
+                        <div
+                            class="p-3 bg-white border rounded-4 shadow-sm h-100 d-flex flex-column justify-content-between">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">TOTAL SALES</div>
+                            <div class="fs-3 fw-bold text-dark" id="d-sales">₹0</div>
+                            <div class="text-muted" style="font-size: 11px; margin-top:2px;">
+                                <i class="fas fa-shopping-bag me-1 text-primary"></i><span id="d-orders">0</span> Orders
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 bg-white border rounded-4 shadow-sm h-100 d-flex flex-column justify-content-between"
+                            style="background: linear-gradient(145deg, #ffffff, #f8f9fa);">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">NET PROFIT</div>
+                            <div class="fs-3 fw-bold" id="d-profit">₹0</div>
+                            <div class="text-muted" style="font-size: 11px; margin-top:2px;" id="d-status-text">
+                                Calculating...</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 bg-white border rounded-4 shadow-sm h-100">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">COURIER COST</div>
+                            <div class="fs-4 fw-bold text-warning" id="d-courier">₹0</div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="p-3 bg-white border rounded-4 shadow-sm h-100">
+                            <div class="text-muted small fw-bold mb-1" style="font-size: 10px;">EXPENSES</div>
+                            <div class="fs-4 fw-bold text-danger" id="d-expense">₹0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center px-1">
+                    <h6 class="fw-bold m-0 text-uppercase text-muted small" style="font-size: 11px;">Transactions</h6>
+                </div>
+
+                <div id="daily-timeline" class="mb-5">
+
+                    <div class="d-flex justify-content-between align-items-center px-1 mt-2 mb-2">
+                        <h6 class="fw-bold m-0 text-uppercase text-muted small" style="font-size: 11px;">Activity
+                            Calendar</h6>
+                    </div>
+
+                    <div class="bg-white border rounded-4 shadow-sm p-2 mb-3 d-flex justify-content-center"
+                        style="overflow: hidden;">
+                        <input type="text" id="tx-calendar" class="d-none">
+                    </div>
+
+                    <div id="tx-details-area" class="mb-4">
+                        <div class="text-center py-4 text-muted small"><i class="fas fa-spinner fa-spin"></i> Loading
+                            Activity...</div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="tab-pane fade" id="pills-expense">
+                <form id="expense-form" onsubmit="submitExpense(event)">
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted ms-1">Transaction Date</label>
+                        <input type="text" id="exp-date" class="form-control form-control-lg fw-bold bg-light border-0"
+                            placeholder="Select Date" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted ms-1">Category</label>
+                        <select id="exp-category" class="form-select form-select-lg fw-bold bg-light border-0"
+                            onchange="togglePartnerSelect()">
+                            <option value="Materials">📦 Materials / Purchase</option>
+                            <option value="Salary">👤 Salary Payment</option>
+                            <option value="Food">🍔 Food & Refreshment</option>
+                            <option value="Travel">⛽ Travel & Fuel</option>
+                            <option value="Courier">🚚 Courier Charges</option>
+                            <option value="Ads">📢 Ads & Marketing</option>
+                            <option value="Other">📝 Other</option>
+                            <option value="Refund">💸 Refund / Return</option>
+                        </select>
+                    </div>
+
+                    <div id="partner-section" style="display:none;"
+                        class="mb-3 p-3 bg-white border rounded-4 shadow-sm">
+                        <label class="small fw-bold text-muted mb-2">Select Partner</label>
+                        <div id="partner-list"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted ms-1">Payee / Vendor</label>
+                        <input type="text" id="exp-vendor" class="form-control form-control-lg bg-light border-0"
+                            placeholder="e.g. Shop Name" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="small fw-bold text-muted ms-1">Description (Optional)</label>
+                        <input type="text" id="exp-desc" class="form-control form-control-lg bg-light border-0"
+                            placeholder="Details...">
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="small fw-bold text-muted ms-1">Amount</label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-light border-0 fw-bold">₹</span>
+                            <input type="number" id="exp-amount" class="form-control bg-light border-0 fw-bold"
+                                placeholder="0" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="small fw-bold text-muted ms-1">Upload Bill</label>
+                        <input type="file" id="exp-proof" class="form-control bg-light border-0" accept="image/*">
+                    </div>
+
+                    <button type="submit" id="btn-save-exp"
+                        class="btn btn-dark btn-lg w-100 fw-bold rounded-pill shadow-sm">
+                        SAVE TRANSACTION
+                    </button>
+                    <button type="button" onclick="clearRefundForm()"
+                        class="btn btn-light w-100 mt-2 fw-bold text-muted border-0"
+                        style="font-size: 11px; border-radius: 10px;">
+                        <i class="fas fa-times-circle"></i> CLEAR FORM
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="settingsModal" tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 rounded-4 shadow-lg">
+
+                <div class="modal-header text-white"
+                    style="background: linear-gradient(135deg, #1e293b, #0f172a); border-radius: 15px 15px 0 0; padding: 15px 20px;">
+                    <h6 class="modal-title fw-bold" id="settingsModalLabel" style="letter-spacing: 0.5px;">
+                        <i class="fas fa-cog me-2 text-warning"></i> SYSTEM SETTINGS
+                    </h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"
+                        style="font-size: 10px;"></button>
+                </div>
+
+                <div class="modal-body p-4" style="background-color: #f8fafc;">
+
+                    <div class="bg-white p-3 rounded-3 shadow-sm border border-secondary border-opacity-25 mb-4">
+                        <label class="fw-bold text-dark mb-2" style="font-size: 13px;">
+                            <i class="fas fa-wine-bottle text-primary me-2"></i> Base Bottle Cost
+                        </label>
+                        <p class="text-muted mb-2" style="font-size: 10px; line-height: 1.4;">
+                            Update the manufacturing cost per bottle. This will only affect <span
+                                class="fw-bold text-dark">NEW</span> orders going forward. Past orders remain unchanged.
+                        </p>
+                        <div class="input-group input-group-sm mb-1">
+                            <span
+                                class="input-group-text bg-light text-secondary fw-bold border-secondary border-opacity-25">₹</span>
+                            <input type="number" id="setting-base-cost"
+                                class="form-control border-secondary border-opacity-25 fw-bold text-dark" value="330">
+                            <button class="btn btn-primary fw-bold px-3" onclick="updateBaseCost()"
+                                style="font-size: 11px;">UPDATE</button>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-3 shadow-sm border border-secondary border-opacity-25">
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <label class="fw-bold text-dark m-0" style="font-size: 13px;">
+                                <i class="fas fa-truck-fast text-danger me-2"></i> Courier Rate Manager
+                            </label>
+                            <button class="btn btn-sm btn-outline-danger py-0 px-2 fw-bold"
+                                style="font-size: 10px; border-radius: 4px;" onclick="loadCourierSettings()">
+                                <i class="fas fa-sync-alt me-1"></i> Refresh
+                            </button>
+                        </div>
+                        <p class="text-muted mb-3" style="font-size: 10px; line-height: 1.4;">
+                            Manage base courier charges for different states. Rates are typically stored as
+                            comma-separated values (e.g., 1:60, 2:120).
+                        </p>
+
+                        <div id="courier-settings-container" style="max-height: 250px; overflow-y: auto;" class="pe-1">
+                            <div class="text-center text-muted p-3" style="font-size: 11px;">
+                                <i class="fas fa-spinner fa-spin me-2"></i> Loading courier rates...
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div
+                    class="modal-footer bg-light p-2 border-top border-secondary border-opacity-25 d-flex justify-content-between">
+                    <span class="text-muted" style="font-size: 9px;"><i class="fas fa-info-circle me-1"></i> Sync
+                        required after updating.</span>
+                    <button type="button" class="btn btn-sm btn-dark px-4 fw-bold rounded-pill" data-bs-dismiss="modal"
+                        style="font-size: 11px;">CLOSE</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>window.KAFAK_BACKEND="business";</script>
+  <script src="backend-api.js?v=20261015a"></script>
+    <script src="business-courier-settings.js?v=20261015a"></script>
+    <script src="business-admin-commands.js?v=20261015a"></script>
+    <script src="business-admin-transport.js?v=20261015a"></script>
+    <script src="admin.js?v=20261015a"></script>
+
+    <style>
+        /* Custom CSS for Calendar Dots */
+        .flatpickr-day {
+            position: relative;
+        }
+
+        .activity-dots {
+            position: absolute;
+            bottom: 3px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 3px;
+            pointer-events: none;
+        }
+
+        .dot-inc {
+            width: 5px;
+            height: 5px;
+            background: #10b981;
+            border-radius: 50%;
+        }
+
+        .dot-exp {
+            width: 5px;
+            height: 5px;
+            background: #ef4444;
+            border-radius: 50%;
+        }
+
+        /* Hide top calendar header border to make it clean */
+        .flatpickr-calendar.inline {
+            box-shadow: none !important;
+            border: none !important;
+            width: 100% !important;
+        }
+    </style>
+
+    <style id="label-css">
+        @page {
+            size: 105mm 148mm;
+            /* 🔥 A6-ന്റെ കൃത്യമായ അളവ്! ബ്രൗസർ തനിയെ A6 എടുക്കും */
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #c8c8c8;
+            font-family: "Anek Malayalam", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .label-page {
+            width: 105mm;
+            height: 147mm;
+            /* A6 Size */
+            position: relative;
+            page-break-after: always;
+            /* font-family: Arial, sans-serif; */
+            font-family: 'Anek Malayalam', sans-serif;
+            font-weight: 600;
+            overflow: hidden;
+            box-sizing: border-box;
+            background: white;
+            margin: 0 auto;
+        }
+
+        .label-page:last-child {
+            page-break-after: auto;
+        }
+
+        /* --- 1. ADDRESS SECTION (Top Left) --- */
+        .address-sec {
+            position: absolute;
+            top: 18mm;
+            left: 8mm;
+            width: 81mm;
+            text-align: left;
+        }
+
+        .to-label {
+            font-size: 14px;
+            font-weight: 900;
+            margin-bottom: 2px;
+        }
+
+        .cust-name {
+            font-size: 15px;
+            font-weight: 900;
+            text-transform: uppercase;
+            line-height: 1.2;
+        }
+
+        .cust-addr {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            line-height: 1.25;
+        }
+
+        .cust-pin {
+            font-size: 18px;
+            font-weight: 700;
+            line-height: 1.25;
+        }
+
+        .cust-ph {
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* --- 2. META SECTION WRAPPER (No Layout, just a wrapper) --- */
+        .meta-sec {
+            position: static;
+        }
+
+        /* QUANTITY (Moved to Right Side, opposite to Phone) */
+        .qty-text {
+            position: absolute;
+            top: 51mm;
+            right: 7mm;
+            color: #07cbe4;
+            font-size: 28px;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        /* QR CODE (Moved to Bottom Left) */
+        .qr-box {
+            position: absolute;
+            bottom: 37mm;
+            left: 8mm;
+            width: 25mm;
+            height: 25mm;
+            background: white;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ORDER ID (Below QR) */
+        .qr-oid {
+            position: absolute;
+            bottom: 33mm;
+            left: 8mm;
+            width: 25mm;
+            font-size: 10px;
+            font-weight: 500;
+            color: #000;
+            text-align: center;
+        }
+
+        /* --- 3. CONTACT BOX (Middle Center) --- */
+        .contact-box {
+            position: absolute;
+            top: 64mm;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 82mm;
+            height: 15mm;
+            border: 2px solid #d9d9d9;
+            border-radius: 9px;
+            display: block;
+            background: white;
+            z-index: 10;
+            padding-left: 6mm;
+        }
+
+        .contact-icon svg {
+            width: 30px;
+            height: 30px;
+            display: block;
+            float: left;
+            margin-top: 14px;
+            padding-left: 10px;
+        }
+
+        .contact-text {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.1;
+            text-align: left;
+            margin: 0;
+            padding-top: 12px;
+            padding-left: 8px;
+            float: left;
+        }
+
+        .contact-text span {
+            display: block;
+            font-size: 19px;
+        }
+
+        /* --- 4. FROM ADDRESS (Bottom Center - Between QR & Fragile) --- */
+        .from-sec {
+            position: absolute;
+            bottom: 10mm;
+            left: 8mm;
+            width: 54mm;
+            text-align: left;
+            font-size: 12px;
+            line-height: 1.3;
+            font-weight: 600;
+        }
+
+        /* --- 5. FRAGILE ICON (Bottom Right) --- */
+        .fragile-sec {
+            position: absolute;
+            bottom: 11mm;
+            height: 51.5mm;
+            right: 7mm;
+            width: 32mm;
+            text-align: center;
+        }
+
+        .fragile-img {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- NEW FEATURES CSS --- */
+
+        /* 1. Sticky Timeline Badge (WhatsApp Style) */
+        .sticky-date-wrapper {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 205px;
+            /* Header Height-ന് അനുസരിച്ച് അഡ്ജസ്റ്റ് ചെയ്തു */
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            padding-bottom: 10px;
+            pointer-events: none;
+            /* സ്ക്രോൾ ചെയ്യുമ്പോൾ തടസ്സമാകാതിരിക്കാൻ */
+        }
+
+        .timeline-badge {
+            background: #e1f5fe;
+            color: #444;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            pointer-events: auto;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(4px);
+        }
+
+        /* 2. Full Date on Card */
+        .card-timestamp {
+            font-size: 10px;
+            color: #999;
+            font-weight: 600;
+            text-align: right;
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        /* 3. Active Card Highlight (Pop-up Effect) */
+        .order-card {
+            cursor: pointer;
+            /* Clickable ആണെന്ന് കാണിക്കാൻ */
+            transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid #f0f0f0;
+        }
+
+        .order-card.active-highlight {
+            transform: scale(1.03);
+            /* കാർഡ് ഉയർന്നു നിൽക്കും */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15) !important;
+            border: 1.5px solid #000 !important;
+            z-index: 10;
+            background: #fff;
+        }
+
+        /* 4. Order ID Colored Backgrounds */
+        .order-id {
+            color: white !important;
+            border: none !important;
+            padding: 4px 8px !important;
+            font-size: 11px !important;
+        }
+
+        /* Status Colors from Border */
+        .oid-bg-Pending {
+            background: #ff9800 !important;
+        }
+
+        .oid-bg-Sent {
+            background: #0dcaf0 !important;
+            color: #000 !important;
+        }
+
+        .oid-bg-Paid {
+            background: #2e7d32 !important;
+        }
+
+        .oid-bg-Dispatched {
+            background: #2196f3 !important;
+        }
+
+        /* Remove Old Border Lines */
+        .status-Pending,
+        .status-Paid,
+        .status-Dispatched {
+            border-left: none !important;
+        }
+
+        /* Archive Button */
+        .btn-archive-mini {
+            background: #f1f1f1;
+            border: none;
+            color: #666;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            margin-right: 8px;
+            transition: 0.2s;
+        }
+
+        .btn-archive-mini:hover {
+            background: #ffebee;
+            color: #d32f2f;
+            transform: scale(1.1);
+        }
+
+        /* Customer Stats Badges Style */
+        .stats-badge-blue {
+            background: #f0f9ff;
+            color: #0369a1;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            border: 1px solid #bae6fd;
+        }
+
+        .stats-badge-purple {
+            background: #fdf4ff;
+            color: #a21caf;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            border: 1px solid #f0abfc;
+        }
+
+        /* 🔥 FIX: Flatpickr Full Width Fix */
+        .flatpickr-calendar.inline {
+            width: 100% !important;
+            max-width: 100% !important;
+            box-shadow: none !important;
+            border: none !important;
+        }
+
+        .flatpickr-innerContainer,
+        .flatpickr-rContainer,
+        .dayContainer,
+        .flatpickr-days {
+            width: 100% !important;
+            max-width: 100% !important;
+            min-width: 100% !important;
+        }
+
+        .flatpickr-day {
+            max-width: 100% !important;
+            flex-basis: 14.28% !important;
+        }
+
+        div:where(.swal2-container) {
+            z-index: 10000 !important;
+        }
+
+        .flatpickr-calendar.animate.open {
+            z-index: 99999 !important;
+        }
+    </style>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(registration => {
+                        console.log('Admin PWA Ready!');
+                    });
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -35,6 +35,11 @@ const businessApi = window.KAFAK_BACKEND === 'business' ? new window.KafakBusine
 const businessCommands = businessApi ? new window.KafakBusinessAdminCommands(businessApi, localStorage) : null;
 const adminTransport = new window.KafakBusinessAdminTransport(businessApi, businessCommands, (...args)=>fetch(...args));
 const adminServiceFetch = (...args)=>adminTransport.fetch(...args);
+let businessInventoryRequest=null;
+async function loadBusinessInventoryUsage(){
+    if(!businessInventoryRequest)businessInventoryRequest=businessApi.request('/admin/inventory-usage').then(result=>(window.businessInventoryUsage=result)).finally(()=>{businessInventoryRequest=null;});
+    return businessInventoryRequest;
+}
 let businessHistoryNext=null, businessHistoryLoading=false, businessFetchSerial=0;
 async function restoreBusinessSession() {
     if (!businessApi) return;
@@ -401,7 +406,7 @@ function showDashboard() {
     document.getElementById('dashboard-section').style.display = 'block';
 
     // 🔥 മാസ്റ്റർ ലോഗിൻ ചെക്കിങ് (Salary & Settings Hide ചെയ്യാൻ)
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+    let isMasterUser = (businessApi ? localStorage.getItem('kafakAdminRole') === 'master' : localStorage.getItem('kafakAdminUser') === 'master');
 
     if (!isMasterUser) {
         // സാധാരണ Admin ആണെങ്കിൽ Settings ബട്ടണും Salary ഓപ്ഷനും മായ്ച്ചു കളയുന്നു
@@ -2160,7 +2165,7 @@ function renderTabsWithLimit() {
 window.archiveOrder = function (oid) {
     // 1. Check User Permission
     const currentUser = localStorage.getItem('kafakAdminUser');
-    const isMaster = (currentUser === 'master');
+    const isMaster = businessApi ? localStorage.getItem('kafakAdminRole') === 'master' : currentUser === 'master';
 
     // 2. HTML Content for Popup
     let htmlContent = `
@@ -6362,7 +6367,7 @@ function injectLeftDrawer() {
 
     $('body').append(drawerHtml);
 
-    if (localStorage.getItem('kafakAdminUser') !== 'master') {
+    if ((businessApi ? localStorage.getItem('kafakAdminRole') !== 'master' : localStorage.getItem('kafakAdminUser') !== 'master')) {
         $('#tab-btn-settings').hide();
     }
 
@@ -6376,7 +6381,7 @@ function injectLeftDrawer() {
 }
 
 // 🔥 ADVANCED SMART PRINT PREDICTOR (FIXED LOOSE STICKER BUG)
-window.updatePrintPrediction = function (isManualSheetChange = false) {
+window.updatePrintPrediction = async function (isManualSheetChange = false) {
     let selectBox = document.getElementById('stickers-per-page');
     if (!selectBox) return;
 
@@ -6400,7 +6405,7 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    if (typeof allOrders !== 'undefined' && allOrders.length > 0) {
+    if (!businessApi && typeof allOrders !== 'undefined' && allOrders.length > 0) {
         allOrders.forEach(o => {
             let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
             let status = localStatusUpdate && localStatusUpdate.status ? localStatusUpdate.status : String(o.Status || 'Pending').trim();
@@ -6428,6 +6433,11 @@ window.updatePrintPrediction = function (isManualSheetChange = false) {
                 }
             }
         });
+    }
+
+    if(businessApi){
+        try{const usage=await loadBusinessInventoryUsage();unprintedStickers=usage.printStats.unprinted;printedStickers=usage.printStats.printed;usedStickers=usage.counts.sticker||0;}
+        catch(error){const target=document.getElementById('a4-stock-display-container')||document.getElementById('a4-stock-display');if(target)target.textContent=error.message;return;}
     }
 
     // 🔥 BUG FIX: Removed reliance on avgUsage for stickers. Always use strict ratio (e.g. 5)
@@ -6977,7 +6987,7 @@ window.showOfflineSaleModal = async function (editOid = null) {
     if (editOid) o = allOrders.find(x => x.orderid === editOid);
 
     let isPartner = o ? (o.house === 'Partner Bulk') : false;
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+    let isMasterUser = (businessApi ? localStorage.getItem('kafakAdminRole') === 'master' : localStorage.getItem('kafakAdminUser') === 'master');
 
     let savedRate = (typeof courierRates !== 'undefined' && courierRates.partnerRate) ? courierRates.partnerRate : 170;
     let savedMargin = (typeof courierRates !== 'undefined' && courierRates.partnerMargin) ? courierRates.partnerMargin : 50;
@@ -7232,7 +7242,7 @@ window.showAddExpenseModal = function (editId = null) {
     let oldAmount = eObj ? eObj.amount : '';
     let oldProof = eObj ? eObj.proof : '';
 
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+    let isMasterUser = (businessApi ? localStorage.getItem('kafakAdminRole') === 'master' : localStorage.getItem('kafakAdminUser') === 'master');
     let editSalaryOption = isMasterUser ? `<option value="Salary" ${oldCat === 'Salary' ? 'selected' : ''}>👤 Salary Payment</option>` : '';
 
     // 🔥 NEW: Clear Visual Indication for Expense Receipt Removal
@@ -7407,7 +7417,7 @@ async function submitExpense(e, editId = null) {
 window.renderDayBookTable = function () {
     if (!dashboardData || !dashboardData.monthTimeline) return;
 
-    let isMasterUser = localStorage.getItem('kafakAdminUser') === 'master';
+    let isMasterUser = (businessApi ? localStorage.getItem('kafakAdminRole') === 'master' : localStorage.getItem('kafakAdminUser') === 'master');
 
     let mY = selectedDate.getFullYear();
     let mM = selectedDate.getMonth();
@@ -9165,7 +9175,7 @@ window.toggleInvCollapseIcon = function () {
 // റെൻഡർ ചെയ്യുമ്പോൾ Collapse സ്റ്റേറ്റ് നിലനിർത്താൻ
 window.renderLiveStockTracker = async function () {
     if(businessApi){
-        try{window.businessInventoryUsage=await businessApi.request('/admin/inventory-usage');}
+        try{window.businessInventoryUsage=await loadBusinessInventoryUsage();}
         catch(error){showToast('error',error.message);return;}
     }
     let isExpanded = $('#inventoryCollapse').hasClass('show');
@@ -9716,7 +9726,12 @@ window.toggleDDDatePicker = function (isChecked) {
 };
 
 // 🔥 UPDATED: DIRECT DELIVERY POPUP (With Date Picker)
-window.openDirectDeliveryPopup = function (oid) {
+window.openDirectDeliveryPopup = async function (oid) {
+    let deliveryOptions = null;
+    if (businessApi) {
+        try { deliveryOptions = await businessApi.request("/admin/sale-options"); }
+        catch (error) { Swal.fire({icon:"error",title:"Delivery settings unavailable",text:error.message}); return; }
+    }
     let order = allOrders.find(o => o.orderid === oid);
     if (!order) return;
 
@@ -9728,8 +9743,8 @@ window.openDirectDeliveryPopup = function (oid) {
     let oldTotal = existingIdx > -1 ? updates[existingIdx].oldTotal : (order.Grand_Total || order.grandTotal);
     let oldMeta = existingIdx > -1 ? updates[existingIdx].oldMeta : String(order.adminMeta || '');
 
-    let existingName = 'Samad';
-    let existingCharge = '30';
+    let existingName = deliveryOptions ? (deliveryOptions.partners[0] || '') : 'Samad';
+    let existingCharge = deliveryOptions ? String(deliveryOptions.directCharge) : '30';
 
     if (order.adminMeta && order.adminMeta.includes('DDelivery')) {
         let match = order.adminMeta.match(/DDelivery([a-zA-Z]+)_(\d+)/);
@@ -9765,9 +9780,7 @@ window.openDirectDeliveryPopup = function (oid) {
             <div class="mb-3 text-start">
                 <label class="small text-muted fw-bold">Select Partner</label>
                 <select id="dd-partner-name" class="form-select border-warning shadow-sm fw-bold">
-                    <option value="Samad" ${existingName === 'Samad' ? 'selected' : ''}>Samad</option>
-                    <option value="Salam" ${existingName === 'Salam' ? 'selected' : ''}>Salam</option>
-                    <option value="Jazeela" ${existingName === 'Jazeela' ? 'selected' : ''}>Jazeela</option>
+                    ${(deliveryOptions ? deliveryOptions.partners : ['Samad','Salam','Jazeela']).map(name => { const safe = String(name).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); return `<option value="${safe}" ${existingName === name ? 'selected' : ''}>${safe}</option>`; }).join('')}
                 </select>
             </div>
             <div class="text-start">
@@ -9808,7 +9821,7 @@ window.openDirectDeliveryPopup = function (oid) {
                 if (dateInput) delDate = dateInput.value;
             }
 
-            if (!a) { Swal.showValidationMessage('Charge is required!'); return false; }
+            if (!p || a === '' || !Number.isInteger(Number(a)) || Number(a) < 0) { Swal.showValidationMessage('Select a partner and enter a non-negative whole-rupee charge.'); return false; }
             return { name: p, charge: a, isDelivered: d, deliveredDate: delDate };
         }
     }).then((res) => {
