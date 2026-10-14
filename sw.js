@@ -1,5 +1,5 @@
 /* Network-only application releases; never reuse HTTP-cached HTML or scripts. */
-const RELEASE = '20261015c';
+const RELEASE = '20261015d';
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', event => event.waitUntil((async () => {
   await Promise.all((await caches.keys()).map(key => caches.delete(key)));

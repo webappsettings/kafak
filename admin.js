@@ -40,7 +40,7 @@ async function loadBusinessInventoryUsage(){
     if(!businessInventoryRequest)businessInventoryRequest=businessApi.request('/admin/inventory-usage').then(result=>(window.businessInventoryUsage=result)).finally(()=>{businessInventoryRequest=null;});
     return businessInventoryRequest;
 }
-let businessHistoryNext=null, businessHistoryLoading=false, businessFetchSerial=0;
+let businessHistoryGroups=[], businessHistoryNext=null, businessHistoryLoading=false, businessFetchSerial=0;
 async function restoreBusinessSession() {
     if (!businessApi) return;
     try {
@@ -625,7 +625,7 @@ function fetchOrders(forceLoad = false) {
         .then(response => {
             if(businessApi&&fetchSerial!==businessFetchSerial)return;
             if(businessApi){
-                businessHistoryNext=response.next||null;window.businessDefaultProduct=response.defaultProduct;window.businessProductNames=response.products||[];
+                businessHistoryNext=response.next||null;businessHistoryGroups=response.remainingGroups||[];window.businessDefaultProduct=response.defaultProduct;window.businessProductNames=response.products||[];
                 if(!window.businessProductsInitialized){window.activeProducts=new Set(response.defaultProduct?[response.defaultProduct]:response.products||[]);window.businessProductsInitialized=true;}
             }
             document.getElementById('loader').style.display = 'none';
@@ -1194,12 +1194,12 @@ function renderTabs(orders, externalCounts = null) {
     // 🔥 SMART LOAD MORE BUTTONS (Manual Click for History Tabs)
     const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
         currentDrawn = currentDrawn || 0;
-        if (listElement && (totalAvailable > currentDrawn || (businessApi && businessHistoryNext))) {
+        if (listElement && (totalAvailable > currentDrawn || hasOlderOrdersForTab(tabKey))) {
             let left = totalAvailable - currentDrawn;
             listElement.innerHTML += `
             <div class="text-center my-4 pb-4 w-100" id="loader-box-${tabKey}">
                 <button onclick="loadMoreCards('${tabKey}')" class="btn btn-light rounded-pill px-4 py-2 shadow-sm fw-bold text-secondary" style="font-size:12px; border:1px solid #e2e8f0; transition:all 0.3s;">
-                    <i class="fas fa-history me-1"></i> Load Older Orders${businessApi && businessHistoryNext ? '' : ` (${left})`}
+                    <i class="fas fa-history me-1"></i> Load Older Orders${hasOlderOrdersForTab(tabKey) ? '' : ` (${left})`}
                 </button>
             </div>`;
         }
@@ -1223,12 +1223,12 @@ function renderTabs(orders, externalCounts = null) {
             <div class="text-muted small" style="font-size: 11px;">${subMsg}</div>
         </div>`;
 
-    if (listNew && subCounts.new === 0 && !(businessApi && businessHistoryNext)) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
-    if (listSent && subCounts.sent === 0 && !(businessApi && businessHistoryNext)) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
-    if (listPaidNew && subCounts.paid_new === 0 && !(businessApi && businessHistoryNext)) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
-    if (listPaidPrinted && subCounts.paid_print === 0 && !(businessApi && businessHistoryNext)) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
-    if (listDispNew && subCounts.disp_new === 0 && !(businessApi && businessHistoryNext)) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
-    if (listDispTracked && subCounts.disp_track === 0 && !(businessApi && businessHistoryNext)) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
+    if (listNew && subCounts.new === 0 && !hasOlderOrdersForTab('new')) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
+    if (listSent && subCounts.sent === 0 && !hasOlderOrdersForTab('sent')) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
+    if (listPaidNew && subCounts.paid_new === 0 && !hasOlderOrdersForTab('paid_new')) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
+    if (listPaidPrinted && subCounts.paid_print === 0 && !hasOlderOrdersForTab('paid_print')) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
+    if (listDispNew && subCounts.disp_new === 0 && !hasOlderOrdersForTab('disp_new')) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
+    if (listDispTracked && subCounts.disp_track === 0 && !hasOlderOrdersForTab('disp_track')) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
     // --- STICKY HEADER LOGIC ---
     const populateStickyHeader = (id, oCount, cTotal, sStats) => {
@@ -2021,6 +2021,17 @@ function adminDayKey(value) {
 }
 window.tabLimits = { new: 50, sent: 50, paid_new: 50, paid_print: 50, disp_new: 50, disp_track: 50 };
 
+function hasOlderOrdersForTab(tabKey) {
+    if(!businessApi || !businessHistoryNext)return false;
+    return businessHistoryGroups.some(group=>{
+        if(group.tab!==tabKey)return false;
+        if(window.activeProducts&&!window.activeProducts.has((group.product||defaultProductName()).trim()))return false;
+        const s=String(group.state||'').toUpperCase().trim();
+        const state=!s||s==='KERALA'?'KL':s.includes('LAK')?'LD':s.includes('KARN')?'KA':s.includes('TAMIL')||s.includes('TN')?'TN':'OTHER';
+        return !window.activeStateFilter||window.activeStateFilter===state;
+    });
+}
+
 window.loadMoreCards = async function (tabKey) {
     if(businessApi&&businessHistoryNext){
         if(businessHistoryLoading)return;
@@ -2035,7 +2046,7 @@ window.loadMoreCards = async function (tabKey) {
                 o._searchStr=[o.name,o.orderid,o.house,o.place,o.postoffice,o.district,o.state,o.pincode,o.phone,o.whatsapp,o.paidNum].filter(Boolean).join(' ').toLowerCase();
                 allOrders.push(o);known.add(o.orderid);
             }
-            businessHistoryNext=response.next||null;
+            businessHistoryNext=response.next||null;businessHistoryGroups=response.remainingGroups||[];
             localStorage.setItem('allOrdersCache',JSON.stringify(allOrders));
             window.tabLimits[tabKey]+=50;filterOrders(false);
         }catch(error){showToast('error',error.message);}
