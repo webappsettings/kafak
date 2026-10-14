@@ -6,11 +6,11 @@ const path = require('node:path');
 const admin = fs.readFileSync(path.join(__dirname, '../admin.js'), 'utf8');
 const customer = fs.readFileSync(path.join(__dirname, '../custom.js'), 'utf8');
 const syncCode = admin.slice(admin.indexOf('async function finalConfirmSync()'), admin.indexOf('function discardLocalChanges()'));
-function harness(queues, fetch) {
+function harness(queues, fetch, businessCommands = null) {
   const store = new Map(Object.entries(queues).map(([k,v])=>[k, JSON.stringify(v)]));
   const chain = {prop(){return this;},html(){return this;},fadeOut(){return this;}};
   const events = [];
-  const ctx = {window:{},navigator:{},console:{error(){}},fetch,scriptURL:'https://test.invalid',
+  const ctx = {businessCommands,window:{},navigator:{},console:{error(){}},fetch,scriptURL:'https://test.invalid',
     localStorage:{getItem:k=>store.get(k)||null,setItem:(k,v)=>store.set(k,v),removeItem:k=>store.delete(k)},
     $:()=>chain,showToast:(...v)=>events.push(v),renderSyncList(){},updateSyncButtonUI(){},fetchDashboardDataBg(){},
     scannedTrackers:[],bootstrap:{Modal:{getInstance:()=>({hide(){}})}},document:{getElementById:()=>({})}};
@@ -67,7 +67,7 @@ test('Server confirmation signals presentation instead of skipping the video',as
 
 test('Cached quantity options come from product prices, not courier metadata',async()=>{
  const code=customer.slice(customer.indexOf('let courierRatesRequest = null;'),customer.indexOf('function renderQtyDropdowns()'));
- const ctx={sc:'https://test.invalid',translations:{en:{}},$(){return {val:()=> 'en',html(){}}},SafeStorage:{getItem:()=>JSON.stringify({KERALA:{baseRate:'1:62',serviceCharge:'1:18'},prices:{1:650,2:1300}})},renderQtyDropdowns(){},fetch:async()=>{throw Error('offline');}};
+ const ctx={window:{},sc:'https://test.invalid',translations:{en:{}},$(){return {val:()=> 'en',html(){}}},SafeStorage:{getItem:()=>JSON.stringify({KERALA:{baseRate:'1:62',serviceCharge:'1:18'},prices:{1:650,2:1300}})},renderQtyDropdowns(){},fetch:async()=>{throw Error('offline');}};
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.fetchCourierRates();assert.deepEqual(Array.from(ctx.globalQtyList),[1,2]);
 });
 test('India Post metadata wrapper retains existing print-tag cleanup',()=>{
@@ -126,7 +126,7 @@ test('Concurrent courier rate loads share a request and allow a later refresh', 
  const end=customer.indexOf('function renderQtyDropdowns()',start);
  let calls=0,resolve;
  const chain={val:()=>'',html(){return this;}};
- const ctx={$:()=>chain,translations:{en:{}},SafeStorage:{getItem:()=>null},sc:'https://test.invalid',
+ const ctx={window:{},$:()=>chain,translations:{en:{}},SafeStorage:{getItem:()=>null},sc:'https://test.invalid',
  fetch:()=>{calls++;return new Promise(r=>resolve=r);}};
  vm.createContext(ctx);vm.runInContext(customer.slice(start,end),ctx);
  const a=ctx.fetchCourierRates(),b=ctx.fetchCourierRates();
@@ -178,4 +178,10 @@ test('Admin cards retain stored historical prices instead of current product har
  assert.match(ctx.calculatePriceInfo({Courier_Charge:80,Grand_Total:730},1).breakdownText,/650 \+ 80/);
  assert.equal(ctx.calculatePriceInfo({},1).total,'—');
  pending=[{oid:'K1',action:'meta',charge:150,total:4050}];assert.equal(ctx.calculatePriceInfo({orderid:'K1',Product_Amount:3900,Courier_Charge:140,Grand_Total:4040},2).total,'₹4050/-');
+});
+
+test('business queue batches at 100, preserves failed jobs and acknowledges only after removal',async()=>{
+ const updates=Array.from({length:101},(_,i)=>({oid:'K'+i,action:'status',status:'Paid'}));let h,calls=0,acks=0;
+ h=harness({pendingUpdates:updates},()=>assert.fail('Legacy writer must not run'),{send:async p=>{calls++;if(calls===2)throw Error('connection lost');assert.equal(p.updates.length,100);return {result:'success',count:100};},acknowledge:async()=>{acks++;assert.equal(h.queue('pendingUpdates').length,1);}});
+ await h.ctx.finalConfirmSync();assert.equal(calls,2);assert.equal(acks,1);assert.equal(h.queue('pendingUpdates')[0].oid,'K100');
 });

@@ -26,6 +26,7 @@ const SafeStorage = {
 };
 
 function checkStockStatus() {
+  if (window.kafakCheckoutUI) return window.kafakCheckoutUI.load();
   fetch(`${sc}?action=checkStock`)
     .then(response => response.json())
     .then(data => {
@@ -1752,7 +1753,7 @@ function applyHideLogic(status) {
   }
 }
 
-window.updatePrice = function (qty, isQuick) {
+window.updatePrice = async function (qty, isQuick) {
   const container = isQuick ? $('#quick-price-box') : $('#wiz-price-box');
 
   if (!qty) {
@@ -1776,6 +1777,12 @@ window.updatePrice = function (qty, isQuick) {
   let base = 0;
   let totalCourier = 0;
 
+  if (window.kafakCheckoutUI) {
+    container.hide();
+    const quote = await window.kafakCheckoutUI.price(qty, isQuick);
+    if (!quote) return;
+    base = quote.productAmount; totalCourier = quote.courierAmount;
+  } else {
   if (productType === 'Cheruthen') {
     // 🔥 CHERUTHEN STRICT PRICING
     if (n === 1) { base = 900; totalCourier = 80; }
@@ -1806,6 +1813,8 @@ window.updatePrice = function (qty, isQuick) {
       }
     }
     if (totalCourier === 0) totalCourier = (n * 60) + 20;
+  }
+
   }
 
   const total = base + totalCourier;
@@ -3023,11 +3032,11 @@ function playVideoAnimation(userName, apiCallback) {
 function postOrder(data) {
   window.orderSuccess = false;
 
-  return fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
-    .then(res => {
-      if (!res.ok) throw new Error('Order request failed');
-      return res.json();
-    })
+  const request = window.kafakCheckoutUI
+    ? window.kafakCheckoutUI.submit(data).then(result => { data = { ...data, ...result.data }; return result.res; })
+    : fetch(sc, { method: 'POST', body: JSON.stringify({ action: 'submit', orderData: data }) })
+      .then(res => { if (!res.ok) throw new Error('Order request failed'); return res.json(); });
+  return request
     .then(res => {
       if (!res || res.result !== 'success' || !res.orderid) throw new Error('Order was not confirmed');
       if (res.result === 'success') {
@@ -3056,11 +3065,11 @@ function postOrder(data) {
 
         finishOrderPresentation();
       }
-    }).catch(() => {
+    }).catch((error) => {
       window.orderSuccess = false;
       stopOrderAnimation();
       $('#videoModal').fadeOut();
-      showAlert('Order could not be confirmed. Refresh and check your order before trying again.');
+      showAlert(window.kafakCheckoutUI ? error.message : 'Order could not be confirmed. Refresh and check your order before trying again.');
     });
 }
 
@@ -3070,6 +3079,7 @@ function postOrder(data) {
 
 let courierRatesRequest = null;
 function fetchCourierRates() {
+  if (window.kafakCheckoutUI) return window.kafakCheckoutUI.load();
   if (courierRatesRequest) return courierRatesRequest;
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
@@ -3129,6 +3139,7 @@ function fetchCourierRates() {
 
 // 🔥 UPDATED: Dynamic Quantity Dropdowns (Vanthen & Cheruthen)
 function renderQtyDropdowns() {
+  if (window.kafakCheckoutUI) return window.kafakCheckoutUI.render();
   if (!globalQtyList || globalQtyList.length === 0) return;
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
@@ -3261,6 +3272,11 @@ function sendToWhatsapp(orderData = successData, recipient = null) {
   let base = 0;
   let courier = 0;
 
+  if (window.kafakCheckoutUI) {
+    const amount=d.quote?.productAmount??d.Product_Amount, delivery=d.quote?.courierAmount??d.Courier_Charge;
+    if(amount==null||delivery==null||!Number.isFinite(Number(amount))||!Number.isFinite(Number(delivery))){showAlert('Reload the confirmed order before sending its invoice.');return;}
+    base=Number(amount);courier=Number(delivery);
+  } else {
   if (productType === 'Cheruthen') {
     if (n === 1) { base = 900; courier = 80; }
     else if (n === 2) { base = 1800; courier = 100; }
@@ -3289,14 +3305,18 @@ function sendToWhatsapp(orderData = successData, recipient = null) {
     courier = courierBase + serviceMargin;
   }
 
+  }
+
   const total = base + courier;
 
   // 5. Generate Message Header
-  const editLink = `https://kafaklife.com/order.html?oid=${d.orderid}`;
+  const editLink = d.accessToken ? KafakBusinessOrder.privateLink('https://kafaklife.com/order.html',d) : `https://kafaklife.com/order.html?oid=${d.orderid}`;
   let header = "";
 
   // 🔥 NEW: Product Name Display
   let productDisplay = productType === 'Cheruthen' ? "*🍯 Product: Cheruthen (Stingless Honey)*" : "*🍯 Product: Vanthen (Wild Honey)*";
+
+  if (window.kafakCheckoutUI) productDisplay = '*Product: '+[d.product,d.variant].filter(Boolean).join(' · ')+'*';
 
   if (isAdmin) {
     header = `*🧾 ORDER INVOICE* - KAFAK HONEY\n⌚ _${formattedTime}_\n\nHere is your order details 👇\nനിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇\n🔗 _${editLink}_\n`;

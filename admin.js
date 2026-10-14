@@ -31,6 +31,24 @@ const scriptURL = "https://script.google.com/macros/s/AKfycbxVp0SErrllaT8E3E2dQy
 const businessCourierSettings = window.KAFAK_BACKEND === 'business'
     ? new window.KafakBusinessCourierSettings(new window.KafakBusinessApi()) : null;
 
+const businessApi = window.KAFAK_BACKEND === 'business' ? new window.KafakBusinessApi() : null;
+const businessCommands = businessApi ? new window.KafakBusinessAdminCommands(businessApi, localStorage) : null;
+async function restoreBusinessSession() {
+    if (!businessApi) return;
+    try {
+        const user = await businessApi.me();
+        localStorage.setItem('kafakAdmin', 'true');
+        localStorage.setItem('kafakAdminUser', user.username);
+        localStorage.setItem('kafakAdminRole', user.role);
+    } catch (error) {
+        localStorage.removeItem('kafakAdmin');
+        localStorage.removeItem('kafakAdminUser');
+        localStorage.removeItem('kafakAdminRole');
+        localStorage.removeItem('allOrdersCache');
+        if (error.status !== 401) document.getElementById('loginMsg').innerText = error.message;
+    }
+}
+
 // Beep Sound for Scanner
 const beepSound = new Audio("data:audio/wav;base64,UklGRl9vT1BXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YV9vT1GAg4SFhoeIiYqLjI2Oj5CRkpOUlZaXmJmam5ydnp+goaKjpKWmp6ipqqusra6vsLGys7S1tre4ubq7vL2+v8DBwsPExcbHyMnKy8zNzs/Q0dLT1NXW19jZ2tvc3d7f4OHi4+Tl5ufo6err7O3u7/Dx8vP09fb3+Pn6+/z9/v8AAgEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/AAEBAgMDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtLi8wMTIzNDU2Nzg5Ojs8PT4/QEFCQ0RFRkdISUpLTE1OT1BRUlNUVVZXWFlaW1xdXl9gYWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXp7fH1+f4CBgoOEhYaHiImKi4yNjo+QkZKTlJWWl5iZmpucnZ6foKGio6SlpqeoqaqrrK2ur7CxsrO0tba3uLm6u7y9vr/AwcLDxMXGx8jJysvMzc7P0NHS09TV1tfY2drb3N3e3+Dh4uPk5ebn6Onq6+zt7u/w8fLz9PX29/j5+vv8/f7/");
 let isScanProcessing = false;
@@ -259,13 +277,25 @@ function isStorageAvailable() {
 }
 
 // 🔴 2. LOGIN FUNCTION
-window.attemptLogin = function () {
+window.attemptLogin = async function () {
     if (!isStorageAvailable()) {
         alert("Storage error. Please disable Private Mode.");
         return;
     }
     const user = document.getElementById('adminUser').value.trim(); // Trim spaces
     const pass = document.getElementById('adminPass').value;
+    if (businessApi) {
+        try {
+            await businessApi.login(user, pass);
+            if (businessApi) await restoreBusinessSession();
+            if (localStorage.getItem('kafakAdmin') !== 'true') throw new Error('Sign in could not be confirmed. Please retry.');
+            document.getElementById('adminPass').value = '';
+            document.getElementById('loginMsg').innerText = '';
+            showDashboard();
+        } catch (error) { document.getElementById('loginMsg').innerText = error.message; }
+        return;
+    }
+
 
     // 🔥 Master Admin & Regular Admin Check
     // Master: master / kafak123
@@ -294,7 +324,8 @@ window.logoutAdmin = function () {
         showToast('error', 'Pending data could not be read. Logout cancelled to protect your changes.');
         return;
     }
-    confirmAction("Logout ചെയ്യണോ?", () => {
+    confirmAction("Logout ചെയ്യണോ?", async () => {
+        if (businessApi) { try { await businessApi.logout(); } catch (error) { showToast('error', error.message); return; } }
         try {
             localStorage.removeItem('kafakAdmin');
             localStorage.removeItem('kafakAdminLoggedIn');
@@ -308,8 +339,9 @@ window.logoutAdmin = function () {
 };
 
 // INITIALIZATION
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
     if (!isStorageAvailable()) return;
+    if (businessApi) await restoreBusinessSession();
 
     try {
         if (localStorage.getItem('kafakAdmin') === 'true') {
@@ -2937,7 +2969,11 @@ async function performConfirmedSync() {
     // 1. COMBINED SYNC
     let bulkUpdates = pendingUpdates.filter(u => u.action !== 'paidNum' && u.action !== 'phones' && !u.deleteRefund);
     if (bulkUpdates.length > 0) {
-        addJob('pendingUpdates', bulkUpdates, { action: 'bulkUpdateStatus', updates: bulkUpdates });
+        const batchSize = businessCommands ? 100 : bulkUpdates.length;
+        for (let i = 0; i < bulkUpdates.length; i += batchSize) {
+            const batch = bulkUpdates.slice(i, i + batchSize);
+            addJob('pendingUpdates', batch, { action: 'bulkUpdateStatus', updates: batch });
+        }
     }
 
     // 2. Refund Deletions
@@ -2979,15 +3015,20 @@ async function performConfirmedSync() {
         let failures = 0;
         for (const job of jobs) {
             try {
-                const response = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(job.payload) });
-                if (!response.ok) throw new Error('HTTP ' + response.status);
-                const result = await response.json();
+                let result;
+                if (businessCommands) result = await businessCommands.send(job.payload);
+                else {
+                    const response = await fetch(scriptURL, { method: 'POST', body: JSON.stringify(job.payload) });
+                    if (!response.ok) throw new Error('HTTP ' + response.status);
+                    result = await response.json();
+                }
                 const alreadyDeleted = job.payload.action === 'deleteRefund' && result.result === 'not_found';
                 if (!alreadyDeleted && result.result !== 'success' && result.status !== 'success') throw new Error('Server did not confirm success');
                 if (job.payload.action === 'bulkUpdateStatus' && Number(result.count) !== job.entries.length) {
                     throw new Error('Only part of the batch was confirmed');
                 }
                 removeConfirmedQueueEntries(job.key, job.entries);
+                if (businessCommands) await businessCommands.acknowledge(job.payload);
             } catch (error) {
                 failures++;
                 console.error('Sync not confirmed:', job.payload.action, error.message);
@@ -4019,10 +4060,10 @@ window.parseOrderDate = function (str, oid = "") {
         let trueMonth = -1;
         let trueYear = -1;
 
-        if (oid.startsWith("ORD-")) {
+        if (/^ORD-\d{8}/.test(oid)) {
             trueYear = parseInt(oid.substring(4, 8));
             trueMonth = parseInt(oid.substring(8, 10));
-        } else if (oid.startsWith("K-")) {
+        } else if (/^K-\d{12}$/.test(oid)) {
             trueYear = parseInt("20" + oid.substring(2, 4));
             trueMonth = parseInt(oid.substring(4, 6));
         }
