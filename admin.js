@@ -123,7 +123,8 @@ window.toggleProductFilter = function (e, product, el) {
 
     // 🔥 ഡാഷ്‌ബോർഡ് ലൈവ് ആയി റീലോഡ് ചെയ്യുന്നു
     if ($('#dashboard-drawer').hasClass('open')) {
-        renderDashboard(); // എല്ലാ കാൽക്കുലേഷൻ ഫംഗ്ഷനുകളും ഇതിനകത്തുണ്ട്
+        if (businessApi) fetchDashboardDataBg();
+        else renderDashboard(); // എല്ലാ കാൽക്കുലേഷൻ ഫംഗ്ഷനുകളും ഇതിനകത്തുണ്ട്
     }
 };
 
@@ -3906,7 +3907,9 @@ function initFlatpickrs() {
 }
 
 // 🔥 1. ഡാഷ്‌ബോർഡ് ഡാറ്റ എടുക്കാൻ (Background Load - No Screen Block)
+let dashboardRequestSerial = 0;
 function fetchDashboardDataBg() {
+    const requestSerial = ++dashboardRequestSerial;
     let y = selectedDate.getFullYear();
     let m = String(selectedDate.getMonth() + 1).padStart(2, '0');
     let d = String(selectedDate.getDate()).padStart(2, '0');
@@ -3914,14 +3917,21 @@ function fetchDashboardDataBg() {
 
     // (ശ്രദ്ധിക്കുക: മെയിൻ ലോഡർ നമ്മൾ ഒഴിവാക്കി, പകരം changeDashDate-ലെ ഇൻലൈൻ ലോഡർ മാത്രം വർക്ക് ചെയ്യും)
 
-    fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`)
-        .then(res => res.json())
+    const dashboardQuery = new URLSearchParams({date:dateStr});
+    if (businessApi) {
+        for (const product of window.activeProducts) dashboardQuery.append('product',product);
+        if (!window.activeProducts.size) dashboardQuery.append('product','');
+    }
+    const request = businessApi ? businessApi.request('/admin/dashboard?'+dashboardQuery) : fetch(`${scriptURL}?action=getDashboardData&date=${dateStr}`).then(res => res.json());
+    request
         .then(res => {
+            if (requestSerial !== dashboardRequestSerial) return;
             if (res.result === 'success') {
                 dashboardData = res.data;
                 renderDashboard();
             }
         }).catch(err => {
+            if (requestSerial !== dashboardRequestSerial) return;
             console.error(err);
             $('#tx-details-area').html('<div class="text-center py-4 text-danger small"><i class="fas fa-exclamation-triangle"></i> Failed to load data. Please refresh.</div>');
         });
@@ -4106,7 +4116,7 @@ window.renderDashboard = function () {
     let orderBreakdown = {};
     let costBreakdown = {};
 
-    allOrders.forEach(o => {
+    if (!businessApi) allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
@@ -4229,6 +4239,14 @@ window.renderDashboard = function () {
                 }
             }
         });
+    }
+
+    if (businessApi) {
+        const daily=dashboardData.summary.daily, monthly=dashboardData.summary.monthly, yearly=dashboardData.summary.yearly;
+        const totals=dashboardData.monthlyReport.totals;
+        dSales=daily.income; dOrders=daily.orders; dProductCost=daily.productCost; dCourierExp=daily.courier; dOtherExp=daily.other;
+        trueIncome=totals.income; trueProductCost=totals.productCost; trueCourierExp=totals.courier; trueOtherExp=totals.other; monthMaterialExp=totals.material;
+        trueTotalCourier=monthly.delivery; monthOrders=totals.orders; monthBottles=totals.units; yearOrders=yearly.orders; yearBottles=yearly.units;
     }
 
     let dTotalExpense = dProductCost + dCourierExp + dOtherExp;

@@ -1,0 +1,8 @@
+const test=require('node:test'),assert=require('node:assert/strict'),vm=require('node:vm'),fs=require('node:fs'),path=require('node:path');
+const source=fs.readFileSync(path.join(__dirname,'../admin.js'),'utf8');
+test('main accounting cards use server summaries even when the visible order list has no historical rows',()=>{
+ const text={},chain={text(value){if(value!==undefined)text[this.selector]=value;return this;},parent(){return this;},append(){return this;},remove(){return this;},removeClass(){return this;},addClass(){return this;},css(){return this;},before(){return this;},is(){return false;}};
+ const ctx={window:{},businessApi:{},dashboardData:{summary:{daily:{income:100.25,orders:1,productCost:50,courier:10.05,other:5},monthly:{delivery:20},yearly:{orders:12,units:15}},monthlyReport:{totals:{income:1000.75,productCost:500,courier:80.25,other:20,material:15,orders:10,units:11}},yearly:{materialExp:30},monthTimeline:{expense:[]}},selectedDate:new Date(2026,9,14),allOrders:{forEach(){throw Error('Paged orders are not an accounting source');}},$:s=>Object.assign(Object.create(chain),{selector:s}),flatpickr:{formatDate:()=> '2026-10-14'}};
+ vm.createContext(ctx);const start=source.indexOf('window.renderDashboard = function ()'),end=source.indexOf('// 🔥 RENDER TRANSACTIONS',start);vm.runInContext(source.slice(start,end),ctx);ctx.window.renderDashboard();
+ assert.equal(text['#d-sales'],'₹100.25');assert.equal(text['#d-profit'],'₹35.2');assert.equal(text['#m-sales'],'₹1,000.75');assert.equal(text['#m-profit'],'₹400.5');assert.equal(ctx.window.currentMonthOrders,10);assert.equal(ctx.window.currentMonthBottles,11);
+});
