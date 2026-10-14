@@ -680,7 +680,7 @@ function fetchOrders(forceLoad = false) {
                 fetchDashboardDataBg();
                 handleUrlSearch();
 
-                if (forceLoad && typeof refreshTrackingBalance === 'function') refreshTrackingBalance(true);
+                if ((forceLoad || businessApi) && typeof refreshTrackingBalance === 'function') refreshTrackingBalance(true);
             }
         })
         .catch(err => {
@@ -10757,7 +10757,7 @@ function uploadPostalTrackers(trackers) {
 
 
 // 🔥 Cache-ൽ നിന്ന് പഴയ ബാലൻസ് എടുക്കുന്നു
-let savedBal = localStorage.getItem('trackingBalanceCache');
+let savedBal = businessApi ? null : localStorage.getItem('trackingBalanceCache');
 window.trackingBalance = savedBal ? JSON.parse(savedBal) : { normal: 0, speed: 0, fetched: false };
 window.isFetchingBalance = false; // 🔥 സ്റ്റക്ക് ആവാതിരിക്കാൻ ഗ്ലോബൽ ആക്കി
 
@@ -10822,7 +10822,8 @@ window.refreshTrackingBalance = function (force = false) {
             method: 'POST',
             body: JSON.stringify({ action: 'getTrackingBalance' })
         }).then(res => res.json()).then(data => {
-            window.trackingBalance = { normal: data.normal || 0, speed: data.speed || 0, fetched: true };
+            if (data.result !== 'success' || !Number.isInteger(data.normal) || data.normal < 0 || !Number.isInteger(data.speed) || data.speed < 0) throw Error('Tracking balance was not confirmed');
+            window.trackingBalance = { normal: data.normal, speed: data.speed, fetched: true };
             localStorage.setItem('trackingBalanceCache', JSON.stringify(window.trackingBalance));
 
             window.isFetchingBalance = false;
