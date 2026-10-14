@@ -981,6 +981,8 @@ function renderTabs(orders, externalCounts = null) {
     window.showAllDispNew = window.showAllDispNew || false;
 
     let htmlDrawCounts = { pending: 0, paid: 0, dispatched: 0 };
+    const olderDrawCounts = {};
+    const todayIST = adminDayKey(new Date());
 
     orders.forEach((d, i) => {
         let info = getOrderInfo(d);
@@ -1070,7 +1072,8 @@ function renderTabs(orders, externalCounts = null) {
             // 🔥 SPEED BOOST FIX: type ന് പകരം dateKey ഉപയോഗിക്കുന്നു!
             if (htmlDrawCounts[dateKey] === undefined) htmlDrawCounts[dateKey] = 0;
 
-            if (htmlDrawCounts[dateKey] < window.tabLimits[dateKey]) {
+            const createdToday = adminDayKey(info.tDate) === todayIST;
+            if (createdToday || (olderDrawCounts[dateKey] || 0) < (window.tabLimits[dateKey] || 50)) {
 
                 let safeGroupId = dateKey + '_' + dateLabel.replace(/[^a-zA-Z0-9]/g, '_');
 
@@ -1129,6 +1132,7 @@ function renderTabs(orders, externalCounts = null) {
 
                 // 🔥 FIX: വരച്ച കാർഡിന്റെ എണ്ണം കൃത്യമായ dateKey യിൽ കൂട്ടുന്നു
                 htmlDrawCounts[dateKey]++;
+                if (!createdToday) olderDrawCounts[dateKey] = (olderDrawCounts[dateKey] || 0) + 1;
             }
         }
     });
@@ -1955,9 +1959,13 @@ function updateSyncButtonUI() {
 
 
 // 🔥 1. SMART TAB LIMITS (Active Tabs: Unlimited, History Tabs: 20)
-window.tabLimits = {
-    new: 999999, sent: 20, paid_new: 999999, paid_print: 999999, disp_new: 999999, disp_track: 20
-};
+function adminDayKey(value) {
+    const date = value instanceof Date ? value : new Date(value);
+    if (!Number.isFinite(date.getTime())) return '';
+    adminDayKey.formatter ||= new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' });
+    return adminDayKey.formatter.format(date);
+}
+window.tabLimits = { new: 50, sent: 50, paid_new: 50, paid_print: 50, disp_new: 50, disp_track: 50 };
 
 window.loadMoreCards = function (tabKey) {
     // ലോഡ് ആവുന്ന സമയത്ത് ബട്ടൺ കറങ്ങാൻ (Loading അനിമേഷൻ)
@@ -1995,7 +2003,7 @@ window.filterOrders = function (resetLimits = true) {
     let term = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
     if (resetLimits) {
-        window.tabLimits = { pending: 20, sent: 20, paid: 20, dispatched: 20, completed: 20 };
+        window.tabLimits = { new: 50, sent: 50, paid_new: 50, paid_print: 50, disp_new: 50, disp_track: 50 };
     }
 
     const clearBtn = document.getElementById('btn-clear-search');
@@ -2075,45 +2083,8 @@ window.filterOrders = function (resetLimits = true) {
 };
 
 // 🔥 3. LIMITING LOGIC (Render Tabs called ONLY when needed)
-function renderTabsWithLimit(forceFullRender = false) {
-    if (!allOrders || allOrders.length === 0) return;
-
-    let limitedOrders = [];
-    let counts = { pending: 0, sent: 0, paid: 0, dispatched: 0, completed: 0 };
-    let totalCounts = { pending: 0, sent: 0, paid: 0, dispatched: 0, completed: 0 };
-
-    // സോർട്ടിങ് ആവശ്യമുള്ളപ്പോൾ മാത്രം ചെയ്യുന്നു (ഇതും സ്പീഡ് കൂട്ടും)
-    let sortedOrders = allOrders;
-    if (forceFullRender) {
-        sortedOrders = [...allOrders].sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp));
-    }
-
-    let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-
-    sortedOrders.forEach(o => {
-        // നിലവിലെ സ്റ്റാറ്റസ് എടുക്കാൻ (പെൻഡിങ് ലിസ്റ്റിൽ ഉണ്ടെങ്കിൽ അതെടുക്കും)
-        let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum' && u.action !== 'phones' && u.action !== 'tracking');
-        let st = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).toLowerCase() : String(o.Status || 'Pending').toLowerCase();
-
-        let tab = '';
-
-        if (st === 'pending' || st === 'draft') tab = 'pending';
-        else if (st === 'sent') tab = 'sent';
-        else if (st === 'paid') tab = 'paid';
-        else if (st === 'dispatched') tab = 'dispatched';
-        else if (st === 'completed' || st === 'delivered' || st === 'refunded' || st === 'archive') tab = 'completed';
-
-        if (tab) {
-            totalCounts[tab]++; // ശരിക്കുമുള്ള എണ്ണം
-            if (counts[tab] < window.tabLimits[tab]) {
-                limitedOrders.push(o);
-                counts[tab]++;
-            }
-        }
-    });
-
-    // ഇവിടെ പഴയ renderTabs-നെ പുതിയ limited ഡാറ്റ വെച്ച് വിളിക്കുന്നു
-    renderTabs(limitedOrders, totalCounts);
+function renderTabsWithLimit() {
+    renderTabs(allOrders || []);
 }
 // 🔥 ARCHIVE / DELETE ORDER FUNCTION
 // 🔥 ARCHIVE ORDER FUNCTION
@@ -4279,9 +4250,7 @@ window.renderDashboard = function () {
     window.currentCostBreakdownStr = costBreakdownArr.join(', ');
 
     $('#sync-month-btn').remove();
-    if (localStorage.getItem('kafakAdminUser') === 'master') {
-        $('.drawer-header').append(`<button id="sync-month-btn" class="btn btn-outline-primary ms-auto px-2 py-1" onclick="syncMonthToSheet()" style="font-size:10px; font-weight:bold; border-radius:6px; border-width: 1.5px;"><i class="fas fa-cloud-upload-alt me-1"></i>Save ${mName} ${yName} Data</button>`);
-    }
+    // Completed months are snapshotted automatically by Kafak Business.
 
     $('#m-sales').text('₹' + trueIncome.toLocaleString());
     $('#m-expense').text('₹' + totalExpenses.toLocaleString());
@@ -6101,48 +6070,6 @@ $(document).ready(function () {
 
 
 // 🔥 SYNC DATA TO GOOGLE SHEET 🔥
-window.syncMonthToSheet = function () {
-    let btn = $('#sync-month-btn');
-    btn.html('<i class="fas fa-spinner fa-spin"></i> Saving...').prop('disabled', true);
-
-    let liveProfit = window.currentLiveProfit || 0;
-
-    // 🔥 FIX: മാസത്തിന്റെ പേര് മാത്രം കൃത്യമായി എടുക്കാൻ ഫോർമാറ്റ് ചെയ്യുന്നു (eg: "Jan 2026")
-    let cleanMonthStr = flatpickr.formatDate(selectedDate, "M Y");
-
-    let payload = {
-        action: 'saveMonthReport',
-        month: cleanMonthStr, // 🔥 ഇവിടെ cleanMonthStr എന്ന് കൊടുത്തു
-        income: window.currentIncome || 0,
-        productCost: window.currentProductCost || 0,
-        courier: window.currentCourier || 0,
-        other: window.currentOther || 0,
-        netProfit: liveProfit,
-        salam: Math.floor(liveProfit * 0.20),
-        samad: Math.floor(liveProfit * 0.70),
-        jazeela: Math.floor(liveProfit * 0.10),
-        material: window.currentMaterial || 0
-    };
-
-    // AJAX post ന് പകരം JSON ആയി ഫെച്ച് ചെയ്യുന്നു
-    fetch(scriptURL, {
-        method: 'POST',
-        body: JSON.stringify(payload)
-    }).then(res => res.json()).then(response => {
-        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-outline-primary').addClass('btn-success text-white');
-        setTimeout(() => {
-            btn.html(`<i class="fas fa-cloud-upload-alt me-1"></i>Save ${cleanMonthStr} Data`).removeClass('btn-success text-white').addClass('btn-outline-primary').prop('disabled', false);
-        }, 3000);
-    }).catch(error => {
-        btn.html('<i class="fas fa-check"></i> Saved!').removeClass('btn-outline-primary').addClass('btn-success text-white');
-        setTimeout(() => {
-            btn.html(`<i class="fas fa-cloud-upload-alt me-1"></i>Save ${window.currentMonthStr} Data`).removeClass('btn-success text-white').addClass('btn-outline-primary').prop('disabled', false);
-        }, 3000);
-    });
-};
-
-
-
 // 🔥 INJECT LEFT DRAWER (With Native Smart Print Section - FIXED variables)
 function injectLeftDrawer() {
     if ($('#left-drawer').length) return;

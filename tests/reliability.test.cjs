@@ -141,3 +141,11 @@ test('Customer history index matches existing status and quantity rules', () => 
  rows[0].Status='Refunded';
  assert.equal(ctx.buildCustomerStats(rows).get('3232232321').orders,2);
 });
+
+test('admin today grouping follows IST and history defaults to 50',()=>{
+ const code=admin.slice(admin.indexOf('function adminDayKey(value)'),admin.indexOf('window.loadMoreCards ='));
+ const ctx={window:{},Intl,Date};vm.createContext(ctx);vm.runInContext(code,ctx);
+ assert.equal(ctx.adminDayKey(new Date('2026-10-13T18:29:59Z')),'2026-10-13');
+ assert.equal(ctx.adminDayKey(new Date('2026-10-13T18:30:00Z')),'2026-10-14');
+ assert(Object.values(ctx.window.tabLimits).every(n=>n===50));
+});
