@@ -4,7 +4,7 @@
   const api = new KafakBusinessApi();
   const message = text => { $('#message').textContent = text; };
   const money = value => new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR' }).format(value);
-  let flow, busy = false, pinSerial = 0;
+  let flow, busy = false, pinSerial = 0, pinTimer, priceTimer;
   function pending() {
     $('#pending').hidden = !flow.pending;
     $('#fields').disabled = busy || !!flow.pending;
@@ -67,10 +67,11 @@
     for (const product of products) $('#sku').append(new Option([product.name,product.variant,product.label,product.size,product.colour].filter(Boolean).join(' · ') + ' — ' + money(Number(product.price)), product.sku));
     $('#preorder-box').hidden = settings.stockStatus !== 'no'; pending();
     $('#sku').addEventListener('change', price);
-    $('#state').addEventListener('input', () => { ++flow.quoteSerial; flow.currentQuote=null; clearPrice(); });
-    $('#state').addEventListener('change', price);
-    $('#pin').addEventListener('input', () => { ++pinSerial; });
-    $('#pin').addEventListener('change', async () => {
+    $('#state').addEventListener('input', () => {
+      ++flow.quoteSerial; flow.currentQuote=null; clearPrice();
+      clearTimeout(priceTimer);priceTimer=setTimeout(price,350);
+    });
+    async function lookupPin() {
       const pin=$('#pin').value, serial=++pinSerial;
       if (!/^\d{6}$/.test(pin)) return;
       try {
@@ -81,7 +82,11 @@
         $('#postoffices').replaceChildren(...offices.map(o=>new Option(o.Name,o.Name)));
         $('#postoffice').value=offices.length===1?offices[0].Name:'';
         $('#district').value=offices[0].District;$('#state').value=offices[0].State;await price();
-      } catch { /* Manual address entry remains available. */ }
+      } catch { message('Address lookup is unavailable. Enter your post office, district and state.'); }
+    }
+    $('#pin').addEventListener('input', () => {
+      ++pinSerial;clearTimeout(pinTimer);
+      pinTimer=setTimeout(lookupPin,350);
     });
     $('#business-order-form').addEventListener('submit', event => {
       event.preventDefault();if(!event.target.reportValidity())return;
