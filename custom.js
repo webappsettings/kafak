@@ -2956,13 +2956,28 @@ function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); 
 
 let orderAnimationTimers = [];
 let orderNameInterval = null;
+let orderPresentation = null;
 function stopOrderAnimation() {
   orderAnimationTimers.forEach(clearTimeout);
   orderAnimationTimers = [];
   clearInterval(orderNameInterval);
   orderNameInterval = null;
   const video = document.getElementById('honeyVideo');
-  if (video) video.pause();
+  if (video) { video.pause(); video.onended = null; video.onerror = null; }
+  orderPresentation = null;
+}
+
+function finishOrderPresentation() {
+  const state = orderPresentation;
+  if (!state || state.finished || !state.videoDone || !state.nameDone || !window.orderSuccess) return;
+  state.finished = true;
+  $('#finalCheck').addClass('show');
+  orderAnimationTimers.push(setTimeout(() => $('#finalCheck').addClass('draw'), 100));
+  orderAnimationTimers.push(setTimeout(() => {
+    stopOrderAnimation();
+    $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn();
+    updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
+  }, 600));
 }
 
 function playVideoAnimation(userName, apiCallback) {
@@ -2983,8 +2998,13 @@ function playVideoAnimation(userName, apiCallback) {
   if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
   $('#vid-username').css('font-size', fontSize + 'px');
 
+  window.orderSuccess = false;
+  const state = orderPresentation = { videoDone: false, nameDone: false, finished: false };
+  const videoComplete = () => { if (orderPresentation !== state) return; state.videoDone = true; finishOrderPresentation(); };
+  video.onended = videoComplete;
+  video.onerror = videoComplete;
   video.currentTime = 0;
-  video.play().catch(e => console.log("Auto-play blocked", e));
+  video.play().catch(videoComplete);
 
   apiCallback();
 
@@ -2995,8 +3015,9 @@ function playVideoAnimation(userName, apiCallback) {
     let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.innerText = "";
     orderNameInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(orderNameInterval); orderNameInterval = null; } }, 80);
   }, 5800);
-  later(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, 7800);
-  later(() => { checkWrapper.addClass('show'); later(() => { checkWrapper.addClass('draw'); }, 100); }, 8300);
+  const dockAt = Math.max(7800, 5800 + userName.length * 80 + 300);
+  later(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, dockAt);
+  later(() => { state.nameDone = true; finishOrderPresentation(); }, dockAt + 500);
 }
 
 function postOrder(data) {
@@ -3033,8 +3054,7 @@ function postOrder(data) {
 
         window.orderSuccess = true;
 
-        stopOrderAnimation();
-        $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn(); updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
+        finishOrderPresentation();
       }
     }).catch(() => {
       window.orderSuccess = false;

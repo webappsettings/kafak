@@ -57,13 +57,14 @@ test('Customer application failure closes loader and reports failure',async()=>{
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({});assert(hidden);assert.equal(ctx.window.orderSuccess,false);assert.match(notice,/could not be confirmed/);
 });
 
-test('Confirmed order appears without waiting for the loading video',async()=>{
+test('Server confirmation signals presentation instead of skipping the video',async()=>{
  const code=customer.slice(customer.indexOf('function postOrder(data)'),customer.indexOf('// 2. Updated fetchCourierRates Function'));
- let visible=false,stopped=false;const delays=[];
- const ctx={window:{},sc:'https://test.invalid',fetch:async()=>ok({result:'success',orderid:'K-test',timestamp:'2026-10-14T12:00:00Z'}),currentLoginPhone:null,localUsersMap:{},SafeStorage:{setItem(){}},STORAGE_KEY:'test',stopOrderAnimation(){stopped=true;},updateFooterButtons(){},sendToWhatsapp(){},setTimeout(fn,delay){delays.push(delay);},showAlert:message=>assert.fail(message),$(selector){return {fadeOut(){},hide(){},fadeIn(){if(selector==='#showsuccess')visible=true;}}}};
+ let signalled=false;
+ const ctx={window:{},sc:'https://test.invalid',fetch:async()=>ok({result:'success',orderid:'K-test'}),currentLoginPhone:null,localUsersMap:{},SafeStorage:{setItem(){}},STORAGE_KEY:'test',finishOrderPresentation(){signalled=true;},stopOrderAnimation(){assert.fail('Do not interrupt video');},showAlert:message=>assert.fail(message)};
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({name:'Test',phone:'0000000000'});
- assert.equal(visible,true);assert.equal(stopped,true);assert.equal(ctx.window.orderSuccess,true);assert.deepEqual(delays,[1500]);
+ assert(signalled);assert.equal(ctx.window.orderSuccess,true);
 });
+
 test('Cached quantity options come from product prices, not courier metadata',async()=>{
  const code=customer.slice(customer.indexOf('let courierRatesRequest = null;'),customer.indexOf('function renderQtyDropdowns()'));
  const ctx={sc:'https://test.invalid',translations:{en:{}},$(){return {val:()=> 'en',html(){}}},SafeStorage:{getItem:()=>JSON.stringify({KERALA:{baseRate:'1:62',serviceCharge:'1:18'},prices:{1:650,2:1300}})},renderQtyDropdowns(){},fetch:async()=>{throw Error('offline');}};
@@ -156,4 +157,15 @@ test('admin today grouping follows IST and history defaults to 50',()=>{
  assert.equal(ctx.adminDayKey(new Date('2026-10-13T18:29:59Z')),'2026-10-13');
  assert.equal(ctx.adminDayKey(new Date('2026-10-13T18:30:00Z')),'2026-10-14');
  assert(Object.values(ctx.window.tabLimits).every(n=>n===50));
+});
+
+test('Success tick waits for video, name and server in every completion order',()=>{
+ const code=customer.slice(customer.indexOf('function finishOrderPresentation()'),customer.indexOf('function playVideoAnimation('));
+ for(const sequence of [['videoDone','nameDone','saved'],['saved','nameDone','videoDone'],['nameDone','videoDone','saved']]){
+  let ticks=0,closed=0;const timers=[];
+  const ctx={orderPresentation:{videoDone:false,nameDone:false,finished:false},window:{orderSuccess:false},orderAnimationTimers:[],setTimeout(fn){timers.push(fn);return timers.length;},stopOrderAnimation(){},updateFooterButtons(){},sendToWhatsapp(){},$(selector){return {addClass(){if(selector==='#finalCheck')ticks++;},fadeOut(){closed++;},hide(){},fadeIn(){}}}};
+  vm.createContext(ctx);vm.runInContext(code,ctx);
+  sequence.forEach((event,index)=>{if(event==='saved')ctx.window.orderSuccess=true;else ctx.orderPresentation[event]=true;ctx.finishOrderPresentation();assert.equal(ticks,index===2?1:0);});
+  ctx.finishOrderPresentation();assert.equal(ticks,1);assert.equal(closed,0);timers[0]();timers[1]();assert.equal(closed,1);
+ }
 });
