@@ -33,6 +33,9 @@ const businessCourierSettings = window.KAFAK_BACKEND === 'business'
 
 const businessApi = window.KAFAK_BACKEND === 'business' ? new window.KafakBusinessApi() : null;
 const businessCommands = businessApi ? new window.KafakBusinessAdminCommands(businessApi, localStorage) : null;
+const adminTransport = new window.KafakBusinessAdminTransport(businessApi, businessCommands, (...args)=>fetch(...args));
+const adminServiceFetch = (...args)=>adminTransport.fetch(...args);
+let businessHistoryNext=null, businessHistoryLoading=false, businessFetchSerial=0;
 async function restoreBusinessSession() {
     if (!businessApi) return;
     try {
@@ -584,7 +587,8 @@ function handleUrlSearch() {
 
 // 🔥 2. UPDATED: FETCH ORDERS (Fixes Search Issue & Adds Pre-Indexing)
 function fetchOrders(forceLoad = false) {
-    let savedOrders = localStorage.getItem('allOrdersCache');
+    const fetchSerial=++businessFetchSerial;
+    let savedOrders = businessApi ? null : localStorage.getItem('allOrdersCache');
     let hasData = false;
 
     // 🔥 പുതിയ ഫംഗ്ഷൻ: സെർച്ച് 100 മടങ്ങ് വേഗത്തിലാക്കാൻ എല്ലാ ഡാറ്റയും ഒറ്റ സ്ട്രിംഗ് ആക്കുന്നു
@@ -607,9 +611,10 @@ function fetchOrders(forceLoad = false) {
 
     // B. Server Fetch
     document.getElementById('loader').style.display = 'flex';
-    fetch(`${scriptURL}?action=getAllOrders`)
-        .then(res => res.json())
+    (businessApi ? businessApi.feed() : fetch(`${scriptURL}?action=getAllOrders`).then(res => res.json()))
         .then(response => {
+            if(businessApi&&fetchSerial!==businessFetchSerial)return;
+            if(businessApi)businessHistoryNext=response.next||null;
             document.getElementById('loader').style.display = 'none';
             if (response.result === 'success') {
                 let serverOrders = response.data;
@@ -1176,12 +1181,12 @@ function renderTabs(orders, externalCounts = null) {
     // 🔥 SMART LOAD MORE BUTTONS (Manual Click for History Tabs)
     const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
         currentDrawn = currentDrawn || 0;
-        if (listElement && totalAvailable > currentDrawn) {
+        if (listElement && (totalAvailable > currentDrawn || (businessApi && businessHistoryNext))) {
             let left = totalAvailable - currentDrawn;
             listElement.innerHTML += `
             <div class="text-center my-4 pb-4 w-100" id="loader-box-${tabKey}">
                 <button onclick="loadMoreCards('${tabKey}')" class="btn btn-light rounded-pill px-4 py-2 shadow-sm fw-bold text-secondary" style="font-size:12px; border:1px solid #e2e8f0; transition:all 0.3s;">
-                    <i class="fas fa-history me-1"></i> Load Older Orders (${left})
+                    <i class="fas fa-history me-1"></i> Load Older Orders${businessApi && businessHistoryNext ? '' : ` (${left})`}
                 </button>
             </div>`;
         }
@@ -1205,12 +1210,12 @@ function renderTabs(orders, externalCounts = null) {
             <div class="text-muted small" style="font-size: 11px;">${subMsg}</div>
         </div>`;
 
-    if (listNew && subCounts.new === 0) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
-    if (listSent && subCounts.sent === 0) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
-    if (listPaidNew && subCounts.paid_new === 0) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
-    if (listPaidPrinted && subCounts.paid_print === 0) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
-    if (listDispNew && subCounts.disp_new === 0) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
-    if (listDispTracked && subCounts.disp_track === 0) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
+    if (listNew && subCounts.new === 0 && !(businessApi && businessHistoryNext)) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
+    if (listSent && subCounts.sent === 0 && !(businessApi && businessHistoryNext)) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
+    if (listPaidNew && subCounts.paid_new === 0 && !(businessApi && businessHistoryNext)) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
+    if (listPaidPrinted && subCounts.paid_print === 0 && !(businessApi && businessHistoryNext)) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
+    if (listDispNew && subCounts.disp_new === 0 && !(businessApi && businessHistoryNext)) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
+    if (listDispTracked && subCounts.disp_track === 0 && !(businessApi && businessHistoryNext)) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
     // --- STICKY HEADER LOGIC ---
     const populateStickyHeader = (id, oCount, cTotal, sStats) => {
@@ -2003,7 +2008,27 @@ function adminDayKey(value) {
 }
 window.tabLimits = { new: 50, sent: 50, paid_new: 50, paid_print: 50, disp_new: 50, disp_track: 50 };
 
-window.loadMoreCards = function (tabKey) {
+window.loadMoreCards = async function (tabKey) {
+    if(businessApi&&businessHistoryNext){
+        if(businessHistoryLoading)return;
+        businessHistoryLoading=true;
+        const generation=businessFetchSerial,cursor=businessHistoryNext;
+        try{
+            const response=await businessApi.orders({before:cursor});
+            if(generation!==businessFetchSerial)return;
+            if(response.result!=='success')throw Error('Older orders could not be loaded.');
+            const known=new Set(allOrders.map(o=>o.orderid));
+            for(const o of response.data)if(!known.has(o.orderid)){
+                o._searchStr=[o.name,o.orderid,o.house,o.place,o.postoffice,o.district,o.state,o.pincode,o.phone,o.whatsapp,o.paidNum].filter(Boolean).join(' ').toLowerCase();
+                allOrders.push(o);known.add(o.orderid);
+            }
+            businessHistoryNext=response.next||null;
+            localStorage.setItem('allOrdersCache',JSON.stringify(allOrders));
+            window.tabLimits[tabKey]+=50;filterOrders(false);
+        }catch(error){showToast('error',error.message);}
+        finally{businessHistoryLoading=false;}
+        return;
+    }
     // ലോഡ് ആവുന്ന സമയത്ത് ബട്ടൺ കറങ്ങാൻ (Loading അനിമേഷൻ)
     let btn = document.querySelector(`#loader-box-${tabKey} button`);
     if (btn) btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
@@ -2175,10 +2200,10 @@ window.archiveOrder = function (oid) {
             Swal.fire({ title: 'Archiving...', didOpen: () => Swal.showLoading() });
 
             // Server Call
-            $.post(scriptURL, JSON.stringify({
+            adminServiceFetch(scriptURL, {method:'POST', body:JSON.stringify({
                 action: 'bulkUpdateStatus',
                 updates: [{ oid: oid, status: 'Archive', reason: reason }]
-            }), function (response) {
+            })}).then(response=>response.json()).then(function (response) {
                 // 🔥 FIX: Response പരിശോധിക്കുന്നു
                 let data = response;
                 if (typeof response === 'string') {
@@ -2196,7 +2221,7 @@ window.archiveOrder = function (oid) {
                 } else {
                     Swal.fire('Error', 'Failed to archive.', 'error');
                 }
-            }).fail(() => {
+            }).catch(() => {
                 Swal.fire('Error', 'Network connection failed.', 'error');
             });
         }
@@ -2223,7 +2248,7 @@ window.confirmHardDelete = function (oid) {
         if (result.isConfirmed) {
             Swal.fire({ title: 'Deleting...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
-            fetch(scriptURL, {
+            adminServiceFetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'deleteOrder', oid: oid })
             })
@@ -3226,7 +3251,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         }
 
         try {
-            let res = await fetch(scriptURL, {
+            let res = await adminServiceFetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'assignTrackers', orders: ordersNeedingTracking })
             });
@@ -5022,8 +5047,7 @@ function searchOnServer(term) {
     btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SEARCHING SHEET...');
 
     const query = /^[+\d\s().-]+$/.test(term.trim()) ? normalizePhoneSearch(term) : term;
-    fetch(`${scriptURL}?action=searchGlobal&query=${encodeURIComponent(query)}`)
-        .then(res => res.json())
+    (businessApi ? businessApi.orders({q:query,view:'all'}).then(result=>({...result,orders:result.data})) : fetch(`${scriptURL}?action=searchGlobal&query=${encodeURIComponent(query)}`).then(res => res.json()))
         .then(data => {
             btn.prop('disabled', false).html(originalText);
 
@@ -5305,7 +5329,7 @@ function submitEditedExpense(updateData) {
         didOpen: () => { Swal.showLoading(); }
     });
 
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'editExpense', data: updateData })
     })
@@ -5386,7 +5410,7 @@ window.renderDetailedMonthlyOverview = function () {
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    allOrders.forEach(o => {
+    if (!businessApi) allOrders.forEach(o => {
         let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
         let activeStatus = localStatusUpdate && localStatusUpdate.status ? String(localStatusUpdate.status).trim().toLowerCase() : sheetStatus;
@@ -5513,6 +5537,15 @@ window.renderDetailedMonthlyOverview = function () {
         }
     });
 
+    if (businessApi) {
+        const totals=dashboardData.monthlyReport.totals, life=dashboardData.summary.lifetime, detail=dashboardData.details;
+        tSales=totals.income;tBottles=totals.units;tBottleCost=totals.productCost;tActualCourier=totals.courier;tCourierCost=dashboardData.summary.monthly.delivery;
+        tOtherExpense=totals.other;tMaterialExpense=totals.material;monthOrders=totals.orders;monthPaidCount=detail.paidUnits;monthDispatchedCount=detail.dispatchedUnits;
+        lifeIncome=life.income;lifeBottleCost=life.productCost;lifeCourier=life.courier;lifeOtherExp=life.other;
+        orderBreakdown=detail.orderBreakdown;costBreakdown=detail.costBreakdown;
+        if(dashboardData.firstSale)firstDateMs=new Date(dashboardData.firstSale+'T00:00:00+05:30').getTime();
+    }
+
     let salamTaken = dashboardData.partners["Salam"] ? (dashboardData.partners["Salam"].withdrawn || 0) : 0;
     let samadTaken = dashboardData.partners["Samad"] ? (dashboardData.partners["Samad"].withdrawn || 0) : 0;
     let jazeelaTaken = dashboardData.partners["Jazeela"] ? (dashboardData.partners["Jazeela"].withdrawn || 0) : 0;
@@ -5526,7 +5559,11 @@ window.renderDetailedMonthlyOverview = function () {
     let samadShare = netProfit > 0 ? Math.floor(netProfit * 0.70) : 0;
     let jazeelaShare = netProfit > 0 ? netProfit - (salamShare + samadShare) : 0;
 
-    let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : 330;
+    if (businessApi) {
+        const shares=dashboardData.monthlyReport.partnerShares;
+        salamShare=shares.Salam||0;samadShare=shares.Samad||0;jazeelaShare=shares.Jazeela||0;
+    }
+    let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : (businessApi ? 0 : 330);
     let lifeBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp + totalSalaryTaken);
 
     let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
@@ -5750,7 +5787,7 @@ window.renderYearlyOverview = function () {
     let currentYear = selectedDate.getFullYear();
     let ySales = 0, yBottles = 0, yBottleCost = 0, yCourierCost = 0, yActualCourier = 0, yOtherExpense = 0;
 
-    allOrders.forEach(o => {
+    if (!businessApi) allOrders.forEach(o => {
         let status = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let isValidStatus = ['paid', 'dispatched', 'delivered', 'completed'].includes(status);
         if (!isValidStatus) return;
@@ -5804,6 +5841,10 @@ window.renderYearlyOverview = function () {
     }
 
     // 🔥 യഥാർത്ഥ കൊറിയർ ചിലവാണ് കുറയ്ക്കേണ്ടത് (yActualCourier)
+    if (businessApi) {
+        const year=dashboardData.summary.yearly;
+        ySales=year.income;yBottles=year.units;yBottleCost=year.productCost;yCourierCost=year.delivery;yActualCourier=year.courier;yOtherExpense=year.other;
+    }
     let yTotalExpense = yBottleCost + yActualCourier + yOtherExpense;
     let yNetProfit = ySales - yTotalExpense;
 
@@ -6003,7 +6044,7 @@ window.setDefaultCourier = function (state, rowNum) {
             .catch(error => showToast('error', error.message));
     }
 
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'setDefaultCourier', state: state, row: rowNum })
     })
@@ -6066,7 +6107,7 @@ window.addNewCourierRow = function () {
     }
 
     showToast('info', 'Adding new region...');
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'addCourierRow', state: state, provider: provider, rates: rates, margin: margin || 0 })
     })
@@ -6082,7 +6123,7 @@ window.addNewCourierRow = function () {
 // 🔥 SAVE AJAX HELPER
 function saveSettingToServer(settingName, row, col, val) {
     showToast('info', 'Updating...');
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'updateSettingCell', row: row, col: col, value: val })
     })
@@ -6879,7 +6920,7 @@ window.calcPartnerTotal = function () {
 function submitDirectSale(data) {
     Swal.fire({ title: 'Adding to Accounts...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'submitOffline', data: data })
     })
@@ -6900,7 +6941,7 @@ function submitDirectSale(data) {
 window.deleteOfflineSale = function (oid) {
     confirmAction("Are you sure you want to delete this sale completely?", () => {
         Swal.fire({ title: 'Deleting...', didOpen: () => Swal.showLoading() });
-        fetch(scriptURL, {
+        adminServiceFetch(scriptURL, {
             method: 'POST',
             body: JSON.stringify({ action: 'deleteOrder', oid: oid })
         }).then(res => res.json()).then(res => {
@@ -7293,7 +7334,7 @@ async function submitExpense(e, editId = null) {
 
     let actionName = editId ? 'editExpense' : 'addExpense';
 
-    fetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: actionName, data: formData }) })
+    adminServiceFetch(scriptURL, { method: 'POST', body: JSON.stringify({ action: actionName, data: formData }) })
         .then(res => res.json())
         .then(data => {
             if (data.result === 'success') {
@@ -7989,7 +8030,7 @@ window.renderPartnerList = function () {
 
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
 
-    allOrders.forEach(o => {
+    if (!businessApi) allOrders.forEach(o => {
         // 🔥 STRICT FILTER: Local Status Update Check (Archive/Refund ഒഴിവാക്കാൻ)
         let sheetStatus = String(o.Status || o.status || 'Pending').trim().toLowerCase();
         let localStatusUpdate = pendingUpdates.find(u => u.oid === o.orderid && u.action !== 'meta' && u.action !== 'paidNum');
@@ -8135,6 +8176,16 @@ window.renderPartnerList = function () {
         }
     });
 
+    if (businessApi) {
+        const totals=dashboardData.monthlyReport.totals,life=dashboardData.summary.lifetime,detail=dashboardData.details;
+        monthIncome=totals.income;monthBottleCost=totals.productCost;monthCourier=totals.courier;monthTotalCourier=dashboardData.summary.monthly.delivery;monthOtherExp=totals.other;monthMaterialExp=totals.material;
+        monthOrders=totals.orders;monthBottles=totals.units;monthPaidCount=detail.paidUnits;monthDispatchedCount=detail.dispatchedUnits;
+        lifeIncome=life.income;lifeBottleCost=life.productCost;lifeCourier=life.courier;lifeOtherExp=life.other;
+        orderBreakdown=detail.orderBreakdown;costBreakdown=detail.costBreakdown;
+        window.directProfits=detail.directProfits;
+        if(dashboardData.firstSale)firstDateMs=new Date(dashboardData.firstSale+'T00:00:00+05:30').getTime();
+    }
+
     let salamTaken = dashboardData.partners["Salam"] ? (dashboardData.partners["Salam"].withdrawn || 0) : 0;
     let samadTaken = dashboardData.partners["Samad"] ? (dashboardData.partners["Samad"].withdrawn || 0) : 0;
     let jazeelaTaken = dashboardData.partners["Jazeela"] ? (dashboardData.partners["Jazeela"].withdrawn || 0) : 0;
@@ -8148,7 +8199,8 @@ window.renderPartnerList = function () {
 
     let shares = { "Salam": Math.floor(liveProfit * 0.20), "Samad": Math.floor(liveProfit * 0.70), "Jazeela": Math.floor(liveProfit * 0.10) };
 
-    let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : 330;
+    if (businessApi) shares={Salam:0,Samad:0,Jazeela:0,...dashboardData.monthlyReport.partnerShares};
+    let avgBottleRate = monthBottles > 0 ? Math.round(monthBottleCost / monthBottles) : (businessApi ? 0 : 330);
 
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
@@ -8286,15 +8338,15 @@ window.renderPartnerList = function () {
 
         <div class="bg-light p-2 rounded-3 border mt-3">
             <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Salam (20%):</span>
+                <span class="fw-bold text-secondary">${businessApi?'Salam':'Salam (20%)'}:</span>
                 <span class="fw-bold text-dark">₹${shares.Salam.toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between mb-1" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Samad (70%):</span>
+                <span class="fw-bold text-secondary">${businessApi?'Samad':'Samad (70%)'}:</span>
                 <span class="fw-bold text-dark">₹${shares.Samad.toLocaleString()}</span>
             </div>
             <div class="d-flex justify-content-between" style="font-size:11px;">
-                <span class="fw-bold text-secondary">Jazeela (10%):</span>
+                <span class="fw-bold text-secondary">${businessApi?'Jazeela':'Jazeela (10%)'}:</span>
                 <span class="fw-bold text-dark">₹${shares.Jazeela.toLocaleString()}</span>
             </div>
         </div>
@@ -8387,7 +8439,7 @@ window.isInventoryLoaded = false; // 🔥 Safety Flag
 
 
 window.fetchInventoryBg = function () {
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'getInventory' })
     })
@@ -8456,7 +8508,7 @@ window.startRecording = function (key) {
             db[key].recordStartTime = new Date(startTime).toISOString();
 
             Swal.fire({ title: 'Starting...', didOpen: () => Swal.showLoading() });
-            fetch(scriptURL, {
+            adminServiceFetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
             }).then(() => {
@@ -8600,7 +8652,7 @@ window.stopRecording = function (key) {
             db[key].ratioUnit = parseFloat(document.getElementById('rec-consumed').value) || 1;
 
             Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-            fetch(scriptURL, {
+            adminServiceFetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
             }).then(() => {
@@ -8953,7 +9005,7 @@ window.excludeFromInventory = function (key, oid, itemName, safeTotal, safeOffse
 
                 Swal.fire({ title: 'Removing...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
-                fetch(scriptURL, {
+                adminServiceFetch(scriptURL, {
                     method: 'POST',
                     body: JSON.stringify({ action: 'saveInventory', inventory: db })
                 }).then(r => r.json()).then(r => {
@@ -9015,7 +9067,7 @@ window.editLiveCount = function (key, name, baseCount, currentLive) {
             });
 
             // സെർവറിലേക്ക് സേവ് ചെയ്യുന്നു
-            fetch(scriptURL, {
+            adminServiceFetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
             }).then(res => res.json()).then(res => {
@@ -9134,7 +9186,7 @@ window.editSingleStock = function (key, itemName, unit) {
             }
 
             Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-            return fetch(scriptURL, {
+            return adminServiceFetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
             }).then(res => res.json()).then(res => {
@@ -9209,7 +9261,7 @@ window.editStickerStock = function (type, currentValue, ratio) {
 
             Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
 
-            fetch(scriptURL, {
+            adminServiceFetch(scriptURL, {
                 method: 'POST',
                 body: JSON.stringify({ action: 'saveInventory', inventory: db })
             }).then(res => res.json()).then(res => {
@@ -10326,7 +10378,7 @@ window.bookSelectedAtIndiaPost = async function () {
         }))
     };
 
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify(payload)
     }).then(res => res.json()).then(data => {
@@ -10592,7 +10644,7 @@ window.removeScannedTracker = function (id) {
 
 function uploadPostalTrackers(trackers) {
     Swal.fire({ title: 'Saving to Sheet...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'addPostalTrackers', trackers: trackers })
     }).then(res => res.json()).then(data => {
@@ -10649,7 +10701,7 @@ window.refreshTrackingBalance = function (force = false) {
     let offlineReverts = JSON.parse(localStorage.getItem('offlineRevertTrackers') || "[]");
 
     if (navigator.onLine && offlineReverts.length > 0) {
-        fetch(scriptURL, {
+        adminServiceFetch(scriptURL, {
             method: 'POST',
             body: JSON.stringify({ action: 'revertTrackers', trackers: offlineReverts })
         }).then(res => res.json()).then(data => {
@@ -10668,7 +10720,7 @@ window.refreshTrackingBalance = function (force = false) {
 
     // 📦 Serveril ninnu puthiya balance edukkunna main function
     function fetchCurrentBalance() {
-        fetch(scriptURL, {
+        adminServiceFetch(scriptURL, {
             method: 'POST',
             body: JSON.stringify({ action: 'getTrackingBalance' })
         }).then(res => res.json()).then(data => {
@@ -10815,7 +10867,7 @@ window.safeRevertTrackers = function (trackersArray) {
     }
 
     // Net undenkil server-lekku ayakkunnu
-    fetch(scriptURL, {
+    adminServiceFetch(scriptURL, {
         method: 'POST',
         body: JSON.stringify({ action: 'revertTrackers', trackers: trackersArray })
     }).catch(e => {
@@ -10830,7 +10882,7 @@ window.processOfflineReverts = function () {
 
     let offlineReverts = JSON.parse(localStorage.getItem('offlineRevertTrackers') || "[]");
     if (offlineReverts.length > 0) {
-        fetch(scriptURL, {
+        adminServiceFetch(scriptURL, {
             method: 'POST',
             body: JSON.stringify({ action: 'revertTrackers', trackers: offlineReverts })
         }).then(res => res.json()).then(data => {

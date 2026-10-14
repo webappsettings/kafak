@@ -50,6 +50,7 @@
       for (const [key, value] of Object.entries({ before, q, status })) if (value) query.set(key, value);
       return this.request('/admin/orders?' + query);
     }
+    feed() { return this.request('/admin/feed'); }
     today() { return this.request('/admin/orders/today'); }
     order(id) { return this.request('/admin/order?' + new URLSearchParams({ oid: id })); }
     customer(phone) { return this.request('/admin/customer?' + new URLSearchParams({ phone })); }
