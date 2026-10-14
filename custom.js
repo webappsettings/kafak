@@ -2368,8 +2368,7 @@ window.submitQuickOrder = async function () {
               showCancelButton: true, cancelButtonText: 'View Dashboard'
             }).then((result) => {
               if (result.isConfirmed) {
-                let idx = allOrders.findIndex(o => o.orderid === res.orderid);
-                if (idx > -1) sendWA(idx, 'pending');
+                sendToWhatsapp(newData, getSelectedWAPhone(newData));
               } else {
                 window.location.href = `admin.html?search=${res.orderid}`;
               }
@@ -2413,7 +2412,7 @@ window.submitQuickOrder = async function () {
               cancelButtonText: 'Close',
               confirmButtonColor: '#25D366'
             }).then((res) => {
-              if (res.isConfirmed) sendWA(orderIdx, 'pending');
+              if (res.isConfirmed) sendToWhatsapp(allOrders[orderIdx], getSelectedWAPhone(allOrders[orderIdx]));
             });
           } else {
             Swal.fire({ icon: 'success', title: 'Updated!', toast: true, position: 'top', showConfirmButton: false, timer: 1500 });
@@ -3162,8 +3161,8 @@ function showToast(icon, title) {
   Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: icon, title: title });
 }
 
-function sendToWhatsapp() {
-  const d = successData;
+function sendToWhatsapp(orderData = successData, recipient = null) {
+  const d = orderData;
   const safe = (val) => String(val || '').trim().toUpperCase();
   const targetAdminPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
@@ -3322,7 +3321,9 @@ function sendToWhatsapp() {
   }
 
   // Clean Number logic
+  if (recipient !== null) targetPhone = recipient;
   targetPhone = String(targetPhone).replace(/[^0-9]/g, '');
+  if (!targetPhone) { showAlert('Please select a valid WhatsApp number.'); return; }
   if (targetPhone.length === 10) targetPhone = '91' + targetPhone;
 
   // WhatsApp Link Opening

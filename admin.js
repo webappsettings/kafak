@@ -1951,6 +1951,24 @@ window.loadMoreCards = function (tabKey) {
 };
 
 // 🔥 2. പുതിയ സൂപ്പർ ഫാസ്റ്റ് Filter ഫംഗ്ഷൻ (Zero Lag Search)
+function normalizePhoneSearch(value) {
+    let digits = String(value || '').replace(/\D/g, '');
+    if (digits.length === 14 && digits.startsWith('0091')) digits = digits.slice(4);
+    else if (digits.length === 12 && digits.startsWith('91')) digits = digits.slice(2);
+    else if (digits.length === 11 && digits.startsWith('0')) digits = digits.slice(1);
+    return digits;
+}
+
+function matchesOrderSearch(order, term) {
+    if (order._searchStr && order._searchStr.includes(term)) return true;
+    if (!/^[+\d\s().-]+$/.test(term)) return false;
+    const digits = normalizePhoneSearch(term);
+    if (digits.length < 4) return false;
+    return ['phone', 'whatsapp', 'altphone', 'paidNum'].some(key =>
+        normalizePhoneSearch(order[key]).includes(digits)) ||
+        Boolean(order._searchStr && order._searchStr.includes(digits));
+}
+
 window.filterOrders = function (resetLimits = true) {
     let searchInput = document.getElementById('searchInput');
     let term = searchInput ? searchInput.value.toLowerCase().trim() : '';
@@ -1978,16 +1996,10 @@ window.filterOrders = function (resetLimits = true) {
         else if ($('#pills-dispatched-tab').hasClass('active')) activeStatus = ['Dispatched'];
         else if ($('#pills-completed-tab').hasClass('active')) activeStatus = ['Completed', 'Delivered', 'Refunded', 'Archive'];
 
-        let termClean = term.replace(/[^0-9]/g, '');
-        let isNumericSearch = termClean.length >= 4;
         let htmlBuffer = '';
 
         // 🔥 SUPER FAST SEARCH LOGIC (No Array Creations, No Inner Loops!)
-        let matches = allOrders.filter(o => {
-            if (o._searchStr && o._searchStr.includes(term)) return true;
-            if (isNumericSearch && o._searchStr && o._searchStr.includes(termClean)) return true;
-            return false;
-        });
+        let matches = allOrders.filter(o => matchesOrderSearch(o, term));
 
         matches.sort((a, b) => {
             let aIsActive = activeStatus.includes(a.Status) ? 1 : 0;
@@ -2021,7 +2033,7 @@ window.filterOrders = function (resetLimits = true) {
             <div class="col-12 mt-3 text-center">
                 <div class="p-3 border rounded-3 bg-light shadow-sm">
                     <div class="small text-muted mb-2">കാണുന്നില്ലേ? പഴയ ഓർഡറുകൾക്കായി ഷീറ്റിൽ സെർച്ച് ചെയ്യുക</div>
-                    <button onclick="searchOnServer('${term}')" class="btn btn-dark rounded-pill px-4 fw-bold">
+                    <button onclick="searchOnServer(document.getElementById('searchInput').value)" class="btn btn-dark rounded-pill px-4 fw-bold">
                         <i class="fas fa-cloud-download-alt me-2"></i> Search Entire Database
                     </button>
                 </div>
@@ -4964,7 +4976,8 @@ function searchOnServer(term) {
     let originalText = btn.html();
     btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SEARCHING SHEET...');
 
-    fetch(`${scriptURL}?action=searchGlobal&query=${term}`)
+    const query = /^[+\d\s().-]+$/.test(term.trim()) ? normalizePhoneSearch(term) : term;
+    fetch(`${scriptURL}?action=searchGlobal&query=${encodeURIComponent(query)}`)
         .then(res => res.json())
         .then(data => {
             btn.prop('disabled', false).html(originalText);

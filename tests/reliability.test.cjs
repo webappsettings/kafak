@@ -68,3 +68,33 @@ test('India Post metadata wrapper retains existing print-tag cleanup',()=>{
  const start=admin.indexOf('const updateAdminMetaBeforeIndiaPost =');const end=admin.indexOf('// ==========================================',start);
  vm.runInContext(first+'\n'+admin.slice(start,end),ctx);ctx.window.updateAdminMeta('K1','printed');assert.equal(observed,'W');
 });
+
+test('Phone search accepts country codes and formatting in every contact field', () => {
+ const code = admin.slice(admin.indexOf('function normalizePhoneSearch('), admin.indexOf('window.filterOrders ='));
+ const ctx = {}; vm.createContext(ctx); vm.runInContext(code, ctx);
+ for (const key of ['phone','whatsapp','altphone','paidNum']) {
+  for (const stored of ['3232232321', '+91 3232 232321', '0091-3232-232321', '03232232321']) {
+   for (const query of ['3232232321', '+91 3232 232321', '(+91) 3232-232321', '0091 3232232321', '03232232321']) {
+    assert.equal(ctx.matchesOrderSearch({[key]:stored},query),true,`${key}: ${stored} / ${query}`);
+   }
+  }
+ }
+ assert.equal(ctx.matchesOrderSearch({phone:'9999999999'},'+91 3232 232321'),false);
+ assert.equal(ctx.matchesOrderSearch({_searchStr:'customer abc123'},'abc123'),true);
+});
+
+test('Edit-page invoice uses the new order data and selected recipient', () => {
+ const code = customer.slice(customer.indexOf('function sendToWhatsapp('), customer.indexOf('function renderEditView('));
+ const ctx = {successData:{orderid:'STALE'},savedOrderData:{orderid:'OLD'},adminPhone:'7788990313',
+  localStorage:{getItem:()=> 'true'},$:()=>({val:()=> 'en'}),translations:{en:{wa_check_status:'Check order',txt_gpay:'GPay'}},
+  isOutOfStock:false,window:{location:{href:''}},showAlert:()=>{throw Error('Invalid phone');}};
+ vm.createContext(ctx);vm.runInContext(code,ctx);
+ ctx.sendToWhatsapp({orderid:'NEW123',product:'Cheruthen',quantity:1,name:'Customer',phone:'3232232321'},'+91 3232 232321');
+ const url = new URL(ctx.window.location.href);
+ assert.equal(url.pathname,'/913232232321');
+ assert.match(url.searchParams.get('text'),/oid=NEW123/);
+ assert.match(url.searchParams.get('text'),/Cheruthen/);
+ assert.doesNotMatch(url.searchParams.get('text'),/oid=OLD|oid=STALE/);
+ assert.ok(customer.includes('sendToWhatsapp(newData, getSelectedWAPhone(newData))'));
+ assert.ok(!customer.includes("sendWA(orderIdx, 'pending')"));
+});
