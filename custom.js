@@ -1236,9 +1236,11 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
   // Populate Data
   if (localStorage.getItem('kafakAdmin') !== 'true') {
-    $('#saved-name').html(`${d.name} <i class="fas fa-sign-out-alt ms-2" onclick="clearUserLogin()" style="cursor:pointer; color:#facc15; font-size:12px;" title="Change Number"></i>`);
+    $('#saved-name').text(d.name);
+    $('#customer-logout').prop('hidden', false);
   } else {
     $('#saved-name').text(d.name);
+    $('#customer-logout').prop('hidden', true);
   }
   $('#edit-name').val(d.name);
   $('#edit-house').val(d.house);
@@ -1671,7 +1673,8 @@ function updateSummaryDisplay() {
   const newName = $('#edit-name').val();
   if (newName) {
     if (localStorage.getItem('kafakAdmin') !== 'true') {
-      $('#saved-name').html(`${newName} <i class="fas fa-sign-out-alt ms-2" onclick="clearUserLogin()" style="cursor:pointer; color:#facc15; font-size:12px;" title="Change Number"></i>`);
+      $('#saved-name').text(newName);
+    $('#customer-logout').prop('hidden', false);
     } else {
       $('#saved-name').text(newName);
     }
