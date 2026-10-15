@@ -4589,7 +4589,7 @@ window.handleRefundToggle = function (oid, index) {
 
     // 2. CONFIRMATION: റീഫണ്ട് പ്രോസസ്സ് തുടങ്ങുന്നതിന് മുൻപ് ചോദിക്കുന്നു
     confirmAction(`Order ${oid} റീഫണ്ട് ചെയ്യണോ?`, () => {
-        let order = allOrders[index];
+        let order = allOrders.find(item => item.orderid === oid);
         if (!order) return;
 
         // പഴയ ആക്റ്റീവ് ബട്ടണുകൾ മാറ്റുന്നു
@@ -4599,7 +4599,9 @@ window.handleRefundToggle = function (oid, index) {
 
         // എമൗണ്ട് കണക്കാക്കുന്നു
         let priceInfo = calculatePriceInfo(order, order.quantity, order.state, order.provider || order.Courier_Provider);
-        let amount = parseInt(priceInfo.total.replace(/[^0-9]/g, '')) || 0;
+        let amount = Number(order.Grand_Total ?? order.grandTotal ?? priceInfo.total.replace(/[^0-9.]/g, ''));
+        if (!Number.isFinite(amount) || amount < 0) { showToast('error', 'Refund amount could not be verified.'); return; }
+        openDashboard();
 
         // Add Expense ടാബിലേക്ക് മാറുന്നു
         let tabTrigger = new bootstrap.Tab(document.querySelector('#tab-expense'));
@@ -4607,6 +4609,7 @@ window.handleRefundToggle = function (oid, index) {
 
         // ഫോം ഫിൽ ചെയ്യുന്നു
         setTimeout(() => {
+            $('#expense-form input[name=refundOrderId]').val(order.orderid);
             $('#exp-category').val('Refund');
             $('#exp-vendor').val(order.name + " (Ref #" + order.orderid + ")");
             $('#exp-amount').val(amount);
@@ -7384,6 +7387,7 @@ async function submitExpense(e, editId = null) {
     let selectedD = $('#exp-date').val() || flatpickr.formatDate(new Date(), "Y-m-d");
 
     let formData = {
+        orderId: e.target.querySelector('[name=refundOrderId]')?.value && $('#exp-category').val() === 'Refund' ? e.target.querySelector('[name=refundOrderId]').value : undefined,
         id: editId || ('EXP-' + Date.now()),
         date: selectedD,
         category: $('#exp-category').val(),
@@ -7413,6 +7417,12 @@ async function submitExpense(e, editId = null) {
                     setTimeout(() => { location.reload(); }, 1500);
                 } else {
                     resetExpenseForm(selectedD);
+                    if (formData.orderId && formData.category === 'Refund') {
+                        const order = allOrders.find(item => item.orderid === formData.orderId);
+                        if (order) order.Status = 'Refunded';
+                        if (typeof filterOrders === 'function') filterOrders(false);
+                        dashboardData = null;
+                    }
                 }
             } else {
                 if (!editId) saveExpenseOffline(formData, selectedD);
