@@ -1,7 +1,7 @@
 /* Durable admin commands: keep the same request identity until the UI acknowledges success. */
 (function(scope){
  'use strict';
- const allowed=new Set(['bulkIndiaPostBooking','bulkUpdateStatus','deleteOrder','deleteRefund','addExpense','editExpense','updatePaidNum','updatePhoneNumbers','addPostalTrackers','assignTrackers','revertTrackers','saveInventory','editOrder','submitOffline']);
+ const allowed=new Set(['adjustStickerStock','bulkIndiaPostBooking','bulkUpdateStatus','deleteOrder','deleteRefund','addExpense','editExpense','updatePaidNum','updatePhoneNumbers','addPostalTrackers','assignTrackers','revertTrackers','saveInventory','editOrder','submitOffline']);
  const canonical=x=>Array.isArray(x)?x.map(canonical):x&&typeof x==='object'?Object.fromEntries(Object.keys(x).sort().map(k=>[k,canonical(x[k])])):x;
  class AdminCommands {
   constructor(api,storage,{id=()=>crypto.randomUUID(),digest=async text=>Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(text)))).map(n=>n.toString(16).padStart(2,'0')).join('')}={}){this.api=api;this.storage=storage;this.id=id;this.digest=digest;this.inflight=new Map();}

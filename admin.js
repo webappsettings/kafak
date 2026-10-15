@@ -6304,7 +6304,7 @@ function injectLeftDrawer() {
                     </div>
                     
                     <label class="small fw-bold text-muted mb-1" style="font-size:10px;">SELECT PRINT MODE:</label>
-                    <select id="print-qty-mode" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm mb-3" style="font-size:11px;" onchange="updatePrintPrediction()">
+                    <select id="print-qty-mode" data-user-selected="false" class="form-select form-select-sm fw-bold border-primary text-primary shadow-sm mb-3" style="font-size:11px;" onchange="updatePrintPrediction()">
                     </select>
 
                     <div class="d-flex justify-content-between align-items-center p-2 bg-white rounded border border-success border-opacity-50 shadow-sm">
@@ -6468,7 +6468,7 @@ window.updatePrintPrediction = async function (isManualSheetChange = false) {
     }
 
     // 🔥 BUG FIX: Removed reliance on avgUsage for stickers. Always use strict ratio (e.g. 5)
-    let historicalRatio = ratio;
+    let historicalRatio = 5;
     let countOffset = parseFloat(stkDB.countOffset) || 0;
 
     // 1. ആകെ ഉപയോഗിച്ച സ്റ്റിക്കറുകൾ (സിസ്റ്റം + മാനുവൽ)
@@ -6482,7 +6482,7 @@ window.updatePrintPrediction = async function (isManualSheetChange = false) {
     let totalCapacityStickers = netAvailableSheets * historicalRatio;
 
     // 3. ബാക്കിയുള്ള സ്റ്റിക്കറുകൾ
-    let remainingStickers = totalCapacityStickers - totalStickersUsed;
+    let remainingStickers = Math.round(totalCapacityStickers - totalStickersUsed);
 
     // 4. ഇതിനെ ഷീറ്റും ലൂസുമാക്കി മാറ്റുന്നു
     let fullSheets = Math.floor(remainingStickers / historicalRatio);
@@ -6507,7 +6507,7 @@ window.updatePrintPrediction = async function (isManualSheetChange = false) {
     }
 
     let modeBox = document.getElementById('print-qty-mode');
-    let targetPrintCount = isManualSheetChange ? (manualSheets * ratio) : (modeBox && modeBox.value ? parseInt(modeBox.value) : actualLabelsToPrint);
+    let targetPrintCount = isManualSheetChange ? (manualSheets * ratio) : (modeBox?.dataset.userSelected === 'true' && modeBox.value ? parseInt(modeBox.value) : Math.ceil(actualLabelsToPrint / ratio) * ratio);
 
     if (modeBox) {
         let totalNeeded = actualLabelsToPrint;
@@ -6547,6 +6547,8 @@ window.updatePrintPrediction = async function (isManualSheetChange = false) {
 
         optionsHtml += `</optgroup>`;
         modeBox.innerHTML = optionsHtml;
+        modeBox.value = String(targetPrintCount);
+        modeBox.onchange = () => { modeBox.dataset.userSelected = 'true'; updatePrintPrediction(); };
     }
 
     let selectedPrintCount = isManualSheetChange ? (manualSheets * ratio) : (parseInt(modeBox ? modeBox.value : actualLabelsToPrint) || 0);
@@ -8921,12 +8923,12 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let balDisplay = `${bal.toFixed(dec)} <span class="text-muted fw-normal" style="font-size:9px;">${itemObj.unit}</span>`;
 
         if (k === 'sticker') {
-            let historicalRatio = Math.round(1 / (avg || 0.2));
+            let historicalRatio = 5;
             let totalSheetsPurchased = parseFloat(db[k].total || 0);
             let exemptSheets = parseFloat(db[k].exempt || 0);
             let totalCapacityStickers = (totalSheetsPurchased - exemptSheets) * historicalRatio;
 
-            let remainingStickers = totalCapacityStickers - liveCount;
+            let remainingStickers = Math.round(totalCapacityStickers - liveCount);
             if (remainingStickers < 0) remainingStickers = 0;
 
             let fullSheets = Math.floor(remainingStickers / historicalRatio);
@@ -9336,56 +9338,16 @@ window.getDefaultMRP = function () {
 };
 
 // 🔥 SMART STICKER EDIT FUNCTION (Edits exactly what you see!)
-window.editStickerStock = function (type, currentValue, ratio) {
-    let title = type === 'loose' ? 'മുറിച്ച സ്റ്റിക്കറുകൾ (Loose)' : 'വെള്ള ഷീറ്റ് (White Sheets)';
-    let msg = type === 'loose' ? 'നിങ്ങളുടെ കയ്യിൽ ബാക്കിയുള്ള മുറിച്ച സ്റ്റിക്കറുകളുടെ എണ്ണം കൊടുക്കുക:' : 'നിങ്ങളുടെ കയ്യിൽ ബാക്കിയുള്ള മുഴുവൻ വെള്ള ഷീറ്റുകളുടെ എണ്ണം കൊടുക്കുക:';
-
-    Swal.fire({
-        title: `<span style="font-size: 16px;">${title}</span>`,
-        html: `
-            <div class="mb-3 mt-2 text-start">
-                <label class="form-label text-muted fw-bold" style="font-size:12px;">${msg}</label>
-                <input type="number" id="manual-sticker-update" class="form-control form-control-lg text-center fw-bold text-primary" value="${currentValue}">
-            </div>
-        `,
-        showCancelButton: true,
-        confirmButtonText: '<i class="fas fa-save me-1"></i> Save',
-        preConfirm: () => {
-            let val = document.getElementById('manual-sticker-update').value;
-            return val === '' ? currentValue : parseFloat(val);
-        }
-    }).then((result) => {
-        if (result.isConfirmed) {
-            let newValue = result.value;
-            if (newValue === currentValue) return;
-
-            let db = window.globalInventoryDB;
-            if (!db.sticker) db.sticker = { total: 0, countOffset: 0 };
-
-            if (type === 'loose') {
-                let diff = currentValue - newValue; // കുറഞ്ഞാൽ ഉപയോഗിച്ചു എന്നർത്ഥം
-                db.sticker.countOffset = (parseFloat(db.sticker.countOffset) || 0) + diff;
-            } else if (type === 'sheets') {
-                let diff = newValue - currentValue; // പുതിയത് കൂടിയാൽ വാങ്ങി എന്നർത്ഥം
-                db.sticker.total = (parseFloat(db.sticker.total) || 0) + diff;
-            }
-
-            Swal.fire({ title: 'Saving...', allowOutsideClick: false, didOpen: () => Swal.showLoading() });
-
-            adminServiceFetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify({ action: 'saveInventory', inventory: db })
-            }).then(res => res.json()).then(res => {
-                if (res.result === 'success') {
-                    Swal.fire({ icon: 'success', title: 'Saved!', timer: 1000, showConfirmButton: false });
-                    if (typeof renderLiveStockTracker === 'function') renderLiveStockTracker();
-                    if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
-                } else {
-                    Swal.fire('Error', 'Failed to save', 'error');
-                }
-            });
-        }
-    });
+window.editStickerStock = async function(type,currentValue,ratio){
+ const result=await Swal.fire({title:type==='sheets'?'Remaining blank A4 sheets':'Remaining loose stickers',input:'number',inputValue:currentValue,inputAttributes:{min:0,step:1},text:'1 A4 sheet = 5 stickers. Enter the amount you have now.',showCancelButton:true,confirmButtonText:'Save',inputValidator:value=>value.trim()===''||!Number.isSafeInteger(Number(value))||Number(value)<0?'Enter a non-negative whole number':undefined});
+ if(!result.isConfirmed)return;
+ try{
+  Swal.fire({title:'Saving...',allowOutsideClick:false,didOpen:()=>Swal.showLoading()});
+  const response=await adminServiceFetch(scriptURL,{method:'POST',body:JSON.stringify({action:'adjustStickerStock',type,count:Number(result.value)})});const saved=await response.json();if(saved.result!=='success')throw Error(saved.error||'Stock was not saved');
+  window.globalInventoryDB.sticker=saved.sticker;
+  await updatePrintPrediction();if(typeof renderLiveStockTracker==='function')renderLiveStockTracker();
+  Swal.fire({icon:'success',title:'Stock saved',timer:1200,showConfirmButton:false});
+ }catch(e){Swal.fire('Unable to save',e.message,'error');}
 };
 
 // 🔥 NEW: BULK AUTO-COMPLETE (3 Days Old Orders - No Manual Selection needed)
