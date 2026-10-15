@@ -1336,11 +1336,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $(commHTML).insertBefore('#status-area');
     $('#adm-paid').val(d.paidNum || '');
 
-    let metaStr = d.adminMeta || '';
-    let targetVal = 'phone';
-    if (metaStr.includes('W')) targetVal = 'whatsapp';
-    else if (metaStr.includes('A')) targetVal = 'alt';
-    else if (metaStr.includes('G')) targetVal = 'paid';
+    const targetVal=KafakBusinessOrder.contact(d).type;
+    $('#adm-paid').val(d.paidNum||'');
     $(`input[name="target_wa"][value="${targetVal}"]`).prop('checked', true);
 
     $(`<div id="admin-diff-viewer" class="mt-2 mb-2 p-3 rounded fade-in" style="display:none; background:#fff3cd; border:1px solid #ffeeba; color:#856404;"></div>`).insertBefore('.btn-update-sage');
@@ -3405,10 +3402,7 @@ async function sendToWhatsapp(orderData = successData, recipient = null) {
   let targetPhone = "";
   if (isAdmin) {
     // 🔥 FIX 2: Admin select cheytha Meta value vechu krithyamaya number edukkunnu
-    let meta = d.adminMeta || '';
-    if (meta.includes('W')) targetPhone = d.whatsapp || d.phone;
-    else if (meta.includes('A')) targetPhone = d.altphone || d.phone;
-    else targetPhone = d.phone; // 'M' aayal Main Phone edukkum
+    targetPhone = KafakBusinessOrder.contact(d).number;
   } else {
     // If Customer: Send to Admin
     targetPhone = targetAdminPhone;

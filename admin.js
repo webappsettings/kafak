@@ -1768,6 +1768,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block; clear:both;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
+    const preferredContact=KafakBusinessOrder.contact(d);
     let uniqueContacts = new Map();
     const cleanNum = (n) => String(n || '').replace(/[^0-9]/g, '');
     if (d.whatsapp) uniqueContacts.set(cleanNum(d.whatsapp), { val: d.whatsapp, label: `📲 WA: ${d.whatsapp}`, type: 'whatsapp' });
@@ -1776,11 +1777,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if (d.paidNum && !uniqueContacts.has(cleanNum(d.paidNum))) uniqueContacts.set(cleanNum(d.paidNum), { val: d.paidNum, label: `💰 PAID: ${d.paidNum}`, type: 'paid' });
 
     let opts = '';
-    let selType = meta.contact || 'whatsapp';
-    if (!d.adminMeta) selType = 'whatsapp';
+    let selType = preferredContact.type;
 
     uniqueContacts.forEach((v, k) => {
-        let isSelected = (v.type === selType) ? 'selected' : '';
+        let isSelected = (cleanNum(v.val) === cleanNum(preferredContact.number)) ? 'selected' : '';
         let code = (v.type === 'whatsapp') ? 'W' : (v.type === 'alt' ? 'A' : (v.type === 'paid' ? 'G' : 'M'));
         opts += `<option value="${code}" ${isSelected}>${v.label}</option>`;
     });

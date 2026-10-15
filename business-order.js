@@ -65,6 +65,14 @@
       }).finally(() => { this.inFlight = null; });
       return this.inFlight;
     }
+    static contact(order){
+      const keys={whatsapp:'whatsapp',phone:'phone',alt:'altphone',paid:'paidNum'};
+      const meta=String(order.adminMeta||'').replace(/P?_\d+/g,'').trim();
+      let type=/^[MWAGPSTR\s]*$/.test(meta)?(meta.includes('G')?'paid':meta.includes('M')?'phone':meta.includes('A')?'alt':meta.includes('W')?'whatsapp':null):null;
+      if(!type&&order.preferredWhatsAppNumber){const normalized=n=>String(n||'').replace(/\D/g,'').slice(-10);type=Object.keys(keys).find(k=>normalized(order[keys[k]])===normalized(order.preferredWhatsAppNumber));if(!type){order.paidNum=order.paidNum||order.preferredWhatsAppNumber;type='paid';}}
+      if(!type||!order[keys[type]])type=order.whatsapp?'whatsapp':'phone';
+      return {type,number:order[keys[type]]||order.whatsapp||order.phone||''};
+    }
     static async shareLink(page, order) {
       if (!/^[A-Za-z0-9_-]{22}$/.test(order.shortCode||'') && order.accessToken) {
         const response=await fetch('https://production.kafaklife.com/kafak-business/api/public/order?'+new URLSearchParams({oid:order.orderid}),{headers:{Authorization:'Bearer '+order.accessToken},cache:'no-store'});
