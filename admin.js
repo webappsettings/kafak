@@ -6195,6 +6195,7 @@ $(document).ready(function () {
     // പുതിയ Expense ആഡ് ചെയ്യാൻ പ്ലസ് (+) ബട്ടൺ അല്ലെങ്കിൽ Expense ടാബ് അമർത്തുമ്പോൾ
     $('[data-bs-target="#expenseModal"], #tab-expense, [data-bs-target="#pills-expense"]').on('click', function () {
         setTimeout(() => {
+            $('#expense-form input[name=refundOrderId]').val('');
             $('#exp-category').val('Materials').trigger('change');
             $('#partner-section').hide();
             $('#exp-vendor').prop('readonly', false).val('').attr('placeholder', 'Vendor Name / Person');
