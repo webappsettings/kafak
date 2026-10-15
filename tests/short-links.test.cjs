@@ -1,3 +1,5 @@
 const test=require('node:test'),assert=require('node:assert/strict');
 const Order=require('../business-order.js');
 test('private sharing prefers a compact secret and preserves old links',()=>{const order={orderid:'K-test',accessToken:'b'.repeat(43),shortCode:'a'.repeat(22)};assert.equal(Order.privateLink('https://kafaklife.com/order.html',order),'https://kafaklife.com/o/#'+'a'.repeat(22));delete order.shortCode;assert.match(Order.privateLink('https://kafaklife.com/order.html',order),/oid=K-test#access=/);});
+
+test('cached long access is upgraded before sharing',async()=>{const before=global.fetch;let calls=0;global.fetch=async()=>{calls++;return {ok:true,json:async()=>({shortCode:'c'.repeat(22)})}};try{const order={orderid:'K-test',accessToken:'b'.repeat(43)};assert.equal(await Order.shareLink('https://kafaklife.com/order.html',order),'https://kafaklife.com/o/#'+'c'.repeat(22));await Order.shareLink('https://kafaklife.com/order.html',order);assert.equal(calls,1);}finally{global.fetch=before;}});

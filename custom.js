@@ -3246,7 +3246,7 @@ function showToast(icon, title) {
   Swal.fire({ toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, icon: icon, title: title });
 }
 
-function sendToWhatsapp(orderData = successData, recipient = null) {
+async function sendToWhatsapp(orderData = successData, recipient = null) {
   const d = orderData;
   const safe = (val) => String(val || '').trim().toUpperCase();
   const targetAdminPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
@@ -3355,7 +3355,7 @@ function sendToWhatsapp(orderData = successData, recipient = null) {
   const total = base + courier;
 
   // 5. Generate Message Header
-  const editLink = d.accessToken ? KafakBusinessOrder.privateLink('https://kafaklife.com/order.html',d) : `https://kafaklife.com/order.html?oid=${d.orderid}`;
+  let editLink;try{editLink=(d.shortCode||d.accessToken)?await KafakBusinessOrder.shareLink('https://kafaklife.com/order.html',d):`https://kafaklife.com/order.html?oid=${d.orderid}`;}catch(e){alert(e.message);return;}
   let header = "";
 
   // 🔥 NEW: Product Name Display
@@ -3454,7 +3454,7 @@ function updateEditUIState(data) {
   }
 }
 // 🔥 SEND PAYMENT RECEIPT (English + Malayalam Combined)
-window.sendPaymentWA = function (oid) {
+window.sendPaymentWA = async function (oid) {
   let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
 
   if (!order) {
@@ -3464,7 +3464,7 @@ window.sendPaymentWA = function (oid) {
 
   if (!order) { alert("Order Data Missing!"); return; }
 
-  let trackLink = order.accessToken ? KafakBusinessOrder.privateLink('https://kafaklife.com/order.html',order) : `https://kafaklife.com/order.html?oid=${oid}`;
+  let trackLink;try{trackLink=(order.shortCode||order.accessToken)?await KafakBusinessOrder.shareLink('https://kafaklife.com/order.html',order):`https://kafaklife.com/order.html?oid=${oid}`;}catch(e){alert(e.message);return;}
 
   // 🔥 UNIFIED MESSAGE (English & Malayalam)
   let msg = `✅ *Payment Received!* Thank you❤️\n*പേയ്‌മെന്റ് ലഭിച്ചു! നന്ദി*\n\n🚛 *Order will be delivered within 4-7 working days.*\n*4-7 ദിവസങ്ങൾക്കുള്ളിൽ ഓർഡർ നിങ്ങൾക്ക് ലഭിക്കുന്നതാണ് (അവധി ദിവസങ്ങൾ ഒഴികെ).*\n\n👇 *Order Status:*\n${trackLink}`;

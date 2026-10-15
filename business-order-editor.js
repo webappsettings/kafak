@@ -33,7 +33,7 @@
    const request=admin?this.api.adminAction({action:pending.action||'editOrder',oid:current.orderid,...pending.payload},pending.requestId):this.api.editOwnOrder(current.orderid,token,pending.payload,pending.requestId);
    const promise=request.then(result=>{
     if(result.result!=='success')throw Error('The order edit was not confirmed.');
-    const row=legacy(admin?{...result.orderData,version:result.version}:result.order);
+    const row=legacy(admin?{...result.orderData,shortCode:result.orderData.shortCode||current.shortCode,accessToken:result.orderData.accessToken||current.accessToken,version:result.version}:result.order);
     if(row.orderid!==current.orderid||!Number.isSafeInteger(row.version))throw Error('The edited order response was incomplete. Retry the same edit.');
     const latest=this.current?.orderid===row.orderid&&this.current.version>row.version?this.current:row;
     this.storage.setItem('kafak-business-edited-order',JSON.stringify(latest));this.storage.removeItem(key);

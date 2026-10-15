@@ -92,13 +92,13 @@ test('Phone search accepts country codes and formatting in every contact field',
  assert.equal(ctx.matchesOrderSearch({_searchStr:'customer abc123'},'abc123'),true);
 });
 
-test('Edit-page invoice uses the new order data and selected recipient', () => {
- const code = customer.slice(customer.indexOf('function sendToWhatsapp('), customer.indexOf('function renderEditView('));
+test('Edit-page invoice uses the new order data and selected recipient', async () => {
+ const code = customer.slice(customer.indexOf('async function sendToWhatsapp('), customer.indexOf('function renderEditView('));
  const ctx = {successData:{orderid:'STALE'},savedOrderData:{orderid:'OLD'},adminPhone:'7788990313',
   localStorage:{getItem:()=> 'true'},$:()=>({val:()=> 'en'}),translations:{en:{wa_check_status:'Check order',txt_gpay:'GPay'}},
   isOutOfStock:false,window:{location:{href:''}},showAlert:()=>{throw Error('Invalid phone');}};
  vm.createContext(ctx);vm.runInContext(code,ctx);
- ctx.sendToWhatsapp({orderid:'NEW123',product:'Cheruthen',quantity:1,name:'Customer',phone:'3232232321'},'+91 3232 232321');
+ await ctx.sendToWhatsapp({orderid:'NEW123',product:'Cheruthen',quantity:1,name:'Customer',phone:'3232232321'},'+91 3232 232321');
  const url = new URL(ctx.window.location.href);
  assert.equal(url.pathname,'/913232232321');
  assert.match(url.searchParams.get('text'),/oid=NEW123/);

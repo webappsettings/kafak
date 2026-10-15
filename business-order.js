@@ -65,6 +65,16 @@
       }).finally(() => { this.inFlight = null; });
       return this.inFlight;
     }
+    static async shareLink(page, order) {
+      if (!/^[A-Za-z0-9_-]{22}$/.test(order.shortCode||'') && order.accessToken) {
+        const response=await fetch('https://production.kafaklife.com/kafak-business/api/public/order?'+new URLSearchParams({oid:order.orderid}),{headers:{Authorization:'Bearer '+order.accessToken},cache:'no-store'});
+        if(!response.ok)throw new Error('Unable to prepare the secure link. Please retry.');
+        const current=await response.json();
+        if(!/^[A-Za-z0-9_-]{22}$/.test(current.shortCode||''))throw new Error('Secure link unavailable. Please reload the order.');
+        order.shortCode=current.shortCode;
+      }
+      return this.privateLink(page,order);
+    }
     static privateLink(page, order) {
       if (/^[A-Za-z0-9_-]{22}$/.test(order.shortCode||'')) return new URL('/o/#'+order.shortCode,page).href;
       const url = new URL(page); url.search = '';
