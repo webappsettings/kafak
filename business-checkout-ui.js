@@ -23,6 +23,7 @@
    const family=catalog.families.find(f=>f.id===prior)||catalog.families.find(f=>f.products.some(p=>p.sku===oldSku))||catalog.families.find(f=>f.name===savedOrderData?.product)||catalog.families[0];
    productSelect.replaceChildren();for(const f of catalog.families){const option=document.createElement('option');option.value=f.id;option.textContent=f.label;option.selected=f.id===family.id;productSelect.append(option);}catalog.select(family.id);
   }
+  const productPanel=document.getElementById('admin-product-panel');if(productPanel){productPanel.hidden=catalog.families.length<=1;productPanel.style.display=catalog.families.length<=1?'none':'';}
   const products=productSelect?catalog.selected?.products||[]:checkout.products;
   for(const id of ['quantity','quick-qty']){
    const select=document.getElementById(id);if(!select)continue;
