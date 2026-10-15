@@ -66,6 +66,7 @@
       return this.inFlight;
     }
     static privateLink(page, order) {
+      if (/^[A-Za-z0-9_-]{22}$/.test(order.shortCode||'')) return new URL('/o/#'+order.shortCode,page).href;
       const url = new URL(page); url.search = '';
       url.searchParams.set('oid', order.orderid);
       url.hash = new URLSearchParams({ access: order.accessToken }).toString();

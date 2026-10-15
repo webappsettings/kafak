@@ -30,12 +30,13 @@
    const priorSku=select.selectedOptions[0]?.dataset.sku;
    const sku=priorSku||(id==='quick-qty'?savedOrderData?.sku:null);
    select.replaceChildren();const empty=document.createElement('option');empty.value='';empty.textContent=(translations[$('#language-select').val()]||translations.en).dd_select||'Select Quantity';empty.disabled=true;empty.selected=true;select.append(empty);
-   for(const p of products){const option=document.createElement('option');option.value=String(p.units);option.dataset.sku=p.sku;option.textContent=[productSelect?'':p.name,p.variant,p.label||p.units,p.size,p.colour].filter(Boolean).join(' · ');option.selected=p.sku===sku;select.append(option);}
+   for(const p of products){const option=document.createElement('option');option.value=String(p.units);option.dataset.sku=p.sku;option.textContent=[productSelect?'':(p.displayName||p.name),p.variant,p.label||p.units,p.size,p.colour].filter(Boolean).join(' · ');option.selected=p.sku===sku;select.append(option);}
    if(id==='quick-qty'&&editingOrderId&&!sku&&savedOrderData?.quantity){const historical=document.createElement('option');historical.value=String(savedOrderData.quantity);historical.textContent=`${savedOrderData.quantity} · ${savedOrderData.product||'Existing order'}`;historical.selected=true;select.append(historical);}
   }
  }
  async function load(){if(!ready)ready=checkout.load().then(async result=>{await catalog.load();adminPhone=String(result.settings.contactPhone);isOutOfStock=result.settings.stockStatus==='no';globalQtyList=[...new Set(result.products.map(p=>Number(p.units)))].sort((a,b)=>a-b);render();return true;}).catch(error=>{ready=null;showAlert(error.message);return false;});return ready;}
  window.kafakCheckoutUI={load,render,checkout,productChanged:false,
+  displayName(name){return checkout.products?.find(p=>p.name===name)?.displayName||name;},
   productName(){return catalog.selected?.name||'';},
   changeProduct(){this.productChanged=true;render();const quick=$('#quick-qty').is(':visible'),control=document.querySelector(quick?'#quick-qty':'#quantity');if(control){control.selectedIndex=1;updatePrice(control.value,quick);}checkForChanges();},
   async price(qty,quick){

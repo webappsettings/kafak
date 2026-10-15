@@ -1035,7 +1035,7 @@ window.startWizard = function () {
         <div id="admin-product-panel" class="mb-3 p-3 bg-white border border-warning rounded shadow-sm fade-in w-100">
             <label class="small text-muted fw-bold mb-1" style="font-size:11px; letter-spacing:1px;">SELECT PRODUCT 🍯</label>
             <select id="admin-product-type" class="form-select form-select-sm fw-bold border-warning text-dark" onchange="onProductChange()">
-                <option value="Vanthen" selected>Vanthen (Wild Honey)</option>
+                <option value="Vanthen" selected>Wild Honey</option>
                 <option value="Cheruthen">Cheruthen (Stingless Honey)</option>
             </select>
         </div>
@@ -1292,7 +1292,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
         <div id="admin-product-panel" class="mb-3 p-3 bg-white border border-warning rounded shadow-sm fade-in w-100">
             <label class="small text-muted fw-bold mb-1" style="font-size:11px; letter-spacing:1px;">SELECT PRODUCT 🍯</label>
             <select id="admin-product-type" class="form-select form-select-sm fw-bold border-warning text-dark" onchange="onProductChange()">
-                <option value="Vanthen" ${savedProduct === 'Vanthen' ? 'selected' : ''}>Vanthen (Wild Honey)</option>
+                <option value="Vanthen" ${savedProduct === 'Vanthen' ? 'selected' : ''}>Wild Honey</option>
                 <option value="Cheruthen" ${savedProduct === 'Cheruthen' ? 'selected' : ''}>Cheruthen (Stingless Honey)</option>
             </select>
         </div>
@@ -3359,9 +3359,9 @@ function sendToWhatsapp(orderData = successData, recipient = null) {
   let header = "";
 
   // 🔥 NEW: Product Name Display
-  let productDisplay = productType === 'Cheruthen' ? "*🍯 Product: Cheruthen (Stingless Honey)*" : "*🍯 Product: Vanthen (Wild Honey)*";
+  let productDisplay = productType === 'Cheruthen' ? "*🍯 Product: Cheruthen (Stingless Honey)*" : "*🍯 Product: Wild Honey*";
 
-  if (window.kafakCheckoutUI) productDisplay = '*Product: '+[d.product,d.variant].filter(Boolean).join(' · ')+'*';
+  if (window.kafakCheckoutUI) productDisplay = '*Product: '+[window.kafakCheckoutUI.displayName(d.product),d.variant].filter(Boolean).join(' · ')+'*';
 
   if (isAdmin) {
     header = `*🧾 ORDER INVOICE* - KAFAK HONEY\n⌚ _${formattedTime}_\n\nHere is your order details 👇\nനിങ്ങളുടെ ഓർഡറിന്റെ സ്റ്റാറ്റസ് അറിയാനും മാറ്റങ്ങൾ വരുത്തുവാനും: 👇\n🔗 _${editLink}_\n`;

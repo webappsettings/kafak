@@ -9,7 +9,7 @@
    for(const product of products){
     if(!product.sku||!Number.isSafeInteger(Number(product.units))||Number(product.units)<1||!Number.isFinite(Number(product.price)))throw Error('The product catalog contains an invalid variant.');
     const key=JSON.stringify([product.name,product.category,product.variant,product.packGrams,product.unit,product.packSize,product.size,product.colour]);
-    if(!groups.has(key))groups.set(key,{id:product.sku,name:product.name,label:[product.name,product.variant,product.packGrams?product.packGrams+' g':product.packSize,product.size,product.colour].filter(Boolean).join(' · '),products:[]});
+    if(!groups.has(key))groups.set(key,{id:product.sku,name:product.name,label:[product.displayName||product.name,product.variant,product.packGrams?product.packGrams+' g':product.packSize,product.size,product.colour].filter(Boolean).join(' · '),products:[]});
     const family=groups.get(key);if(family.products.some(p=>Number(p.units)===Number(product.units)))throw Error('Product quantities are ambiguous. Correct the catalog before ordering.');
     family.products.push(product);
    }
