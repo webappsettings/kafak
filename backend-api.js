@@ -12,7 +12,8 @@
       const abort = () => controller.abort(signal.reason);
       if (signal?.aborted) abort();
       else signal?.addEventListener('abort', abort, { once: true });
-      const timer = setTimeout(() => controller.abort(), timeout);
+      let timedOut = false;
+      const timer = setTimeout(() => { timedOut = true; controller.abort(); }, timeout);
       try {
         const headers = { Accept: 'application/json' };
         if (data !== undefined) headers['Content-Type'] = 'application/json';
@@ -28,6 +29,7 @@
         if (!response.ok) throw Object.assign(new Error(body.error || body.message || 'Request failed'), { status: response.status, uncertain: response.status >= 500 && method !== 'GET' });
         return body;
       } catch (error) {
+        if (timedOut) throw Object.assign(new Error('The server is taking too long to respond. Please try again shortly.'), { uncertain: method !== 'GET' });
         if (error.name === 'AbortError' || error.name === 'TimeoutError' || error instanceof TypeError) error.uncertain = method !== 'GET';
         throw error;
       } finally {
@@ -43,7 +45,7 @@
       return this.request('/public/quote?' + query);
     }
     login(username, password) { return this.request('/login', { method: 'POST', data: { username, password } }); }
-    me() { return this.request('/me'); }
+    me() { return this.request('/me?optional=1').then(user => { if (user.authenticated === false) throw Object.assign(new Error('Sign in required'), { status: 401 }); return user; }); }
     logout() { return this.request('/logout', { method: 'POST', data: {} }); }
     orders({ before, q, status, view = 'history' } = {}) {
       const query = new URLSearchParams({ view, limit: '50' });
