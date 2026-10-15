@@ -649,6 +649,7 @@ function saveToLocal(phone, data) {
 
 window.loadOrderData = function (d, isServerData = false) {
   if (!d) return;
+  document.dispatchEvent(new Event('kafak-order-rendered'));
 
   // 1. Admin aano ennu check cheyyunnu
   let isAdmin = window.location.href.includes('admin') || SafeStorage.getItem('kafakAdmin') === 'true';
@@ -3868,7 +3869,7 @@ window.trackParcel = function (trackingId, provider, defaultLink) {
 };
 
 // 🔥 2. ഇൻലൈൻ കാർഡ് ലോഡിങ് ഫംഗ്‌ഷൻ
-window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
+window.loadLiveTrackingInline = function (trackId, expectedPO, lang, silent = false) {
   let cleanTrackId = String(trackId).trim();
   let widget = $(`#inline-track-${cleanTrackId}`);
   if (widget.length === 0) return;
@@ -3886,7 +3887,7 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
               <div class="text-muted fw-bold mt-3" style="font-size:11px;">Fetching Live Location...</div>
           </div>`;
 
-  widget.html(truckLoaderHtml);
+  if(!silent)widget.html(truckLoaderHtml);
 
   window.kafakOrderEditorUI.track(cleanTrackId)
     .then(res => {
@@ -3971,11 +3972,11 @@ window.loadLiveTrackingInline = function (trackId, expectedPO, lang) {
 
         widget.html(html);
       } else {
-        widget.html(`<div class="text-danger small mt-2 fw-bold text-center" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-exclamation-circle"></i> Tracking details currently unavailable</div>`);
+        if(!silent)widget.html(`<div class="text-danger small mt-2 fw-bold text-center" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-exclamation-circle"></i> Tracking details currently unavailable</div>`);
       }
     })
     .catch(err => {
-      widget.html(`<div class="text-danger small mt-2 fw-bold text-center" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-wifi"></i> Connection failed</div>`);
+      if(!silent)widget.html(`<div class="text-danger small mt-2 fw-bold text-center" style="background: #fee2e2; padding: 8px; border-radius: 8px;"><i class="fas fa-wifi"></i> Connection failed</div>`);
     });
 }
 

@@ -46,6 +46,7 @@
    }
    return {result:'success',data:{phone:normalized,authorized:false}};
   },
+  async latestCustomer(id){return confirmed(KafakBusinessOrderEditor.legacy(await api.ownOrder(id,access(id))));},
   async read(id){
    const token=access(id),admin=localStorage.getItem('kafakAdmin')==='true';let row;
    if(admin){try{row=await editor.load(id,{admin:true});}catch(error){if(error.status!==401)throw error;localStorage.removeItem('kafakAdmin');row=await editor.load(id,{token});}}
@@ -68,6 +69,7 @@
    let expectedTotal;
    if(sku){const priced=window.kafakCheckoutUI?.checkout.priced;if(!priced||priced.sku!==sku||priced.state!==data.state)throw Error('Wait for the current delivery total before saving.');expectedTotal=priced.quote.total;}
    const row=confirmed(await editor.save(data,{sku,expectedTotal,increasePaid}));
+   document.dispatchEvent?.(new Event('kafak-order-saved'));
    return {res:{result:'success',orderid:row.orderid,timestamp:row.timestamp},data:row};
   }
  };
