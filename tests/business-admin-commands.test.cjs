@@ -17,7 +17,7 @@ test('concurrent equal commands share one request; acknowledgements permit a lat
 });
 test('unsupported actions, partial confirmation and unsafe receipt results never acknowledge success',async()=>{
  const store=storage(),commands=new Commands({adminAction:async()=>({result:'success',count:0}),uploadReceipt:async()=>({url:'https://example.com/x'})},store,options);
- await assert.rejects(commands.send({action:'bulkIndiaPostBooking'}),/not connected/);
+ await assert.rejects(commands.send({action:'unsupportedAction'}),/not connected/);
  await assert.rejects(commands.send({action:'bulkUpdateStatus',updates:[{oid:'x'}]}),/whole batch/);
  await assert.rejects(commands.send({action:'addExpense',data:{fileData:'image',fileName:'a'}}),/not confirmed/);
 });
