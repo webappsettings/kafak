@@ -3,6 +3,9 @@
  'use strict';if(window.KAFAK_BACKEND!=='business')return;
  const api=new KafakBusinessApi(),publicSubmit=api.submitOrder.bind(api);
  api.submitOrder=(data,id)=>localStorage.getItem('kafakAdmin')==='true'?api.createAdminOrder(data,id):publicSubmit(data,id);
+ const publicCatalog=api.catalog.bind(api),publicQuote=api.quote.bind(api);let adminCatalog=false;
+ api.catalog=async()=>{if(localStorage.getItem('kafakAdmin')==='true'){try{const products=await api.request('/catalog');adminCatalog=true;return products;}catch(e){if(e.status!==401)throw e;}}adminCatalog=false;return publicCatalog();};
+ api.quote=(sku,state,provider)=>adminCatalog?api.request('/quote?'+new URLSearchParams({sku,state,...(provider?{provider}:{})})):publicQuote(sku,state,provider);
  const checkout=new KafakBusinessCheckout(api,KafakBusinessOrder,localStorage);
  const catalog=new KafakBusinessCatalog({catalog:async()=>checkout.products});
  let ready=null;
