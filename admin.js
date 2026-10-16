@@ -685,7 +685,8 @@ function fetchOrders(forceLoad = false) {
         })
         .catch(err => {
             document.getElementById('loader').style.display = 'none';
-            if (!hasData) alert("Network Error!");
+            console.error('Order refresh failed:', err);
+            if (!hasData) alert(err.message || 'Unable to refresh orders. Please retry.');
         });
 }
 
