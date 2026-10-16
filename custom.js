@@ -2700,7 +2700,28 @@ window.syncSingleOrder = function (oid) {
         btn.html(originalHtml).prop('disabled', false);
       }
     })
-    .catch(err => {
+    .catch(async err => {
+      btn.html(originalHtml).prop('disabled', false);
+      if (err.status === 409 && /Order status changed/.test(err.message) && window.KAFAK_BACKEND === 'business') {
+        try {
+          const latest = await new KafakBusinessApi().order(oid);
+          const currentStatus = latest.data.Status;
+          const decision = await Swal.fire({
+            icon: 'warning', title: 'Review status change',
+            text: `Server status: ${currentStatus}. Your pending change: ${myUpdate.status}. Apply your change to this latest status?`,
+            showCancelButton: true, confirmButtonText: 'Apply my change', cancelButtonText: 'Keep pending'
+          });
+          if (decision.isConfirmed) {
+            const pending = JSON.parse(localStorage.getItem('pendingUpdates') || '[]');
+            const index = pending.findIndex(item => JSON.stringify(item) === JSON.stringify(myUpdate));
+            if (index < 0) { alert('Pending changes changed. Review them before syncing.'); return; }
+            pending[index] = {...myUpdate, oldStatus: currentStatus};
+            localStorage.setItem('pendingUpdates', JSON.stringify(pending));
+            return window.syncSingleOrder(oid);
+          }
+          return;
+        } catch (reviewError) { alert(reviewError.message || 'Could not load the latest status. Your change is still pending.'); return; }
+      }
       alert(err.status === 401 ? 'Your admin session expired. Sign in again from the Admin page, then retry Sync. Your pending changes are saved.' : (err.message || 'Unable to sync. Please retry.'));
       btn.html(originalHtml).prop('disabled', false);
     });
