@@ -2701,7 +2701,7 @@ window.syncSingleOrder = function (oid) {
       }
     })
     .catch(err => {
-      alert("Network Error. Try again.");
+      alert(err.status === 401 ? 'Your admin session expired. Sign in again from the Admin page, then retry Sync. Your pending changes are saved.' : (err.message || 'Unable to sync. Please retry.'));
       btn.html(originalHtml).prop('disabled', false);
     });
 }
@@ -2799,7 +2799,8 @@ window.adminAction = async function (oid, status) {
   // 🔥🔥🔥 CHANGE STARTS HERE (REFUND & META CLEANUP LOGIC) 🔥🔥🔥
 
   let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
-  updates = updates.filter(item => item.oid !== oid);
+  const previousStatusUpdate = updates.find(item => item.oid === oid && (!item.action || item.action === 'status'));
+  updates = updates.filter(item => item.oid !== oid || (item.action && item.action !== 'status'));
 
   let oldStatus = 'Pending';
   let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
@@ -2839,7 +2840,7 @@ window.adminAction = async function (oid, status) {
   updates.push({
     oid: oid,
     status: status,
-    oldStatus: oldStatus,
+    oldStatus: previousStatusUpdate?.oldStatus || oldStatus,
     actionDate: selectedDate,
     time: new Date().getTime(),
     deleteRefund: needsRefundDelete

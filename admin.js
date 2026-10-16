@@ -685,6 +685,16 @@ function fetchOrders(forceLoad = false) {
         })
         .catch(err => {
             document.getElementById('loader').style.display = 'none';
+            if (businessApi && fetchSerial !== businessFetchSerial) return;
+            if (err.status === 401) {
+                // Keep drafts and cached orders intact while the user signs in again.
+                localStorage.removeItem('kafakAdmin');
+                localStorage.removeItem('kafakAdminRole');
+                document.getElementById('dashboard-section').style.display = 'none';
+                document.getElementById('login-section').style.display = 'flex';
+                document.getElementById('loginMsg').innerText = 'Your session expired. Sign in again. Pending changes are saved on this device.';
+                return;
+            }
             console.error('Order refresh failed:', err);
             if (!hasData) alert(err.message || 'Unable to refresh orders. Please retry.');
         });
