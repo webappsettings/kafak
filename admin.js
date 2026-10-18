@@ -2528,11 +2528,38 @@ window.syncWithServer = function () {
 
 // 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST (Includes Sticker & Resend Info)
 // 🔥 UPDATED: BEAUTIFUL CARD-BASED SYNC LIST (Includes Sticker & Resend Info)
+const syncPreviewOrders = new Map();
+let syncPreviewLoading = false;
+async function loadSyncPreviewOrders(ids) {
+    if (!businessApi || syncPreviewLoading || !ids.length) return;
+    syncPreviewLoading = true;
+    try {
+        // Sequential reads avoid flooding the shared server for a large offline queue.
+        for (const oid of ids) {
+            try {
+                const response = await businessApi.order(oid);
+                syncPreviewOrders.set(oid, response.data || {name: 'Order details unavailable'});
+            } catch (error) {
+                syncPreviewOrders.set(oid, {name: error.status === 404 ? 'Order unavailable' : 'Order details unavailable'});
+            }
+        }
+    } finally {
+        syncPreviewLoading = false;
+        renderSyncList();
+    }
+}
+
 function renderSyncList() {
     let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
     let pendingExpenses = JSON.parse(localStorage.getItem('pendingExpenses') || "[]");
     let pendingPostalTrackers = JSON.parse(localStorage.getItem('pendingPostalTrackers') || "[]");
     let allOrdersLocal = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    const loadedIds = new Set(allOrdersLocal.map(order => String(order.orderid)));
+    const missingIds = [...new Set(pendingUpdates.map(update => String(update.oid || '')).filter(Boolean))]
+        .filter(oid => !loadedIds.has(oid) && !syncPreviewOrders.has(oid));
+    allOrdersLocal = [...syncPreviewOrders.entries()].map(([orderid, order]) => ({...order, orderid})).concat(allOrdersLocal);
+    if (missingIds.length) void loadSyncPreviewOrders(missingIds);
+
 
     const list = document.getElementById('sync-preview-list');
     const countDisplay = document.getElementById('sync-count-display');
@@ -2584,7 +2611,7 @@ function renderSyncList() {
         itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">🚚 Auto-Assigned Trackers (From Print)</div>`;
         trackingUpdates.forEach(u => {
             let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
-            let custName = order.name || 'Unknown User';
+            let custName = order.name || (businessApi ? 'Loading order details...' : 'Order details unavailable');
             let custPhone = String(order.phone || 'N/A').replace(/[^0-9]/g, '');
             let tType = String(u.tracking).startsWith('E') ? 'Speed' : 'Normal';
             let tClass = tType === 'Speed' ? 'danger' : 'primary';
@@ -2613,7 +2640,7 @@ function renderSyncList() {
         itemsHtml += `<div class="fw-bold text-dark mb-2 mt-2" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">🚚 Courier & Price Updates</div>`;
         courierUpdates.forEach(u => {
             let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
-            let custName = order.name || 'Unknown User';
+            let custName = order.name || (businessApi ? 'Loading order details...' : 'Order details unavailable');
             let custPhone = String(order.phone || 'N/A').replace(/[^0-9]/g, '');
 
             itemsHtml += `
@@ -2650,7 +2677,7 @@ function renderSyncList() {
         itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">📦 Order Status Updates</div>`;
         [...orderUpdates, ...refundDeletions].forEach(u => {
             let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
-            let custName = order.name || 'Unknown User';
+            let custName = order.name || (businessApi ? 'Loading order details...' : 'Order details unavailable');
             let custPhone = String(order.phone || 'N/A').replace(/[^0-9]/g, '');
 
             let oldS = u.oldStatus || 'Pending';
@@ -2700,7 +2727,7 @@ function renderSyncList() {
         itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">📱 Payment Contact Updates</div>`;
         paidNumUpdates.forEach(u => {
             let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
-            let custName = order.name || 'Unknown User';
+            let custName = order.name || (businessApi ? 'Loading order details...' : 'Order details unavailable');
 
             itemsHtml += `
             <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #198754 !important;">
@@ -2718,7 +2745,7 @@ function renderSyncList() {
         itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">⚙️ Meta Updates</div>`;
         metaUpdates.forEach(u => {
             let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
-            let custName = order.name || 'Unknown User';
+            let custName = order.name || (businessApi ? 'Loading order details...' : 'Order details unavailable');
 
             let oldMetaStr = u.oldMeta || '';
             let newMetaStr = u.meta || '';
@@ -2795,7 +2822,7 @@ function renderSyncList() {
         itemsHtml += `<div class="fw-bold text-dark mb-2 mt-3" style="font-size:12px; letter-spacing:1px; text-transform:uppercase;">📱 Phone Number Updates</div>`;
         phoneUpdates.forEach(u => {
             let order = allOrdersLocal.find(o => o.orderid === u.oid) || {};
-            let custName = order.name || 'Unknown User';
+            let custName = order.name || (businessApi ? 'Loading order details...' : 'Order details unavailable');
 
             itemsHtml += `
             <div class="bg-white border rounded-3 p-3 mb-2 shadow-sm position-relative" style="border-left: 4px solid #8b5cf6 !important;">
