@@ -6313,10 +6313,10 @@ function injectLeftDrawer() {
             
             <div class="tab-pane fade show active h-100" id="drawer-design" role="tabpanel">
 
-            <button class="align-items-center btn d-flex fw-bold gap-2 justify-content-center mb-3 mx-auto shadow-sm" style="background-color:#ffc107; border-radius:10px; padding:10px; font-size:13px; border:2px solid #d97706; color:#000;" onclick="openPostalScanner()">
-                <i class="fas fa-barcode fs-5"></i> <span>SCAN POSTAL TRACKERS</span>
-            </button>
-            <button class="btn fw-bold mb-3 shadow-sm d-block mx-auto" style="background:#ffc107;border:2px solid #d97706;border-radius:10px;padding:10px;color:#000;font-size:13px" onclick="openPostalEntry()"><i class="fas fa-plus me-1"></i> ADD POSTAL TRACKERS</button>
+            <div class="d-flex gap-2 mb-3">
+                <button class="btn fw-bold flex-fill shadow-sm" style="background:#ffc107;border:1px solid #d97706;border-radius:8px;padding:8px 5px;font-size:11px;color:#000" onclick="openPostalScanner()"><i class="fas fa-barcode me-1"></i> SCAN TRACKERS</button>
+                <button class="btn fw-bold flex-fill shadow-sm" style="background:#ffc107;border:1px solid #d97706;border-radius:8px;padding:8px 5px;font-size:11px;color:#000" onclick="openPostalEntry()"><i class="fas fa-plus me-1"></i> ADD TRACKERS</button>
+            </div>
                 
                 <div class="bg-primary bg-opacity-10 border border-primary border-opacity-25 rounded-4 p-3 mb-4 shadow-sm mx-auto" style="max-width: 350px;">
                     <div class="d-flex justify-content-between align-items-center mb-2 pb-2 border-bottom border-primary border-opacity-25">
@@ -11143,4 +11143,4 @@ window.renderAdminTimeline = function (trackId, eventsJson) {
     });
 }
 
-window.openPostalEntry=()=>PostalEntry.open(async(trackers)=>{const response=await adminServiceFetch(scriptURL,{method:"POST",body:JSON.stringify({action:"addPostalTrackers",trackers})});const data=await response.json();if(data.result!=="success")throw Error(data.error||data.message||"Save failed");refreshTrackingBalance(true);return data;});
+window.openPostalEntry=()=>PostalEntry.open(async(trackers)=>{const response=await adminServiceFetch(scriptURL,{method:"POST",body:JSON.stringify({action:"addPostalTrackers",trackers})});const data=await response.json();if(data.result!=="success")throw Error(data.error||data.message||"Save failed");refreshTrackingBalance(true);return data;},trackers=>{if(!businessApi)throw Error("Connect to Kafak Business to check trackers before saving.");return businessApi.request("/admin/postal-check",{method:"POST",data:{trackers}});});
