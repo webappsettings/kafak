@@ -2287,9 +2287,11 @@ window.submitQuickOrder = async function () {
 
             Swal.fire({
               icon: 'success', title: 'Order Created! 🎉', html: `<b>Order ID:</b> <span class="text-primary">${res.orderid}</span>`,
-              confirmButtonColor: '#15803d', confirmButtonText: 'Go to Admin Dashboard', showCancelButton: true, cancelButtonText: 'View Order Page'
+              confirmButtonColor: '#15803d', confirmButtonText: 'Go to Admin Dashboard', showCancelButton: true, cancelButtonText: 'View Order Page',
+              showDenyButton: true, denyButtonColor: '#25D366', denyButtonText: '<i class="fab fa-whatsapp"></i> Send WhatsApp'
             }).then((result) => {
-              if (result.isConfirmed) window.location.href = `admin.html?search=${res.orderid}`;
+              if (result.isDenied) { sendToWhatsapp(newData, getSelectedWAPhone(newData)); }
+              else if (result.isConfirmed) window.location.href = `admin.html?search=${res.orderid}`;
               else window.location.href = `order.html?oid=${res.orderid}`;
             });
           } else { Swal.fire('Error', 'Failed to create new order', 'error'); }

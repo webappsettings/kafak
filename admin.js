@@ -1734,6 +1734,8 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="order.html?oid=${d.orderid}" target="_blank" onclick="event.stopPropagation();"><i class="fas fa-pen text-primary me-2" style="width:16px; text-align:center;"></i> Edit Order</a></li>`;
     menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); printSingle(${index});"><i class="fas fa-print text-secondary me-2" style="width:16px; text-align:center;"></i> Print Label</a></li>`;
 
+    menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.preventDefault(); event.stopPropagation(); sendWA(${index}, '${type}');"><i class="fab fa-whatsapp text-success me-2" style="width:16px; text-align:center;"></i> Send Confirm</a></li>`;
+
     if (logicType === 'paid') {
         menuItems += `<li><a class="dropdown-item py-2 fw-bold text-dark d-flex align-items-center" href="#" onclick="event.stopPropagation(); sendPaymentWA('${d.orderid}', ${index}, '${type}');"><i class="fab fa-whatsapp text-success me-2" style="width:16px; text-align:center;"></i> Send Receipt</a></li>`;
     }
@@ -10059,7 +10061,7 @@ window.sendWA = function (index, type = 'pending') {
     const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
     const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
 
-    const base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
+    let base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
     let courier = 0;
     if (d.adminMeta && d.adminMeta.includes('DDelivery')) {
@@ -10083,6 +10085,10 @@ window.sendWA = function (index, type = 'pending') {
         courier = courierBase + serviceMargin;
     }
 
+    const storedBase=d.Product_Amount??d.quote?.productAmount;
+    const storedCourier=d.Courier_Charge??d.quote?.courierAmount;
+    if(storedBase!=null&&Number.isFinite(Number(storedBase)))base=Number(storedBase);
+    if(storedCourier!=null&&Number.isFinite(Number(storedCourier)))courier=Number(storedCourier);
     const total = base + courier;
 
     const editLink = KafakBusinessOrder.privateLink('https://kafaklife.com/order.html',d);
@@ -10097,7 +10103,8 @@ window.sendWA = function (index, type = 'pending') {
 
     let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_" : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
 
-    const footer = `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
+    const confirmationOnly = !['pending','sent'].includes(String(d.Status||d.status||'Pending').toLowerCase());
+    const footer = confirmationOnly ? '' : `\n\n*GPay to: ${adminPhone} (KAFAK LLP)*${paymentNote}`;
 
     let phoneNum = "";
     const dropdown = document.getElementById(`wa-select-${type}-${index}`);
@@ -10107,7 +10114,7 @@ window.sendWA = function (index, type = 'pending') {
     else if (code === 'A') phoneNum = d.altphone;
     else if (code === 'M') phoneNum = d.phone;
     else if (code === 'G') phoneNum = d.paidNum;
-    else phoneNum = d.whatsapp || d.phone;
+    else phoneNum = KafakBusinessOrder.contact(d).number || d.whatsapp || d.phone;
 
     let finalNum = formatWAPhone(phoneNum, '91');
 
