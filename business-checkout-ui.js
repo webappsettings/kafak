@@ -5,7 +5,13 @@
  api.submitOrder=(data,id)=>localStorage.getItem('kafakAdmin')==='true'?api.createAdminOrder(data,id):publicSubmit(data,id);
  const publicCatalog=api.catalog.bind(api),publicQuote=api.quote.bind(api);let adminCatalog=false;
  api.catalog=async()=>{if(localStorage.getItem('kafakAdmin')==='true'){try{const products=await api.request('/catalog');adminCatalog=true;return products;}catch(e){if(e.status!==401)throw e;}}adminCatalog=false;return publicCatalog();};
- api.quote=(sku,state,provider)=>adminCatalog?api.request('/quote?'+new URLSearchParams({sku,state,...(provider?{provider}:{})})):publicQuote(sku,state,provider);
+ api.quote=(sku,state,provider)=>{
+  const oid=typeof editingOrderId!=='undefined'?editingOrderId:null;
+  const quick=document.querySelector('#quick-qty')?.offsetParent!==null;
+  const phone=(quick?document.querySelector('#edit-phone')?.value:document.querySelector('#phone')?.value)||(typeof userData==='object'?userData.phone:'');
+  const params=new URLSearchParams({sku,state,...(provider?{provider}:{}),...(oid?{oid}:{phone:phone||''})});
+  return api.request((adminCatalog?'/quote?':'/public/quote?')+params,oid&&!adminCatalog?{accessToken:window.kafakOrderEditorUI?.access(oid)}:{});
+ };
  const checkout=new KafakBusinessCheckout(api,KafakBusinessOrder,localStorage);
  const catalog=new KafakBusinessCatalog({catalog:async()=>checkout.products});
  let ready=null;
@@ -14,7 +20,7 @@
   const total=Number(savedOrderData.Grand_Total),courier=Number(savedOrderData.Courier_Charge);
   const amount=savedOrderData.Product_Amount==null||savedOrderData.Product_Amount===''?Math.round((total-courier)*100)/100:Number(savedOrderData.Product_Amount);
   if(!Number.isFinite(total)||!Number.isFinite(courier)||!Number.isFinite(amount)||amount<0)throw Error('Historical order amounts require review.');
-  return {product:savedOrderData.product,quantity:Number(qty),productAmount:amount,courierAmount:courier,total};
+  return {product:savedOrderData.product,quantity:Number(qty),productAmount:amount,courierAmount:courier,total,productListAmount:Number(savedOrderData.Product_List_Amount??amount),discountAmount:Number(savedOrderData.Discount_Amount||0),offer:savedOrderData['Offer Type']?{type:savedOrderData['Offer Type'],value:Number(savedOrderData['Offer Value']),duration:savedOrderData['Offer Duration']}:null};
  }
  function render(){
   const productSelect=document.getElementById('admin-product-type');

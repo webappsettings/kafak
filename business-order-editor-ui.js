@@ -12,7 +12,7 @@
   return undefined;
  }
  function confirmed(row){return {...row,accessToken:access(row.orderid)||row.accessToken,quote:{sku:row.sku,product:row.product,variant:row.variant,quantity:Number(row.quantity),productAmount:Number(row.Product_Amount),courierAmount:Number(row.Courier_Charge),total:Number(row.Grand_Total)}};}
- window.kafakOrderEditorUI={editor,
+ window.kafakOrderEditorUI={editor,access,
   async track(article){
    if(localStorage.getItem('kafakAdmin')==='true')return api.request('/admin/parcel-tracking?'+new URLSearchParams({trackingId:article}));
    const id=editor.current?.orderid||(typeof savedOrderData==='object'?savedOrderData?.orderid:null);

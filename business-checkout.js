@@ -17,7 +17,7 @@
     if(JSON.stringify(expected)!==JSON.stringify(this.order.pending.data))throw Error('A previous order is awaiting confirmation. Restore that draft and retry before changing it.');
    }
    const result=this.order.pending?await this.order.retry():await this.order.submit(data);
-   return {...result,legacy:{...data,orderid:result.orderid,timestamp:result.timestamp,accessToken:result.accessToken,shortCode:result.shortCode,quantity:product.units,sku,product:result.quote.product,variant:result.quote.variant,Product_Amount:result.quote.productAmount,Courier_Charge:result.quote.courierAmount,Grand_Total:result.quote.total,quote:result.quote,Status:'Pending'}};
+   return {...result,legacy:{...data,orderid:result.orderid,timestamp:result.timestamp,accessToken:result.accessToken,shortCode:result.shortCode,quantity:product.units,sku,product:result.quote.product,variant:result.quote.variant,Product_List_Amount:result.quote.productListAmount,Discount_Amount:result.quote.discountAmount,'Offer Type':result.quote.offer?.type||'','Offer Value':result.quote.offer?.value,'Offer Duration':result.quote.offer?.duration||'',Product_Amount:result.quote.productAmount,Courier_Charge:result.quote.courierAmount,Grand_Total:result.quote.total,quote:result.quote,Status:'Pending'}};
   }
  }
  if(typeof module!=='undefined'&&module.exports)module.exports=Checkout;else scope.KafakBusinessCheckout=Checkout;

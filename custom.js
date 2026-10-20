@@ -1791,12 +1791,14 @@ window.updatePrice = async function (qty, isQuick) {
 
   let base = 0;
   let totalCourier = 0;
+  let discountQuote = null;
 
   if (window.kafakCheckoutUI) {
     container.hide();
     const quote = await window.kafakCheckoutUI.price(qty, isQuick);
     if (!quote) return;
-    base = quote.productAmount; totalCourier = quote.courierAmount;
+    base = quote.productAmount; totalCourier = quote.courierAmount; discountQuote = quote;
+    $('#offer-badge').toggle(!!quote.discountAmount).text(quote.discountAmount ? `Offer applied · ₹${quote.discountAmount.toFixed(2)} saved` : '');
   } else {
   if (productType === 'Cheruthen') {
     // 🔥 CHERUTHEN STRICT PRICING
@@ -1839,6 +1841,7 @@ window.updatePrice = async function (qty, isQuick) {
       <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${totalCourier}</span></span></div>
       <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
   `;
+  if(discountQuote?.discountAmount){htmlContent=`<div class="price-row"><span>Product price before offer</span><span>₹${Number(discountQuote.productListAmount).toFixed(2)}</span></div><div class="price-row text-success"><span>Offer discount</span><span>−₹${Number(discountQuote.discountAmount).toFixed(2)}</span></div>`+htmlContent;}
   container.html(htmlContent);
 
   // 🔥 STRICT FIX: ലോഡിംഗ് സമയത്തോ, പാക്ക് ചെയ്ത ഓർഡറുകളിലോ ടേബിൾ ഒളിച്ചു വെക്കുന്നു!
