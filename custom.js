@@ -2184,7 +2184,7 @@ window.submitQuickOrder = async function () {
   if (!editingOrderId && phoneCheck) {
     showLoader(true);
     try {
-      if (!isAdmin) {
+      if (!isAdmin || window.kafakOrderEditorUI) {
         let data = window.kafakOrderEditorUI ? await window.kafakOrderEditorUI.customer(phoneCheck) : await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`).then(res => res.json());
         if (data.result === 'success' && data.data && data.data.orderid) {
           let s = String(data.data.Status || 'pending').toLowerCase();
@@ -2194,7 +2194,7 @@ window.submitQuickOrder = async function () {
             const lang = $('#language-select').val() || 'en';
             const t = translations[lang] || translations['en'];
             const msg = (t.msg_active_order).replace('OID_HERE', data.data.orderid);
-            Swal.fire({ icon: 'info', title: t.title_active_order, text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' } }).then(() => { window.location.href = `order.html?phone=${phoneCheck}`; });
+            Swal.fire({ icon: 'info', title: t.title_active_order, text: msg, confirmButtonColor: '#2563eb', customClass: { popup: 'ios-popup' } }).then(() => { window.location.href = isAdmin ? `order.html?oid=${encodeURIComponent(data.data.orderid)}` : `order.html?phone=${phoneCheck}`; });
             return;
           }
         }
@@ -2208,7 +2208,11 @@ window.submitQuickOrder = async function () {
           return;
         }
       }
-    } catch (e) { }
+    } catch (e) {
+      showLoader(false); restoreBtn();
+      showAlert(e.message || 'Cannot check existing orders. Please try again.');
+      return;
+    }
     showLoader(false);
   }
 
