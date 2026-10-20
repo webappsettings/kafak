@@ -3103,6 +3103,7 @@ async function performConfirmedSync() {
 
     try {
         let failures = 0;
+        const failureMessages = [];
         for (const job of jobs) {
             try {
                 let result;
@@ -3121,6 +3122,7 @@ async function performConfirmedSync() {
                 if (businessCommands) await businessCommands.acknowledge(job.payload);
             } catch (error) {
                 failures++;
+                failureMessages.push(String(error.message || 'Network error'));
                 console.error('Sync not confirmed:', job.payload.action, error.message);
             }
         }
@@ -3130,7 +3132,7 @@ async function performConfirmedSync() {
         if (!stillPending) bootstrap.Modal.getInstance(document.getElementById('syncModal'))?.hide();
         else renderSyncList();
         showToast(failures ? 'warning' : 'success', failures
-            ? 'Some changes were not confirmed. Pending data kept; review before retrying.'
+            ? 'Not saved: ' + [...new Set(failureMessages)].join('; ') + '. Pending edits kept.'
             : stillPending ? 'Uploaded changes saved. New edits are still pending.' : 'Synced Successfully!');
         updateSyncButtonUI();
         fetchDashboardDataBg();
@@ -5206,6 +5208,13 @@ window.savePaidNum = function (oid, val) {
     if (!order) return;
 
     let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+    // A full phone edit owns Paid Phone too: update that draft instead of
+    // queuing two writes which can restore an older number during sync.
+    const phoneDraft = updates.find(u => u.oid === oid && u.action === 'phones');
+    if (phoneDraft) {
+        savePhoneNumbers(oid, { ...phoneDraft.data, paidNum: String(val).trim() });
+        return;
+    }
     let existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'paidNum');
 
     // 🔥 യഥാർത്ഥ നമ്പർ കണ്ടുപിടിക്കുന്നു
@@ -5231,7 +5240,7 @@ window.savePaidNum = function (oid, val) {
 
     setTimeout(() => { filterOrders(false); }, 100);
 
-    showToast('success', 'Paid Number Saved ✅');
+    showToast('info', 'Paid number queued. Click Sync to save.');
 }
 
 // 🔥 Open WhatsApp for Paid Number
@@ -10951,6 +10960,15 @@ window.savePhoneNumbers = function (oid, data) {
         altphone: order.altphone || "",
         paidNum: order.paidNum || ""
     };
+
+    // Fold an earlier Paid Phone draft into the full phone edit, preserving
+    // the server value for undo and removing the competing write.
+    const paidDraft = updates.find(u => u.oid === oid && u.action === 'paidNum');
+    if (paidDraft) {
+        oldPhones = { ...oldPhones, paidNum: paidDraft.oldNum ?? oldPhones.paidNum };
+        updates = updates.filter(u => !(u.oid === oid && u.action === 'paidNum'));
+        existingIndex = updates.findIndex(u => u.oid === oid && u.action === 'phones');
+    }
 
     // ഓർഡർ ലോക്കലായി മാത്രം അപ്ഡേറ്റ് ചെയ്യുന്നു
     order.phone = data.phone;
