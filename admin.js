@@ -8537,7 +8537,7 @@ window.renderPartnerList = function () {
                             </div>
                         </div>` : ''}
 
-                        ${withdrawnAmt > 0 ? `<div class="mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
+                        ${withdrawnAmt > 0 ? `<div class="salary-withdrawal-history mt-2 text-end text-muted" style="font-size:9px;">Last Taken: <b>₹${data.lastAmt.toLocaleString('en-IN')}</b> (${data.lastDate})</div>` : ''}
                     </div>
                     <div class="ms-2"><i class="far fa-circle text-muted check-icon" style="font-size: 22px;"></i></div>
                 </div>
@@ -8553,6 +8553,7 @@ window.renderPartnerList = function () {
 
     $('#partner-list').html(html);
     window.mountSalaryShares?.(businessApi);
+    window.mountSalaryWithdrawalHistory?.(partners);
 };
 // 🔥 NEW: SALARY CHECKBOX HELPER FUNCTIONS
 window.updatePartnerBal = function (name, defaultBal, checkedBal) {
