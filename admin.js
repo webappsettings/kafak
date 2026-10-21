@@ -8504,6 +8504,11 @@ window.renderPartnerList = function () {
         for (let [name, data] of Object.entries(partners)) {
             let sheetPrevBal = typeof data === 'object' ? data.curr : data;
             let withdrawnAmt = data.withdrawn || 0;
+            // Cumulative settlements include their linked ledger entry: add only the prior portion.
+            const priorSettledPaise = Math.max(0, ...(data.withdrawals || []).map(row =>
+                Number.isFinite(Number(row.settledTotal)) ? Math.max(0, Math.round(Number(row.settledTotal) * 100) - Math.round(Number(row.amount) * 100)) : 0));
+            const lifetimeTaken = (Math.round(withdrawnAmt * 100) + priorSettledPaise) / 100;
+            const salaryMoney = amount => Number(amount).toLocaleString('en-IN', {minimumFractionDigits:2,maximumFractionDigits:2});
             let thisMonthShare = shares[name] || 0;
 
             let dd = window.directProfits[name];
@@ -8529,7 +8534,8 @@ window.renderPartnerList = function () {
                                 <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
                                 <div class="form-check form-switch m-0" onclick="event.stopPropagation();"><input class="form-check-input border-primary" type="checkbox" id="cb-inc-${name}" onchange="updatePartnerBal('${name}', ${defaultBal}, ${checkedBal})" style="transform: scale(0.85); cursor: pointer;"></div>
                             </div>
-                            ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">- ₹${withdrawnAmt.toLocaleString('en-IN')}</span></div>` : ''}
+                            ${withdrawnAmt > 0 ? `<div class="d-flex justify-content-between text-muted mt-1 pt-1 border-top" style="font-size:10px; font-weight:600;"><span>Total Taken:</span><span class="text-danger">₹${salaryMoney(lifetimeTaken)}</span></div>` : ''}
+                            ${priorSettledPaise > 0 ? `<div class="text-muted mt-1" style="font-size:10px;line-height:1.6;"><div class="d-flex justify-content-between gap-2"><span>Earlier settled payments:</span><span>₹${salaryMoney(priorSettledPaise / 100)}</span></div><div class="d-flex justify-content-between gap-2"><span>Recorded withdrawals:</span><span>₹${salaryMoney(withdrawnAmt)}</span></div><div style="font-size:9px;">Earlier payments already settled against old earnings.</div></div>` : ''}
                         </div>
 
                         ${dd && dd.orders > 0 ? `
