@@ -1052,6 +1052,8 @@ function renderTabs(orders, externalCounts = null) {
     const olderDrawCounts = {};
     const todayIST = adminDayKey(new Date());
 
+    const cardFragments=new Map();
+    const appendCard=(target,html)=>{if(!cardFragments.has(target))cardFragments.set(target,[]);cardFragments.get(target).push(html);};
     orders.forEach((d, i) => {
         let info = getOrderInfo(d);
         let status = info.status;
@@ -1190,13 +1192,13 @@ function renderTabs(orders, externalCounts = null) {
                         </div>`;
                     }
 
-                    targetList.innerHTML += `<div class="col-12 sticky-date-wrapper" style="top: 258px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`;
+                    appendCard(targetList, `<div class="col-12 sticky-date-wrapper" style="top: 258px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`);
                     lastDateMap[dateKey] = dateLabel;
                 }
 
                 // കാർഡ് വരയ്ക്കുന്നു
                 let isCompact = (dateKey === 'disp_track' && !firstDateFlags[dateKey]);
-                targetList.innerHTML += createCardHTML(d, i, type, status, isCompact, safeGroupId);
+                appendCard(targetList,createCardHTML(d, i, type, status, isCompact, safeGroupId));
 
                 // 🔥 FIX: വരച്ച കാർഡിന്റെ എണ്ണം കൃത്യമായ dateKey യിൽ കൂട്ടുന്നു
                 htmlDrawCounts[dateKey]++;
@@ -1204,6 +1206,8 @@ function renderTabs(orders, externalCounts = null) {
             }
         }
     });
+
+    for(const [target,parts] of cardFragments)target.insertAdjacentHTML('beforeend',parts.join(''));
 
     // 🔥 SMART LOAD MORE BUTTONS (Manual Click for History Tabs)
     const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
