@@ -1141,7 +1141,7 @@ function renderTabs(orders, externalCounts = null) {
             if (htmlDrawCounts[dateKey] === undefined) htmlDrawCounts[dateKey] = 0;
 
             const createdToday = adminDayKey(info.tDate) === todayIST;
-            if (createdToday || (olderDrawCounts[dateKey] || 0) < (window.tabLimits[dateKey] || 50)) {
+            if (!['sent','disp_track'].includes(dateKey) || window.expandedOrderHistory[dateKey] || !Number.isFinite(displayDateRaw) || displayDateRaw<=0 || displayDateRaw>=Date.now()-2*24*60*60*1000) {
 
                 let safeGroupId = dateKey + '_' + dateLabel.replace(/[^a-zA-Z0-9]/g, '_');
 
@@ -2035,9 +2035,11 @@ function adminDayKey(value) {
     adminDayKey.formatter ||= new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' });
     return adminDayKey.formatter.format(date);
 }
-window.tabLimits = { new: 50, sent: 50, paid_new: Infinity, paid_print: Infinity, disp_new: 50, disp_track: 50 };
+window.tabLimits = { new: Infinity, sent: Infinity, paid_new: Infinity, paid_print: Infinity, disp_new: Infinity, disp_track: Infinity };
 
+window.expandedOrderHistory={};
 function hasOlderOrdersForTab(tabKey) {
+    if(['new','sent','paid_new','paid_print','disp_new','disp_track'].includes(tabKey))return false;
     if(!businessApi || !businessHistoryNext)return false;
     return businessHistoryGroups.some(group=>{
         if(group.tab!==tabKey)return false;
@@ -2049,6 +2051,7 @@ function hasOlderOrdersForTab(tabKey) {
 }
 
 window.loadMoreCards = async function (tabKey) {
+    if(['sent','disp_track'].includes(tabKey)){window.expandedOrderHistory[tabKey]=true;filterOrders(false);return;}
     if(hasOlderOrdersForTab(tabKey)){
         if(businessHistoryLoading)return;
         businessHistoryLoading=true;
@@ -2104,7 +2107,7 @@ window.filterOrders = function (resetLimits = true) {
     let term = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
     if (resetLimits) {
-        window.tabLimits = { new: 50, sent: 50, paid_new: Infinity, paid_print: Infinity, disp_new: 50, disp_track: 50 };
+        window.tabLimits = { new: Infinity, sent: Infinity, paid_new: Infinity, paid_print: Infinity, disp_new: Infinity, disp_track: Infinity };
     }
 
     const clearBtn = document.getElementById('btn-clear-search');
