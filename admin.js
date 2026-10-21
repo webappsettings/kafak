@@ -8552,6 +8552,7 @@ window.renderPartnerList = function () {
     }
 
     $('#partner-list').html(html);
+    window.mountSalaryShares?.(businessApi);
 };
 // 🔥 NEW: SALARY CHECKBOX HELPER FUNCTIONS
 window.updatePartnerBal = function (name, defaultBal, checkedBal) {
