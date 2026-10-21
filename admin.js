@@ -1205,7 +1205,7 @@ function renderTabs(orders, externalCounts = null) {
     // 🔥 SMART LOAD MORE BUTTONS (Manual Click for History Tabs)
     const addSmartLoadBtn = (listElement, currentDrawn, totalAvailable, tabKey) => {
         currentDrawn = currentDrawn || 0;
-        if (listElement && (totalAvailable > currentDrawn || hasOlderOrdersForTab(tabKey))) {
+        if (listElement && !['paid_new','paid_print'].includes(tabKey) && (totalAvailable > currentDrawn || hasOlderOrdersForTab(tabKey))) {
             let left = totalAvailable - currentDrawn;
             listElement.innerHTML += `
             <div class="text-center my-4 pb-4 w-100" id="loader-box-${tabKey}">
@@ -1236,8 +1236,8 @@ function renderTabs(orders, externalCounts = null) {
 
     if (listNew && subCounts.new === 0 && !hasOlderOrdersForTab('new')) listNew.innerHTML += getEmptyUI('No New Orders', 'You have caught up with everything!', 'fa-box-open');
     if (listSent && subCounts.sent === 0 && !hasOlderOrdersForTab('sent')) listSent.innerHTML += getEmptyUI('No Sent Orders', 'All invoices are cleared.', 'fa-paper-plane');
-    if (listPaidNew && subCounts.paid_new === 0 && !hasOlderOrdersForTab('paid_new')) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
-    if (listPaidPrinted && subCounts.paid_print === 0 && !hasOlderOrdersForTab('paid_print')) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
+    if (listPaidNew && subCounts.paid_new === 0) listPaidNew.innerHTML += getEmptyUI('No New Payments', 'Waiting for customers to pay.', 'fa-money-check-alt');
+    if (listPaidPrinted && subCounts.paid_print === 0) listPaidPrinted.innerHTML += getEmptyUI('No Printed Labels', 'All labels are cleared.', 'fa-print');
     if (listDispNew && subCounts.disp_new === 0 && !hasOlderOrdersForTab('disp_new')) listDispNew.innerHTML += getEmptyUI('No Dispatched Orders', 'Waiting to add tracking IDs.', 'fa-shipping-fast');
     if (listDispTracked && subCounts.disp_track === 0 && !hasOlderOrdersForTab('disp_track')) listDispTracked.innerHTML += getEmptyUI('No Tracked Orders', 'No orders in transit right now.', 'fa-route');
 
@@ -2032,7 +2032,7 @@ function adminDayKey(value) {
     adminDayKey.formatter ||= new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Kolkata', year: 'numeric', month: '2-digit', day: '2-digit' });
     return adminDayKey.formatter.format(date);
 }
-window.tabLimits = { new: 50, sent: 50, paid_new: 50, paid_print: 50, disp_new: 50, disp_track: 50 };
+window.tabLimits = { new: 50, sent: 50, paid_new: Infinity, paid_print: Infinity, disp_new: 50, disp_track: 50 };
 
 function hasOlderOrdersForTab(tabKey) {
     if(!businessApi || !businessHistoryNext)return false;
@@ -2101,7 +2101,7 @@ window.filterOrders = function (resetLimits = true) {
     let term = searchInput ? searchInput.value.toLowerCase().trim() : '';
 
     if (resetLimits) {
-        window.tabLimits = { new: 50, sent: 50, paid_new: 50, paid_print: 50, disp_new: 50, disp_track: 50 };
+        window.tabLimits = { new: 50, sent: 50, paid_new: Infinity, paid_print: Infinity, disp_new: 50, disp_track: 50 };
     }
 
     const clearBtn = document.getElementById('btn-clear-search');
