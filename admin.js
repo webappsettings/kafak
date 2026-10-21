@@ -6451,6 +6451,8 @@ function injectLeftDrawer() {
         $('#tab-btn-settings').hide();
     }
 
+    refreshLabelBatch();
+
     if (typeof flatpickr !== 'undefined') {
         flatpickr("#label-date", {
             dateFormat: "d / m / y",
@@ -6674,6 +6676,21 @@ window.updatePrintPrediction = async function (isManualSheetChange = false) {
         if (newDisplay) newDisplay.innerHTML = stockHtml;
     }
 };
+async function refreshLabelBatch() {
+    if (businessApi) {
+        const field=document.getElementById('label-batch');
+        if(field){field.value='';field.placeholder='Loading current batch...';updateLabelPreview();
+            businessApi.request('/admin/salary-batches').then(({batches})=>{
+                if(!field.isConnected||field.value)return;
+                const batch=batches.find(b=>b.Status==='Open'&&b.Product==='Vanthen');
+                field.value=batch?.['Batch Number']||'';
+                field.placeholder=field.value?'':'No open batch number - create a batch first';
+                updateLabelPreview();
+            }).catch(()=>{if(field.isConnected&&!field.value)field.placeholder='Batch unavailable - retry before printing';});
+        }
+    }
+}
+
 window.toggleLeftDrawer = function () {
     let drawer = $('#left-drawer');
     let overlay = $('#left-drawer-overlay');
@@ -6682,6 +6699,7 @@ window.toggleLeftDrawer = function () {
         drawer.removeClass('open').css('left', '-100%');
         overlay.fadeOut(200);
     } else {
+        refreshLabelBatch();
         if (typeof updatePrintPrediction === 'function') updatePrintPrediction();
         drawer.addClass('open').css('left', '0px');
         overlay.fadeIn(200);
