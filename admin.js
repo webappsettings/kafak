@@ -7432,6 +7432,7 @@ window.showAddExpenseModal = function (editId = null) {
 
 // 🔥 3. UNIFIED SUBMIT EXPENSE (Handles Create & Update)
 async function submitExpense(e, editId = null) {
+    if (businessApi && document.getElementById('exp-category')?.value === 'Salary') { e.preventDefault(); document.querySelector('[data-batch-manager]')?.scrollIntoView({behavior:'smooth',block:'center'}); showToast('warning','Use Salary Payment in Batch salary and select the batch.'); return; }
     e.preventDefault();
     let btn = $('#btn-save-exp');
     let originalText = btn.html();
