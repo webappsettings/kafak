@@ -1988,6 +1988,10 @@ function updateLiveAddressPreview() {
 setTimeout(updateLiveAddressPreview, 1000);
 
 window.checkForChanges = function () {
+  if ($('.btn-update-sage').data('is-processing') === 'active') {
+    $('#address-edit-box button').prop('disabled', true).css({ opacity: '0.5', cursor: 'not-allowed' });
+    return;
+  }
   // 1. Current Values
   var currQty = $('#quick-qty').val() || '';
   var currName = $('#edit-name').val() || '';
@@ -2007,7 +2011,7 @@ window.checkForChanges = function () {
   }
   var currDist = $('#edit-district').val() || '';
   var currState = $('#edit-state').val() || '';
-  var currProduct = $('#admin-product-type').length ? $('#admin-product-type').val() : 'Vanthen';
+  var currProduct = window.kafakCheckoutUI ? window.kafakCheckoutUI.productName() : $('#admin-product-type').length ? $('#admin-product-type').val() : (savedOrderData.product || savedOrderData.Product || 'Vanthen');
 
   // 2. Saved Values
   var savedQty = (savedOrderData.quantity || '') + '';
@@ -2163,11 +2167,13 @@ window.submitQuickOrder = async function () {
     btn.prop('disabled', false).html(originalHtml);
     btn.data('is-processing', 'inactive');
     btn.data('is-processing', false);
+    checkForChanges();
   };
 
   // 🔥 ബട്ടൺ ലോഡിങ് മോഡിലേക്ക് മാറ്റുന്നു
   btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Please wait...');
   btn.data('is-processing', 'active');
+  checkForChanges();
 
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); restoreBtn(); return; }
 
