@@ -1,0 +1,1 @@
+(function(scope){const mark=(meta,status,time=Date.now())=>{const current=String(meta||'');if(current.includes('P'))return current;const clean=current.trim();return [clean,status==='Paid'&&!current.includes('S')?'S':'','P_'+time].filter(Boolean).join(' ');};if(typeof module!=='undefined'&&module.exports)module.exports={mark};else scope.addressPrintStock={mark};})(globalThis);

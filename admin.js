@@ -3385,7 +3385,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         if (!currentMeta.includes('P')) {
             let printTimestamp = Date.now();
             let cleanMeta = currentMeta.replace(/(?:^|\s)P(_\d+)?(?=\s|$)/g, '').trim();
-            let newMeta = cleanMeta ? cleanMeta + " P_" + printTimestamp : "P_" + printTimestamp;
+            let newMeta = window.addressPrintStock.mark(cleanMeta,d.Status,printTimestamp);
             d.adminMeta = newMeta;
 
             let existingIndex = updates.findIndex(u => u.oid === d.orderid && u.action === 'meta' && u.meta !== undefined);
@@ -3465,6 +3465,17 @@ async function runPrintLogic(checkboxes, directData = null) {
         if (typeof renderTabs === 'function') filterOrders(false);
     }
 
+    if(businessApi){
+        const ids=new Set(ordersToPrint.map(o=>o.orderid));
+        const pending=JSON.parse(localStorage.getItem('pendingUpdates')||'[]');
+        const printedUpdates=pending.filter(u=>ids.has(u.oid)&&u.action==='meta'&&String(u.meta||'').includes('P'));
+        try{
+            for(let i=0;i<printedUpdates.length;i+=100){const batch=printedUpdates.slice(i,i+100);const response=await adminServiceFetch(scriptURL,{method:'POST',body:JSON.stringify({action:'bulkUpdateStatus',updates:batch})});const result=await response.json();if(result.result!=='success')throw Error(result.error||'Print stock was not saved');const sent=new Set(batch.map(u=>JSON.stringify(u)));localStorage.setItem('pendingUpdates',JSON.stringify(JSON.parse(localStorage.getItem('pendingUpdates')||'[]').filter(u=>!sent.has(JSON.stringify(u)))));}
+            await updatePrintPrediction();
+            if(typeof renderLiveStockTracker==='function')renderLiveStockTracker();
+            updateSyncButtonUI();
+        }catch(error){Swal.fire({icon:'error',title:'Print stock not saved',text:error.message+' Retry after syncing or refreshing. The pending update is retained.'});return;}
+    }
     const printWin = window.open('', 'AddressPrintWindow', 'width=600,height=800');
 
     let extraCss = `
