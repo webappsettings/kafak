@@ -481,6 +481,7 @@ function showDashboard() {
     fetchOrders();
     fetchInventoryBg();
     injectLeftDrawer();
+    window.mountExpensePurchase?.(businessApi,document.getElementById('expense-form'));
 }
 
 // --- CONFIG & VARIABLES ---
@@ -7419,6 +7420,7 @@ window.showAddExpenseModal = function (editId = null) {
         showConfirmButton: false,
         showCloseButton: true,
         didOpen: () => {
+            window.mountExpensePurchase?.(businessApi,Swal.getHtmlContainer(),editId);
             if (typeof renderPartnerList === 'function') renderPartnerList();
             if (oldCat === 'Salary') setTimeout(() => { selectPartner(oldVendor); }, 500);
 
@@ -7450,13 +7452,16 @@ window.showAddExpenseModal = function (editId = null) {
 
 // 🔥 3. UNIFIED SUBMIT EXPENSE (Handles Create & Update)
 async function submitExpense(e, editId = null) {
-    if (businessApi && document.getElementById('exp-category')?.value === 'Salary') { e.preventDefault(); document.querySelector('[data-batch-manager]')?.scrollIntoView({behavior:'smooth',block:'center'}); showToast('warning','Use Salary Payment in Batch salary and select the batch.'); return; }
+    const root=e.target.closest('.swal2-html-container')||e.target.closest('form')||document.getElementById('expense-form');
+    const field=id=>root.querySelector('#'+id);
+    let purchase;try{purchase=root.readPurchase?.();}catch(err){e.preventDefault();showToast('warning',err.message);return;}
+    if (businessApi && field('exp-category')?.value === 'Salary') { e.preventDefault(); document.querySelector('[data-batch-manager]')?.scrollIntoView({behavior:'smooth',block:'center'}); showToast('warning','Use Salary Payment in Batch salary and select the batch.'); return; }
     e.preventDefault();
-    let btn = $('#btn-save-exp');
+    let btn = $(field('btn-save-exp'));
     let originalText = btn.html();
     btn.prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> SAVING...');
 
-    let fileInput = document.getElementById('exp-proof');
+    let fileInput = field('exp-proof');
     let fileData = null; let fileName = null;
 
     if (fileInput && fileInput.files.length > 0) {
@@ -7471,20 +7476,21 @@ async function submitExpense(e, editId = null) {
         }
     }
 
-    let selectedD = $('#exp-date').val() || flatpickr.formatDate(new Date(), "Y-m-d");
+    let selectedD = field('exp-date').value || flatpickr.formatDate(new Date(), "Y-m-d");
 
     let formData = {
-        orderId: e.target.querySelector('[name=refundOrderId]')?.value && $('#exp-category').val() === 'Refund' ? e.target.querySelector('[name=refundOrderId]').value : undefined,
+        orderId: root.querySelector('[name=refundOrderId]')?.value && field('exp-category').value === 'Refund' ? root.querySelector('[name=refundOrderId]').value : undefined,
         id: editId || ('EXP-' + Date.now()),
         date: selectedD,
-        category: $('#exp-category').val(),
-        vendor: $('#exp-vendor').val(),
-        description: $('#exp-desc').val(),
-        amount: $('#exp-amount').val(),
+        category: field('exp-category').value,
+        vendor: field('exp-vendor').value,
+        description: field('exp-desc').value,
+        amount: field('exp-amount').value,
+        purchase,
         fileData: fileData,
         fileName: fileName,
         editId: editId, // 🔥 അപ്ഡേറ്റ് ആണെന്ന് ബാക്കെൻഡ് തിരിച്ചറിയാൻ
-        removeReceipt: document.getElementById('remove-exp-receipt-flag') ? document.getElementById('remove-exp-receipt-flag').value === 'true' : false
+        removeReceipt: field('remove-exp-receipt-flag') ? field('remove-exp-receipt-flag').value === 'true' : false
     };
 
     if (!navigator.onLine && !editId) {
@@ -7504,6 +7510,7 @@ async function submitExpense(e, editId = null) {
                     setTimeout(() => { location.reload(); }, 1500);
                 } else {
                     resetExpenseForm(selectedD);
+                    root.dispatchEvent(new Event('purchase-saved'));
                     if (formData.orderId && formData.category === 'Refund') {
                         const order = allOrders.find(item => item.orderid === formData.orderId);
                         if (order) order.Status = 'Refunded';
@@ -11201,3 +11208,5 @@ window.renderAdminTimeline = function (trackId, eventsJson) {
 }
 
 window.openPostalEntry=()=>PostalEntry.open(async(trackers)=>{const response=await adminServiceFetch(scriptURL,{method:"POST",body:JSON.stringify({action:"addPostalTrackers",trackers})});const data=await response.json();if(data.result!=="success")throw Error(data.error||data.message||"Save failed");refreshTrackingBalance(true);return data;},trackers=>{if(!businessApi)throw Error("Connect to Kafak Business to check trackers before saving.");return businessApi.request("/admin/postal-check",{method:"POST",data:{trackers}});});
+
+window.openBatchSalaryPanel=function(){const tab=document.getElementById('tab-batch-salary');bootstrap.Tab.getOrCreateInstance(tab).show();window.mountSalaryShares?.(businessApi,document.getElementById('batch-salary-panel'));};
