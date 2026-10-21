@@ -3157,7 +3157,10 @@ function printSingle(index) { runPrintLogic([{ value: index }]); }
 window.printSelected = async function (sourceTab = 'new') {
 
     // 1. Collect Candidates
-    let manualSelection = document.querySelectorAll('.order-cb:checked');
+    const printList = document.getElementById(sourceTab === 'printed' ? 'list-paid-printed' : 'list-paid-new');
+    const belongsToPrintTab = o => o && o.Status === 'Paid' && Boolean(getMetaStatus(o.adminMeta).isPrinted) === (sourceTab === 'printed');
+    let manualSelection = Array.from(printList?.querySelectorAll('.order-cb:checked:not(:disabled)') || [])
+        .filter(cb => belongsToPrintTab(allOrders[cb.value]));
     let candidates = [];
 
     // A. മാന്വൽ ആയി ടിക്ക് ചെയ്തിട്ടുണ്ടെങ്കിൽ അത് മാത്രം എടുക്കുന്നു
@@ -3736,13 +3739,13 @@ window.revertToPrinted = function (oid) {
 
 // 🔥 FIX: Select Only Enabled Checkboxes in Active Tab
 function toggleSelectAll() {
-    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"]):not(:disabled)');
+    const checkboxes = Array.from(document.querySelectorAll('.tab-pane.active .order-cb:not(:disabled)')).filter(cb => cb.getClientRects().length > 0);
     if (checkboxes.length === 0) return;
 
     const isAllChecked = Array.from(checkboxes).every(cb => cb.checked);
     checkboxes.forEach(cb => cb.checked = !isAllChecked);
 
-    const activeBtn = document.querySelector('.tab-pane.active .btn-select-all');
+    const activeBtn = Array.from(document.querySelectorAll('.tab-pane.active .btn-select-all')).find(btn => btn.getClientRects().length > 0);
     if (activeBtn) {
         if (!isAllChecked) {
             activeBtn.classList.remove('btn-light', 'text-secondary');
@@ -3778,8 +3781,8 @@ function checkSelectAllStatus() {
 }
 
 function updateSelectAllButton() {
-    const activeBtn = document.querySelector('.tab-pane.active .btn-select-all');
-    const checkboxes = document.querySelectorAll('.tab-pane.active .order-cb:not([style*="display: none"]):not(:disabled)');
+    const activeBtn = Array.from(document.querySelectorAll('.tab-pane.active .btn-select-all')).find(btn => btn.getClientRects().length > 0);
+    const checkboxes = Array.from(document.querySelectorAll('.tab-pane.active .order-cb:not(:disabled)')).filter(cb => cb.getClientRects().length > 0);
 
     if (!activeBtn || checkboxes.length === 0) return;
 
