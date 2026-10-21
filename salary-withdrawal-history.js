@@ -23,11 +23,11 @@ window.mountSalaryWithdrawalHistory = function (partners) {
             const money=value=>'₹'+Number(value).toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2});
             label.replaceChildren();
             const heading=document.createElement('div'), date=document.createElement('div');
-            heading.textContent=(row.settledTotal?'Settled total: ':index===0?'Last Taken: ':'Taken: ')+money(row.settledTotal??row.amount);
+            heading.textContent=(row.settlementRecorded?'Settlement: ':row.settledTotal?'Settled total: ':index===0?'Last Taken: ':'Taken: ')+money(row.settledTotal??row.amount);
             heading.style.fontWeight='600';
             date.textContent=row.date+' · '+(index+1)+' / '+rows.length;
             label.append(heading,date);
-            if(row.settledTotal){const note=document.createElement('div');note.textContent='Includes earlier payments · Entry: '+money(row.amount);note.style.cssText='font-size:10px;color:#6c757d';label.append(note);}
+            if(row.settledTotal){const note=document.createElement('div');note.textContent=row.settlementRecorded?'Old earnings matched · Balance '+money(row.settlementBalance):'Includes earlier payments · Entry: '+money(row.amount);note.style.cssText='font-size:10px;color:#6c757d';label.append(note);}
             older.disabled=index===rows.length-1; newer.disabled=index===0;
         };
         older.onclick=()=>{if(index<rows.length-1){index++;render();}};
