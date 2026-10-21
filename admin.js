@@ -3471,6 +3471,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         const printedUpdates=pending.filter(u=>ids.has(u.oid)&&u.action==='meta'&&String(u.meta||'').includes('P'));
         try{
             for(let i=0;i<printedUpdates.length;i+=100){const batch=printedUpdates.slice(i,i+100);const response=await adminServiceFetch(scriptURL,{method:'POST',body:JSON.stringify({action:'bulkUpdateStatus',updates:batch})});const result=await response.json();if(result.result!=='success')throw Error(result.error||'Print stock was not saved');const sent=new Set(batch.map(u=>JSON.stringify(u)));localStorage.setItem('pendingUpdates',JSON.stringify(JSON.parse(localStorage.getItem('pendingUpdates')||'[]').filter(u=>!sent.has(JSON.stringify(u)))));}
+            if(businessInventoryRequest)await businessInventoryRequest.catch(()=>{});
             await updatePrintPrediction();
             if(typeof renderLiveStockTracker==='function')renderLiveStockTracker();
             updateSyncButtonUI();
