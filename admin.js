@@ -4655,7 +4655,7 @@ window.handleRefundToggle = function (oid, index) {
             $('#expense-form input[name=refundOrderId]').val(order.orderid);
             $('#exp-category').val('Refund');
             $('#exp-vendor').val(order.name + " (Ref #" + order.orderid + ")");
-            $('#exp-amount').val(amount);
+            $('#exp-amount').val(Number(amount).toFixed(2));
             $('#exp-desc').val("Refund for Order " + order.orderid);
 
             // വിഷ്വൽ ഇൻഡിക്കേഷൻ
@@ -4734,7 +4734,7 @@ function selectPartner(name, amount) {
     $(event.currentTarget).find('.check-icon').attr('class', 'fas fa-check-circle text-success check-icon');
     $('#exp-vendor').val(name);
     if (amount !== undefined) {
-        $('#exp-amount').val(amount);
+        $('#exp-amount').val(Number(amount).toFixed(2));
     }
 }
 
@@ -8507,8 +8507,8 @@ window.renderPartnerList = function () {
             let extraProfitAmt = dd ? dd.travelEarned : 0;
             let pastProfit = sheetPrevBal + withdrawnAmt;
 
-            let defaultBal = pastProfit - withdrawnAmt + extraProfitAmt;
-            let checkedBal = (pastProfit + thisMonthShare) - withdrawnAmt + extraProfitAmt;
+            let defaultBal = (Math.round(pastProfit * 100) - Math.round(withdrawnAmt * 100) + Math.round(extraProfitAmt * 100)) / 100;
+            let checkedBal = (Math.round(pastProfit * 100) + Math.round(thisMonthShare * 100) - Math.round(withdrawnAmt * 100) + Math.round(extraProfitAmt * 100)) / 100;
 
             let bdText = (dd && Object.keys(dd.breakdown).length > 0) ? `(${Object.entries(dd.breakdown).map(([c, t]) => c + 'x' + t).join(', ')})` : "";
 
@@ -8564,7 +8564,7 @@ window.updatePartnerBal = function (name, defaultBal, checkedBal) {
 
     // ഈ കാർഡ് ഓൾറെഡി സെലക്ട് ചെയ്തതാണെങ്കിൽ (Tick ഇട്ടതാണെങ്കിൽ) ഫോമിലെ തുകയും മാറ്റുന്നു
     if ($(`.partner-card[data-partner="${name}"]`).hasClass('selected')) {
-        $('#exp-amount').val(newBal);
+        $('#exp-amount').val(Number(newBal).toFixed(2));
     }
 };
 
