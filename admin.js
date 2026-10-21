@@ -8518,6 +8518,7 @@ window.renderPartnerList = function () {
             let defaultBal = (Math.round(pastProfit * 100) - Math.round(withdrawnAmt * 100) + Math.round(extraProfitAmt * 100)) / 100;
             let checkedBal = (Math.round(pastProfit * 100) + Math.round(thisMonthShare * 100) - Math.round(withdrawnAmt * 100) + Math.round(extraProfitAmt * 100)) / 100;
 
+            if (data.batch) { defaultBal = checkedBal = data.batch.balance; }
             let bdText = (dd && Object.keys(dd.breakdown).length > 0) ? `(${Object.entries(dd.breakdown).map(([c, t]) => c + 'x' + t).join(', ')})` : "";
 
             html += `
@@ -8528,7 +8529,7 @@ window.renderPartnerList = function () {
                         <div class="fw-bolder text-dark" style="font-size:15px;">${name}</div>
                         <div class="text-success fw-bold mt-1 mb-2" id="bal-disp-${name}" style="font-size:13px;">Final Bal: ₹${Number(defaultBal).toLocaleString('en-IN')}</div>
                         
-                        <div class="p-2 bg-light rounded border border-secondary border-opacity-10">
+                        <div class="p-2 bg-light rounded border border-secondary border-opacity-10" style="${data.batch ? 'display:none' : ''}">
                             <div class="d-flex justify-content-between text-muted" style="font-size:10px; font-weight:600;"><span>Past Balance:</span><span class="text-dark">₹${pastProfit.toLocaleString('en-IN')}</span></div>
                             <div class="d-flex justify-content-between align-items-center text-muted mt-1" style="font-size:10px; font-weight:600;">
                                 <span>Monthly Share: <span class="text-primary">+ ₹${thisMonthShare.toLocaleString('en-IN')}</span></span>
@@ -8538,7 +8539,8 @@ window.renderPartnerList = function () {
                             ${priorSettledPaise > 0 ? `<div class="text-muted mt-1" style="font-size:10px;line-height:1.6;"><div class="d-flex justify-content-between gap-2"><span>Earlier settled payments:</span><span>₹${salaryMoney(priorSettledPaise / 100)}</span></div><div class="d-flex justify-content-between gap-2"><span>Recorded withdrawals:</span><span>₹${salaryMoney(withdrawnAmt)}</span></div><div style="font-size:9px;">Earlier payments already settled against old earnings.</div></div>` : ''}
                         </div>
 
-                        ${dd && dd.orders > 0 ? `
+                        ${data.batch ? `<div class="p-2 bg-light rounded border" style="font-size:11px;line-height:1.7"><b>Current batch · From ${data.batch.start}</b><div>Earned: ₹${salaryMoney(data.batch.earned)}</div><div>Batch withdrawals: ₹${salaryMoney(data.batch.paid)}</div><div>Total Taken (all time): ₹${salaryMoney(lifetimeTaken)}</div><div class="text-warning-emphasis border-top mt-1 pt-1">Previous batch: Review pending<br>Excluded from current payable.</div></div>` : ''}
+                        ${!data.batch && dd && dd.orders > 0 ? `
                         <div class="mt-2 p-2 bg-warning bg-opacity-10 border border-warning border-opacity-25 rounded-3">
                             <div class="d-flex justify-content-between align-items-center" style="font-size:10px;">
                                 <span class="fw-bold text-dark"><i class="fas fa-motorcycle text-warning"></i> Direct Profit ${bdText}:</span>
