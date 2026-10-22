@@ -1,7 +1,8 @@
 let orderPageTransport;
-function orderServiceFetch(url, options) {
+async function orderServiceFetch(url, options) {
   if(window.KAFAK_BACKEND!=='business')return fetch(url,options);
-  if(!orderPageTransport){const api=new KafakBusinessApi();orderPageTransport=new KafakBusinessAdminTransport(api,new KafakBusinessAdminCommands(api,localStorage),(...args)=>fetch(...args));}
+  await KafakUI.adminTransport();
+  if(!orderPageTransport){const api=new KafakBusinessApi();orderPageTransport=new KafakBusinessAdminTransport(api,new KafakBusinessAdminCommands(api,window.kafakStorage),(...args)=>fetch(...args));}
   return orderPageTransport.fetch(url,options);
 }
 // ------------------------------------------------------------------------------
@@ -26,9 +27,9 @@ let bgFetchController = null;
 const STORAGE_KEY = 'kafakCustomerData';
 
 const SafeStorage = {
-  getItem: function (key) { try { return localStorage.getItem(key); } catch (e) { return null; } },
-  setItem: function (key, val) { try { localStorage.setItem(key, val); } catch (e) { } },
-  removeItem: function (key) { try { localStorage.removeItem(key); } catch (e) { } }
+  getItem: function (key) { try { return window.kafakStorage.getItem(key); } catch (e) { return null; } },
+  setItem: function (key, val) { try { if(key===STORAGE_KEY&&window.KAFAK_BACKEND==='business'&&window.kafakStorage.getItem('kafakAdmin')!=='true'){const map=JSON.parse(val);val=JSON.stringify(Object.fromEntries(Object.entries(map).filter(([,d])=>!d.orderid)));} window.kafakStorage.setItem(key, val); } catch (e) { } },
+  removeItem: function (key) { try { window.kafakStorage.removeItem(key); } catch (e) { } }
 };
 
 function checkStockStatus() {
@@ -118,7 +119,7 @@ window.showLoader = function (show) {
 }
 
 window.changeLanguage = function (lang) {
-  localStorage.setItem('activeLang', lang);
+  window.kafakStorage.setItem('activeLang', lang);
   const t = translations[lang] || translations['en'];
   if (!t) return;
 
@@ -319,7 +320,7 @@ $(document).ready(function () {
 
   checkStockStatus();
 
-  const savedLang = localStorage.getItem('activeLang') || 'ml';
+  const savedLang = window.kafakStorage.getItem('activeLang') || 'ml';
   if (savedLang) {
     if ($('#language-select').length > 0) {
       $('#language-select').val(savedLang);
@@ -352,17 +353,10 @@ $(document).ready(function () {
   $('#phone, #edit-phone, #whatsapp, #altphone').on('paste', function (e) {
     e.preventDefault();
 
-    let isAdmin = localStorage.getItem('kafakAdmin') === 'true';
-    let isMainPhoneBox = $(this).attr('id') === 'phone';
-    if (!isAdmin && isMainPhoneBox) {
-      showAlert(getAlert('err_no_paste') || "Please type your number manually.");
-      return; // ഇതിന് താഴോട്ടുള്ള കോഡ് വർക്ക് ആവില്ല
-    }
-
-    let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
+let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
     let cleanNum = pastedText.replace(/[^0-9]/g, '');
 
-    if (cleanNum.length === 12 && cleanNum.startsWith('91')) {
+    if (['phone','edit-phone'].includes(this.id) && cleanNum.length === 12 && cleanNum.startsWith('91')) {
       cleanNum = cleanNum.substring(2);
     }
     else if (cleanNum.length > 10) {
@@ -562,7 +556,7 @@ function syncUserDataBackground(phone) {
       let serverData = userRes.data;
 
       // 🔥 FIX: ലോക്കലിൽ സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള അപ്ഡേറ്റ് ഉണ്ടെങ്കിൽ അത് നിലനിർത്തുന്നു
-      let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+      let pendingUpdates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
       let myPending = pendingUpdates.find(u => String(u.oid) === String(serverData.orderid));
       if (myPending && myPending.status) {
         serverData.Status = myPending.status;
@@ -760,11 +754,16 @@ function setRefreshLoading(isLoading) {
 // 🔥 CONTROL VISIBILITY (Admin can Edit, Customer can Re-Order if Delivered)
 function handleEditControlsVisibility(d) {
   const status = String(d.Status || 'pending').toLowerCase();
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
 
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
 
+  $('#read-only-notice').remove();
+  if(d.readOnly && !isAdmin && !['completed','delivered','refunded'].includes(status)){
+    $('#quick-qty').prop('disabled',true);$('#btn-edit-addr,.btn-update-sage,#address-edit-box').hide();
+    $('<div id="read-only-notice" class="alert alert-light small mt-2">This older link is view-only. Contact Kafak for a private edit link.</div>').insertAfter('#status-area');return;
+  }
   // 1. ADMIN - Always Allow Edit
   if (isAdmin) {
     $('#quick-qty, .btn-update-sage').show();
@@ -877,7 +876,7 @@ function handleEditControlsVisibility(d) {
 window.submitWizardOrder = async function () { // 🔥 async ആക്കി മാറ്റി
 
   const phoneCheck = $('#phone').val();
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
 
   // 🔥 STRICT CHECK: വേഗത്തിൽ ഫോം ഫിൽ ചെയ്താലും പുതിയ ഓർഡർ ആവുന്നത് പൂർണ്ണമായി തടയാൻ!
   if (!editingOrderId && phoneCheck && !isAdmin) {
@@ -949,81 +948,33 @@ window.submitWizardOrder = async function () { // 🔥 async ആക്കി മ
   playVideoAnimation(finalData.name, () => postOrder(finalData));
 }
 
-window.handleEditPincode = async function (val, savedPO = null) {
-  if (!/^[0-9]{6}$/.test(val)) {
-    $('#edit-po-wrapper').slideUp();
-    $('#single-po-display').hide();
-    return;
-  }
-
-  checkForChanges();
-
-  const lang = $('#language-select').val() || 'en';
-  const t = translations[lang] || {};
-
-  try {
-    const res = await fetch(`pincode_json_files/${val}.json`);
-    if (!res.ok) throw new Error("Not Found");
-
-    let data = await res.json();
-    data = data.map(item => ({
-      ...item,
-      officename: item.officename.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, ' PO').trim()
-    }));
-
-    if (data && data.length > 0) {
-      $('#edit-district').val(data[0].district);
-      $('#edit-state').val(data[0].statename);
-
-      if ($('#quick-qty').val()) {
-        updatePrice($('#quick-qty').val(), true);
-      }
-
-      if (data.length > 1) {
-        // === ഒന്നിലധികം പോസ്റ്റ് ഓഫീസുകൾ ഉണ്ടെങ്കിൽ ===
-        $('#single-po-display').hide();
-        const sel = $('#edit-postoffice-select');
-        sel.empty().append(`<option value="">${t.lbl_select_po || 'Select Post Office'}...</option>`);
-
-        let matched = false;
-        data.forEach(p => {
-          let isSelected = '';
-          // 🔥 പഴയ പോസ്റ്റ് ഓഫീസുമായി മാച്ച് ആവുന്നുണ്ടോ എന്ന് നോക്കുന്നു (Drop-down ൽ സെലക്ട് ചെയ്യാൻ)
-          if (savedPO && p.officename.toLowerCase().trim() === savedPO.toLowerCase().trim()) {
-            isSelected = 'selected';
-            matched = true;
-          }
-          sel.append(`<option value="${p.officename}" ${isSelected}>${p.officename}</option>`);
-        });
-
-        $('#edit-po-wrapper').slideDown();
-
-        if (matched && savedPO) {
-          $('#edit-postoffice').val(savedPO);
-        } else if (!savedPO) {
-          $('#edit-postoffice').val('');
-        }
-      } else {
-        // === ഒരൊറ്റ പോസ്റ്റ് ഓഫീസ് മാത്രമേ ഉള്ളുവെങ്കിൽ ===
-        $('#edit-po-wrapper').slideUp();
-        const poName = data[0].officename;
-        $('#edit-postoffice').val(poName);
-
-        // 🔥 ഗ്രീൻ ടെക്സ്റ്റ് കാണിക്കുന്നു
-        $('#single-po-display').html(`<i class="fas fa-check-circle"></i> ${poName}`).fadeIn();
-      }
-
-      updateSummaryDisplay();
-      checkForChanges();
-    }
-  } catch (e) {
-    console.log("Pincode not found");
-    $('#edit-po-wrapper').slideUp();
-    $('#single-po-display').hide();
-  }
-}
+let editPinState={pin:'',pending:false,valid:false};
+let editPinGeneration=0;
+window.handleEditPincode = async function (val, savedPO=null) {
+ const generation=++editPinGeneration;
+ $('#edit-pin-message').remove();
+ if(savedPO){editPinState={pin:String(val),pending:false,valid:true};return;}
+ editPinState={pin:String(val),pending:/^\d{6}$/.test(val),valid:false};
+ $('#edit-postoffice,#edit-district,#edit-state').val('');
+ $('#edit-postoffice-select').empty();$('#edit-po-wrapper,#single-po-display').hide();
+ checkForChanges();
+ if(!editPinState.pending)return;
+ const message=$('<div id="edit-pin-message" class="small text-muted mt-1" role="status">Checking pincode…</div>').insertAfter('#edit-pincode');
+ try{
+  const rows=await KafakUI.pin(val);
+  if(generation!==editPinGeneration||$('#edit-pincode').val()!==val)return;
+  const data=rows.map(p=>({...p,officename:p.officename.replace(/(?:^|[\s.]+)[BSHP][.\s]*O[.\s]*$/i,' PO').trim()}));
+  $('#edit-district').val(data[0].district);$('#edit-state').val(data[0].statename);
+  if(data.length===1){$('#edit-postoffice').val(data[0].officename);$('#single-po-display').text(data[0].officename).show();}
+  else{const select=$('#edit-postoffice-select').empty().append(new Option('Select Post Office',''));data.forEach(p=>select.append(new Option(p.officename,p.officename)));$('#edit-po-wrapper').show();}
+  editPinState={pin:val,pending:false,valid:true};message.remove();updateSummaryDisplay();
+  if($('#quick-qty').val())updatePrice($('#quick-qty').val(),true);
+ }catch(error){if(generation!==editPinGeneration)return;editPinState.pending=false;message.empty().text(error.message+' ').append($('<button type="button" class="btn btn-sm btn-outline-secondary">Retry</button>').on('click',()=>handleEditPincode($('#edit-pincode').val())));}
+ finally{if(generation===editPinGeneration)checkForChanges();}
+};
 
 function updateFooterButtons(view) {
+  $('#top-progress-container').toggle(view === 'wizard');
   $('#btn-group-0').hide(); $('#btn-group-wizard').hide(); $('#btn-group-returning').hide();
   if (view === 'step-0') $('#btn-group-0').show();
   if (view === 'wizard') $('#btn-group-wizard').css({ 'display': 'flex', 'gap': '1rem' });
@@ -1031,6 +982,7 @@ function updateFooterButtons(view) {
 }
 
 window.startWizard = function () {
+  preloadHoneyVideo();
   $('#wizard-view').show();
   updateFooterButtons('wizard');
 
@@ -1038,7 +990,7 @@ window.startWizard = function () {
   $('#admin-wiz-label').remove();
   $('#admin-product-panel').remove();
 
-  if (localStorage.getItem('kafakAdmin') === 'true') {
+  if (window.kafakStorage.getItem('kafakAdmin') === 'true') {
     let labelHtml = `
             <div id="admin-wiz-label" class="text-center mb-4 fade-in">
                 <span class="badge bg-dark text-warning border border-warning shadow-sm px-3 py-2 rounded-pill" 
@@ -1113,7 +1065,7 @@ window.nextStep = async function () {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang];
 
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
 
   if (currentStep === 1 && !$('#name').val()) return showAlert(getAlert('err_name'));
   if (currentStep === 2 && !/^[0-9]{8,15}$/.test($('#whatsapp').val())) return showAlert(getAlert('err_whatsapp'));
@@ -1122,7 +1074,7 @@ window.nextStep = async function () {
     const pin = $('#pincode').val(); if (!/^[0-9]{6}$/.test(pin)) return showAlert(getAlert('err_pincode'));
     $('#btn-wiz-next').prop('disabled', true).text(getAlert('err_checking_pin'));
     try {
-      const res = await fetch(`pincode_json_files/${pin}.json`); if (!res.ok) throw new Error("404"); let data = await res.json();
+      let data = await KafakUI.pin(pin); if($('#pincode').val()!==pin || currentStep!==3){$('#btn-wiz-next').prop('disabled',false).text(t.btn_next);return;}
       data = data.map(item => ({
         ...item,
         officename: item.officename.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, ' PO').trim()
@@ -1141,7 +1093,7 @@ window.nextStep = async function () {
         }
         else { userData.postoffice = data[0].officename; currentStep = 4; showStep(4); return; }
       } else { showAlert(getAlert('err_pin_not_found')); }
-    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(t.btn_next); showAlert(getAlert('err_pincode')); return; }
+    } catch (e) { $('#btn-wiz-next').prop('disabled', false).text(t.btn_next); showAlert(e.message || getAlert('err_pincode')); return; }
   }
 
   if (currentStep === 3.5) { if (!$('#po-select').val()) return showAlert(getAlert('err_select_po')); userData.postoffice = $('#po-select').val(); currentStep = 4; showStep(4); return; }
@@ -1152,7 +1104,7 @@ window.nextStep = async function () {
     const mainPh = $('#phone').val();
     const altPh = $('#altphone').val();
 
-    if (!isAdmin && (!altPh || altPh.length < 8 || altPh.length > 15)) {
+    if (altPh && (altPh.length < 8 || altPh.length > 15)) {
       return showAlert(getAlert('err_alt_required'));
     }
 
@@ -1173,6 +1125,7 @@ window.prevStep = function () {
 }
 
 window.processCleanReorder = function () {
+  preloadHoneyVideo();
   let btn = $('.btn-update-sage');
   if (btn.data('is-processing')) return; // 🔥 Prevent Double Click
 
@@ -1183,7 +1136,7 @@ window.processCleanReorder = function () {
     return;
   }
 
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
 
   let proceedToOrder = function () {
     // 🔥 1. UI Loading State (ബട്ടൺ ക്ലിക്ക് ചെയ്തയുടൻ ഇത് കാണിക്കും)
@@ -1225,16 +1178,17 @@ function updateLocalCache(data, status) {
   SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 
   // 3. UPDATE ADMIN CACHE (allOrdersCache)
-  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let allOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
   let idx = allOrders.findIndex(o => o.orderid === data.orderid);
   if (idx > -1) {
     allOrders[idx] = { ...allOrders[idx], ...data, Status: status };
-    localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+    window.kafakStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
   }
 }
 
 
 function showReturningUserView(d, isActiveOrder, isServerData) {
+  preloadHoneyVideo();
   // 1. Hide Wizard Steps
   $('#step-0').hide();
   $('#wizard-view').hide();
@@ -1249,12 +1203,12 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   savedOrderData = JSON.parse(JSON.stringify(d));
 
   // 🔥 FIX: Local Language Preference-ന് മുൻഗണന നൽകുന്നു
-  let preferredLang = localStorage.getItem('activeLang') || d.language || 'en';
+  let preferredLang = window.kafakStorage.getItem('activeLang') || d.language || 'en';
   $('#language-select').val(preferredLang);
   changeLanguage(preferredLang);
 
   // Populate Data
-  if (localStorage.getItem('kafakAdmin') !== 'true') {
+  if (window.kafakStorage.getItem('kafakAdmin') !== 'true') {
     $('#saved-name').text(d.name);
     $('#customer-logout').prop('hidden', false);
   } else {
@@ -1279,7 +1233,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   // Display Order ID & Date (ഡെലിവറി കഴിഞ്ഞതാണെങ്കിൽ പൂർണ്ണമായും ഹൈഡ് ചെയ്യും)
   let sCheck = String(d.Status || d.status || '').toLowerCase();
   if (d.orderid && !['delivered', 'completed', 'refunded'].includes(sCheck)) {
-    $('#display-oid').html(`<b>${d.orderid}</b>`).show();
+    $('#display-oid').empty().append($('<b>').text(d.orderid)).show();
     let dateStr = d.timestamp || d.date;
     if (dateStr) $('#display-date').text(formatPrettyDate(dateStr)).show();
   } else {
@@ -1296,7 +1250,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   updateSummaryDisplay();
 
   // Admin Panel Setup (Placeholder)
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
   $('#admin-product-panel').remove();
   $('#admin-comm-panel').remove();
   $('#admin-diff-viewer').remove();
@@ -1330,15 +1284,15 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
         <div id="admin-comm-panel" class="mt-3 mb-3 p-3 bg-white border rounded shadow-sm fade-in">
           <div class="text-muted fw-bold small mb-2" style="font-size:11px; letter-spacing:1px;">SELECT TARGET NUMBER 🎯</div>
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${d.phone}" readonly></div>
+              <div class="flex-grow-1"><label class="small text-muted mb-0">Main Phone</label><input type="tel" id="adm-phone" class="form-control form-control-sm fw-bold bg-light" value="${KafakUI.escape(d.phone)}" readonly></div>
               <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="phone" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${d.whatsapp || d.phone}" readonly></div>
+              <div class="flex-grow-1"><label class="small text-muted mb-0 text-success">WhatsApp</label><input type="tel" id="adm-whatsapp" class="form-control form-control-sm fw-bold border-success bg-light" value="${KafakUI.escape(d.whatsapp || d.phone)}" readonly></div>
               <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="whatsapp" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3); border-color:#25D366;"></div></div>
           </div>
           <div class="d-flex align-items-center mb-2">
-              <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${d.altphone || ''}" placeholder="No Alt Phone" readonly></div>
+              <div class="flex-grow-1"><label class="small text-muted mb-0">Alt Phone</label><input type="tel" id="adm-alt" class="form-control form-control-sm fw-bold bg-light" value="${KafakUI.escape(d.altphone || '')}" placeholder="No Alt Phone" readonly></div>
               <div class="ms-2 pt-3"><div class="radio-holder"><input class="form-check-input" type="radio" name="target_wa" value="alt" onchange="saveRadioSelection('${d.orderid}', this)" style="transform: scale(1.3);"></div></div>
           </div>
           <div class="d-flex align-items-center">
@@ -1411,6 +1365,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
 
 // 2. UI RESET
 window.enableNewOrderMode = function () {
+  preloadHoneyVideo();
   $('#btn-new-order-mode').hide();
   $('#status-area').empty();
 
@@ -1688,7 +1643,7 @@ function updateSummaryDisplay() {
   // 1. Get Values
   const newName = $('#edit-name').val();
   if (newName) {
-    if (localStorage.getItem('kafakAdmin') !== 'true') {
+    if (window.kafakStorage.getItem('kafakAdmin') !== 'true') {
       $('#saved-name').text(newName);
     $('#customer-logout').prop('hidden', false);
     } else {
@@ -1714,7 +1669,7 @@ function updateSummaryDisplay() {
   const alt = $('#edit-altphone').val();
   const phone = $('#edit-phone').val() || '';
 
-  const safe = (val) => String(val || '').trim().toUpperCase();
+  const safe = (val) => KafakUI.escape(String(val || '').trim().toUpperCase());
 
   // 2. Clean PO Logic
   let poClean = safe(po).replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, '').trim();
@@ -1735,13 +1690,13 @@ function updateSummaryDisplay() {
       <div class="phone-grey-box">
           <div class="ph-row">
               <i class="fas fa-phone-alt text-secondary" style="width:20px; text-align:center;"></i> 
-              <span style="color:#374151; font-weight:700; font-size:14px;">${phone}</span>
-              ${alt ? `<span style="color:#ccc; margin:0 5px;">|</span> <span style="color:#666;">${alt}</span>` : ''}
+              <span style="color:#374151; font-weight:700; font-size:14px;">${KafakUI.escape(phone)}</span>
+              ${alt ? `<span style="color:#ccc; margin:0 5px;">|</span> <span style="color:#666;">${KafakUI.escape(alt)}</span>` : ''}
           </div>
           ${wa ? `
           <div class="ph-row">
               <i class="fab fa-whatsapp" style="color:#25D366; font-size:18px; width:20px; text-align:center;"></i> 
-              <span style="color:#25D366; font-weight:700; font-size:14px;">${wa}</span>
+              <span style="color:#25D366; font-weight:700; font-size:14px;">${KafakUI.escape(wa)}</span>
           </div>` : ''}
       </div>
   `;
@@ -1751,7 +1706,7 @@ function updateSummaryDisplay() {
   // Hide Edit Button Logic (Admin ക്ക് എപ്പോഴും കാണാം)
   if (typeof userData !== 'undefined' && userData.Status) {
     let s = String(userData.Status).toLowerCase().trim();
-    let isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // 🔥 അഡ്മിൻ ചെക്ക് ചെയ്യുന്നു
+    let isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true'; // 🔥 അഡ്മിൻ ചെക്ക് ചെയ്യുന്നു
 
     if (['paid', 'dispatched'].includes(s) && !isAdmin) { // 🔥 അഡ്മിൻ അല്ലെങ്കിൽ മാത്രം ഹൈഡ് ചെയ്യും
       $('#btn-edit-addr').hide();
@@ -1778,7 +1733,7 @@ function checkAndHideEditButton() {
 
 function applyHideLogic(status) {
   let s = String(status).toLowerCase().trim();
-  let isAdmin = localStorage.getItem('kafakAdmin') === 'true'; // 🔥 അഡ്മിൻ ചെക്ക് ചെയ്യുന്നു
+  let isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true'; // 🔥 അഡ്മിൻ ചെക്ക് ചെയ്യുന്നു
 
   if (['paid', 'dispatched'].includes(s) && !isAdmin) { // 🔥 അഡ്മിൻ അല്ലെങ്കിൽ മാത്രം ഹൈഡ് ചെയ്യും
     $('#btn-edit-addr').hide();
@@ -1895,25 +1850,25 @@ window.updatePrice = async function (qty, isQuick) {
         <div style="padding: 8px 0; border-bottom: 1px dashed #e0e0e0; margin-bottom: 10px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
                  <div style="font-size: 10px; font-weight: 800; color: #9ca3af; letter-spacing: 1px;">${t.lbl_deliver_to || 'DELIVER TO'}</div>
-                 <div style="font-size: 11px; font-weight: 700; color: #25D366;"><i class="fab fa-whatsapp"></i> ${wa}</div>
+                 <div style="font-size: 11px; font-weight: 700; color: #25D366;"><i class="fab fa-whatsapp"></i> ${KafakUI.escape(wa)}</div>
             </div>
-            <div style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase;">${name}</div>
+            <div style="font-size: 14px; font-weight: 800; color: #1a1a1a; text-transform: uppercase;">${KafakUI.escape(name)}</div>
             <div style="font-size: 12px; color: #4b5563; line-height: 1.6; text-transform: uppercase;">
-                <span style="font-weight: 600;">${house}</span>, ${place}, ${po},<br/>
-                ${dist}, ${state} - <b>${pin}</b>
+                <span style="font-weight: 600;">${KafakUI.escape(house)}</span>, ${KafakUI.escape(place)}, ${KafakUI.escape(po)},<br/>
+                ${KafakUI.escape(dist)}, ${KafakUI.escape(state)} - <b>${KafakUI.escape(pin)}</b>
             </div>
         </div>
     `;
     $('#wiz-final-addr').html(prettyHtml);
     // 🔥 NEW: അഡ്മിൻ ആണെങ്കിൽ മാത്രം നമ്പറുകൾ സെലക്ട് ചെയ്യാനുള്ള ഡ്രോപ്പ്ഡൗൺ കാണിക്കുന്നു
-    const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+    const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
     if (isAdmin) {
       $('#wiz-admin-wa-selector').remove(); // പഴയത് ഉണ്ടെങ്കിൽ കളയാൻ
 
-      let phoneOpts = `<option value="W">WhatsApp (${wa})</option>`;
-      phoneOpts += `<option value="M">Main Phone (${phone})</option>`;
+      let phoneOpts = `<option value="W">WhatsApp (${KafakUI.escape(wa)})</option>`;
+      phoneOpts += `<option value="M">Main Phone (${KafakUI.escape(phone)})</option>`;
       let alt = $('#altphone').val();
-      if (alt) phoneOpts += `<option value="A">Alt Phone (${alt})</option>`;
+      if (alt) phoneOpts += `<option value="A">Alt Phone (${KafakUI.escape(alt)})</option>`;
 
       let selectorHtml = `
         <div id="wiz-admin-wa-selector" class="mt-2 p-2 bg-light border border-warning border-opacity-50 rounded" style="font-size:12px;">
@@ -1983,15 +1938,15 @@ function updateLiveAddressPreview() {
     </div>
     <div style="background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 15px; margin-top: 8px;">
         <div style="font-size: 13px; line-height: 1.6; color: #333;">
-            <div style="font-weight: 700; text-transform: uppercase; color: #000;">${po}</div>
+            <div style="font-weight: 700; text-transform: uppercase; color: #000;">${KafakUI.escape(po)}</div>
             
             <div style="text-transform: uppercase;">
-                ${place ? place : ''}${place && dist ? ', ' : ''}
-                <span style="text-transform: uppercase; font-weight:600;">${dist}</span>
+                ${KafakUI.escape(place)}${place && dist ? ', ' : ''}
+                <span style="text-transform: uppercase; font-weight:600;">${KafakUI.escape(dist)}</span>
             </div>
 
             <div style="text-transform: uppercase; font-size: 12px; color: #555; margin-top:2px;">
-                ${state} - <span style="font-weight: 800; color: #000;">${pin}</span>
+                ${KafakUI.escape(state)} - <span style="font-weight: 800; color: #000;">${KafakUI.escape(pin)}</span>
             </div>
         </div>
     </div>
@@ -2011,6 +1966,7 @@ window.checkForChanges = function () {
     $('#address-edit-box button').prop('disabled', true).css({ opacity: '0.5', cursor: 'not-allowed' });
     return;
   }
+  if(savedOrderData?.readOnly&&editingOrderId&&window.kafakStorage.getItem('kafakAdmin')!=='true'){$('#address-edit-box button,.btn-update-sage').prop('disabled',true);$('#btn-edit-addr').hide();return;}
   // 1. Current Values
   var currQty = $('#quick-qty').val() || '';
   var currName = $('#edit-name').val() || '';
@@ -2069,7 +2025,7 @@ window.checkForChanges = function () {
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || { txt_save_changes: "Save Changes", txt_no_changes: "No Changes", btn_update: "Update Order", btn_order: "PLACE ORDER" };
 
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
   const status = String(savedOrderData.Status || '').toLowerCase();
 
   // 🔥 ADMIN LOGIC (Restored Balance Diff Viewer for Paid/Dispatched Qty changes)
@@ -2197,7 +2153,7 @@ window.submitQuickOrder = async function () {
   if (!$('#quick-qty').val()) { showAlert(getAlert('err_qty')); restoreBtn(); return; }
 
   const phoneCheck = $('#edit-phone').val() || (typeof userData !== 'undefined' && userData ? userData.phone : null);
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
 
   if (!editingOrderId && window.activeCustomerData && window.activeCustomerData.history) {
     let restrictedStatuses = ['pending', 'sent', 'archive'];
@@ -2227,7 +2183,7 @@ window.submitQuickOrder = async function () {
           }
         }
       } else {
-        let cachedOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+        let cachedOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
         let latestActive = cachedOrders.find(o => String(o.phone) === String(phoneCheck) && !['delivered', 'completed', 'refunded'].includes(String(o.Status).toLowerCase()));
         if (latestActive) {
           showLoader(false);
@@ -2262,7 +2218,7 @@ window.submitQuickOrder = async function () {
   if (!newPhone || newPhone.length !== 10) { showAlert(getAlert('err_phone')); restoreBtn(); return; }
 
   const newAlt = $('#edit-altphone').val();
-  if (!isAdmin && (!newAlt || newAlt.length < 8 || newAlt.length > 15)) { showAlert(getAlert('err_alt_required')); restoreBtn(); return; }
+  if (newAlt && (newAlt.length < 8 || newAlt.length > 15)) { showAlert(getAlert('err_alt_required')); restoreBtn(); return; }
   if (newAlt && newAlt === newPhone) { showAlert(getAlert('err_alt_same')); restoreBtn(); return; }
 
   let currentMeta = (typeof savedOrderData !== 'undefined' ? savedOrderData.adminMeta || '' : '').replace(/[MWAG]/g, '');
@@ -2313,9 +2269,9 @@ window.submitQuickOrder = async function () {
             newData.Status = 'Pending';
             newData.timestamp = res.timestamp;
 
-            let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+            let allOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
             allOrders.unshift(newData);
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            window.kafakStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
             Swal.fire({
               icon: 'success', title: 'Order Created! 🎉', html: `<b>Order ID:</b> <span class="text-primary">${res.orderid}</span>`,
@@ -2428,9 +2384,9 @@ window.submitQuickOrder = async function () {
             newData.Status = 'Pending';
             newData.timestamp = res.timestamp;
 
-            let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+            let allOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
             allOrders.unshift(newData);
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            window.kafakStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
 
             Swal.fire({
               icon: 'success', title: 'New Order Created! 🎉', html: `<b>Order ID:</b> <span class="text-primary">${res.orderid}</span>`,
@@ -2463,11 +2419,11 @@ window.submitQuickOrder = async function () {
           savedOrderData.adminMeta = finalMeta;
           savedOrderData.product = finalData.product;
 
-          let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let allOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
           let orderIdx = allOrders.findIndex(o => o.orderid === finalData.orderid);
           if (orderIdx > -1) {
             allOrders[orderIdx] = { ...allOrders[orderIdx], ...finalData, product: finalData.product, Status: savedOrderData.Status };
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            window.kafakStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
           }
 
           showLoader(false);
@@ -2571,7 +2527,7 @@ function setupAdminView(oid) {
   $('#step-0').hide();
   showLoader(false);
 
-  let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let allOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
   let localAdminOrder = allOrders.find(o => String(o.orderid) === String(oid));
 
   if (localAdminOrder) {
@@ -2607,7 +2563,7 @@ window.updateAdminUI = function (serverStatus, oid) {
   let status = String(serverStatus || '').trim();
   status = status.charAt(0).toUpperCase() + status.slice(1);
 
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let updates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
 
   // 🔥 FIX: Local-ൽ സിങ്ക് ചെയ്യാൻ ബാക്കിയുള്ള ഡാറ്റ ഉണ്ടോ എന്ന് നോക്കുന്നു
   let myPending = updates.find(u => u.oid === oid);
@@ -2670,7 +2626,7 @@ window.syncSingleOrder = function (oid) {
   // 🔥 Sync button amarthumpol thanne background loading FORCE STOP cheyyunnu!
   if (typeof bgFetchController !== 'undefined' && bgFetchController) bgFetchController.abort();
 
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let updates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
   let myUpdate = updates.find(u => u.oid === oid);
 
   if (!myUpdate) {
@@ -2706,8 +2662,8 @@ window.syncSingleOrder = function (oid) {
 
       if (successResponse) {
 
-        let newUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || '[]').filter(u => JSON.stringify(u) !== JSON.stringify(myUpdate));
-        localStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
+        let newUpdates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || '[]').filter(u => JSON.stringify(u) !== JSON.stringify(myUpdate));
+        window.kafakStorage.setItem('pendingUpdates', JSON.stringify(newUpdates));
 
         Swal.fire({ icon: 'success', title: 'Synced Successfully! ☁️', toast: true, position: 'top', showConfirmButton: false, timer: 2000 });
 
@@ -2717,11 +2673,11 @@ window.syncSingleOrder = function (oid) {
           d.Status = myUpdate.status;
 
           // കാഷെ അപ്ഡേറ്റ് ചെയ്യുന്നു
-          let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let allOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
           let orderIdx = allOrders.findIndex(o => String(o.orderid) === String(oid));
           if (orderIdx > -1) {
             allOrders[orderIdx] = { ...allOrders[orderIdx], ...d };
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            window.kafakStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
           }
 
           // സ്ക്രീനിൽ ഡാറ്റ കാണിക്കുന്നു (Phone, WhatsApp, Name എല്ലാം വരും!)
@@ -2746,11 +2702,11 @@ window.syncSingleOrder = function (oid) {
             showCancelButton: true, confirmButtonText: 'Apply my change', cancelButtonText: 'Keep pending'
           });
           if (decision.isConfirmed) {
-            const pending = JSON.parse(localStorage.getItem('pendingUpdates') || '[]');
+            const pending = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || '[]');
             const index = pending.findIndex(item => JSON.stringify(item) === JSON.stringify(myUpdate));
             if (index < 0) { alert('Pending changes changed. Review them before syncing.'); return; }
             pending[index] = {...myUpdate, oldStatus: currentStatus};
-            localStorage.setItem('pendingUpdates', JSON.stringify(pending));
+            window.kafakStorage.setItem('pendingUpdates', JSON.stringify(pending));
             return window.syncSingleOrder(oid);
           }
           return;
@@ -2763,6 +2719,8 @@ window.syncSingleOrder = function (oid) {
 
 // 🔥 ADMIN ACTION (With Meta Cleanup Fix)
 window.adminAction = async function (oid, status) {
+  if(status==='Paid'){try{await KafakUI.datePicker();}catch(error){showAlert(error.message);return;}}
+
   // 1. ARCHIVE: Direct Server Call (No Change)
   if (typeof bgFetchController !== 'undefined' && bgFetchController) bgFetchController.abort();
 
@@ -2780,9 +2738,9 @@ window.adminAction = async function (oid, status) {
       .then(res => res.json())
       .then(data => {
         if (data.result === 'success') {
-          let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+          let updates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
           updates = updates.filter(item => item.oid !== oid);
-          localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+          window.kafakStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
           Swal.fire({ icon: 'success', title: 'Archived!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
           updateAdminUI(status, oid);
@@ -2853,12 +2811,12 @@ window.adminAction = async function (oid, status) {
 
   // 🔥🔥🔥 CHANGE STARTS HERE (REFUND & META CLEANUP LOGIC) 🔥🔥🔥
 
-  let updates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+  let updates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
   const previousStatusUpdate = updates.find(item => item.oid === oid && (!item.action || item.action === 'status'));
   updates = updates.filter(item => item.oid !== oid || (item.action && item.action !== 'status'));
 
   let oldStatus = 'Pending';
-  let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+  let cached = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
   let foundOrder = cached.find(o => o.orderid === oid);
 
   if (typeof userData !== 'undefined' && userData.orderid === oid) {
@@ -2907,7 +2865,7 @@ window.adminAction = async function (oid, status) {
     else updates.push({ oid: oid, action: 'meta', meta: cleanMeta, oldMeta: currentMeta, time: new Date().getTime() });
   }
 
-  localStorage.setItem('pendingUpdates', JSON.stringify(updates));
+  window.kafakStorage.setItem('pendingUpdates', JSON.stringify(updates));
 
   // 🔥 കാഷെയിൽ സ്റ്റാറ്റസ് ഉടൻ അപ്ഡേറ്റ് ആവാൻ ഈ ഭാഗം ചേർക്കുക
   if (typeof savedOrderData !== 'undefined' && savedOrderData) {
@@ -2919,7 +2877,7 @@ window.adminAction = async function (oid, status) {
   } else if (foundOrder) {
     foundOrder.Status = status;
     if (metaCleaned) foundOrder.adminMeta = cleanMeta;
-    localStorage.setItem('allOrdersCache', JSON.stringify(cached));
+    window.kafakStorage.setItem('allOrdersCache', JSON.stringify(cached));
   }
 
   if (typeof userData !== 'undefined') userData.Status = status;
@@ -2983,7 +2941,7 @@ function fetchOrder(orderId, isSilent = false) {
         let d = res.data;
 
         // 🔥 FIX: സെർവറിൽ നിന്ന് ഡാറ്റ വരുമ്പോഴേക്കും അഡ്മിൻ സ്റ്റാറ്റസ് മാറ്റിയിട്ടുണ്ടെങ്കിൽ (Pending Sync), ആ പുതിയ സ്റ്റാറ്റസ് നിലനിർത്തുന്നു!
-        let pendingUpdates = JSON.parse(localStorage.getItem('pendingUpdates') || "[]");
+        let pendingUpdates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
         let myPending = pendingUpdates.find(u => String(u.oid) === String(orderId));
         if (myPending && myPending.status) {
           d.Status = myPending.status;
@@ -2994,11 +2952,11 @@ function fetchOrder(orderId, isSilent = false) {
         if (SafeStorage.getItem('kafakAdmin') === 'true') {
           updateAdminUI(d.Status || 'Pending', orderId);
 
-          let allOrders = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+          let allOrders = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
           let orderIdx = allOrders.findIndex(o => String(o.orderid) === String(orderId));
           if (orderIdx > -1) {
             allOrders[orderIdx] = { ...allOrders[orderIdx], ...d }; // പഴയതിനെ പുതിയത് വെച്ച് റീപ്ലേസ് ചെയ്യുന്നു
-            localStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
+            window.kafakStorage.setItem('allOrdersCache', JSON.stringify(allOrders));
           }
         }
 
@@ -3061,7 +3019,7 @@ function injectVideoCSS() {
     </style>
     <div id="videoModal">
         <div class="video-container">
-            <video id="honeyVideo" muted playsinline preload="auto"><source src="honey_rotate.mp4" type="video/mp4"></video>
+            <video id="honeyVideo" muted playsinline preload="none"><source src="honey_rotate.mp4" type="video/mp4"></video>
             <div class="digital-label" id="customLabel">
                 <div class="content-group"><img src="logo.png" alt="Kafak"><div class="packed-text" data-i18n="lbl_reserved_for">RESERVED FOR</div></div>
                 <div class="check-wrapper" id="finalCheck"><svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg></div>
@@ -3072,18 +3030,34 @@ function injectVideoCSS() {
     </div>`);
 }
 
-function preloadHoneyVideo() { const v = document.getElementById('honeyVideo'); if (v) v.load(); }
+let honeyVideoPreload, honeyVideoURL, honeyVideoFile, honeyVideoController;
+function preloadHoneyVideo() {
+ const video=document.getElementById('honeyVideo');if(!video)return;
+ if(!honeyVideoPreload){
+  video.preload='auto';video.dataset.preloaded='true';
+  // Fetch once in the background: Safari may ignore preload for hidden videos.
+  honeyVideoFile ||= video.canPlayType('video/mp4; codecs="avc1.42E01E"')?'honey_rotate.mp4':'honey_rotate.webm';
+  honeyVideoController=new AbortController();
+  honeyVideoPreload=fetch(honeyVideoFile,{cache:'force-cache',signal:honeyVideoController.signal}).then(response=>{if(!response.ok)throw Error('Video unavailable');return response.blob();}).then(blob=>{
+   honeyVideoURL ||= URL.createObjectURL(blob);
+   if(!orderPresentation){video.src=honeyVideoURL;video.load();}
+   return blob;
+  }).catch(()=>{honeyVideoPreload=null;});
+ }
+ return honeyVideoPreload;
+}
 
 let orderAnimationTimers = [];
 let orderNameInterval = null;
 let orderPresentation = null;
 function stopOrderAnimation() {
+  $('#animation-recovery').remove();
   orderAnimationTimers.forEach(clearTimeout);
   orderAnimationTimers = [];
   clearInterval(orderNameInterval);
   orderNameInterval = null;
   const video = document.getElementById('honeyVideo');
-  if (video) { video.pause(); video.onended = null; video.onerror = null; }
+  if (video) { video.pause(); video.onended = null; video.onerror = null; video.onplaying = null; video.onwaiting = null; }
   orderPresentation = null;
 }
 
@@ -3095,7 +3069,7 @@ function finishOrderPresentation() {
   orderAnimationTimers.push(setTimeout(() => $('#finalCheck').addClass('draw'), 100));
   orderAnimationTimers.push(setTimeout(() => {
     stopOrderAnimation();
-    $('#videoModal').fadeOut(); $('#order-form').hide(); $('#showsuccess').fadeIn();
+    showLoader(false); $('#videoModal').fadeOut(); window.kafakRecovery?.completed(); $('#order-form').hide(); $('#showsuccess').fadeIn();
     updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
   }, 600));
 }
@@ -3112,7 +3086,7 @@ function playVideoAnimation(userName, apiCallback) {
   label.removeClass('visible final-state');
   nameBadge.removeClass('show-big docked');
   checkWrapper.removeClass('show draw');
-  nameBox.innerText = "";
+  nameBox.textContent = "";
 
   let fontSize = 25;
   if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
@@ -3122,22 +3096,40 @@ function playVideoAnimation(userName, apiCallback) {
   const state = orderPresentation = { videoDone: false, nameDone: false, finished: false };
   const videoComplete = () => { if (orderPresentation !== state) return; state.videoDone = true; finishOrderPresentation(); };
   video.onended = videoComplete;
-  video.onerror = videoComplete;
-  video.currentTime = 0;
-  video.play().catch(videoComplete);
+  // Media is optional; the server result is never optional.
+  const skipVideo=()=>{
+    if(orderPresentation!==state||state.finished)return;
+    orderAnimationTimers.forEach(clearTimeout);orderAnimationTimers=[];
+    clearInterval(orderNameInterval);orderNameInterval=null;
+    video.onplaying=null;video.onwaiting=null;video.onerror=null;video.onended=null;video.pause();
+    state.videoDone=true;state.nameDone=true;state.skipped=true;
+    if(!honeyVideoURL)honeyVideoController?.abort();
+    $('#videoModal').hide();showLoader(true);finishOrderPresentation();
+  };
+  if(!honeyVideoURL){skipVideo();apiCallback();return;}
+  video.onerror=skipVideo;
+  video.onplaying=()=>{clearTimeout(state.stallTimer);startNameTimeline();};
+  video.onwaiting=()=>{clearTimeout(state.stallTimer);state.stallTimer=setTimeout(skipVideo,2000);orderAnimationTimers.push(state.stallTimer);};
+  video.src=honeyVideoURL;video.currentTime=0;
+  video.play().catch(skipVideo);
+  state.stallTimer=setTimeout(()=>{if(video.paused||video.readyState<3)skipVideo();},2000);
+  orderAnimationTimers.push(state.stallTimer);
 
   apiCallback();
 
+  function startNameTimeline(){
+  if(state.timelineStarted)return;state.timelineStarted=true;
   const later = (fn, delay) => orderAnimationTimers.push(setTimeout(fn, delay));
   later(() => { label.addClass('visible'); }, 4700);
   later(() => { nameBadge.addClass('show-big'); }, 5500);
   later(() => {
-    let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.innerText = "";
-    orderNameInterval = setInterval(() => { if (i < text.length) { nameBox.innerText += text.charAt(i); i++; } else { clearInterval(orderNameInterval); orderNameInterval = null; } }, 80);
+    let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.textContent = "";
+    orderNameInterval = setInterval(() => { if (i < text.length) { nameBox.textContent += text.charAt(i); i++; } else { clearInterval(orderNameInterval); orderNameInterval = null; } }, 80);
   }, 5800);
   const dockAt = Math.max(7800, 5800 + userName.length * 80 + 300);
   later(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, dockAt);
   later(() => { state.nameDone = true; finishOrderPresentation(); }, dockAt + 500);
+  }
 }
 
 function postOrder(data) {
@@ -3172,14 +3164,16 @@ function postOrder(data) {
         localUsersMap[data.phone] = { ...existingData, ...successData, Status: window.kafakCheckoutUI ? successData.Status : "Pending" };
         SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
 
+        window.kafakRecovery?.confirmed(successData);
         window.orderSuccess = true;
-
+        renderPendingRecovery();
         finishOrderPresentation();
       }
     }).catch((error) => {
       window.orderSuccess = false;
       stopOrderAnimation();
-      $('#videoModal').fadeOut();
+      renderPendingRecovery();
+      showLoader(false);$('#videoModal').fadeOut();
       $('.btn-update-sage').data('is-processing',false).prop('disabled',false);
       checkForChanges();
       showAlert(window.kafakCheckoutUI ? error.message : 'Order could not be confirmed. Refresh and check your order before trying again.');
@@ -3319,7 +3313,7 @@ async function sendToWhatsapp(orderData = successData, recipient = null) {
   const safe = (val) => String(val || '').trim().toUpperCase();
   const targetAdminPhone = typeof adminPhone !== 'undefined' ? adminPhone : '7788990313';
 
-  const isAdmin = localStorage.getItem('kafakAdmin') === 'true';
+  const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
 
   // 1. Language & Translations
   const lang = $('#language-select').val() || 'en';
@@ -3523,7 +3517,7 @@ window.sendPaymentWA = async function (oid) {
   let order = typeof userData !== 'undefined' && userData.orderid === oid ? userData : null;
 
   if (!order) {
-    let cached = JSON.parse(localStorage.getItem('allOrdersCache') || "[]");
+    let cached = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
     order = cached.find(o => o.orderid === oid);
   }
 
@@ -4125,3 +4119,28 @@ window.showFullTrackingPopup = function (trackId, eventsJson) {
   });
 }
 
+
+// Durable pending writes are recoverable without re-entering or repricing a draft.
+function renderPendingRecovery(){
+ $('#pending-order-recovery').remove();
+ if(!window.kafakCheckoutUI)return;
+ const order=window.kafakCheckoutUI.checkout.order;
+ if(order.pendingError){$('<div id="pending-order-recovery" class="order-notice" role="alert"></div>').text(order.pendingError).prependTo('.scroll-content > .container');return;}
+ const oid=new URLSearchParams(location.search).get('oid');
+ const edit=oid&&window.kafakStorage.getItem('kafak-business-edit:'+oid);
+ if(!order.pending&&!edit)return;
+ const box=$('<div id="pending-order-recovery" class="order-notice" role="status">A previous save needs confirmation. Retry the saved request before making another change. </div>').prependTo('.scroll-content > .container');
+ $('<button type="button" class="btn btn-sm btn-dark">Retry saved request</button>').on('click',function(){
+  const button=$(this).prop('disabled',true);
+  const name=order.pending?.data.name||savedOrderData?.name||'Customer';
+  playVideoAnimation(name,async()=>{try{
+   if(edit){successData=await window.kafakOrderEditorUI.retrySaved(oid);}
+   else{
+    const result=await order.retry(),d=result.customer,q=result.quote;
+    successData={...d,...result,Status:'Pending',quantity:q.quantity,product:q.product,variant:q.variant,Grand_Total:q.total,Product_Amount:q.productAmount,Courier_Charge:q.courierAmount};
+   }
+   window.kafakRecovery?.confirmed(successData);window.orderSuccess=true;renderPendingRecovery();finishOrderPresentation();
+  }catch(error){stopOrderAnimation();showLoader(false);$('#videoModal').hide();button.prop('disabled',false);showAlert(error.message);}});
+ }).appendTo(box);
+}
+$(document).ready(()=>{renderPendingRecovery();if(!window.kafakStorage.persistent)$('<div class="order-notice" role="status">Site storage is blocked. You can view your order; enable site storage before saving changes.</div>').prependTo('.scroll-content > .container');});

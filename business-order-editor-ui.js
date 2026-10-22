@@ -1,11 +1,12 @@
 /* Connect the existing edit view to versioned database reads and saves. */
 (function(){
  'use strict';if(window.KAFAK_BACKEND!=='business')return;
- const api=new KafakBusinessApi(),editor=new KafakBusinessOrderEditor(api,localStorage);
+ const storage=window.kafakStorage||localStorage;
+ const api=new KafakBusinessApi(),editor=new KafakBusinessOrderEditor(api,storage);
  function access(id){
   const fromHash=new URLSearchParams(location.hash.slice(1)).get('access');
   if(new URLSearchParams(location.search).get('oid')===id&&/^[A-Za-z0-9_-]{43}$/.test(fromHash||''))return fromHash;
-  let last;try{last=JSON.parse(localStorage.getItem('kafak-business-last-order')||'null');}catch{}
+  let last;try{last=JSON.parse(storage.getItem('kafak-business-last-order')||'null');}catch{}
   if(last?.orderid===id&&last.accessToken)return last.accessToken;
   if(typeof savedOrderData==='object'&&savedOrderData?.orderid===id&&savedOrderData.accessToken)return savedOrderData.accessToken;
   if(typeof localUsersMap==='object')return Object.values(localUsersMap).find(row=>row?.orderid===id&&row.accessToken)?.accessToken;
@@ -14,28 +15,28 @@
  function confirmed(row){return {...row,accessToken:access(row.orderid)||row.accessToken,quote:{sku:row.sku,product:row.product,variant:row.variant,quantity:Number(row.quantity),productAmount:Number(row.Product_Amount),courierAmount:Number(row.Courier_Charge),total:Number(row.Grand_Total)}};}
  window.kafakOrderEditorUI={editor,access,
   async track(article){
-   if(localStorage.getItem('kafakAdmin')==='true')return api.request('/admin/parcel-tracking?'+new URLSearchParams({trackingId:article}));
+   if(storage.getItem('kafakAdmin')==='true')return api.request('/admin/parcel-tracking?'+new URLSearchParams({trackingId:article}));
    const id=editor.current?.orderid||(typeof savedOrderData==='object'?savedOrderData?.orderid:null);
    if(!id)throw Error('Open your saved order to track the parcel.');
    return api.request('/public/parcel-tracking?'+new URLSearchParams({oid:id}),{accessToken:access(id)});
   },
   async delivered(id){
    const key='kafak-business-delivery:'+id;
-   let requestId=localStorage.getItem(key);if(!requestId){requestId=crypto.randomUUID();localStorage.setItem(key,requestId);}
-   const result=localStorage.getItem('kafakAdmin')==='true'
+   let requestId=storage.getItem(key);if(!requestId){requestId=crypto.randomUUID();storage.setItem(key,requestId);}
+   const result=storage.getItem('kafakAdmin')==='true'
     ? await api.adminAction({action:'bulkUpdateStatus',updates:[{oid:id,status:'Delivered'}]},requestId)
     : await api.mutation('/public/order-delivered?'+new URLSearchParams({oid:id}),{},requestId,{accessToken:access(id)});
    if(result.result!=='success')throw Error('Delivery update was not confirmed');
-   localStorage.removeItem(key);return result;
+   storage.removeItem(key);return result;
   },
   async customer(phone){
    const normalized=String(phone||'').replace(/\D/g,'').slice(-10);
-   if(localStorage.getItem('kafakAdmin')==='true'){
+   if(storage.getItem('kafakAdmin')==='true'){
     try{const response=await api.customer(normalized);
     if(response.data?.orderid){const row=await editor.load(response.data.orderid,{admin:true});if(row)response.data={...response.data,...confirmed(row)};}
-    return response;}catch(error){if(error.status!==401)throw error;localStorage.removeItem('kafakAdmin');}
+    return response;}catch(error){if(error.status!==401)throw error;storage.removeItem('kafakAdmin');}
    }
-   let last;try{last=JSON.parse(localStorage.getItem('kafak-business-last-order')||'null');}catch{}
+   let last;try{last=JSON.parse(storage.getItem('kafak-business-last-order')||'null');}catch{}
    const remembered=typeof localUsersMap==='object'?localUsersMap[normalized]:null;
    if(remembered?.orderid)last=remembered;
    if(last?.orderid){
@@ -48,16 +49,23 @@
   },
   async latestCustomer(id){return confirmed(KafakBusinessOrderEditor.legacy(await api.ownOrder(id,access(id))));},
   async read(id){
-   const token=access(id),admin=localStorage.getItem('kafakAdmin')==='true';let row;
-   if(admin){try{row=await editor.load(id,{admin:true});}catch(error){if(error.status!==401)throw error;localStorage.removeItem('kafakAdmin');row=await editor.load(id,{token});}}
+   const token=access(id),admin=storage.getItem('kafakAdmin')==='true';let row;
+   if(admin){try{row=await editor.load(id,{admin:true});}catch(error){if(error.status!==401)throw error;storage.removeItem('kafakAdmin');row=await editor.load(id,{token});}}
    else row=await editor.load(id,{token});
    return row?{result:'success',data:confirmed(row)}:null;
+  },
+  async retrySaved(id){
+   const pending=JSON.parse(storage.getItem('kafak-business-edit:'+id)||'null');
+   if(!pending)throw Error('No saved edit is waiting.');
+   await editor.load(id,{admin:storage.getItem('kafakAdmin')==='true',token:access(id)});
+   const d=pending.payload.data;
+   return confirmed(await editor.save(d,{sku:d.sku,expectedTotal:d.expectedTotal,provider:d.provider,increasePaid:pending.action==='increasePaidOrder'}));
   },
   async save(data,{increasePaid=false}={}){
    if(editor.current?.orderid!==data.orderid){
     const shown=typeof savedOrderData==='object'?savedOrderData:null;
     if(!data.orderid||shown?.orderid!==data.orderid||!Number.isSafeInteger(shown.version))throw Error('Refresh the order status before saving changes.');
-    const row=await editor.load(data.orderid,{admin:localStorage.getItem('kafakAdmin')==='true',token:access(data.orderid)});
+    const row=await editor.load(data.orderid,{admin:storage.getItem('kafakAdmin')==='true',token:access(data.orderid)});
     if(!row||row.version!==shown.version)throw Error('This order changed. Refresh its status before saving.');
    }
    if(editor.current?.readOnly)throw Error('Please contact Kafak to change this order.');

@@ -30,13 +30,14 @@
    if(!pending){if(increasePaid){if(!admin)throw Error('Only the business can adjust a paid order');payload.data.expectedPreviousTotal=current.Grand_Total;}pending={requestId:this.newId(),fingerprint,payload,action:increasePaid?'increasePaidOrder':'editOrder'};this.storage.setItem(key,JSON.stringify(pending));}
    if(this.inflight){if(this.inflight.key!==key)throw Error('Another order edit is being saved.');return this.inflight.promise;}
    const mayAlreadyExist=pending.attempted===true;pending.attempted=true;this.storage.setItem(key,JSON.stringify(pending));
+   this.storage.requirePersistent?.();
    const request=admin?this.api.adminAction({action:pending.action||'editOrder',oid:current.orderid,...pending.payload},pending.requestId):this.api.editOwnOrder(current.orderid,token,pending.payload,pending.requestId);
    const promise=request.then(result=>{
     if(result.result!=='success')throw Error('The order edit was not confirmed.');
     const row=legacy(admin?{...result.orderData,shortCode:result.orderData.shortCode||current.shortCode,accessToken:result.orderData.accessToken||current.accessToken,version:result.version}:result.order);
     if(row.orderid!==current.orderid||!Number.isSafeInteger(row.version))throw Error('The edited order response was incomplete. Retry the same edit.');
     const latest=this.current?.orderid===row.orderid&&this.current.version>row.version?this.current:row;
-    this.storage.setItem('kafak-business-edited-order',JSON.stringify(latest));this.storage.removeItem(key);
+    this.storage.setItem('kafak-business-edited-order',JSON.stringify({orderid:latest.orderid,version:latest.version}));this.storage.removeItem(key);
     if(this.current?.orderid===row.orderid)this.current=latest;
     return latest;
    }).catch(error=>{if(!mayAlreadyExist&&[400,409,422].includes(error.status))this.storage.removeItem(key);throw error;}).finally(()=>{this.inflight=null;});

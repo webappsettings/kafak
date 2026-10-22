@@ -15,13 +15,13 @@
  }
  if(typeof module!=='undefined'&&module.exports){module.exports=createRefresh;return;}
  if(scope.KAFAK_BACKEND!=='business')return;
- let dirty=false;
- document.addEventListener('input',e=>{if(e.target.matches('[id^="edit-"],#quick-qty,#admin-product-type'))dirty=true;});
- document.addEventListener('change',e=>{if(e.target.matches('[id^="edit-"],#quick-qty,#admin-product-type'))dirty=true;});
- for(const event of ['kafak-order-rendered','kafak-order-saved'])document.addEventListener(event,()=>{dirty=false;});
+ let baseline='';
+ const snapshot=()=>JSON.stringify([...document.querySelectorAll('[id^="edit-"],#quick-qty,#admin-product-type')].filter(e=>/^(INPUT|SELECT|TEXTAREA)$/.test(e.tagName)).map(e=>[e.id,e.value.trim()]));
+ const isDirty=()=>baseline!==snapshot();
+ for(const event of ['kafak-order-rendered','kafak-order-saved'])document.addEventListener(event,()=>{queueMicrotask(()=>{baseline=snapshot();});});
  const refresh=createRefresh({
   current:()=>typeof savedOrderData==='object'?savedOrderData:null,
-  blocked:()=>document.hidden||dirty||localStorage.getItem('kafakAdmin')==='true'||!scope.kafakOrderEditorUI||!$('#returning-user-view').is(':visible')||$('#address-edit-box').is(':visible')||$('.btn-update-sage').data('is-processing')||document.activeElement?.matches('input,textarea,select'),
+  blocked:()=>document.hidden||isDirty()||window.kafakStorage.getItem('kafakAdmin')==='true'||!scope.kafakOrderEditorUI||!$('#returning-user-view').is(':visible')||$('#address-edit-box').is(':visible')||$('.btn-update-sage').data('is-processing')||document.activeElement?.matches('input,textarea,select'),
   read:id=>scope.kafakOrderEditorUI.latestCustomer(id),
   apply:row=>{scope.kafakOrderEditorUI.editor.current=row;loadOrderData(row,true);},
   tracking:row=>{if(row.tracking&&document.getElementById('inline-track-'+row.tracking))scope.loadLiveTrackingInline(row.tracking,row.postoffice,$('#language-select').val()||'en',true);}

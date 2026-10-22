@@ -53,14 +53,14 @@ test('Logout keeps all kinds of unsynced changes',()=>{
 });
 test('Customer application failure closes loader and reports failure',async()=>{
  const code=customer.slice(customer.indexOf('function postOrder(data)'),customer.indexOf('// 2. Updated fetchCourierRates Function'));
- let hidden=false,notice='';const ctx={window:{},stopOrderAnimation(){},sc:'https://test.invalid',fetch:async()=>ok({result:'error'}),$(){return {fadeOut(){hidden=true;},data(k,v){assert.equal(v,false);return this;},prop(k,v){assert.equal(v,false);return this;}}},checkForChanges(){},showAlert:s=>notice=s};
+ let hidden=false,notice='';const ctx={renderPendingRecovery(){},showLoader(){},window:{},stopOrderAnimation(){},sc:'https://test.invalid',fetch:async()=>ok({result:'error'}),$(){return {fadeOut(){hidden=true;},data(k,v){assert.equal(v,false);return this;},prop(k,v){assert.equal(v,false);return this;}}},checkForChanges(){},showAlert:s=>notice=s};
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({});assert(hidden);assert.equal(ctx.window.orderSuccess,false);assert.match(notice,/could not be confirmed/);
 });
 
 test('Server confirmation signals presentation instead of skipping the video',async()=>{
  const code=customer.slice(customer.indexOf('function postOrder(data)'),customer.indexOf('// 2. Updated fetchCourierRates Function'));
  let signalled=false;
- const ctx={window:{},sc:'https://test.invalid',fetch:async()=>ok({result:'success',orderid:'K-test'}),currentLoginPhone:null,localUsersMap:{},SafeStorage:{setItem(){}},STORAGE_KEY:'test',finishOrderPresentation(){signalled=true;},stopOrderAnimation(){assert.fail('Do not interrupt video');},showAlert:message=>assert.fail(message)};
+ const ctx={renderPendingRecovery(){},window:{},sc:'https://test.invalid',fetch:async()=>ok({result:'success',orderid:'K-test'}),currentLoginPhone:null,localUsersMap:{},SafeStorage:{setItem(){}},STORAGE_KEY:'test',finishOrderPresentation(){signalled=true;},stopOrderAnimation(){assert.fail('Do not interrupt video');},showAlert:message=>assert.fail(message)};
  vm.createContext(ctx);vm.runInContext(code,ctx);await ctx.postOrder({name:'Test',phone:'0000000000'});
  assert(signalled);assert.equal(ctx.window.orderSuccess,true);
 });
@@ -96,7 +96,7 @@ test('Edit-page invoice uses the new order data and selected recipient', async (
  const code = customer.slice(customer.indexOf('async function sendToWhatsapp('), customer.indexOf('function renderEditView('));
  const ctx = {KafakBusinessOrder:require('../business-order.js'),successData:{orderid:'STALE'},savedOrderData:{orderid:'OLD'},adminPhone:'7788990313',
   localStorage:{getItem:()=> 'true'},$:()=>({val:()=> 'en'}),translations:{en:{wa_check_status:'Check order',txt_gpay:'GPay'}},
-  isOutOfStock:false,window:{location:{href:''}},showAlert:()=>{throw Error('Invalid phone');}};
+  isOutOfStock:false,window:{kafakStorage:{getItem:()=> 'true'},location:{href:''}},showAlert:()=>{throw Error('Invalid phone');}};
  vm.createContext(ctx);vm.runInContext(code,ctx);
  await ctx.sendToWhatsapp({orderid:'NEW123',product:'Cheruthen',quantity:1,name:'Customer',phone:'3232232321'},'+91 3232 232321');
  const url = new URL(ctx.window.location.href);
@@ -163,7 +163,7 @@ test('Success tick waits for video, name and server in every completion order',(
  const code=customer.slice(customer.indexOf('function finishOrderPresentation()'),customer.indexOf('function playVideoAnimation('));
  for(const sequence of [['videoDone','nameDone','saved'],['saved','nameDone','videoDone'],['nameDone','videoDone','saved']]){
   let ticks=0,closed=0;const timers=[];
-  const ctx={orderPresentation:{videoDone:false,nameDone:false,finished:false},window:{orderSuccess:false},orderAnimationTimers:[],setTimeout(fn){timers.push(fn);return timers.length;},stopOrderAnimation(){},updateFooterButtons(){},sendToWhatsapp(){},$(selector){return {addClass(){if(selector==='#finalCheck')ticks++;},fadeOut(){closed++;},hide(){},fadeIn(){}}}};
+  const ctx={showLoader(){},orderPresentation:{videoDone:false,nameDone:false,finished:false},window:{orderSuccess:false},orderAnimationTimers:[],setTimeout(fn){timers.push(fn);return timers.length;},stopOrderAnimation(){},updateFooterButtons(){},sendToWhatsapp(){},$(selector){return {addClass(){if(selector==='#finalCheck')ticks++;},fadeOut(){closed++;},hide(){},fadeIn(){}}}};
   vm.createContext(ctx);vm.runInContext(code,ctx);
   sequence.forEach((event,index)=>{if(event==='saved')ctx.window.orderSuccess=true;else ctx.orderPresentation[event]=true;ctx.finishOrderPresentation();assert.equal(ticks,index===2?1:0);});
   ctx.finishOrderPresentation();assert.equal(ticks,1);assert.equal(closed,0);timers[0]();timers[1]();assert.equal(closed,1);

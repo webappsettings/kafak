@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
+    content="width=device-width, initial-scale=1.0, interactive-widget=resizes-content">
   <title>KAFAK | Natural Raw Honey</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -12,31 +12,24 @@
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Noto+Sans+Malayalam:wght@400;600;700&display=swap"
     rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/material_blue.css">
-  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#2e7d32">
   <link rel="apple-touch-icon" href="icon-192.png">
 
-  <script>
-    // 🔥 AUTO VERSION CONTROL
-    var currentVersion = "12"; // 
-
-    if (localStorage.getItem('siteVersion') !== currentVersion) {
-      localStorage.setItem('siteVersion', currentVersion);
-
-      if (window.location.href.indexOf('reloaded') === -1) {
-        var separator = (window.location.href.indexOf('?') === -1) ? '?' : '&';
-        window.location.replace(window.location.href + separator + 'reloaded=true');
-      }
-    }
-  </script>
+  <script src="order-runtime.js?v=20261022c"></script>
 
   <style>
+    .order-notice{flex:0 0 auto;margin:10px 16px;padding:12px 14px;border:1px solid #dce4dd;border-radius:12px;background:#f6f9f6;color:#334238;font:inherit;font-size:12px;line-height:1.6;overflow-wrap:anywhere}
+    .order-notice .btn{font:inherit;font-size:12px;font-weight:700;line-height:1.4;padding:9px 13px;border-radius:10px;margin:6px 6px 0 0;min-height:38px;white-space:normal;box-shadow:none}
+    .order-notice .btn-dark{background:#000;border-color:#000;color:#fff}
+    .order-notice .btn-success{background:var(--brand-green);border-color:var(--brand-green)}
+    .order-notice .btn-outline-success{color:var(--brand-green);border-color:#c8dac9;background:#fff}
+    .order-notice .btn:focus-visible{outline:3px solid #9fc9a1;outline-offset:2px}
+    @media(max-width:480px){.order-notice{margin:8px 12px;padding:10px 12px}}
+    .order-spinner{display:inline-block;width:44px;height:44px;border:4px solid #f6e4c7;border-top-color:#b45309;border-radius:50%;animation:order-spin .8s linear infinite;margin-bottom:16px}@keyframes order-spin{to{transform:rotate(360deg)}}
     /* --- CORE VARIABLES & RESET --- */
     :root {
       --primary: #000;
@@ -586,7 +579,7 @@
   <div id="full-loader" role="status" aria-live="polite" aria-label="Loading order"
     style="display:flex; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; align-items:center; justify-content:center;">
     <div class="loader-content text-center">
-      <img id="loader-gif" src="loading.gif" alt="Loading..." style="width: 80px; height: auto; margin-bottom: 15px;">
+      <span class="order-spinner" aria-hidden="true"></span>
 
       <div id="loader-text" style="font-weight:bold; color:#b45309; letter-spacing:1px;">LOADING...</div>
     </div>
@@ -851,28 +844,18 @@
   <script src="translations.js"></script>
   <script>window.KAFAK_BACKEND="business";</script>
   <script src="backend-api.js?v=20261015o"></script>
-  <script src="business-order.js?v=20261015o"></script>
-  <script src="business-checkout.js?v=20261015o"></script>
+  <script src="business-order.js?v=20261022c"></script>
+  <script src="business-checkout.js?v=20261022c"></script>
   <script src="business-catalog.js?v=20261015o"></script>
-  <script src="business-order-editor.js?v=20261015o"></script>
-  <script src="business-admin-commands.js?v=20261015o"></script>
-  <script src="business-admin-transport.js?v=20261015o"></script>
-  <script src="custom.js?v=20261022b" charset="UTF-8"></script>
-  <script src="business-checkout-ui.js?v=20261015o"></script>
-  <script src="business-order-editor-ui.js?v=20261015o"></script>
-  <script src="business-live-order.js?v=20261015o"></script>
+  <script src="business-order-editor.js?v=20261022c"></script>
+  <script src="custom.js?v=20261022c" charset="UTF-8"></script>
+  <script src="business-checkout-ui.js?v=20261022c"></script>
+  <script src="business-order-editor-ui.js?v=20261022c"></script>
+  <script src="business-live-order.js?v=20261022c"></script>
+  <script src="order-recovery.js?v=20261022c"></script>
 
 
-  <script>
-    // Monitor styling to show progress bar only when Wizard is visible
-    setInterval(function () {
-      if ($('#wizard-view').is(':visible')) {
-        $('#top-progress-container').show();
-      } else {
-        $('#top-progress-container').hide();
-      }
-    }, 500);
-  </script>
+
 
   <style>
     /* Modern Timeline CSS */

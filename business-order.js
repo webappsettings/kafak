@@ -8,8 +8,8 @@
       const saved = storage.getItem('kafak-business-pending-order');
       if (saved) {
         try { this.pending = JSON.parse(saved); }
-        catch { throw new Error('The saved submission cannot be read. Contact support before submitting again.'); }
-        if (!this.pending.requestId || !this.pending.data) throw new Error('The saved submission is incomplete. Contact support before submitting again.');
+        catch { this.pendingError='The saved submission cannot be read. Contact Kafak before submitting again.'; }
+        if (!this.pending?.requestId || !this.pending?.data) {this.pendingError='The saved submission is incomplete. Contact Kafak before submitting again.';this.pending=null;}
       }
     }
     async load() {
@@ -29,6 +29,7 @@
       return quote;
     }
     async submit(fields) {
+      if(this.pendingError)throw Error(this.pendingError);
       if (this.pending) throw new Error('Confirm the previous submission using Retry before starting another order.');
       if (this.settings.acceptingOrders !== true) throw new Error('This preview is not accepting orders yet. Use the current order page.');
       const priced = this.currentQuote;
@@ -38,7 +39,7 @@
       // Persist before sending. A reload or lost response must reuse this UUID.
       try { this.storage.setItem('kafak-business-pending-order', JSON.stringify(this.pending)); }
       catch (e) { this.pending = null; throw new Error('Allow browser storage before submitting so a retry cannot duplicate your order.'); }
-      return this.retry();
+      this.storage.requirePersistent?.();return this.retry();
     }
     async retry() {
       if (!this.pending) throw new Error('There is no pending submission.');
@@ -47,6 +48,7 @@
       const mayAlreadyExist = submission.attempted === true;
       submission.attempted = true;
       this.storage.setItem('kafak-business-pending-order', JSON.stringify(submission));
+      this.storage.requirePersistent?.();
       this.inFlight = this.api.submitOrder(submission.data, submission.requestId).then(result => {
         if (result.result !== 'success' || !result.orderid || !result.accessToken || !result.quote) throw Object.assign(new Error('The order response was incomplete. Retry to confirm the same order.'), { uncertain: true });
         // Save the private link before removing retry information.

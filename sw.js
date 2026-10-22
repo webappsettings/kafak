@@ -1,8 +1,9 @@
-/* Network-only application releases; never reuse HTTP-cached HTML or scripts. */
-const RELEASE = '20261021c';
+/* Fresh HTML and unversioned scripts; cache only explicitly versioned assets. */
+const RELEASE = '20261022c';
+const ASSET_CACHE = 'kafak-versioned-20261022c';
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', event => event.waitUntil((async () => {
-  await Promise.all((await caches.keys()).map(key => caches.delete(key)));
+  await Promise.all((await caches.keys()).filter(key=>key.startsWith('kafak-versioned-')&&key!==ASSET_CACHE).map(key=>caches.delete(key)));
   await self.clients.claim();
   for (const client of await self.clients.matchAll({type:'window'})) client.postMessage({type:'KAFAK_RELEASE',release:RELEASE});
 })()));
@@ -21,6 +22,9 @@ self.addEventListener('fetch', event => {
       return fetch(event.request,{cache:'no-store'});
     })());
     return;
+  }
+  if(url.origin===self.location.origin && url.searchParams.has('v') && ['script','style'].includes(event.request.destination)){
+    event.respondWith((async()=>{const cache=await caches.open(ASSET_CACHE);const cached=await cache.match(event.request);if(cached)return cached;const response=await fetch(event.request);if(response.ok)await cache.put(event.request,response.clone());return response;})());return;
   }
   if (url.origin === self.location.origin && (event.request.mode === 'navigate' || ['script','style'].includes(event.request.destination))) {
     event.respondWith(fetch(event.request,{cache:'no-store'}));
