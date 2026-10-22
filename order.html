@@ -583,8 +583,8 @@
     <div id="loader-percent" style="font-size:10px; color:#999; margin-top:5px; font-weight:700;">0%</div>
   </div> -->
 
-  <div id="full-loader"
-    style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; align-items:center; justify-content:center;">
+  <div id="full-loader" role="status" aria-live="polite" aria-label="Loading order"
+    style="display:flex; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(255,255,255,0.95); z-index:9999; align-items:center; justify-content:center;">
     <div class="loader-content text-center">
       <img id="loader-gif" src="loading.gif" alt="Loading..." style="width: 80px; height: auto; margin-bottom: 15px;">
 
@@ -653,7 +653,7 @@
             <div class="white-card">
               <div class="d-flex justify-content-between align-items-center mb-2">
                 <div id="saved-name" class="user-name-tag">NAME</div>
-                <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit()" class="btn-edit-capsule"
+                <a href="#" id="btn-edit-addr" onclick="toggleAddressEdit(); return false;" class="btn-edit-capsule"
                   data-i18n="btn_edit">EDIT ADDRESS</a>
               </div>
 
@@ -857,7 +857,7 @@
   <script src="business-order-editor.js?v=20261015o"></script>
   <script src="business-admin-commands.js?v=20261015o"></script>
   <script src="business-admin-transport.js?v=20261015o"></script>
-  <script src="custom.js?v=20261022a" charset="UTF-8"></script>
+  <script src="custom.js?v=20261022b" charset="UTF-8"></script>
   <script src="business-checkout-ui.js?v=20261015o"></script>
   <script src="business-order-editor-ui.js?v=20261015o"></script>
   <script src="business-live-order.js?v=20261015o"></script>

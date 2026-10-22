@@ -94,9 +94,12 @@ function showPreBookingAlert(callback) {
 
 // --- UPDATED LOADER LOGIC ---
 let loaderInterval;
+let loaderHideTimer;
 
 // --- 🔥 SIMPLE GIF LOADER LOGIC ---
 window.showLoader = function (show) {
+  clearTimeout(loaderHideTimer);
+  $('#full-loader').stop(true, true);
   // 1. Language Setup
   const lang = $('#language-select').val() || 'en';
   const t = translations[lang] || translations['en'];
@@ -108,7 +111,7 @@ window.showLoader = function (show) {
     $('#full-loader').css('display', 'flex').fadeIn(200); // 'flex' to center align
 
   } else {
-    setTimeout(() => {
+    loaderHideTimer = setTimeout(() => {
       $('#full-loader').fadeOut(300);
     }, 200);
   }
