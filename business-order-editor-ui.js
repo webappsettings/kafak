@@ -21,6 +21,9 @@
    if(result.orderid!==id||!/^[A-Za-z0-9_-]{43}$/.test(result.accessToken||''))throw Error('Unable to open the order. Please retry.');
    // Keep access in memory as well: a blocked storage must not prevent this read.
    editor.recoveredAccess={orderid:id,accessToken:result.accessToken};
+   if(new URLSearchParams(location.search).get('oid')===id){
+    try{history.replaceState(null,'',location.pathname+location.search+'#access='+result.accessToken);}catch{}
+   }
    try{window.KafakCustomerStorage?.remember(storage,{...result,phone});}catch{}
    return result;
   },

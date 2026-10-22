@@ -98,12 +98,18 @@ function _toPrimitive(t, e) {
         orderid: id,
         accessToken: result.accessToken
       };
+      if (new URLSearchParams(location.search).get("oid") === id) {
+        try {
+          history.replaceState(null, "", location.pathname + location.search + "#access=" + result.accessToken);
+        } catch (_unused3) {
+        }
+      }
       try {
         var _window$KafakCustomer4;
         (_window$KafakCustomer4 = window.KafakCustomerStorage) === null || _window$KafakCustomer4 === void 0 || _window$KafakCustomer4.remember(storage, _objectSpread(_objectSpread({}, result), {}, {
           phone
         }));
-      } catch (_unused3) {
+      } catch (_unused4) {
       }
       return result;
     },
@@ -164,7 +170,7 @@ function _toPrimitive(t, e) {
       let last;
       try {
         last = JSON.parse(storage.getItem("kafak-business-last-order") || "null");
-      } catch (_unused4) {
+      } catch (_unused5) {
       }
       const remembered = typeof localUsersMap === "object" ? localUsersMap[normalized] : null;
       if (remembered !== null && remembered !== void 0 && remembered.orderid) last = remembered;

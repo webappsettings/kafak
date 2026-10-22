@@ -11,7 +11,7 @@ const root=path.resolve(__dirname,'..'),token='a'.repeat(43),oid='K-261014195632
  if(u.pathname.endsWith('/public/order')){if(req.headers().authorization!=='Bearer '+token)return send({error:'Use private link'},401);if(req.method()==='POST'){writes++;Object.assign(row,req.postDataJSON().data);row.version++;return send({result:'success',order:row});}return send(row);}
  if(u.pathname.endsWith('/public/catalog'))return send([{sku:'TEST-HN',name:'Vanthen',units:1,price:650,variant:'650 g'}]);
  if(u.pathname.endsWith('/public/settings'))return send({contactPhone:'9999999997',stockStatus:'yes',acceptingOrders:true});return send({});});
- await p.goto('https://www.kafaklife.com/order.html?oid='+oid);await p.locator('#full-loader').waitFor({state:'hidden'});
+ await p.goto('https://www.kafaklife.com/order.html?oid='+oid+(width===1280?'#access='+'b'.repeat(43):''));await p.locator('#full-loader').waitFor({state:'hidden'});
  assert.equal(await p.locator('#order-entry-error').count(),0);assert.equal(await p.locator('#step-0').isVisible(),true);
  assert(await p.locator('#full-loader img').evaluate(el=>el.complete&&el.naturalWidth>0&&el.style.display==='block'));
  await p.locator('#phone').fill('9999999998');await p.locator('#btn-group-0 button').click();await p.locator('#order-entry-error').waitFor();assert.equal(await p.locator('#returning-user-view').isVisible(),false);
