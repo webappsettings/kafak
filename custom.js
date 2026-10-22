@@ -413,6 +413,9 @@ $(document).ready(function () {
     showLoader(true);
     if (isAdmin) {
       setupAdminView(oid);
+    } else if (window.kafakOrderEditorUI) {
+      // Let the server authorize private links and registered legacy view-only links.
+      fetchOrder(oid);
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
@@ -468,6 +471,13 @@ window.handlePhoneNext = function () {
   SafeStorage.setItem('lastUsedPhone', phone);
 
   preloadHoneyVideo();
+
+  // A link to an existing order must never fall through into new-order entry.
+  const linkedOrder = new URLSearchParams(location.search).get('oid');
+  if (linkedOrder && window.kafakOrderEditorUI && SafeStorage.getItem('kafakAdmin') !== 'true') {
+    fetchOrder(linkedOrder);
+    return;
+  }
 
   if (localUsersMap[phone]) {
     let localData = localUsersMap[phone];
@@ -624,6 +634,12 @@ function checkUserOnServerBackground(phone) {
 
 
 function saveToLocal(phone, data) {
+  // Confirmed business orders are read from the server; keep only this page's copy.
+  // Drafts and pending submissions retain their existing recovery storage.
+  if (window.kafakOrderEditorUI && data.orderid && SafeStorage.getItem('kafakAdmin') !== 'true') {
+    localUsersMap[phone] = {...data};
+    return;
+  }
   let cleanData = { ...data };
   delete cleanData.Status; delete cleanData.status;
   delete cleanData.tracking; delete cleanData.courier;
@@ -665,7 +681,7 @@ window.loadOrderData = function (d, isServerData = false) {
   // 3. Data local-il save cheyyunnu
   if (isServerData && currentLoginPhone && !isAdmin) {
     localUsersMap[currentLoginPhone] = d;
-    SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
+    if (!window.kafakOrderEditorUI) SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
   }
 
   // 4. Screen-le pazhaya form hide cheyyunnu
@@ -2915,6 +2931,20 @@ window.clearAdminCache = function () {
 
 function showOrderLoadError(error) {
   showLoader(false);
+  if (!$('#returning-user-view').is(':visible')) {
+    $('#step-0').show();
+    $('#wizard-view').hide();
+    updateFooterButtons('step-0');
+    const needsLink = error.status === 401 || error.status === 404;
+    $('#order-entry-error').remove();
+    const box = $('<div id="order-entry-error" class="alert alert-warning mt-3 small" role="alert"></div>');
+    box.text(needsLink
+      ? 'ഈ ഓർഡർ തുറക്കാൻ WhatsApp confirmation-ലെ മുഴുവൻ order link തുറക്കുക. Phone number മാത്രം ഉപയോഗിച്ച് തുറക്കാനാവില്ല. / Open the complete order link from your confirmation message.'
+      : 'ഓർഡർ ലോഡ് ചെയ്യാനായില്ല. വീണ്ടും ശ്രമിക്കുക. / Unable to load your order. Please retry.');
+    if (!needsLink) $('<button type="button" class="btn btn-outline-dark btn-sm ms-2">Retry</button>').on('click', () => fetchOrder(new URLSearchParams(location.search).get('oid'))).appendTo(box);
+    $('#step-0').append(box);
+    return;
+  }
   $('#refresh-btn').prop('disabled',false).text('RETRY');
   $('.btn-update-sage').prop('disabled',true);
   $('#admin-action-bar').hide();
@@ -2926,6 +2956,7 @@ function showOrderLoadError(error) {
 }
 
 function fetchOrder(orderId, isSilent = false) {
+  $('#order-entry-error').remove();
   // Puthiya request povunnathinu munp pazhayathu odunnuvengil ath cancel cheyyunnu
   if (bgFetchController) bgFetchController.abort();
   bgFetchController = new AbortController();
