@@ -20,3 +20,5 @@ test('order and secure short-link entry points load polyfills before application
  }
  const html=fs.readFileSync(path.join(root,'order.html'),'utf8');assert(html.indexOf('height: 100vh;')<html.indexOf('height: 100dvh;'));
 });
+
+test('published compatibility output matches current sources and lockfile',()=>{const manifest=JSON.parse(fs.readFileSync(path.join(root,'compat/build-manifest.json'),'utf8'));for(const [file,expected]of Object.entries({...manifest.inputs,...manifest.outputs})){const actual=require('node:crypto').createHash('sha256').update(fs.readFileSync(path.join(root,file),'utf8').replace(/\r\n/g,'\n')).digest('hex');assert.equal(actual,expected,file+': run npm run build:order');}});

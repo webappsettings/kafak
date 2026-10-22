@@ -12,7 +12,7 @@ const sources=['order-runtime','order-admin-actions','order-customer-storage','o
  }
  const short=await esbuild.transform(lower(fs.readFileSync('o/open.js','utf8')),{target});fs.writeFileSync('compat/open-order.js',short.code);
  fs.writeFileSync('compat/LICENSES.txt',['core-js','whatwg-fetch','abortcontroller-polyfill','jquery','bootstrap','sweetalert2'].map(name=>{const root=path.dirname(require.resolve(name+'/package.json'));const file=['LICENSE','LICENSE.txt','LICENSE.md'].find(f=>fs.existsSync(path.join(root,f)));return name+'\n'+(file?fs.readFileSync(path.join(root,file),'utf8'):'See package license');}).join('\n\n'));
- const hash=file=>require('node:crypto').createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+ const hash=file=>require('node:crypto').createHash('sha256').update(fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n')).digest('hex');
  const inputs=[...sources.map(n=>n+'.js'),'o/open.js','build/order-polyfills.js','build/order-build.cjs','package-lock.json'];
  const outputs=fs.readdirSync('compat').filter(n=>n.endsWith('.js')).map(n=>'compat/'+n);
  fs.writeFileSync('compat/build-manifest.json',JSON.stringify({inputs:Object.fromEntries(inputs.map(f=>[f,hash(f)])),outputs:Object.fromEntries(outputs.map(f=>[f,hash(f)]))},null,2)+'\n');
