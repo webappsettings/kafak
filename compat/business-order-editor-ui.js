@@ -42,7 +42,8 @@ function _toPrimitive(t, e) {
   const storage = window.kafakStorage || localStorage;
   const api = new KafakBusinessApi(), editor = new KafakBusinessOrderEditor(api, storage);
   function access(id) {
-    var _last, _savedOrderData, _window$KafakCustomer, _Object$values$find;
+    var _editor$recoveredAcce, _last, _savedOrderData, _window$KafakCustomer, _Object$values$find;
+    if (((_editor$recoveredAcce = editor.recoveredAccess) === null || _editor$recoveredAcce === void 0 ? void 0 : _editor$recoveredAcce.orderid) === id) return editor.recoveredAccess.accessToken;
     const fromHash = new URLSearchParams(location.hash.slice(1)).get("access");
     if (new URLSearchParams(location.search).get("oid") === id && /^[A-Za-z0-9_-]{43}$/.test(fromHash || "")) return fromHash;
     let last;
@@ -84,6 +85,28 @@ function _toPrimitive(t, e) {
   window.kafakOrderEditorUI = {
     editor,
     access,
+    async recover(id, phone) {
+      const result = await api.request("/public/order-recovery", {
+        method: "POST",
+        data: {
+          oid: id,
+          phone
+        }
+      });
+      if (result.orderid !== id || !/^[A-Za-z0-9_-]{43}$/.test(result.accessToken || "")) throw Error("Unable to open the order. Please retry.");
+      editor.recoveredAccess = {
+        orderid: id,
+        accessToken: result.accessToken
+      };
+      try {
+        var _window$KafakCustomer4;
+        (_window$KafakCustomer4 = window.KafakCustomerStorage) === null || _window$KafakCustomer4 === void 0 || _window$KafakCustomer4.remember(storage, _objectSpread(_objectSpread({}, result), {}, {
+          phone
+        }));
+      } catch (_unused3) {
+      }
+      return result;
+    },
     async track(article) {
       var _editor$current, _savedOrderData2;
       if (storage.getItem("kafakAdmin") === "true") return api.request("/admin/parcel-tracking?" + new URLSearchParams({
@@ -120,7 +143,7 @@ function _toPrimitive(t, e) {
       return result;
     },
     async customer(phone) {
-      var _last2, _window$KafakCustomer4, _last3;
+      var _last2, _window$KafakCustomer5, _last3;
       const normalized = String(phone || "").replace(/\D/g, "").slice(-10);
       if (storage.getItem("kafakAdmin") === "true") {
         try {
@@ -141,11 +164,11 @@ function _toPrimitive(t, e) {
       let last;
       try {
         last = JSON.parse(storage.getItem("kafak-business-last-order") || "null");
-      } catch (_unused3) {
+      } catch (_unused4) {
       }
       const remembered = typeof localUsersMap === "object" ? localUsersMap[normalized] : null;
       if (remembered !== null && remembered !== void 0 && remembered.orderid) last = remembered;
-      if (!((_last2 = last) !== null && _last2 !== void 0 && _last2.orderid)) last = Object.values(((_window$KafakCustomer4 = window.KafakCustomerStorage) === null || _window$KafakCustomer4 === void 0 ? void 0 : _window$KafakCustomer4.links(storage)) || {}).find((row) => row.phone === normalized);
+      if (!((_last2 = last) !== null && _last2 !== void 0 && _last2.orderid)) last = Object.values(((_window$KafakCustomer5 = window.KafakCustomerStorage) === null || _window$KafakCustomer5 === void 0 ? void 0 : _window$KafakCustomer5.links(storage)) || {}).find((row) => row.phone === normalized);
       if ((_last3 = last) !== null && _last3 !== void 0 && _last3.orderid) {
         try {
           const row = await editor.load(last.orderid, {

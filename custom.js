@@ -458,7 +458,7 @@ let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
 
 });
 
-window.handlePhoneNext = function () {
+window.handlePhoneNext = async function () {
   const phone = $('#phone').val();
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
 
@@ -468,8 +468,15 @@ window.handlePhoneNext = function () {
   preloadHoneyVideo();
 
   // A link to an existing order must never fall through into new-order entry.
-  const linkedOrder = new URLSearchParams(location.search).get('oid');
+  const linkedOrder = new URLSearchParams(location.search).get('oid') || localUsersMap[phone]?.orderid;
   if (linkedOrder && window.kafakOrderEditorUI && SafeStorage.getItem('kafakAdmin') !== 'true') {
+    if(window.orderRecoveryRequired||!window.kafakOrderEditorUI.access(linkedOrder)){
+      if(window.orderRecoveryBusy)return;
+      window.orderRecoveryBusy=true;showLoader(true);$('#order-entry-error').remove();
+      try{await window.kafakOrderEditorUI.recover(linkedOrder,phone);window.orderRecoveryRequired=false;}
+      catch(error){showLoader(false);$('<div id="order-entry-error" class="small mt-3" role="alert"></div>').text(error.status===403?'ഈ ഓർഡറിന് നൽകിയ ഫോൺ നമ്പർ പരിശോധിക്കുക. / Check the phone number used for this order.':error.message).appendTo('#step-0');return;}
+      finally{window.orderRecoveryBusy=false;}
+    }
     fetchOrder(linkedOrder);
     return;
   }
@@ -2730,6 +2737,8 @@ function showOrderLoadError(error) {
     updateFooterButtons('step-0');
     const needsLink = error.status === 401 || error.status === 404;
     $('#order-entry-error').remove();
+    // A legacy link opens at phone entry; no alarming private-link warning.
+    if(needsLink){window.orderRecoveryRequired=true;return;}
     const box = $('<div id="order-entry-error" class="alert alert-warning mt-3 small" role="alert"></div>');
     box.text(needsLink
       ? 'ഈ ഓർഡർ തുറക്കാൻ WhatsApp confirmation-ലെ മുഴുവൻ order link തുറക്കുക. Phone number മാത്രം ഉപയോഗിച്ച് തുറക്കാനാവില്ല. / Open the complete order link from your confirmation message.'

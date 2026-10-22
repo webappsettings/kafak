@@ -4,6 +4,7 @@
  const storage=window.kafakStorage||localStorage;
  const api=new KafakBusinessApi(),editor=new KafakBusinessOrderEditor(api,storage);
  function access(id){
+  if(editor.recoveredAccess?.orderid===id)return editor.recoveredAccess.accessToken;
   const fromHash=new URLSearchParams(location.hash.slice(1)).get('access');
   if(new URLSearchParams(location.search).get('oid')===id&&/^[A-Za-z0-9_-]{43}$/.test(fromHash||''))return fromHash;
   let last;try{last=JSON.parse(storage.getItem('kafak-business-last-order')||'null');}catch{}
@@ -15,6 +16,14 @@
  }
  function confirmed(row){try{if(storage.getItem('kafakAdmin')!=='true'){window.KafakCustomerStorage?.remember(storage,{...row,accessToken:access(row.orderid)||row.accessToken});window.KafakCustomerStorage?.retire(storage,row);}}catch{/* Keep existing cache when persistence is unavailable. */}return {...row,accessToken:access(row.orderid)||row.accessToken,quote:{sku:row.sku,product:row.product,variant:row.variant,quantity:Number(row.quantity),productAmount:Number(row.Product_Amount),courierAmount:Number(row.Courier_Charge),total:Number(row.Grand_Total)}};}
  window.kafakOrderEditorUI={editor,access,
+  async recover(id,phone){
+   const result=await api.request('/public/order-recovery',{method:'POST',data:{oid:id,phone}});
+   if(result.orderid!==id||!/^[A-Za-z0-9_-]{43}$/.test(result.accessToken||''))throw Error('Unable to open the order. Please retry.');
+   // Keep access in memory as well: a blocked storage must not prevent this read.
+   editor.recoveredAccess={orderid:id,accessToken:result.accessToken};
+   try{window.KafakCustomerStorage?.remember(storage,{...result,phone});}catch{}
+   return result;
+  },
   async track(article){
    if(storage.getItem('kafakAdmin')==='true')return api.request('/admin/parcel-tracking?'+new URLSearchParams({trackingId:article}));
    const id=editor.current?.orderid||(typeof savedOrderData==='object'?savedOrderData?.orderid:null);

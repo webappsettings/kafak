@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded',function(){
 (function(){
  const scripts=new Map();
  function script(src){if(!scripts.has(src))scripts.set(src,new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src;el.onload=resolve;el.onerror=()=>{scripts.delete(src);el.remove();reject(Error('This feature could not load. Please retry.'));};document.head.append(el);}));return scripts.get(src);}
- KafakUI.adminActions=()=>script('compat/order-admin-actions.js?v=20261022d');
- KafakUI.adminTransport=async()=>{await script('compat/business-admin-commands.js?v=20261022d');await script('compat/business-admin-transport.js?v=20261022d');};
+ KafakUI.adminActions=()=>script('compat/order-admin-actions.js?v=20261022e');
+ KafakUI.adminTransport=async()=>{await script('compat/business-admin-commands.js?v=20261022e');await script('compat/business-admin-transport.js?v=20261022e');};
  KafakUI.datePicker=async()=>{if(window.flatpickr)return;if(!document.querySelector('[data-order-datepicker]')){const css=document.createElement('link');css.rel='stylesheet';css.href='https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css';css.dataset.orderDatepicker='1';document.head.append(css);}await script('https://cdn.jsdelivr.net/npm/flatpickr');};
 })();
