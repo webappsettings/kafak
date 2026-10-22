@@ -27,8 +27,8 @@ let bgFetchController = null;
 const STORAGE_KEY = 'kafakCustomerData';
 
 const SafeStorage = {
-  getItem: function (key) { try { return window.kafakStorage.getItem(key); } catch (e) { return null; } },
-  setItem: function (key, val) { try { if(key===STORAGE_KEY&&window.KAFAK_BACKEND==='business'&&window.kafakStorage.getItem('kafakAdmin')!=='true'){const map=JSON.parse(val);val=JSON.stringify(Object.fromEntries(Object.entries(map).filter(([,d])=>!d.orderid)));} window.kafakStorage.setItem(key, val); } catch (e) { } },
+  getItem: function (key) { try { if(key===STORAGE_KEY&&window.KAFAK_BACKEND==='business'&&window.kafakStorage.getItem('kafakAdmin')!=='true'&&window.KafakCustomerStorage)return JSON.stringify(window.KafakCustomerStorage.customerMap(window.kafakStorage)); return window.kafakStorage.getItem(key); } catch (e) { return null; } },
+  setItem: function (key, val) { try { if(key===STORAGE_KEY&&window.KAFAK_BACKEND==='business'&&window.kafakStorage.getItem('kafakAdmin')!=='true'){const map=JSON.parse(val);if(window.KafakCustomerStorage){window.KafakCustomerStorage.saveDraftMap(window.kafakStorage,map);return;}val=JSON.stringify(Object.fromEntries(Object.entries(map).filter(([,d])=>!d.orderid)));} window.kafakStorage.setItem(key, val); } catch (e) { } },
   removeItem: function (key) { try { window.kafakStorage.removeItem(key); } catch (e) { } }
 };
 
@@ -349,7 +349,7 @@ $(document).ready(function () {
 
   $('#phone, #edit-phone, #whatsapp, #altphone, #pincode').on('input', function () { this.value = this.value.replace(/\D/g, ''); });
 
-  // 🔥 SMART PASTE (Admin can paste anywhere, Customer cannot paste in Main Phone)
+  // Preserve international WhatsApp numbers; normalize only an Indian primary phone.
   $('#phone, #edit-phone, #whatsapp, #altphone').on('paste', function (e) {
     e.preventDefault();
 
@@ -359,9 +359,7 @@ let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
     if (['phone','edit-phone'].includes(this.id) && cleanNum.length === 12 && cleanNum.startsWith('91')) {
       cleanNum = cleanNum.substring(2);
     }
-    else if (cleanNum.length > 10) {
-      cleanNum = cleanNum.slice(-10);
-    }
+
 
     $(this).val(cleanNum);
     $(this).trigger('input');
@@ -442,7 +440,7 @@ let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
   } else {
     // 🔥 AUTO LOGIN FOR PWA & RETURNING CUSTOMERS
     let lastPhone = SafeStorage.getItem('lastUsedPhone');
-    if (lastPhone && localUsersMap[lastPhone] && !isAdmin) {
+    if (lastPhone && localUsersMap[lastPhone] && !isAdmin && !window.kafakStorage.getItem('kafak-draft-v1:new')) {
       $('#phone').val(lastPhone);
       showLoader(true);
       setTimeout(() => { handlePhoneNext(); }, 300);
@@ -476,6 +474,7 @@ window.handlePhoneNext = function () {
     return;
   }
 
+  if(window.kafakOrderEditorUI&&localUsersMap[phone]?.orderid){fetchOrder(localUsersMap[phone].orderid);return;}
   if (localUsersMap[phone]) {
     let localData = localUsersMap[phone];
     let status = String(localData.Status || '').toLowerCase();
@@ -2718,174 +2717,7 @@ window.syncSingleOrder = function (oid) {
 }
 
 // 🔥 ADMIN ACTION (With Meta Cleanup Fix)
-window.adminAction = async function (oid, status) {
-  if(status==='Paid'){try{await KafakUI.datePicker();}catch(error){showAlert(error.message);return;}}
-
-  // 1. ARCHIVE: Direct Server Call (No Change)
-  if (typeof bgFetchController !== 'undefined' && bgFetchController) bgFetchController.abort();
-
-  if (status === 'Archive') {
-    if (!confirm(`Move this order to Archive? (Updates Server Directly)`)) return;
-
-    const btnContainer = $('#admin-btn-container');
-    const originalContent = btnContainer.html();
-    btnContainer.html('<div class="text-center py-2"><i class="fas fa-spinner fa-spin text-primary"></i> Archiving...</div>');
-
-    orderServiceFetch(sc, {
-      method: 'POST',
-      body: JSON.stringify({ action: "bulkUpdateStatus", updates: [{ oid: oid, status: status }] })
-    })
-      .then(res => res.json())
-      .then(data => {
-        if (data.result === 'success') {
-          let updates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
-          updates = updates.filter(item => item.oid !== oid);
-          window.kafakStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-          Swal.fire({ icon: 'success', title: 'Archived!', toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-          updateAdminUI(status, oid);
-        } else {
-          alert("Failed to Archive!");
-          btnContainer.html(originalContent);
-        }
-      })
-      .catch(err => {
-        alert("Network Error");
-        btnContainer.html(originalContent);
-      });
-    return;
-  }
-
-  let selectedDate = null;
-
-  // 2. 🔥 PAID: Show Beautiful Flatpickr Date & Time Picker
-  if (status === 'Paid') {
-    const { value: dateVal } = await Swal.fire({
-      title: 'Mark as PAID',
-      html: `
-            <div style="text-align:center;">
-                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT PAYMENT TIME</label>
-                <input type="text" id="flatpickr-paid" class="form-control text-center fw-bold" 
-                       style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
-                       placeholder="Select Date...">
-            </div>
-          `,
-      showCancelButton: true,
-      confirmButtonText: 'Save Paid',
-      confirmButtonColor: '#28a745',
-      focusConfirm: false,
-      didOpen: () => {
-        // 🔥 Initialize Flatpickr (Material Style)
-        flatpickr("#flatpickr-paid", {
-          enableTime: true,
-          dateFormat: "Y-m-d H:i",
-          defaultDate: new Date(),
-          theme: "material_blue",
-          time_24hr: true,
-          disableMobile: true
-        });
-      },
-      preConfirm: () => {
-        return document.getElementById('flatpickr-paid').value;
-      }
-    });
-
-    if (!dateVal) return;
-    selectedDate = dateVal;
-  }
-  else {
-    // 3. OTHERS (Sent, Dispatched, etc.)
-    if (!confirm(`Mark as '${status}'? (Saved Locally)`)) return;
-
-    if (status === 'Dispatched') {
-      const now = new Date();
-      // YYYY-MM-DD HH:MM format logic
-      const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, '0');
-      const day = String(now.getDate()).padStart(2, '0');
-      const hours = String(now.getHours()).padStart(2, '0');
-      const minutes = String(now.getMinutes()).padStart(2, '0');
-      selectedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
-    }
-  }
-
-  // 🔥🔥🔥 CHANGE STARTS HERE (REFUND & META CLEANUP LOGIC) 🔥🔥🔥
-
-  let updates = JSON.parse(window.kafakStorage.getItem('pendingUpdates') || "[]");
-  const previousStatusUpdate = updates.find(item => item.oid === oid && (!item.action || item.action === 'status'));
-  updates = updates.filter(item => item.oid !== oid || (item.action && item.action !== 'status'));
-
-  let oldStatus = 'Pending';
-  let cached = JSON.parse(window.kafakStorage.getItem('allOrdersCache') || "[]");
-  let foundOrder = cached.find(o => o.orderid === oid);
-
-  if (typeof userData !== 'undefined' && userData.orderid === oid) {
-    oldStatus = userData.Status || 'Pending';
-  } else if (foundOrder) {
-    oldStatus = foundOrder.Status;
-  }
-
-  // 🔥 FIX: പോപ്പപ്പിൽ വെച്ച് Paid ആക്കുമ്പോഴും പഴയ ടാഗുകൾ കളയുന്നു!
-  let currentMeta = '';
-  if (typeof savedOrderData !== 'undefined' && savedOrderData.orderid === oid) {
-    currentMeta = savedOrderData.adminMeta || '';
-  } else if (foundOrder) {
-    currentMeta = foundOrder.adminMeta || '';
-  }
-
-  let cleanMeta = currentMeta;
-  let metaCleaned = false;
-
-  if (['Pending', 'Sent', 'pending', 'sent'].includes(oldStatus.toLowerCase()) && status === 'Paid') {
-    if (currentMeta.includes('P') || currentMeta.includes('S') || currentMeta.includes('T')) {
-      cleanMeta = currentMeta.replace(/P_\d+/g, '').replace(/[PST]/g, '').replace(/\s+/g, ' ').trim();
-      metaCleaned = true;
-    }
-  }
-
-  let needsRefundDelete = false;
-  if (String(oldStatus).trim().toLowerCase() === 'refunded' && status !== 'Refunded') {
-    needsRefundDelete = true;
-    console.log("Refund deletion queued for sync...");
-  }
-
-  // 3. Save to Local Storage with Flag
-  updates.push({
-    oid: oid,
-    status: status,
-    oldStatus: previousStatusUpdate?.oldStatus || oldStatus,
-    actionDate: selectedDate,
-    time: new Date().getTime(),
-    deleteRefund: needsRefundDelete
-  });
-
-  if (metaCleaned) {
-    let metaIdx = updates.findIndex(u => u.oid === oid && u.action === 'meta' && u.provider === undefined);
-    if (metaIdx > -1) updates[metaIdx].meta = cleanMeta;
-    else updates.push({ oid: oid, action: 'meta', meta: cleanMeta, oldMeta: currentMeta, time: new Date().getTime() });
-  }
-
-  window.kafakStorage.setItem('pendingUpdates', JSON.stringify(updates));
-
-  // 🔥 കാഷെയിൽ സ്റ്റാറ്റസ് ഉടൻ അപ്ഡേറ്റ് ആവാൻ ഈ ഭാഗം ചേർക്കുക
-  if (typeof savedOrderData !== 'undefined' && savedOrderData) {
-    updateLocalCache(savedOrderData, status);
-    if (metaCleaned) {
-      savedOrderData.adminMeta = cleanMeta;
-      if (typeof userData !== 'undefined') userData.adminMeta = cleanMeta;
-    }
-  } else if (foundOrder) {
-    foundOrder.Status = status;
-    if (metaCleaned) foundOrder.adminMeta = cleanMeta;
-    window.kafakStorage.setItem('allOrdersCache', JSON.stringify(cached));
-  }
-
-  if (typeof userData !== 'undefined') userData.Status = status;
-  if (typeof savedOrderData !== 'undefined') savedOrderData.Status = status;
-
-  Swal.fire({ icon: 'success', title: `Saved: ${status}`, toast: true, position: 'top-end', showConfirmButton: false, timer: 1500 });
-  updateAdminUI(status, oid);
-}
+window.adminAction = async function (...args) { try { await KafakUI.adminActions(); return window.adminAction(...args); } catch(error) { showAlert(error.message); } };
 window.clearAdminCache = function () {
   if (confirm("Cache ക്ലിയർ ചെയ്ത് റീലോഡ് ചെയ്യണോ?")) { SafeStorage.removeItem('allOrdersCache'); location.reload(); }
 }
@@ -2992,144 +2824,6 @@ function fetchOrder(orderId, isSilent = false) {
         });
       }
     });
-}
-
-function injectVideoCSS() {
-  $('head').append(`<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">`);
-  $('body').append(`
-    <style>
-        #videoModal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: #000; z-index:99999; flex-direction:column; align-items:center; justify-content:center; }
-        .video-container { position: relative; width: 320px; height: 576px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #333; }
-        video { width: 100%; height: 100%; object-fit: cover; }
-        .digital-label { position: absolute; top: 67%; left: 53%; transform: translate(-30%, -50%) scale(0.7); width: 128px; height: 128px; border-radius: 50%; background: radial-gradient(circle, #ffffff 40%, #ffe6a0 100%); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4); border: 1px solid rgba(0, 0, 0, 0.1); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; z-index: 10; opacity: 0; transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1); }
-        .digital-label.visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-        .content-group { display: flex; flex-direction: column; align-items: center; transition: transform 0.8s ease-in-out; }
-        .digital-label img { width: 60px; opacity: 0.95; margin-bottom: 2px; }
-        .packed-text { font-family: 'Montserrat', sans-serif; font-size: 10px; color: #5d4037; text-transform: uppercase; letter-spacing: 1.5px; font-weight: 800; }
-        .digital-label.final-state .content-group { transform: translateY(-18px) scale(0.9); }
-        .check-wrapper { position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scale(0); transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.27); }
-        .check-wrapper.show { transform: translateX(-50%) scale(1); }
-        .checkmark-svg { width: 28px; height: 28px; stroke: #28a745; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; fill: none; stroke-dasharray: 50; stroke-dashoffset: 50; transition: stroke-dashoffset 0.4s ease-in-out; }
-        .check-wrapper.draw .checkmark-svg { stroke-dashoffset: 0; }
-        .name-wrapper { position: absolute; top: 50%; left: 50%; z-index: 999; transform: translate(-100%, -250%) scale(1.2); opacity: 0; transition: all 1s cubic-bezier(0.25, 1, 0.5, 1); display: flex; justify-content: center; align-items: center; width: 100%; }
-        .user-name { font-family: 'Courier New', monospace; font-size: 25px; font-weight: 900; color: #ffffff; text-transform: uppercase; padding-bottom: 2px; background-color: #000000; height: 32px; display: flex; align-items: center; justify-content: center; width: auto; min-width: 163px; padding-left: 15px; padding-right: 15px; padding-top: 2px; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0,0,0,0.3); white-space: nowrap; }
-        .name-wrapper.show-big { opacity: 1; transform: translate(-50%, -250%) scale(1.2); }
-        .name-wrapper.docked { top: 67%; left: 53%; transform: translate(-50%, 2px) scale(0.5); opacity: 1; }
-        .loading-txt { color: #d4a017; margin-top: 20px; font-family: sans-serif; font-size: 12px; letter-spacing: 2px; opacity: 0.8; }
-    </style>
-    <div id="videoModal">
-        <div class="video-container">
-            <video id="honeyVideo" muted playsinline preload="none"><source src="honey_rotate.mp4" type="video/mp4"></video>
-            <div class="digital-label" id="customLabel">
-                <div class="content-group"><img src="logo.png" alt="Kafak"><div class="packed-text" data-i18n="lbl_reserved_for">RESERVED FOR</div></div>
-                <div class="check-wrapper" id="finalCheck"><svg class="checkmark-svg" viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"></path></svg></div>
-            </div>
-            <div class="name-wrapper" id="nameBadge"><div class="user-name" id="vid-username"></div></div>
-        </div>
-        <div class="loading-txt" data-i18n="lbl_preparing">PREPARING YOUR ORDER...</div>
-    </div>`);
-}
-
-let honeyVideoPreload, honeyVideoURL, honeyVideoFile, honeyVideoController;
-function preloadHoneyVideo() {
- const video=document.getElementById('honeyVideo');if(!video)return;
- if(!honeyVideoPreload){
-  video.preload='auto';video.dataset.preloaded='true';
-  // Fetch once in the background: Safari may ignore preload for hidden videos.
-  honeyVideoFile ||= video.canPlayType('video/mp4; codecs="avc1.42E01E"')?'honey_rotate.mp4':'honey_rotate.webm';
-  honeyVideoController=new AbortController();
-  honeyVideoPreload=fetch(honeyVideoFile,{cache:'force-cache',signal:honeyVideoController.signal}).then(response=>{if(!response.ok)throw Error('Video unavailable');return response.blob();}).then(blob=>{
-   honeyVideoURL ||= URL.createObjectURL(blob);
-   if(!orderPresentation){video.src=honeyVideoURL;video.load();}
-   return blob;
-  }).catch(()=>{honeyVideoPreload=null;});
- }
- return honeyVideoPreload;
-}
-
-let orderAnimationTimers = [];
-let orderNameInterval = null;
-let orderPresentation = null;
-function stopOrderAnimation() {
-  $('#animation-recovery').remove();
-  orderAnimationTimers.forEach(clearTimeout);
-  orderAnimationTimers = [];
-  clearInterval(orderNameInterval);
-  orderNameInterval = null;
-  const video = document.getElementById('honeyVideo');
-  if (video) { video.pause(); video.onended = null; video.onerror = null; video.onplaying = null; video.onwaiting = null; }
-  orderPresentation = null;
-}
-
-function finishOrderPresentation() {
-  const state = orderPresentation;
-  if (!state || state.finished || !state.videoDone || !state.nameDone || !window.orderSuccess) return;
-  state.finished = true;
-  $('#finalCheck').addClass('show');
-  orderAnimationTimers.push(setTimeout(() => $('#finalCheck').addClass('draw'), 100));
-  orderAnimationTimers.push(setTimeout(() => {
-    stopOrderAnimation();
-    showLoader(false); $('#videoModal').fadeOut(); window.kafakRecovery?.completed(); $('#order-form').hide(); $('#showsuccess').fadeIn();
-    updateFooterButtons('none'); setTimeout(sendToWhatsapp, 1500);
-  }, 600));
-}
-
-function playVideoAnimation(userName, apiCallback) {
-  stopOrderAnimation();
-  $('#videoModal').css('display', 'flex').fadeIn();
-  const video = document.getElementById('honeyVideo');
-  const label = $('#customLabel');
-  const nameBadge = $('#nameBadge');
-  const checkWrapper = $('#finalCheck');
-  const nameBox = document.getElementById('vid-username');
-
-  label.removeClass('visible final-state');
-  nameBadge.removeClass('show-big docked');
-  checkWrapper.removeClass('show draw');
-  nameBox.textContent = "";
-
-  let fontSize = 25;
-  if (userName.length > 20) fontSize = 16; else if (userName.length > 12) fontSize = 20;
-  $('#vid-username').css('font-size', fontSize + 'px');
-
-  window.orderSuccess = false;
-  const state = orderPresentation = { videoDone: false, nameDone: false, finished: false };
-  const videoComplete = () => { if (orderPresentation !== state) return; state.videoDone = true; finishOrderPresentation(); };
-  video.onended = videoComplete;
-  // Media is optional; the server result is never optional.
-  const skipVideo=()=>{
-    if(orderPresentation!==state||state.finished)return;
-    orderAnimationTimers.forEach(clearTimeout);orderAnimationTimers=[];
-    clearInterval(orderNameInterval);orderNameInterval=null;
-    video.onplaying=null;video.onwaiting=null;video.onerror=null;video.onended=null;video.pause();
-    state.videoDone=true;state.nameDone=true;state.skipped=true;
-    if(!honeyVideoURL)honeyVideoController?.abort();
-    $('#videoModal').hide();showLoader(true);finishOrderPresentation();
-  };
-  if(!honeyVideoURL){skipVideo();apiCallback();return;}
-  video.onerror=skipVideo;
-  video.onplaying=()=>{clearTimeout(state.stallTimer);startNameTimeline();};
-  video.onwaiting=()=>{clearTimeout(state.stallTimer);state.stallTimer=setTimeout(skipVideo,2000);orderAnimationTimers.push(state.stallTimer);};
-  video.src=honeyVideoURL;video.currentTime=0;
-  video.play().catch(skipVideo);
-  state.stallTimer=setTimeout(()=>{if(video.paused||video.readyState<3)skipVideo();},2000);
-  orderAnimationTimers.push(state.stallTimer);
-
-  apiCallback();
-
-  function startNameTimeline(){
-  if(state.timelineStarted)return;state.timelineStarted=true;
-  const later = (fn, delay) => orderAnimationTimers.push(setTimeout(fn, delay));
-  later(() => { label.addClass('visible'); }, 4700);
-  later(() => { nameBadge.addClass('show-big'); }, 5500);
-  later(() => {
-    let i = 0; let text = userName.replace(/ /g, "\u00A0"); nameBox.textContent = "";
-    orderNameInterval = setInterval(() => { if (i < text.length) { nameBox.textContent += text.charAt(i); i++; } else { clearInterval(orderNameInterval); orderNameInterval = null; } }, 80);
-  }, 5800);
-  const dockAt = Math.max(7800, 5800 + userName.length * 80 + 300);
-  later(() => { nameBadge.removeClass('show-big').addClass('docked'); label.addClass('final-state'); }, dockAt);
-  later(() => { state.nameDone = true; finishOrderPresentation(); }, dockAt + 500);
-  }
 }
 
 function postOrder(data) {

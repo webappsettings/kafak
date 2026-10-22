@@ -6,9 +6,20 @@
  w.KafakUI={escape(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));},async pin(pin){const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),12000);try{const res=await fetch('pincode_json_files/'+encodeURIComponent(pin)+'.json',{signal:controller.signal});if(!res.ok)throw Error(res.status===404?'Pincode not found. Check the number.':'Address lookup unavailable. Please retry.');const data=await res.json();if(!Array.isArray(data)||!data.length)throw Error('No post offices found. Check the pincode.');return data;}catch(e){if(e.name==='AbortError')throw Error('Address lookup timed out. Please retry.');throw e;}finally{clearTimeout(timer);}}};
 })(window);
 
+// Older mobile engines support grid gap but not flex gap; test the actual layout.
+document.addEventListener('DOMContentLoaded',function(){
+ const probe=document.createElement('div');
+ probe.style.cssText='display:flex;flex-direction:column;row-gap:1px;position:absolute;visibility:hidden';
+ for(let i=0;i<2;i++){const child=document.createElement('div');child.style.height='1px';probe.appendChild(child);}
+ document.body.appendChild(probe);
+ if(probe.scrollHeight!==3)document.documentElement.classList.add('kafak-no-flex-gap');
+ probe.remove();
+});
+
 (function(){
  const scripts=new Map();
  function script(src){if(!scripts.has(src))scripts.set(src,new Promise((resolve,reject)=>{const el=document.createElement('script');el.src=src;el.onload=resolve;el.onerror=()=>{scripts.delete(src);el.remove();reject(Error('This feature could not load. Please retry.'));};document.head.append(el);}));return scripts.get(src);}
- KafakUI.adminTransport=async()=>{await script('business-admin-commands.js?v=20261022c');await script('business-admin-transport.js?v=20261022c');};
+ KafakUI.adminActions=()=>script('compat/order-admin-actions.js?v=20261022d');
+ KafakUI.adminTransport=async()=>{await script('compat/business-admin-commands.js?v=20261022d');await script('compat/business-admin-transport.js?v=20261022d');};
  KafakUI.datePicker=async()=>{if(window.flatpickr)return;if(!document.querySelector('[data-order-datepicker]')){const css=document.createElement('link');css.rel='stylesheet';css.href='https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css';css.dataset.orderDatepicker='1';document.head.append(css);}await script('https://cdn.jsdelivr.net/npm/flatpickr');};
 })();

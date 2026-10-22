@@ -1,4 +1,4 @@
-/* Migration candidate: the live order page does not load this file yet. */
+/* Customer order submission and durable request recovery. */
 (function (scope) {
   'use strict';
   class BusinessOrder {
@@ -52,7 +52,7 @@
       this.inFlight = this.api.submitOrder(submission.data, submission.requestId).then(result => {
         if (result.result !== 'success' || !result.orderid || !result.accessToken || !result.quote) throw Object.assign(new Error('The order response was incomplete. Retry to confirm the same order.'), { uncertain: true });
         // Save the private link before removing retry information.
-        this.storage.setItem('kafak-business-last-order', JSON.stringify({ ...result, name: submission.data.name }));
+        this.storage.setItem('kafak-business-last-order', JSON.stringify({ orderid:result.orderid, accessToken:result.accessToken, shortCode:result.shortCode, name:submission.data.name }));
         this.storage.removeItem('kafak-business-pending-order');
         this.pending = null;
         return { ...result, customer: submission.data };

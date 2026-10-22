@@ -1,0 +1,23 @@
+(async () => {
+  const state = document.getElementById("state");
+  try {
+    const code = location.hash.slice(1);
+    if (!/^[A-Za-z0-9_-]{22}$/.test(code)) throw Error("This order link is incomplete.");
+    const response = await fetch("https://production.kafaklife.com/kafak-business/api/public/short-link", {
+      headers: {
+        Authorization: "Bearer " + code
+      },
+      cache: "no-store"
+    });
+    if (!response.ok) throw Error("Unable to open this order. Please try again.");
+    const order = await response.json();
+    const url = new URL("../order.html", location.href);
+    url.searchParams.set("oid", order.orderid);
+    url.hash = new URLSearchParams({
+      access: order.accessToken
+    }).toString();
+    location.replace(url.href);
+  } catch (e) {
+    state.textContent = e.message;
+  }
+})();

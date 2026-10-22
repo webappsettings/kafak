@@ -1,4 +1,4 @@
-/* Kafak Business transport. Loaded only by the migration frontend until cutover. */
+/* Shared Kafak Business API transport: bounded reads and idempotent writes. */
 (function (scope) {
   'use strict';
   class BusinessApi {

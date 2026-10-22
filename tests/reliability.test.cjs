@@ -151,16 +151,16 @@ test('Customer history index matches existing status and quantity rules', () => 
  assert.equal(ctx.buildCustomerStats(rows).get('3232232321').orders,2);
 });
 
-test('admin today grouping follows IST and history defaults to 50',()=>{
+test('admin today grouping follows IST and active tabs have no 50-order cap',()=>{
  const code=admin.slice(admin.indexOf('function adminDayKey(value)'),admin.indexOf('window.loadMoreCards ='));
  const ctx={window:{},Intl,Date};vm.createContext(ctx);vm.runInContext(code,ctx);
  assert.equal(ctx.adminDayKey(new Date('2026-10-13T18:29:59Z')),'2026-10-13');
  assert.equal(ctx.adminDayKey(new Date('2026-10-13T18:30:00Z')),'2026-10-14');
- assert(Object.values(ctx.window.tabLimits).every(n=>n===50));
+ assert(Object.values(ctx.window.tabLimits).every(n=>n===Infinity));
 });
 
 test('Success tick waits for video, name and server in every completion order',()=>{
- const code=customer.slice(customer.indexOf('function finishOrderPresentation()'),customer.indexOf('function playVideoAnimation('));
+ const presentation=fs.readFileSync(path.join(__dirname,'../order-presentation.js'),'utf8');const code=presentation.slice(presentation.indexOf('function finishOrderPresentation()'),presentation.indexOf('function playVideoAnimation('));
  for(const sequence of [['videoDone','nameDone','saved'],['saved','nameDone','videoDone'],['nameDone','videoDone','saved']]){
   let ticks=0,closed=0;const timers=[];
   const ctx={showLoader(){},orderPresentation:{videoDone:false,nameDone:false,finished:false},window:{orderSuccess:false},orderAnimationTimers:[],setTimeout(fn){timers.push(fn);return timers.length;},stopOrderAnimation(){},updateFooterButtons(){},sendToWhatsapp(){},$(selector){return {addClass(){if(selector==='#finalCheck')ticks++;},fadeOut(){closed++;},hide(){},fadeIn(){}}}};
@@ -189,7 +189,7 @@ test('business queue batches at 100, preserves failed jobs and acknowledges only
 test('failed reads stop the status spinner and offer order-link help or retry without enabling stale edits',()=>{
  const code=customer.slice(customer.indexOf('function showOrderLoadError(error)'),customer.indexOf('function fetchOrder('));
  for(const status of [401,503]){
-  const nodes=new Map();let hidden=false;const ctx={editingOrderId:'K-test',encodeURIComponent,showLoader:value=>hidden=value===false,$:selector=>{if(!nodes.has(selector))nodes.set(selector,{prop(k,v){this[k]=v;return this;},text(v){this.content=v;return this;},html(v){this.content=v;return this;},show(){return this;},hide(){this.hidden=true;return this;}});return nodes.get(selector);}};
+  const nodes=new Map();let hidden=false;const ctx={editingOrderId:'K-test',encodeURIComponent,showLoader:value=>hidden=value===false,$:selector=>{if(!nodes.has(selector))nodes.set(selector,{is(){return true;},prop(k,v){this[k]=v;return this;},text(v){this.content=v;return this;},html(v){this.content=v;return this;},show(){return this;},hide(){this.hidden=true;return this;}});return nodes.get(selector);}};
   vm.createContext(ctx);vm.runInContext(code,ctx);ctx.showOrderLoadError({status});assert(hidden);assert.equal(nodes.get('.btn-update-sage').disabled,true);assert.equal(nodes.get('#admin-action-bar').hidden,true);assert.match(nodes.get('#status-area').content,status===401?/complete order link/:/Retry/);
  }
 });

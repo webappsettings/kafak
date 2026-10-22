@@ -9,10 +9,11 @@
   let last;try{last=JSON.parse(storage.getItem('kafak-business-last-order')||'null');}catch{}
   if(last?.orderid===id&&last.accessToken)return last.accessToken;
   if(typeof savedOrderData==='object'&&savedOrderData?.orderid===id&&savedOrderData.accessToken)return savedOrderData.accessToken;
+  const link=window.KafakCustomerStorage?.links(storage)[id];if(link?.accessToken)return link.accessToken;
   if(typeof localUsersMap==='object')return Object.values(localUsersMap).find(row=>row?.orderid===id&&row.accessToken)?.accessToken;
   return undefined;
  }
- function confirmed(row){return {...row,accessToken:access(row.orderid)||row.accessToken,quote:{sku:row.sku,product:row.product,variant:row.variant,quantity:Number(row.quantity),productAmount:Number(row.Product_Amount),courierAmount:Number(row.Courier_Charge),total:Number(row.Grand_Total)}};}
+ function confirmed(row){try{if(storage.getItem('kafakAdmin')!=='true'){window.KafakCustomerStorage?.remember(storage,{...row,accessToken:access(row.orderid)||row.accessToken});window.KafakCustomerStorage?.retire(storage,row);}}catch{/* Keep existing cache when persistence is unavailable. */}return {...row,accessToken:access(row.orderid)||row.accessToken,quote:{sku:row.sku,product:row.product,variant:row.variant,quantity:Number(row.quantity),productAmount:Number(row.Product_Amount),courierAmount:Number(row.Courier_Charge),total:Number(row.Grand_Total)}};}
  window.kafakOrderEditorUI={editor,access,
   async track(article){
    if(storage.getItem('kafakAdmin')==='true')return api.request('/admin/parcel-tracking?'+new URLSearchParams({trackingId:article}));
@@ -39,6 +40,7 @@
    let last;try{last=JSON.parse(storage.getItem('kafak-business-last-order')||'null');}catch{}
    const remembered=typeof localUsersMap==='object'?localUsersMap[normalized]:null;
    if(remembered?.orderid)last=remembered;
+   if(!last?.orderid)last=Object.values(window.KafakCustomerStorage?.links(storage)||{}).find(row=>row.phone===normalized);
    if(last?.orderid){
     try{
      const row=await editor.load(last.orderid,{token:last.accessToken});
