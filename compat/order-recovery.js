@@ -95,7 +95,7 @@ function _toPrimitive(t, e) {
   function capture() {
     var _savedOrderData;
     if (restoring || window.orderSuccess || !storage.persistent) return;
-    const wizard = $("#wizard-view").is(":visible");
+    const wizard = $("#wizard-view").is(":visible") || currentStep === 0 && $("#step-0").is(":visible") && !!read(draftKey);
     const editing = $("#address-edit-box").is(":visible");
     if (!wizard && !editing) return;
     const fields = {};
@@ -149,8 +149,14 @@ function _toPrimitive(t, e) {
       }
       if (d.wizard) {
         currentStep = d.step;
-        showStep(currentStep);
-        updateFooterButtons("wizard");
+        if (currentStep === 0) {
+          $("#step-0").show();
+          $("#wizard-view").hide();
+          updateFooterButtons("step-0");
+        } else {
+          showStep(currentStep);
+          updateFooterButtons("wizard");
+        }
       } else {
         await handleEditPincode($("#edit-pincode").val());
         const po = d.fields["edit-postoffice"];

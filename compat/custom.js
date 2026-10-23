@@ -393,7 +393,12 @@ $(document).ready(function() {
     if (isAdmin) {
       setupAdminView(oid);
     } else if (window.kafakOrderEditorUI) {
-      fetchOrder(oid);
+      if (window.kafakOrderEditorUI.access(oid)) fetchOrder(oid);
+      else {
+        showLoader(false);
+        $("#step-0").show();
+        updateFooterButtons("step-0");
+      }
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
@@ -437,6 +442,7 @@ $(document).ready(function() {
 window.handlePhoneNext = async function() {
   var _localUsersMap$phone, _localUsersMap$phone2;
   const phone = $("#phone").val();
+  const previousPhone = currentLoginPhone;
   if (!/^[0-9]{10}$/.test(phone)) {
     showAlert(getAlert("err_phone"));
     return;
@@ -487,9 +493,9 @@ window.handlePhoneNext = async function() {
     return;
   }
   editingOrderId = null;
-  $("#step-0").hide();
-  $("#whatsapp").val(phone);
+  if (!$("#whatsapp").val() || $("#whatsapp").val() === previousPhone) $("#whatsapp").val(phone);
   startWizard();
+  $("#step-0").hide();
   checkUserOnServerBackground(phone);
   $("#top-progress-container").fadeIn();
   showLoader(false);
@@ -687,7 +693,6 @@ function handleEditControlsVisibility(d) {
   if (d.readOnly && !isAdmin && !["completed", "delivered", "refunded"].includes(status)) {
     $("#quick-qty").prop("disabled", true);
     $("#btn-edit-addr,.btn-update-sage,#address-edit-box").hide();
-    $('<div id="read-only-notice" class="alert alert-light small mt-2">This older link is view-only. Contact Kafak for a private edit link.</div>').insertAfter("#status-area");
     return;
   }
   if (isAdmin) {
@@ -783,9 +788,15 @@ function handleEditControlsVisibility(d) {
   $("#btn-req-modify").remove();
 }
 window.submitWizardOrder = async function() {
+  if (!/^[0-9]{8,15}$/.test($("#altphone").val()) || $("#altphone").val() === $("#phone").val()) {
+    currentStep = 6;
+    showStep(6);
+    showAlert(getAlert($("#altphone").val() === $("#phone").val() ? "err_alt_same" : "err_alt_required"));
+    return;
+  }
   const phoneCheck = $("#phone").val();
   const isAdmin = window.kafakStorage.getItem("kafakAdmin") === "true";
-  if (!editingOrderId && phoneCheck && !isAdmin) {
+  if (!window.kafakOrderEditorUI && !editingOrderId && phoneCheck && !isAdmin) {
     showLoader(true);
     try {
       let data = window.kafakOrderEditorUI ? await window.kafakOrderEditorUI.customer(phoneCheck) : await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`).then((res) => res.json());
@@ -953,9 +964,12 @@ window.startWizard = function() {
   }
 };
 window.showStep = function(s) {
-  $(".wiz-step").hide();
-  if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
-  else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
+  const target = $(`.wiz-step[data-step="${s}"]`);
+  target.stop(true, true).show();
+  const input = target.find("input").first()[0];
+  if (input && !(s === 1 && isOutOfStock)) KafakUI.focusInput(input);
+  else if (document.activeElement && document.activeElement.matches("input,textarea")) document.activeElement.blur();
+  $(".wiz-step").not(target).hide();
   const pct = s / 7 * 100;
   $("#wiz-progress").css("width", `${pct}%`);
   const btn = $("#btn-wiz-next");
@@ -972,13 +986,6 @@ window.showStep = function(s) {
   if (s === 5 && typeof updateLiveAddressPreview === "function") {
     setTimeout(updateLiveAddressPreview, 50);
   }
-  setTimeout(() => {
-    if (s === 1 && typeof isOutOfStock !== "undefined" && isOutOfStock) {
-      if (document.activeElement) document.activeElement.blur();
-    } else {
-      $(`.wiz-step[data-step="${s}"] input`).first().focus();
-    }
-  }, 300);
 };
 window.nextStep = async function() {
   const lang = $("#language-select").val() || "en";
@@ -1059,7 +1066,7 @@ window.nextStep = async function() {
   if (currentStep === 6) {
     const mainPh = $("#phone").val();
     const altPh = $("#altphone").val();
-    if (altPh && (altPh.length < 8 || altPh.length > 15)) {
+    if (!/^[0-9]{8,15}$/.test(altPh)) {
       return showAlert(getAlert("err_alt_required"));
     }
     if (altPh && altPh === mainPh) {
@@ -1078,7 +1085,16 @@ window.nextStep = async function() {
   showStep(currentStep);
 };
 window.prevStep = function() {
-  if (currentStep === 1) return location.reload();
+  if (currentStep === 1) {
+    var _window$kafakRecovery;
+    currentStep = 0;
+    $("#step-0").show();
+    KafakUI.focusInput(document.getElementById("phone"));
+    $("#wizard-view").hide();
+    updateFooterButtons("step-0");
+    (_window$kafakRecovery = window.kafakRecovery) === null || _window$kafakRecovery === void 0 || _window$kafakRecovery.capture();
+    return;
+  }
   if (currentStep === 4 && poList.length > 1) {
     currentStep = 3.5;
     showStep(3.5);
@@ -2810,7 +2826,7 @@ function postOrder(data) {
   return request.then((res) => {
     if (!res || res.result !== "success" || !res.orderid) throw new Error("Order was not confirmed");
     if (res.result === "success") {
-      var _window$kafakRecovery;
+      var _window$kafakRecovery2;
       successData = _objectSpread(_objectSpread({}, data), {}, {
         orderid: res.orderid,
         timestamp: res.timestamp
@@ -2829,7 +2845,7 @@ function postOrder(data) {
         Status: window.kafakCheckoutUI ? successData.Status : "Pending"
       });
       SafeStorage.setItem(STORAGE_KEY, JSON.stringify(localUsersMap));
-      (_window$kafakRecovery = window.kafakRecovery) === null || _window$kafakRecovery === void 0 || _window$kafakRecovery.confirmed(successData);
+      (_window$kafakRecovery2 = window.kafakRecovery) === null || _window$kafakRecovery2 === void 0 || _window$kafakRecovery2.confirmed(successData);
       window.orderSuccess = true;
       renderPendingRecovery();
       finishOrderPresentation();
@@ -3755,7 +3771,7 @@ function renderPendingRecovery() {
     const name = ((_order$pending = order.pending) === null || _order$pending === void 0 ? void 0 : _order$pending.data.name) || ((_savedOrderData2 = savedOrderData) === null || _savedOrderData2 === void 0 ? void 0 : _savedOrderData2.name) || "Customer";
     playVideoAnimation(name, async () => {
       try {
-        var _window$kafakRecovery2;
+        var _window$kafakRecovery3;
         if (edit) {
           successData = await window.kafakOrderEditorUI.retrySaved(oid);
         } else {
@@ -3770,7 +3786,7 @@ function renderPendingRecovery() {
             Courier_Charge: q.courierAmount
           });
         }
-        (_window$kafakRecovery2 = window.kafakRecovery) === null || _window$kafakRecovery2 === void 0 || _window$kafakRecovery2.confirmed(successData);
+        (_window$kafakRecovery3 = window.kafakRecovery) === null || _window$kafakRecovery3 === void 0 || _window$kafakRecovery3.confirmed(successData);
         window.orderSuccess = true;
         renderPendingRecovery();
         finishOrderPresentation();

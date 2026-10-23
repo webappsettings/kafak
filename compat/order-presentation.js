@@ -100,7 +100,10 @@ function finishOrderPresentation() {
 }
 function playVideoAnimation(userName, apiCallback) {
   stopOrderAnimation();
-  $("#videoModal").css("display", "flex").fadeIn();
+  $("#videoModal").stop(true, true).css({
+    display: "flex",
+    opacity: 1
+  });
   const video = document.getElementById("honeyVideo");
   const label = $("#customLabel");
   const nameBadge = $("#nameBadge");
@@ -161,8 +164,8 @@ function playVideoAnimation(userName, apiCallback) {
     state.stallTimer = setTimeout(skipVideo, 2e3);
     orderAnimationTimers.push(state.stallTimer);
   };
-  video.src = honeyVideoURL;
-  video.currentTime = 0;
+  if (video.src !== honeyVideoURL) video.src = honeyVideoURL;
+  if (video.currentTime !== 0) video.currentTime = 0;
   video.play().catch(skipVideo);
   state.stallTimer = setTimeout(() => {
     if (video.paused || video.readyState < 3) skipVideo();

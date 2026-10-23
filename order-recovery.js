@@ -9,7 +9,7 @@
  const read=key=>{try{return JSON.parse(storage.getItem(key)||'null');}catch{return null;}};
  function capture(){
   if(restoring||window.orderSuccess||!storage.persistent)return;
-  const wizard=$('#wizard-view').is(':visible');
+  const wizard=$('#wizard-view').is(':visible')||(currentStep===0&&$('#step-0').is(':visible')&&!!read(draftKey));
   const editing=$('#address-edit-box').is(':visible');
   if(!wizard&&!editing)return;
   const fields={};for(const id of ids){const el=document.getElementById(id);if(el)fields[id]=el.value;}
@@ -24,7 +24,11 @@
     const select=document.getElementById('po-select');if(select){select.replaceChildren();for(const po of poList){const o=document.createElement('option');o.value=o.textContent=po.officename;select.append(o);}}
    }else if(!$('#address-edit-box').is(':visible'))toggleAddressEdit();
    for(const [id,value] of Object.entries(d.fields||{})){const el=document.getElementById(id);if(el){el.value=value;if(id==='admin-product-type')onProductChange();}}
-   if(d.wizard){currentStep=d.step;showStep(currentStep);updateFooterButtons('wizard');}
+   if(d.wizard){
+    currentStep=d.step;
+    if(currentStep===0){$('#step-0').show();$('#wizard-view').hide();updateFooterButtons('step-0');}
+    else{showStep(currentStep);updateFooterButtons('wizard');}
+   }
    else {await handleEditPincode($('#edit-pincode').val());const po=d.fields['edit-postoffice'];if($('#edit-postoffice-select option').toArray().some(o=>o.value===po))$('#edit-postoffice-select').val(po).trigger('change');checkForChanges();}
    $('#draft-recovery').remove();
   }finally{restoring=false;}

@@ -409,8 +409,8 @@ let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
     if (isAdmin) {
       setupAdminView(oid);
     } else if (window.kafakOrderEditorUI) {
-      // Let the server authorize private links and registered legacy view-only links.
-      fetchOrder(oid);
+      if(window.kafakOrderEditorUI.access(oid))fetchOrder(oid);
+      else {showLoader(false);$('#step-0').show();updateFooterButtons('step-0');}
     } else {
       let foundLocally = false;
       const phones = Object.keys(localUsersMap);
@@ -460,6 +460,7 @@ let pastedText = (e.originalEvent || e).clipboardData.getData('text/plain');
 
 window.handlePhoneNext = async function () {
   const phone = $('#phone').val();
+  const previousPhone=currentLoginPhone;
   if (!/^[0-9]{10}$/.test(phone)) { showAlert(getAlert('err_phone')); return; }
 
   currentLoginPhone = phone;
@@ -506,9 +507,9 @@ window.handlePhoneNext = async function () {
 
   // New User Logic
   editingOrderId = null;
-  $('#step-0').hide();
-  $('#whatsapp').val(phone);
+  if(!$('#whatsapp').val()||$('#whatsapp').val()===previousPhone)$('#whatsapp').val(phone);
   startWizard();
+  $('#step-0').hide();
   checkUserOnServerBackground(phone);
   $('#top-progress-container').fadeIn();
 
@@ -768,7 +769,7 @@ function handleEditControlsVisibility(d) {
   $('#read-only-notice').remove();
   if(d.readOnly && !isAdmin && !['completed','delivered','refunded'].includes(status)){
     $('#quick-qty').prop('disabled',true);$('#btn-edit-addr,.btn-update-sage,#address-edit-box').hide();
-    $('<div id="read-only-notice" class="alert alert-light small mt-2">This older link is view-only. Contact Kafak for a private edit link.</div>').insertAfter('#status-area');return;
+    return;
   }
   // 1. ADMIN - Always Allow Edit
   if (isAdmin) {
@@ -881,11 +882,15 @@ function handleEditControlsVisibility(d) {
 
 window.submitWizardOrder = async function () { // 🔥 async ആക്കി മാറ്റി
 
+  if(!/^[0-9]{8,15}$/.test($('#altphone').val())||$('#altphone').val()===$('#phone').val()){
+    currentStep=6;showStep(6);showAlert(getAlert($('#altphone').val()===$('#phone').val()?'err_alt_same':'err_alt_required'));return;
+  }
+
   const phoneCheck = $('#phone').val();
   const isAdmin = window.kafakStorage.getItem('kafakAdmin') === 'true';
 
   // 🔥 STRICT CHECK: വേഗത്തിൽ ഫോം ഫിൽ ചെയ്താലും പുതിയ ഓർഡർ ആവുന്നത് പൂർണ്ണമായി തടയാൻ!
-  if (!editingOrderId && phoneCheck && !isAdmin) {
+  if (!window.kafakOrderEditorUI && !editingOrderId && phoneCheck && !isAdmin) {
     showLoader(true);
     try {
       let data = window.kafakOrderEditorUI ? await window.kafakOrderEditorUI.customer(phoneCheck) : await fetch(`${sc}?action=getCustomer&phone=${phoneCheck}`).then(res => res.json());
@@ -1030,9 +1035,12 @@ window.startWizard = function () {
   }
 }
 window.showStep = function (s) {
-  $('.wiz-step').hide();
-  if (s === 1) $(`.wiz-step[data-step="${s}"]`).show();
-  else $(`.wiz-step[data-step="${s}"]`).fadeIn(200);
+  const target=$(`.wiz-step[data-step="${s}"]`);
+  target.stop(true,true).show();
+  const input=target.find('input').first()[0];
+  if(input&&!(s===1&&isOutOfStock))KafakUI.focusInput(input);
+  else if(document.activeElement&&document.activeElement.matches('input,textarea'))document.activeElement.blur();
+  $('.wiz-step').not(target).hide();
 
   const pct = (s / 7) * 100;
   $('#wiz-progress').css('width', `${pct}%`);
@@ -1055,15 +1063,6 @@ window.showStep = function (s) {
     setTimeout(updateLiveAddressPreview, 50);
   }
 
-  // 🔥 FOCUS LOGIC (എല്ലാ ഫീൽഡിലും ഫോക്കസ് വരാൻ)
-  setTimeout(() => {
-    if (s === 1 && typeof isOutOfStock !== 'undefined' && isOutOfStock) {
-      if (document.activeElement) document.activeElement.blur();
-    }
-    else {
-      $(`.wiz-step[data-step="${s}"] input`).first().focus();
-    }
-  }, 300);
 }
 
 window.nextStep = async function () {
@@ -1110,7 +1109,7 @@ window.nextStep = async function () {
     const mainPh = $('#phone').val();
     const altPh = $('#altphone').val();
 
-    if (altPh && (altPh.length < 8 || altPh.length > 15)) {
+    if (!/^[0-9]{8,15}$/.test(altPh)) {
       return showAlert(getAlert('err_alt_required'));
     }
 
@@ -1123,7 +1122,10 @@ window.nextStep = async function () {
 }
 
 window.prevStep = function () {
-  if (currentStep === 1) return location.reload();
+  if (currentStep === 1) {
+    currentStep=0;$('#step-0').show();KafakUI.focusInput(document.getElementById('phone'));
+    $('#wizard-view').hide();updateFooterButtons('step-0');window.kafakRecovery?.capture();return;
+  }
   if (currentStep === 4 && poList.length > 1) { currentStep = 3.5; showStep(3.5); return; }
   if (currentStep === 4 && poList.length <= 1) { currentStep = 3; showStep(3); return; }
   if (currentStep === 3.5) { currentStep = 3; showStep(3); return; }

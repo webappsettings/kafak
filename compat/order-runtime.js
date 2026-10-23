@@ -75,6 +75,49 @@
     }
   };
 })(window);
+KafakUI.focusInput = function(input) {
+  if (!input) return;
+  try {
+    input.focus({
+      preventScroll: true
+    });
+  } catch (_unused5) {
+    input.focus();
+  }
+};
+document.addEventListener("DOMContentLoaded", function() {
+  const layout = document.getElementById("app-layout"), viewport = window.visualViewport;
+  if (!layout) return;
+  let frame;
+  function resize() {
+    cancelAnimationFrame(frame);
+    frame = requestAnimationFrame(function() {
+      if (viewport && viewport.scale !== 1) return;
+      layout.style.height = (viewport ? viewport.height : window.innerHeight) + "px";
+      layout.style.position = "fixed";
+      layout.style.width = "100%";
+      layout.style.top = (viewport ? viewport.offsetTop : 0) + "px";
+      const active = document.activeElement, scroll = document.querySelector(".scroll-content");
+      if (active && scroll && scroll.contains(active) && active.matches("input,textarea")) {
+        const field = active.getBoundingClientRect(), area = scroll.getBoundingClientRect();
+        if (field.bottom > area.bottom - 12) scroll.scrollTop += field.bottom - area.bottom + 12;
+        else if (field.top < area.top + 12) scroll.scrollTop -= area.top - field.top + 12;
+      }
+    });
+  }
+  window.addEventListener("resize", resize);
+  document.addEventListener("focusin", resize);
+  if (viewport) {
+    viewport.addEventListener("resize", resize);
+    viewport.addEventListener("scroll", resize);
+  }
+  const footer = document.querySelector(".footer-action");
+  if (footer) footer.addEventListener(window.PointerEvent ? "pointerdown" : "mousedown", function(event) {
+    var _document$activeEleme;
+    if (event.target.closest("#btn-group-wizard button,#btn-group-0 button") && (_document$activeEleme = document.activeElement) !== null && _document$activeEleme !== void 0 && _document$activeEleme.matches("input,textarea")) event.preventDefault();
+  });
+  resize();
+});
 document.addEventListener("DOMContentLoaded", function() {
   const probe = document.createElement("div");
   probe.style.cssText = "display:flex;flex-direction:column;row-gap:1px;position:absolute;visibility:hidden";
@@ -103,10 +146,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }));
     return scripts.get(src);
   }
-  KafakUI.adminActions = () => script("compat/order-admin-actions.js?v=20261022f");
+  KafakUI.adminActions = () => script("compat/order-admin-actions.js?v=20261023a");
   KafakUI.adminTransport = async () => {
-    await script("compat/business-admin-commands.js?v=20261022f");
-    await script("compat/business-admin-transport.js?v=20261022f");
+    await script("compat/business-admin-commands.js?v=20261023a");
+    await script("compat/business-admin-transport.js?v=20261023a");
   };
   KafakUI.datePicker = async () => {
     if (window.flatpickr) return;
