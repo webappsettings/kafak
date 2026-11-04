@@ -250,7 +250,8 @@ function _toPrimitive(t, e) {
           admin: storage.getItem("kafakAdmin") === "true",
           token: access(data.orderid)
         });
-        if (!row2 || row2.version !== shown.version) throw Error("This order changed. Refresh its status before saving.");
+        if (!row2) throw Error("Unable to load the latest order. Your edits are kept; please retry.");
+        if (row2.version !== shown.version) editor.current = KafakBusinessOrderEditor.legacy(shown);
       }
       if ((_editor$current3 = editor.current) !== null && _editor$current3 !== void 0 && _editor$current3.readOnly) throw Error("Please contact Kafak to change this order.");
       let sku = (_document$querySelect = document.querySelector("#quick-qty")) === null || _document$querySelect === void 0 || (_document$querySelect = _document$querySelect.selectedOptions[0]) === null || _document$querySelect === void 0 ? void 0 : _document$querySelect.dataset.sku;

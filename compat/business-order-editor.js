@@ -76,7 +76,36 @@ function _toPrimitive(t, e) {
       this.token = token;
       return row;
     }
-    async save(input, {
+    async save(input, options = {}) {
+      const base = this.current, admin = this.admin, token = this.token;
+      try {
+        return await this.saveOnce(input, options);
+      } catch (error) {
+        if (!base || error.status !== 409 || error.uncertain || options.sku || options.provider !== void 0 || options.increasePaid || this.storage.getItem("kafak-business-edit:" + base.orderid)) throw error;
+        const latest = await this.load(base.orderid, {
+          admin,
+          token
+        });
+        if (!latest) throw error;
+        const changed = {};
+        const names = admin ? [...fields, "adminMeta", "paidNum"] : fields;
+        const value = (v) => String(v !== null && v !== void 0 ? v : "").trim();
+        for (const field of names) if (Object.hasOwn(input, field) && value(input[field]) !== value(base[field])) changed[field] = input[field];
+        const address = ["house", "place", "postoffice", "pincode", "district", "state"];
+        const conflicts = Object.keys(changed).filter((f) => value(latest[f]) !== value(base[f]) && value(latest[f]) !== value(changed[f]));
+        if (address.some((f) => Object.hasOwn(changed, f)) && address.some((f) => value(latest[f]) !== value(base[f]) && value(latest[f]) !== value(input[f]))) conflicts.push("address");
+        if (conflicts.length) {
+          this.current = base;
+          throw Object.assign(Error("These details were also changed on another device: " + [...new Set(conflicts)].join(", ") + ". Your edits are kept; review the latest order before saving."), {
+            status: 409
+          });
+        }
+        if (!admin && !["Pending", "Sent"].includes(latest.Status)) throw Error("This order has now been paid or dispatched. Your edits are kept; contact Kafak to update it.");
+        if (!Object.keys(changed).length) return latest;
+        return this.saveOnce(changed, options);
+      }
+    }
+    async saveOnce(input, {
       sku,
       expectedTotal,
       provider,

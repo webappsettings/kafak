@@ -80,7 +80,8 @@
     const shown=typeof savedOrderData==='object'?savedOrderData:null;
     if(!data.orderid||shown?.orderid!==data.orderid||!Number.isSafeInteger(shown.version))throw Error('Refresh the order status before saving changes.');
     const row=await editor.load(data.orderid,{admin:storage.getItem('kafakAdmin')==='true',token:access(data.orderid)});
-    if(!row||row.version!==shown.version)throw Error('This order changed. Refresh its status before saving.');
+    if(!row)throw Error('Unable to load the latest order. Your edits are kept; please retry.');
+    if(row.version!==shown.version)editor.current=KafakBusinessOrderEditor.legacy(shown);
    }
    if(editor.current?.readOnly)throw Error('Please contact Kafak to change this order.');
    let sku=document.querySelector('#quick-qty')?.selectedOptions[0]?.dataset.sku;

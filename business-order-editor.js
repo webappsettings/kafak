@@ -15,7 +15,26 @@
    if(generation!==this.generation)return null;
    this.current=row;this.admin=admin;this.token=token;return row;
   }
-  async save(input,{sku,expectedTotal,provider,increasePaid=false}={}){
+  async save(input,options={}){
+   const base=this.current,admin=this.admin,token=this.token;
+   try{return await this.saveOnce(input,options);}catch(error){
+    // Never change an uncertain request or re-price an order automatically.
+    if(!base||error.status!==409||error.uncertain||options.sku||options.provider!==undefined||options.increasePaid||this.storage.getItem('kafak-business-edit:'+base.orderid))throw error;
+    const latest=await this.load(base.orderid,{admin,token});
+    if(!latest)throw error;
+    const changed={};const names=admin?[...fields,'adminMeta','paidNum']:fields;
+    const value=v=>String(v??'').trim();
+    for(const field of names)if(Object.hasOwn(input,field)&&value(input[field])!==value(base[field]))changed[field]=input[field];
+    const address=['house','place','postoffice','pincode','district','state'];
+    const conflicts=Object.keys(changed).filter(f=>value(latest[f])!==value(base[f])&&value(latest[f])!==value(changed[f]));
+    if(address.some(f=>Object.hasOwn(changed,f))&&address.some(f=>value(latest[f])!==value(base[f])&&value(latest[f])!==value(input[f])))conflicts.push('address');
+    if(conflicts.length){this.current=base;throw Object.assign(Error('These details were also changed on another device: '+[...new Set(conflicts)].join(', ')+'. Your edits are kept; review the latest order before saving.'),{status:409});}
+    if(!admin&&!['Pending','Sent'].includes(latest.Status))throw Error('This order has now been paid or dispatched. Your edits are kept; contact Kafak to update it.');
+    if(!Object.keys(changed).length)return latest;
+    return this.saveOnce(changed,options);
+   }
+  }
+  async saveOnce(input,{sku,expectedTotal,provider,increasePaid=false}={}){
    if(!this.current)throw Error('Reload this order before saving.');
    const current=this.current,admin=this.admin,token=this.token;
    const data=Object.fromEntries(fields.filter(f=>Object.hasOwn(input,f)).map(f=>[f,String(input[f]??'').trim()]));
