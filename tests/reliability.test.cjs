@@ -111,7 +111,7 @@ test('Edit-page invoice uses the new order data and selected recipient', async (
 test('Render lookup preserves first pending update and calculates dates once per order', () => {
  const start = admin.indexOf('    const pendingById = new Map();');
  const end = admin.indexOf('    window.paidRankMap = {};', start);
- const ctx = {pendingUpdates:[{oid:'K1',action:'meta'}, {oid:'K1',status:'Paid'}, {oid:'K1',status:'Sent'}]};
+ const ctx = {KafakDates:require('../date-runtime'),pendingUpdates:[{oid:'K1',action:'meta'}, {oid:'K1',status:'Paid'}, {oid:'K1',status:'Sent'}]};
  vm.createContext(ctx);
  vm.runInContext(admin.slice(start,end)+'\nthis.lookup = getOrderInfo;',ctx);
  let reads=0;

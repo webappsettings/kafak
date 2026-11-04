@@ -7,7 +7,7 @@ test('expired session clears locally cached private records',async()=>{const h=h
 test('network errors cannot reuse a cached authenticated state',async()=>{const h=harness({me:async()=>{throw Error('Connection unavailable');}});await h.context.restoreBusinessSession();assert.equal(h.saved.has('kafakAdmin'),false);assert.equal(h.message.innerText,'Connection unavailable');});
 test('UUID order IDs cannot rewrite accounting years or months',()=>{
  const code=source.slice(source.indexOf('window.parseOrderDate = function'),source.indexOf('// 🔥 UPDATE DASHBOARD MAIN CARDS'));
- const context={window:{},Date};vm.createContext(context);vm.runInContext(code,context);
+ const context={window:{},Date,KafakDates:require('../date-runtime')};vm.createContext(context);vm.runInContext(code,context);
  const timestamp='2026-10-14T10:00:00Z';
  for(const oid of ['K-260101ab-1234-4567-8901-123456789012','K-99010100-1234-4567-8901-123456789012'])assert.equal(context.window.parseOrderDate(timestamp,oid).toISOString(),timestamp.replace('Z','.000Z'));
 });

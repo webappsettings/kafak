@@ -45,7 +45,7 @@ window.adminAction = async function (oid, status) {
       title: 'Mark as PAID',
       html: `
             <div style="text-align:center;">
-                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT PAYMENT TIME</label>
+                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT PAYMENT TIME (IST)</label>
                 <input type="text" id="flatpickr-paid" class="form-control text-center fw-bold" 
                        style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
                        placeholder="Select Date...">
@@ -60,7 +60,7 @@ window.adminAction = async function (oid, status) {
         flatpickr("#flatpickr-paid", {
           enableTime: true,
           dateFormat: "Y-m-d H:i",
-          defaultDate: new Date(),
+          defaultDate: KafakDates.input(new Date()),
           theme: "material_blue",
           time_24hr: true,
           disableMobile: true
@@ -72,7 +72,7 @@ window.adminAction = async function (oid, status) {
     });
 
     if (!dateVal) return;
-    selectedDate = dateVal;
+    selectedDate = KafakDates.iso(dateVal);
   }
   else {
     // 3. OTHERS (Sent, Dispatched, etc.)
@@ -86,7 +86,7 @@ window.adminAction = async function (oid, status) {
       const day = String(now.getDate()).padStart(2, '0');
       const hours = String(now.getHours()).padStart(2, '0');
       const minutes = String(now.getMinutes()).padStart(2, '0');
-      selectedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+      selectedDate = now.toISOString();
     }
   }
 

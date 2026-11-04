@@ -227,21 +227,7 @@ window.onProductChange = function () {
 };
 
 
-function formatPrettyDate(dateStr) {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  if (isNaN(d.getTime())) return "";
-
-  return d.toLocaleString('en-GB', {
-    day: '2-digit',
-    month: 'short',
-    year: 'numeric',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-    timeZone: 'Asia/Kolkata'
-  });
-}
+function formatPrettyDate(dateStr) { return KafakDates.format(dateStr); }
 
 // 🔥 SMART ZONE KEY FINDER (Fixes Admin Courier Changes)
 function getZoneKey(stateName, specificProvider = null) {
@@ -1451,7 +1437,7 @@ window.markOrderDelivered = function (oid) {
       // 3. Local Update
       let now = new Date();
       // YYYY-MM-DD HH:MM Format for Sheets
-      let actionDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+      let actionDate = now.toISOString();
 
       if (typeof userData !== 'undefined') {
         userData.Status = 'Delivered';

@@ -52,7 +52,7 @@ window.adminAction = async function(oid, status) {
       title: "Mark as PAID",
       html: `
             <div style="text-align:center;">
-                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT PAYMENT TIME</label>
+                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT PAYMENT TIME (IST)</label>
                 <input type="text" id="flatpickr-paid" class="form-control text-center fw-bold" 
                        style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
                        placeholder="Select Date...">
@@ -66,7 +66,7 @@ window.adminAction = async function(oid, status) {
         flatpickr("#flatpickr-paid", {
           enableTime: true,
           dateFormat: "Y-m-d H:i",
-          defaultDate: /* @__PURE__ */ new Date(),
+          defaultDate: KafakDates.input(/* @__PURE__ */ new Date()),
           theme: "material_blue",
           time_24hr: true,
           disableMobile: true
@@ -77,7 +77,7 @@ window.adminAction = async function(oid, status) {
       }
     }), dateVal = _await$Swal$fire.value;
     if (!dateVal) return;
-    selectedDate = dateVal;
+    selectedDate = KafakDates.iso(dateVal);
   } else {
     if (!confirm(`Mark as '${status}'? (Saved Locally)`)) return;
     if (status === "Dispatched") {
@@ -87,7 +87,7 @@ window.adminAction = async function(oid, status) {
       const day = String(now.getDate()).padStart(2, "0");
       const hours = String(now.getHours()).padStart(2, "0");
       const minutes = String(now.getMinutes()).padStart(2, "0");
-      selectedDate = `${year}-${month}-${day} ${hours}:${minutes}`;
+      selectedDate = now.toISOString();
     }
   }
   let updates = JSON.parse(window.kafakStorage.getItem("pendingUpdates") || "[]");

@@ -246,18 +246,7 @@ window.onProductChange = function() {
   }
 };
 function formatPrettyDate(dateStr) {
-  if (!dateStr) return "";
-  const d = new Date(dateStr);
-  if (isNaN(d.getTime())) return "";
-  return d.toLocaleString("en-GB", {
-    day: "2-digit",
-    month: "short",
-    year: "numeric",
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-    timeZone: "Asia/Kolkata"
-  });
+  return KafakDates.format(dateStr);
 }
 function getZoneKey(stateName, specificProvider = null) {
   if (!stateName) return "REST OF INDIA";
@@ -1370,7 +1359,7 @@ window.markOrderDelivered = function(oid) {
         }
       });
       let now = /* @__PURE__ */ new Date();
-      let actionDate = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}-${String(now.getDate()).padStart(2, "0")} ${String(now.getHours()).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
+      let actionDate = now.toISOString();
       if (typeof userData !== "undefined") {
         userData.Status = "Delivered";
         userData["Delivered Date"] = actionDate;

@@ -749,7 +749,7 @@ function renderTabs(orders, externalCounts = null) {
         // 🔥 Safe Date Parser (With OID Fix Included)
         let parseDt = (val) => {
             if (!val) return new Date(0);
-            let dt = new Date(val);
+            let dt = KafakDates.parse(val);
             if (isNaN(dt.getTime()) && typeof parseOrderDate === 'function') dt = parseOrderDate(val, o.orderid);
             return isNaN(dt.getTime()) ? new Date(0) : dt;
         };
@@ -1532,7 +1532,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
 
     let safe = (val) => String(val || '').toUpperCase();
     let dateObj = parseOrderDate(d.timestamp || d.Date || d.date);
-    let formattedDate = dateObj.toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+    let formattedDate = KafakDates.format(dateObj);
 
     let totalOrders = 0;
     let totalBottles = 0;
@@ -1640,10 +1640,10 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
 
                     // തീയതി
                     if (linkedOrder.timestamp) {
-                        let lDate = new Date(linkedOrder.timestamp);
+                        let lDate = KafakDates.parse(linkedOrder.timestamp);
                         if (isNaN(lDate.getTime()) && typeof parseOrderDate === 'function') lDate = parseOrderDate(linkedOrder.timestamp);
                         if (!isNaN(lDate.getTime())) {
-                            dates.push(lDate.toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true }));
+                            dates.push(KafakDates.format(lDate));
                         }
                     }
 
@@ -1784,7 +1784,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
 
     let paidTimeHTML = '';
     if (['Paid', 'Dispatched', 'Delivered', 'Completed'].includes(currentStatus) && d.paidDate) {
-        let pDate = new Date(d.paidDate).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+        let pDate = KafakDates.format(KafakDates.parse(d.paidDate));
         paidTimeHTML = `<div class="mb-2 px-2 py-1 bg-success bg-opacity-10 border border-success border-opacity-25 rounded small text-success fw-bold" style="font-size:11px; display:inline-block; clear:both;"><i class="fas fa-check-circle me-1"></i> Paid on: ${pDate}</div>`;
     }
 
@@ -1848,7 +1848,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
         let delDateStr = d['Delivered Date'] || d.actionDate;
         let dateDisplay = '';
         if (delDateStr) {
-            let fmtDate = new Date(delDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit', hour12: true });
+            let fmtDate = KafakDates.format(KafakDates.parse(delDateStr));
             dateDisplay = `<div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#15803d; font-weight:700;"><i class="fas fa-check-circle me-1"></i> Delivered: ${fmtDate}</div><button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '${delDateStr}')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px;">✏️</button></div>`;
         } else {
             dateDisplay = `<div style="background:#f0fff4; border:1px solid #bbf7d0; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#15803d; font-weight:700;"><i class="fas fa-check-circle me-1"></i> Delivered</div><button onclick="event.stopPropagation(); editDeliveredDate('${d.orderid}', '')" class="btn btn-sm btn-light border py-0 px-2 shadow-sm" style="font-size:10px; border-radius:6px;">✏️</button></div>`;
@@ -1884,7 +1884,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             trackLink = `https://www.google.com/search?q=${encodeURIComponent(rawProvider)}+tracking+${trackNum}`;
         }
         let dispDateStr = d['Dispatched Date'] || d.actionDate || d.timestamp;
-        let formattedDispDate = new Date(dispDateStr).toLocaleString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit', hour12: true });
+        let formattedDispDate = KafakDates.format(KafakDates.parse(dispDateStr));
         let dateHtml = `<div style="background:#f0fdf4; border:1px solid #dcfce7; padding:8px; border-radius:8px; margin-bottom:10px; display:flex; justify-content:space-between; align-items:center;"><div style="font-size:11px; color:#166534; font-weight:700;"><i class="fas fa-shipping-fast me-1"></i> Dispatched: ${formattedDispDate}</div><button onclick="event.stopPropagation(); editDispatchDate('${d.orderid}', '${dispDateStr}')" class="btn btn-sm btn-light border py-0 px-2" style="font-size:10px;">✏️</button></div>`;
         let trkBtnHtml = '';
         let isInTrackedList = (trackNum || meta.isTracked);
@@ -2389,7 +2389,7 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
                 let d = String(now.getDate()).padStart(2, '0');
                 let h = String(now.getHours()).padStart(2, '0');
                 let min = String(now.getMinutes()).padStart(2, '0');
-                finalActionDate = `${y}-${m}-${d} ${h}:${min}`;
+                finalActionDate = new Date().toISOString();
             }
         }
 
@@ -2406,7 +2406,7 @@ window.updateOrder = function (oid, status, tracking = null, skipConfirm = false
             };
 
             if (trackingNum !== null) updateObjParams.tracking = trackingNum;
-            if (finalActionDate) updateObjParams.actionDate = finalActionDate;
+            if (finalActionDate) updateObjParams.actionDate = finalActionDate = KafakDates.iso(finalActionDate);
             if (appendMessage) updateObjParams.appendMessage = appendMessage;
 
             if (existingIndex > -1) updates[existingIndex] = updateObjParams;
@@ -2459,7 +2459,7 @@ window.editDispatchDate = async function (oid, currentDate) {
         title: 'Change Dispatch Date',
         html: `
             <div style="text-align:center;">
-                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT NEW DATE & TIME</label>
+                <label style="font-size:12px; color:#666; font-weight:700; margin-bottom:5px; display:block;">SELECT NEW DATE & TIME (IST)</label>
                 <input type="text" id="flatpickr-input" class="form-control text-center fw-bold" 
                        style="font-size:18px; padding:10px; border:2px solid #eee; border-radius:12px;" 
                        placeholder="Select Date...">
@@ -2474,7 +2474,7 @@ window.editDispatchDate = async function (oid, currentDate) {
             flatpickr("#flatpickr-input", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
-                defaultDate: currentDate || new Date(),
+                defaultDate: KafakDates.input(currentDate || new Date()),
                 theme: "material_blue",
                 time_24hr: false,
                 disableMobile: false // Force custom picker even on mobile for consistency
@@ -2495,7 +2495,7 @@ window.editDispatchDate = async function (oid, currentDate) {
 // 🔥 EDIT DELIVERED DATE
 window.editDeliveredDate = async function (oid, currentDate) {
     const { value: newDate } = await Swal.fire({
-        title: 'Change Delivered Date',
+        title: 'Change Delivered Date (IST)',
         html: `
             <div style="text-align:center;">
                 <input type="text" id="del-date-input" class="form-control text-center fw-bold" 
@@ -2510,7 +2510,7 @@ window.editDeliveredDate = async function (oid, currentDate) {
             flatpickr("#del-date-input", {
                 enableTime: true,
                 dateFormat: "Y-m-d H:i",
-                defaultDate: currentDate || new Date(),
+                defaultDate: KafakDates.input(currentDate || new Date()),
                 theme: "material_blue",
                 disableMobile: true
             });
@@ -3491,7 +3491,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         if (!str) return "-";
         let dateObj = parseOrderDate(str, oid);
         if (isNaN(dateObj.getTime())) return "-";
-        return window.formatDateSimple(dateObj, "d M Y") + ", " + dateObj.toLocaleTimeString('en-US', { hour12: true, hour: '2-digit', minute: '2-digit' });
+        return KafakDates.format(dateObj);
     };
 
     labelsData.forEach((item) => {
@@ -3819,12 +3819,12 @@ window.toggleGroup = function (groupId, isChecked) {
 
 function formatFullDate(dateStr) {
     if (!dateStr) return "";
-    const d = new Date(dateStr);
-    return d.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true });
+    const d = KafakDates.parse(dateStr);
+    return KafakDates.format(d);
 }
 
 function getTimelineLabel(dateStr) {
-    const d = new Date(dateStr);
+    const d = KafakDates.parse(dateStr);
     const today = new Date();
     const yesterday = new Date(today);
     yesterday.setDate(yesterday.getDate() - 1);
@@ -3832,7 +3832,7 @@ function getTimelineLabel(dateStr) {
     if (d.toDateString() === today.toDateString()) return "Today";
     if (d.toDateString() === yesterday.toDateString()) return "Yesterday";
 
-    return d.toLocaleDateString('en-GB');
+    return KafakDates.format(d,true);
 }
 
 document.addEventListener('click', function (e) {
@@ -4148,58 +4148,7 @@ function changeDashDate() {
 }
 
 // 🔥 SUPER DATE PARSER (Smart OID Detection to fix Month/Day swaps)
-window.parseOrderDate = function (str, oid = "") {
-    if (!str) return new Date(NaN);
-    let s = String(str).trim();
-
-    let d = new Date(s);
-
-    if (isNaN(d.getTime())) {
-        let parts = s.split(/[\/\-\sT:]+/);
-        if (parts.length >= 3) {
-            let p1 = parseInt(parts[0]), p2 = parseInt(parts[1]), p3 = parseInt(parts[2]);
-            let y = p3 > 1000 ? p3 : p1;
-            let m = p3 > 1000 ? p1 : p2;
-            let day = p3 > 1000 ? p2 : p3;
-
-            let h = parts[3] ? parseInt(parts[3]) : 0;
-            let min = parts[4] ? parseInt(parts[4]) : 0;
-            if (s.toLowerCase().includes('pm') && h < 12) h += 12;
-            if (s.toLowerCase().includes('am') && h === 12) h = 0;
-
-            d = new Date(y, m - 1, day, h, min);
-        }
-    }
-
-    // 🧠 MAGIC FIX: Order ID വെച്ച് മാസവും ദിവസവും മാറിയെങ്കിൽ തനിയെ തിരുത്തുന്നു!
-    if (!isNaN(d.getTime()) && oid) {
-        let trueMonth = -1;
-        let trueYear = -1;
-
-        if (/^ORD-\d{8}/.test(oid)) {
-            trueYear = parseInt(oid.substring(4, 8));
-            trueMonth = parseInt(oid.substring(8, 10));
-        } else if (/^K-\d{12}$/.test(oid)) {
-            trueYear = parseInt("20" + oid.substring(2, 4));
-            trueMonth = parseInt(oid.substring(4, 6));
-        }
-
-        if (trueMonth > 0 && trueYear > 2000) {
-            let currentM = d.getMonth() + 1;
-            let currentD = d.getDate();
-            let currentY = d.getFullYear();
-
-            if (currentY !== trueYear) d.setFullYear(trueYear);
-
-            // മാസവും ദിവസവും അങ്ങോട്ടും ഇങ്ങോട്ടും മാറിയെങ്കിൽ (Swap) തിരുത്തുക!
-            if (currentM !== trueMonth && currentD === trueMonth) {
-                d.setMonth(currentD - 1);
-                d.setDate(currentM);
-            }
-        }
-    }
-    return d;
-};
+window.parseOrderDate = function (str) { return KafakDates.parse(str); };
 
 // 🔥 UPDATE DASHBOARD MAIN CARDS (With Breakdown, JSON Fixes & Dynamic Product Filter)
 window.renderDashboard = function () {
@@ -4528,7 +4477,7 @@ function renderTransactionsForDate(dateStr) {
 
     let dateLabel = getTimelineLabel(dateStr);
     if (dateLabel !== "Today" && dateLabel !== "Yesterday") {
-        dateLabel = flatpickr.formatDate(new Date(dateStr), "d M Y");
+        dateLabel = flatpickr.formatDate(KafakDates.parse(dateStr), "d M Y");
     }
 
     let html = `<div class="d-flex align-items-center mb-2 px-1"><h6 class="fw-bold small text-dark m-0">${dateLabel}'s Activity</h6></div>`;
@@ -5668,8 +5617,8 @@ window.renderDetailedMonthlyOverview = function () {
     let avgBottleRate = tBottles > 0 ? Math.round(tBottleCost / tBottles) : (businessApi ? 0 : 330);
     let lifeBankBalance = lifeIncome - (lifeBottleCost + lifeCourier + lifeOtherExp + totalSalaryTaken);
 
-    let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-    let todayStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let firstDateStr = KafakDates.format(new Date(firstDateMs),true);
+    let todayStr = KafakDates.format(new Date(),true);
 
     // 🔥 DYNAMIC COLORING FOR CHERUTHEN (No Hardcoding)
     let breakdownArr = [];
@@ -6860,8 +6809,8 @@ window.handleResendOrder = function (oid, index) {
         let oldProvider = order.provider || order.Courier_Provider || 'Courier';
 
         // 🔥 Dispatched Date-um Delivered Date-um edukkunnu
-        let dispDateStr = order['Dispatched Date'] ? new Date(order['Dispatched Date']).toLocaleDateString('en-GB') : '';
-        let delDateStr = order['Delivered Date'] ? new Date(order['Delivered Date']).toLocaleDateString('en-GB') : '';
+        let dispDateStr = order['Dispatched Date'] ? KafakDates.format(order['Dispatched Date'],true) : '';
+        let delDateStr = order['Delivered Date'] ? KafakDates.format(order['Delivered Date'],true) : '';
 
         // Randu date-um undenkil cherthu oru string aakkunnu
         let dateInfo = dispDateStr ? `Disp: ${dispDateStr}` : '';
@@ -7688,7 +7637,7 @@ window.renderDayBookTable = function () {
 
     sortedDates.forEach(dateStr => {
         let data = dailyData[dateStr];
-        let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        let displayDate = KafakDates.format(KafakDates.parse(dateStr),true);
 
         let dayHtml = `<div class="mb-3 bg-light border border-secondary border-opacity-25 rounded-3 overflow-hidden shadow-sm">
     <div class="fw-bold text-dark border-bottom px-2 py-2 d-flex align-items-center justify-content-between" style="font-size:11px; background:#e2e8f0;">
@@ -7966,7 +7915,7 @@ window.showDayDetails = function (dateStr) {
         `;
     });
 
-    let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let displayDate = KafakDates.format(KafakDates.parse(dateStr),true);
 
     // 1. Status Dropdown
     let optStatus = `<option value="all">All Status (${dailyOrders.length})</option>`;
@@ -8124,7 +8073,7 @@ window.showCourierBreakdown = function (dateStr) {
     let data = window.dayBookData[dateStr];
     if (!data || !data.courier || data.courier.items.length === 0) return;
 
-    let displayDate = new Date(dateStr).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let displayDate = KafakDates.format(KafakDates.parse(dateStr),true);
 
     let rows = data.courier.items.map(c => {
         // Place, State, Phone നമ്പർ എന്നിവ കോമയിട്ട് ചേർക്കുന്നു
@@ -8389,8 +8338,8 @@ window.renderPartnerList = function () {
     let todayDate = new Date();
     let isCurrentMonth = (mY === todayDate.getFullYear() && mM === todayDate.getMonth());
 
-    let firstDateStr = new Date(firstDateMs).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-    let todayStr = todayDate.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    let firstDateStr = KafakDates.format(new Date(firstDateMs),true);
+    let todayStr = KafakDates.format(todayDate,true);
 
     let monthName = selectedDate.toLocaleString('en-US', { month: 'long', year: 'numeric' });
     let monthLabel = isCurrentMonth ? `This Month (${monthName})` : `${monthName} Overview`;
@@ -9049,7 +8998,7 @@ window.getLiveStockHtml = function (isExpanded = false) {
         let editStockBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
 
         let startDateHtml = isStarted
-            ? `<span title="Since: ${new Date(db[k].start).toLocaleString('en-GB')}">St: ${new Date(db[k].start).toLocaleDateString('en-GB')}</span>`
+            ? `<span title="Since: ${KafakDates.format(db[k].start)}">St: ${KafakDates.format(db[k].start,true)}</span>`
             : `<span class="text-danger fw-bold"><i class="fas fa-pause-circle"></i> Not Started</span>`;
 
         let trackerHtml = `
@@ -9140,7 +9089,7 @@ window.showInventoryDetails = function (key, itemName, totalCount, offsetCount) 
     let offsetColor = safeOffset > 0 ? '#10b981' : (safeOffset < 0 ? '#ef4444' : '#64748b');
 
     let rows = details.map(d => {
-        let dateStr = new Date(d.date).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' });
+        let dateStr = KafakDates.format(new Date(d.date),true);
         return `
         <tr class="align-middle" style="font-size:11px;">
             <td class="text-start">${dateStr}<br><span class="text-muted" style="font-size:8px;">${d.oid}</span></td>
@@ -9625,7 +9574,7 @@ window.instantStatusChange = function (btnElement, oid, targetStatus) {
             let d = String(now.getDate()).padStart(2, '0');
             let h = String(now.getHours()).padStart(2, '0');
             let min = String(now.getMinutes()).padStart(2, '0');
-            let finalActionDate = `${y}-${m}-${d} ${h}:${min}`;
+            let finalActionDate = now.toISOString();
 
             let order = allOrders.find(o => o.orderid === oid);
             let oldStatus = order ? order.Status : 'Pending';
@@ -9982,9 +9931,10 @@ window.openDirectDeliveryPopup = async function (oid) {
                         let d = String(now.getDate()).padStart(2, '0');
                         let h = String(now.getHours()).padStart(2, '0');
                         let min = String(now.getMinutes()).padStart(2, '0');
-                        formattedDate = `${y}-${m}-${d} ${h}:${min}`;
+                        formattedDate = now.toISOString();
                     }
 
+                    formattedDate = KafakDates.iso(formattedDate);
                     order['Delivered Date'] = formattedDate;
 
                     let statIdx = updates.findIndex(u => u.oid === oid && u.action === 'status');
@@ -10116,8 +10066,8 @@ window.sendWA = function (index, type = 'pending') {
     const adminPhone = '7788990313';
     const safe = (val) => String(val || '').trim().toUpperCase();
 
-    const dateObj = d.timestamp ? new Date(d.timestamp) : new Date();
-    const formattedTime = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()}, ${dateObj.toLocaleTimeString('en-US', { hour12: true })}`;
+    const dateObj = d.timestamp ? KafakDates.parse(d.timestamp) : new Date();
+    const formattedTime = KafakDates.format(dateObj);
 
     let base = (typeof courierRates !== 'undefined' && courierRates.prices && courierRates.prices[n]) ? Number(courierRates.prices[n]) : (n * 650);
 
