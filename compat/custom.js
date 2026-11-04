@@ -168,6 +168,10 @@ window.changeLanguage = function(lang) {
       $(this).text(t.lbl_qty_edit);
       return;
     }
+    if (key === "lbl_altphone" && window.kafakStorage.getItem("kafakAdmin") === "true") {
+      $(this).text(t[key] + " (Optional)");
+      return;
+    }
     if (t[key]) $(this).text(t[key]);
   });
   $("#phone").attr("placeholder", t.ph_phone);
@@ -777,14 +781,15 @@ function handleEditControlsVisibility(d) {
   $("#btn-req-modify").remove();
 }
 window.submitWizardOrder = async function() {
-  if (!/^[0-9]{8,15}$/.test($("#altphone").val()) || $("#altphone").val() === $("#phone").val()) {
+  const isAdmin = window.kafakStorage.getItem("kafakAdmin") === "true";
+  const alternatePhone = $("#altphone").val();
+  if ((!isAdmin || alternatePhone) && (!/^[0-9]{8,15}$/.test(alternatePhone) || alternatePhone === $("#phone").val())) {
     currentStep = 6;
     showStep(6);
     showAlert(getAlert($("#altphone").val() === $("#phone").val() ? "err_alt_same" : "err_alt_required"));
     return;
   }
   const phoneCheck = $("#phone").val();
-  const isAdmin = window.kafakStorage.getItem("kafakAdmin") === "true";
   if (!window.kafakOrderEditorUI && !editingOrderId && phoneCheck && !isAdmin) {
     showLoader(true);
     try {
@@ -1055,7 +1060,7 @@ window.nextStep = async function() {
   if (currentStep === 6) {
     const mainPh = $("#phone").val();
     const altPh = $("#altphone").val();
-    if (!/^[0-9]{8,15}$/.test(altPh)) {
+    if ((!isAdmin || altPh) && !/^[0-9]{8,15}$/.test(altPh)) {
       return showAlert(getAlert("err_alt_required"));
     }
     if (altPh && altPh === mainPh) {
