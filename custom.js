@@ -1335,6 +1335,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $('#refresh-btn').parent().hide();
     }
 
+    // Bind the saved product before restoring quantity (different products share quantity values).
+    renderQtyDropdowns();
     // Control Visibility based on Status
     handleEditControlsVisibility(d);
 

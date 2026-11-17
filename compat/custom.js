@@ -1272,6 +1272,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
       $("#status-area").hide().empty();
       $("#refresh-btn").parent().hide();
     }
+    renderQtyDropdowns();
     handleEditControlsVisibility(d);
     if (!isOrderDone && d.quantity) {
       $("#quick-qty").val(d.quantity);

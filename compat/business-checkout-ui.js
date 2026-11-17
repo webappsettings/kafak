@@ -106,15 +106,15 @@ function _toPrimitive(t, e) {
     };
   }
   function render() {
-    var _catalog$selected;
+    var _window$kafakCheckout, _catalog$selected;
     const productSelect = document.getElementById("admin-product-type");
-    if (productSelect && catalog.families.length) {
-      var _savedOrderData;
-      const prior = productSelect.value, oldSku = (_savedOrderData = savedOrderData) === null || _savedOrderData === void 0 ? void 0 : _savedOrderData.sku;
-      const family = catalog.families.find((f) => f.id === prior) || catalog.families.find((f) => f.products.some((p) => p.sku === oldSku)) || catalog.families.find((f) => {
-        var _savedOrderData2;
-        return f.name === ((_savedOrderData2 = savedOrderData) === null || _savedOrderData2 === void 0 ? void 0 : _savedOrderData2.product);
-      }) || catalog.families[0];
+    const saved = typeof savedOrderData === "object" ? savedOrderData : null;
+    const changed = !!((_window$kafakCheckout = window.kafakCheckoutUI) !== null && _window$kafakCheckout !== void 0 && _window$kafakCheckout.productChanged);
+    const savedFamily = catalog.families.find((f) => f.products.some((p) => p.sku === (saved === null || saved === void 0 ? void 0 : saved.sku))) || catalog.families.find((f) => f.name === (saved === null || saved === void 0 ? void 0 : saved.product));
+    const priorFamily = catalog.families.find((f) => f.id === (productSelect === null || productSelect === void 0 ? void 0 : productSelect.value));
+    const family = (changed ? priorFamily : savedFamily) || priorFamily || catalog.families[0];
+    if (family) catalog.select(family.id);
+    if (productSelect && family) {
       productSelect.replaceChildren();
       for (const f of catalog.families) {
         const option = document.createElement("option");
@@ -123,20 +123,19 @@ function _toPrimitive(t, e) {
         option.selected = f.id === family.id;
         productSelect.append(option);
       }
-      catalog.select(family.id);
     }
     const productPanel = document.getElementById("admin-product-panel");
     if (productPanel) {
       productPanel.hidden = catalog.families.length <= 1;
       productPanel.style.display = catalog.families.length <= 1 ? "none" : "";
     }
-    const products = productSelect ? ((_catalog$selected = catalog.selected) === null || _catalog$selected === void 0 ? void 0 : _catalog$selected.products) || [] : checkout.products;
+    const products = !changed && saved !== null && saved !== void 0 && saved.product && !savedFamily ? [] : ((_catalog$selected = catalog.selected) === null || _catalog$selected === void 0 ? void 0 : _catalog$selected.products) || [];
     for (const id of ["quantity", "quick-qty"]) {
-      var _select$selectedOptio, _savedOrderData3, _savedOrderData4;
+      var _select$selectedOptio, _savedOrderData;
       const select = document.getElementById(id);
       if (!select) continue;
       const priorSku = (_select$selectedOptio = select.selectedOptions[0]) === null || _select$selectedOptio === void 0 ? void 0 : _select$selectedOptio.dataset.sku;
-      const sku = priorSku || (id === "quick-qty" ? (_savedOrderData3 = savedOrderData) === null || _savedOrderData3 === void 0 ? void 0 : _savedOrderData3.sku : null);
+      const sku = products.some((p) => p.sku === priorSku) ? priorSku : id === "quick-qty" && !changed ? saved === null || saved === void 0 ? void 0 : saved.sku : null;
       select.replaceChildren();
       const empty = document.createElement("option");
       empty.value = "";
@@ -152,7 +151,7 @@ function _toPrimitive(t, e) {
         option.selected = p.sku === sku;
         select.append(option);
       }
-      if (id === "quick-qty" && editingOrderId && !sku && (_savedOrderData4 = savedOrderData) !== null && _savedOrderData4 !== void 0 && _savedOrderData4.quantity) {
+      if (id === "quick-qty" && editingOrderId && !products.some((p) => p.sku === sku) && !changed && (_savedOrderData = savedOrderData) !== null && _savedOrderData !== void 0 && _savedOrderData.quantity) {
         const historical = document.createElement("option");
         historical.value = String(savedOrderData.quantity);
         historical.textContent = `${savedOrderData.quantity} · ${savedOrderData.product || "Existing order"}`;
@@ -186,8 +185,8 @@ function _toPrimitive(t, e) {
       return ((_checkout$products = checkout.products) === null || _checkout$products === void 0 || (_checkout$products = _checkout$products.find((p) => p.name === name)) === null || _checkout$products === void 0 ? void 0 : _checkout$products.displayName) || name;
     },
     productName() {
-      var _catalog$selected2;
-      return ((_catalog$selected2 = catalog.selected) === null || _catalog$selected2 === void 0 ? void 0 : _catalog$selected2.name) || "";
+      var _savedOrderData2, _catalog$selected2;
+      return !this.productChanged && ((_savedOrderData2 = savedOrderData) === null || _savedOrderData2 === void 0 ? void 0 : _savedOrderData2.product) || ((_catalog$selected2 = catalog.selected) === null || _catalog$selected2 === void 0 ? void 0 : _catalog$selected2.name) || "";
     },
     changeProduct() {
       this.productChanged = true;
@@ -200,10 +199,10 @@ function _toPrimitive(t, e) {
       checkForChanges();
     },
     async price(qty, quick) {
-      var _savedOrderData5;
+      var _savedOrderData3;
       await load();
       const sku = selected(quick), state = quick ? $("#edit-state").val() : userData.state || $("#state").val();
-      if (quick && editingOrderId && !((_savedOrderData5 = savedOrderData) !== null && _savedOrderData5 !== void 0 && _savedOrderData5.sku) && !this.productChanged && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state) {
+      if (quick && editingOrderId && (!((_savedOrderData3 = savedOrderData) !== null && _savedOrderData3 !== void 0 && _savedOrderData3.sku) || sku === savedOrderData.sku) && !this.productChanged && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state) {
         checkout.priced = null;
         return historicalQuote(qty);
       }
