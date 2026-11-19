@@ -706,6 +706,67 @@ function fetchOrders(forceLoad = false) {
 
 // 🔥 RENDER TABS (With PERFECT Date Grouping & State Filters)
 // 🔥 1. RENDER TABS (With DIRECT Courier Full Amount Fix & Refunded Filter)
+// Cheruthen chips share the existing tab/date summaries and only filter their own order list.
+function orderHasCheruthen(order) {
+    const isCheruthen = value => String(value || '').trim().toLowerCase() === 'cheruthen';
+    return order.items?.length ? order.items.some(item => isCheruthen(item.product)) : isCheruthen(order.product || order.Product);
+}
+function matchesCheruthenStateView(order) {
+    const selected = window.activeStateFilter;
+    if (!selected) return true;
+    const state = String(order.state || order.State || '').trim().toUpperCase();
+    const key = !state || state === 'KERALA' ? 'KL' : state.includes('LAK') ? 'LD' : state.includes('KARN') ? 'KA' : state.includes('TAMIL') || state.includes('TN') ? 'TN' : 'OTHER';
+    return key === selected;
+}
+function cheruthenFilterChip(count, tabKey, groupId = '') {
+    if (!count) return '';
+    const listId = {new:'list-sub-new',sent:'list-sub-sent',paid_new:'list-paid-new',paid_print:'list-paid-printed',disp_new:'list-disp-new',disp_track:'list-disp-tracked'}[tabKey];
+    return `<button type="button" class="cheruthen-filter border-0 rounded-pill fw-bold px-2 py-1" style="font-size:10px;line-height:1.2;color:#a000bb;background:transparent;" data-list-id="${listId}" data-group-id="${groupId}" aria-pressed="false" title="Orders containing Cheruthen; click again to show all" onclick="toggleCheruthenFilter(event,this)"><i class="fas fa-wine-bottle me-1" aria-hidden="true"></i>Cheruthen ${count}</button>`;
+}
+window.clearCheruthenFilter = function () {
+    const active = window.cheruthenFilter;
+    window.cheruthenFilter = null;
+    document.querySelectorAll('.cheruthen-filter').forEach(chip => {
+        chip.classList.remove('active-filter');chip.setAttribute('aria-pressed','false');chip.style.backgroundColor='transparent';chip.style.color='#a000bb';
+    });
+    const list = active && document.getElementById(active.listId);
+    if (list) list.querySelectorAll('[data-card-cheruthen],.sticky-date-wrapper').forEach(el => el.style.display='');
+};
+window.applyCheruthenFilter = function () {
+    const active = window.cheruthenFilter;if (!active) return;
+    const list = document.getElementById(active.listId);
+    const chip = list && [...list.querySelectorAll('.cheruthen-filter')].find(el => el.dataset.groupId === active.groupId);
+    if (!chip) { window.clearCheruthenFilter();return; }
+    chip.classList.add('active-filter');chip.setAttribute('aria-pressed','true');chip.style.backgroundColor='#a000bb';chip.style.color='#fff';
+    const cards = [...list.querySelectorAll('[data-card-cheruthen]')];
+    const visibleGroups = new Set();
+    cards.forEach(card => {
+        const hidden = (!active.groupId || card.dataset.cardGroup === active.groupId) && card.dataset.cardCheruthen !== '1';
+        card.style.display = hidden ? 'none' : '';
+        if (!hidden) visibleGroups.add(card.dataset.cardGroup);
+    });
+    if (!active.groupId) list.querySelectorAll('.sticky-date-wrapper').forEach(header => {
+        header.style.display=visibleGroups.has(header.dataset.orderGroup)?'':'none';
+    });
+};
+window.toggleCheruthenFilter = function (event, chip) {
+    if (event) { event.preventDefault();event.stopPropagation(); }
+    const next={listId:chip.dataset.listId,groupId:chip.dataset.groupId||''};
+    const old=window.cheruthenFilter;
+    const turnOff=old&&old.listId===next.listId&&old.groupId===next.groupId;
+    window.clearCheruthenFilter();
+    if (turnOff) return;
+    const list=document.getElementById(next.listId);if (!list) return;
+    list.querySelectorAll('.courier-filter,.qty-filter,.ord-filter').forEach(el=>{el.classList.remove('active-filter');el.style.backgroundColor='transparent';el.style.color='#64748b';});
+    list.querySelectorAll('[data-card-cheruthen],.sticky-date-wrapper').forEach(el=>el.style.display='');
+    window.cheruthenFilter=next;
+    const historyKey={'list-sub-sent':'sent','list-disp-tracked':'disp_track'}[next.listId];
+    if (!next.groupId&&historyKey&&window.expandedOrderHistory&&!window.expandedOrderHistory[historyKey]) {
+        window.expandedOrderHistory[historyKey]=true;renderTabsWithLimit();return;
+    }
+    window.applyCheruthenFilter();
+};
+
 function renderTabs(orders, externalCounts = null) {
     const customerStats = buildCustomerStats(allOrders);
     const createCardHTML = (...args) => {
@@ -985,7 +1046,7 @@ function renderTabs(orders, externalCounts = null) {
             let fullKey = `${dateKeyType}_${lbl}`;
 
             if (!timelineStats[fullKey]) {
-                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, qtyCounts: {}, D: 0, C: 0, R: 0 };
+                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, qtyCounts: {}, cheruthen: 0, D: 0, C: 0, R: 0 };
             }
 
             if (!timelineStats[fullKey].couriers) {
@@ -993,6 +1054,7 @@ function renderTabs(orders, externalCounts = null) {
             }
 
             timelineStats[fullKey].count++;
+            if (orderHasCheruthen(o) && matchesCheruthenStateView(o)) timelineStats[fullKey].cheruthen++;
             let qty = parseInt(o.quantity) || 0;
             timelineStats[fullKey].bottles += qty;
 
@@ -1175,6 +1237,8 @@ function renderTabs(orders, externalCounts = null) {
                         let qtyStr = qtyDetails.length > 0 ? `<span style="font-size:8.5px; color:#64748b; font-weight:600; margin-left:4px;">(${qtyDetails.join(', ')})</span>` : '';
                         extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex align-items-center"><i class="fas fa-wine-bottle text-muted me-1" style="font-size:10px;"></i> ${sStats.bottles} ${qtyStr}</span>`;
 
+                        extraHtml += cheruthenFilterChip(sStats.cheruthen, dateKey, safeGroupId);
+
                         let badgeStr = "";
                         if (sStats.D > 0) badgeStr += `<span class="text-primary fw-bold ms-1" style="font-size:10px;">(${sStats.D} D)</span>`;
                         if (sStats.C > 0) badgeStr += `<span class="text-success fw-bold ms-1" style="font-size:10px;">(${sStats.C} C)</span>`;
@@ -1192,7 +1256,7 @@ function renderTabs(orders, externalCounts = null) {
                         </div>`;
                     }
 
-                    appendCard(targetList, `<div class="col-12 sticky-date-wrapper" style="top: 258px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`);
+                    appendCard(targetList, `<div class="col-12 sticky-date-wrapper" data-order-group="${safeGroupId}" style="top: 258px !important; margin-top: 0;"><div class="timeline-badge d-flex align-items-center flex-wrap">${dateLabel}${extraHtml} ${groupCbHtml}</div></div>`);
                     lastDateMap[dateKey] = dateLabel;
                 }
 
@@ -1259,6 +1323,7 @@ function renderTabs(orders, externalCounts = null) {
         }
 
         let bCount = 0;
+        let cheruthenCount = 0;
         let totalTabCost = 0;
         let qStats = {};
         let oStats = {};
@@ -1298,6 +1363,7 @@ function renderTabs(orders, externalCounts = null) {
             else if (id === 'disp_track' && status === 'Dispatched' && isTracked) isMatchTab = true;
 
             if (isMatchTab) {
+                if (orderHasCheruthen(o)) cheruthenCount++;
                 let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
                 bCount += qty;
                 qStats[qty] = (qStats[qty] || 0) + 1;
@@ -1394,6 +1460,7 @@ function renderTabs(orders, externalCounts = null) {
                     <i class="fas fa-wine-bottle text-success me-1" style="font-size:10px;"></i>${bCount} ${qtyStr}
                 </span>
                 ${cHtml}
+                ${cheruthenFilterChip(cheruthenCount, id)}
             </div>
             <div class="d-flex align-items-center gap-1 w-100 justify-content-end">
                 ${statesHtml}
@@ -1407,6 +1474,7 @@ function renderTabs(orders, externalCounts = null) {
     populateStickyHeader('paid_print', subCounts.paid_print, tabCourierTotal.paid_print, stateStats.paid_print);
     populateStickyHeader('disp_new', subCounts.disp_new, tabCourierTotal.disp_new, stateStats.disp_new);
     populateStickyHeader('disp_track', subCounts.disp_track, tabCourierTotal.disp_track, stateStats.disp_track);
+    window.applyCheruthenFilter();
 
     updateBadgeUI('count-pending', counts.pending, btlCounts.pending);
     updateBadgeUI('count-paid', counts.paid, btlCounts.paid);
@@ -1561,7 +1629,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if (isCompact) {
         let phoneDisplay = d.phone ? String(d.phone || '').replace(/[^0-9]/g, '').slice(-10) : '';
         return `
-        <div class="col-12 col-md-6 col-lg-6 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
+        <div class="col-12 col-md-6 col-lg-6 card-lazy-enter" data-card-cheruthen="${orderHasCheruthen(d)?1:0}" data-card-group="${groupId}" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
             <div class="order-card p-0 shadow-sm border-0 mb-2" style="border-radius:10px; overflow:hidden;">
                 <div class="d-flex align-items-center justify-content-between p-3 bg-white" 
                      onclick="toggleCardUI(this.parentElement)" 
@@ -1967,7 +2035,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     if(d.items?.length)productBadge='<span class="badge bg-danger ms-2">MIXED</span>';
 
     return `
-    <div class="col-12 col-md-12 col-lg-12 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
+    <div class="col-12 col-md-12 col-lg-12 card-lazy-enter" data-card-cheruthen="${orderHasCheruthen(d)?1:0}" data-card-group="${groupId}" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
         <div class="order-card p-3">
             <div class="d-flex justify-content-between align-items-start mb-2">
                 <div>${headerLeft}</div>
@@ -10182,6 +10250,7 @@ window.sendPaymentWA = function (oid, index, type = 'paid') {
 
 // === 1. COURIER FILTER (SAFE VERSION + DIRECT FIX) ===
 window.toggleCourierFilter = function (event, element, providerName, groupId) {
+    if (window.cheruthenFilter) window.clearCheruthenFilter();
     if (event) event.stopPropagation(); // ക്ലിക്ക് പ്രശ്നങ്ങൾ ഒഴിവാക്കാൻ
 
     let isActive = element.classList.contains('active-filter');
@@ -10260,6 +10329,7 @@ window.toggleCourierFilter = function (event, element, providerName, groupId) {
 
 // === 2. BOTTLE QUANTITY FILTER (SAFE VERSION) ===
 window.toggleQtyFilter = function (event, element, targetQty, groupId) {
+    if (window.cheruthenFilter) window.clearCheruthenFilter();
     if (event) event.stopPropagation();
 
     let isActive = element.classList.contains('active-filter');
@@ -10316,6 +10386,7 @@ window.toggleQtyFilter = function (event, element, targetQty, groupId) {
 
 // === TAB LEVEL QTY FILTER ===
 window.toggleTabQtyFilter = function (event, element, targetQty) {
+    if (window.cheruthenFilter) window.clearCheruthenFilter();
     if (event) { event.preventDefault(); event.stopPropagation(); }
 
     let isActive = element.classList.contains('active-filter');
@@ -10363,6 +10434,7 @@ window.toggleTabQtyFilter = function (event, element, targetQty) {
 
 // === TAB LEVEL ORDER COUNT FILTER ===
 window.toggleTabOrdFilter = function (event, element, targetOrd) {
+    if (window.cheruthenFilter) window.clearCheruthenFilter();
     if (event) { event.preventDefault(); event.stopPropagation(); }
 
     let isActive = element.classList.contains('active-filter');
@@ -10411,6 +10483,7 @@ window.toggleTabOrdFilter = function (event, element, targetOrd) {
 
 // === TAB LEVEL COURIER FILTER ===
 window.toggleTabCourierFilter = function (event, element, providerName) {
+    if (window.cheruthenFilter) window.clearCheruthenFilter();
     if (event) { event.preventDefault(); event.stopPropagation(); }
 
     let isActive = element.classList.contains('active-filter');
