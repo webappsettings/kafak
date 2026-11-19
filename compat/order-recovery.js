@@ -118,7 +118,8 @@ function _toPrimitive(t, e) {
     try {
       var _savedOrderData2, _window$kafakCheckout;
       if (!d.wizard && d.version !== ((_savedOrderData2 = savedOrderData) === null || _savedOrderData2 === void 0 ? void 0 : _savedOrderData2.version)) {
-        showAlert("This order changed since your draft. Your draft is kept; review the latest order before restoring changes.");
+        storage.removeItem(draftKey);
+        $("#draft-recovery").remove();
         return;
       }
       await ((_window$kafakCheckout = window.kafakCheckoutUI) === null || _window$kafakCheckout === void 0 ? void 0 : _window$kafakCheckout.load());
@@ -217,6 +218,10 @@ function _toPrimitive(t, e) {
       storage.removeItem(draftKey);
     }
   };
+  document.addEventListener("kafak-order-saved", () => {
+    clearTimeout(timer);
+    storage.removeItem(draftKey);
+  });
   document.addEventListener("input", () => {
     clearTimeout(timer);
     timer = setTimeout(capture, 150);

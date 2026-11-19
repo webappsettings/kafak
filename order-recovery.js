@@ -18,7 +18,8 @@
  async function restore(d){
   restoring=true;
   try{
-   if(!d.wizard&&d.version!==savedOrderData?.version){showAlert('This order changed since your draft. Your draft is kept; review the latest order before restoring changes.');return;}
+   // A newer server save wins over a device's obsolete edit draft.
+   if(!d.wizard&&d.version!==savedOrderData?.version){storage.removeItem(draftKey);$('#draft-recovery').remove();return;}
    await window.kafakCheckoutUI?.load();
    if(d.wizard){$('#step-0,#returning-user-view').hide();startWizard();userData={...d.data};poList=d.poList||[];
     const select=document.getElementById('po-select');if(select){select.replaceChildren();for(const po of poList){const o=document.createElement('option');o.value=o.textContent=po.officename;select.append(o);}}
@@ -56,6 +57,7 @@
    storage.setItem(receiptKey,JSON.stringify(r));storage.removeItem(draftKey);
   }
  };
+ document.addEventListener('kafak-order-saved',()=>{clearTimeout(timer);storage.removeItem(draftKey);});
  document.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(capture,150);});
  document.addEventListener('change',capture);
  window.addEventListener('pagehide',capture);
