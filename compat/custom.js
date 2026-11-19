@@ -1637,7 +1637,7 @@ function applyHideLogic(status) {
   }
 }
 window.updatePrice = async function(qty, isQuick) {
-  var _discountQuote;
+  var _savedOrderData, _savedOrderData2, _discountQuote;
   const container = isQuick ? $("#quick-price-box") : $("#wiz-price-box");
   if (!qty) {
     container.hide();
@@ -1701,6 +1701,11 @@ window.updatePrice = async function(qty, isQuick) {
       <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${totalCourier}</span></span></div>
       <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
   `;
+  if (isQuick && (_savedOrderData = savedOrderData) !== null && _savedOrderData !== void 0 && (_savedOrderData = _savedOrderData.items) !== null && _savedOrderData !== void 0 && _savedOrderData.length) {
+    const lines = savedOrderData.items.map((i) => `<div class="price-row"><span>${KafakUI.escape(window.kafakCheckoutUI.displayName(i.product))} · ${Number(i.packGrams) || ""}g × ${Number(i.quantity)}</span><span>₹${Number(i.productAmount).toFixed(2)}</span></div>`).join("");
+    htmlContent = lines + `<div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${totalCourier}</span></span></div><div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>`;
+  }
+  if (isQuick && Number((_savedOrderData2 = savedOrderData) === null || _savedOrderData2 === void 0 ? void 0 : _savedOrderData2.Balance_Due) > 0) htmlContent += `<div class="price-row"><span>Already paid</span><span>₹${Number(savedOrderData.Payment_Credit).toFixed(2)}</span></div><div class="price-total"><span>Balance to pay</span><span>₹${Number(savedOrderData.Balance_Due).toFixed(2)}</span></div>`;
   if ((_discountQuote = discountQuote) !== null && _discountQuote !== void 0 && _discountQuote.discountAmount) {
     htmlContent = `<div class="price-row"><span>Product price before offer</span><span>₹${Number(discountQuote.productListAmount).toFixed(2)}</span></div><div class="price-row text-success"><span>Offer discount</span><span>−₹${Number(discountQuote.discountAmount).toFixed(2)}</span></div>` + htmlContent;
   }
@@ -1814,7 +1819,7 @@ function updateLiveAddressPreview() {
 }
 setTimeout(updateLiveAddressPreview, 1e3);
 window.checkForChanges = function() {
-  var _savedOrderData;
+  var _savedOrderData3;
   if ($(".btn-update-sage").data("is-processing") === "active") {
     $("#address-edit-box button").prop("disabled", true).css({
       opacity: "0.5",
@@ -1822,7 +1827,7 @@ window.checkForChanges = function() {
     });
     return;
   }
-  if ((_savedOrderData = savedOrderData) !== null && _savedOrderData !== void 0 && _savedOrderData.readOnly && editingOrderId && window.kafakStorage.getItem("kafakAdmin") !== "true") {
+  if ((_savedOrderData3 = savedOrderData) !== null && _savedOrderData3 !== void 0 && _savedOrderData3.readOnly && editingOrderId && window.kafakStorage.getItem("kafakAdmin") !== "true") {
     $("#address-edit-box button,.btn-update-sage").prop("disabled", true);
     $("#btn-edit-addr").hide();
     return;
@@ -2974,6 +2979,7 @@ function showToast(icon, title) {
   });
 }
 async function sendToWhatsapp(orderData = successData, recipient = null) {
+  var _d$items;
   const d = orderData;
   const safe = (val) => String(val || "").trim().toUpperCase();
   const targetAdminPhone = typeof adminPhone !== "undefined" ? adminPhone : "7788990313";
@@ -3071,6 +3077,7 @@ async function sendToWhatsapp(orderData = successData, recipient = null) {
   }
   let header = "";
   let productDisplay = productType === "Cheruthen" ? "*🍯 Product: Cheruthen (Stingless Honey)*" : "*🍯 Product: Wild Honey*";
+  if ((_d$items = d.items) !== null && _d$items !== void 0 && _d$items.length) productDisplay = d.items.map((i) => `*🍯 ${i.product} ${i.packGrams}g × ${i.quantity}: ₹${Number(i.productAmount).toFixed(2)}*`).join("\n");
   if (window.kafakCheckoutUI) productDisplay = "*Product: " + [window.kafakCheckoutUI.displayName(d.product), d.variant].filter(Boolean).join(" · ") + "*";
   if (isAdmin) {
     header = `*🧾 ORDER INVOICE* - KAFAK HONEY
@@ -3761,9 +3768,9 @@ function renderPendingRecovery() {
   if (!order.pending && !edit) return;
   const box = $('<div id="pending-order-recovery" class="order-notice" role="status">A previous save needs confirmation. Retry the saved request before making another change. </div>').prependTo(".scroll-content > .container");
   $('<button type="button" class="btn btn-sm btn-dark">Retry saved request</button>').on("click", function() {
-    var _order$pending, _savedOrderData2;
+    var _order$pending, _savedOrderData4;
     const button = $(this).prop("disabled", true);
-    const name = ((_order$pending = order.pending) === null || _order$pending === void 0 ? void 0 : _order$pending.data.name) || ((_savedOrderData2 = savedOrderData) === null || _savedOrderData2 === void 0 ? void 0 : _savedOrderData2.name) || "Customer";
+    const name = ((_order$pending = order.pending) === null || _order$pending === void 0 ? void 0 : _order$pending.data.name) || ((_savedOrderData4 = savedOrderData) === null || _savedOrderData4 === void 0 ? void 0 : _savedOrderData4.name) || "Customer";
     playVideoAnimation(name, async () => {
       try {
         var _window$kafakRecovery3;

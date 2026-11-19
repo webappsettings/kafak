@@ -39,7 +39,8 @@
    const current=this.current,admin=this.admin,token=this.token;
    const data=Object.fromEntries(fields.filter(f=>Object.hasOwn(input,f)).map(f=>[f,String(input[f]??'').trim()]));
    if(admin)for(const field of ['adminMeta','paidNum'])if(Object.hasOwn(input,field))data[field]=String(input[field]??'');
-   if(sku){data.sku=sku;if(expectedTotal!==undefined)data.expectedTotal=expectedTotal;}
+   if(sku)data.sku=sku;
+   if(expectedTotal!==undefined)data.expectedTotal=expectedTotal;
    if(provider!==undefined){if(!admin)throw Error('Only the business can change the delivery provider.');data.provider=provider;}
    const payload={version:current.version,data},key='kafak-business-edit:'+current.orderid;
    const fingerprint=JSON.stringify({admin,data});let pending;

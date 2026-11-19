@@ -106,7 +106,7 @@ function _toPrimitive(t, e) {
     };
   }
   function render() {
-    var _window$kafakCheckout, _catalog$selected;
+    var _window$kafakCheckout, _catalog$selected, _window$KafakMixedUI;
     const productSelect = document.getElementById("admin-product-type");
     const saved = typeof savedOrderData === "object" ? savedOrderData : null;
     const changed = !!((_window$kafakCheckout = window.kafakCheckoutUI) !== null && _window$kafakCheckout !== void 0 && _window$kafakCheckout.productChanged);
@@ -159,6 +159,7 @@ function _toPrimitive(t, e) {
         select.append(historical);
       }
     }
+    (_window$KafakMixedUI = window.KafakMixedUI) === null || _window$KafakMixedUI === void 0 || _window$KafakMixedUI.render();
   }
   async function load() {
     if (!ready) ready = checkout.load().then(async (result) => {
@@ -199,10 +200,23 @@ function _toPrimitive(t, e) {
       checkForChanges();
     },
     async price(qty, quick) {
-      var _savedOrderData3;
+      var _savedOrderData3, _savedOrderData4;
       await load();
       const sku = selected(quick), state = quick ? $("#edit-state").val() : userData.state || $("#state").val();
-      if (quick && editingOrderId && (!((_savedOrderData3 = savedOrderData) !== null && _savedOrderData3 !== void 0 && _savedOrderData3.sku) || sku === savedOrderData.sku) && !this.productChanged && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state) {
+      if (quick && (_savedOrderData3 = savedOrderData) !== null && _savedOrderData3 !== void 0 && (_savedOrderData3 = _savedOrderData3.items) !== null && _savedOrderData3 !== void 0 && _savedOrderData3.length) {
+        if (state === savedOrderData.state) {
+          checkout.priced = null;
+          return historicalQuote(qty);
+        }
+        try {
+          var _window$KafakMixedUI2;
+          return await ((_window$KafakMixedUI2 = window.KafakMixedUI) === null || _window$KafakMixedUI2 === void 0 ? void 0 : _window$KafakMixedUI2.price(state));
+        } catch (error) {
+          showAlert(error.message);
+          return null;
+        }
+      }
+      if (quick && editingOrderId && (!((_savedOrderData4 = savedOrderData) !== null && _savedOrderData4 !== void 0 && _savedOrderData4.sku) || sku === savedOrderData.sku) && !this.productChanged && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state) {
         checkout.priced = null;
         return historicalQuote(qty);
       }

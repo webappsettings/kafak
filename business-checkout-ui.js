@@ -45,6 +45,7 @@
    for(const p of products){const option=document.createElement('option');option.value=String(p.units);option.dataset.sku=p.sku;option.textContent=[productSelect?'':(p.displayName||p.name),p.variant,p.label||p.units,p.size,p.colour].filter(Boolean).join(' · ');option.selected=p.sku===sku;select.append(option);}
    if(id==='quick-qty'&&editingOrderId&&!products.some(p=>p.sku===sku)&&!changed&&savedOrderData?.quantity){const historical=document.createElement('option');historical.value=String(savedOrderData.quantity);historical.textContent=`${savedOrderData.quantity} · ${savedOrderData.product||'Existing order'}`;historical.selected=true;select.append(historical);}
   }
+  window.KafakMixedUI?.render();
  }
  async function load(){if(!ready)ready=checkout.load().then(async result=>{await catalog.load();adminPhone=String(result.settings.contactPhone);isOutOfStock=result.settings.stockStatus==='no';globalQtyList=[...new Set(result.products.map(p=>Number(p.units)))].sort((a,b)=>a-b);render();return true;}).catch(error=>{ready=null;showAlert(error.message);return false;});return ready;}
  window.kafakCheckoutUI={load,render,checkout,productChanged:false,
@@ -53,6 +54,7 @@
   changeProduct(){this.productChanged=true;render();const quick=$('#quick-qty').is(':visible'),control=document.querySelector(quick?'#quick-qty':'#quantity');if(control){control.selectedIndex=1;updatePrice(control.value,quick);}checkForChanges();},
   async price(qty,quick){
    await load();const sku=selected(quick),state=quick?$('#edit-state').val():(userData.state||$('#state').val());
+   if(quick&&savedOrderData?.items?.length){if(state===savedOrderData.state){checkout.priced=null;return historicalQuote(qty);}try{return await window.KafakMixedUI?.price(state);}catch(error){showAlert(error.message);return null;}}
    if(quick&&editingOrderId&&(!savedOrderData?.sku||sku===savedOrderData.sku)&&!this.productChanged&&Number(qty)===Number(savedOrderData.quantity)&&state===savedOrderData.state){checkout.priced=null;return historicalQuote(qty);}
    if(!sku){checkout.priced=null;if(quick&&editingOrderId&&Number(qty)===Number(savedOrderData.quantity)&&state===savedOrderData.state)return historicalQuote(qty);return null;}
    try{return await checkout.price(sku,state);}catch(error){checkout.priced=null;showAlert(error.message);return null;}

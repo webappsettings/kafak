@@ -90,6 +90,10 @@
    if(sameSavedPack&&data.state===current.state)sku=undefined;
    if(!sku&&Number(data.quantity)!==Number(editor.current.quantity))throw Error('Select an available product and quantity.');
    let expectedTotal;
+   if(current.items?.length){
+    sku=undefined;
+    if(data.state!==current.state){const priced=window.KafakMixedUI?.priced;if(!priced||priced.state!==data.state)throw Error('Wait for the current delivery total before saving.');expectedTotal=priced.quote.total;}
+   }
    if(sku){const priced=window.kafakCheckoutUI?.checkout.priced;if(!priced||priced.sku!==sku||priced.state!==data.state)throw Error('Wait for the current delivery total before saving.');expectedTotal=priced.quote.total;}
    const row=confirmed(await editor.save(data,{sku,expectedTotal,increasePaid}));
    document.dispatchEvent?.(new Event('kafak-order-saved'));

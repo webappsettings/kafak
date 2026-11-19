@@ -1816,6 +1816,11 @@ window.updatePrice = async function (qty, isQuick) {
       <div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${totalCourier}</span></span></div>
       <div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>
   `;
+  if(isQuick&&savedOrderData?.items?.length){
+    const lines=savedOrderData.items.map(i=>`<div class="price-row"><span>${KafakUI.escape(window.kafakCheckoutUI.displayName(i.product))} · ${Number(i.packGrams)||''}g × ${Number(i.quantity)}</span><span>₹${Number(i.productAmount).toFixed(2)}</span></div>`).join('');
+    htmlContent=lines+`<div class="price-row"><span>${t.lbl_courier_charge}</span><span>₹<span class="val-courier">${totalCourier}</span></span></div><div class="price-total"><span>${t.lbl_total_amount}</span><span class="text-success">₹<span class="val-total">${total}</span></span></div>`;
+  }
+  if(isQuick&&Number(savedOrderData?.Balance_Due)>0)htmlContent+=`<div class="price-row"><span>Already paid</span><span>₹${Number(savedOrderData.Payment_Credit).toFixed(2)}</span></div><div class="price-total"><span>Balance to pay</span><span>₹${Number(savedOrderData.Balance_Due).toFixed(2)}</span></div>`;
   if(discountQuote?.discountAmount){htmlContent=`<div class="price-row"><span>Product price before offer</span><span>₹${Number(discountQuote.productListAmount).toFixed(2)}</span></div><div class="price-row text-success"><span>Offer discount</span><span>−₹${Number(discountQuote.discountAmount).toFixed(2)}</span></div>`+htmlContent;}
   container.html(htmlContent);
 
@@ -3120,6 +3125,7 @@ async function sendToWhatsapp(orderData = successData, recipient = null) {
 
   // 🔥 NEW: Product Name Display
   let productDisplay = productType === 'Cheruthen' ? "*🍯 Product: Cheruthen (Stingless Honey)*" : "*🍯 Product: Wild Honey*";
+  if(d.items?.length)productDisplay=d.items.map(i=>`*🍯 ${i.product} ${i.packGrams}g × ${i.quantity}: ₹${Number(i.productAmount).toFixed(2)}*`).join('\n');
 
   if (window.kafakCheckoutUI) productDisplay = '*Product: '+[window.kafakCheckoutUI.displayName(d.product),d.variant].filter(Boolean).join(' · ')+'*';
 

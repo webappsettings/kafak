@@ -122,10 +122,8 @@ function _toPrimitive(t, e) {
         var _input$field;
         if (Object.hasOwn(input, field)) data[field] = String((_input$field = input[field]) !== null && _input$field !== void 0 ? _input$field : "");
       }
-      if (sku) {
-        data.sku = sku;
-        if (expectedTotal !== void 0) data.expectedTotal = expectedTotal;
-      }
+      if (sku) data.sku = sku;
+      if (expectedTotal !== void 0) data.expectedTotal = expectedTotal;
       if (provider !== void 0) {
         if (!admin) throw Error("Only the business can change the delivery provider.");
         data.provider = provider;

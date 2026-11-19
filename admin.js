@@ -1964,6 +1964,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     // 🔥 NEW: Cheruthen Badge
     let productType = d.product || 'Vanthen';
     let productBadge = productType === 'Cheruthen' ? `<span class="badge bg-warning text-dark ms-2 shadow-sm border border-dark" style="font-size:9px; letter-spacing:0.5px; position:relative; top:-2px;">CHERUTHEN</span>` : '';
+    if(d.items?.length)productBadge='<span class="badge bg-dark ms-2">MIXED</span>';
 
     return `
     <div class="col-12 col-md-12 col-lg-12 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
@@ -1976,6 +1977,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
             ${paidTimeHTML}
             <div class="cust-name">${safe(d.name)} ${productBadge}</div>
+            ${d.items?.length?`<div class="small text-muted mb-2">${d.items.map(i=>`${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}`).join(' · ')}</div>`:''}
             <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
@@ -3501,6 +3503,7 @@ async function runPrintLogic(checkboxes, directData = null) {
         const safe = (val) => String(val || '').toUpperCase();
         const bottleCount = parcelBottleCount(d);
         let qtyHTML = bottleCount > 1 ? `<div class="qty-text">x${bottleCount}</div>` : '';
+        if(d.items?.length)qtyHTML+=`<div style="font-size:8px;font-weight:700;margin-top:4px;">${d.items.map(i=>`${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}`).join('<br>')}</div>`;
         const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
 
         let printPhone = d.phone;
@@ -10107,7 +10110,7 @@ window.sendWA = function (index, type = 'pending') {
 
     let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
-    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n${d.items?.length?d.items.map(i=>`*${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}: ₹${Number(i.productAmount).toFixed(2)}*`).join('\n'):`*Qty: ${d.quantity}*`}\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
     let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_" : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
 
