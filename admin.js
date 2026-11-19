@@ -1964,7 +1964,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
     // 🔥 NEW: Cheruthen Badge
     let productType = d.product || 'Vanthen';
     let productBadge = productType === 'Cheruthen' ? `<span class="badge bg-warning text-dark ms-2 shadow-sm border border-dark" style="font-size:9px; letter-spacing:0.5px; position:relative; top:-2px;">CHERUTHEN</span>` : '';
-    if(d.items?.length)productBadge='<span class="badge bg-dark ms-2">MIXED</span>';
+    if(d.items?.length)productBadge='<span class="badge bg-danger ms-2">MIXED</span>';
 
     return `
     <div class="col-12 col-md-12 col-lg-12 card-lazy-enter" data-card-courier="${d.provider || d.Courier_Provider || ''}" data-card-qty="${d.quantity || 1}">
@@ -1977,7 +1977,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             <div class="text-end text-muted small mb-2" style="font-size:10px; float: right">${formattedDate}</div>
             ${paidTimeHTML}
             <div class="cust-name">${safe(d.name)} ${productBadge}</div>
-            ${d.items?.length?`<div class="small text-muted mb-2">${d.items.map(i=>`${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}`).join(' · ')}</div>`:''}
+            ${d.items?.length?`<div class="text-muted mb-2" style="font-size:11px;line-height:1.4;">${d.items.map(i=>`${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}`).join(' · ')}</div>`:''}
             <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
             <div class="cust-details">
                 <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
@@ -3269,6 +3269,8 @@ window.printSelected = async function (sourceTab = 'new') {
 
 // 🔥 UPDATED: PRINT LABELS (Smart Loading Message & Zero Balance Skip)
 function printProductBadge(order) {
+    const includesCheruthen = order.items?.length ? order.items.some(item => item.product === 'Cheruthen') : order.product === 'Cheruthen';
+    if (!includesCheruthen) return '';
     const items = order.items?.length ? order.items : [{ product: order.product || 'Vanthen', packGrams: order['Pack Grams'] || order.packGrams, quantity: parcelBottleCount(order) }];
     const grouped = new Map();
     for (const item of items) {
