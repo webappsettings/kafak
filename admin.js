@@ -3268,6 +3268,23 @@ window.printSelected = async function (sourceTab = 'new') {
 
 
 // 🔥 UPDATED: PRINT LABELS (Smart Loading Message & Zero Balance Skip)
+function printProductBadge(order) {
+    const items = order.items?.length ? order.items : [{ product: order.product || 'Vanthen', packGrams: order['Pack Grams'] || order.packGrams, quantity: parcelBottleCount(order) }];
+    const grouped = new Map();
+    for (const item of items) {
+        const name = item.product === 'Vanthen' ? 'Wild' : item.product === 'Cheruthen' ? 'Stingless' : String(item.product || 'Honey');
+        const grams = Number(item.packGrams) || (item.product === 'Cheruthen' ? 300 : item.product === 'Vanthen' ? 650 : 0);
+        const quantity = Number(item.quantity);
+        if (!Number.isSafeInteger(quantity) || quantity < 1) continue;
+        const key = JSON.stringify([name, grams]);
+        const prior = grouped.get(key);
+        grouped.set(key, { name, grams, quantity: (prior?.quantity || 0) + quantity });
+    }
+    const escape = text => String(text).replace(/[&<>"']/g, c => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[c]));
+    const lines = [...grouped.values()].map(item => `${escape(item.name)}${item.grams ? ' ' + item.grams : ''} x ${item.quantity}`);
+    return lines.length ? `<div class="product-pack-badge" style="font-size: 10px;background: #a000bb;color: #fff;padding: 2px 6px;border-radius: 3px;display: inline-block;margin-top: 16px;position: absolute;bottom: 135px;left: 150px;text-align: center;line-height: 13px;">${lines.join('<br>')}</div>` : '';
+}
+
 async function runPrintLogic(checkboxes, directData = null) {
     let ordersToPrint = [];
 
@@ -3503,7 +3520,6 @@ async function runPrintLogic(checkboxes, directData = null) {
         const safe = (val) => String(val || '').toUpperCase();
         const bottleCount = parcelBottleCount(d);
         let qtyHTML = bottleCount > 1 ? `<div class="qty-text">x${bottleCount}</div>` : '';
-        if(d.items?.length)qtyHTML+=`<div style="font-size:8px;font-weight:700;margin-top:4px;">${d.items.map(i=>`${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}`).join('<br>')}</div>`;
         const phoneIcon = `<svg width="30" height="30" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 15.5C18.75 15.5 17.55 15.3 16.43 14.93C16.08 14.82 15.69 14.9 15.43 15.16L13.23 17.36C10.42 15.92 8.08 13.58 6.64 10.77L8.84 8.57C9.1 8.31 9.18 7.92 9.07 7.57C8.7 6.45 8.5 5.25 8.5 4C8.5 3.45 8.05 3 7.5 3H4C3.45 3 3 3.45 3 4C3 13.39 10.61 21 20 21C20.55 21 21 20.55 21 20V16.5C21 15.95 20.55 15.5 20 15.5Z" fill="black"/><path d="M11.65 8.03C11.65 8.03 13.06 8.03 13.77 8.73C14.47 9.44 14.47 10.85 14.47 10.85M12 4.84C12 4.84 14.83 4.84 16.24 6.26C17.66 7.67 17.66 10.5 17.66 10.5M12.35 1.66C12.35 1.66 16.6 1.66 18.72 3.78C20.84 5.9 20.84 10.15 20.84 10.15" stroke="#008CFF" stroke-width="2" stroke-linecap="round"/></svg>`;
 
         let printPhone = d.phone;
@@ -3591,7 +3607,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             ${trackingBarcodeHtml}
             ${stateDotHtml}
             ${resendDotHtml}
-            ${(d.product === 'Cheruthen' || d.product === 'Cheruthen') ? `<div style="font-size: 11px; font-weight: 900; background: #bb1a00; color: #fff; padding: 2px 5px; border-radius: 3px; display: inline-block; margin-top: 16px; position: absolute; top: 20px; left: 138px;">St</div>` : ''}
+            ${printProductBadge(d)}
             <div class="address-sec">
                 <div class="to-label">To,</div>
                 <div class="cust-name">${safe(d.name)}</div>
