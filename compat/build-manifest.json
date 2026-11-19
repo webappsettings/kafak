@@ -1,6 +1,6 @@
 {
   "inputs": {
-    "order-runtime.js": "ab1dc2cbb4fe7cc6d4f98342e620f1b21ac5674bc2719fd8aa4c8ec6f87d3327",
+    "order-runtime.js": "51a0fd5be5f3d793ef5af3c07f42966ef3eb07e118d5384c4c4383a9f4f25d83",
     "order-admin-actions.js": "18b41b5c3a9d72011b6696a14fad0e86c1d68b627592789c1c94ca860dd4951c",
     "order-customer-storage.js": "9ccaafc02dbfff931857adde8ec5cf1d1804846691322adcde5ad5e733df3e05",
     "order-presentation.js": "38ceaf2157add250831cf9700c4f7c075edf9153aca056f7b65642d88380a9e9",
@@ -17,7 +17,7 @@
     "order-recovery.js": "60e0dfb59f9bb38fcc3dea840316052ac0e1c65e15f826a489e6ccff482e9268",
     "business-admin-commands.js": "8983c8e1fc7b9df81872c77c117bee785070ff9b5417683fd5bc408827c0a12a",
     "business-admin-transport.js": "c31a7b962bccae5c8dc82dcb4d2458d311e30c1789c40f9c3252c99febe18a11",
-    "release-update.js": "f3d8b1fc9942070e2e20f926ec5c9447da0e0ba1289b9c92fb9f99269432874a",
+    "release-update.js": "6ce6e881780c819ffaa57be179d27829af36b427c7707075724fd695ad6b041f",
     "translations.js": "c0ec29c11928cbdbee3845772e3bb723730ade62074cc9be979f4cc45ccdb2f6",
     "o/open.js": "60eaf6cda9be1d3138315e5b1bfcd0c546d47e5394360edef3c7a8365e79d17c",
     "build/order-polyfills.js": "af4242f99a00e9fb881700eb96eef46c4455d35d0afe47d657bf5228e954712a",
@@ -25,7 +25,7 @@
     "package-lock.json": "fe585b582959b095aa9b7a1db0517686ffad774004874d5597cf8554b2ac603d"
   },
   "outputs": {
-    "compat/order-runtime.js": "dc8f8a3346c8be947568c45c0f703322b2d7967c04fb478e4aad630d48c3dbd8",
+    "compat/order-runtime.js": "05322e4a8aa22bdca8dcab194e70ebf2e5a91ce60e6bdb32379f2ae54de03fc3",
     "compat/order-customer-storage.js": "6e1b646467b9cd7fd8abf43b1aa75f51d1ccebf0945f546678de765741acb94d",
     "compat/order-presentation.js": "0ace18ca39768f1fda79c4b2bdbcba0c5fba8e51da411014920108b1279914d6",
     "compat/backend-api.js": "f10720d39d0579da22978e0dcace7ceab767870001efbc308de95ae001be79aa",
@@ -46,7 +46,7 @@
     "compat/open-order.js": "c5f85edc80d99840e2c88dd11fb3e9450a68e5478027de30bf29af85d7a874d0",
     "compat/order-recovery.js": "76b2f42b7e373500491467764f6dae8c3a04c1e19c4a9d50644205c06d1b8b6b",
     "compat/polyfills.js": "0529891146479992337bc2bcad920d84fb7784439294dcaee931a9a8cd56c4bd",
-    "compat/release-update.js": "948097bbbfcd084b9c27acb9149a4451957cbc1ec0be95de77f2f9c3c90494fd",
+    "compat/release-update.js": "b44a8190d5fa9d83fbea0dad8390afa8f1e85d1a8a638a5be5b96f4d7de471ea",
     "compat/sweetalert.js": "626fea1079c6184fcec61b309f363b2beb33d77a85e9e5557c275d1eb940b51b",
     "compat/translations.js": "7b7180f224447a2b6e00277a9a276a6ccaa2e96f46d8a77389a71ea822fc837c"
   }
