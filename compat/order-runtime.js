@@ -146,10 +146,10 @@ document.addEventListener("DOMContentLoaded", function() {
     }));
     return scripts.get(src);
   }
-  KafakUI.adminActions = () => script("compat/order-admin-actions.js?v=20261120a");
+  KafakUI.adminActions = () => script("compat/order-admin-actions.js?v=20261120b");
   KafakUI.adminTransport = async () => {
-    await script("compat/business-admin-commands.js?v=20261120a");
-    await script("compat/business-admin-transport.js?v=20261120a");
+    await script("compat/business-admin-commands.js?v=20261120b");
+    await script("compat/business-admin-transport.js?v=20261120b");
   };
   KafakUI.datePicker = async () => {
     if (window.flatpickr) return;

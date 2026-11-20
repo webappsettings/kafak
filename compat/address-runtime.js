@@ -99,6 +99,7 @@ function _toPrimitive(t, e) {
           if (prefix) result = tidy(result.replace(target.head, ""));
         }
       } while (result !== before && result);
+      if (result !== tidy(part)) result = tidy(result.replace(/(?:^|\s)(?:N\/R|NEAR|NR|AT)\s*$/i, ""));
       if (!result || seen.has(key(result))) return "";
       seen.add(key(result));
       return result;
@@ -142,8 +143,8 @@ function _toPrimitive(t, e) {
       if (result !== part) result = result.replace(/\(\s*\)/g, "").replace(/(?:^|\s)(?:N\/R|NEAR|NR|AT)\s*$/i, "");
       return tidy(result);
     }).filter(Boolean).join(", ");
-    const house = shared(clean(shared(input.house)));
-    const place = removeCopies(shared(clean(shared(input.place))), [house], true);
+    const house = removeCopies(shared(clean(shared(input.house))), [name]);
+    const place = removeCopies(removeCopies(shared(clean(shared(input.place))), [name]), [house], true);
     return _objectSpread(_objectSpread({}, input), {}, {
       house,
       place,

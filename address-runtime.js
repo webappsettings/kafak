@@ -34,6 +34,7 @@
   return String(value==null?'':value).split(/[,;|\n]+/).map(part=>{
    let result=tidy(part),before;
    do{before=result;for(const target of patterns){if(key(result)===target.key){result='';break;}result=tidy(result.replace(target.tail,'$1'));if(prefix)result=tidy(result.replace(target.head,''));}}while(result!==before&&result);
+   if(result!==tidy(part))result=tidy(result.replace(/(?:^|\s)(?:N\/R|NEAR|NR|AT)\s*$/i,''));
    if(!result||seen.has(key(result)))return '';seen.add(key(result));return result;
   }).filter(Boolean).join(', ');
  }
@@ -64,8 +65,8 @@
    if(result!==part)result=result.replace(/\(\s*\)/g,'').replace(/(?:^|\s)(?:N\/R|NEAR|NR|AT)\s*$/i,'');
    return tidy(result);
   }).filter(Boolean).join(', ');
-  const house=shared(clean(shared(input.house)));
-  const place=removeCopies(shared(clean(shared(input.place))),[house],true);
+  const house=removeCopies(shared(clean(shared(input.house))),[name]);
+  const place=removeCopies(removeCopies(shared(clean(shared(input.place))),[name]),[house],true);
   return {...input,house,place,postoffice:po};
  }
  const api={normalize,postOffice};scope.KafakAddress=api;
