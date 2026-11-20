@@ -50,7 +50,7 @@
   const pin=String(input.pincode||'').trim();if(/^\d{6}$/.test(pin))text=text.replace(new RegExp('(^|[\\s,;|(:])(?:(?:PIN(?:CODE|[\\s]+CODE)?)[\\s:.-]*)?'+pin+'(?=$|[\\s,;|.)])','gi'),'$1');
   return text;
  }
- function normalize(input){
+ function calculate(input){
   const owners=[input.district,input.state];
   const shared=value=>removeCopies(removeNumbers(value,input),owners);
   const po=postOffice(shared(input.postoffice)||input.postoffice),name=bare(po),officeKey=key(name);
@@ -68,6 +68,14 @@
   const house=removeCopies(shared(clean(shared(input.house))),[name]);
   const place=removeCopies(removeCopies(shared(clean(shared(input.place))),[name]),[house],true);
   return {...input,house,place,postoffice:po};
+ }
+ const cache=new Map(),cacheLimit=typeof window==='undefined'?256:2048;
+ const addressFields=['house','place','postoffice','district','state','pincode','phone','whatsapp','altphone','paidNum'];
+ function normalize(input){
+  const signature=JSON.stringify(addressFields.map(field=>String(input[field]==null?'':input[field])));
+  let address=cache.get(signature);
+  if(!address){const cleaned=calculate(input);address={house:cleaned.house,place:cleaned.place,postoffice:cleaned.postoffice};cache.set(signature,address);if(cache.size>cacheLimit)cache.delete(cache.keys().next().value);}
+  return {...input,...address};
  }
  const api={normalize,postOffice};scope.KafakAddress=api;
  if(typeof module!=='undefined'&&module.exports)module.exports=api;

@@ -1,11 +1,4 @@
-// 🔥 AUTOMATIC CACHE CLEARER (To prevent old code from sticking)
-if ('caches' in window) {
-    caches.keys().then((names) => {
-        names.forEach((name) => {
-            caches.delete(name);
-        });
-    });
-}
+// Versioned caches are managed by sw.js; preserve current assets for fast reloads.
 
 // 🔥 SMOOTH LAZY LOAD CSS ANIMATION
 if (!$('#lazy-load-css').length) {
@@ -769,6 +762,11 @@ window.toggleCheruthenFilter = function (event, chip) {
 
 function renderTabs(orders, externalCounts = null) {
     const customerStats = buildCustomerStats(allOrders);
+    const localOrderCounts = new Map();
+    allOrders.forEach(order => {
+        const phone=String(order.phone||'').replace(/[^0-9]/g,'').slice(-10);
+        if(phone&&String(order.Status||'Pending').trim()!=='Refunded')localOrderCounts.set(phone,(localOrderCounts.get(phone)||0)+1);
+    });
     const createCardHTML = (...args) => {
         while (args.length < 6) args.push(undefined);
         return window.createCardHTML(...args, customerStats);
@@ -1371,14 +1369,7 @@ function renderTabs(orders, externalCounts = null) {
                 let currentPhone = String(o.phone || '').replace(/[^0-9]/g, '');
                 if (currentPhone.length > 10) currentPhone = currentPhone.slice(-10);
                 let localOrders = 1;
-                if (currentPhone && typeof allOrders !== 'undefined') {
-                    localOrders = allOrders.filter(x => {
-                        let p = String(x.phone || '').replace(/[^0-9]/g, '');
-                        if (p.length > 10) p = p.slice(-10);
-                        let sSt = String(x.Status || 'Pending').trim();
-                        return (p === currentPhone) && (sSt !== 'Refunded');
-                    }).length;
-                }
+                if(currentPhone)localOrders=localOrderCounts.get(currentPhone)||0;
                 let serverOrders = parseInt(o.Total_Orders || o.total_orders) || 0;
                 let tOrds = Math.max(localOrders, serverOrders);
                 if (tOrds === 0) tOrds = 1;

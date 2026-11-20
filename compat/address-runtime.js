@@ -119,7 +119,7 @@ function _toPrimitive(t, e) {
     if (/^\d{6}$/.test(pin)) text = text.replace(new RegExp("(^|[\\s,;|(:])(?:(?:PIN(?:CODE|[\\s]+CODE)?)[\\s:.-]*)?" + pin + "(?=$|[\\s,;|.)])", "gi"), "$1");
     return text;
   }
-  function normalize(input) {
+  function calculate(input) {
     const owners = [input.district, input.state];
     const shared = (value) => removeCopies(removeNumbers(value, input), owners);
     const po = postOffice(shared(input.postoffice) || input.postoffice), name = bare(po), officeKey = key(name);
@@ -150,6 +150,23 @@ function _toPrimitive(t, e) {
       place,
       postoffice: po
     });
+  }
+  const cache = /* @__PURE__ */ new Map(), cacheLimit = typeof window === "undefined" ? 256 : 2048;
+  const addressFields = ["house", "place", "postoffice", "district", "state", "pincode", "phone", "whatsapp", "altphone", "paidNum"];
+  function normalize(input) {
+    const signature = JSON.stringify(addressFields.map((field) => String(input[field] == null ? "" : input[field])));
+    let address = cache.get(signature);
+    if (!address) {
+      const cleaned = calculate(input);
+      address = {
+        house: cleaned.house,
+        place: cleaned.place,
+        postoffice: cleaned.postoffice
+      };
+      cache.set(signature, address);
+      if (cache.size > cacheLimit) cache.delete(cache.keys().next().value);
+    }
+    return _objectSpread(_objectSpread({}, input), address);
   }
   const api = {
     normalize,
