@@ -1567,6 +1567,7 @@ function buildCustomerStats(orders) {
 }
 
 function createCardHTML(d, index, type, currentStatus, isCompact = false, groupId = '', customerStats = null) {
+    d=window.KafakAddress?.normalize(d)||d;
 
     let priceInfo = calculatePriceInfo(d, d.quantity, d.state, d.provider || d.Courier_Provider);
 
@@ -2048,7 +2049,7 @@ function createCardHTML(d, index, type, currentStatus, isCompact = false, groupI
             ${d.items?.length?`<div class="text-muted mb-2" style="font-size:11px;line-height:1.4;">${d.items.map(i=>`${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}`).join(' · ')}</div>`:''}
             <div class="mb-2"><span class="stats-badge-blue">📦 ${totalBottles} Btls</span> <span class="stats-badge-purple">🛍️ ${totalOrders} Ords</span></div>
             <div class="cust-details">
-                <b>${safe(d.house)}</b>, ${safe(d.place)}, ${safe(d.postoffice)}<br>
+                ${[d.house?`<b>${safe(d.house)}</b>`:'',safe(d.place),safe(d.postoffice)].filter(Boolean).join(', ')}<br>
                 ${safe(d.district)}, ${safe(d.state)} - <b>${d.pincode}</b>
                 <div class="mt-2" style="font-size:11px;">${contactLine}</div>
             </div>
@@ -3584,7 +3585,7 @@ async function runPrintLogic(checkboxes, directData = null) {
     };
 
     labelsData.forEach((item) => {
-        const d = item.details;
+        const d = window.KafakAddress?.normalize(item.details)||item.details;
         const seqNum = item.seqNum;
 
         const safe = (val) => String(val || '').toUpperCase();
@@ -3682,7 +3683,7 @@ async function runPrintLogic(checkboxes, directData = null) {
             <div class="address-sec">
                 <div class="to-label">To,</div>
                 <div class="cust-name">${safe(d.name)}</div>
-                <div class="cust-addr">${safe(d.house)}<br>${safe(d.place)}<br>${safe(d.postoffice)}<br>${safe(d.district)}, ${safe(d.state)}</div>
+                <div class="cust-addr">${[d.house,d.place,d.postoffice].filter(v=>String(v||'').trim()).map(safe).join('<br>')}<br>${safe(d.district)}, ${safe(d.state)}</div>
                 <div class="cust-pin">PIN: ${d.pincode}</div>
                 <div class="cust-ph">PH: ${printPhone}</div>
             </div>

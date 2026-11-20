@@ -1187,6 +1187,7 @@ function updateLocalCache(data, status) {
 
 
 function showReturningUserView(d, isActiveOrder, isServerData) {
+  d=window.KafakAddress?.normalize(d)||d;
   preloadHoneyVideo();
   // 1. Hide Wizard Steps
   $('#step-0').hide();
@@ -1674,7 +1675,8 @@ function updateSummaryDisplay() {
 
   // 2. Clean PO Logic
   let poClean = safe(po).replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, '').trim();
-  if (poClean) poClean += ' PO';
+  if(window.KafakAddress)poClean=safe(window.KafakAddress.postOffice(po));
+  else if (poClean) poClean += ' PO';
 
   // 3. Generate Address HTML
   let addrHtml = `
@@ -1921,7 +1923,8 @@ function updateLiveAddressPreview() {
   // 2. Fetch directly from userData instead of hidden divs (No need to wait for input)
   let poRaw = (typeof userData !== 'undefined' && userData.postoffice) ? userData.postoffice : '';
   let po = poRaw.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, '').trim();
-  if (po) po += ' PO';
+  if(window.KafakAddress)po=window.KafakAddress.postOffice(poRaw);
+  else if (po) po += ' PO';
 
   let dist = (typeof userData !== 'undefined' && userData.district) ? userData.district : '';
   let state = (typeof userData !== 'undefined' && userData.state) ? userData.state : ($('#state').val() || 'KERALA');

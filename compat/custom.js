@@ -1158,6 +1158,8 @@ function updateLocalCache(data, status) {
   }
 }
 function showReturningUserView(d, isActiveOrder, isServerData) {
+  var _window$KafakAddress;
+  d = ((_window$KafakAddress = window.KafakAddress) === null || _window$KafakAddress === void 0 ? void 0 : _window$KafakAddress.normalize(d)) || d;
   preloadHoneyVideo();
   $("#step-0").hide();
   $("#wizard-view").hide();
@@ -1581,7 +1583,8 @@ function updateSummaryDisplay() {
   const phone = $("#edit-phone").val() || "";
   const safe = (val) => KafakUI.escape(String(val || "").trim().toUpperCase());
   let poClean = safe(po).replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, "").trim();
-  if (poClean) poClean += " PO";
+  if (window.KafakAddress) poClean = safe(window.KafakAddress.postOffice(po));
+  else if (poClean) poClean += " PO";
   let addrHtml = `
       <span class="addr-house">${safe(house)}</span>
       ${safe(place)}${place && poClean ? "," : ""} <b>${poClean}</b>
@@ -1783,7 +1786,8 @@ function updateLiveAddressPreview() {
   let place = $("#place").val() || "";
   let poRaw = typeof userData !== "undefined" && userData.postoffice ? userData.postoffice : "";
   let po = poRaw.replace(/(?:^|[\s\.]+)[BSHP][\.\s]*O[\.\s]*$/i, "").trim();
-  if (po) po += " PO";
+  if (window.KafakAddress) po = window.KafakAddress.postOffice(poRaw);
+  else if (po) po += " PO";
   let dist = typeof userData !== "undefined" && userData.district ? userData.district : "";
   let state = typeof userData !== "undefined" && userData.state ? userData.state : $("#state").val() || "KERALA";
   let pin = $("#pincode").val() || "";

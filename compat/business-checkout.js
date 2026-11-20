@@ -72,7 +72,7 @@ function _toPrimitive(t, e) {
       return q;
     }
     async submit(input, sku) {
-      var _result$quote$offer, _result$quote$offer2, _result$quote$offer3;
+      var _scope$KafakAddress, _result$quote$offer, _result$quote$offer2, _result$quote$offer3;
       if (input.orderid) throw Error("Use the existing-order edit workflow; do not create a duplicate.");
       const product = this.product(sku), priced = this.priced;
       if (!priced || priced.sku !== sku || priced.state !== input.state) throw Error("Wait for the current delivery total before submitting.");
@@ -89,8 +89,9 @@ function _toPrimitive(t, e) {
         if (JSON.stringify(expected) !== JSON.stringify(this.order.pending.data)) throw Error("A previous order is awaiting confirmation. Restore that draft and retry before changing it.");
       }
       const result = this.order.pending ? await this.order.retry() : await this.order.submit(data);
+      const address = ((_scope$KafakAddress = scope.KafakAddress) === null || _scope$KafakAddress === void 0 ? void 0 : _scope$KafakAddress.normalize(data)) || data;
       return _objectSpread(_objectSpread({}, result), {}, {
-        legacy: _objectSpread(_objectSpread({}, data), {}, {
+        legacy: _objectSpread(_objectSpread({}, address), {}, {
           orderid: result.orderid,
           timestamp: result.timestamp,
           accessToken: result.accessToken,
