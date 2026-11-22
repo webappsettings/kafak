@@ -191,7 +191,7 @@ window.changeLanguage = function (lang) {
 
   if ($('#quick-qty').is(':hidden')) {
     $('label[data-i18n="lbl_qty"]').hide();
-    $('#quick-qty').prev('label').hide();
+    $('#quick-qty-label').hide();
   }
 }
 
@@ -836,7 +836,7 @@ function handleEditControlsVisibility(d) {
   if (['paid', 'dispatched'].includes(status)) {
     $('label[data-i18n="lbl_qty"]').show();
     $('#quick-qty').show().prop('disabled', true);
-    $('#quick-qty').prev('label').show();
+    $('#quick-qty-label').show();
 
     $('.btn-update-sage').hide();
     $('#quick-price-box').show();
@@ -1257,7 +1257,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $('#admin-qty-actions').remove();
 
   if (isAdmin) {
-    $('#quick-qty').prev('label').show(); // "You Selected" Label
+    $('#quick-qty-label').show(); // "You Selected" Label
 
     // 🔥 NEW: Product Selection Box (Cheruthen Support - മുകളിലേക്ക് മാറ്റി)
     let savedProduct = d.product || 'Vanthen';
@@ -1272,7 +1272,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     `;
 
     $('#admin-product-panel').remove();
-    $(prodSelectHTML).insertBefore($('#quick-qty').prev('label'));
+    $(prodSelectHTML).insertBefore($('#quick-qty-label'));
 
     let existingQty = d.quantity;
     renderQtyDropdowns(); // 🔥 ഇവിടെവെച്ച് ഡ്രോപ്പ്-ഡൗൺ അപ്ഡേറ്റ് ചെയ്യുന്നു
@@ -1356,7 +1356,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
     $('#status-area').html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
 
     $('label[data-i18n="lbl_qty"]').hide();
-    $('#quick-qty').hide().prev('label').hide();
+    $('#quick-qty').hide();$('#quick-qty-label').hide();
     $('.btn-update-sage').hide();
     $('#quick-price-box').stop(true, true).hide().empty(); // 🔥 Force clear and hide
     $('#btn-edit-addr').hide();
@@ -1380,7 +1380,7 @@ window.enableNewOrderMode = function () {
   $('label[data-i18n="lbl_qty"]').text(t.lbl_qty || "How many bottles?");
 
   $('label[data-i18n="lbl_qty"]').fadeIn();
-  $('#quick-qty').prev('label').fadeIn();
+  $('#quick-qty-label').fadeIn();
   $('#quick-qty').fadeIn();
   $('.btn-update-sage').fadeIn();
   $('#quick-price-box').hide().empty();

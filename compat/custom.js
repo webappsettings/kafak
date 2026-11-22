@@ -211,7 +211,7 @@ window.changeLanguage = function(lang) {
   }
   if ($("#quick-qty").is(":hidden")) {
     $('label[data-i18n="lbl_qty"]').hide();
-    $("#quick-qty").prev("label").hide();
+    $("#quick-qty-label").hide();
   }
 };
 window.showAlert = function(msg) {
@@ -750,7 +750,7 @@ function handleEditControlsVisibility(d) {
   if (["paid", "dispatched"].includes(status)) {
     $('label[data-i18n="lbl_qty"]').show();
     $("#quick-qty").show().prop("disabled", true);
-    $("#quick-qty").prev("label").show();
+    $("#quick-qty-label").show();
     $(".btn-update-sage").hide();
     $("#quick-price-box").show();
     $("#btn-edit-addr").hide();
@@ -1209,7 +1209,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   $("#admin-diff-viewer").remove();
   $("#admin-qty-actions").remove();
   if (isAdmin) {
-    $("#quick-qty").prev("label").show();
+    $("#quick-qty-label").show();
     let savedProduct = d.product || "Vanthen";
     let prodSelectHTML = `
         <div id="admin-product-panel" class="mb-3 p-3 bg-white border border-warning rounded shadow-sm fade-in w-100">
@@ -1221,7 +1221,7 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
         </div>
     `;
     $("#admin-product-panel").remove();
-    $(prodSelectHTML).insertBefore($("#quick-qty").prev("label"));
+    $(prodSelectHTML).insertBefore($("#quick-qty-label"));
     let existingQty = d.quantity;
     renderQtyDropdowns();
     if (existingQty) {
@@ -1286,7 +1286,8 @@ function showReturningUserView(d, isActiveOrder, isServerData) {
   } else {
     $("#status-area").html(`<div class="text-center py-5"><i class="fas fa-hourglass-half fa-spin text-muted"></i></div>`).show();
     $('label[data-i18n="lbl_qty"]').hide();
-    $("#quick-qty").hide().prev("label").hide();
+    $("#quick-qty").hide();
+    $("#quick-qty-label").hide();
     $(".btn-update-sage").hide();
     $("#quick-price-box").stop(true, true).hide().empty();
     $("#btn-edit-addr").hide();
@@ -1304,7 +1305,7 @@ window.enableNewOrderMode = function() {
   const t = translations[lang] || translations["en"];
   $('label[data-i18n="lbl_qty"]').text(t.lbl_qty || "How many bottles?");
   $('label[data-i18n="lbl_qty"]').fadeIn();
-  $("#quick-qty").prev("label").fadeIn();
+  $("#quick-qty-label").fadeIn();
   $("#quick-qty").fadeIn();
   $(".btn-update-sage").fadeIn();
   $("#quick-price-box").hide().empty();

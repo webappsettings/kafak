@@ -14,7 +14,7 @@
       box = document.createElement("div");
       box.id = "mixed-order-products";
       box.className = "mb-3";
-      qty.parentNode.insertBefore(box, qty);
+      qty.parentNode.insertBefore(box, document.getElementById("quick-qty-label") || qty);
     }
     box.replaceChildren();
     if ((_row$items = row.items) !== null && _row$items !== void 0 && _row$items.length) {

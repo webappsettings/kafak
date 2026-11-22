@@ -8,7 +8,7 @@
  function render(){
   const row=current(),qty=document.getElementById('quick-qty');if(!row?.orderid||!qty)return;
   let box=document.getElementById('mixed-order-products');
-  if(!box){box=document.createElement('div');box.id='mixed-order-products';box.className='mb-3';qty.parentNode.insertBefore(box,qty);}
+  if(!box){box=document.createElement('div');box.id='mixed-order-products';box.className='mb-3';qty.parentNode.insertBefore(box,document.getElementById('quick-qty-label')||qty);}
   box.replaceChildren();
   if(row.items?.length){
    const list=document.createElement('div');list.className='border rounded-3 bg-light p-3 mb-2';
