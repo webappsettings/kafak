@@ -1,6 +1,6 @@
 /* Fresh HTML and unversioned scripts; cache only explicitly versioned assets. */
-const RELEASE = '20261125b';
-const ASSET_CACHE = 'kafak-versioned-20261125b';
+const RELEASE = '20261125c';
+const ASSET_CACHE = 'kafak-versioned-20261125c';
 self.addEventListener('install', () => self.skipWaiting());
 self.addEventListener('activate', event => event.waitUntil((async () => {
   await Promise.all((await caches.keys()).filter(key=>key.startsWith('kafak-versioned-')&&key!==ASSET_CACHE).map(key=>caches.delete(key)));

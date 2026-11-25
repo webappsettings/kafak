@@ -113,13 +113,13 @@ function _arrayWithHoles(r) {
         const right = document.createElement("div");
         right.className = "d-flex align-items-center gap-2";
         right.append(amount);
-        if (index > 0 && storage.getItem("kafakAdmin") === "true" && ["pending", "sent", "paid"].includes(String(row.Status || row.status).toLowerCase()) && !/P_/.test(row.adminMeta || "")) {
+        if (row.items.length > 1 && storage.getItem("kafakAdmin") === "true" && ["pending", "sent", "paid"].includes(String(row.Status || row.status).toLowerCase()) && !/P_/.test(row.adminMeta || "")) {
           const button = document.createElement("button");
           button.type = "button";
           button.className = "btn btn-sm btn-outline-danger mixed-remove-product";
           button.dataset.index = String(index);
           button.style.cssText = "width:26px;height:26px;padding:0;line-height:1;flex-shrink:0";
-          button.title = "Remove added product";
+          button.title = "Remove product";
           button.setAttribute("aria-label", "Remove " + item.product + " " + item.packGrams + "g");
           button.innerHTML = '<i class="fas fa-times" aria-hidden="true"></i>';
           button.disabled = removing;
@@ -340,7 +340,7 @@ function _arrayWithHoles(r) {
         quantity: 1
       };
       const result = await Swal.fire({
-        title: pending ? "Finish removing product" : "Remove added product?",
+        title: pending ? "Finish removing product" : "Remove product?",
         html: `<div class="small">${escape(item.product)} ${Number(item.packGrams)}g × ${Number(item.quantity)}<div class="mt-2">Updated total: <strong>₹${money(quote.total)}</strong></div></div>`,
         icon: "question",
         showCancelButton: true,
