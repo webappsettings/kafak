@@ -80,7 +80,7 @@ function _toPrimitive(t, e) {
   const catalog = new KafakBusinessCatalog({
     catalog: async () => checkout.products
   });
-  let ready = null;
+  let ready = null, priceGeneration = 0;
   const selected = (quick) => {
     var _document$querySelect4;
     return (_document$querySelect4 = document.querySelector(quick ? "#quick-qty" : "#quantity")) === null || _document$querySelect4 === void 0 || (_document$querySelect4 = _document$querySelect4.selectedOptions[0]) === null || _document$querySelect4 === void 0 ? void 0 : _document$querySelect4.dataset.sku;
@@ -106,7 +106,7 @@ function _toPrimitive(t, e) {
     };
   }
   function render() {
-    var _window$kafakCheckout, _catalog$selected, _window$KafakMixedUI;
+    var _window$kafakCheckout, _catalog$selected, _window$KafakMixedUI, _window$KafakOrderCou;
     const productSelect = document.getElementById("admin-product-type");
     const saved = typeof savedOrderData === "object" ? savedOrderData : null;
     const changed = !!((_window$kafakCheckout = window.kafakCheckoutUI) !== null && _window$kafakCheckout !== void 0 && _window$kafakCheckout.productChanged);
@@ -160,10 +160,13 @@ function _toPrimitive(t, e) {
       }
     }
     (_window$KafakMixedUI = window.KafakMixedUI) === null || _window$KafakMixedUI === void 0 || _window$KafakMixedUI.render();
+    (_window$KafakOrderCou = window.KafakOrderCourierUI) === null || _window$KafakOrderCou === void 0 || _window$KafakOrderCou.render();
   }
   async function load() {
     if (!ready) ready = checkout.load().then(async (result) => {
+      var _window$KafakOrderCou2;
       await catalog.load();
+      if (adminCatalog) await ((_window$KafakOrderCou2 = window.KafakOrderCourierUI) === null || _window$KafakOrderCou2 === void 0 ? void 0 : _window$KafakOrderCou2.load());
       adminPhone = String(result.settings.contactPhone);
       isOutOfStock = result.settings.stockStatus === "no";
       globalQtyList = [...new Set(result.products.map((p) => Number(p.units)))].sort((a, b) => a - b);
@@ -200,33 +203,58 @@ function _toPrimitive(t, e) {
       checkForChanges();
     },
     async price(qty, quick) {
-      var _savedOrderData3, _savedOrderData4;
+      var _window$KafakOrderCou3, _window$KafakOrderCou4, _window$KafakOrderCou5, _savedOrderData3, _savedOrderData4;
+      const generation = ++priceGeneration;
       await load();
+      (_window$KafakOrderCou3 = window.KafakOrderCourierUI) === null || _window$KafakOrderCou3 === void 0 || _window$KafakOrderCou3.render();
+      checkout.serial++;
+      checkout.order.quoteSerial++;
+      const provider = (_window$KafakOrderCou4 = window.KafakOrderCourierUI) === null || _window$KafakOrderCou4 === void 0 ? void 0 : _window$KafakOrderCou4.provider(quick), providerChanged = quick && ((_window$KafakOrderCou5 = window.KafakOrderCourierUI) === null || _window$KafakOrderCou5 === void 0 ? void 0 : _window$KafakOrderCou5.changed());
       const sku = selected(quick), state = quick ? $("#edit-state").val() : userData.state || $("#state").val();
       if (quick && (_savedOrderData3 = savedOrderData) !== null && _savedOrderData3 !== void 0 && (_savedOrderData3 = _savedOrderData3.items) !== null && _savedOrderData3 !== void 0 && _savedOrderData3.length) {
-        if (state === savedOrderData.state) {
+        if (state === savedOrderData.state && !providerChanged) {
           checkout.priced = null;
           return historicalQuote(qty);
         }
         try {
           var _window$KafakMixedUI2;
-          return await ((_window$KafakMixedUI2 = window.KafakMixedUI) === null || _window$KafakMixedUI2 === void 0 ? void 0 : _window$KafakMixedUI2.price(state));
+          return await ((_window$KafakMixedUI2 = window.KafakMixedUI) === null || _window$KafakMixedUI2 === void 0 ? void 0 : _window$KafakMixedUI2.price(state, provider));
         } catch (error) {
           showAlert(error.message);
           return null;
         }
       }
-      if (quick && editingOrderId && (!((_savedOrderData4 = savedOrderData) !== null && _savedOrderData4 !== void 0 && _savedOrderData4.sku) || sku === savedOrderData.sku) && !this.productChanged && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state) {
+      if (quick && providerChanged && !this.productChanged && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state && ["pending", "sent", "paid"].includes(String(savedOrderData.Status || savedOrderData.status).toLowerCase())) {
+        try {
+          const quote = await api.request("/admin/courier-quote?" + new URLSearchParams({
+            oid: editingOrderId,
+            provider
+          }));
+          if (generation !== priceGeneration) return null;
+          checkout.priced = {
+            sku: sku || savedOrderData.sku,
+            state,
+            provider,
+            quote
+          };
+          return quote;
+        } catch (error) {
+          checkout.priced = null;
+          showAlert(error.message);
+          return null;
+        }
+      }
+      if (quick && editingOrderId && (!((_savedOrderData4 = savedOrderData) !== null && _savedOrderData4 !== void 0 && _savedOrderData4.sku) || sku === savedOrderData.sku) && !this.productChanged && !providerChanged && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state) {
         checkout.priced = null;
         return historicalQuote(qty);
       }
       if (!sku) {
         checkout.priced = null;
-        if (quick && editingOrderId && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state) return historicalQuote(qty);
+        if (quick && editingOrderId && Number(qty) === Number(savedOrderData.quantity) && state === savedOrderData.state && !providerChanged) return historicalQuote(qty);
         return null;
       }
       try {
-        return await checkout.price(sku, state);
+        return await checkout.price(sku, state, provider);
       } catch (error) {
         checkout.priced = null;
         showAlert(error.message);
@@ -234,9 +262,11 @@ function _toPrimitive(t, e) {
       }
     },
     async submit(data) {
+      var _window$KafakOrderCou6;
       await load();
       const quick = $("#quick-qty").is(":visible"), sku = selected(quick);
       const result = await checkout.submit(_objectSpread(_objectSpread({}, data), {}, {
+        provider: (_window$KafakOrderCou6 = window.KafakOrderCourierUI) === null || _window$KafakOrderCou6 === void 0 ? void 0 : _window$KafakOrderCou6.provider(quick),
         preorderConfirmed: isOutOfStock
       }), sku);
       return {

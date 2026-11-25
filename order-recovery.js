@@ -4,7 +4,7 @@
  const storage=window.kafakStorage;
  const scope=new URLSearchParams(location.search).get('oid')||'new';
  const draftKey='kafak-draft-v1:'+scope,receiptKey='kafak-receipt-v1:'+scope;
- const ids=['admin-product-type','phone','name','whatsapp','pincode','house','place','altphone','quantity','po-select','edit-name','edit-phone','edit-whatsapp','edit-pincode','edit-house','edit-place','edit-altphone','edit-postoffice','edit-postoffice-select','edit-district','edit-state','quick-qty'];
+ const ids=['admin-wizard-courier','admin-edit-courier','admin-product-type','phone','name','whatsapp','pincode','house','place','altphone','quantity','po-select','edit-name','edit-phone','edit-whatsapp','edit-pincode','edit-house','edit-place','edit-altphone','edit-postoffice','edit-postoffice-select','edit-district','edit-state','quick-qty'];
  let restoring=false,timer;
  const read=key=>{try{return JSON.parse(storage.getItem(key)||'null');}catch{return null;}};
  function capture(){

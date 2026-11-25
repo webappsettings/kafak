@@ -1,3 +1,41 @@
+function ownKeys(e, r) {
+  var t = Object.keys(e);
+  if (Object.getOwnPropertySymbols) {
+    var o = Object.getOwnPropertySymbols(e);
+    r && (o = o.filter(function(r2) {
+      return Object.getOwnPropertyDescriptor(e, r2).enumerable;
+    })), t.push.apply(t, o);
+  }
+  return t;
+}
+function _objectSpread(e) {
+  for (var r = 1; r < arguments.length; r++) {
+    var t = null != arguments[r] ? arguments[r] : {};
+    r % 2 ? ownKeys(Object(t), true).forEach(function(r2) {
+      _defineProperty(e, r2, t[r2]);
+    }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(e, Object.getOwnPropertyDescriptors(t)) : ownKeys(Object(t)).forEach(function(r2) {
+      Object.defineProperty(e, r2, Object.getOwnPropertyDescriptor(t, r2));
+    });
+  }
+  return e;
+}
+function _defineProperty(e, r, t) {
+  return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: true, configurable: true, writable: true }) : e[r] = t, e;
+}
+function _toPropertyKey(t) {
+  var i = _toPrimitive(t, "string");
+  return "symbol" == typeof i ? i : i + "";
+}
+function _toPrimitive(t, e) {
+  if ("object" != typeof t || !t) return t;
+  var r;
+  if ("undefined" != typeof Symbol && void 0 !== (r = t[Symbol.toPrimitive])) {
+    var i = r.call(t, e || "default");
+    if ("object" != typeof i) return i;
+    throw new TypeError("@@toPrimitive must return a primitive value.");
+  }
+  return ("string" === e ? String : Number)(t);
+}
 (function() {
   "use strict";
   if (window.KAFAK_BACKEND !== "business") return;
@@ -50,18 +88,21 @@
       box.append(button);
     }
   }
-  async function price(state) {
+  async function price(state, provider) {
     const row = current(), generation = ++serial, admin = storage.getItem("kafakAdmin") === "true";
     window.KafakMixedUI.priced = null;
-    const quote = await api.request((admin ? "/admin/mixed-quote?" : "/public/mixed-quote?") + new URLSearchParams({
+    const quote = await api.request((admin ? "/admin/mixed-quote?" : "/public/mixed-quote?") + new URLSearchParams(_objectSpread({
       oid: row.orderid,
       state
-    }), admin ? {} : {
+    }, admin && provider ? {
+      provider
+    } : {})), admin ? {} : {
       accessToken: window.kafakOrderEditorUI.access(row.orderid)
     });
     if (generation !== serial) return null;
     window.KafakMixedUI.priced = {
       state,
+      provider,
       quote
     };
     return quote;

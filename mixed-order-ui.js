@@ -20,12 +20,12 @@
    const button=document.createElement('button');button.type='button';button.id='btn-add-order-product';button.className='btn btn-sm btn-outline-dark rounded-pill px-3';button.innerHTML='<i class="fas fa-plus me-1"></i> Add product';button.onclick=open;box.append(button);
   }
  }
- async function price(state){
+ async function price(state,provider){
   const row=current(),generation=++serial,admin=storage.getItem('kafakAdmin')==='true';
   window.KafakMixedUI.priced=null;
-  const quote=await api.request((admin?'/admin/mixed-quote?':'/public/mixed-quote?')+new URLSearchParams({oid:row.orderid,state}),admin?{}:{accessToken:window.kafakOrderEditorUI.access(row.orderid)});
+  const quote=await api.request((admin?'/admin/mixed-quote?':'/public/mixed-quote?')+new URLSearchParams({oid:row.orderid,state,...(admin&&provider?{provider}:{})}),admin?{}:{accessToken:window.kafakOrderEditorUI.access(row.orderid)});
   if(generation!==serial)return null;
-  window.KafakMixedUI.priced={state,quote};return quote;
+  window.KafakMixedUI.priced={state,provider,quote};return quote;
  }
  async function open(){
   const row=current();if(!row?.orderid)return;

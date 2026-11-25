@@ -112,16 +112,17 @@ function _arrayWithHoles(r) {
         settings
       };
     }
-    async price(sku, state) {
+    async price(sku, state, provider) {
       const serial = ++this.quoteSerial;
       this.currentQuote = null;
       if (!sku || !state.trim()) return null;
-      const quote = await this.api.quote(sku, state);
+      const quote = await this.api.quote(sku, state, provider);
       if (serial !== this.quoteSerial) return null;
       if (quote.sku !== sku || !Number.isFinite(quote.total)) throw new Error("The delivery price could not be verified.");
       this.currentQuote = {
         sku,
         state,
+        provider: provider || "",
         quote
       };
       return quote;
@@ -132,7 +133,7 @@ function _arrayWithHoles(r) {
       if (this.pending) throw new Error("Confirm the previous submission using Retry before starting another order.");
       if (this.settings.acceptingOrders !== true) throw new Error("This preview is not accepting orders yet. Use the current order page.");
       const priced = this.currentQuote;
-      if (!priced || priced.sku !== fields.sku || priced.state !== fields.state) throw new Error("Review the latest delivery total before submitting.");
+      if (!priced || priced.sku !== fields.sku || priced.state !== fields.state || (priced.provider || "") !== (fields.provider || "")) throw new Error("Review the latest delivery total before submitting.");
       if (this.settings.stockStatus === "no" && fields.preorderConfirmed !== true) throw new Error("Confirm this pre-order before submitting.");
       this.pending = {
         requestId: this.newId(),

@@ -58,15 +58,16 @@ function _toPrimitive(t, e) {
       if (!p) throw Error("Select an available product and quantity.");
       return p;
     }
-    async price(sku, state) {
+    async price(sku, state, provider) {
       this.product(sku);
       const serial = ++this.serial;
       this.priced = null;
-      const q = await this.order.price(sku, state);
+      const q = await this.order.price(sku, state, provider);
       if (serial !== this.serial || !q) return null;
       this.priced = {
         sku,
         state,
+        provider: provider || "",
         quote: q
       };
       return q;
@@ -75,12 +76,13 @@ function _toPrimitive(t, e) {
       var _scope$KafakAddress, _result$quote$offer, _result$quote$offer2, _result$quote$offer3;
       if (input.orderid) throw Error("Use the existing-order edit workflow; do not create a duplicate.");
       const product = this.product(sku), priced = this.priced;
-      if (!priced || priced.sku !== sku || priced.state !== input.state) throw Error("Wait for the current delivery total before submitting.");
+      if (!priced || priced.sku !== sku || priced.state !== input.state || (priced.provider || "") !== (input.provider || "")) throw Error("Wait for the current delivery total before submitting.");
       const data = Object.fromEntries(fields.map((f) => {
         var _input$f;
         return [f, String((_input$f = input[f]) !== null && _input$f !== void 0 ? _input$f : "").trim()];
       }));
       data.sku = sku;
+      if (input.provider) data.provider = String(input.provider);
       data.preorderConfirmed = input.preorderConfirmed === true;
       if (this.order.pending) {
         const expected = _objectSpread(_objectSpread({}, data), {}, {
@@ -92,6 +94,8 @@ function _toPrimitive(t, e) {
       const address = ((_scope$KafakAddress = scope.KafakAddress) === null || _scope$KafakAddress === void 0 ? void 0 : _scope$KafakAddress.normalize(data)) || data;
       return _objectSpread(_objectSpread({}, result), {}, {
         legacy: _objectSpread(_objectSpread({}, address), {}, {
+          provider: result.quote.provider,
+          courier: result.quote.provider,
           orderid: result.orderid,
           timestamp: result.timestamp,
           accessToken: result.accessToken,

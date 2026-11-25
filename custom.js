@@ -1971,8 +1971,8 @@ function updateLiveAddressPreview() {
 setTimeout(updateLiveAddressPreview, 1000);
 
 window.checkForChanges = function () {
-  if ($('.btn-update-sage').data('is-processing') === 'active') {
-    $('#address-edit-box button').prop('disabled', true).css({ opacity: '0.5', cursor: 'not-allowed' });
+  if ($('.btn-update-sage').data('is-processing') === 'active'||window.KafakOrderCourierUI?.busy) {
+    $('#address-edit-box button,.btn-update-sage').prop('disabled', true).css({ opacity: '0.5', cursor: 'not-allowed' });
     return;
   }
   if(savedOrderData?.readOnly&&editingOrderId&&window.kafakStorage.getItem('kafakAdmin')!=='true'){$('#address-edit-box button,.btn-update-sage').prop('disabled',true);$('#btn-edit-addr').hide();return;}
@@ -2027,6 +2027,7 @@ window.checkForChanges = function () {
   if (String(currDist).trim().toUpperCase() !== String(savedDist).trim().toUpperCase()) isChanged = true;
   if (String(currState).trim().toUpperCase() !== String(savedState).trim().toUpperCase()) isChanged = true;
   if (String(currProduct) !== String(savedProduct)) isChanged = true;
+  if(window.KafakOrderCourierUI?.changed())isChanged=true;
 
   // UI Updates
   var btnUpdate = $('.btn-update-sage');

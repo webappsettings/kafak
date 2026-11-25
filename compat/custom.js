@@ -1824,9 +1824,9 @@ function updateLiveAddressPreview() {
 }
 setTimeout(updateLiveAddressPreview, 1e3);
 window.checkForChanges = function() {
-  var _savedOrderData3;
-  if ($(".btn-update-sage").data("is-processing") === "active") {
-    $("#address-edit-box button").prop("disabled", true).css({
+  var _window$KafakOrderCou, _savedOrderData3, _window$KafakOrderCou2;
+  if ($(".btn-update-sage").data("is-processing") === "active" || (_window$KafakOrderCou = window.KafakOrderCourierUI) !== null && _window$KafakOrderCou !== void 0 && _window$KafakOrderCou.busy) {
+    $("#address-edit-box button,.btn-update-sage").prop("disabled", true).css({
       opacity: "0.5",
       cursor: "not-allowed"
     });
@@ -1881,6 +1881,7 @@ window.checkForChanges = function() {
   if (String(currDist).trim().toUpperCase() !== String(savedDist).trim().toUpperCase()) isChanged = true;
   if (String(currState).trim().toUpperCase() !== String(savedState).trim().toUpperCase()) isChanged = true;
   if (String(currProduct) !== String(savedProduct)) isChanged = true;
+  if ((_window$KafakOrderCou2 = window.KafakOrderCourierUI) !== null && _window$KafakOrderCou2 !== void 0 && _window$KafakOrderCou2.changed()) isChanged = true;
   var btnUpdate = $(".btn-update-sage");
   var btnSave = $("#address-edit-box button");
   const lang = $("#language-select").val() || "en";

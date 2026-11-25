@@ -242,7 +242,7 @@ function _toPrimitive(t, e) {
     async save(data, {
       increasePaid = false
     } = {}) {
-      var _editor$current2, _editor$current3, _document$querySelect, _window$kafakCheckout, _current$items, _document$dispatchEve, _document;
+      var _editor$current2, _editor$current3, _document$querySelect, _window$kafakCheckout, _window$KafakOrderCou, _window$KafakOrderCou2, _current$items, _current$items2, _document$dispatchEve, _document;
       if (((_editor$current2 = editor.current) === null || _editor$current2 === void 0 ? void 0 : _editor$current2.orderid) !== data.orderid) {
         const shown = typeof savedOrderData === "object" ? savedOrderData : null;
         if (!data.orderid || (shown === null || shown === void 0 ? void 0 : shown.orderid) !== data.orderid || !Number.isSafeInteger(shown.version)) throw Error("Refresh the order status before saving changes.");
@@ -259,25 +259,27 @@ function _toPrimitive(t, e) {
       const sameSavedPack = (!current.sku || sku === current.sku) && Number(data.quantity) === Number(current.quantity) && !((_window$kafakCheckout = window.kafakCheckoutUI) !== null && _window$kafakCheckout !== void 0 && _window$kafakCheckout.productChanged);
       if (sameSavedPack && data.state === current.state) sku = void 0;
       if (!sku && Number(data.quantity) !== Number(editor.current.quantity)) throw Error("Select an available product and quantity.");
+      const providerChanged = (_window$KafakOrderCou = window.KafakOrderCourierUI) === null || _window$KafakOrderCou === void 0 ? void 0 : _window$KafakOrderCou.changed(), provider = (_window$KafakOrderCou2 = window.KafakOrderCourierUI) === null || _window$KafakOrderCou2 === void 0 ? void 0 : _window$KafakOrderCou2.provider(true);
       let expectedTotal;
       if ((_current$items = current.items) !== null && _current$items !== void 0 && _current$items.length) {
         sku = void 0;
-        if (data.state !== current.state) {
+        if (data.state !== current.state || providerChanged) {
           var _window$KafakMixedUI;
           const priced = (_window$KafakMixedUI = window.KafakMixedUI) === null || _window$KafakMixedUI === void 0 ? void 0 : _window$KafakMixedUI.priced;
-          if (!priced || priced.state !== data.state) throw Error("Wait for the current delivery total before saving.");
+          if (!priced || priced.state !== data.state || providerChanged && priced.provider !== provider) throw Error("Wait for the current delivery total before saving.");
           expectedTotal = priced.quote.total;
         }
       }
-      if (sku) {
+      if (sku || providerChanged && !((_current$items2 = current.items) !== null && _current$items2 !== void 0 && _current$items2.length)) {
         var _window$kafakCheckout2;
         const priced = (_window$kafakCheckout2 = window.kafakCheckoutUI) === null || _window$kafakCheckout2 === void 0 ? void 0 : _window$kafakCheckout2.checkout.priced;
-        if (!priced || priced.sku !== sku || priced.state !== data.state) throw Error("Wait for the current delivery total before saving.");
+        if (!priced || sku && priced.sku !== sku || priced.state !== data.state || (provider || "") !== (priced.provider || "")) throw Error("Wait for the current delivery total before saving.");
         expectedTotal = priced.quote.total;
       }
       const row = confirmed(await editor.save(data, {
         sku,
         expectedTotal,
+        provider,
         increasePaid
       }));
       (_document$dispatchEve = (_document = document).dispatchEvent) === null || _document$dispatchEve === void 0 || _document$dispatchEve.call(_document, new Event("kafak-order-saved"));
