@@ -1,5 +1,5 @@
 (() => {
-  const release = "20261125a";
+  const release = "20261125b";
   let edited = false, checking = false;
   document.addEventListener("input", () => {
     edited = true;
