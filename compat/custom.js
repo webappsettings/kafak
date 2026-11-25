@@ -3122,20 +3122,11 @@ ${editText}
 `;
     }
   }
-  let altPhoneDisplay = d.altphone ? `
-*Alt Ph: ${d.altphone}*` : "";
   const details = `
 ____________________________________
 ${productDisplay}
 
-*${safe(d.name)}*
-*${safe(d.house)}*
-*${safe(d.place)}*
-*${safe(d.postoffice)}*
-*${safe(d.district)}*
-*${safe(d.state)}*
-*Pin: ${d.pincode}*
-*Ph: ${d.phone}*${altPhoneDisplay}
+${KafakAddress.whatsappAddress(d)}
 
 *Qty: ${d.quantity}*
 *Amount: ₹${base} + ${courier}*

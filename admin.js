@@ -10187,9 +10187,8 @@ window.sendWA = function (index, type = 'pending') {
 
     const header = `*✅ Honey order confirmed!* 🍯\n⌚ _${formattedTime}_\n\n${editText}\n🔗 _${editLink}_\n`;
 
-    let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
-    const details = `\n____________________________________\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n${d.items?.length?d.items.map(i=>`*${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}: ₹${Number(i.productAmount).toFixed(2)}*`).join('\n'):`*Qty: ${d.quantity}*`}\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+    const details = `\n____________________________________\n${KafakAddress.whatsappAddress(d)}\n\n${d.items?.length?d.items.map(i=>`*${safe(i.product)} ${Number(i.packGrams)}g × ${Number(i.quantity)}: ₹${Number(i.productAmount).toFixed(2)}*`).join('\n'):`*Qty: ${d.quantity}*`}\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
 
     let paymentNote = isEng ? "\n\n👉 Please send the screenshot after GPay.. 📸\n_(Packing starts only after receiving the screenshot)_" : "\n\nGpay ചെയ്തശേഷം സ്ക്രീൻഷോട്ട് അയക്കൂ.. 📸\n_(സ്ക്രീൻഷോട്ട് ലഭിച്ച ശേഷമാണ് പാക്കിംഗ് നടപടികൾ ആരംഭിക്കുക)_";
 

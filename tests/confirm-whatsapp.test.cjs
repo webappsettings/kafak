@@ -4,9 +4,9 @@ const start=src.indexOf('window.sendWA = function'),end=src.indexOf('//',src.ind
 const code=src.slice(start,src.indexOf('// 🔥 SEND PAYMENT RECEIPT WA',start));
 test('confirmation uses saved totals and target and does not ask paid orders to pay again',()=>{
  for(const Status of ['Pending','Sent','Paid','Dispatched','Delivered','Completed']){
- let opened;const order={orderid:'TEST',Status,quantity:1,whatsapp:'9999999999',Product_Amount:900,Courier_Charge:100};
- const context={KafakDates:require('../date-runtime'),window:{open:url=>opened=url},allOrders:[order],courierRates:{},getZoneKey:()=>'',KafakBusinessOrder:{privateLink:()=> 'https://kafaklife.com/o/#secure-test',contact:()=>({number:'9999999999'})},document:{getElementById:()=>null},formatWAPhone:n=>'91'+n,alert:m=>{throw Error(m);}};
- vm.runInNewContext(code,context);context.window.sendWA(0,'paid');const url=new URL(opened);const message=url.searchParams.get('text');assert.equal(url.pathname,'/919999999999');assert.match(message,/Total: ₹1000/);assert.match(message,/o\/#secure-test/);assert.equal(message.includes('GPay to:'),['Pending','Sent'].includes(Status));
+ let opened;const order={orderid:'TEST',Status,quantity:1,name:'Test Customer',house:'Test House Anchal PO',place:'Anchal PO',postoffice:'Anchal PO',district:'Kollam',state:'Kerala',pincode:'691306',phone:'9999999999',whatsapp:'9999999999',Product_Amount:900,Courier_Charge:100};
+ const context={KafakAddress:require('../address-runtime'),KafakDates:require('../date-runtime'),window:{open:url=>opened=url},allOrders:[order],courierRates:{},getZoneKey:()=>'',KafakBusinessOrder:{privateLink:()=> 'https://kafaklife.com/o/#secure-test',contact:()=>({number:'9999999999'})},document:{getElementById:()=>null},formatWAPhone:n=>'91'+n,alert:m=>{throw Error(m);}};
+ vm.runInNewContext(code,context);context.window.sendWA(0,'paid');const url=new URL(opened);const message=url.searchParams.get('text');assert.equal(url.pathname,'/919999999999');assert.match(message,/Total: ₹1000/);assert.equal(message.split('\n').some(line=>line.trim()==='**'),false);assert.equal((message.match(/ANCHAL PO/g)||[]).length,1);assert.match(message,/o\/#secure-test/);assert.equal(message.includes('GPay to:'),['Pending','Sent'].includes(Status));
  }
 });
 test('created-order popup offers WhatsApp without creating another order',()=>{

@@ -77,6 +77,12 @@
   if(!address){const cleaned=calculate(input);address={house:cleaned.house,place:cleaned.place,postoffice:cleaned.postoffice};cache.set(signature,address);if(cache.size>cacheLimit)cache.delete(cache.keys().next().value);}
   return {...input,...address};
  }
- const api={normalize,postOffice};scope.KafakAddress=api;
+ function whatsappAddress(input){
+  const address=normalize(input),text=value=>String(value==null?'':value).replace(/\*/g,'').trim();
+  const lines=['name','house','place','postoffice','district','state'].map(field=>text(address[field]).toUpperCase()).filter(Boolean);
+  for(const [field,label] of [['pincode','Pin'],['phone','Ph'],['altphone','Alt Ph']]){const value=text(address[field]);if(value)lines.push(label+': '+value);}
+  return lines.map(line=>'*'+line+'*').join('\n');
+ }
+ const api={normalize,postOffice,whatsappAddress};scope.KafakAddress=api;
  if(typeof module!=='undefined'&&module.exports)module.exports=api;
 })(typeof window==='undefined'?globalThis:window);

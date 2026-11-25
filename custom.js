@@ -3149,9 +3149,8 @@ async function sendToWhatsapp(orderData = successData, recipient = null) {
     }
   }
 
-  let altPhoneDisplay = d.altphone ? `\n*Alt Ph: ${d.altphone}*` : '';
 
-  const details = `\n____________________________________\n${productDisplay}\n\n*${safe(d.name)}*\n*${safe(d.house)}*\n*${safe(d.place)}*\n*${safe(d.postoffice)}*\n*${safe(d.district)}*\n*${safe(d.state)}*\n*Pin: ${d.pincode}*\n*Ph: ${d.phone}*${altPhoneDisplay}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
+  const details = `\n____________________________________\n${productDisplay}\n\n${KafakAddress.whatsappAddress(d)}\n\n*Qty: ${d.quantity}*\n*Amount: ₹${base} + ${courier}*\n*Total: ₹${total}/-*\n____________________________________`;
   // Payment Note
   let paymentNote = "";
 
