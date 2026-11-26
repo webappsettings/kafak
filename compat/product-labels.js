@@ -143,10 +143,10 @@ function _toPrimitive(t, e) {
       total: Object.values(counts).reduce((a, b) => a + b, 0)
     };
   }
-  const capacity = [6, 4, 3, 2, 1, 0];
+  const capacity = [7, 5, 4, 2, 1, 0];
   function paginate(labels, limit) {
     if (limit) {
-      if (!Number.isSafeInteger(limit) || limit < 1 || limit > 6) throw Error("Select 1–6 labels per page");
+      if (!Number.isSafeInteger(limit) || limit < 1 || limit > 7) throw Error("Select 1–7 labels per page");
       const result = [];
       for (let n = 0; n < labels.length; n += limit) result.push(...paginate(labels.slice(n, n + limit)));
       return result;
@@ -194,12 +194,9 @@ function _toPrimitive(t, e) {
   function documentHtml(labels, limit) {
     const pages = paginate(labels, limit);
     return `<!doctype html><html><head><meta charset="utf-8"><title>KAFAK Product Labels</title><style>${css}</style></head><body>` + pages.map((page) => {
-      let out = page.large.map((l) => `<div class="large-row">${labelHtml(l)}</div>`).join(""), remaining = page.small.slice(), space = 297 - page.large.length * 59.4;
-      while (remaining.length && space >= 148.5 - 1e-3 && remaining.length >= 3) {
-        out += '<div class="small-rotated-row">' + remaining.splice(0, 3).map((l) => `<div class="rotated-cell">${labelHtml(l)}</div>`).join("") + "</div>";
-        space -= 148.5;
-      }
-      out += remaining.map((l) => `<div class="small-row">${labelHtml(l)}</div>`).join("");
+      let out = page.large.map((l) => `<div class="large-row">${labelHtml(l)}</div>`).join("");
+      const space = 297 - page.large.length * 59.4, leftCount = Math.min(page.small.length, Math.floor((space + 1e-3) / types.C300.height));
+      if (page.small.length) out += `<div class="small-block" style="position:relative;width:210mm;height:${space}mm">` + page.small.map((l, n) => n < leftCount ? `<div class="small-row" style="position:absolute;left:0;top:${n * types.C300.height}mm">${labelHtml(l)}</div>` : `<div class="rotated-cell" style="position:absolute;left:148.5mm;top:${(n - leftCount) * 148.5}mm">${labelHtml(l)}</div>`).join("") + "</div>";
       return '<section class="sheet">' + out + "</section>";
     }).join("") + "</body></html>";
   }
@@ -249,10 +246,12 @@ function _toPrimitive(t, e) {
     anchor.parentNode.insertBefore(panel, anchor.previousElementSibling);
     document.getElementById("label-product-type").onchange = change;
     document.getElementById("printed-bottles-count").previousElementSibling.textContent = "Labels confirmed (Paid):";
-    const six = document.createElement("option");
-    six.value = "6";
-    six.textContent = "6 (300g)";
-    document.getElementById("stickers-per-page").append(six);
+    for (const n of [6, 7]) {
+      const option = document.createElement("option");
+      option.value = String(n);
+      option.textContent = n + " (300g)";
+      document.getElementById("stickers-per-page").append(option);
+    }
     const wild = {
       mrp: $("#label-mrp").val(),
       batch: $("#label-batch").val(),
@@ -288,9 +287,9 @@ function _toPrimitive(t, e) {
     for (const id of ["label-mrp", "label-batch", "label-date"]) document.getElementById(id).disabled = automatic;
     const perPage = document.getElementById("stickers-per-page");
     perPage.disabled = automatic;
-    perPage.querySelector('option[value="6"]').hidden = type !== "C300";
-    if (type === "C300") perPage.value = "6";
-    else if (perPage.value === "6") perPage.value = "5";
+    for (const n of [6, 7]) perPage.querySelector('option[value="' + n + '"]').hidden = type !== "C300";
+    if (type === "C300") perPage.value = "7";
+    else if (Number(perPage.value) > 5) perPage.value = "5";
     document.getElementById("manual-sheets-input").readOnly = automatic;
     {
       const s = settings[automatic ? "W650" : type];
