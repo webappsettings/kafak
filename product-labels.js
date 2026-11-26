@@ -90,13 +90,18 @@ function job(){
  else{const n=Number(document.getElementById('label-manual-copies').value);if(!Number.isSafeInteger(n)||n<1||n>1000)throw Error('Select 1–1000 labels.');for(let i=0;i<n;i++)requested.push(label(choice()));}
  const result=fill(paginate(requested),fillType,label);return {...d,...result,requested:requested.length,automatic};
 }
-async function predict(){
- const generation=++predictionSerial;if(stock?.initialized&&document.getElementById('label-product-type')){try{renderStock(job());}catch{}}let stockError='';await loadStock().catch(e=>stockError=e.message);if(generation!==predictionSerial)return;install();
- try{const j=job();document.getElementById('label-product-breakdown').textContent=`Paid: ${j.paid} bottles · Labels confirmed: ${j.printed}\n`+Object.keys(types).filter(k=>j.counts[k]).map(k=>types[k].name+': '+j.counts[k]).join(' · ')+`\nPrint: ${j.requested} requested + ${j.extras} extra${j.extras?' '+types[fillType].name:''} = ${j.labels.length} labels · ${j.pages.length} A4 sheets`;
+function renderPrediction(j,error=''){
+ document.getElementById('label-product-breakdown').textContent=`Paid: ${j.paid} bottles · Labels confirmed: ${j.printed}\n`+Object.keys(types).filter(k=>j.counts[k]).map(k=>types[k].name+': '+j.counts[k]).join(' · ')+`\nPrint: ${j.requested} requested + ${j.extras} extra${j.extras?' '+types[fillType].name:''} = ${j.labels.length} labels · ${j.pages.length} A4 sheets`;
  $('#unprinted-bottles-count').text(j.total);$('#printed-bottles-count').text(j.printed);$('#manual-sheets-input').val(j.pages.length);$('#exact-sheets-count').text(j.pages.length+'.0');
- const modes=document.getElementById('print-qty-mode');modes.dataset.userSelected='false';modes.previousElementSibling.textContent='FILL REMAINING A4 SPACE';modes.innerHTML=Object.entries(types).map(([k,t])=>`<option value="${k}">Fill with ${escape(t.name)}${k==='W650'?' (default)':''}</option>`).join('')+'<option value="none">Leave blank · exact requested labels</option>';modes.value=fillType;renderStock(j,stockError);modes.onchange=()=>{fillType=modes.value;scope.updatePrintPrediction();};preview();
- }catch(e){document.getElementById('label-product-breakdown').textContent=e.message;}
+ const modes=document.getElementById('print-qty-mode');modes.dataset.userSelected='false';modes.previousElementSibling.textContent='FILL REMAINING A4 SPACE';modes.innerHTML=Object.entries(types).map(([k,t])=>`<option value="${k}">Fill with ${escape(t.name)}${k==='W650'?' (default)':''}</option>`).join('')+'<option value="none">Leave blank · exact requested labels</option>';modes.value=fillType;renderStock(j,error);modes.onchange=()=>{fillType=modes.value;scope.updatePrintPrediction();};preview();
+ 
 }
+async function predict(){
+ const generation=++predictionSerial;if(stock?.initialized&&document.getElementById('label-product-type')){try{renderPrediction(job());}catch{}}
+ let stockError='';await loadStock().catch(e=>stockError=e.message);if(generation!==predictionSerial)return;install();
+ try{renderPrediction(job(),stockError);}catch(e){document.getElementById('label-product-breakdown').textContent=e.message;}
+}
+
 function renderStock(j,error=''){
  const box=document.getElementById('a4-stock-display-container');if(!box)return;
  if(!stock?.initialized){box.innerHTML='<div class="small text-danger">'+escape(error||'Set opening sticker stock before printing.')+'</div>';return;}

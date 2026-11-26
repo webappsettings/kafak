@@ -484,12 +484,32 @@ function _toPrimitive(t, e) {
       automatic
     });
   }
+  function renderPrediction(j, error = "") {
+    document.getElementById("label-product-breakdown").textContent = `Paid: ${j.paid} bottles · Labels confirmed: ${j.printed}
+` + Object.keys(types).filter((k) => j.counts[k]).map((k) => types[k].name + ": " + j.counts[k]).join(" · ") + `
+Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fillType].name : ""} = ${j.labels.length} labels · ${j.pages.length} A4 sheets`;
+    $("#unprinted-bottles-count").text(j.total);
+    $("#printed-bottles-count").text(j.printed);
+    $("#manual-sheets-input").val(j.pages.length);
+    $("#exact-sheets-count").text(j.pages.length + ".0");
+    const modes = document.getElementById("print-qty-mode");
+    modes.dataset.userSelected = "false";
+    modes.previousElementSibling.textContent = "FILL REMAINING A4 SPACE";
+    modes.innerHTML = Object.entries(types).map(([k, t]) => `<option value="${k}">Fill with ${escape(t.name)}${k === "W650" ? " (default)" : ""}</option>`).join("") + '<option value="none">Leave blank · exact requested labels</option>';
+    modes.value = fillType;
+    renderStock(j, error);
+    modes.onchange = () => {
+      fillType = modes.value;
+      scope.updatePrintPrediction();
+    };
+    preview();
+  }
   async function predict() {
     var _stock2;
     const generation = ++predictionSerial;
     if ((_stock2 = stock) !== null && _stock2 !== void 0 && _stock2.initialized && document.getElementById("label-product-type")) {
       try {
-        renderStock(job());
+        renderPrediction(job());
       } catch (_unused) {
       }
     }
@@ -498,25 +518,7 @@ function _toPrimitive(t, e) {
     if (generation !== predictionSerial) return;
     install();
     try {
-      const j = job();
-      document.getElementById("label-product-breakdown").textContent = `Paid: ${j.paid} bottles · Labels confirmed: ${j.printed}
-` + Object.keys(types).filter((k) => j.counts[k]).map((k) => types[k].name + ": " + j.counts[k]).join(" · ") + `
-Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fillType].name : ""} = ${j.labels.length} labels · ${j.pages.length} A4 sheets`;
-      $("#unprinted-bottles-count").text(j.total);
-      $("#printed-bottles-count").text(j.printed);
-      $("#manual-sheets-input").val(j.pages.length);
-      $("#exact-sheets-count").text(j.pages.length + ".0");
-      const modes = document.getElementById("print-qty-mode");
-      modes.dataset.userSelected = "false";
-      modes.previousElementSibling.textContent = "FILL REMAINING A4 SPACE";
-      modes.innerHTML = Object.entries(types).map(([k, t]) => `<option value="${k}">Fill with ${escape(t.name)}${k === "W650" ? " (default)" : ""}</option>`).join("") + '<option value="none">Leave blank · exact requested labels</option>';
-      modes.value = fillType;
-      renderStock(j, stockError);
-      modes.onchange = () => {
-        fillType = modes.value;
-        scope.updatePrintPrediction();
-      };
-      preview();
+      renderPrediction(job(), stockError);
     } catch (e) {
       document.getElementById("label-product-breakdown").textContent = e.message;
     }
