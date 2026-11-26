@@ -9,8 +9,16 @@ test('manual per-page limits remain effective',()=>{assert.equal(p.paginate(Arra
 
 test('fill unused page space with the chosen product without adding pages or changing order labels',()=>{
  const original=Array.from({length:7},()=>({type:'W650',mrp:'750.00',batch:'WILD',date:'26/11/26'})).concat([{type:'C300',mrp:'1020.00',batch:'SMALL',date:'26/11/26'}]);const pages=p.paginate(original),snapshot=JSON.stringify(pages);
- for(const type of ['W650','C650','C300','none']){const result=p.fill(pages,type,t=>({type:t,mrp:'1234.50',batch:'CUSTOM',date:'27/11/26'}));assert.equal(result.pages.length,pages.length);assert.equal(JSON.stringify(pages),snapshot);assert.equal(result.labels.filter(l=>!l.extra).length,8);assert.equal(result.extras,type==='none'?0:2);for(const l of result.labels.filter(l=>l.extra)){assert.equal(l.type,type);assert.equal(l.batch,'CUSTOM');assert.equal(l.mrp,'1234.50');}const html=p.documentHtml(result.labels,undefined,result.pages);assert.equal((html.match(/class="sheet"/g)||[]).length,2);}
+ for(const type of ['W650','C650','C300','none']){const result=p.fill(pages,type,t=>({type:t,mrp:'1234.50',batch:'CUSTOM',date:'27/11/26'}));assert.equal(result.pages.length,pages.length);assert.equal(JSON.stringify(pages),snapshot);assert.equal(result.labels.filter(l=>!l.extra).length,8);assert.equal(result.extras,type==='none'?0:type==='C300'?3:2);for(const l of result.labels.filter(l=>l.extra)){assert.equal(l.type,type);assert.equal(l.batch,'CUSTOM');assert.equal(l.mrp,'1234.50');}const html=p.documentHtml(result.labels,undefined,result.pages);assert.equal((html.match(/class="sheet"/g)||[]).length,2);}
  assert.equal(p.fill(p.paginate([{type:'C650'}]),'C300',type=>({type})).extras,5);
  assert.equal(p.fill(p.paginate([{type:'C300'}]),'W650',type=>({type})).extras,4);
  assert.equal(p.fill([], 'W650',type=>({type})).labels.length,0);
+});
+
+test('Wild labels including fillers always precede all Cheruthen labels across page breaks',()=>{
+ for(let w=0;w<=12;w++)for(let c=0;c<=8;c++)for(let small=0;small<=10;small++){
+  const labels=[...Array.from({length:small},()=>({type:'C300'})),...Array.from({length:c},()=>({type:'C650'})),...Array.from({length:w},()=>({type:'W650'}))];const base=p.paginate(labels);
+  for(const filler of ['none','W650','C650','C300']){const result=p.fill(base,filler,type=>({type}));let seenCheruthen=false;for(const l of result.labels){if(l.type!=='W650')seenCheruthen=true;else assert.equal(seenCheruthen,false);}assert(result.pages.length<=base.length);assert.equal(result.labels.filter(l=>!l.extra).length,labels.length);}
+ }
+ const labels=[...Array.from({length:6},()=>({type:'W650'})),{type:'C650'},{type:'C300'}];const result=p.fill(p.paginate(labels),'W650',type=>({type}));assert.equal(result.pages.length,2);assert.deepEqual(result.labels.map(l=>l.type),[...Array(8).fill('W650'),'C650','C300']);
 });

@@ -151,39 +151,18 @@ function _toPrimitive(t, e) {
       for (let n = 0; n < labels.length; n += limit) result.push(...paginate(labels.slice(n, n + limit)));
       return result;
     }
-    let large = labels.filter((l) => l.type !== "C300"), small = labels.filter((l) => l.type === "C300"), pages = [];
-    const memo = /* @__PURE__ */ new Map();
-    function cost(a, b) {
-      if (!a && !b) return 0;
-      const key = a + "," + b;
-      if (memo.has(key)) return memo.get(key);
-      let best = Infinity;
-      for (let n = 0; n <= Math.min(5, a); n++) {
-        const m = Math.min(capacity[n], b);
-        if (!n && !m) continue;
-        best = Math.min(best, 1 + cost(a - n, b - m));
-      }
-      memo.set(key, best);
-      return best;
+    const large = [...labels.filter((l) => l.type === "W650"), ...labels.filter((l) => l.type !== "W650" && l.type !== "C300")], small = labels.filter((l) => l.type === "C300"), pages = [];
+    while (large.length) {
+      const row = large.splice(0, 5);
+      pages.push({
+        large: row,
+        small: small.splice(0, capacity[row.length])
+      });
     }
-    while (large.length || small.length) {
-      let best = null;
-      for (let n = 0; n <= Math.min(5, large.length); n++) {
-        const m = Math.min(capacity[n], small.length);
-        if (!n && !m) continue;
-        const score = labels.length <= 150 ? 1 + cost(large.length - n, small.length - m) : Math.ceil((large.length - n) / 5) + Math.ceil((small.length - m) / 6) + 1;
-        if (!best || score < best.score || score === best.score && n + m > best.n + best.m) best = {
-          n,
-          m,
-          score
-        };
-      }
-      const page = {
-        large: large.splice(0, best.n),
-        small: small.splice(0, best.m)
-      };
-      pages.push(page);
-    }
+    while (small.length) pages.push({
+      large: [],
+      small: small.splice(0, 7)
+    });
     return pages;
   }
   function labelHtml(label2) {
@@ -233,9 +212,10 @@ function _toPrimitive(t, e) {
       }
       return next;
     });
+    const arranged = paginate(result.flatMap((p) => [...p.large, ...p.small]));
     return {
-      pages: result,
-      labels: result.flatMap((p) => [...p.large, ...p.small]),
+      pages: arranged,
+      labels: arranged.flatMap((p) => [...p.large, ...p.small]),
       extras,
       type
     };
