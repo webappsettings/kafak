@@ -2,7 +2,7 @@
 const esbuild=require('esbuild'),fs=require('node:fs'),path=require('node:path');
 const target='es2017',babel=require('@babel/core');
 const lower=source=>babel.transformSync(source,{sourceType:'script',presets:[[require.resolve('@babel/preset-env'),{targets:{chrome:'60',safari:'11',firefox:'60'},modules:false,include:['@babel/plugin-transform-destructuring']}]],comments:true,compact:false}).code;
-const sources=['address-runtime','order-runtime','order-admin-actions','order-customer-storage','order-presentation','backend-api','business-order','business-checkout','business-catalog','business-order-editor','custom','business-checkout-ui','business-order-editor-ui','business-live-order','order-courier-ui','mixed-order-ui','order-recovery','business-admin-commands','business-admin-transport','release-update','translations'];
+const sources=['address-runtime','order-runtime','order-admin-actions','order-customer-storage','order-presentation','backend-api','business-order','business-checkout','business-catalog','business-order-editor','custom','business-checkout-ui','business-order-editor-ui','business-live-order','order-courier-ui','product-labels','mixed-order-ui','order-recovery','business-admin-commands','business-admin-transport','release-update','translations'];
 (async()=>{
  fs.mkdirSync('compat',{recursive:true});
  for(const name of sources){const source=fs.readFileSync(name+'.js','utf8');const out=await esbuild.transform(lower(source),{target,charset:'utf8',legalComments:'inline'});fs.writeFileSync(path.join('compat',name+'.js'),out.code);}

@@ -6410,7 +6410,7 @@ function injectLeftDrawer() {
                 </div>
 
                 <h6 class="fw-bold text-dark mb-2" style="font-size:12px; letter-spacing:0.5px;">LIVE PREVIEW</h6>
-                <div id="label-preview-box" class="shadow-sm mb-4 mx-auto" style="width: 100%; max-width: 350px; aspect-ratio: 210/59.4; position: relative; background: url('label_design.jpg') center/cover; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
+                <div id="label-preview-box" class="shadow-sm mb-4 mx-auto" style="width: 100%; max-width: 350px; aspect-ratio: 210/59.4; position: relative; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; overflow: hidden;">
                     <div style="position: absolute; top: 17%; left: 82%; font-size: 8px; font-weight: 800; color: #000; line-height: 1.8;">
                         <div id="prev-mrp">${savedMrp} . 00</div>
                         <div id="prev-batch">${savedBatch}</div>
