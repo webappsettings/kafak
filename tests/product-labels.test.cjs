@@ -6,3 +6,11 @@ test('A4 layout fits five large labels, seven 300g labels, and mixed exact quant
 test('Cheruthen assets, MRP, batch and current date render as text over the original artwork',()=>{assert.equal(p.types.C650.mrp,'2200.00');assert.equal(p.types.C300.mrp,'1020.00');for(const type of ['C650','C300']){const html=p.documentHtml([{type,mrp:p.types[type].mrp,batch:'HN26LY02',date:'26/11/26'}]);assert(html.includes(p.types[type].image));assert(html.includes('HN26LY02'));assert(html.includes('26/11/26'));assert(html.includes(p.types[type].mrp));}assert.throws(()=>p.items({product:'Cheruthen',quantity:1,'Pack Grams':500}),/Review/);});
 
 test('manual per-page limits remain effective',()=>{assert.equal(p.paginate(Array.from({length:5},()=>({type:'W650'})),2).length,3);assert.equal(p.paginate(Array.from({length:6},()=>({type:'C300'})),3).length,2);assert.equal(p.paginate(Array.from({length:6},()=>({type:'C300'})),6).length,1);assert.equal(p.paginate(Array.from({length:7},()=>({type:'C300'})),7).length,1);});
+
+test('fill unused page space with the chosen product without adding pages or changing order labels',()=>{
+ const original=Array.from({length:7},()=>({type:'W650',mrp:'750.00',batch:'WILD',date:'26/11/26'})).concat([{type:'C300',mrp:'1020.00',batch:'SMALL',date:'26/11/26'}]);const pages=p.paginate(original),snapshot=JSON.stringify(pages);
+ for(const type of ['W650','C650','C300','none']){const result=p.fill(pages,type,t=>({type:t,mrp:'1234.50',batch:'CUSTOM',date:'27/11/26'}));assert.equal(result.pages.length,pages.length);assert.equal(JSON.stringify(pages),snapshot);assert.equal(result.labels.filter(l=>!l.extra).length,8);assert.equal(result.extras,type==='none'?0:2);for(const l of result.labels.filter(l=>l.extra)){assert.equal(l.type,type);assert.equal(l.batch,'CUSTOM');assert.equal(l.mrp,'1234.50');}const html=p.documentHtml(result.labels,undefined,result.pages);assert.equal((html.match(/class="sheet"/g)||[]).length,2);}
+ assert.equal(p.fill(p.paginate([{type:'C650'}]),'C300',type=>({type})).extras,5);
+ assert.equal(p.fill(p.paginate([{type:'C300'}]),'W650',type=>({type})).extras,4);
+ assert.equal(p.fill([], 'W650',type=>({type})).labels.length,0);
+});

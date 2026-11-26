@@ -191,8 +191,8 @@ function _toPrimitive(t, e) {
     return `<div class="label-art ${small ? "small-label" : ""}" data-type="${label2.type}"><img src="${escape(label2.image || t.image)}" alt="${escape(t.name)}"><div class="label-values"><div>${escape(label2.mrp)}</div><div>${escape(label2.batch)}</div><div>${escape(label2.date)}</div></div></div>`;
   }
   const css = `@page{size:A4;margin:0}*{box-sizing:border-box;-webkit-print-color-adjust:exact;print-color-adjust:exact}html,body{margin:0;padding:0;background:white;font-family:Arial,sans-serif}.sheet{width:210mm;height:297mm;overflow:hidden;break-after:page;page-break-after:always;position:relative;background:#fff}.sheet:last-child{break-after:auto;page-break-after:auto}.large-row{width:210mm;height:59.4mm}.label-art{width:210mm;height:59.4mm;position:relative;overflow:hidden}.label-art img{position:absolute;width:100%;height:100%;object-fit:fill}.label-values{position:absolute;left:82.3%;top:16%;width:11.55%;height:19%;background:white;border-radius:1mm;padding:.6mm 1mm;font-size:2.5mm;font-weight:700;line-height:3.3mm;white-space:nowrap}.small-label{width:148.5mm;height:${types.C300.height}mm}.small-label .label-values{left:82.2%;top:11.5%;width:14.55%;height:14.3%;padding:.4mm 1mm;font-size:2.1mm;line-height:2.6mm;font-weight:500}.small-row{width:210mm;height:${types.C300.height}mm;display:flex}.small-rotated-row{width:210mm;height:148.5mm;display:flex}.rotated-cell{position:relative;width:${types.C300.height}mm;height:148.5mm;overflow:hidden}.rotated-cell .label-art{position:absolute;left:${types.C300.height}mm;top:0;transform-origin:0 0;transform:rotate(90deg)}@media screen{body{background:#ddd}.sheet{margin:12px auto;box-shadow:0 1px 8px #888}}`;
-  function documentHtml(labels, limit) {
-    const pages = paginate(labels, limit);
+  function documentHtml(labels, limit, layout) {
+    const pages = layout || paginate(labels, limit);
     return `<!doctype html><html><head><meta charset="utf-8"><title>KAFAK Product Labels</title><style>${css}</style></head><body>` + pages.map((page) => {
       let out = page.large.map((l) => `<div class="large-row">${labelHtml(l)}</div>`).join("");
       const space = 297 - page.large.length * 59.4, leftCount = Math.min(page.small.length, Math.floor((space + 1e-3) / types.C300.height));
@@ -205,6 +205,41 @@ function _toPrimitive(t, e) {
     if (!/(?:^|\s)S(?:\s|$)/.test(text)) text = (text + " S").trim();
     return [text, ...Object.keys(types).filter((k) => current[k]).map((k) => "lb" + k.toLowerCase() + "_" + current[k])].join(" ");
   }
+  function fill(pages, type, make) {
+    if (type !== "none" && !types[type]) throw Error("Select a filler product");
+    let extras = 0;
+    const result = pages.map((page) => {
+      const next = {
+        large: page.large.slice(),
+        small: page.small.slice()
+      };
+      if (type === "C300") {
+        const n = capacity[next.large.length] - next.small.length;
+        for (let k = 0; k < n; k++) {
+          next.small.push(_objectSpread(_objectSpread({}, make(type)), {}, {
+            extra: true
+          }));
+          extras++;
+        }
+      } else if (type !== "none") {
+        let n = next.large.length;
+        while (n < 5 && capacity[n + 1] >= next.small.length) n++;
+        while (next.large.length < n) {
+          next.large.push(_objectSpread(_objectSpread({}, make(type)), {}, {
+            extra: true
+          }));
+          extras++;
+        }
+      }
+      return next;
+    });
+    return {
+      pages: result,
+      labels: result.flatMap((p) => [...p.large, ...p.small]),
+      extras,
+      type
+    };
+  }
   const core = {
     types,
     date,
@@ -212,6 +247,7 @@ function _toPrimitive(t, e) {
     printed,
     demand,
     paginate,
+    fill,
     labelHtml,
     documentHtml,
     css,
@@ -222,12 +258,10 @@ function _toPrimitive(t, e) {
     return;
   }
   scope.KafakProductLabels = core;
-  let predictionSerial = 0, settings = {};
+  let predictionSerial = 0, settings = {}, previewType = "W650", fillType = "W650", dirtyBatch = false;
   const original = {
     inject: scope.injectLeftDrawer,
     predict: scope.updatePrintPrediction,
-    print: scope.printProductLabels,
-    preview: scope.updateLabelPreview,
     batch: scope.refreshLabelBatch
   };
   const orders = () => typeof allOrders !== "undefined" ? allOrders : [];
@@ -236,39 +270,29 @@ function _toPrimitive(t, e) {
     var _document$getElementB;
     return ((_document$getElementB = document.getElementById("label-product-type")) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value) || "auto";
   };
-  function install() {
-    if (document.getElementById("label-product-type")) return;
-    const anchor = document.getElementById("label-preview-box");
-    if (!anchor) return;
-    const panel = document.createElement("div");
-    panel.className = "mb-3";
-    panel.innerHTML = '<label class="small fw-bold text-muted mb-1" style="font-size:10px" for="label-product-type">LABEL PRODUCT</label><select id="label-product-type" class="form-select form-select-sm fw-bold"><option value="auto">Paid orders · correct product labels</option>' + Object.entries(types).map(([k, t]) => `<option value="${k}">${t.name} · manual copies</option>`).join("") + '</select><div id="label-product-breakdown" class="small text-muted mt-2" style="font-size:10px"></div>';
-    anchor.parentNode.insertBefore(panel, anchor.previousElementSibling);
-    document.getElementById("label-product-type").onchange = change;
-    document.getElementById("printed-bottles-count").previousElementSibling.textContent = "Labels confirmed (Paid):";
-    for (const n of [6, 7]) {
-      const option = document.createElement("option");
-      option.value = String(n);
-      option.textContent = n + " (300g)";
-      document.getElementById("stickers-per-page").append(option);
+  const ids = (type) => type === "W650" ? {
+    mrp: "label-mrp",
+    batch: "label-batch",
+    date: "label-date"
+  } : {
+    mrp: "label-" + type.toLowerCase() + "-mrp",
+    batch: "label-" + type.toLowerCase() + "-batch",
+    date: "label-" + type.toLowerCase() + "-date"
+  };
+  const iso = (value) => {
+    const parts = String(value || "").replace(/\s/g, "").split("/");
+    return parts.length === 3 ? "20" + parts[2].slice(-2) + "-" + parts[1] + "-" + parts[0] : value;
+  };
+  const displayDate = (value) => /^\d{4}-\d\d-\d\d$/.test(value) ? value.slice(8) + "/" + value.slice(5, 7) + "/" + value.slice(2, 4) : "";
+  function readSettings() {
+    for (const type of Object.keys(types)) {
+      const id = ids(type);
+      if (document.getElementById(id.mrp)) settings[type] = {
+        mrp: document.getElementById(id.mrp).value,
+        batch: document.getElementById(id.batch).value.trim().toUpperCase(),
+        date: displayDate(document.getElementById(id.date).value)
+      };
     }
-    const wild = {
-      mrp: $("#label-mrp").val(),
-      batch: $("#label-batch").val(),
-      date: $("#label-date").val()
-    };
-    settings.W650 = wild;
-    settings.C650 = {
-      mrp: "2200.00",
-      batch: "HN26LY02",
-      date: date()
-    };
-    settings.C300 = {
-      mrp: "1020.00",
-      batch: "HN26LY02",
-      date: date()
-    };
-    change();
   }
   function label(type) {
     const t = types[type], s = settings[type] || {
@@ -282,32 +306,81 @@ function _toPrimitive(t, e) {
       mrp: Number(s.mrp).toFixed(2)
     });
   }
-  function change() {
-    const type = choice(), automatic = type === "auto";
-    for (const id of ["label-mrp", "label-batch", "label-date"]) document.getElementById(id).disabled = automatic;
-    const perPage = document.getElementById("stickers-per-page");
-    perPage.disabled = automatic;
-    for (const n of [6, 7]) perPage.querySelector('option[value="' + n + '"]').hidden = type !== "C300";
-    if (type === "C300") perPage.value = "7";
-    else if (Number(perPage.value) > 5) perPage.value = "5";
-    document.getElementById("manual-sheets-input").readOnly = automatic;
-    {
-      const s = settings[automatic ? "W650" : type];
-      $("#label-mrp").val(s.mrp);
-      $("#label-batch").val(s.batch);
-      $("#label-date").val(s.date);
-      document.getElementById("print-qty-mode").dataset.userSelected = "false";
+  function install() {
+    if (document.getElementById("label-product-type")) return;
+    const anchor = document.getElementById("label-preview-box");
+    if (!anchor) return;
+    settings = {
+      W650: {
+        mrp: $("#label-mrp").val(),
+        batch: $("#label-batch").val(),
+        date: $("#label-date").val()
+      },
+      C650: {
+        mrp: "2200.00",
+        batch: "HN26LY02",
+        date: date()
+      },
+      C300: {
+        mrp: "1020.00",
+        batch: "HN26LY02",
+        date: date()
+      }
+    };
+    const panel = document.createElement("div");
+    panel.className = "mb-3";
+    panel.innerHTML = '<label class="small fw-bold text-muted mb-1" style="font-size:10px" for="label-product-type">LABEL PRODUCT</label><select id="label-product-type" class="form-select form-select-sm fw-bold"><option value="auto">Paid orders · correct product labels</option>' + Object.entries(types).map(([k, t]) => `<option value="${k}">${t.name} · manual copies</option>`).join("") + '</select><div id="label-manual-controls" class="mt-2" hidden><label class="small text-muted fw-bold mb-1" for="label-manual-copies" style="font-size:10px">COPIES REQUESTED</label><input type="number" id="label-manual-copies" class="form-control form-control-sm" min="1" max="1000" step="1" value="1"></div><div id="label-product-breakdown" class="small text-muted mt-2" style="font-size:10px;white-space:pre-line"></div>';
+    anchor.parentNode.insertBefore(panel, anchor.previousElementSibling);
+    document.getElementById("label-product-type").onchange = () => {
+      document.getElementById("label-manual-controls").hidden = choice() === "auto";
+      if (choice() !== "auto") previewType = choice();
+      preview();
+      scope.updatePrintPrediction();
+    };
+    document.getElementById("label-manual-copies").oninput = () => scope.updatePrintPrediction();
+    document.getElementById("printed-bottles-count").previousElementSibling.textContent = "Labels confirmed (Paid):";
+    const oldPerPage = document.getElementById("stickers-per-page"), oldBox = document.getElementById("label-mrp").parentElement;
+    if (document.getElementById("label-date")._flatpickr) document.getElementById("label-date")._flatpickr.destroy();
+    oldBox.innerHTML = '<input type="hidden" id="stickers-per-page" value="5">' + Object.entries(types).map(([type, t]) => {
+      const id = ids(type), s = settings[type];
+      return `<details class="product-label-settings border rounded-3 mb-2 bg-white" data-product="${type}"><summary class="fw-bold d-flex justify-content-between align-items-center px-3 py-3" style="font-size:11px;cursor:pointer;list-style:none">${escape(t.name)}<span class="text-muted" aria-hidden="true">⌄</span></summary><div class="px-3 pb-3"><label class="small fw-bold text-muted mb-1" style="font-size:10px" for="${id.mrp}">MRP (₹)</label><input type="number" min="0.01" step="0.01" required id="${id.mrp}" class="form-control form-control-sm mb-2 fw-semibold" value="${escape(s.mrp)}"><label class="small fw-bold text-muted mb-1" style="font-size:10px" for="${id.batch}">BATCH NO.</label><input type="text" required maxlength="40" id="${id.batch}" class="form-control form-control-sm mb-2 fw-semibold text-uppercase" value="${escape(s.batch)}"><label class="small fw-bold text-muted mb-1" style="font-size:10px" for="${id.date}">DATE OF PKG</label><input type="date" required id="${id.date}" class="form-control form-control-sm fw-semibold" value="${escape(iso(s.date))}"></div></details>`;
+    }).join("");
+    for (const detail of oldBox.querySelectorAll("details")) {
+      const type = detail.dataset.product;
+      detail.ontoggle = () => {
+        if (detail.open) {
+          previewType = type;
+          preview();
+        }
+      };
+      for (const input of detail.querySelectorAll("input")) input.oninput = () => {
+        if (input.id === "label-batch") dirtyBatch = true;
+        previewType = type;
+        readSettings();
+        preview();
+        scope.updatePrintPrediction();
+      };
     }
-    scope.updateLabelPreview();
-    scope.updatePrintPrediction();
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "btn w-100 fw-bold shadow text-white mt-3";
+    button.style.cssText = "background:#1e293b;font-size:13px;padding:12px 0;border-radius:12px";
+    button.textContent = "PRINT LABELS";
+    button.onclick = print;
+    oldBox.append(button);
+    const modes = document.getElementById("print-qty-mode");
+    modes.onchange = () => {
+      fillType = modes.value;
+      scope.updatePrintPrediction();
+    };
+    const sheets = document.getElementById("manual-sheets-input");
+    sheets.readOnly = true;
+    sheets.removeAttribute("oninput");
+    readSettings();
+    preview();
   }
   function preview() {
-    const type = choice();
-    settings[type === "auto" ? "W650" : type] = {
-      mrp: $("#label-mrp").val(),
-      batch: $("#label-batch").val().toUpperCase(),
-      date: $("#label-date").val()
-    };
+    readSettings();
     const box = document.getElementById("label-preview-box");
     if (!box) return;
     const drawer = document.getElementById("left-drawer");
@@ -315,9 +388,11 @@ function _toPrimitive(t, e) {
       box.innerHTML = '<div class="small text-muted p-3">Open Label tools to preview.</div>';
       return;
     }
-    const use = type === "auto" ? "C650" : type, t = types[use], width = box.clientWidth || 318;
+    const t = types[previewType], width = box.clientWidth || 318;
     box.style.cssText = "width:100%;max-width:350px;position:relative;border:1px solid #cbd5e1;border-radius:8px;overflow:hidden;height:" + width * t.height / t.width + "px";
-    box.innerHTML = '<div style="position:absolute;transform-origin:0 0;transform:scale(' + width / (t.width * 96 / 25.4) + ')">' + labelHtml(label(use)) + "</div>";
+    box.innerHTML = '<div style="position:absolute;transform-origin:0 0;transform:scale(' + width / (t.width * 96 / 25.4) + ')">' + labelHtml(label(previewType)) + "</div>";
+    const heading = box.previousElementSibling;
+    if ((heading === null || heading === void 0 ? void 0 : heading.tagName) === "H6") heading.textContent = "LIVE PREVIEW · " + t.name;
     if (!document.getElementById("product-label-css")) {
       const style = document.createElement("style");
       style.id = "product-label-css";
@@ -326,59 +401,65 @@ function _toPrimitive(t, e) {
     }
   }
   function job() {
-    const d = demand(orders(), pending()), labels = [];
-    for (const k of Object.keys(types)) for (let n = 0; n < d.counts[k]; n++) labels.push(label(k));
-    return _objectSpread(_objectSpread({}, d), {}, {
-      labels,
-      pages: paginate(labels)
+    readSettings();
+    const d = demand(orders(), pending()), automatic = choice() === "auto", requested = [];
+    if (automatic) {
+      for (const k of Object.keys(types)) for (let n = 0; n < d.counts[k]; n++) requested.push(label(k));
+    } else {
+      const n = Number(document.getElementById("label-manual-copies").value);
+      if (!Number.isSafeInteger(n) || n < 1 || n > 1e3) throw Error("Select 1–1000 labels.");
+      for (let i = 0; i < n; i++) requested.push(label(choice()));
+    }
+    const result = fill(paginate(requested), fillType, label);
+    return _objectSpread(_objectSpread(_objectSpread({}, d), result), {}, {
+      requested: requested.length,
+      automatic
     });
   }
-  async function predict(manual = false) {
+  async function predict() {
     const generation = ++predictionSerial;
-    await original.predict(manual);
+    await original.predict(false);
     if (generation !== predictionSerial) return;
     install();
     try {
-      const j = job(), auto = choice() === "auto";
-      document.getElementById("label-product-breakdown").textContent = `Paid: ${j.paid} bottles · Labels confirmed: ${j.printed} · To print: ${j.total}
-` + Object.keys(types).filter((k) => j.counts[k]).map((k) => types[k].name + ": " + j.counts[k]).join(" · ") + (auto ? " · Loose sticker stock is separate." : "");
+      const j = job();
+      document.getElementById("label-product-breakdown").textContent = `Paid: ${j.paid} bottles · Labels confirmed: ${j.printed}
+` + Object.keys(types).filter((k) => j.counts[k]).map((k) => types[k].name + ": " + j.counts[k]).join(" · ") + `
+Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fillType].name : ""} = ${j.labels.length} labels · ${j.pages.length} A4 sheets`;
       $("#unprinted-bottles-count").text(j.total);
       $("#printed-bottles-count").text(j.printed);
-      if (auto) {
-        $("#manual-sheets-input").val(j.pages.length);
-        $("#exact-sheets-count").text(j.pages.length + ".0");
-        const modes = document.getElementById("print-qty-mode");
-        modes.dataset.userSelected = "false";
-        modes.innerHTML = `<option value="${j.total}">${j.total} exact product labels · ${j.pages.length} A4 sheets</option>`;
-      } else {
-        const n = Number($("#print-qty-mode").val()) || 0, actual = paginate(Array.from({
-          length: n
-        }, () => label(choice())), Number($("#stickers-per-page").val()) || 5).length;
-        $("#manual-sheets-input").val(actual);
-        $("#exact-sheets-count").text(actual + ".0");
-      }
+      $("#manual-sheets-input").val(j.pages.length);
+      $("#exact-sheets-count").text(j.pages.length + ".0");
+      const modes = document.getElementById("print-qty-mode");
+      modes.dataset.userSelected = "false";
+      modes.previousElementSibling.textContent = "FILL REMAINING A4 SPACE";
+      modes.innerHTML = Object.entries(types).map(([k, t]) => `<option value="${k}">Fill with ${escape(t.name)}${k === "W650" ? " (default)" : ""}</option>`).join("") + '<option value="none">Leave blank · exact requested labels</option>';
+      modes.value = fillType;
+      modes.onchange = () => {
+        fillType = modes.value;
+        scope.updatePrintPrediction();
+      };
       preview();
     } catch (e) {
       document.getElementById("label-product-breakdown").textContent = e.message;
     }
   }
   async function print() {
-    let j, labels;
+    let j;
     try {
       j = job();
-      if (choice() === "auto") labels = j.labels;
-      else {
-        const n = Number($("#print-qty-mode").val()) || 0;
-        if (!Number.isSafeInteger(n) || n < 1 || n > 1e3) throw Error("Select 1–1000 labels.");
-        labels = Array.from({
-          length: n
-        }, () => label(choice()));
-      }
-      if (!labels.length) throw Error("No product labels need printing.");
-      if (labels.some((l) => {
+      if (!j.labels.length) throw Error("No product labels need printing.");
+      const invalid = j.labels.find((l) => {
         var _l$batch, _l$date;
-        return !Number(l.mrp) || !((_l$batch = l.batch) !== null && _l$batch !== void 0 && _l$batch.trim()) || !((_l$date = l.date) !== null && _l$date !== void 0 && _l$date.trim());
-      })) throw Error("Fill MRP, batch number and packaging date before printing.");
+        return !Number.isFinite(Number(l.mrp)) || Number(l.mrp) <= 0 || !((_l$batch = l.batch) !== null && _l$batch !== void 0 && _l$batch.trim()) || !((_l$date = l.date) !== null && _l$date !== void 0 && _l$date.trim());
+      });
+      if (invalid) {
+        const detail = document.querySelector('.product-label-settings[data-product="' + invalid.type + '"]');
+        if (detail) detail.open = true;
+        previewType = invalid.type;
+        preview();
+        throw Error("Fill MRP, batch number and packaging date for " + types[invalid.type].name + " before printing.");
+      }
     } catch (e) {
       showToast("warning", e.message);
       return;
@@ -388,7 +469,7 @@ function _toPrimitive(t, e) {
       showToast("warning", "Allow the print window, then retry.");
       return;
     }
-    const url = URL.createObjectURL(new Blob([documentHtml(labels, choice() === "auto" ? void 0 : Number($("#stickers-per-page").val()) || 5).replace("<head>", '<head><base href="' + escape(new URL(".", window.location.href).href) + '">')], {
+    const url = URL.createObjectURL(new Blob([documentHtml(j.labels, void 0, j.pages).replace("<head>", '<head><base href="' + escape(new URL(".", window.location.href).href) + '">')], {
       type: "text/html;charset=utf-8"
     }));
     try {
@@ -402,7 +483,7 @@ function _toPrimitive(t, e) {
           }
           try {
             const images = [...w.document.images];
-            if (w.document.readyState === "complete" && images.length === labels.length && images.every((i) => i.complete)) {
+            if (w.document.readyState === "complete" && images.length === j.labels.length && images.every((i) => i.complete)) {
               clearInterval(timer);
               images.every((i) => i.naturalWidth) ? resolve() : reject(Error("Label image could not load. Retry printing."));
             } else if (Date.now() - started > 3e4) {
@@ -421,10 +502,10 @@ function _toPrimitive(t, e) {
     } finally {
       setTimeout(() => URL.revokeObjectURL(url), 3e5);
     }
-    if (choice() !== "auto") return;
+    if (!j.automatic) return;
     const confirmed = await Swal.fire({
       title: "Were all labels printed?",
-      text: `${labels.length} labels on ${j.pages.length} A4 sheets. Confirm only after printing succeeds.`,
+      text: `${j.requested} order labels + ${j.extras} extra labels on ${j.pages.length} A4 sheets. Confirm only after printing succeeds.`,
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Printed successfully",
@@ -458,7 +539,7 @@ function _toPrimitive(t, e) {
     localStorage.setItem("allOrdersCache", JSON.stringify(orders()));
     scope.updateSyncButtonUI();
     scope.updatePrintPrediction();
-    showToast("success", "Labels confirmed. Sync to save the print marks.");
+    showToast("success", "Order labels confirmed. Sync to save the print marks.");
   }
   scope.injectLeftDrawer = function() {
     original.inject();
@@ -470,20 +551,22 @@ function _toPrimitive(t, e) {
   scope.refreshLabelBatch = async function() {
     var _businessApi, _original$batch;
     if (typeof businessApi === "undefined" || !((_businessApi = businessApi) !== null && _businessApi !== void 0 && _businessApi.request)) return (_original$batch = original.batch) === null || _original$batch === void 0 ? void 0 : _original$batch.call(original);
-    if (!settings.W650) return;
+    if (!settings.W650 || dirtyBatch) return;
+    const field = document.getElementById("label-batch");
+    field.value = "";
+    field.placeholder = "Loading current batch...";
     settings.W650.batch = "";
-    if (choice() === "auto" || choice() === "W650") $("#label-batch").val("");
+    preview();
     try {
       var _batches$find;
       const _await$businessApi$re = await businessApi.request("/admin/salary-batches"), batches = _await$businessApi$re.batches;
+      if (dirtyBatch || document.getElementById("label-batch").value !== "") return;
       const value = ((_batches$find = batches.find((b) => b.Status === "Open" && b.Product === "Vanthen")) === null || _batches$find === void 0 ? void 0 : _batches$find["Batch Number"]) || "";
       settings.W650.batch = value;
-      if (choice() === "auto" || choice() === "W650") {
-        $("#label-batch").val(value);
-        preview();
-      }
+      $("#label-batch").val(value);
+      preview();
     } catch (_unused2) {
-      if (choice() === "auto" || choice() === "W650") document.getElementById("label-batch").placeholder = "Batch unavailable - retry before printing";
+      document.getElementById("label-batch").placeholder = "Batch unavailable - retry before printing";
     }
   };
 })(typeof window === "undefined" ? globalThis : window);
