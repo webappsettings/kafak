@@ -704,6 +704,18 @@ function orderHasCheruthen(order) {
     const isCheruthen = value => String(value || '').trim().toLowerCase() === 'cheruthen';
     return order.items?.length ? order.items.some(item => isCheruthen(item.product)) : isCheruthen(order.product || order.Product);
 }
+function addCheruthenPacks(counts, order) {
+    const items = order.items?.length ? order.items : order.Order_Items?.length ? order.Order_Items : [{product:order.product || order.Product,packGrams:order.packGrams || order['Pack Grams'],quantity:order.quantity || order.Quantity}];
+    items.forEach(item => {
+        if (String(item.product || '').trim().toLowerCase() !== 'cheruthen') return;
+        const grams = Number(item.packGrams), quantity = Number(item.quantity);
+        if (!Number.isSafeInteger(quantity) || quantity < 1) return;
+        const key = [300,650].includes(grams) ? grams : 'other';
+        counts[key] = (counts[key] || 0) + quantity;
+    });
+    return counts;
+}
+function courierCostText(value) { return (Math.round(Number(value) * 100) / 100).toLocaleString('en-IN', {maximumFractionDigits:2}); }
 function matchesCheruthenStateView(order) {
     const selected = window.activeStateFilter;
     if (!selected) return true;
@@ -712,9 +724,10 @@ function matchesCheruthenStateView(order) {
     return key === selected;
 }
 function cheruthenFilterChip(count, tabKey, groupId = '') {
-    if (!count) return '';
+    if (!count || (typeof count === 'object' && !Object.keys(count).length)) return '';
+    const detail = typeof count === 'object' ? Object.keys(count).sort((a,b) => Number(a)-Number(b)).map(g => g === 'other' ? String(count[g]) : `${count[g]}×${g}g`).join(', ') : count;
     const listId = {new:'list-sub-new',sent:'list-sub-sent',paid_new:'list-paid-new',paid_print:'list-paid-printed',disp_new:'list-disp-new',disp_track:'list-disp-tracked'}[tabKey];
-    return `<button type="button" class="cheruthen-filter border-0 rounded-pill fw-bold px-2 py-1" style="font-size:10px;line-height:1.2;color:#a000bb;background:transparent;" data-list-id="${listId}" data-group-id="${groupId}" aria-pressed="false" title="Orders containing Cheruthen; click again to show all" onclick="toggleCheruthenFilter(event,this)"><i class="fas fa-wine-bottle me-1" aria-hidden="true"></i>Cheruthen ${count}</button>`;
+    return `<button type="button" class="cheruthen-filter border-0 rounded-pill fw-bold px-2 py-1" style="font-size:10px;line-height:1.2;color:#a000bb;background:transparent;" data-list-id="${listId}" data-group-id="${groupId}" aria-pressed="false" title="Orders containing Cheruthen; click again to show all" onclick="toggleCheruthenFilter(event,this)"><i class="fas fa-wine-bottle me-1" aria-hidden="true"></i>Cheruthen ${detail}</button>`;
 }
 window.clearCheruthenFilter = function () {
     const active = window.cheruthenFilter;
@@ -1044,7 +1057,7 @@ function renderTabs(orders, externalCounts = null) {
             let fullKey = `${dateKeyType}_${lbl}`;
 
             if (!timelineStats[fullKey]) {
-                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, qtyCounts: {}, cheruthen: 0, D: 0, C: 0, R: 0 };
+                timelineStats[fullKey] = { cost: 0, count: 0, bottles: 0, couriers: {}, qtyCounts: {}, cheruthen: {}, D: 0, C: 0, R: 0 };
             }
 
             if (!timelineStats[fullKey].couriers) {
@@ -1052,7 +1065,7 @@ function renderTabs(orders, externalCounts = null) {
             }
 
             timelineStats[fullKey].count++;
-            if (orderHasCheruthen(o) && matchesCheruthenStateView(o)) timelineStats[fullKey].cheruthen++;
+            if (orderHasCheruthen(o) && matchesCheruthenStateView(o)) addCheruthenPacks(timelineStats[fullKey].cheruthen, o);
             let qty = parseInt(o.quantity) || 0;
             timelineStats[fullKey].bottles += qty;
 
@@ -1063,8 +1076,8 @@ function renderTabs(orders, externalCounts = null) {
             if (status === 'Completed') timelineStats[fullKey].C++;
 
             if (['Pending', 'Sent', 'Paid', 'Dispatched', 'Delivered', 'Completed'].includes(status)) {
-                let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
-                let totalC = parseInt(o.Courier_Charge) || 0;
+                let actualC = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.actualCourierCost) || 0;
+                let totalC = parseFloat(o.Courier_Charge) || 0;
                 if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
@@ -1215,10 +1228,10 @@ function renderTabs(orders, externalCounts = null) {
                     if (sStats) {
                         let courierDetails = [];
                         for (let p in sStats.couriers) {
-                            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${sStats.couriers[p].cost}</span>`);
+                            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:2px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleCourierFilter(event, this, '${p}', '${safeGroupId}')">${p} ${sStats.couriers[p].count}: ${courierCostText(sStats.couriers[p].cost)}</span>`);
                         }
                         let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
-                        let costDisplay = sStats.cost > 0 ? `₹${sStats.cost} ` : '';
+                        let costDisplay = sStats.cost > 0 ? `₹${courierCostText(sStats.cost)} ` : '';
                         if (courierDetails.length > 0 || sStats.cost > 0) {
                             extraHtml += `<span class="ms-2 ps-2 border-start border-secondary d-flex flex-wrap align-items-center"><i class="fas fa-shipping-fast text-muted me-1" style="font-size:10px;"></i> ${costDisplay}${courierStr}</span>`;
                         }
@@ -1321,7 +1334,7 @@ function renderTabs(orders, externalCounts = null) {
         }
 
         let bCount = 0;
-        let cheruthenCount = 0;
+        let cheruthenCount = {};
         let totalTabCost = 0;
         let qStats = {};
         let oStats = {};
@@ -1361,7 +1374,7 @@ function renderTabs(orders, externalCounts = null) {
             else if (id === 'disp_track' && status === 'Dispatched' && isTracked) isMatchTab = true;
 
             if (isMatchTab) {
-                if (orderHasCheruthen(o)) cheruthenCount++;
+                if (orderHasCheruthen(o)) addCheruthenPacks(cheruthenCount, o);
                 let qty = parseInt(o.quantity) || parseInt(o.Quantity) || 1;
                 bCount += qty;
                 qStats[qty] = (qStats[qty] || 0) + 1;
@@ -1380,8 +1393,8 @@ function renderTabs(orders, externalCounts = null) {
                 if (shortP.length > 12) shortP = shortP.substring(0, 10) + '..';
                 if (!shortP) shortP = 'Other';
 
-                let actualC = parseInt(o.Actual_Courier_Cost) || parseInt(o.actualCourierCost) || 0;
-                let totalC = parseInt(o.Courier_Charge) || 0;
+                let actualC = parseFloat(o.Actual_Courier_Cost) || parseFloat(o.actualCourierCost) || 0;
+                let totalC = parseFloat(o.Courier_Charge) || 0;
                 if (totalC <= 0) totalC = getCourierRate(o.state, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
                 if (rawP.toUpperCase() === 'DIRECT') actualC = totalC;
@@ -1407,11 +1420,11 @@ function renderTabs(orders, externalCounts = null) {
 
         let courierDetails = [];
         for (let p in cStats) {
-            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabCourierFilter(event, this, '${p}')">${p} ${cStats[p].count}: ${cStats[p].cost}</span>`);
+            courierDetails.push(`<span class="courier-filter" style="cursor:pointer; padding:1px 4px; border-radius:3px; transition:0.2s;" onclick="window.toggleTabCourierFilter(event, this, '${p}')">${p} ${cStats[p].count}: ${courierCostText(cStats[p].cost)}</span>`);
         }
         let courierStr = courierDetails.length > 0 ? `<span class="ms-1" style="font-size:8.5px; color:#64748b; font-weight:600; letter-spacing:0; line-height:1;">(${courierDetails.join(', ')})</span>` : '';
 
-        let cHtml = totalTabCost > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ₹${totalTabCost} ${courierStr}</span>` : '';
+        let cHtml = totalTabCost > 0 ? `<span class="text-danger fw-bold ms-1" style="font-size:10px; letter-spacing:-0.5px;"><i class="fas fa-truck"></i> ₹${courierCostText(totalTabCost)} ${courierStr}</span>` : '';
 
         let klCount = oCount - (sStats.tn + sStats.kar + sStats.lak + sStats.other);
         if (klCount < 0) klCount = 0;
@@ -4316,8 +4329,8 @@ window.renderDashboard = function () {
             // 🔥 CRITICAL FIX: o.orderid കൂടി നൽകി!
             let dDate = parseOrderDate(dDateStr, o.orderid);
 
-            let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
-            let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
+            let actualC = parseFloat(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+            let totalC = parseFloat(o.Courier_Charge || o.courierCharge) || 0;
 
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
@@ -5594,8 +5607,8 @@ window.renderDetailedMonthlyOverview = function () {
             // 🔥 CRITICAL FIX: ഇവിടുത്തെ 'let' പൂർണ്ണമായും ഒഴിവാക്കി!
             dDate = parseOrderDate(dDateStr, o.orderid);
 
-            actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
-            totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
+            actualC = parseFloat(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+            totalC = parseFloat(o.Courier_Charge || o.courierCharge) || 0;
 
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
@@ -5947,8 +5960,8 @@ window.renderYearlyOverview = function () {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || o.timestamp || o.Date || o.date;
             let dDate = parseOrderDate(dDateStr);
             if (!isNaN(dDate.getTime()) && dDate.getFullYear() === currentYear) {
-                let actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
-                let totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
+                let actualC = parseFloat(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+                let totalC = parseFloat(o.Courier_Charge || o.courierCharge) || 0;
 
                 if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
                 if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
@@ -8304,8 +8317,8 @@ window.renderPartnerList = function () {
             let dDateStr = o['Dispatched Date'] || o.Dispatched_Date || o.dispatchedDate || pDateStr;
             let dDate = parseOrderDate(dDateStr, o.orderid);
 
-            actualC = parseInt(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
-            totalC = parseInt(o.Courier_Charge || o.courierCharge) || 0;
+            actualC = parseFloat(o.actualCourierCost || o.Actual_Courier_Cost) || 0;
+            totalC = parseFloat(o.Courier_Charge || o.courierCharge) || 0;
             if (totalC <= 0) totalC = getCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
             if (actualC <= 0) actualC = getBaseCourierRate(o.state || o.State, o.provider || o.Courier_Provider, qty);
 
