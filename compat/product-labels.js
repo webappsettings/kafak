@@ -179,6 +179,58 @@ function _toPrimitive(t, e) {
       return '<section class="sheet">' + out + "</section>";
     }).join("") + "</body></html>";
   }
+  function stockPreview(saved, orders2, pending2 = [], baselines = []) {
+    const result = _objectSpread(_objectSpread({}, saved), {}, {
+      loose: _objectSpread({}, saved.loose),
+      appliedOrders: 0,
+      used: {
+        W650: 0,
+        C650: 0,
+        C300: 0
+      },
+      updates: []
+    }), updateMap = /* @__PURE__ */ new Map();
+    if (!saved.initialized) return result;
+    const meta = new Map(pending2.filter((u) => u.action === "meta" && u.meta !== void 0).map((u) => [u.oid, u])), statuses = new Map(pending2.filter((u) => u.status && (!u.action || u.action === "status")).map((u) => [u.oid, u.status])), server = new Map(baselines.map((o) => [o.oid, o])), local = new Map(orders2.map((o) => [o.orderid, o]));
+    for (const base of baselines) {
+      var _meta$get$meta, _meta$get;
+      if (!local.has(base.oid)) continue;
+      const next = (_meta$get$meta = (_meta$get = meta.get(base.oid)) === null || _meta$get === void 0 ? void 0 : _meta$get.meta) !== null && _meta$get$meta !== void 0 ? _meta$get$meta : base.meta, used = printed(next), known = printed(base.meta);
+      for (const k of Object.keys(types)) used[k] = Math.max(used[k], known[k]);
+      updateMap.set(base.oid, {
+        oid: base.oid,
+        action: "meta",
+        meta: Object.values(used).some(Boolean) ? mark(next, used) : next
+      });
+    }
+    const hasPrint = (value) => /(?:^|\s)P(?:_\d+)?(?=\s|$)/.test(String(value || "")), eligible = (value) => ["Paid", "Dispatched", "Delivered", "Completed"].includes(value);
+    for (const oid of [.../* @__PURE__ */ new Set([...meta.keys(), ...statuses.keys()])].sort()) {
+      var _ref3, _ref4, _base$meta, _ref5, _ref6, _base$status, _u$meta, _updateMap$get$meta, _updateMap$get;
+      const u = meta.get(oid), o = local.get(oid), base = server.get(oid);
+      if (!o && !base) continue;
+      const before = (_ref3 = (_ref4 = (_base$meta = base === null || base === void 0 ? void 0 : base.meta) !== null && _base$meta !== void 0 ? _base$meta : u === null || u === void 0 ? void 0 : u.oldMeta) !== null && _ref4 !== void 0 ? _ref4 : o === null || o === void 0 ? void 0 : o.adminMeta) !== null && _ref3 !== void 0 ? _ref3 : "", beforeStatus = (_ref5 = (_ref6 = (_base$status = base === null || base === void 0 ? void 0 : base.status) !== null && _base$status !== void 0 ? _base$status : o === null || o === void 0 ? void 0 : o.Status) !== null && _ref6 !== void 0 ? _ref6 : o === null || o === void 0 ? void 0 : o.status) !== null && _ref5 !== void 0 ? _ref5 : "", next = (_u$meta = u === null || u === void 0 ? void 0 : u.meta) !== null && _u$meta !== void 0 ? _u$meta : before, status = statuses.get(oid) || beforeStatus;
+      if (!eligible(status) || !hasPrint(next) || hasPrint(before) && eligible(beforeStatus)) continue;
+      const counts = (base === null || base === void 0 ? void 0 : base.counts) || items(o), printedCounts = printed((_updateMap$get$meta = (_updateMap$get = updateMap.get(oid)) === null || _updateMap$get === void 0 ? void 0 : _updateMap$get.meta) !== null && _updateMap$get$meta !== void 0 ? _updateMap$get$meta : next);
+      let used = 0;
+      for (const k of Object.keys(types)) {
+        const n = Math.min(Math.max(0, counts[k] - printedCounts[k]), result.loose[k]);
+        result.loose[k] -= n;
+        result.used[k] += n;
+        printedCounts[k] += n;
+        used += n;
+      }
+      if (used) {
+        result.appliedOrders++;
+        updateMap.set(oid, {
+          oid,
+          action: "meta",
+          meta: mark(next, printedCounts)
+        });
+      }
+    }
+    result.updates = [...updateMap.values()];
+    return result;
+  }
   function mark(meta, current) {
     let text = String(meta || "").replace(/\blb(?:w650|c650|c300)_\d+\b/g, "").replace(/\s+/g, " ").trim();
     if (!/(?:^|\s)S(?:\s|$)/.test(text)) text = (text + " S").trim();
@@ -231,7 +283,8 @@ function _toPrimitive(t, e) {
     labelHtml,
     documentHtml,
     css,
-    mark
+    mark,
+    stockPreview
   };
   if (typeof module !== "undefined" && module.exports) {
     module.exports = core;
@@ -241,25 +294,45 @@ function _toPrimitive(t, e) {
   let predictionSerial = 0, settings = {}, previewType = "W650", fillType = "W650", dirtyBatch = false;
   const original = {
     inject: scope.injectLeftDrawer,
-    predict: scope.updatePrintPrediction,
     batch: scope.refreshLabelBatch
   };
   const orders = () => typeof allOrders !== "undefined" ? allOrders : [];
   const pending = () => JSON.parse(localStorage.getItem("pendingUpdates") || "[]");
   const stockApi = typeof KafakBusinessApi !== "undefined" ? new KafakBusinessApi() : null;
-  let stock = null, stockRequest = null;
+  let stock = null, stockRequest = null, stockBaselines = [];
+  const stockWatch = /* @__PURE__ */ new Set();
+  let stockQueried = /* @__PURE__ */ new Set();
   async function loadStock() {
     if (!stockApi) throw Error("Sticker stock service is unavailable.");
-    if (!stockRequest) stockRequest = stockApi.request("/admin/label-stock").then((r) => {
-      var _stock, _window$globalInvento;
-      stock = r.stock;
-      if ((_stock = stock) !== null && _stock !== void 0 && _stock.initialized && (_window$globalInvento = window.globalInventoryDB) !== null && _window$globalInvento !== void 0 && _window$globalInvento.sticker) window.globalInventoryDB.sticker.labelStock = _objectSpread(_objectSpread({}, window.globalInventoryDB.sticker.labelStock || {}), {}, {
-        loose: _objectSpread({}, stock.loose),
-        blankSheets: stock.blankSheets
-      });
-      return stock;
-    }).finally(() => stockRequest = null);
-    return stockRequest;
+    for (const u of pending().filter((u2) => u2.action === "meta" || !u2.action || u2.action === "status")) stockWatch.add(u.oid);
+    if (!stockRequest) {
+      const oids = [...stockWatch];
+      stockRequest = stockApi.request("/admin/label-stock-preview", {
+        method: "POST",
+        data: {
+          oids
+        }
+      }).then((r) => {
+        stock = r.stock;
+        stockBaselines = r.orders || [];
+        stockQueried = new Set(oids);
+        return stock;
+      }).finally(() => stockRequest = null);
+    }
+    await stockRequest;
+    if ([...stockWatch].some((id) => !stockQueried.has(id))) return loadStock();
+    return stock;
+  }
+  function projectedStock() {
+    var _stock;
+    return (_stock = stock) !== null && _stock !== void 0 && _stock.initialized ? stockPreview(stock, orders(), pending(), stockBaselines) : stock;
+  }
+  function applyStockView(view) {
+    var _window$globalInvento;
+    if (view !== null && view !== void 0 && view.initialized && (_window$globalInvento = window.globalInventoryDB) !== null && _window$globalInvento !== void 0 && _window$globalInvento.sticker) window.globalInventoryDB.sticker.labelStock = _objectSpread(_objectSpread({}, window.globalInventoryDB.sticker.labelStock || {}), {}, {
+      loose: _objectSpread({}, view.loose),
+      blankSheets: view.blankSheets
+    });
   }
   const choice = () => {
     var _document$getElementB;
@@ -397,7 +470,7 @@ function _toPrimitive(t, e) {
   }
   function job() {
     readSettings();
-    const d = demand(orders(), pending()), automatic = choice() === "auto", requested = [];
+    const projected = projectedStock(), d = demand(orders(), [...pending(), ...(projected === null || projected === void 0 ? void 0 : projected.updates) || []]), automatic = choice() === "auto", requested = [];
     if (automatic) {
       for (const k of Object.keys(types)) for (let n = 0; n < d.counts[k]; n++) requested.push(label(k));
     } else {
@@ -412,9 +485,16 @@ function _toPrimitive(t, e) {
     });
   }
   async function predict() {
+    var _stock2;
     const generation = ++predictionSerial;
+    if ((_stock2 = stock) !== null && _stock2 !== void 0 && _stock2.initialized && document.getElementById("label-product-type")) {
+      try {
+        renderStock(job());
+      } catch (_unused) {
+      }
+    }
     let stockError = "";
-    await Promise.all([original.predict(false), loadStock().catch((e) => stockError = e.message)]);
+    await loadStock().catch((e) => stockError = e.message);
     if (generation !== predictionSerial) return;
     install();
     try {
@@ -442,13 +522,15 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
     }
   }
   function renderStock(j, error = "") {
-    var _stock2;
+    var _stock3;
     const box = document.getElementById("a4-stock-display-container");
     if (!box) return;
-    if (error || !((_stock2 = stock) !== null && _stock2 !== void 0 && _stock2.initialized)) {
+    if (!((_stock3 = stock) !== null && _stock3 !== void 0 && _stock3.initialized)) {
       box.innerHTML = '<div class="small text-danger">' + escape(error || "Set opening sticker stock before printing.") + "</div>";
       return;
     }
+    const view = projectedStock();
+    applyStockView(view);
     const counts = {
       W650: 0,
       C650: 0,
@@ -456,12 +538,17 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
     };
     for (const l of j.labels) counts[l.type]++;
     const after = {};
-    for (const k of Object.keys(types)) after[k] = stock.loose[k] + counts[k] - (j.automatic ? j.counts[k] : 0);
-    box.innerHTML = `<div class="rounded-3 border p-2 mb-2" style="background:#fff3cd;border-color:#ffe69c!important"><div class="d-flex justify-content-between align-items-center mb-2"><strong style="font-size:11px">Loose stickers · ${Object.values(stock.loose).reduce((a, b) => a + b, 0)}</strong><button type="button" id="edit-typed-label-stock" class="btn btn-sm btn-warning py-0 px-2" style="font-size:10px">Edit</button></div>${Object.entries(types).map(([k, t]) => `<div class="d-flex justify-content-between py-1" style="font-size:11px"><span>${escape(t.name)}</span><strong>${stock.loose[k]} stickers</strong></div>`).join("")}${j.labels.length ? '<div class="small border-top pt-2 mt-1" style="font-size:10px">After printing: ' + Object.keys(types).map((k) => escape(types[k].name) + " " + after[k]).join(" · ") + "</div>" : ""}</div><div class="rounded-3 border bg-white p-2 d-flex justify-content-between align-items-center"><span style="font-size:11px"><strong>Blank A4 sheets: <span class="${stock.blankSheets < 0 ? "text-danger" : "text-primary"}">${stock.blankSheets}</span></strong>${j.pages.length ? '<br><span class="text-muted" style="font-size:10px">After printing: ' + (stock.blankSheets - j.pages.length) + "</span>" : ""}</span><button type="button" id="edit-typed-paper-stock" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size:10px">Edit</button></div>`;
+    for (const k of Object.keys(types)) after[k] = view.loose[k] + counts[k] - (j.automatic ? j.counts[k] : 0);
+    box.innerHTML = (error ? '<div class="small text-warning mb-1">Using last saved stock; refresh is unavailable.</div>' : "") + `<div class="rounded-3 border p-2 mb-2" style="background:#fff3cd;border-color:#ffe69c!important"><div class="d-flex justify-content-between align-items-center mb-2"><strong style="font-size:11px">Loose stickers · ${Object.values(view.loose).reduce((a, b) => a + b, 0)}</strong>${view.appliedOrders ? '<span class="badge bg-warning text-dark ms-1" style="font-size:9px">Pending sync</span>' : ""}<button type="button" id="edit-typed-label-stock" class="btn btn-sm btn-warning py-0 px-2" style="font-size:10px">Edit</button></div>${Object.entries(types).map(([k, t]) => `<div class="d-flex justify-content-between py-1" style="font-size:11px"><span>${escape(t.name)}</span><strong>${view.loose[k]} stickers</strong></div>`).join("")}${j.labels.length ? '<div class="small border-top pt-2 mt-1" style="font-size:10px">After printing: ' + Object.keys(types).map((k) => escape(types[k].name) + " " + after[k]).join(" · ") + "</div>" : ""}</div><div class="rounded-3 border bg-white p-2 d-flex justify-content-between align-items-center"><span style="font-size:11px"><strong>Blank A4 sheets: <span class="${view.blankSheets < 0 ? "text-danger" : "text-primary"}">${view.blankSheets}</span></strong>${j.pages.length ? '<br><span class="text-muted" style="font-size:10px">After printing: ' + (view.blankSheets - j.pages.length) + "</span>" : ""}</span><button type="button" id="edit-typed-paper-stock" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size:10px">Edit</button></div>`;
     document.getElementById("edit-typed-label-stock").onclick = editStock;
     document.getElementById("edit-typed-paper-stock").onclick = editStock;
   }
   async function editStock() {
+    var _projectedStock;
+    if ((_projectedStock = projectedStock()) !== null && _projectedStock !== void 0 && _projectedStock.appliedOrders) {
+      showToast("warning", "Sync or discard pending address prints before changing physical stock.");
+      return;
+    }
     try {
       await loadStock();
       const version = stock.version, stockRequestId = crypto.randomUUID();
@@ -521,7 +608,7 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
   async function print() {
     let j;
     try {
-      var _stock3;
+      var _stock4, _projectedStock2;
       const waiting = JSON.parse(localStorage.getItem("kafak-label-print-receipt") || "null");
       if (waiting) {
         if (waiting.state === "prepared") {
@@ -543,8 +630,9 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
         return;
       }
       await loadStock();
-      if (!((_stock3 = stock) !== null && _stock3 !== void 0 && _stock3.initialized)) throw Error("Set opening sticker stock before printing.");
+      if (!((_stock4 = stock) !== null && _stock4 !== void 0 && _stock4.initialized)) throw Error("Set opening sticker stock before printing.");
       j = job();
+      if ((_projectedStock2 = projectedStock()) !== null && _projectedStock2 !== void 0 && _projectedStock2.appliedOrders) throw Error("Sync pending address prints before printing product labels.");
       if (stock.blankSheets < j.pages.length) throw Error("Need " + j.pages.length + " blank A4 sheets; recorded stock is " + stock.blankSheets + ". Update the physical paper stock first.");
       if (j.automatic && pending().some((u) => j.allocations.some((a) => a.oid === u.oid))) throw Error("Sync pending order updates before printing, so sticker stock is saved once.");
       if (!j.labels.length) throw Error("No product labels need printing.");
@@ -585,7 +673,7 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
     };
     try {
       localStorage.setItem("kafak-label-print-receipt", JSON.stringify(receipt));
-    } catch (_unused) {
+    } catch (_unused2) {
       showToast("error", "Allow browser storage before printing so the stock receipt can be recovered.");
       return;
     }
@@ -616,7 +704,7 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
               clearInterval(timer);
               reject(Error("Label images are still loading. Retry printing."));
             }
-          } catch (_unused2) {
+          } catch (_unused3) {
           }
         }, 100);
       });
@@ -675,7 +763,7 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
       settings.W650.batch = value;
       $("#label-batch").val(value);
       preview();
-    } catch (_unused3) {
+    } catch (_unused4) {
       document.getElementById("label-batch").placeholder = "Batch unavailable - retry before printing";
     }
   };

@@ -22,3 +22,13 @@ test('Wild labels including fillers always precede all Cheruthen labels across p
  }
  const labels=[...Array.from({length:6},()=>({type:'W650'})),{type:'C650'},{type:'C300'}];const result=p.fill(p.paginate(labels),'W650',type=>({type}));assert.equal(result.pages.length,2);assert.deepEqual(result.labels.map(l=>l.type),[...Array(8).fill('W650'),'C650','C300']);
 });
+
+test('pending first address prints preview typed stock without saving, and discard restores it',()=>{
+ const stock={initialized:true,loose:{W650:2,C650:1,C300:0},blankSheets:49},orders=[{orderid:'A',Status:'Paid',product:'Vanthen',quantity:2,adminMeta:'S P_100'}],updates=[{oid:'A',action:'meta',oldMeta:'',meta:'S P_100'}],before=JSON.stringify(stock);
+ const result=p.stockPreview(stock,orders,updates);assert.equal(result.loose.W650,0);assert.equal(result.appliedOrders,1);assert.equal(result.blankSheets,49);assert.equal(JSON.stringify(stock),before);assert.equal(p.demand(orders,[...updates,...result.updates]).total,0);
+ assert.equal(p.stockPreview(stock,orders,[]).loose.W650,2);assert.equal(p.stockPreview(stock,orders,[...updates,...updates]).loose.W650,0);
+ const saved={...stock,loose:{W650:0,C650:1,C300:0}},baselines=[{oid:'A',status:'Paid',meta:'S P_100 lbw650_2',counts:{W650:2,C650:0,C300:0}}];const synced=p.stockPreview(saved,orders,updates,baselines);assert.equal(synced.loose.W650,0);assert.equal(synced.appliedOrders,0);assert.equal(p.demand(orders,[...updates,...synced.updates]).total,0);assert.equal(p.demand(orders,p.stockPreview(saved,orders,[],baselines).updates).total,0);
+});
+test('pending mixed prints only consume matching available stock and preserve already printed labels',()=>{
+ const stock={initialized:true,loose:{W650:5,C650:1,C300:2},blankSheets:49},orders=[{orderid:'B',Status:'Paid',items:[{product:'Cheruthen',packGrams:650,quantity:2},{product:'Cheruthen',packGrams:300,quantity:3}],adminMeta:'S P_200'}],updates=[{oid:'B',action:'meta',oldMeta:'',meta:'S P_200'}];const q=p.stockPreview(stock,orders,updates);assert.deepEqual(q.loose,{W650:5,C650:0,C300:0});assert.deepEqual(q.used,{W650:0,C650:1,C300:2});assert.equal(p.demand(orders,[...updates,...q.updates]).total,2);assert.equal(p.stockPreview(stock,orders,[{...updates[0],oldMeta:'S P_100',meta:'S P_100'}]).appliedOrders,0);
+});
