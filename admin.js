@@ -9068,6 +9068,8 @@ window.getLiveStockHtml = function (isExpanded = false) {
             if (looseStickers > 0) balDisplay += ` <span class="badge bg-secondary ms-1" style="font-size:8px;">+${looseStickers} stk</span>`;
         }
 
+        if(k==='sticker'&&db[k].labelStock){const typed=db[k].labelStock;bal=typed.blankSheets;balDisplay=`${typed.blankSheets} <span class="text-muted fw-normal" style="font-size:9px">A4</span><div class="text-muted mt-1" style="font-size:9px">Vanthen 650g: ${typed.loose.W650} · Cheruthen 650g: ${typed.loose.C650} · Cheruthen 300g: ${typed.loose.C300}</div>`;}
+
         let rQty = db[k].ratioQty || 1;
         let rUnit = db[k].ratioUnit || avg;
         if (Math.abs((rUnit / rQty) - avg) > 0.001) { rQty = 1; rUnit = avg; }
@@ -9078,6 +9080,8 @@ window.getLiveStockHtml = function (isExpanded = false) {
             : `<button class="btn btn-outline-secondary py-0 px-1 d-flex align-items-center justify-content-center" style="font-size:9px; border-radius:4px; font-weight:800; height:22px; width:35px;" onclick="startRecording('${k}')"><i class="fas fa-circle text-danger"></i></button>`;
 
         let editStockBtn = `<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary shadow-sm" style="font-size:10px; border-radius:4px; height:20px; width:24px;" onclick="editSingleStock('${k}', '${itemObj.name}', '${itemObj.unit}')" title="Update Stock"><i class="fas fa-edit"></i></button>`;
+
+        if(k==='sticker'&&db[k].labelStock)editStockBtn=`<button class="btn btn-sm btn-light border-0 py-0 px-1 text-primary" style="font-size:10px" onclick="KafakProductLabels.editStock()" title="Update sticker stock"><i class="fas fa-edit"></i></button>`;
 
         let startDateHtml = isStarted
             ? `<span title="Since: ${KafakDates.format(db[k].start)}">St: ${KafakDates.format(db[k].start,true)}</span>`

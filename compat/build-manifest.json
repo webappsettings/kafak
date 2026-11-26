@@ -1,7 +1,7 @@
 {
   "inputs": {
     "address-runtime.js": "347c0adfd8d0508d0ee6836eba49cb1d8af9dc5b6ab21d1cf3803b56215d7c75",
-    "order-runtime.js": "003e4da4258e24ff9b609d9e0f4909b8f94f1e63dd629d6e948ef896e6267310",
+    "order-runtime.js": "e62381d1cd06e1a466dac877107819e4373994467e3459fd39270fecbabe49c6",
     "order-admin-actions.js": "18b41b5c3a9d72011b6696a14fad0e86c1d68b627592789c1c94ca860dd4951c",
     "order-customer-storage.js": "9ccaafc02dbfff931857adde8ec5cf1d1804846691322adcde5ad5e733df3e05",
     "order-presentation.js": "38ceaf2157add250831cf9700c4f7c075edf9153aca056f7b65642d88380a9e9",
@@ -15,12 +15,12 @@
     "business-order-editor-ui.js": "3299ea51e5476074502cc5a6f57da6de2eb09c759ee0d17cf3664a331d4edfb6",
     "business-live-order.js": "c543d586cdfcf23912a3796340e3f5ec4982c743aabdf82bf883320288a9fd73",
     "order-courier-ui.js": "9744fb5b1fa0cc8382870dbb91a69a22ae7786a3405e7883e1bf6d1fee08397b",
-    "product-labels.js": "55c602ff8666c49d4410a0661000f65509219367baedb063e3b716f3c62f9b1f",
+    "product-labels.js": "01a84d9c4055e93e680f2dbd705b1cc597898d90803225f094f39f7e191fdc14",
     "mixed-order-ui.js": "302a5ef2e56dedcd234d098ba24faa2284376e7920ec7eacee2aaa550e1133dd",
     "order-recovery.js": "dc75b80f4d58fa163cb66ef1443d8f15ce69dcc9e035d9bdbcd001f183b0c4d1",
     "business-admin-commands.js": "8983c8e1fc7b9df81872c77c117bee785070ff9b5417683fd5bc408827c0a12a",
     "business-admin-transport.js": "c31a7b962bccae5c8dc82dcb4d2458d311e30c1789c40f9c3252c99febe18a11",
-    "release-update.js": "9bd9e4110c71abc2727ff867ef4f9b835eb065b9eb43c4bf00d18b3c3a5b4848",
+    "release-update.js": "c0fa238c7ee3cff852412c55e67d38e6cf57d2a5bfacd443921956aed5eb1bc4",
     "translations.js": "c0ec29c11928cbdbee3845772e3bb723730ade62074cc9be979f4cc45ccdb2f6",
     "o/open.js": "60eaf6cda9be1d3138315e5b1bfcd0c546d47e5394360edef3c7a8365e79d17c",
     "build/order-polyfills.js": "af4242f99a00e9fb881700eb96eef46c4455d35d0afe47d657bf5228e954712a",
@@ -28,9 +28,8 @@
     "package-lock.json": "fe585b582959b095aa9b7a1db0517686ffad774004874d5597cf8554b2ac603d"
   },
   "outputs": {
-    "compat/order-runtime.js": "97c18214a8ee2fb77cadc3f27cbb9fbfcd04b40826dcc4adc857b5395eaca1da",
+    "compat/order-runtime.js": "fd0dc617855f013ffa00fee052b460d517ee2245bea203e8e43edb8e3fca4529",
     "compat/order-customer-storage.js": "6e1b646467b9cd7fd8abf43b1aa75f51d1ccebf0945f546678de765741acb94d",
-    "compat/order-presentation.js": "0ace18ca39768f1fda79c4b2bdbcba0c5fba8e51da411014920108b1279914d6",
     "compat/order-admin-actions.js": "a3ea88744c644558e753a593cab49c3ebfdd4a9b2685d622f60f2371122156a9",
     "compat/address-runtime.js": "58b916f9c0fc405d35a7e4469fe862bee0c98a9597ee1fc671c0243b9875b0e9",
     "compat/backend-api.js": "f10720d39d0579da22978e0dcace7ceab767870001efbc308de95ae001be79aa",
@@ -49,10 +48,11 @@
     "compat/mixed-order-ui.js": "91dda5dc9fe62f4eb9a1af2146d57dfa0654f1b29cac9c4a154767a366356a4b",
     "compat/open-order.js": "c5f85edc80d99840e2c88dd11fb3e9450a68e5478027de30bf29af85d7a874d0",
     "compat/order-courier-ui.js": "5d2e7a44250e505cec8e309f0fa8c3f34e1ef32fda285c5e2d3605142e9e1f01",
+    "compat/order-presentation.js": "0ace18ca39768f1fda79c4b2bdbcba0c5fba8e51da411014920108b1279914d6",
     "compat/order-recovery.js": "05b21e61185c11c8070210878c9664428709f98e741eaedf18bb1fdd7004d517",
     "compat/polyfills.js": "0529891146479992337bc2bcad920d84fb7784439294dcaee931a9a8cd56c4bd",
-    "compat/product-labels.js": "87b30e806909d8d604245c8f620e324fab7ef62163b754239eb278cd619cf6c0",
-    "compat/release-update.js": "078739218766b72d80de7aa596397b9276de50ec481685e79a80f0e345bcdc5a",
+    "compat/product-labels.js": "d9f5176693ab1de2803f83dd9d51a67cd20a6f7478e3ab2108bf9f10e0465be6",
+    "compat/release-update.js": "0d6e621599fb60135389cb188c3863f611d435374aeabc943fe90570840896cf",
     "compat/sweetalert.js": "626fea1079c6184fcec61b309f363b2beb33d77a85e9e5557c275d1eb940b51b",
     "compat/translations.js": "7b7180f224447a2b6e00277a9a276a6ccaa2e96f46d8a77389a71ea822fc837c"
   }

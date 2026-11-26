@@ -246,6 +246,21 @@ function _toPrimitive(t, e) {
   };
   const orders = () => typeof allOrders !== "undefined" ? allOrders : [];
   const pending = () => JSON.parse(localStorage.getItem("pendingUpdates") || "[]");
+  const stockApi = typeof KafakBusinessApi !== "undefined" ? new KafakBusinessApi() : null;
+  let stock = null, stockRequest = null;
+  async function loadStock() {
+    if (!stockApi) throw Error("Sticker stock service is unavailable.");
+    if (!stockRequest) stockRequest = stockApi.request("/admin/label-stock").then((r) => {
+      var _stock, _window$globalInvento;
+      stock = r.stock;
+      if ((_stock = stock) !== null && _stock !== void 0 && _stock.initialized && (_window$globalInvento = window.globalInventoryDB) !== null && _window$globalInvento !== void 0 && _window$globalInvento.sticker) window.globalInventoryDB.sticker.labelStock = _objectSpread(_objectSpread({}, window.globalInventoryDB.sticker.labelStock || {}), {}, {
+        loose: _objectSpread({}, stock.loose),
+        blankSheets: stock.blankSheets
+      });
+      return stock;
+    }).finally(() => stockRequest = null);
+    return stockRequest;
+  }
   const choice = () => {
     var _document$getElementB;
     return ((_document$getElementB = document.getElementById("label-product-type")) === null || _document$getElementB === void 0 ? void 0 : _document$getElementB.value) || "auto";
@@ -398,7 +413,8 @@ function _toPrimitive(t, e) {
   }
   async function predict() {
     const generation = ++predictionSerial;
-    await original.predict(false);
+    let stockError = "";
+    await Promise.all([original.predict(false), loadStock().catch((e) => stockError = e.message)]);
     if (generation !== predictionSerial) return;
     install();
     try {
@@ -415,6 +431,7 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
       modes.previousElementSibling.textContent = "FILL REMAINING A4 SPACE";
       modes.innerHTML = Object.entries(types).map(([k, t]) => `<option value="${k}">Fill with ${escape(t.name)}${k === "W650" ? " (default)" : ""}</option>`).join("") + '<option value="none">Leave blank · exact requested labels</option>';
       modes.value = fillType;
+      renderStock(j, stockError);
       modes.onchange = () => {
         fillType = modes.value;
         scope.updatePrintPrediction();
@@ -424,10 +441,112 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
       document.getElementById("label-product-breakdown").textContent = e.message;
     }
   }
+  function renderStock(j, error = "") {
+    var _stock2;
+    const box = document.getElementById("a4-stock-display-container");
+    if (!box) return;
+    if (error || !((_stock2 = stock) !== null && _stock2 !== void 0 && _stock2.initialized)) {
+      box.innerHTML = '<div class="small text-danger">' + escape(error || "Set opening sticker stock before printing.") + "</div>";
+      return;
+    }
+    const counts = {
+      W650: 0,
+      C650: 0,
+      C300: 0
+    };
+    for (const l of j.labels) counts[l.type]++;
+    const after = {};
+    for (const k of Object.keys(types)) after[k] = stock.loose[k] + counts[k] - (j.automatic ? j.counts[k] : 0);
+    box.innerHTML = `<div class="rounded-3 border p-2 mb-2" style="background:#fff3cd;border-color:#ffe69c!important"><div class="d-flex justify-content-between align-items-center mb-2"><strong style="font-size:11px">Loose stickers · ${Object.values(stock.loose).reduce((a, b) => a + b, 0)}</strong><button type="button" id="edit-typed-label-stock" class="btn btn-sm btn-warning py-0 px-2" style="font-size:10px">Edit</button></div>${Object.entries(types).map(([k, t]) => `<div class="d-flex justify-content-between py-1" style="font-size:11px"><span>${escape(t.name)}</span><strong>${stock.loose[k]} stickers</strong></div>`).join("")}${j.labels.length ? '<div class="small border-top pt-2 mt-1" style="font-size:10px">After printing: ' + Object.keys(types).map((k) => escape(types[k].name) + " " + after[k]).join(" · ") + "</div>" : ""}</div><div class="rounded-3 border bg-white p-2 d-flex justify-content-between align-items-center"><span style="font-size:11px"><strong>Blank A4 sheets: <span class="${stock.blankSheets < 0 ? "text-danger" : "text-primary"}">${stock.blankSheets}</span></strong>${j.pages.length ? '<br><span class="text-muted" style="font-size:10px">After printing: ' + (stock.blankSheets - j.pages.length) + "</span>" : ""}</span><button type="button" id="edit-typed-paper-stock" class="btn btn-sm btn-outline-primary py-0 px-2" style="font-size:10px">Edit</button></div>`;
+    document.getElementById("edit-typed-label-stock").onclick = editStock;
+    document.getElementById("edit-typed-paper-stock").onclick = editStock;
+  }
+  async function editStock() {
+    try {
+      await loadStock();
+      const version = stock.version, stockRequestId = crypto.randomUUID();
+      const result = await Swal.fire({
+        title: "Actual sticker stock",
+        html: '<div class="text-start">' + Object.entries(types).map(([k, t]) => `<label class="small fw-bold mt-2" for="stock-${k}">${escape(t.name)}</label><input id="stock-${k}" type="number" min="0" step="1" required class="form-control form-control-sm" value="${stock.loose[k]}">`).join("") + `<label class="small fw-bold mt-2" for="stock-blank-sheets">Blank A4 sheets</label><input id="stock-blank-sheets" type="number" min="0" step="1" required class="form-control form-control-sm" value="${stock.blankSheets}"></div>`,
+        showCancelButton: true,
+        showLoaderOnConfirm: true,
+        confirmButtonText: "Save stock",
+        preConfirm: async () => {
+          const loose = Object.fromEntries(Object.keys(types).map((k) => [k, Number(document.getElementById("stock-" + k).value)])), raw = [...Object.keys(types).map((k) => document.getElementById("stock-" + k).value), document.getElementById("stock-blank-sheets").value], blankSheets = Number(raw[raw.length - 1]);
+          if (raw.some((v) => v.trim() === "" || !Number.isSafeInteger(Number(v)) || Number(v) < 0)) {
+            Swal.showValidationMessage("Enter a non-negative whole number in every field.");
+            return false;
+          }
+          try {
+            return await stockApi.adminAction({
+              action: "setLabelStock",
+              version,
+              loose,
+              blankSheets,
+              note: "Admin physical stock count"
+            }, stockRequestId);
+          } catch (e) {
+            Swal.showValidationMessage(e.message);
+            return false;
+          }
+        }
+      });
+      if (result.isConfirmed) {
+        stock = result.value.stock;
+        await scope.updatePrintPrediction();
+        showToast("success", "Sticker stock saved.");
+      }
+    } catch (e) {
+      showToast("error", e.message);
+    }
+  }
+  async function savePrintReceipt(pending2) {
+    var _response$issues, _response$issues2;
+    const response = await stockApi.adminAction(pending2.payload, pending2.requestId);
+    if (response.result !== "success") throw Error("Print stock was not confirmed. Retry the saved print receipt.");
+    localStorage.removeItem("kafak-label-print-receipt");
+    stock = response.stock;
+    for (const update of response.orders || []) {
+      const o = orders().find((r) => r.orderid === update.oid);
+      if (o && (!Number.isSafeInteger(o.version) || o.version <= update.version)) {
+        o.adminMeta = update.meta;
+        o.version = update.version;
+      }
+    }
+    localStorage.setItem("allOrdersCache", JSON.stringify(orders()));
+    await scope.updatePrintPrediction();
+    if (typeof renderLiveStockTracker === "function") renderLiveStockTracker();
+    showToast((_response$issues = response.issues) !== null && _response$issues !== void 0 && _response$issues.length ? "warning" : "success", (_response$issues2 = response.issues) !== null && _response$issues2 !== void 0 && _response$issues2.length ? "Stock saved. Changed orders were left unchanged; their printed labels were added as spares." : "Print and sticker balances saved.");
+  }
   async function print() {
     let j;
     try {
+      var _stock3;
+      const waiting = JSON.parse(localStorage.getItem("kafak-label-print-receipt") || "null");
+      if (waiting) {
+        if (waiting.state === "prepared") {
+          const recovery = await Swal.fire({
+            title: "Previous print interrupted",
+            text: "Were those labels printed successfully?",
+            showCancelButton: true,
+            confirmButtonText: "Yes, save printed stock",
+            cancelButtonText: "No, discard this print"
+          });
+          if (!recovery.isConfirmed) {
+            localStorage.removeItem("kafak-label-print-receipt");
+            return;
+          }
+          waiting.state = "confirmed";
+          localStorage.setItem("kafak-label-print-receipt", JSON.stringify(waiting));
+        }
+        await savePrintReceipt(waiting);
+        return;
+      }
+      await loadStock();
+      if (!((_stock3 = stock) !== null && _stock3 !== void 0 && _stock3.initialized)) throw Error("Set opening sticker stock before printing.");
       j = job();
+      if (stock.blankSheets < j.pages.length) throw Error("Need " + j.pages.length + " blank A4 sheets; recorded stock is " + stock.blankSheets + ". Update the physical paper stock first.");
+      if (j.automatic && pending().some((u) => j.allocations.some((a) => a.oid === u.oid))) throw Error("Sync pending order updates before printing, so sticker stock is saved once.");
       if (!j.labels.length) throw Error("No product labels need printing.");
       const invalid = j.labels.find((l) => {
         var _l$batch, _l$date;
@@ -444,8 +563,35 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
       showToast("warning", e.message);
       return;
     }
+    const counts = {
+      W650: 0,
+      C650: 0,
+      C300: 0
+    };
+    for (const l of j.labels) counts[l.type]++;
+    const receipt = {
+      state: "prepared",
+      requestId: crypto.randomUUID(),
+      payload: {
+        action: "recordLabelPrint",
+        counts,
+        sheets: j.pages.length,
+        allocations: j.automatic ? j.allocations.map((a) => ({
+          oid: a.oid,
+          current: a.current,
+          need: a.need
+        })) : []
+      }
+    };
+    try {
+      localStorage.setItem("kafak-label-print-receipt", JSON.stringify(receipt));
+    } catch (_unused) {
+      showToast("error", "Allow browser storage before printing so the stock receipt can be recovered.");
+      return;
+    }
     const w = window.open("", "LabelPrintWindow", "width=900,height=900");
     if (!w) {
+      localStorage.removeItem("kafak-label-print-receipt");
       showToast("warning", "Allow the print window, then retry.");
       return;
     }
@@ -470,57 +616,41 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
               clearInterval(timer);
               reject(Error("Label images are still loading. Retry printing."));
             }
-          } catch (_unused) {
+          } catch (_unused2) {
           }
         }, 100);
       });
       w.focus();
       w.print();
     } catch (e) {
+      localStorage.removeItem("kafak-label-print-receipt");
       showToast("error", e.message);
       return;
     } finally {
       setTimeout(() => URL.revokeObjectURL(url), 3e5);
     }
-    if (!j.automatic) return;
     const confirmed = await Swal.fire({
       title: "Were all labels printed?",
-      text: `${j.requested} order labels + ${j.extras} extra labels on ${j.pages.length} A4 sheets. Confirm only after printing succeeds.`,
+      text: `${j.requested} ${j.automatic ? "order" : "manual"} labels + ${j.extras} filler labels on ${j.pages.length} A4 sheets. Confirm only after printing succeeds.`,
       icon: "question",
       showCancelButton: true,
       confirmButtonText: "Printed successfully",
       cancelButtonText: "Not printed",
       confirmButtonColor: "#198754"
     });
-    if (!confirmed.isConfirmed) return;
-    const updates = pending();
-    for (const a of j.allocations) {
-      var _ref3, _existing$meta;
-      const o = orders().find((r) => r.orderid === a.oid);
-      if (!o) continue;
-      const existing = updates.find((u) => u.oid === a.oid && u.action === "meta"), meta = String((_ref3 = (_existing$meta = existing === null || existing === void 0 ? void 0 : existing.meta) !== null && _existing$meta !== void 0 ? _existing$meta : o.adminMeta) !== null && _ref3 !== void 0 ? _ref3 : "");
-      if (meta !== a.meta) {
-        showToast("warning", "Order changed. Its label mark was kept unchanged; refresh before retrying.");
-        continue;
-      }
-      const value = mark(meta, a.current);
-      if (existing) existing.meta = value;
-      else updates.push({
-        oid: a.oid,
-        action: "meta",
-        oldMeta: meta,
-        meta: value,
-        status: o.Status,
-        time: Date.now()
-      });
-      o.adminMeta = value;
+    if (!confirmed.isConfirmed) {
+      localStorage.removeItem("kafak-label-print-receipt");
+      return;
     }
-    localStorage.setItem("pendingUpdates", JSON.stringify(updates));
-    localStorage.setItem("allOrdersCache", JSON.stringify(orders()));
-    scope.updateSyncButtonUI();
-    scope.updatePrintPrediction();
-    showToast("success", "Order labels confirmed. Sync to save the print marks.");
+    receipt.state = "confirmed";
+    localStorage.setItem("kafak-label-print-receipt", JSON.stringify(receipt));
+    try {
+      await savePrintReceipt(receipt);
+    } catch (e) {
+      showToast("error", e.message + " Print receipt kept; click PRINT LABELS to retry saving without printing again.");
+    }
   }
+  scope.KafakProductLabels.editStock = editStock;
   scope.injectLeftDrawer = function() {
     original.inject();
     install();
@@ -545,7 +675,7 @@ Print: ${j.requested} requested + ${j.extras} extra${j.extras ? " " + types[fill
       settings.W650.batch = value;
       $("#label-batch").val(value);
       preview();
-    } catch (_unused2) {
+    } catch (_unused3) {
       document.getElementById("label-batch").placeholder = "Batch unavailable - retry before printing";
     }
   };
